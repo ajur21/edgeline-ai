@@ -2,11 +2,29 @@
    Requires Playwright with Chromium (see README). Run from the project root: npm test */
 const { chromium } = require('playwright');
 const path = require('path');
+const fs = require('fs');
+const http = require('http');
 const root = require('path').resolve(__dirname, '..');
-const url = p => 'file://' + path.join(root, p);
+/* Pages are served over a local HTTP server. Data files are swapped for the sample fixtures so the
+   suite does not depend on whatever the pipeline last wrote; a final smoke pass uses the real data. */
+const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json' };
+let useSample = true;
+const server = http.createServer((req, res) => {
+  let rel = decodeURIComponent(req.url.split('?')[0].split('#')[0]).replace(/^\//, '') || 'index.html';
+  if (useSample && rel === 'data/picks.js') rel = 'scripts/fixtures/sample-picks.js';
+  if (useSample && rel === 'data/performance.js') rel = 'scripts/fixtures/sample-performance.js';
+  const file = path.join(root, rel);
+  if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
+  res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
+  fs.createReadStream(file).pipe(res);
+});
+let base = '';
+const url = p => base + '/' + p;
 const fails = [];
 const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : '')); if (!ok) fails.push(name); };
 (async () => {
+  await new Promise(r => server.listen(0, '127.0.0.1', r));
+  base = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -148,7 +166,21 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('skip link visible on focus', box && box.width > 40 && box.height > 10, JSON.stringify(box));
 
   check('no page/console errors', errors.length === 0, errors.join(' | '));
+
+  /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
+  useSample = false;
+  const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
+  for (const p of ['index.html', 'picks.html', 'performance.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
+  const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
+  await rp.goto(url('index.html')); await rp.waitForTimeout(400);
+  const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });
+  const sampleHidden = await rp.evaluate(() => { const d = window.PICKS_DATA; const flag = document.querySelector('[data-sample-flag="picks"]'); return !d || d.sample !== false ? true : (flag.hidden === true && getComputedStyle(flag).display === 'none'); });
+  check('real data: all three pages load without errors (' + realPicks + ' picks on the board)', realErrors.length === 0, realErrors.join(' | '));
+  check('real data: board shows rows or a single empty-state message', boardOk);
+  check('real data: Sample label hidden when data is real', sampleHidden);
   await browser.close();
+  server.close();
   console.log(fails.length ? 'FAILURES: ' + fails.length : 'ALL PASS');
   process.exit(fails.length ? 1 : 0);
 })();

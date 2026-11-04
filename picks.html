@@ -101,7 +101,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a pick.</strong> "Fair" is the de-vigged consensus probability across every book pricing the market. "Implied" is the probability baked into the best available price. "Edge" is the difference; the higher it is, the further that book sits from the market. Confidence follows the edge: 1.5 points is a Lean, 2.5 Medium, 4 High.
+      <strong>Reading a pick.</strong> "Fair" is the sharpest book's de-vigged probability for the line (or the market consensus when it doesn't price it). "Implied" is the probability baked into the best available price. "Edge" is the difference; the higher it is, the further that book sits behind the market. Confidence follows the edge: 1 point is a Lean, 2 Medium, 3.5 High.
     </div>
   </div>
 </section>
@@ -142,8 +142,8 @@
   function render() {
     var list = filtered();
     host.textContent = "";
-    summary.textContent = list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || "edge") + ".";
-    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: "No picks match these filters." })); return; }
+    summary.textContent = P.length ? list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || "edge") + "." : "Nothing on the board yet.";
+    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No picks match these filters." : "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." })); return; }
     if (view === "cards") {
       var grid = E.el("div", { class: "picks-grid stagger" });
       list.forEach(function (p, i) { var c = E.pickCard(p); c.style.setProperty("--i", i); grid.appendChild(c); });

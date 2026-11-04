@@ -188,7 +188,8 @@
   var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units"].map(function (h, i) {
     return E.el("th", { scope: "col", class: (i === 4 || i === 6) ? "num" : "", text: h });
   }));
-  document.getElementById("recent-host").appendChild(E.el("table", { class: "data" }, [E.el("thead", {}, [headRow]), E.el("tbody", {}, rows)]));
+  if (rows.length) document.getElementById("recent-host").appendChild(E.el("table", { class: "data" }, [E.el("thead", {}, [headRow]), E.el("tbody", {}, rows)]));
+  else document.getElementById("recent-host").appendChild(E.el("p", { class: "empty", text: "No graded picks yet. Results appear the morning after the first picks settle." }));
 })();
 </script>
 

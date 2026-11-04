@@ -1,33 +1,41 @@
 /* ==========================================================================
    EdgeLine AI — data pipeline
-   Pulls live prices from The Odds API, de-vigs every book's prices into fair
-   probabilities, averages them into a market consensus, and flags outcomes
-   where one book's price implies a lower probability than the consensus
-   (the edge). Logs picks in data/picks-log.json, grades finished ones with
+   Pulls live prices from The Odds API. The fair probability for a line is the
+   de-vigged price at Pinnacle (the sharp reference book); when Pinnacle does
+   not price that line, the de-vigged average of the other books stands in.
+   A pick is any bettable book whose price implies a lower probability than
+   fair (the edge). Logs picks in data/picks-log.json, grades finished ones with
    final scores, and rewrites data/picks.js and data/performance.js.
 
    Run:   ODDS_API_KEY=... node scripts/update-data.js
    Test:  node scripts/update-data.js --fixture            (no network)
    Flags: --out <dir>   write data files elsewhere (tests)
           --now <iso>   pretend it is this moment (tests)
+          --verbose     print every candidate edge per sport, even below the threshold
    ========================================================================== */
 "use strict";
 const fs = require("fs");
 const path = require("path");
 
 const API = "https://api.the-odds-api.com/v4";
+let VERBOSE = false;
+/* days: Eastern weekdays (0 = Sunday) on which to fetch; omitted = every day. With the run at 4:30 PM ET and a
+   36-hour window, Wednesday covers Thursday night football, Saturday covers the Sunday slate, Friday covers weekend soccer. */
 const SPORTS = [
-  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
+  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 6, 0, 1] },
   { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
   { key: "baseball_mlb", sport: "MLB", league: "MLB", markets: ["h2h", "spreads", "totals"], spreadLabel: "Run line" },
   { key: "icehockey_nhl", sport: "NHL", league: "NHL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Puck line" },
-  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true },
-  { key: "soccer_spain_la_liga", sport: "Soccer", league: "La Liga", markets: ["h2h", "totals"], goals: true }
+  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] },
+  { key: "soccer_spain_la_liga", sport: "Soccer", league: "La Liga", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] }
 ];
+/* Pinnacle anchors the fair line; the rest are the books a pick can name. Ten bookmakers cost the same as one region. */
+const ANCHOR = "pinnacle";
+const BOOKS = [ANCHOR, "draftkings", "fanduel", "betmgm", "williamhill_us", "betrivers", "fanatics", "espnbet", "bovada", "betonlineag"];
 const RULES = {
-  minBooks: 3,          // a consensus needs at least this many books on the same line
-  minEdge: 0.015,       // 1.5 percentage points to become a pick
-  medium: 0.025, high: 0.04,
+  minBooks: 3,          // the line needs at least this many books (anchor included) to be analysed
+  minEdge: 0.01,        // 1 point over the fair line becomes a pick (about +2% EV at even odds)
+  medium: 0.02, high: 0.035,
   maxPerSport: 4, maxPicks: 12,
   horizonHours: 36,     // only events starting within this window
   gradeAfterHours: 3,   // grade events that started at least this long ago
@@ -46,6 +54,7 @@ function round(n, d) { return Math.round(n * Math.pow(10, d)) / Math.pow(10, d);
 
 /* ---------- time (everything user-facing is Eastern) ---------- */
 const ET = "America/New_York";
+function etWeekday(d) { return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(new Intl.DateTimeFormat("en-US", { timeZone: ET, weekday: "short" }).format(d)); }
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
 function startLabel(d, now) {
   const day = etDate(d), today = etDate(now), tomorrow = etDate(new Date(now.getTime() + 864e5));
@@ -73,23 +82,28 @@ function analyzeEvent(cfg, ev) {
       const m = (bk.markets || []).find(x => x.key === market);
       if (!m || !m.outcomes || m.outcomes.length < 2) return;
       const key = lineKey(m.outcomes);
-      (groups[key] = groups[key] || []).push({ book: bk.title, outcomes: m.outcomes });
+      (groups[key] = groups[key] || []).push({ book: bk.title, bookKey: bk.key, outcomes: m.outcomes });
     });
     const best = Object.values(groups).sort((a, b) => b.length - a.length)[0];
     if (!best || best.length < RULES.minBooks) return;
     const names = best[0].outcomes.map(o => o.name + "|" + (o.point == null ? "" : o.point));
+    const anchorBook = best.find(b => b.bookKey === ANCHOR);
     const fair = names.map(() => 0);
-    best.forEach(function (b) {
+    const basis = anchorBook ? [anchorBook] : best;
+    basis.forEach(function (b) {
       const ordered = names.map(n => b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n));
-      devig(ordered.map(o => o.price)).forEach((p, i) => { fair[i] += p / best.length; });
+      devig(ordered.map(o => o.price)).forEach((p, i) => { fair[i] += p / basis.length; });
     });
+    const bettable = best.filter(b => b.bookKey !== ANCHOR);
+    if (!bettable.length) return;
     const candidates = names.map(function (n, i) {
       let bestPrice = -Infinity, bestBook = "";
-      best.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
+      bettable.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
       const o = best[0].outcomes[i];
-      return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, fair: fair[i], edge: fair[i] - implied(bestPrice), books: best.length, market: market };
-    }).filter(c => c.edge >= RULES.minEdge).sort((a, b) => b.edge - a.edge);
-    if (candidates.length) out.push(candidates[0]); /* never both sides of one market */
+      return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, fair: fair[i], edge: fair[i] - implied(bestPrice), books: best.length, anchor: anchorBook ? anchorBook.book : null, market: market };
+    }).sort((a, b) => b.edge - a.edge);
+    if (VERBOSE && candidates.length) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + best.length + " books" + (anchorBook ? " (anchored)" : " (consensus)") + " | best edge " + (candidates[0].edge * 100).toFixed(2) + " pts on " + candidates[0].outcome.name + " " + (candidates[0].outcome.point == null ? "" : candidates[0].outcome.point) + " at " + fmtOdds(candidates[0].odds) + " (" + candidates[0].book + ")");
+    if (candidates.length && candidates[0].edge >= RULES.minEdge) out.push(candidates[0]); /* never both sides of one market */
   });
   return out;
 }
@@ -97,10 +111,11 @@ function analyzeEvent(cfg, ev) {
 function confidence(edge) { return edge >= RULES.high ? "High" : edge >= RULES.medium ? "Medium" : "Lean"; }
 function rationale(c, cfg) {
   const line = c.outcome.point == null ? "" : " at " + (c.market === "spreads" && c.outcome.point > 0 ? "+" : "") + c.outcome.point;
-  return c.books + " books price this" + line + "; de-vigged consensus makes it " + pct(c.fair) + ". " + c.book + " offers " + fmtOdds(c.odds) + ", which implies only " + pct(implied(c.odds)) + ".";
+  const basis = c.anchor ? c.anchor + "'s de-vigged price" : "the de-vigged consensus of " + c.books + " books";
+  return "Fair probability" + line + " is " + pct(c.fair) + " by " + basis + ". " + c.book + " offers " + fmtOdds(c.odds) + ", which implies only " + pct(implied(c.odds)) + ".";
 }
 function factors(c) {
-  return ["Best price " + fmtOdds(c.odds) + " at " + c.book, "Consensus of " + c.books + " books", "Edge " + (c.edge * 100).toFixed(1) + " points over the market"];
+  return ["Best price " + fmtOdds(c.odds) + " at " + c.book, c.anchor ? "Fair line from " + c.anchor : "Fair line from " + c.books + "-book consensus", "Edge " + (c.edge * 100).toFixed(1) + " points over fair"];
 }
 function slug(s) { return String(s).replace(/[^\w-]+/g, "-").replace(/^-+|-+$/g, ""); }
 
@@ -191,9 +206,11 @@ async function run(opts) {
   const fresh = [];
   for (const cfg of SPORTS) {
     if (active && !active.has(cfg.key)) continue;
+    if (!opts.fixture && cfg.days && cfg.days.indexOf(etWeekday(now)) === -1) continue;
     if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); continue; }
     const events = await source.odds(cfg);
     const horizon = now.getTime() + RULES.horizonHours * 36e5;
+    if (VERBOSE) console.log(cfg.key + ": " + (events || []).length + " events, " + (events || []).filter(ev => { const t = Date.parse(ev.commence_time); return t > now.getTime() && t < horizon; }).length + " within " + RULES.horizonHours + "h");
     const picks = [];
     (events || []).forEach(function (ev) {
       const t = Date.parse(ev.commence_time);
@@ -205,12 +222,13 @@ async function run(opts) {
           key: key, id: slug(ev.id.slice(0, 10) + "-" + c.market + "-" + c.outcome.name), date: etDate(new Date(t)), commence: ev.commence_time,
           sport: cfg.sport, league: cfg.league, sportKey: cfg.key, eventId: ev.id, home: ev.home_team, away: ev.away_team,
           event: eventName(cfg, ev), market: marketLabel(cfg, c.market), marketKey: c.market, outcome: c.outcome, threeWay: !!cfg.goals && c.market === "h2h",
-          pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, books: c.books,
-          modelProb: round(c.fair, 4), edge: round(c.edge, 4), confidence: confidence(c.edge),
+          pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, books: c.books, anchor: c.anchor,
+          modelProb: round(c.fair, 4), edge: round(c.edge, 4), ev: round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), confidence: confidence(c.edge),
           rationale: rationale(c, cfg), factors: factors(c), status: "pending", units: 0, loggedAt: now.toISOString()
         });
       });
     });
+    if (VERBOSE) console.log("  requests remaining: " + usage.remaining);
     picks.sort((a, b) => b.edge - a.edge).slice(0, RULES.maxPerSport).forEach(p => fresh.push(p));
   }
   fresh.sort((a, b) => b.edge - a.edge).slice(0, RULES.maxPicks).forEach(p => log.push(p));
@@ -233,7 +251,7 @@ function liveSource(key, usage) {
   if (!key) throw new Error("ODDS_API_KEY is not set");
   return {
     activeSports: async function () { const list = await apiGet("/sports", {}, key, usage); return new Set(list.filter(s => s.active).map(s => s.key)); },
-    odds: function (cfg) { return apiGet("/sports/" + cfg.key + "/odds", { regions: "us", markets: cfg.markets.join(","), oddsFormat: "american" }, key, usage); },
+    odds: function (cfg) { return apiGet("/sports/" + cfg.key + "/odds", { bookmakers: BOOKS.join(","), markets: cfg.markets.join(","), oddsFormat: "american" }, key, usage); },
     scores: function (sportKey) { return apiGet("/sports/" + sportKey + "/scores", { daysFrom: 3 }, key, usage); }
   };
 }
@@ -252,6 +270,7 @@ function parseArgs(argv) {
     if (argv[i] === "--fixture") o.fixture = true;
     else if (argv[i] === "--out") o.out = argv[++i];
     else if (argv[i] === "--now") o.now = argv[++i];
+    else if (argv[i] === "--verbose") VERBOSE = true;
   }
   return o;
 }
