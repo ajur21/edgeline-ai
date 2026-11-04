@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EdgeLine AI · AI sports betting picks</title>
+  <meta name="description" content="Model-driven sports betting picks with the probability and edge behind every selection.">
+  <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EdgeLine AI">
+  <meta property="og:title" content="EdgeLine AI · AI sports betting picks">
+  <meta property="og:description" content="Model-driven sports betting picks with the probability and edge behind every selection.">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+  <script src="js/space.js" defer></script>
+</head>
+<body>
+<a class="visually-hidden" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+    <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="performance.html">Performance</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+
+<div class="ticker" aria-label="Today's board, scrolling"><div class="ticker-track" id="ticker-track"></div></div>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">AI-driven picks · NFL · NBA · MLB · NHL · Soccer</span>
+      <h1>Only bet when the model <span class="hl">beats the price.</span></h1>
+      <p class="lead">EdgeLine AI compares its own win probabilities against sportsbook prices and surfaces only the bets where the model sees value. Every pick ships with the number behind it.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="picks.html">See today's picks</a>
+        <a class="btn btn-secondary" href="performance.html">View track record</a>
+      </div>
+      <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
+    </div>
+    <section class="board" id="board" aria-labelledby="board-title" data-tilt>
+      <div class="board-head"><span class="live" id="board-title">Today's board</span><span class="badge badge-sample">Sample data</span></div>
+      <div id="board-rows"></div>
+      <div class="board-foot" id="board-foot"></div>
+    </section>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps from data to a pick</h2>
+      <p class="muted">The model only recommends a bet when its probability beats the price the market is offering.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-term">Inputs</span>
+        <h3>Ingest the signal</h3>
+        <p>Team and player ratings, injuries, rest, travel, weather and line movement are pulled in before every slate.</p>
+      </div>
+      <div class="step">
+        <span class="step-term">Simulation</span>
+        <h3>Simulate the game</h3>
+        <p>Thousands of simulations produce a win probability for each side, total and spread.</p>
+      </div>
+      <div class="step">
+        <span class="step-term">Edge = model % − implied %</span>
+        <h3>Find the edge</h3>
+        <p>The model probability is compared with the implied probability of the odds. If the gap clears the threshold, it becomes a pick.</p>
+      </div>
+    </div>
+
+    <div class="calc card" id="calc" data-tilt>
+      <div class="calc-head">
+        <span class="eyebrow">Try it</span>
+        <h3>Find the edge yourself</h3>
+        <p class="muted">Drag the odds and the model's win probability. A pick only happens when the edge is positive.</p>
+      </div>
+      <div class="calc-grid">
+        <label class="calc-field">
+          <span class="calc-label">American odds <output id="calc-odds-out" class="mono" for="calc-odds">-110</output></span>
+          <input type="range" id="calc-odds" min="0" max="81" step="1" value="38">
+        </label>
+        <label class="calc-field">
+          <span class="calc-label">Model win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
+          <input type="range" id="calc-prob" min="30" max="80" step="0.5" value="55">
+        </label>
+      </div>
+      <div class="calc-result pick-metrics">
+        <div class="pick-metric"><div class="k">Implied</div><div class="v" id="calc-implied">52.4%</div></div>
+        <div class="pick-metric"><div class="k">Edge</div><div class="v edge" id="calc-edge">+2.6%</div></div>
+        <div class="pick-metric"><div class="k">Verdict</div><div class="v verdict verdict-lean" id="calc-verdict">Lean</div></div>
+      </div>
+      <div class="meter" aria-hidden="true"><span id="calc-meter"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-flush" id="top-picks">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <span class="eyebrow">Today's top edges</span>
+        <h2>Highest-value picks right now</h2>
+      </div>
+      <a class="btn btn-secondary btn-sm" href="picks.html">All picks</a>
+    </div>
+    <div class="picks-grid" id="top-picks-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple plans, one model</h2>
+        <p class="muted">Start free. Upgrade when you want every pick and the number behind it.</p>
+      </div>
+      <div class="pricing-controls">
+        <span class="badge badge-sample">Sample pricing</span>
+        <div class="seg" role="group" aria-label="Billing period">
+          <button type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
+          <button type="button" data-billing="yearly" aria-pressed="false">Yearly <span class="save">−20%</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="plans">
+      <div class="plan" data-tilt>
+        <div class="plan-head"><h3>Free</h3></div>
+        <div class="plan-price"><span data-monthly="$0" data-yearly="$0">$0</span><small> /month</small></div>
+        <ul>
+          <li>One featured pick per day</li>
+          <li>Public performance page</li>
+          <li>Email digest</li>
+        </ul>
+        <a class="btn btn-secondary" href="#">Create free account</a>
+      </div>
+      <div class="plan featured" data-tilt>
+        <div class="plan-head"><h3>Pro</h3><span class="badge badge-strong">Most popular</span></div>
+        <div class="plan-price"><span data-monthly="$29" data-yearly="$23">$29</span><small> /month</small></div>
+        <ul>
+          <li>Every pick across all sports</li>
+          <li>Model probability and edge on each pick</li>
+          <li>Line-move alerts</li>
+          <li>Full historical database</li>
+        </ul>
+        <a class="btn btn-primary" href="#">Start Pro</a>
+      </div>
+      <div class="plan" data-tilt>
+        <div class="plan-head"><h3>Elite</h3></div>
+        <div class="plan-price"><span data-monthly="$79" data-yearly="$63">$79</span><small> /month</small></div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Early access before line moves</li>
+          <li>Bankroll and unit sizing tools</li>
+          <li>API access</li>
+        </ul>
+        <a class="btn btn-secondary" href="#">Go Elite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions people ask</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>What does "edge" mean?</summary>
+        <p>Edge is the difference between the model's win probability and the probability implied by the sportsbook odds. A +4% edge means the model thinks the bet wins 4 percentage points more often than the price suggests.</p>
+      </details>
+      <details>
+        <summary>Does the model guarantee winners?</summary>
+        <p>No. Nothing does. Even a well-calibrated model loses often; the goal is positive expected value over a large number of bets, not winning every one.</p>
+      </details>
+      <details>
+        <summary>How are results tracked?</summary>
+        <p>Every pick is logged with its odds at the time of publication and graded to one unit of risk. Results are shown on the performance page and never edited after the fact.</p>
+      </details>
+      <details>
+        <summary>Which sportsbooks do you use for odds?</summary>
+        <p>Prices are captured from a consensus of major licensed sportsbooks at the moment a pick is published, and that is the price each pick is graded against. Your book may differ slightly, so compare before you bet.</p>
+      </details>
+      <details>
+        <summary>Is this legal where I live?</summary>
+        <p>EdgeLine AI only provides analysis. Whether you can place a bet depends on the laws where you are. Check your local regulations and only bet with licensed operators.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script src="data/picks.js"></script>
+<script src="data/performance.js"></script>
+<script>
+(function () {
+  var E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
+  var ranked = E.sortByEdge(P);
+
+  /* ticker: every pick, twice, so the loop is seamless */
+  var track = document.getElementById("ticker-track");
+  [false, true].forEach(function (dup) {
+    var group = E.el("div", { class: "ticker-group" });
+    if (dup) group.setAttribute("aria-hidden", "true");
+    ranked.forEach(function (p) {
+      group.appendChild(E.el("a", { class: "ticker-item", href: "picks.html#" + p.id }, [
+        E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
+        E.el("span", { class: "t-pick", text: p.pick }),
+        E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
+        E.el("span", { class: "t-edge", text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
+      ]));
+    });
+    track.appendChild(group);
+  });
+
+  /* hero board: four best edges, each a link to its card */
+  var rows = document.getElementById("board-rows");
+  ranked.slice(0, 4).forEach(function (p) {
+    rows.appendChild(E.el("a", { class: "board-row", href: "picks.html#" + p.id }, [
+      E.el("span", { class: "board-sport", text: p.sport.toUpperCase() }),
+      E.el("div", { class: "board-pick" }, [
+        E.el("div", { class: "sel", text: p.pick }),
+        E.el("div", { class: "ev", text: p.event + " · " + p.market })
+      ]),
+      E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
+      E.el("span", { class: "board-edge", text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
+    ]));
+  });
+  var foot = document.getElementById("board-foot");
+  [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
+   ["Units", E.signed(S.units, 1) + "u"],
+   ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
+    foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
+  });
+
+  /* top three picks by edge */
+  var grid = document.getElementById("top-picks-grid");
+  ranked.slice(0, 3).forEach(function (p) { grid.appendChild(E.pickCard(p)); });
+
+  /* edge calculator: the slider walks a list of valid American odds (no -99..+99 dead zone) */
+  var ODDS = [];
+  for (var o = -300; o <= -100; o += 5) ODDS.push(o);
+  for (o = 100; o <= 300; o += 5) ODDS.push(o);
+  var oddsIn = document.getElementById("calc-odds"), probIn = document.getElementById("calc-prob");
+  oddsIn.max = String(ODDS.length - 1); oddsIn.value = String(ODDS.indexOf(-110));
+  function verdict(edge) { return edge >= 0.05 ? "High" : edge >= 0.03 ? "Medium" : edge > 0 ? "Lean" : "No bet"; }
+  function calc() {
+    var odds = ODDS[Number(oddsIn.value)], prob = Number(probIn.value) / 100;
+    var implied = E.impliedProb(odds), edge = prob - implied;
+    document.getElementById("calc-odds-out").textContent = E.fmtOdds(odds);
+    document.getElementById("calc-prob-out").textContent = E.pct(prob);
+    document.getElementById("calc-implied").textContent = E.pct(implied);
+    var edgeEl = document.getElementById("calc-edge");
+    edgeEl.textContent = E.signed(edge * 100, 1) + "%";
+    edgeEl.classList.toggle("neg", edge <= 0);
+    var v = document.getElementById("calc-verdict");
+    v.textContent = verdict(edge);
+    v.className = "v verdict verdict-" + verdict(edge).toLowerCase().replace(" ", "-");
+    document.getElementById("calc-meter").style.width = Math.max(0, Math.min(100, edge * 100 * 8)) + "%";
+  }
+  oddsIn.addEventListener("input", calc); probIn.addEventListener("input", calc); calc();
+
+  /* pricing: monthly / yearly */
+  document.querySelectorAll("[data-billing]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var period = btn.getAttribute("data-billing");
+      document.querySelectorAll("[data-billing]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      document.querySelectorAll("[data-monthly]").forEach(function (el) { el.textContent = el.getAttribute(period === "yearly" ? "data-yearly" : "data-monthly"); });
+      document.querySelectorAll(".plan-price small").forEach(function (sm) { sm.textContent = period === "yearly" ? " /month, billed yearly" : " /month"; });
+    });
+  });
+})();
+</script>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="notice">
+      <strong>Responsible gambling.</strong> EdgeLine AI provides statistical analysis for informational and entertainment purposes only. It is not financial advice and does not guarantee any outcome. Past performance does not predict future results. Sports betting involves risk; never wager more than you can afford to lose. You must be 21 or older (or the legal age in your jurisdiction) and bet only where it is legal. If you or someone you know has a gambling problem, call <a href="tel:1-800-426-2537">1-800-GAMBLER</a>.
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <nav aria-label="Product"><ul>
+          <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="performance.html">Performance</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+        </ul></nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Company"><ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul></nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> EdgeLine AI. All rights reserved.</span>
+      <span class="footer-age"><span class="age-badge" aria-hidden="true">21+</span><span class="visually-hidden">Must be 21 or older.</span> Gamble responsibly.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

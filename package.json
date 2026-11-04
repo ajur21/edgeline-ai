@@ -1,0 +1,12 @@
+{
+  "name": "edgeline-ai-site",
+  "private": true,
+  "description": "Static HTML/CSS/JS site for an AI sports betting picks product. No build step; Playwright is dev-only for the render check.",
+  "scripts": {
+    "check": "node scripts/screenshot.js",
+    "test": "node scripts/behavior.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1"
+  }
+}

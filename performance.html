@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Performance · EdgeLine AI</title>
+  <meta name="description" content="Transparent track record: units, record, ROI and results by sport.">
+  <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EdgeLine AI">
+  <meta property="og:title" content="Performance · EdgeLine AI">
+  <meta property="og:description" content="Transparent track record: units, record, ROI and results by sport.">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+  <script src="js/space.js" defer></script>
+</head>
+<body>
+<a class="visually-hidden" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+    <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="performance.html">Performance</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head row page-head">
+      <div>
+        <span class="eyebrow">Performance</span>
+        <h1 class="page-title">Track record, last 30 days</h1>
+        <p class="muted page-sub" id="as-of"></p>
+      </div>
+      <span class="badge badge-sample">Sample data</span>
+    </div>
+
+    <div class="grid-4" id="stat-tiles"></div>
+  </div>
+</section>
+
+<section class="section-tight section-flush">
+  <div class="container stack">
+    <div class="card chart-card">
+      <div class="chart-head">
+        <div>
+          <h2 class="chart-title">Cumulative units</h2>
+          <p class="chart-sub">Profit in units at one unit risked per pick. Hover or use arrow keys for daily values.</p>
+        </div>
+        <div class="chart-actions">
+          <div class="seg" role="group" aria-label="Range" id="range-seg">
+            <button type="button" data-range="7" aria-pressed="false">7d</button>
+            <button type="button" data-range="14" aria-pressed="false">14d</button>
+            <button type="button" data-range="30" aria-pressed="true">30d</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" type="button" data-toggle-table="units-table" aria-controls="units-table" aria-expanded="false">Show table</button>
+        </div>
+      </div>
+      <div class="chart-body" id="units-chart"></div>
+      <div id="units-table-host"></div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="chart-head">
+        <div>
+          <h2 class="chart-title">Units by sport</h2>
+          <p class="chart-sub">Net units won or lost in each sport over the same window.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" type="button" data-toggle-table="sport-table" aria-controls="sport-table" aria-expanded="false">Show table</button>
+      </div>
+      <div class="chart-body" id="sport-chart"></div>
+      <div id="sport-table-host"></div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="chart-head">
+        <div>
+          <h2 class="chart-title">Recent graded picks</h2>
+          <p class="chart-sub">The most recent results, newest first.</p>
+        </div>
+      </div>
+      <div class="table-wrap" id="recent-host" tabindex="0" role="region" aria-label="Recent graded picks"></div>
+    </div>
+
+    <div class="notice">
+      <strong>How grading works.</strong> Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked.
+    </div>
+  </div>
+</section>
+
+<script src="data/performance.js"></script>
+<script src="js/charts.js"></script>
+<script>
+(function () {
+  var E = window.EdgeLine, C = window.EdgeLineCharts, S = window.PERF_DATA;
+  document.getElementById("as-of").textContent = "Through " + C.fmtDate(S.asOf);
+
+  /* stat tiles; first is the hero figure */
+  var graded = S.record.wins + S.record.losses + S.record.pushes, decided = S.record.wins + S.record.losses;
+  var tiles = [
+    { label: "Units won", num: S.units, fmt: function (n) { return E.signed(n, 2) + "u"; }, sub: "At one unit risked per pick", hero: true },
+    { label: "Record (W-L-P)", value: S.record.wins + "-" + S.record.losses + "-" + S.record.pushes, sub: graded + " picks graded" },
+    { label: "Win rate", num: decided > 0 ? S.record.wins / decided * 100 : null, fmt: function (n) { return n.toFixed(1) + "%"; }, value: "—", sub: "Pushes excluded" },
+    { label: "Return on investment", num: S.roi, fmt: function (n) { return E.signed(n, 1) + "%"; }, sub: "Units won ÷ units risked" }
+  ];
+  var host = document.getElementById("stat-tiles");
+  tiles.forEach(function (t, i) {
+    var valueEl = E.el("div", { class: "stat-value" + (t.hero ? " hero-figure" : ""), text: t.num == null ? t.value : t.fmt(0) });
+    host.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [
+      E.el("div", { class: "stat-label", text: t.label }),
+      valueEl,
+      E.el("div", { class: "stat-sub", text: t.sub })
+    ]));
+    if (t.num != null) setTimeout(function () { E.animateNumber(valueEl, t.num, t.fmt, 1000); }, 120 * i);
+  });
+
+  /* cumulative units line, re-based to zero at the start of the chosen window */
+  var unitsHost = document.getElementById("units-chart"), unitsTableHost = document.getElementById("units-table-host");
+  function renderUnits(days) {
+    var all = S.daily, n = Math.min(days, all.length), slice = all.slice(all.length - n);
+    var base = n < all.length ? all[all.length - n - 1].units : 0;
+    var pts = slice.map(function (d) { return { x: d.date, y: Math.round((d.units - base) * 100) / 100 }; });
+    unitsHost.textContent = "";
+    C.lineChart(unitsHost, pts, { unit: "u", seriesName: "cumulative units", ariaLabel: "Cumulative units over the last " + n + " days" });
+    var wasHidden = true, old = document.getElementById("units-table");
+    if (old) { wasHidden = old.hidden; old.remove(); }
+    var ut = C.dataTable([{ label: "Date" }, { label: "Cumulative units", num: true }], pts.map(function (p) { return [C.fmtDate(p.x), E.signed(p.y, 2)]; }), "Cumulative units by day");
+    ut.id = "units-table"; ut.hidden = wasHidden; unitsTableHost.appendChild(ut);
+  }
+  renderUnits(30);
+  document.querySelectorAll("[data-range]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll("[data-range]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      renderUnits(Number(btn.getAttribute("data-range")));
+    });
+  });
+
+  /* units by sport bars */
+  var bars = S.bySport.map(function (b) { return { label: b.sport, value: b.units, sub: b.record }; });
+  C.barChart(document.getElementById("sport-chart"), bars, { unit: "u", seriesName: "net units", ariaLabel: "Net units by sport" });
+  var st = C.dataTable([{ label: "Sport" }, { label: "Record", num: true }, { label: "Net units", num: true }], S.bySport.map(function (b) { return [b.sport, b.record, E.signed(b.units, 2)]; }), "Net units by sport");
+  st.id = "sport-table"; document.getElementById("sport-table-host").appendChild(st);
+
+  /* table toggles */
+  document.querySelectorAll("[data-toggle-table]").forEach(function (btn) {
+    var card = btn.closest(".chart-card"), title = card && card.querySelector(".chart-title");
+    function name(open) { btn.setAttribute("aria-label", (open ? "Hide" : "Show") + " table for " + (title ? title.textContent : "chart")); }
+    name(false);
+    btn.addEventListener("click", function () {
+      var t = document.getElementById(btn.getAttribute("data-toggle-table"));
+      t.hidden = !t.hidden;
+      btn.setAttribute("aria-expanded", String(!t.hidden));
+      btn.textContent = t.hidden ? "Show table" : "Hide table";
+      name(!t.hidden);
+    });
+  });
+
+  /* recent picks */
+  var rows = S.recent.map(function (r) {
+    var cls = "result result-" + r.result.toLowerCase();
+    return E.el("tr", {}, [
+      E.el("td", { text: C.fmtDate(r.date) }),
+      E.el("td", { text: r.sport }),
+      E.el("td", { text: r.event }),
+      E.el("td", {}, [E.el("strong", { text: r.pick })]),
+      E.el("td", { class: "num", text: E.fmtOdds(r.odds) }),
+      E.el("td", {}, [E.el("span", { class: cls }, [E.el("span", { class: "dot", "aria-hidden": "true" }), r.result])]),
+      E.el("td", { class: "num", text: E.signed(r.units, 2) + "u" })
+    ]);
+  });
+  var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units"].map(function (h, i) {
+    return E.el("th", { scope: "col", class: (i === 4 || i === 6) ? "num" : "", text: h });
+  }));
+  document.getElementById("recent-host").appendChild(E.el("table", { class: "data" }, [E.el("thead", {}, [headRow]), E.el("tbody", {}, rows)]));
+})();
+</script>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="notice">
+      <strong>Responsible gambling.</strong> EdgeLine AI provides statistical analysis for informational and entertainment purposes only. It is not financial advice and does not guarantee any outcome. Past performance does not predict future results. Sports betting involves risk; never wager more than you can afford to lose. You must be 21 or older (or the legal age in your jurisdiction) and bet only where it is legal. If you or someone you know has a gambling problem, call <a href="tel:1-800-426-2537">1-800-GAMBLER</a>.
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <nav aria-label="Product"><ul>
+          <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="performance.html">Performance</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+        </ul></nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Company"><ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul></nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> EdgeLine AI. All rights reserved.</span>
+      <span class="footer-age"><span class="age-badge" aria-hidden="true">21+</span><span class="visually-hidden">Must be 21 or older.</span> Gamble responsibly.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
