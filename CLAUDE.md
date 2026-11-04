@@ -11,7 +11,7 @@ A static marketing and product website for an AI sports betting picks service. T
 ## File map
 
 ```
-index.html           Landing: ticker, hero + today's board, play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
+index.html           Landing: ticker, hero + today's board, the edge field (#field), play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
 picks.html           Best parlays (ranked by EV, 2-4 legs, one book per ticket; #parlays), all picks with filters and sort, card/table view (with a Books column), parlay builder slip (#parlay)
 digest.html          Daily digest: one printable page for the slate. Lede, four tiles, play and parlay of the day, top three by EV, every pick grouped by start time with its verdict, price, edge, confidence and live status. "Print or save as PDF" and "Copy as text" (plain text for a chat or email)
 performance.html     Stat tiles, play/parlay/CLV record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table with a CLV column
@@ -21,6 +21,7 @@ css/styles.css       ALL styles. Design tokens live in :root at the top; dark th
 js/app.js            Loaded in <head>. Theme, nav, odds math, pick cards/table, flip + tilt + reveal, play-of-the-day and parlay cards, parlay maths + slip (localStorage), profit calendar, line shopping (lineShop, shopChips, shopTable, shopSummary), live slots. Exposes window.EdgeLine
 js/live.js           Live in-game status (index, picks, digest). Polls ESPN's public scoreboard from the browser once games start and fills every [data-live="<pick id>"] slot with score, clock and where the pick stands. Exposes window.EdgeLineLive
 js/charts.js         Dependency-free SVG line + bar charts with tooltips, keyboard nav, table twins. Exposes window.EdgeLineCharts
+js/field.js          The edge field (index above the plays, picks above the market board): every priced side of every main-line market as a star, price across and edge up, with the fair, watch and bar horizons, sport chips as filters, tooltips, keyboard focus on the hot sides, and a draw-in. Exposes window.EdgeLineField
 js/space.js          Canvas space backdrop (parallax stars, nebulae, flare, shooting stars, vignette); light theme = daylight sky; still frame under reduced motion
 data/picks.js        -> window.PICKS_DATA  { sample, source, generatedAt, picks: [...] }   (sample until the pipeline runs)
 data/performance.js  -> window.PERF_DATA   { sample, asOf, record, units, roi, avgEdge, daily, bySport, recent }
@@ -50,6 +51,7 @@ The header and footer are duplicated verbatim in all six HTML files. If you chan
 - Contrast tokens (Hallmark polish, 2026-11-04): button faces use `--accent-fill` / `--accent-fill-hover` (white text reads at 4.5:1 in both themes; `--accent` stays the brighter link and glow colour). Chip text is `--ink` on the bright sport colours (NBA, NHL, Soccer, lime) and `--on-sport-nfl` / `--on-sport-mlb` / `--on-chip-accent` on the rest (white in light, ink in dark). The ticker's Watch label uses `--ticker-watch`, an orange tuned for the inverted strip. Keep every chip and button at 4.5:1 when adding colours.
 - Colors and fonts are tokens in `css/styles.css` `:root`. Components reference tokens only. Every color token is defined on bare `:root` and redefined in both dark blocks (`prefers-color-scheme` guarded by `:root:not([data-theme="light"])`, and `:root[data-theme="dark"]`). Do not introduce literal colors in component rules.
 - The scroll-reveal hidden state is scoped under `html.js` (the script adds the class in `initReveal`), so every section is visible without JavaScript. Keep that scope on any new reveal rule.
+- **The edge field** (`js/field.js`, shipped 2026-11-04 as the session's bold change; the owner asked for one and has not yet reviewed it) is the visual proof of the never-empty rule: it plots every row of `data/market.js` so a thin night reads as "176 sides priced, none clears the bar" instead of an empty board. It reads the board the same way `marketRows` does (a row is a pick only while its `pickId` is on the board). Its wrapper class is `.edge-field` (`.field` belongs to the journal form labels); the inner classes are `field-*`. Keep it on both pages and keep its horizons in step with `RULES.edge` / `RULES.watchEdge`.
 - The market board table restacks into cards under 720px: each `td` carries `data-label` (set in `marketTable`, from `MARKET_COLS`) and the phone rules in `css/styles.css` use it. Any new column must be added to `MARKET_COLS` in the same position.
 - Any element rendered after page load that should tilt needs `data-tilt` and a call to `EdgeLine.initTilt(scope)` (see the picks page render function).
 - No inline `style=""` attributes in HTML. Page-level layout helpers live in `css/styles.css` (`.section-flush`, `.stack`, `.page-head`, `.page-title`, `.page-sub`, `.footer-blurb`, `.footer-age`).

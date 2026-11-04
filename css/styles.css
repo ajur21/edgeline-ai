@@ -960,3 +960,57 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .watch-note { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
 .t-watch { color: var(--ticker-watch); font-weight: 600; }
 .board-market .board-edge-watch { color: var(--accent-4-text); }
+
+/* ---------- the edge field: every priced side as a star against the bar ---------- */
+.edge-field { position: relative; }
+.field-body { position: relative; border: 1px solid var(--border); border-radius: var(--radius-lg); background: color-mix(in srgb, var(--surface) 55%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 8px 6px 2px; }
+.field-svg { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--font-body); }
+.field-svg .gridline { stroke: var(--grid); stroke-width: 1; }
+.field-svg .axis { stroke: var(--axis); stroke-width: 1; }
+.field-svg .tick { fill: var(--muted); font-size: 11px; font-family: var(--font-mono); }
+.field-svg .field-bar-tick { fill: var(--accent-3-text); font-weight: 700; }
+.field-svg .field-zone { fill: var(--accent-3-wash); opacity: 0.55; }
+.field-svg .field-fair { stroke: var(--axis); stroke-width: 1; }
+.field-svg .field-watch { stroke: var(--accent-4); stroke-width: 1; stroke-dasharray: 4 5; opacity: 0.8; }
+.field-svg .field-bar { stroke: var(--accent-3); stroke-width: 2; filter: drop-shadow(0 0 6px var(--accent-3-wash)); }
+.field-svg .field-horizon-label { fill: var(--text-2); font-family: var(--font-condensed); font-size: 11px; letter-spacing: 0.1em; }
+.field-svg .field-horizon-watch { fill: var(--accent-4-text); }
+.field-svg .field-horizon-bar { fill: var(--accent-3-text); font-size: 12px; }
+.field-svg .field-axis-label { fill: var(--muted); font-family: var(--font-condensed); font-size: 10px; letter-spacing: 0.12em; }
+.field-svg .star { cursor: pointer; outline: none; }
+.field-svg .dot { fill: var(--accent); opacity: 0.78; stroke: var(--bg); stroke-width: 0.75; transition: opacity 0.2s, r 0.2s; }
+.field-svg .star[data-sport="NFL"] .dot { fill: var(--sport-nfl); }
+.field-svg .star[data-sport="NBA"] .dot { fill: var(--sport-nba); }
+.field-svg .star[data-sport="MLB"] .dot { fill: var(--sport-mlb); }
+.field-svg .star[data-sport="NHL"] .dot { fill: var(--sport-nhl); }
+.field-svg .star[data-sport="Soccer"] .dot { fill: var(--sport-soccer); }
+.field-svg .star.hot .dot { opacity: 1; filter: drop-shadow(0 0 5px currentColor); }
+.field-svg .star-ring { fill: none; stroke: var(--accent-4); stroke-width: 1.25; opacity: 0.7; transform-box: fill-box; transform-origin: center; animation: field-ring 2.4s ease-out infinite; }
+.field-svg .star-pick .star-ring { stroke: var(--accent-3); }
+.field-svg .star-pick .dot { fill: var(--accent-3); }
+@keyframes field-ring { 0% { transform: scale(0.45); opacity: 0.9; } 100% { transform: scale(1.25); opacity: 0; } }
+.field-svg .star.lit .dot, .field-svg .star:focus-visible .dot { opacity: 1; stroke: var(--text); stroke-width: 2; }
+.field-svg[data-only] .star { opacity: 0.12; }
+.field-svg[data-only="NFL"] .star[data-sport="NFL"], .field-svg[data-only="NBA"] .star[data-sport="NBA"], .field-svg[data-only="MLB"] .star[data-sport="MLB"], .field-svg[data-only="NHL"] .star[data-sport="NHL"], .field-svg[data-only="Soccer"] .star[data-sport="Soccer"] { opacity: 1; }
+.field-svg.animate .star { transform-box: fill-box; transform-origin: center; animation: field-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 5ms); }
+@keyframes field-in { from { opacity: 0; transform: scale(0) translateY(20px); } to { opacity: 1; transform: none; } }
+.field-tip .tt-key { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.field-tip .tt-key[data-sport="NFL"] { background: var(--sport-nfl); } .field-tip .tt-key[data-sport="NBA"] { background: var(--sport-nba); }
+.field-tip .tt-key[data-sport="MLB"] { background: var(--sport-mlb); } .field-tip .tt-key[data-sport="NHL"] { background: var(--sport-nhl); }
+.field-tip .tt-key[data-sport="Soccer"] { background: var(--sport-soccer); }
+.field-tip .tt-sub { color: var(--text-2); font-size: 0.75rem; margin-top: 2px; }
+.field-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px 20px; flex-wrap: wrap; margin-top: 12px; }
+.field-legend { display: flex; gap: 6px; flex-wrap: wrap; }
+.field-chip { border: 1px solid transparent; cursor: pointer; box-shadow: 0 2px 0 var(--edge); transition: transform 0.12s, box-shadow 0.12s, opacity 0.15s; }
+.field-chip:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--edge); }
+.field-chip[aria-pressed="true"] { outline: 2px solid var(--text); outline-offset: 1px; }
+.field-legend:has([aria-pressed="true"]) .field-chip[aria-pressed="false"] { opacity: 0.45; }
+.field-chip-n { font-family: var(--font-mono); font-weight: 600; letter-spacing: 0; }
+.field-note { margin: 0; font-size: 0.9rem; color: var(--text-2); }
+.field-note strong { color: var(--text); font-family: var(--font-display); }
+.field-head h2 span.n { font-family: var(--font-mono); font-weight: 700; color: var(--accent); }
+.field-head p { max-width: 62ch; }
+.stack-field { margin-bottom: 20px; }
+.field-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 18px; }
+.field-svg.narrow .tick { font-size: 13px; } .field-svg.narrow .field-horizon-label, .field-svg.narrow .field-axis-label { font-size: 12px; }
+@media (max-width: 720px) { .field-body { padding: 6px 2px 0; } .field-foot { flex-direction: column; align-items: flex-start; } }

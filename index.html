@@ -20,6 +20,7 @@
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
   <script src="js/live.js" defer></script>
+  <script src="js/field.js" defer></script>
 </head>
 <body>
 <a class="visually-hidden" href="#main">Skip to content</a>
@@ -64,6 +65,24 @@
       <div id="board-rows"></div>
       <div class="board-foot" id="board-foot"></div>
     </section>
+  </div>
+</section>
+
+<section class="section section-flush edge-field" id="field" aria-labelledby="field-title">
+  <div class="container">
+    <div class="section-head row field-head">
+      <div>
+        <span class="eyebrow">Tonight’s market, every side</span>
+        <h2 id="field-title">Every side we priced, against the bar</h2>
+        <p class="muted" id="field-sub">Each star is one side of one market: its price across, its edge against the sharp fair price up. Cross the bar and it becomes a pick. Nothing is hidden, including the nights we pass.</p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="market">Sample data</span>
+    </div>
+    <div id="field-host"></div>
+    <div class="field-cta">
+      <a class="btn btn-primary" href="picks.html#market">Open the market board</a>
+      <a class="btn btn-secondary" href="#how">How the bar works</a>
+    </div>
   </div>
 </section>
 
@@ -286,6 +305,20 @@
    ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
     foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
   });
+
+  /* the edge field: every priced side as a star against the bar (deferred script, so wait for it) */
+  function mountField() {
+    var F = window.EdgeLineField, host = document.getElementById("field-host");
+    if (!F || !host) return;
+    F.mount(host, { onRender: function (out) {
+      var sec = document.getElementById("field"), title = document.getElementById("field-title");
+      if (!out) { sec.hidden = true; return; }
+      sec.hidden = false;
+      title.replaceChildren(E.el("span", { class: "n", text: String(out.sides) }), " sides priced in " + out.games + " games. " +
+        (out.picks ? out.picks + (out.picks === 1 ? " clears the bar." : " clear the bar.") : "None clears the bar."));
+    } });
+  }
+  if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);
 
   /* play of the day and parlay of the day, as the pipeline chose them */
   document.getElementById("potd-host").appendChild(E.potdCard(window.PICKS_DATA.playOfDay || null));

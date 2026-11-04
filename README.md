@@ -11,7 +11,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 
 | File | What it is |
 |---|---|
-| `index.html` | Landing page: odds ticker, hero with today's board, play of the day, parlay of the day, how it works with an edge calculator, top three picks, pricing, FAQ |
+| `index.html` | Landing page: odds ticker, hero with today's board, the edge field (every priced side of tonight's market as a star against the 1-point bar), play of the day, parlay of the day, how it works with an edge calculator, top three picks, pricing, FAQ |
 | `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, line shopping across every book, a parlay builder, and the market board: every market priced against the sharp line, pick or not |
 | `digest.html` | The daily digest: one page with the whole slate by tip-off time, the play and parlay of the day, the top three by expected value, and live scores once games start. Print it, save it as a PDF, or copy it as text |
 | `performance.html` | Track record: stat tiles, play and parlay records, closing line value, profit calendar, cumulative units chart, units by sport, recent graded picks |
