@@ -103,6 +103,7 @@
   function el(tag, attrs, children) {
     const node = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (attrs[k] == null) return;
       if (k === "class") node.className = attrs[k];
       else if (k === "text") node.textContent = attrs[k];
       else node.setAttribute(k, attrs[k]);
@@ -110,6 +111,64 @@
     (children || []).forEach(function (c) { if (c) node.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     return node;
   }
+
+  /* ---------- line shopping: every book's price on the pick's line ---------- */
+  const BAR = 0.01; /* a book "clears the bar" when its price still leaves a 1-point edge, the site's Lean threshold */
+  const BOOK_ABBR = { DraftKings: "DK", FanDuel: "FD", BetMGM: "MGM", Caesars: "CZR", BetRivers: "BR", Fanatics: "FAN", "ESPN BET": "ESPN", Bovada: "BOV", "BetOnline.ag": "BOL", Pinnacle: "PIN", LowVig: "LV", "Hard Rock Bet": "HRB", Bet365: "365", PointsBet: "PB" };
+  function bookAbbr(name) { return BOOK_ABBR[name] || String(name || "").replace(/[^A-Za-z0-9]/g, "").slice(0, 3).toUpperCase(); }
+  function lineShop(p) {
+    const fair = Number(p && p.modelProb), prices = (p && p.prices) || {};
+    const ladder = Object.keys(prices).map(function (b) {
+      const price = Number(prices[b]);
+      return { book: b, abbr: bookAbbr(b), price: price, implied: impliedProb(price), edge: fair - impliedProb(price) };
+    }).filter(x => Number.isFinite(x.price) && x.price !== 0 && Number.isFinite(x.edge)).sort((a, b) => decimalOdds(b.price) - decimalOdds(a.price));
+    const clears = ladder.filter(x => x.edge >= BAR).length, plus = ladder.filter(x => x.edge > 0).length;
+    const best = ladder[0] || null, worst = ladder.length ? ladder[ladder.length - 1] : null;
+    return { ladder: ladder, books: ladder.length, best: best, worst: worst, clears: clears, plus: plus, sole: ladder.length > 1 && clears === 1, costWorst: best && worst ? best.edge - worst.edge : 0, bar: BAR };
+  }
+  /* one sentence a bettor can act on */
+  function shopSummary(p) {
+    const s = lineShop(p);
+    if (!s.books) return "";
+    if (s.books === 1) return "Only " + s.best.book + " is priced on this line.";
+    let t = "Best price " + fmtOdds(s.best.price) + " at " + s.best.book + ". ";
+    t += "The worst, " + fmtOdds(s.worst.price) + " at " + s.worst.book + ", gives up " + (s.costWorst * 100).toFixed(1) + " points of edge. ";
+    t += s.clears === s.books ? "Every one of the " + s.books + " books clears the 1-point bar." : s.clears === 1 ? "Only " + s.best.book + " clears the 1-point bar; the edge lives at one book." : s.clears + " of " + s.books + " books clear the 1-point bar.";
+    return t;
+  }
+  /* chips for the card front: the top three prices, best first, and how many more books there are */
+  function shopChips(p) {
+    const s = lineShop(p);
+    if (s.books < 2) return null;
+    const row = el("div", { class: "pick-shop", "aria-label": "Line shopping" }, s.ladder.slice(0, 3).map(function (x, i) {
+      return el("span", { class: "shop-chip" + (i === 0 ? " best" : "") + (x.edge >= BAR ? " clears" : ""), title: x.book + " " + fmtOdds(x.price) + ", edge " + signed(x.edge * 100, 1) + "%" }, [el("span", { class: "shop-book", text: x.abbr }), el("span", { class: "mono", text: fmtOdds(x.price) })]);
+    }));
+    if (s.books > 3) row.appendChild(el("span", { class: "shop-more", text: "+" + (s.books - 3) + " more" }));
+    if (s.sole) row.appendChild(el("span", { class: "badge badge-sole", text: "One book only" }));
+    return row;
+  }
+  /* the full ladder for the breakdown dialog and the digest */
+  function shopTable(p) {
+    const s = lineShop(p);
+    if (!s.books) return null;
+    const rows = s.ladder.map(function (x, i) {
+      const state = i === 0 ? "Best price" : x.edge >= BAR ? "Clears the bar" : x.edge > 0 ? "Thin" : "No edge";
+      return el("tr", { class: x.edge >= BAR ? "shop-ok" : "shop-no" }, [
+        el("td", {}, [el("strong", { text: x.book })]),
+        el("td", { class: "num mono", text: fmtOdds(x.price) }),
+        el("td", { class: "num mono", text: pct(x.implied) }),
+        el("td", { class: "num mono", text: signed(x.edge * 100, 1) + "%" }),
+        el("td", {}, [el("span", { class: "shop-state" + (i === 0 ? " best" : x.edge >= BAR ? " ok" : ""), text: state })])
+      ]);
+    });
+    return el("div", { class: "table-wrap shop-table", tabindex: "0", role: "region", "aria-label": "Prices by book" }, [el("table", { class: "data" }, [
+      el("thead", {}, [el("tr", {}, ["Book", "Price", "Implied", "Edge", ""].map((h, i) => el("th", { scope: "col", class: i >= 1 && i <= 3 ? "num" : "", text: h })))]),
+      el("tbody", {}, rows)
+    ])]);
+  }
+
+  /* ---------- live status slot: js/live.js fills these once games start ---------- */
+  function liveSlot(id) { return el("span", { class: "live-slot", "data-live": id }); }
 
   /* ---------- pick card ---------- */
   /* sample data files set sample:true; real data from scripts/update-data.js sets it false */
@@ -135,7 +194,8 @@
       el("div", {}, [
         el("div", { class: "pick-event", text: p.event }),
         el("h3", { class: "pick-selection", text: p.pick }),
-        el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""])
+        el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
+        shopChips(p)
       ]),
       el("div", { class: "meter", "aria-hidden": "true" }, [
         el("span", { style: "width:" + meterWidth + "%" })
@@ -146,7 +206,7 @@
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })])
       ]),
       el("div", { class: "pick-foot" }, [
-        el("span", { text: p.league + " · " + p.start }),
+        el("span", {}, [p.league + " · " + p.start, liveSlot(p.id)]),
         el("span", { class: "pick-actions" }, [parlayButton(p.id), flipBtn])
       ])
     ]);
@@ -203,13 +263,14 @@
       el("td", { class: "num", text: pct(impliedProb(p.odds)) }),
       el("td", { class: "num", text: signed(edge * 100, 1) + "%" }),
       el("td", {}, [el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence })]),
+      el("td", { class: "num" }, [(function () { const s = lineShop(p); return s.books ? el("span", { class: "mono" + (s.sole ? " shop-sole" : ""), title: shopSummary(p), text: s.clears + "/" + s.books }) : el("span", { text: "—" }); })()]),
       el("td", {}, [parlayButton(p.id)])
     ]);
   }
 
   function picksTable(picks) {
-    const head = el("tr", {}, ["Sport", "Event", "Start", "Market", "Pick", "Odds", "Fair", "Implied", "Edge", "Confidence", "Parlay"]
-      .map(function (h, i) { return el("th", { scope: "col", class: i >= 5 && i <= 8 ? "num" : "" , text: h }); }));
+    const head = el("tr", {}, ["Sport", "Event", "Start", "Market", "Pick", "Odds", "Fair", "Implied", "Edge", "Confidence", "Books", "Parlay"]
+      .map(function (h, i) { return el("th", { scope: "col", class: (i >= 5 && i <= 8) || i === 10 ? "num" : "", title: i === 10 ? "Books that still clear the 1-point bar, out of every book priced on this line" : null, text: h }); }));
     const tbody = el("tbody", {}, picks.map(pickRow));
     return el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Picks table" }, [el("table", { class: "data" }, [el("thead", {}, [head]), tbody])]);
   }
@@ -239,7 +300,7 @@
       ]),
       el("p", { class: "pick-rationale", text: p.rationale }),
       el("div", { class: "pick-foot" }, [
-        el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "", text: status }),
+        el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "" }, [status, p.result ? null : liveSlot(p.id)]),
         el("span", { class: "pick-actions" }, [p.started ? null : parlayButton(p.id), el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
       ])
     ]);
@@ -320,7 +381,7 @@
       el("ul", { class: "parlay-legs" }, par.legs.map(function (l) {
         return el("li", {}, [
           el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport }),
-          el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event })]),
+          el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event }), l.result ? null : liveSlot(l.id)]),
           el("span", { class: "mono leg-price", text: fmtOdds(l.price) }),
           l.result ? el("span", { class: "result result-" + l.result.toLowerCase(), text: l.result }) : null
         ]);
@@ -379,7 +440,9 @@
     const recTeams = Object.keys(c.records || {}).filter(t => c.records[t] && c.records[t].overall);
     if (recTeams.length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Records" })].concat(recTeams.map(t => el("p", { text: t + ": " + c.records[t].overall + (c.records[t].home ? " · home " + c.records[t].home : "") + (c.records[t].away ? " · road " + c.records[t].away : "") })))));
     if (c.probables && Object.keys(c.probables).length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Probable pitchers" })].concat(Object.keys(c.probables).map(t => el("p", { text: t + ": " + c.probables[t] })))));
-    if (p.movement) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Line movement" }), el("p", { text: "Logged " + fmtOdds(p.movement.loggedOdds) + " (fair " + pct(p.movement.loggedFair) + "). Now " + fmtOdds(p.movement.currentOdds) + " at " + p.movement.currentBook + " (fair " + pct(p.movement.currentFair) + ", edge " + signed(p.movement.currentEdge * 100, 1) + "%)." })]));
+    if (p.movement) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Line movement" }), el("p", { text: "Logged " + fmtOdds(p.movement.loggedOdds) + " (fair " + pct(p.movement.loggedFair) + "). Now " + fmtOdds(p.movement.currentOdds) + " at " + p.movement.currentBook + " (fair " + pct(p.movement.currentFair) + ", edge " + signed(p.movement.currentEdge * 100, 1) + "%)." }), el("p", { class: "small muted", text: "Closing line value is scored after the game from the last check before tip-off; see Performance." })]));
+    const shop = shopTable(p);
+    if (shop) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Line shopping" }), el("p", { text: shopSummary(p) }), shop, lineShop(p).sole ? el("p", { class: "shop-warn", text: "When one book is alone on a price it is often the one that is wrong, and it can be limited or pulled quickly. Treat a sole-book edge as thinner than the number." }) : null]));
     if (c.venue || c.broadcast) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Where" }), el("p", { text: [c.venue, c.broadcast ? "TV: " + c.broadcast : null].filter(Boolean).join(" · ") })]));
     if (grid.children.length) sec.appendChild(grid);
     return sec;
@@ -453,6 +516,7 @@
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, initTilt: initTilt, animateNumber: animateNumber,
-    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown
+    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
+    lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot
   };
 })();

@@ -76,7 +76,32 @@ function pickName(cfg, market, o) {
 }
 function lineKey(outs) { return outs.map(o => o.name + ":" + (o.point == null ? "" : o.point)).sort().join("|"); }
 
-function analyzeEvent(cfg, ev) {
+/* price one group of books that all post the same line: fair probability per outcome, best bettable price, every book's price */
+function priceGroup(group, market) {
+  const names = group[0].outcomes.map(o => o.name + "|" + (o.point == null ? "" : o.point));
+  const anchorBook = group.find(b => b.bookKey === ANCHOR);
+  const fair = names.map(() => 0);
+  const basis = anchorBook ? [anchorBook] : group;
+  basis.forEach(function (b) {
+    const ordered = names.map(n => b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n));
+    if (ordered.some(o => !o)) return;
+    devig(ordered.map(o => o.price)).forEach((p, i) => { fair[i] += p / basis.length; });
+  });
+  const bettable = group.filter(b => b.bookKey !== ANCHOR);
+  if (!bettable.length) return [];
+  return names.map(function (n, i) {
+    let bestPrice = -Infinity, bestBook = "";
+    const prices = {};
+    bettable.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (!o) return; prices[b.book] = o.price; if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
+    if (!bestBook) return null;
+    const o = group[0].outcomes[i];
+    return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, prices: prices, fair: fair[i], edge: fair[i] - implied(bestPrice), books: group.length, anchor: anchorBook ? anchorBook.book : null, market: market };
+  }).filter(Boolean).sort((a, b) => b.edge - a.edge);
+}
+/* every priced outcome of an event, across every line any two books agree on. `qualifies` marks the outcomes on the
+   market's main line (the largest group, at least minBooks deep), the only ones that can become a pick; the rest exist so
+   a logged pick's price keeps being tracked up to tip-off even when its edge is gone or its line is no longer the main one. */
+function priceOutcomes(cfg, ev) {
   const out = [];
   cfg.markets.forEach(function (market) {
     /* group each book's outcomes by the exact line so we only compare like with like */
@@ -87,28 +112,25 @@ function analyzeEvent(cfg, ev) {
       const key = lineKey(m.outcomes);
       (groups[key] = groups[key] || []).push({ book: bk.title, bookKey: bk.key, outcomes: m.outcomes });
     });
-    const best = Object.values(groups).sort((a, b) => b.length - a.length)[0];
-    if (!best || best.length < RULES.minBooks) return;
-    const names = best[0].outcomes.map(o => o.name + "|" + (o.point == null ? "" : o.point));
-    const anchorBook = best.find(b => b.bookKey === ANCHOR);
-    const fair = names.map(() => 0);
-    const basis = anchorBook ? [anchorBook] : best;
-    basis.forEach(function (b) {
-      const ordered = names.map(n => b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n));
-      devig(ordered.map(o => o.price)).forEach((p, i) => { fair[i] += p / basis.length; });
+    const sorted = Object.values(groups).sort((a, b) => b.length - a.length);
+    sorted.forEach(function (group, gi) {
+      if (group.length < 2) return;
+      const main = gi === 0 && group.length >= RULES.minBooks;
+      priceGroup(group, market).forEach(function (c) { c.qualifies = main; out.push(c); });
     });
-    const bettable = best.filter(b => b.bookKey !== ANCHOR);
-    if (!bettable.length) return;
-    const candidates = names.map(function (n, i) {
-      let bestPrice = -Infinity, bestBook = "";
-      bettable.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
-      const o = best[0].outcomes[i];
-      const prices = {};
-      bettable.forEach(function (b) { const bo = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); prices[b.book] = bo.price; });
-      return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, prices: prices, fair: fair[i], edge: fair[i] - implied(bestPrice), books: best.length, anchor: anchorBook ? anchorBook.book : null, market: market };
-    }).sort((a, b) => b.edge - a.edge);
-    if (VERBOSE && candidates.length) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + best.length + " books" + (anchorBook ? " (anchored)" : " (consensus)") + " | best edge " + (candidates[0].edge * 100).toFixed(2) + " pts on " + candidates[0].outcome.name + " " + (candidates[0].outcome.point == null ? "" : candidates[0].outcome.point) + " at " + fmtOdds(candidates[0].odds) + " (" + candidates[0].book + ")");
-    if (candidates.length && candidates[0].edge >= RULES.minEdge) out.push(candidates[0]); /* never both sides of one market */
+  });
+  return out;
+}
+function candidateKey(evId, c) { return evId + "|" + c.market + "|" + c.outcome.name + "|" + c.outcome.point; }
+/* the picks an event offers: per market, the best outcome on the main line if its edge clears the bar; never both sides */
+function analyzeEvent(cfg, ev, priced) {
+  const out = [];
+  const all = priced || priceOutcomes(cfg, ev);
+  cfg.markets.forEach(function (market) {
+    const candidates = all.filter(c => c.market === market && c.qualifies);
+    if (!candidates.length) return;
+    if (VERBOSE) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + candidates[0].books + " books" + (candidates[0].anchor ? " (anchored)" : " (consensus)") + " | best edge " + (candidates[0].edge * 100).toFixed(2) + " pts on " + candidates[0].outcome.name + " " + (candidates[0].outcome.point == null ? "" : candidates[0].outcome.point) + " at " + fmtOdds(candidates[0].odds) + " (" + candidates[0].book + ")");
+    if (candidates[0].edge >= RULES.minEdge) out.push(candidates[0]);
   });
   return out;
 }
@@ -123,6 +145,21 @@ function factors(c) {
   return ["Best price " + fmtOdds(c.odds) + " at " + c.book, c.anchor ? "Fair line from " + c.anchor : "Fair line from " + c.books + "-book consensus", "Edge " + (c.edge * 100).toFixed(1) + " points over fair"];
 }
 function slug(s) { return String(s).replace(/[^\w-]+/g, "-").replace(/^-+|-+$/g, ""); }
+
+/* ---------- closing line value ---------- */
+/* The closing line is the last price check before tip-off (the pipeline runs twice a day, so "close" means the last
+   look, not the final tick). CLV is the closing fair probability minus the probability implied by the price we logged:
+   positive means the price we took beat where the sharp market finished. Null until a later check exists. */
+function closingLine(entry) {
+  const h = (entry.history || []).filter(x => x && Number.isFinite(Number(x.fair)));
+  if (h.length < 2) return null;
+  const last = h[h.length - 1];
+  return { at: last.at, odds: last.odds, fair: round(last.fair, 4), samples: h.length };
+}
+function clvOf(entry) {
+  const c = closingLine(entry);
+  return c ? round(c.fair - implied(entry.odds), 4) : null;
+}
 
 /* ---------- grading ---------- */
 function grade(entry, scoreEv) {
@@ -221,7 +258,11 @@ function summarize(log, now) {
     b.units = round(b.units + e.units, 2); if (e.result === "Win") b.w++; if (e.result === "Loss") b.l++;
   });
   const bySport = Object.values(bySportMap).map(b => ({ sport: b.sport, units: b.units, record: b.w + "-" + b.l }));
-  const recent = graded.slice().reverse().slice(0, 12).map(e => ({ date: e.date, sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units }));
+  const recent = graded.slice().reverse().slice(0, 12).map(e => ({ date: e.date, sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units, clv: typeof e.clv === "number" ? e.clv : null, closeOdds: e.close ? e.close.odds : null }));
+  /* closing line value over the picks that had at least one price check after being logged */
+  const withClv = graded.filter(e => typeof e.clv === "number");
+  const clvSum = withClv.reduce((s, e) => s + e.clv, 0), beat = withClv.filter(e => e.clv > 0).length;
+  const clv = { n: withClv.length, avg: withClv.length ? round(clvSum / withClv.length * 100, 2) : null, beat: beat, beatPct: withClv.length ? round(beat / withClv.length * 100, 1) : null, graded: graded.length };
   const avgEdge = graded.length ? round(graded.reduce((s, e) => s + e.edge, 0) / graded.length * 100, 1) : 0;
   /* all-time profit by day, for the calendar */
   const byDateMap = {};
@@ -232,7 +273,7 @@ function summarize(log, now) {
   const byDate = Object.values(byDateMap).sort((a, b) => a.date < b.date ? -1 : 1);
   const potd = record(singles.filter(e => e.potd && e.status === "graded" && e.date >= since));
   const parlays = record(log.filter(e => e.type === "parlay" && e.status === "graded" && e.date >= since));
-  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recent, byDate: byDate, potd: potd, parlays: parlays };
+  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recent, byDate: byDate, potd: potd, parlays: parlays, clv: clv };
 }
 
 /* ---------- API ---------- */
@@ -265,7 +306,7 @@ async function run(opts) {
     const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
     pendingBySport[sportKey].forEach(function (e) {
       const g = grade(e, byId[e.eventId]);
-      if (g) { e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString(); }
+      if (g) { e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString(); e.close = closingLine(e); e.clv = clvOf(e); }
       else if (Date.parse(e.commence) < now.getTime() - RULES.voidAfterDays * 864e5) { e.status = "void"; }
     });
   }
@@ -286,16 +327,17 @@ async function run(opts) {
     (events || []).forEach(function (ev) {
       const t = Date.parse(ev.commence_time);
       if (!(t > now.getTime() && t < horizon)) return;
-      analyzeEvent(cfg, ev).forEach(function (c) {
-        const key = ev.id + "|" + c.market + "|" + c.outcome.name + "|" + c.outcome.point;
-        const seen = log.find(e => e.key === key);
-        if (seen) { /* already on the board: track how the price and fair line have moved since */
-          if (seen.status === "pending") {
-            seen.current = { at: now.toISOString(), odds: c.odds, book: c.book, fair: round(c.fair, 4), edge: round(c.edge, 4) };
-            seen.history = (seen.history || []).concat([{ at: now.toISOString(), odds: c.odds, fair: round(c.fair, 4) }]).slice(-12);
-          }
-          return;
-        }
+      const priced = priceOutcomes(cfg, ev);
+      /* picks already on the board: track the price and fair line until tip-off, edge or no edge, so the close is real */
+      priced.forEach(function (c) {
+        const seen = log.find(e => e.key === candidateKey(ev.id, c) && e.status === "pending");
+        if (!seen) return;
+        seen.current = { at: now.toISOString(), odds: c.odds, book: c.book, fair: round(c.fair, 4), edge: round(c.edge, 4) };
+        seen.history = (seen.history || []).concat([{ at: now.toISOString(), odds: c.odds, fair: round(c.fair, 4) }]).slice(-12);
+      });
+      analyzeEvent(cfg, ev, priced).forEach(function (c) {
+        const key = candidateKey(ev.id, c);
+        if (log.some(e => e.key === key)) return; /* logged once, at the price first seen */
         picks.push({
           key: key, id: slug(ev.id.slice(0, 10) + "-" + c.market + "-" + c.outcome.name), date: etDate(new Date(t)), commence: ev.commence_time,
           sport: cfg.sport, league: cfg.league, sportKey: cfg.key, eventId: ev.id, home: ev.home_team, away: ev.away_team,
@@ -321,7 +363,7 @@ async function run(opts) {
   const potdEntry = choosePlayOfDay(log, boardEntries, today);
   const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null });
+  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null });
   const board = boardEntries.map(publicPick);
   const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
   const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
@@ -370,4 +412,4 @@ if (require.main === module) {
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : ""));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, closingLine, clvOf, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS };

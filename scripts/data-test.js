@@ -28,7 +28,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   const NOW = "2026-11-05T15:00:00Z";
   const pending = (id, extra) => Object.assign({ key: id, id: id, date: "2026-11-03", commence: "2026-11-04T00:00:00Z", sport: "NBA", league: "NBA", sportKey: "basketball_nba", eventId: "nba-old-1", event: "Milwaukee Bucks @ Boston Celtics", edge: 0.03, confidence: "Medium", status: "pending", units: 0 }, extra);
   fs.writeFileSync(path.join(tmp, "picks-log.json"), JSON.stringify([
-    pending("old-ml", { market: "Moneyline", marketKey: "h2h", outcome: { name: "Milwaukee Bucks", point: null }, pick: "Milwaukee Bucks ML", odds: 140 }),
+    pending("old-ml", { market: "Moneyline", marketKey: "h2h", outcome: { name: "Milwaukee Bucks", point: null }, pick: "Milwaukee Bucks ML", odds: 140, history: [{ at: "2026-11-03T17:00:00Z", odds: 140, fair: 0.42 }, { at: "2026-11-03T20:30:00Z", odds: 130, fair: 0.45 }] }),
     pending("old-spread", { market: "Spread", marketKey: "spreads", outcome: { name: "Boston Celtics", point: -3.5 }, pick: "Boston Celtics -3.5", odds: -110 }),
     pending("old-total", { market: "Total", marketKey: "totals", outcome: { name: "Over", point: 214 }, pick: "Over 214", odds: -110 }),
     pending("stale", { sport: "NFL", sportKey: "americanfootball_nfl", eventId: "nfl-gone", commence: "2026-10-25T17:00:00Z", date: "2026-10-25", market: "Moneyline", marketKey: "h2h", outcome: { name: "X", point: null }, pick: "X ML", odds: 100 })
@@ -44,6 +44,9 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("run: graded spread as a win at +0.91u", byId["old-spread"].result === "Win" && near(byId["old-spread"].units, 0.91, 0.01));
   check("run: graded total as a push", byId["old-total"].result === "Push" && byId["old-total"].units === 0);
   check("run: stale pick voided", byId["stale"].status === "void");
+  /* closing line value: the last check before tip-off had fair 45%; we took +140 (41.7% implied) -> +3.3 points of CLV */
+  check("clv: graded pick records its close and CLV from the last pre-game check", byId["old-ml"].close && byId["old-ml"].close.odds === 130 && byId["old-ml"].close.samples === 2 && near(byId["old-ml"].clv, 0.0333, 0.001), JSON.stringify([byId["old-ml"].close, byId["old-ml"].clv]));
+  check("clv: a pick with no later check has no CLV (not zero)", byId["old-spread"].clv == null && byId["old-spread"].close == null);
   check("run: added exactly 2 picks (Bucks ML outlier, EPL draw outlier)", r1.added === 2, "added " + r1.added);
   const added = log.filter(e => e.loggedAt);
   const bucks = added.find(e => e.pick === "Milwaukee Bucks ML"), draw = added.find(e => e.pick === "Draw");
@@ -61,6 +64,9 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("picks.js: pick fields match the site shape", PD.picks.every(p => ["id", "sport", "league", "event", "start", "market", "pick", "odds", "modelProb", "confidence", "rationale", "factors", "book"].every(k => k in p)));
   check("performance.js: 1-1-1 record, -0.09u, roi -3.0%", PF.record.wins === 1 && PF.record.losses === 1 && PF.record.pushes === 1 && near(PF.units, -0.09, 0.001) && near(PF.roi, -3.0, 0.01), JSON.stringify([PF.record, PF.units, PF.roi]));
   check("performance.js: one daily point, bySport NBA 1-1, 3 recent, void excluded", PF.daily.length === 1 && PF.bySport[0].record === "1-1" && PF.recent.length === 3);
+  check("performance.js: clv summary counts only picks with a closing sample (1 of 3), avg +3.33 pts, beat 100%", PF.clv && PF.clv.n === 1 && PF.clv.graded === 3 && near(PF.clv.avg, 3.33, 0.01) && PF.clv.beatPct === 100 && PF.clv.beat === 1, JSON.stringify(PF.clv));
+  check("performance.js: recent rows carry clv and the closing price (null when unknown)", PF.recent.find(r => r.pick === "Milwaukee Bucks ML").clv === 0.0333 && PF.recent.find(r => r.pick === "Milwaukee Bucks ML").closeOdds === 130 && PF.recent.find(r => r.pick === "Over 214").clv === null);
+  check("picks.js: board picks carry commence, sportKey, outcome and book count for the digest, live status and line shopping", PD.picks.every(p => /^\d{4}-/.test(p.commence) && p.sportKey && p.outcome && p.outcome.name && p.books >= 3));
 
   /* context + breakdown (fixture ESPN scoreboard, injuries, schedules, weather) */
   const bucksPub = PD.picks.find(p => p.pick === "Milwaukee Bucks ML"), drawPub = PD.picks.find(p => p.pick === "Draw");
@@ -96,6 +102,30 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   L = plog(); L[0].status = "graded"; L[0].result = "Win"; P.gradeParlays(L, new Date());
   check("parlay grading: waits until every leg is settled", L[2].status === "pending");
   check("potd: sticks to the first choice for the day", (() => { const l = [{ id: "x", potd: "2026-11-05", ev: 0.01 }]; return P.choosePlayOfDay(l, [{ id: "y", ev: 0.5, edge: 0.1 }], "2026-11-05").id === "x"; })());
+
+  /* pricing every outcome: the main line qualifies, alternate lines and negative edges are priced but never picked */
+  const nbaEv = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "odds.json"), "utf8")).find(e => e.id === "nba-fix-1");
+  const nbaCfg = P.SPORTS.find(s => s.key === "basketball_nba");
+  const priced = P.priceOutcomes(nbaCfg, nbaEv);
+  const celtics = priced.find(c => c.market === "h2h" && c.outcome.name === "Boston Celtics");
+  check("priceOutcomes: six outcomes on the fixture game, all on main lines, Celtics ML priced with a negative edge", priced.length === 6 && priced.every(c => c.qualifies) && celtics && celtics.edge < 0 && celtics.odds === -145, JSON.stringify(priced.map(c => c.outcome.name + ":" + c.qualifies)));
+  const altEv = { id: "alt", bookmakers: [
+    { key: "draftkings", title: "DraftKings", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -3.5, price: -110 }, { name: "A", point: 3.5, price: -110 }] }] },
+    { key: "fanduel", title: "FanDuel", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -3.5, price: -105 }, { name: "A", point: 3.5, price: -115 }] }] },
+    { key: "betmgm", title: "BetMGM", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -3.5, price: -110 }, { name: "A", point: 3.5, price: -110 }] }] },
+    { key: "betrivers", title: "BetRivers", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -4, price: -105 }, { name: "A", point: 4, price: -115 }] }] },
+    { key: "bovada", title: "Bovada", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -4, price: 100 }, { name: "A", point: 4, price: -120 }] }] }
+  ] };
+  const alt = P.priceOutcomes(nbaCfg, altEv);
+  check("priceOutcomes: the -3.5 line (3 books) qualifies, the -4 line (2 books) is tracked only", alt.filter(c => c.qualifies).length === 2 && alt.filter(c => !c.qualifies && c.outcome.point === -4).length === 1 && P.analyzeEvent(nbaCfg, altEv, alt).every(c => Math.abs(c.outcome.point) === 3.5), JSON.stringify(alt.map(c => c.outcome.point + ":" + c.qualifies)));
+  /* a logged pick keeps its price tracked up to tip-off even when it has no edge any more */
+  const tmp2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-track-"));
+  fs.writeFileSync(path.join(tmp2, "picks-log.json"), JSON.stringify([pending("celtics-ml", { key: "nba-fix-1|h2h|Boston Celtics|null", eventId: "nba-fix-1", commence: "2026-11-06T00:00:00Z", date: "2026-11-05", market: "h2h", marketKey: "h2h", outcome: { name: "Boston Celtics", point: null }, pick: "Boston Celtics ML", odds: -140, modelProb: 0.6, edge: 0.016, loggedAt: "2026-11-05T12:00:00Z", history: [{ at: "2026-11-05T12:00:00Z", odds: -140, fair: 0.6 }] })]));
+  const rt = await P.run({ fixture: true, out: tmp2, now: NOW });
+  const tracked = JSON.parse(fs.readFileSync(path.join(tmp2, "picks-log.json"), "utf8")).find(e => e.id === "celtics-ml");
+  check("tracking: a pick whose edge is gone still gets its current price and a second history point", rt.added === 2 && tracked.current && tracked.current.odds === -145 && tracked.current.edge < 0 && tracked.history.length === 2, JSON.stringify(tracked.current));
+  check("tracking: closingLine/clvOf read the last check (fair unchanged here -> CLV is the logged edge vs fair)", P.closingLine(tracked).samples === 2 && near(P.clvOf(tracked), P.closingLine(tracked).fair - P.implied(-140), 1e-4));
+  fs.rmSync(tmp2, { recursive: true, force: true });
 
   /* idempotent: a second run at the same moment adds nothing and keeps the board */
   const r2 = await P.run({ fixture: true, out: tmp, now: "2026-11-05T16:00:00Z" }); /* an hour later, same day */

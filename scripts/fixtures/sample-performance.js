@@ -167,7 +167,9 @@ window.PERF_DATA = {
       "pick": "Cleveland ML",
       "odds": 105,
       "result": "Loss",
-      "units": -1
+      "units": -1,
+      "clv": 0.021,
+      "closeOdds": 95
     },
     {
       "date": "2026-11-04",
@@ -176,7 +178,9 @@ window.PERF_DATA = {
       "pick": "NY Jets ML",
       "odds": -110,
       "result": "Win",
-      "units": 0.91
+      "units": 0.91,
+      "clv": -0.008,
+      "closeOdds": -120
     },
     {
       "date": "2026-11-03",
@@ -185,7 +189,9 @@ window.PERF_DATA = {
       "pick": "Under 2.5 goals",
       "odds": -115,
       "result": "Loss",
-      "units": -1
+      "units": -1,
+      "clv": 0.034,
+      "closeOdds": -125
     },
     {
       "date": "2026-11-03",
@@ -194,7 +200,9 @@ window.PERF_DATA = {
       "pick": "Over 2.5 goals",
       "odds": -110,
       "result": "Win",
-      "units": 0.91
+      "units": 0.91,
+      "clv": null,
+      "closeOdds": null
     },
     {
       "date": "2026-11-03",
@@ -203,7 +211,9 @@ window.PERF_DATA = {
       "pick": "Over 8.5",
       "odds": 110,
       "result": "Win",
-      "units": 1.1
+      "units": 1.1,
+      "clv": 0.012,
+      "closeOdds": 100
     },
     {
       "date": "2026-11-02",
@@ -212,7 +222,9 @@ window.PERF_DATA = {
       "pick": "Memphis +1.5",
       "odds": -130,
       "result": "Loss",
-      "units": -1
+      "units": -1,
+      "clv": 0.005,
+      "closeOdds": -140
     },
     {
       "date": "2026-11-02",
@@ -221,7 +233,9 @@ window.PERF_DATA = {
       "pick": "Under 41.5",
       "odds": 120,
       "result": "Win",
-      "units": 1.2
+      "units": 1.2,
+      "clv": -0.015,
+      "closeOdds": 110
     },
     {
       "date": "2026-11-02",
@@ -230,7 +244,9 @@ window.PERF_DATA = {
       "pick": "Under 7.5",
       "odds": -105,
       "result": "Win",
-      "units": 0.95
+      "units": 0.95,
+      "clv": 0.027,
+      "closeOdds": -115
     },
     {
       "date": "2026-11-01",
@@ -239,7 +255,9 @@ window.PERF_DATA = {
       "pick": "Over 218.5",
       "odds": -120,
       "result": "Win",
-      "units": 0.83
+      "units": 0.83,
+      "clv": null,
+      "closeOdds": null
     },
     {
       "date": "2026-11-01",
@@ -248,7 +266,9 @@ window.PERF_DATA = {
       "pick": "Over 6.5",
       "odds": 120,
       "result": "Win",
-      "units": 1.2
+      "units": 1.2,
+      "clv": 0.018,
+      "closeOdds": 110
     },
     {
       "date": "2026-11-01",
@@ -257,7 +277,9 @@ window.PERF_DATA = {
       "pick": "Barcelona ML",
       "odds": -120,
       "result": "Loss",
-      "units": -1
+      "units": -1,
+      "clv": 0.009,
+      "closeOdds": -130
     },
     {
       "date": "2026-11-01",
@@ -266,7 +288,9 @@ window.PERF_DATA = {
       "pick": "Florida ML",
       "odds": 120,
       "result": "Win",
-      "units": 1.2
+      "units": 1.2,
+      "clv": 0.031,
+      "closeOdds": 110
     }
   ],
   "byDate": [
@@ -493,5 +517,12 @@ window.PERF_DATA = {
     "pushes": 0,
     "units": 7.9
   },
-  "graded": 106
+  "graded": 106,
+  "clv": {
+    "n": 92,
+    "avg": 1.42,
+    "beat": 57,
+    "beatPct": 62,
+    "graded": 106
+  }
 };

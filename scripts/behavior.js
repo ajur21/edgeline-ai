@@ -162,7 +162,9 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('perf: 4 stat tiles with subs', await page.locator('#stat-tiles .stat-sub').count() === 4);
   await page.waitForTimeout(1700);
   check('perf: count-up lands on final values', (await page.locator('#stat-tiles .stat-value').allTextContents()).join('|') === '+6.27u|54-47-5|53.5%|+5.9%', (await page.locator('#stat-tiles .stat-value').allTextContents()).join('|'));
-  check('perf: play and parlay record tiles', await page.locator('#feature-tiles .stat').count() === 2 && (await page.textContent('#feature-tiles')).includes('Play of the day'));
+  check('perf: play, parlay and CLV tiles', await page.locator('#feature-tiles .stat').count() === 3 && (await page.textContent('#feature-tiles')).includes('Play of the day'));
+  check('perf: CLV tile shows average points and beat rate from the fixture', (await page.locator('#clv-tile .stat-value').textContent()) === '+1.42 pts' && (await page.locator('#clv-tile .stat-value').getAttribute('class')).includes('clv-pos') && /62% of 92 picks/.test(await page.locator('#clv-tile .stat-sub').textContent()), await page.textContent('#clv-tile'));
+  check('perf: recent table has a CLV column with signed points and a dash when unknown', (await page.locator('#recent-host thead th').allTextContents()).slice(-1)[0] === 'CLV' && (await page.locator('#recent-host tbody tr').first().locator('td').last().textContent()) === '+2.1' && (await page.locator('#recent-host tbody tr').nth(3).locator('td').last().textContent()) === '\u2014', await page.locator('#recent-host tbody tr').first().locator('td').last().textContent());
   check('perf: calendar renders a month of day cells with a summary', (await page.locator('#pnl-cal td.cal-day').count()) >= 28 && (await page.textContent('#pnl-cal .cal-summary')).includes('units'));
   check('perf: calendar colours winning and losing days', (await page.locator('#pnl-cal td.pos').count()) > 0 && (await page.locator('#pnl-cal td.neg').count()) > 0);
   const calTitle = await page.textContent('#pnl-cal .cal-title');
@@ -272,6 +274,52 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('props: no page errors', perr.length === 0, perr.join(' | '));
   await pp.context().close();
 
+  // line shopping: chips on the card front, the ladder in the breakdown, a books column in the table
+  await page.goto(url('picks.html')); await page.waitForTimeout(300);
+  const c1 = page.locator('.picks-grid article').first();
+  check('shop: card front shows three book chips, best first, and a +2 more note', (await c1.locator('.pick-shop .shop-chip').count()) === 3 && (await c1.locator('.pick-shop .shop-chip').first().getAttribute('class')).includes('best') && (await c1.locator('.pick-shop .shop-more').textContent()) === '+2 more');
+  check('shop: maths on the fixture: 5 books, all clear the bar, the worst gives up 3.2 points', await page.evaluate(() => { const E = window.EdgeLine, p = window.PICKS_DATA.picks[0], s = E.lineShop(p); return s.books === 5 && s.clears === 5 && s.best.book === 'DraftKings' && s.worst.book === 'BetMGM' && !s.sole && /gives up 3\.2 points/.test(E.shopSummary(p)) && /Every one of the 5 books/.test(E.shopSummary(p)); }));
+  check('shop: sole-book flag and badge when only one book clears the bar', await page.evaluate(() => { const E = window.EdgeLine, p = { modelProb: 0.5, odds: 120, prices: { DraftKings: 120, FanDuel: -105, BetMGM: -110 } }, s = E.lineShop(p); return s.sole && s.clears === 1 && s.plus === 1 && E.shopChips(p).querySelector('.badge-sole') !== null && /edge lives at one book/.test(E.shopSummary(p)); }));
+  check('shop: a pick with no prices renders no chips and an empty summary', await page.evaluate(() => { const E = window.EdgeLine; return E.shopChips({ modelProb: 0.5, odds: 100 }) === null && E.shopSummary({ modelProb: 0.5, odds: 100 }) === '' && E.shopTable({ modelProb: 0.5, odds: 100, prices: { X: 'bad' } }) === null; }));
+  await c1.locator('.pick-front .flip-btn').click(); await page.waitForTimeout(700);
+  await c1.locator('.pick-back [data-breakdown]').click(); await page.waitForTimeout(300);
+  check('shop: breakdown dialog has the full ladder, best to worst, with a state per book', (await page.locator('#bd .shop-table tbody tr').count()) === 5 && (await page.locator('#bd .shop-table tbody tr').first().locator('.shop-state').textContent()) === 'Best price' && (await page.textContent('#bd')).includes('Line shopping'));
+  await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+  await page.click('#view-table');
+  check('shop: table view has a Books column showing clears/total', (await page.locator('#picks-host thead th').allTextContents()).includes('Books') && /^\d+\/\d+$/.test((await page.locator('#picks-host tbody tr').first().locator('td').nth(10).textContent()).trim()), await page.locator('#picks-host tbody tr').first().locator('td').nth(10).textContent());
+
+  // live in-game status: ESPN scoreboard mocked, sample flag cleared so the poller runs
+  const lctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const lp = await lctx.newPage(); const lerr = []; lp.on('pageerror', e => lerr.push(e.message)); lp.on('console', m => { if (m.type() === 'error') lerr.push(m.text()); });
+  let espnHits = 0;
+  await lp.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(path.join(root, 'scripts/fixtures/sample-picks.js'), 'utf8').replace('"sample": true', '"sample": false') }));
+  await lp.route('**/site.api.espn.com/**', route => { espnHits++; route.fulfill({ contentType: 'application/json', body: JSON.stringify({ events: [{ id: 'x0', competitions: [{ status: { displayClock: '7:32', period: 3, type: { state: 'in', completed: false, shortDetail: '7:32 - 3rd' } }, competitors: [
+    { homeAway: 'home', score: '21', team: { displayName: 'Buffalo Bills', name: 'Bills', location: 'Buffalo', abbreviation: 'BUF', shortDisplayName: 'Bills' } },
+    { homeAway: 'away', score: '17', team: { displayName: 'Kansas City Chiefs', name: 'Chiefs', location: 'Kansas City', abbreviation: 'KC', shortDisplayName: 'Chiefs' } }] }] }] }) }); });
+  await lp.goto(url('picks.html')); await lp.waitForTimeout(900);
+  const pill = lp.locator('article[data-id="p1"] [data-live="p1"] .live-pill');
+  check('live: the in-progress game gets a pill with clock, score and the spread position', espnHits >= 1 && (await pill.count()) === 1 && /LIVE/.test(await pill.locator('.live-clock').textContent()) && (await pill.locator('.live-score').textContent()) === 'KC 17\u201321 BUF' && (await pill.locator('.live-state').textContent()) === 'covering by 1.5' && (await pill.getAttribute('class')).includes('tone-good'), 'hits ' + espnHits + ' ' + (await pill.count()));
+  check('live: games not on the scoreboard show nothing', (await lp.locator('article[data-id="p2"] .live-pill').count()) === 0 && (await lp.locator('article[data-id="p2"] .live-slot').evaluate(s => s.textContent)) === '');
+  check('live: pick state maths for moneyline, totals and a final', await lp.evaluate(() => { const L = window.EdgeLineLive; const g = { state: 'in', home: { abbr: 'BUF', score: 21, team: { displayName: 'Buffalo Bills', name: 'Bills', location: 'Buffalo', abbreviation: 'BUF', shortDisplayName: 'Bills' } }, away: { abbr: 'KC', score: 17, team: { displayName: 'Kansas City Chiefs', name: 'Chiefs', location: 'Kansas City', abbreviation: 'KC', shortDisplayName: 'Chiefs' } } };
+    const ml = L.pickState({ pick: 'Kansas City ML', marketKey: 'h2h' }, g), ov = L.pickState({ pick: 'Over 44.5', marketKey: 'totals' }, g), un = L.pickState({ pick: 'Under 44.5', marketKey: 'totals' }, Object.assign({}, g, { state: 'post' })), dr = L.pickState({ pick: 'Draw', marketKey: 'h2h' }, g);
+    return ml.text === 'trailing by 4' && ml.tone === 'bad' && ov.text === 'needs 6.5 more' && ov.tone === 'flat' && un.text === 'won (unofficial)' && un.tone === 'good' && dr.text === 'not level' && L.outcomeOf({ pick: 'Over 2.5 goals' }).point === 2.5; }));
+  check('live: no page errors', lerr.length === 0, lerr.join(' | '));
+  await lctx.close();
+
+  // daily digest: the slate grouped by start time, lead plays, copy text
+  const dp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const derr = []; dp.on('pageerror', e => derr.push(e.message)); dp.on('console', m => { if (m.type() === 'error') derr.push(m.text()); });
+  await dp.goto(url('digest.html')); await dp.waitForTimeout(500);
+  check('digest: nav current is Digest', (await dp.locator('.nav-links a[aria-current="page"]').textContent()) === 'Digest');
+  check('digest: title names the day and the lede counts the board', (await dp.textContent('#digest-title')).startsWith('The slate for ') && /12 picks across \d sports/.test(await dp.textContent('#digest-lede')) && /biggest edge is/.test(await dp.textContent('#digest-lede')), await dp.textContent('#digest-lede'));
+  check('digest: four tiles, lead plays and a top-3 list', (await dp.locator('#digest-tiles .stat').count()) === 4 && (await dp.locator('#potd-host .potd').count()) === 1 && (await dp.locator('#parlay-host .parlay').count()) === 1 && (await dp.locator('#top3 li').count()) === 3);
+  check('digest: every pick listed once, tonight\'s games first', (await dp.locator('.digest-row').count()) === 12 && (await dp.locator('.slot').count()) >= 3 && await dp.evaluate(() => { const g = window.EdgeLineDigest.groups; return /^Tonight/.test(g[0].label) && g.filter(x => /^Tonight/.test(x.label)).length >= 3 && g.every(x => x.picks.length >= 1); }), await dp.evaluate(() => window.EdgeLineDigest.groups.map(g => g.label).join(' | ')));
+  check('digest: a row carries the verdict, price, edge, confidence and a live slot', (await dp.locator('.digest-row').first().locator('.digest-why, .digest-nums .mono, .digest-tags .badge-conf-high, .digest-tags .badge-conf-medium, .digest-tags .badge-conf-lean, .live-slot').count()) === 4);
+  check('digest: copy text lists every pick under its group and ends with the helpline', await dp.evaluate(() => { const t = window.EdgeLineDigest.asText(); return t.split('\n').filter(l => /^  (NFL|NBA|MLB|NHL|Soccer) · /.test(l)).length === 12 && t.includes('1-800-GAMBLER') && t.includes('Play of the day:') && t.includes('Parlay of the day'); }));
+  await dp.locator('.digest-row [data-breakdown]').first().click(); await dp.waitForTimeout(300);
+  check('digest: breakdown opens from a row', await dp.locator('#bd[open] .bd-pick').count() === 1);
+  check('digest: print button present, no page errors', (await dp.locator('#digest-print').count()) === 1 && derr.length === 0, derr.join(' | '));
+  await dp.context().close();
+
   // phone board odds visible
   const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
   await ph.goto(url('index.html'));
@@ -288,12 +336,12 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   useSample = false;
   const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
-  for (const p of ['index.html', 'picks.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
+  for (const p of ['index.html', 'picks.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
   const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
   await rp.goto(url('index.html')); await rp.waitForTimeout(400);
   const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });
   const sampleHidden = await rp.evaluate(() => { const d = window.PICKS_DATA; const flag = document.querySelector('[data-sample-flag="picks"]'); return !d || d.sample !== false ? true : (flag.hidden === true && getComputedStyle(flag).display === 'none'); });
-  check('real data: all three pages load without errors (' + realPicks + ' picks on the board)', realErrors.length === 0, realErrors.join(' | '));
+  check('real data: every page loads without errors (' + realPicks + ' picks on the board)', realErrors.length === 0, realErrors.join(' | '));
   check('real data: board shows rows or a single empty-state message', boardOk);
   check('real data: Sample label hidden when data is real', sampleHidden);
   await browser.close();

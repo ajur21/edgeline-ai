@@ -28,6 +28,7 @@
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
       <li><a href="performance.html">Performance</a></li>
       <li><a href="journal.html">Journal</a></li>
@@ -55,7 +56,7 @@
     </div>
 
     <div class="grid-4" id="stat-tiles"></div>
-    <div class="grid-2 feature-tiles" id="feature-tiles"></div>
+    <div class="grid-3 feature-tiles" id="feature-tiles"></div>
   </div>
 </section>
 
@@ -113,7 +114,7 @@
     </div>
 
     <div class="notice">
-      <strong>How grading works.</strong> Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked.
+      <strong>How grading works.</strong> Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked. <strong>Closing line value</strong> (CLV) compares the price we published with the sharp market's last pre-game line: the closing fair probability minus the probability implied by our price, in points. Positive CLV means the market moved our way after we posted, which is the best available evidence that an edge was real rather than lucky. Prices are checked twice a day, so a pick logged at the last refresh before tip-off has no closing sample and is left out.
     </div>
   </div>
 </section>
@@ -144,7 +145,7 @@
     if (t.num != null) setTimeout(function () { E.animateNumber(valueEl, t.num, t.fmt, 1000); }, 120 * i);
   });
 
-  /* play of the day and parlay of the day records */
+  /* play of the day and parlay of the day records, then closing line value */
   var ft = document.getElementById("feature-tiles");
   [["Play of the day", S.potd], ["Parlay of the day", S.parlays]].forEach(function (pair) {
     var r = pair[1] || { wins: 0, losses: 0, pushes: 0, units: 0 }, n = r.wins + r.losses + r.pushes;
@@ -154,6 +155,14 @@
       E.el("div", { class: "stat-sub", text: n ? E.signed(r.units, 2) + "u over " + n + " graded, last 30 days" : "Nothing graded yet" })
     ]));
   });
+  /* CLV: did the price we published beat where the sharp market closed? The honest proof that an edge is real. */
+  var clv = S.clv || { n: 0, avg: null, beat: 0, beatPct: null };
+  var clvTile = E.el("div", { class: "card stat", "data-tilt": "", id: "clv-tile" }, [
+    E.el("div", { class: "stat-label", text: "Closing line value" }),
+    E.el("div", { class: "stat-value" + (clv.n ? (clv.avg > 0 ? " clv-pos" : clv.avg < 0 ? " clv-neg" : "") : ""), text: clv.n ? E.signed(clv.avg, 2) + " pts" : "\u2014" }),
+    E.el("div", { class: "stat-sub", text: clv.n ? "Beat the close on " + clv.beatPct.toFixed(0) + "% of " + clv.n + " picks with a pre-game price check" + (clv.graded && clv.graded > clv.n ? " (" + (clv.graded - clv.n) + " had none)" : "") : "Scored once picks have a price check between publish and tip-off" })
+  ]);
+  ft.appendChild(clvTile);
 
   /* profit calendar, all time */
   E.pnlCalendar(document.getElementById("pnl-cal"), S.byDate || []);
@@ -209,11 +218,12 @@
       E.el("td", {}, [E.el("strong", { text: r.pick })]),
       E.el("td", { class: "num", text: E.fmtOdds(r.odds) }),
       E.el("td", {}, [E.el("span", { class: cls }, [E.el("span", { class: "dot", "aria-hidden": "true" }), r.result])]),
-      E.el("td", { class: "num", text: E.signed(r.units, 2) + "u" })
+      E.el("td", { class: "num", text: E.signed(r.units, 2) + "u" }),
+      E.el("td", { class: "num" }, [typeof r.clv === "number" ? E.el("span", { class: r.clv > 0 ? "clv-pos" : r.clv < 0 ? "clv-neg" : "", title: r.closeOdds != null ? "Closed " + E.fmtOdds(r.closeOdds) : null, text: E.signed(r.clv * 100, 1) }) : E.el("span", { class: "muted", title: "No price check between publish and tip-off", text: "\u2014" })])
     ]);
   });
-  var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units"].map(function (h, i) {
-    return E.el("th", { scope: "col", class: (i === 4 || i === 6) ? "num" : "", text: h });
+  var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units", "CLV"].map(function (h, i) {
+    return E.el("th", { scope: "col", class: (i === 4 || i === 6 || i === 7) ? "num" : "", title: i === 7 ? "Closing line value: closing fair probability minus the probability implied by the published price, in points" : null, text: h });
   }));
   if (rows.length) document.getElementById("recent-host").appendChild(E.el("table", { class: "data" }, [E.el("thead", {}, [headRow]), E.el("tbody", {}, rows)]));
   else document.getElementById("recent-host").appendChild(E.el("p", { class: "empty", text: "No graded picks yet. Results appear the morning after the first picks settle." }));
@@ -235,6 +245,7 @@
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
           <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>
           <li><a href="performance.html">Performance</a></li>
           <li><a href="journal.html">Journal</a></li>
