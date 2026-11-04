@@ -75,7 +75,7 @@
     <p class="small muted parlays-note">Fair probability treats legs as independent, so expected value is an estimate. Longer parlays pay more and hit less; pick the length that suits your bankroll.</p>
 
     <div class="section-head row picks-head">
-      <div><h2>All picks, likeliest first</h2><p class="muted how-to">Ranked by fair probability: #1 is the side the model expects to hit most often. On each card the bar is that probability, the tick is what the price implies, and a green edge means the price pays more than it should.</p></div>
+      <div><h2>All picks, likeliest first</h2><p class="muted how-to">Sides with a positive edge come first, ranked by fair probability: #1 is the side worth a bet that the model expects to hit most often. Sides priced against you follow, likeliest first. On each card the bar is that probability and the tick is what the price implies.</p></div>
     </div>
     <div class="filter-row" role="group" aria-label="Filters">
       <label class="filter">Sport
@@ -105,7 +105,7 @@
       </label>
       <label class="filter">Sort by
         <select id="f-sort">
-          <option value="model">Likeliest first</option>
+          <option value="model">Worth a bet, likeliest first</option>
           <option value="edge">Biggest edge</option>
           <option value="odds">Longest odds</option>
           <option value="start">Start time</option>
@@ -135,7 +135,7 @@
       <label class="filter">Sport<select id="m-sport"><option value="">All sports</option></select></label>
       <label class="filter">Market<select id="m-market"><option value="">All markets</option></select></label>
       <label class="filter">Show<select id="m-status"><option value="">Everything</option><option value="positive">Positive edge only</option><option value="watch">Picks and watch list</option></select></label>
-      <label class="filter">Sort by<select id="m-sort"><option value="model">Likeliest first</option><option value="edge">Biggest edge</option><option value="start">Start time</option></select></label>
+      <label class="filter">Sort by<select id="m-sort"><option value="model">Worth a bet, likeliest first</option><option value="edge">Biggest edge</option><option value="start">Start time</option></select></label>
       <label class="filter">Search<input type="search" id="m-search" placeholder="Team or side" autocomplete="off"></label>
     </div>
     <div id="market-host"></div>
@@ -191,7 +191,7 @@
     odds: function (a, b) { return b.odds - a.odds; },
     start: function (a, b) { return (a.commence ? Date.parse(a.commence) : Infinity) - (b.commence ? Date.parse(b.commence) : Infinity); }
   };
-  var sortLabel = { edge: "edge", model: "fair probability, likeliest first", odds: "odds", start: "start time" };
+  var sortLabel = { edge: "edge", model: "fair probability, positive edge first", odds: "odds", start: "start time" };
   function filtered() {
     var minEdge = Number(fe.value) / 100, conf = fc.value;
     return E.sortByProb(P).filter(function (p) {
@@ -205,13 +205,13 @@
   function render() {
     var list = filtered();
     host.textContent = "";
-    summary.textContent = P.length ? list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." : "Nothing on the board yet.";
+    summary.textContent = P.length ? list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." : "";
     if (!list.length && !P.length) {
       /* nothing clears the bar: show the closest markets as cards, clearly labelled, so the page is never bare */
       var near = E.marketRows({ limit: 6, oneSidePerMarket: true });
       var s = E.marketSummary();
-      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: "No pick clears the 1-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games were priced; these are the likeliest sides, ranked by fair probability. Watch means within half a point of the bar. They are not plays." : "The market board fills at the next price refresh."]));
-      if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }); near.forEach(function (p, i) { var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
+      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: "No pick clears the 1-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games were priced. Sides with a positive edge come first, ranked by fair probability; the rest follow, likeliest first. Watch means within half a point of the bar. They are not plays." : "The market board fills at the next price refresh."]));
+      if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }); near.forEach(function (p, i) { if (i > 0 && !(E.edgeOf(p) > 0) && E.edgeOf(near[i - 1]) > 0) g2.appendChild(E.el("p", { class: "grid-divider", text: "Priced against you from here: fair sits below the price" })); var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
       return;
     }
     if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: "No picks match these filters." })); return; }
@@ -257,11 +257,11 @@
   var M = E.marketData(), mHost = document.getElementById("market-host"), mMore = document.getElementById("market-more"), mShown = 40;
   var ms = document.getElementById("m-sport"), mm = document.getElementById("m-market"), mst = document.getElementById("m-status"), mq = document.getElementById("m-search"), mso = document.getElementById("m-sort");
   var mSorters = {
-    model: function (a, b) { return (b.modelProb - a.modelProb) || (b.edge - a.edge); },
+    model: function (a, b) { return ((b.edge > 0) - (a.edge > 0)) || (b.modelProb - a.modelProb) || (b.edge - a.edge); },
     edge: function (a, b) { return (b.edge - a.edge) || (b.modelProb - a.modelProb); },
     start: function (a, b) { return (Date.parse(a.commence) || Infinity) - (Date.parse(b.commence) || Infinity) || (b.modelProb - a.modelProb); }
   };
-  var mSortLabel = { model: "likeliest first", edge: "biggest edge first", start: "by start time" };
+  var mSortLabel = { model: "positive edge first, then likeliest", edge: "biggest edge first", start: "by start time" };
   (M.sports || []).forEach(function (v) { ms.appendChild(E.el("option", { value: v, text: v })); });
   M.rows.map(function (r) { return r.market; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (v) { mm.appendChild(E.el("option", { value: v, text: v })); });
   function marketFiltered() {
@@ -282,7 +282,7 @@
     if (!M.rows.length) { sub.textContent = "The market board fills at the next price refresh."; mHost.appendChild(E.el("div", { class: "card empty", text: "Nothing priced yet." })); return; }
     [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (s.generatedAt ? " at " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "") + ". " + s.picks + " clear the " + (s.threshold * 100).toFixed(0) + "-point bar (picks), " + s.watch + " sit within half a point (watch). Best price and the sharp fair line for every side, " + (mSortLabel[mso.value] || mSortLabel.model) + "." + (rows.length !== M.rows.length ? " Showing " + rows.length + "." : "")].forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     if (!rows.length) { mHost.appendChild(E.el("div", { class: "card empty", text: "No markets match these filters." })); return; }
-    mHost.appendChild(E.marketTable(rows.slice(0, mShown), { pickHref: "#" }));
+    mHost.appendChild(E.marketTable(rows.slice(0, mShown), { pickHref: "#", divider: mso.value === "model" || !mso.value ? "Priced against you from here: fair sits below the price" : null }));
     if (rows.length > mShown) { var b = E.el("button", { type: "button", class: "btn btn-secondary btn-sm", text: "Show " + Math.min(40, rows.length - mShown) + " more of " + rows.length }); b.addEventListener("click", function () { mShown += 40; renderMarket(); }); mMore.appendChild(b); }
   }
   [ms, mm, mst, mso].forEach(function (s) { s.addEventListener("change", function () { mShown = 40; renderMarket(); }); });

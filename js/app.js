@@ -193,7 +193,7 @@
     if (opts.sport) rows = rows.filter(r => r.sport === opts.sport);
     if (opts.positive) rows = rows.filter(r => r.edge > 0);
     /* likeliest first (the file is by edge; byEdge keeps that for the nearest-miss slot) */
-    if (!opts.byEdge) rows = rows.slice().sort((a, b) => (b.modelProb - a.modelProb) || (b.edge - a.edge));
+    if (!opts.byEdge) rows = rows.slice().sort((a, b) => ((b.edge > 0) - (a.edge > 0)) || (b.modelProb - a.modelProb) || (b.edge - a.edge));
     if (opts.oneSidePerMarket) { const seen = {}; rows = rows.filter(r => { const k = r.eventId + "|" + r.marketKey; if (seen[k]) return false; seen[k] = true; return true; }); }
     if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
     return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
@@ -205,12 +205,21 @@
     const when = m.generatedAt ? new Date(m.generatedAt) : null;
     return { games: m.games || 0, markets: rows.length, picks: picks, watch: watch, best: best, sports: m.sports || [], generatedAt: when && !isNaN(when) ? when : null, threshold: m.threshold || 0.01 };
   }
-  /* the full board as a table: every side of every main-line market, sorted by edge */
+  /* a divider row for the market table: where the sides priced against you begin */
+  function marketDivider(text) {
+    const tr = el("tr", { class: "mkt-divider" }, [el("td", { colspan: String(MARKET_COLS.length) }, [el("span", { text: text })])]);
+    tr.firstChild.setAttribute("data-label", "");
+    return tr;
+  }
+  /* the full board as a table: every side of every main-line market, in the order given */
   const MARKET_COLS = ["Sport", "Game", "Market", "Side", "Best", "Book", "Fair", "Implied", "Edge", "Status"];
   function marketTable(rows, opts) {
     opts = opts || {};
     const m = marketData(), onBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { onBoard[p.id] = true; });
-    const body = rows.map(function (r) {
+    let divided = false;
+    const body = [];
+    rows.forEach(function (r, idx) {
+      if (opts.divider && !divided && idx > 0 && !(r.edge > 0) && rows[idx - 1].edge > 0) { divided = true; body.push(marketDivider(opts.divider)); }
       const isPick = !!(r.pickId && onBoard[r.pickId]);
       const st = isPick ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
       r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
@@ -228,7 +237,7 @@
       ]);
       /* phone layout restacks each row as a card and labels the cells from this attribute */
       Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-label", MARKET_COLS[i]); });
-      return tr;
+      body.push(tr);
     });
     const head = el("tr", {}, MARKET_COLS.map((h, i) => el("th", { scope: "col", class: i >= 4 && i <= 8 && i !== 5 ? "num" : "", text: h })));
     return el("div", { class: "table-wrap market-table", tabindex: "0", role: "region", "aria-label": "Market board" }, [el("table", { class: "data" }, [el("thead", {}, [head]), el("tbody", {}, body)])]);
@@ -363,9 +372,10 @@
   function sortByEdge(picks) {
     return (picks || []).filter(isValidPick).sort(function (a, b) { return edgeOf(b) - edgeOf(a); });
   }
-  /* the site's order (owner rule): likeliest to hit first, by fair probability; edge breaks ties */
+  /* the site's order (owner rule): sides with a positive edge first, then everything else; within each tier the likeliest to hit first, by fair probability; edge breaks ties */
+  function worthFirst(a, b) { return ((edgeOf(b) > 0) - (edgeOf(a) > 0)) || (Number(b.modelProb) - Number(a.modelProb)) || (edgeOf(b) - edgeOf(a)); }
   function sortByProb(picks) {
-    return (picks || []).filter(isValidPick).sort(function (a, b) { return (Number(b.modelProb) - Number(a.modelProb)) || (edgeOf(b) - edgeOf(a)); });
+    return (picks || []).filter(isValidPick).sort(worthFirst);
   }
   /* the rank chip: "#1 · Likeliest" on the top card, "#n" below it */
   function rankChip(n, short) {
@@ -624,7 +634,7 @@
 
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
-    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
+    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel

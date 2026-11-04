@@ -1145,3 +1145,8 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .rank-cell { font-family: var(--font-condensed); color: var(--muted); }
 .digest-top3 .leg-id .rank, .digest-id .rank { padding: 1px 6px; font-size: 0.72rem; }
 @media (prefers-reduced-motion: reduce) { .prob-fill { transition: none; } }
+
+/* the tier line: where the sides priced against you begin (picks grid fallback and the market board) */
+.grid-divider { grid-column: 1 / -1; margin: 8px 0 0; padding: 6px 0 0; border-top: 1px dashed var(--border-strong); font-family: var(--font-condensed); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-4-text); }
+.market-table tr.mkt-divider td { padding: 10px 8px 6px; font-family: var(--font-condensed); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-4-text); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
+@media (max-width: 720px) { .market-table tr.mkt-divider { display: block; } .market-table tr.mkt-divider td::before { display: none; } }

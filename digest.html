@@ -91,7 +91,7 @@
       <div>
         <span class="eyebrow">The slate</span>
         <h2>Every pick, likeliest first</h2>
-        <p class="muted">Ranked by fair probability, with the start time (Eastern) on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
+        <p class="muted">Sides worth a bet first, ranked by fair probability, then the rest; the start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
       </div>
     </div>
     <div id="slate-host"></div>
@@ -201,7 +201,7 @@
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
   if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: "No picks to list. Check back after the next refresh." }));
-  var groups = ordered.length ? [{ label: "Ranked by fair probability, likeliest first", picks: ordered }] : [];
+  var groups = ordered.length ? [{ label: "Positive edge first, then likeliest", picks: ordered }] : [];
   groups.forEach(function (g) {
     var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: g.picks.length + (g.picks.length === 1 ? " pick" : " picks") })])]);
     g.picks.forEach(function (p, i) {
