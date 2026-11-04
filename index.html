@@ -296,9 +296,12 @@
 <script src="data/picks.js"></script>
 <script src="data/performance.js"></script>
 <script src="data/market.js"></script>
+<script src="data/teams.js"></script>
+<script src="data/faces.js"></script>
+<script src="js/teams.js"></script>
 <script>
 (function () {
-  var E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
+  var T = window.EdgeLineTeams, E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
   var ranked = E.sortByEdge(P);
   /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
   var fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
@@ -314,6 +317,7 @@
     shown.forEach(function (p) {
       group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
         E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
+        T ? T.sideLogo(p, 20) : null,
         E.el("span", { class: "t-pick", text: p.pick }),
         E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
         E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + " " + E.signed(E.edgeOf(p) * 100, 1) + "%" : E.signed(E.edgeOf(p) * 100, 1) + "%" })
@@ -395,7 +399,7 @@
 
   shown.slice(0, 4).forEach(function (p) {
     rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
-      E.el("span", { class: "board-sport", text: p.sport.toUpperCase() }),
+      E.el("span", { class: "board-sport" }, [T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
       E.el("div", { class: "board-pick" }, [
         E.el("div", { class: "sel", text: p.pick }),
         E.el("div", { class: "ev", text: p.event + " · " + p.market + (p.isMarket ? " · " + E.statusLabel(p.status) : "") })
@@ -483,6 +487,7 @@
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
         <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+        <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>

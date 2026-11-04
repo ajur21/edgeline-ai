@@ -8,7 +8,8 @@
     "data": "node scripts/update-data.js",
     "data:fixture": "node scripts/update-data.js --fixture --out /tmp/edgeline-fixture-out",
     "props": "node scripts/update-props.js",
-    "feeds": "node scripts/feeds.js"
+    "feeds": "node scripts/feeds.js",
+    "teams": "node scripts/update-teams.js"
   },
   "devDependencies": {
     "playwright": "^1.64.1"

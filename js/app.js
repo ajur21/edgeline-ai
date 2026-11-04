@@ -112,6 +112,8 @@
     (children || []).forEach(function (c) { if (c) node.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     return node;
   }
+  /* team logos, matchups and faces live in js/teams.js, loaded after the data files; everything here degrades to text without it */
+  function TM() { return window.EdgeLineTeams || null; }
 
   /* ---------- line shopping: every book's price on the pick's line ---------- */
   const BAR = 0.01; /* a book "clears the bar" when its price still leaves a 1-point edge, the site's Lean threshold */
@@ -212,7 +214,7 @@
       r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
       const tr = el("tr", { class: "mkt-" + st }, [
         el("td", {}, [el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
-        el("td", {}, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: r.start || "" })]),
+        el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(r, { size: "sm", abbr: false }) : null, el("span", { class: "mkt-game-text" }, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: r.start || "" })])])]),
         el("td", { text: r.market }),
         el("td", {}, [el("strong", { text: r.pick })]),
         el("td", { class: "num mono", text: fmtOdds(r.odds) }),
@@ -238,7 +240,7 @@
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
       el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ". " + (s.picks ? s.picks + " clear the " + (s.threshold * 100).toFixed(0) + "-point bar. " : "None clears the " + (s.threshold * 100).toFixed(0) + "-point bar" + (s.watch ? "; " + s.watch + " sit within half a point. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", " + signed(s.best.edge * 100, 1) + " points." : "")]),
-      el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), el("span", { class: "leg-event", text: p.event + " · " + p.start })]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
+      el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), el("span", { class: "leg-event", text: p.event + " · " + p.start })]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
       el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
   }
@@ -268,6 +270,7 @@
         ])
       ]),
       el("div", {}, [
+        TM() ? TM().matchup(p) : null,
         el("div", { class: "pick-event", text: p.event }),
         el("h3", { class: "pick-selection", text: p.pick }),
         el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
@@ -294,6 +297,7 @@
       el("h3", { class: "pick-selection", text: p.pick }),
       el("p", { class: "pick-rationale", text: p.rationale }),
       factors.length ? el("ul", { class: "pick-factors" }, factors.map(function (f) { return el("li", { text: f }); })) : null,
+      TM() ? TM().faces(p, { perTeam: 3, px: 40 }) : null,
       el("div", { class: "pick-foot" }, [
         p.isMarket ? el("a", { class: "flip-btn bd-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn bd-btn", "data-breakdown": p.id, text: "Full breakdown" }),
         backBtn
@@ -302,6 +306,7 @@
     const card = el("article", { class: "card pick" + (p.isMarket ? " market-card" : ""), "data-id": p.id, "data-sport": p.sport, "data-tilt": "" }, [
       el("div", { class: "pick-inner" }, [front, back])
     ]);
+    if (TM()) TM().tint(card, p);
     function setFlipped(f) {
       card.classList.toggle("flipped", f);
       flipBtn.setAttribute("aria-expanded", String(f));
@@ -330,7 +335,7 @@
     const edge = edgeOf(p);
     return el("tr", {}, [
       el("td", { text: p.sport }),
-      el("td", { text: p.event }),
+      el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { text: p.event })])]),
       el("td", { text: p.start }),
       el("td", { text: p.market }),
       el("td", {}, [el("strong", { text: p.pick })]),
@@ -366,11 +371,12 @@
     }
     const edge = edgeOf(p);
     const status = p.result ? "Result: " + p.result : p.started ? "Started" : p.start;
-    return el("article", { class: "card potd", "data-sport": p.sport, "data-tilt": "" }, [
+    const card = el("article", { class: "card potd", "data-sport": p.sport, "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: p._eyebrow || "Play of the day" }),
         el("span", { class: "pick-head-right" }, [p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
       ]),
+      TM() ? TM().matchup(p, { size: "lg" }) : null,
       el("div", { class: "potd-event", text: p.event }),
       el("h3", { class: "potd-selection", text: p.pick }),
       el("div", { class: "potd-line" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
@@ -385,6 +391,8 @@
         el("span", { class: "pick-actions" }, [p.started || p.isMarket ? null : parlayButton(p.id), p.isMarket ? el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
       ])
     ]);
+    if (TM()) TM().tint(card, p);
+    return card;
   }
 
   /* ---------- parlays ---------- */
@@ -461,7 +469,7 @@
       ]),
       el("ul", { class: "parlay-legs" }, par.legs.map(function (l) {
         return el("li", {}, [
-          el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport }),
+          el("span", { class: "leg-id" }, [TM() ? TM().matchup(l, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport })]),
           el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event }), l.result ? null : liveSlot(l.id)]),
           el("span", { class: "mono leg-price", text: fmtOdds(l.price) }),
           l.result ? el("span", { class: "result result-" + l.result.toLowerCase(), text: l.result }) : null
@@ -494,7 +502,7 @@
     const sec = el("section", { class: "bd-pick" }, [
       el("div", { class: "bd-head" }, [
         el("div", {}, [
-          el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }),
+          el("div", { class: "bd-id" }, [TM() ? TM().matchup(p) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
           el("h3", { class: "bd-title", text: p.pick }),
           el("div", { class: "bd-sub", text: p.event + " · " + p.market + " · " + fmtOdds(p.odds) + (p.book ? " at " + p.book : "") + " · " + p.start })
         ]),
@@ -512,8 +520,10 @@
     const teams = Object.keys(c.injuries || {});
     if (teams.length) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Injury report" })].concat(teams.map(function (t) {
       const items = c.injuries[t] || [];
-      return el("div", { class: "bd-team" }, [el("strong", { text: t }), items.length ? el("ul", { class: "bd-inj" }, items.map(i => el("li", {}, [el("span", { class: "inj-status " + statusClass(i.status), text: i.status }), " " + i.name + (i.pos ? " (" + i.pos + ")" : "") + (i.type ? " · " + i.type : "") + (i.returnDate ? " · back " + i.returnDate : ""), i.note ? el("span", { class: "inj-note", text: i.note }) : null]))) : el("p", { class: "small muted", text: "No one listed." })]);
+      return el("div", { class: "bd-team" }, [el("strong", { text: t }), items.length ? el("ul", { class: "bd-inj" }, items.map(i => el("li", {}, [TM() && (i.athleteId || i.headshot) ? TM().face(p.sportKey, { id: i.athleteId, name: i.name, headshot: i.headshot }, 28) : null, el("span", { class: "inj-status " + statusClass(i.status), text: i.status }), " " + i.name + (i.pos ? " (" + i.pos + ")" : "") + (i.type ? " · " + i.type : "") + (i.returnDate ? " · back " + i.returnDate : ""), i.note ? el("span", { class: "inj-note", text: i.note }) : null]))) : el("p", { class: "small muted", text: "No one listed." })]);
     }))));
+    const known = TM() ? TM().faces(p, { perTeam: 4, px: 48, title: false }) : null;
+    if (known) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Names to know" }), known]));
     if (c.weather) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: [c.weather.summary, c.weather.tempF != null ? c.weather.tempF + "°F" : null, c.weather.windMph != null ? "wind " + c.weather.windMph + " mph" : null, c.weather.precipPct != null ? c.weather.precipPct + "% rain" : null].filter(Boolean).join(" · ") + (c.weather.city ? " · " + c.weather.city : "") })]));
     else if (c.indoor) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: "Indoor venue." })]));
     const restTeams = Object.keys(c.rest || {}).filter(t => c.rest[t]);

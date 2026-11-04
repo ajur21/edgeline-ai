@@ -77,6 +77,7 @@ function teamInjuries(inj, teamName) {
   const t = ((inj && inj.injuries) || []).find(x => teamMatches(teamName, { displayName: x.displayName, name: (x.displayName || "").split(" ").pop(), location: "" }));
   return ((t && t.injuries) || []).map(i => ({
     name: i.athlete && i.athlete.displayName, pos: i.athlete && i.athlete.position && i.athlete.position.abbreviation,
+    athleteId: (i.athlete && i.athlete.id) || null, headshot: (i.athlete && i.athlete.headshot && i.athlete.headshot.href) || null,
     status: i.status || "", type: i.details && i.details.type || "", detail: i.details && i.details.detail || "", returnDate: i.details && i.details.returnDate || null,
     note: (i.shortComment || "").slice(0, 160)
   })).filter(i => i.name && !/^active$/i.test(i.status));

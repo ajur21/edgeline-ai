@@ -27,6 +27,9 @@ js/app.js           theme toggle, odds math (implied probability, edge), pick ca
 js/live.js          live in-game status from ESPN's public scoreboard, polled in the browser while games are on
 js/charts.js        dependency-free SVG line and bar charts with hover tooltips and table views
 js/space.js         canvas space backdrop: parallax stars, nebulae, shooting stars; dark by default, light = daylight sky
+js/teams.js         team logos, matchup strips (the picked side lit in its colour), card tints and player faces, from the two files below
+data/teams.js       164 teams in six leagues (NBA, NFL, MLB, NHL, Premier League, La Liga): names, abbreviations, logos, colours -> window.TEAMS_DATA; `npm run teams`
+data/faces.js       NBA rotation players and the Out list with season points and injury status -> window.FACES_DATA (written with the props refresh)
 data/picks.js       SAMPLE picks  -> window.PICKS_DATA
 data/performance.js SAMPLE results -> window.PERF_DATA
 data/market.js      every priced market from the last run -> window.MARKET_DATA (the site falls back to it so no page is ever empty)
@@ -44,6 +47,8 @@ No account, no email list. The home page's Subscribe section offers two feeds th
 ## Real data
 
 Every pick shows the price at every book on its line (best first, with how many still clear the 1-point bar and a flag when only one does), and once its game starts, the live score and where the pick stands. After grading, each pick is scored for closing line value against DraftKings' closing number (published free by ESPN after every game): whether the price we published beat the close, or for spreads and totals that closed on a different number, whether the line moved toward the pick. Between odds runs, a light job refreshes DraftKings' open and current numbers every two hours so each breakdown shows the market's drift. A second feed, SportsGameOdds' free tier (set the `SGO_API_KEY` secret), adds nine books' prices on every pick's line, the whole market's move since the open, free final scores, and a nine-book closing number for CLV; The Odds API keeps the sharp anchor and finds the edges. The performance page shows the average and the beat rate.
+
+Every pick, market row, parlay leg and digest line shows the matchup as two team logos, the side the pick is on lit and ringed in the team's colour and the other side dimmed, so a board scans like a scoreboard. The card back and the breakdown add "Names to know": the players ESPN lists as Out or day-to-day first, then the top scorers, each with a face. Logos and photos come from ESPN's CDN (resized on their side, with a text monogram if an image fails) and are credited in the footer; they are the leagues' marks and must be licensed before the site is sold.
 
 Every pick carries a full breakdown: why it sits at its confidence tier, what supports it and what could go wrong, with the injury report for both teams, rest and back-to-backs, venue, records, probable pitchers, kickoff weather for outdoor games and line movement since the pick was logged. Open it from any card's "Full breakdown" button.
 

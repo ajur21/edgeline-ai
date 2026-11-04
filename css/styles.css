@@ -1043,3 +1043,83 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .digest-sub { margin: 14px 0 0; font-size: 0.95rem; }
 @media (max-width: 900px) { .subscribe { grid-template-columns: 1fr; } }
 @media (max-width: 420px) { .cal-event { grid-template-columns: 52px minmax(0, 1fr); gap: 12px; } .cal-day { font-size: 1.5rem; } }
+
+/* ==========================================================================
+   Team identity: logos, matchup strips, team-colour glow and player faces (js/teams.js).
+   --team is set per element from data/teams.js; every rule falls back to --accent.
+   ========================================================================== */
+.team-logo { display: inline-block; width: 40px; height: 40px; flex: none; box-sizing: border-box; padding: 3px; border-radius: 50%; object-fit: contain; background: color-mix(in srgb, var(--text) 7%, var(--surface)); border: 1px solid var(--border); vertical-align: middle; }
+.team-mono { display: inline-grid; place-items: center; font-family: var(--font-condensed); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-2); }
+.team-logo[width="72"], .team-mono[data-size="72"] { width: 72px; height: 72px; padding: 7px; font-size: 1rem; }
+.team-logo[width="28"], .team-mono[data-size="28"] { width: 28px; height: 28px; padding: 2px; font-size: 0.5rem; letter-spacing: 0; }
+.team-logo[width="24"], .team-mono[data-size="24"] { width: 24px; height: 24px; padding: 2px; font-size: 0.45rem; letter-spacing: 0; }
+.team-logo[width="20"], .team-mono[data-size="20"] { width: 20px; height: 20px; padding: 1px; font-size: 0.4rem; letter-spacing: 0; }
+.matchup { display: inline-flex; align-items: center; gap: 10px; }
+.mu-team { position: relative; display: inline-flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+.mu-team .team-logo { box-shadow: 0 0 0 2px transparent; transition: box-shadow 0.25s, opacity 0.25s, filter 0.25s, transform 0.25s; }
+.mu-team.is-pick .team-logo { border-color: transparent; box-shadow: 0 0 0 2px var(--team, var(--accent)), 0 0 18px color-mix(in srgb, var(--team, var(--accent)) 55%, transparent); }
+.mu-team.is-off { opacity: 0.55; filter: saturate(0.35); }
+.card:hover .mu-team.is-pick .team-logo, .board-row:hover .mu-team.is-pick .team-logo { transform: translateY(-1px) scale(1.04); }
+.mu-abbr { font-family: var(--font-condensed); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--text-2); line-height: 1; }
+.mu-team.is-pick .mu-abbr { color: var(--text); font-weight: 600; }
+.mu-at { font-family: var(--font-condensed); font-size: 0.8rem; color: var(--muted); line-height: 1; }
+.matchup-sm { gap: 4px; }
+.matchup-sm .mu-at { font-size: 0.6rem; }
+.matchup-sm .mu-team.is-pick .team-logo { box-shadow: 0 0 0 1.5px var(--team, var(--accent)), 0 0 8px color-mix(in srgb, var(--team, var(--accent)) 50%, transparent); }
+.matchup-lg { gap: 18px; }
+.matchup-lg .mu-at { font-size: 1.15rem; }
+.matchup-lg .mu-abbr { font-size: 0.9rem; }
+.matchup-lg .mu-team.is-pick .team-logo { box-shadow: 0 0 0 3px var(--team, var(--accent)), 0 0 28px color-mix(in srgb, var(--team, var(--accent)) 60%, transparent); }
+/* the picked team's colour washes faintly over the card's top corner */
+.card.has-team { background-image: radial-gradient(ellipse 70% 45% at 92% -5%, color-mix(in srgb, var(--team, var(--accent)) 24%, transparent), transparent 70%); }
+.card.potd.has-team { background-image: radial-gradient(ellipse 55% 60% at 100% 0%, color-mix(in srgb, var(--team, var(--accent)) 30%, transparent), transparent 70%); }
+.pick-front .matchup { margin-bottom: 8px; }
+.potd .matchup-lg { margin: 4px 0 2px; }
+/* small identities beside sport badges in lists, tables, the ticker and the hero board */
+.leg-id { display: inline-flex; align-items: center; gap: 8px; }
+.leg-id .mu-team { gap: 0; }
+.digest-row .leg-id { flex-direction: column; align-items: flex-start; gap: 6px; }
+.mkt-game { display: inline-flex; align-items: center; gap: 8px; }
+.mkt-game-text { display: inline-grid; }
+.ticker-item .team-logo { background: transparent; border-color: transparent; padding: 0; }
+.ticker-item .mu-team.is-pick .team-logo { box-shadow: 0 0 0 1px color-mix(in srgb, var(--bg) 60%, transparent); }
+.ticker-item .mu-at { color: inherit; opacity: 0.6; }
+.board-row { grid-template-columns: 64px minmax(0, 1fr) auto auto; }
+.board-sport { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.board-sport .mu-team { gap: 0; }
+.bd-id { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+/* faces: the injured first, then the top scorers */
+.faces { display: grid; gap: 8px; }
+.faces-title { font-family: var(--font-condensed); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.faces-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px 12px; }
+.face { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.face-img { width: 40px; height: 40px; flex: none; border-radius: 50%; object-fit: cover; object-position: top; background: var(--surface-2); border: 2px solid var(--border-strong); }
+.face-hurt .face-img { border-color: var(--accent-4); }
+.face-mono { display: inline-grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; color: var(--text-2); }
+.face-meta { display: grid; min-width: 0; line-height: 1.25; }
+.face-name { font-weight: 600; font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.face-sub { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--text-2); }
+.face-team { font-family: var(--font-condensed); letter-spacing: 0.06em; }
+.face-pts { font-size: 0.72rem; }
+.bd-cell .face-img { width: 48px; height: 48px; }
+.bd-inj li { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.bd-inj .face-img { width: 28px; height: 28px; border-width: 1px; }
+.footer-credit { font-size: 0.75rem; color: var(--muted); }
+@media (max-width: 720px) {
+  .market-table .mkt-game { flex-wrap: wrap; }
+  .faces-list { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
+@media print {
+  .card.has-team, .card.potd.has-team { background-image: none; }
+  .mu-team .team-logo { box-shadow: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mu-team .team-logo { transition: none; }
+  .card:hover .mu-team.is-pick .team-logo, .board-row:hover .mu-team.is-pick .team-logo { transform: none; }
+}
+/* the market board is ten columns wide: keep its identities compact */
+.market-table .mkt-game { gap: 6px; }
+.market-table .matchup-sm { gap: 2px; }
+.market-table .matchup-sm .team-logo, .market-table .matchup-sm .team-mono { width: 22px; height: 22px; padding: 1px; }
+.market-table .matchup-sm .mu-at { display: none; }
+.market-table table.data th, .market-table table.data td { padding-left: 8px; padding-right: 8px; }

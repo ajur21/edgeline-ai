@@ -15,6 +15,7 @@ const server = http.createServer((req, res) => {
   if (useSample && rel === 'data/performance.js') rel = 'scripts/fixtures/sample-performance.js';
   if (useSample && rel === 'data/props.js') rel = 'scripts/fixtures/sample-props.js';
   if (useSample && rel === 'data/market.js') rel = 'scripts/fixtures/sample-market.js';
+  if (useSample && rel === 'data/faces.js') rel = 'scripts/fixtures/sample-faces.js';
   const file = path.join(root, rel);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
@@ -365,6 +366,33 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('subscribe: copy buttons are present', await sp.locator('#subscribe [data-copy]').count() === 2);
   await sp.context().close();
 
+  // team identity: logos, matchups, tint and faces (js/teams.js + data/teams.js + data/faces.js)
+  const ip = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  await ip.goto(url('index.html')); await ip.waitForTimeout(500);
+  check('teams: every top pick card carries a matchup with two logos', await ip.locator('#top-picks-grid article .pick-front .matchup').count() === 3 && await ip.locator('#top-picks-grid article .pick-front .matchup .team-logo').count() === 6);
+  check('teams: logos come from ESPN, resized', (await ip.getAttribute('#top-picks-grid article .pick-front .matchup img.team-logo', 'src') || '').startsWith('https://a.espncdn.com/combiner/i?img='));
+  check('teams: the picked side is lit and the other dimmed', await ip.evaluate(() => { const m = document.querySelector('#top-picks-grid article .matchup[data-side="home"], #top-picks-grid article .matchup[data-side="away"]'); return !!m && m.querySelectorAll('.mu-team.is-pick').length === 1 && m.querySelectorAll('.mu-team.is-off').length === 1; }));
+  check('teams: a total lights both sides', await ip.evaluate(() => { const m = document.querySelector('.matchup[data-side="total"]'); return !!m && m.querySelectorAll('.mu-team.is-on').length === 2 && m.querySelectorAll('.mu-team.is-pick').length === 0; }));
+  check('teams: cards are tinted with the team colour', await ip.evaluate(() => { const c = document.querySelector('#top-picks-grid article.has-team'); return !!c && /^#[0-9a-f]{6}$/i.test(c.style.getPropertyValue('--team').trim()); }));
+  check('teams: play of the day shows the large matchup', await ip.locator('#potd-host .matchup-lg .team-logo').count() === 2);
+  check('teams: hero board rows and ticker items carry a logo', await ip.locator('#board-rows .board-row .team-logo').count() >= 4 && await ip.locator('#ticker-track .ticker-item .team-logo').count() >= 24);
+  check('teams: parlay legs show the small matchup beside the sport badge', await ip.locator('#parlay-host .parlay-legs li .leg-id .matchup-sm').count() >= 2);
+  check('teams: resolver maps feed names to ESPN teams', await ip.evaluate(() => { const T = window.EdgeLineTeams; return T.find('NBA', 'Los Angeles Clippers').abbr === 'LAC' && T.find('MLB', 'LA Dodgers').abbr === 'LAD' && T.find('NFL', 'Kansas City').abbr === 'KC' && T.find('Soccer', 'Man City').abbr === 'MNC' && T.find('NFL', 'New York') === null; }));
+  check('teams: an unknown team falls back to a monogram, never a broken image', await ip.evaluate(() => { const n = window.EdgeLineTeams.logo(null, 'Nowhere Rovers', 24); return n.tagName === 'SPAN' && n.classList.contains('team-mono') && n.textContent === 'NR'; }));
+  check('teams: side detection from the pick text', await ip.evaluate(() => { const T = window.EdgeLineTeams; return T.side({ sport: 'NFL', home: 'Buffalo', away: 'Kansas City', pick: 'Buffalo -2.5' }) === 'home' && T.side({ sport: 'NBA', event: 'Denver @ Phoenix', pick: 'Denver +3.5' }) === 'away' && T.side({ sport: 'NHL', home: 'Boston', away: 'NY Rangers', pick: 'Under 5.5' }) === 'total'; }));
+  await ip.goto(url('picks.html')); await ip.waitForTimeout(600);
+  const nbaCard = ip.locator('.picks-grid article[data-sport="NBA"]', { hasText: 'Boston' }).first();
+  check('faces: the NBA card back lists names to know, the injured first', await nbaCard.locator('.pick-back .faces .face').count() >= 2 && await nbaCard.evaluate(c => { const f = c.querySelectorAll('.pick-back .faces .face'); return f[0].classList.contains('face-hurt') && !!f[0].querySelector('.inj-status') && !!c.querySelector('.pick-back .faces .face-img'); }));
+  check('faces: a card with no roster data shows no strip', await ip.locator('.picks-grid article[data-sport="NHL"] .faces').count() === 0);
+  await nbaCard.locator('.pick-front .flip-btn').click(); await ip.waitForTimeout(700);
+  await nbaCard.locator('.pick-back [data-breakdown]').click(); await ip.waitForTimeout(400);
+  check('faces: the breakdown shows a face on each listed injury and a Names to know block', await ip.locator('#bd[open] .bd-inj li .face-img, #bd[open] .bd-inj li .face-mono').count() >= 1 && (await ip.textContent('#bd')).includes('Names to know') && await ip.locator('#bd .bd-cell .faces .face').count() >= 2 && await ip.locator('#bd .bd-id .matchup .team-logo').count() === 2);
+  await ip.keyboard.press('Escape'); await ip.waitForTimeout(200);
+  check('teams: market board fits without a horizontal scroll at desktop width', await ip.evaluate(() => { const w = document.querySelector('#market-host .market-table'); return !!w && w.scrollWidth <= w.clientWidth + 1; }), await ip.evaluate(() => { const w = document.querySelector('#market-host .market-table'); return w ? w.scrollWidth + '/' + w.clientWidth : 'none'; }));
+  check('teams: market board game cells carry the small matchup', await ip.locator('#market-host .market-table tbody tr .mkt-game .matchup-sm').count() >= 10);
+  await ip.goto(url('digest.html')); await ip.waitForTimeout(500);
+  check('teams: digest rows carry the matchup', await ip.locator('#slate-host .digest-row .leg-id .matchup-sm').count() >= 10);
+  check('teams: no page errors', errors.length === 0, errors.join(' | '));
   // phone board odds visible
   const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
   await ph.goto(url('index.html'));
