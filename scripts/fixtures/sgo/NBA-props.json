@@ -1575,7 +1575,7 @@
     "bookOdds": "-115",
     "fairOverUnder": "5.5",
     "openFairOverUnder": "5.5",
-    "bookOverUnder": "5.5",
+    "bookOverUnder": "4.5",
     "fairOddsAvailable": true,
     "bookOddsAvailable": true,
     "byBookmaker": {
@@ -1642,7 +1642,7 @@
     "bookOdds": "-105",
     "fairOverUnder": "5.5",
     "openFairOverUnder": "5.5",
-    "bookOverUnder": "5.5",
+    "bookOverUnder": "4.5",
     "fairOddsAvailable": true,
     "bookOddsAvailable": true,
     "byBookmaker": {

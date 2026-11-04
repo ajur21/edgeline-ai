@@ -224,11 +224,18 @@ function propSnapshot(ev, playerID, statID) {
   const over = ev.odds[statID + "-" + playerID + "-game-ou-over"], under = ev.odds[statID + "-" + playerID + "-game-ou-under"];
   if (!over && !under) return null;
   const main = over || under;
-  let line = num(main.bookOverUnder); if (line == null) line = num(main.fairOverUnder);
-  if (line == null) { /* the most common book line */
-    const count = {}; Object.keys(main.byBookmaker || {}).forEach(b => { const l = num(main.byBookmaker[b].overUnder); if (l != null) count[l] = (count[l] || 0) + 1; });
-    const ls = Object.keys(count).sort((a, b) => count[b] - count[a]); line = ls.length ? Number(ls[0]) : null;
-  }
+  /* the main line: the number the most books quote on both sides (ties to the vendor consensus); an alternate ladder
+     where only one side is offered never becomes the line. Vendor consensus, then the most common one-sided number, as fallbacks */
+  const two = {}, vendor = num(main.bookOverUnder);
+  if (over && under) Object.keys(over.byBookmaker || {}).forEach(b => {
+    const o = over.byBookmaker[b], u = under.byBookmaker[b]; if (!o || !u || o.available === false || u.available === false) return;
+    const lo = num(o.overUnder), lu = num(u.overUnder); if (lo == null || !sameLine(lo, lu) || american(o.odds) == null || american(u.odds) == null) return;
+    two[lo] = (two[lo] || 0) + 1;
+  });
+  const twoLines = Object.keys(two).map(Number).sort((a, b) => two[b] - two[a] || (sameLine(a, vendor) ? -1 : sameLine(b, vendor) ? 1 : 0) || a - b);
+  let line = twoLines.length ? twoLines[0] : null;
+  if (line == null) line = vendor; if (line == null) line = num(main.fairOverUnder);
+  if (line == null) { const count = {}; Object.keys(main.byBookmaker || {}).forEach(b => { const l = num(main.byBookmaker[b].overUnder); if (l != null) count[l] = (count[l] || 0) + 1; }); const ls = Object.keys(count).sort((a, b) => count[b] - count[a]); line = ls.length ? Number(ls[0]) : null; }
   if (line == null) return null;
   const side = o => {
     const books = {}, seen = {};

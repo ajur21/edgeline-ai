@@ -98,7 +98,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at tonight’s posted line when there is one and you can type any other number; your line is kept on this device. <strong>How a side is graded.</strong> Only game data: half the grade is the player’s weighted hit rate against the number over the last ten games (the last five count more), half is a projection from the last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against the player’s own game-to-game spread. High is 65%+, Medium 58%+, Lean 53%+; anything closer to even is a coin flip and says so. Nothing here is graded against other books’ prices; the price chips exist so you know where the number is best. <span id="props-credit"></span>
+      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at tonight’s posted line when there is one and you can type any other number; your line is kept on this device. <strong>How a side is graded.</strong> Only game data: half the grade is the player’s weighted hit rate against the number over the last ten games (the last five count more, and a short sample is pulled toward even), half is a projection from the last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against the player’s own game-to-game spread. High is 70%+, Medium 62%+, Lean 56%+; anything closer to even is a coin flip and says so. The board lists only lines the books quote on both sides and players with at least four games logged. Nothing here is graded against other books’ prices; the price chips exist so you know where the number is best. <span id="props-credit"></span>
     </div>
   </div>
 </section>
@@ -112,7 +112,7 @@
   var fGame = document.getElementById("p-game"), fStat = document.getElementById("p-stat"), fSort = document.getElementById("p-sort"), fLean = document.getElementById("p-lean"), fSearch = document.getElementById("p-search");
   var STAT_LABEL = { pts: "Points", reb: "Rebounds", ast: "Assists", threes: "Threes", pra: "Pts + Reb + Ast" };
   var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA" };
-  var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).length; });
+  var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); });
   var L = D.lines || {};
   if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + P.length + " rotation players · Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
   var linesNote = document.getElementById("props-lines");
@@ -163,15 +163,18 @@
     var split = p.home ? s.home : s.away, other = p.home ? s.away : s.home;
     if (split && other && p.gp >= 4) { base = 0.85 * base + 0.15 * split; var d = split / other - 1; if (Math.abs(d) >= 0.12) reasons.push({ lean: d > 0 ? "over" : "under", label: (p.home ? "At home" : "On the road") + " averages " + split + " vs " + other }); }
     if (p.injury) { base *= 0.95; reasons.push({ lean: "under", label: "Injury report: " + p.injury }); }
-    var sd = Math.max(s.sd || 0, SD_FLOOR[k]) * (p.injury ? 1.15 : 1);
+    var sd = Math.max(s.sd || 0, SD_FLOOR[k]) * 1.25 * (p.injury ? 1.15 : 1); /* a quarter wider than the last ten suggest: tonight is one game */
     return { proj: r1(base), sd: sd, reasons: reasons };
   }
+  var PHANTOM = 3; /* the hit rate is shrunk toward even by three phantom hits and three misses, so a 3-for-3 reads as 60%, not 100% */
   function weightedHit(p, k, line, side) {
-    var vals = p.log.map(function (r) { return statVal(r, k); }).filter(function (v) { return v != null; }).slice(0, 10), num = 1, den = 2; /* shrunk toward even: one phantom hit and one miss */
+    var vals = p.log.map(function (r) { return statVal(r, k); }).filter(function (v) { return v != null; }).slice(0, 10), num = PHANTOM, den = 2 * PHANTOM;
     vals.forEach(function (v, i) { var w = i < 5 ? 1 : 0.6; den += w; if (side === "under" ? v < line : v > line) num += w; });
     return { p: num / den, n: vals.length };
   }
-  var GRADES = [[0.65, "High", "badge-conf-high"], [0.58, "Medium", "badge-conf-medium"], [0.53, "Lean", "badge-conf-lean"]];
+  var GRADES = [[0.70, "High", "badge-conf-high"], [0.62, "Medium", "badge-conf-medium"], [0.56, "Lean", "badge-conf-lean"]];
+  var MIN_GAMES = 4; /* the board wants at least this many logged games; a card still grades a thinner sample and says so */
+  function twoSided(ln) { return !!(ln && ln.line != null && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1); }
   function gradeOf(prob) { for (var i = 0; i < GRADES.length; i++) if (prob >= GRADES[i][0]) return { label: GRADES[i][1], cls: GRADES[i][2] }; return { label: "Coin flip", cls: "badge-flip" }; }
   /* one stat at one number: the side we favour, our probability, the grade and the reasons; prices only for shopping */
   function sideFor(p, k, lineOverride) {
@@ -182,6 +185,7 @@
     var side = pOver >= 0.5 ? "over" : "under", prob = side === "over" ? pOver : 1 - pOver;
     var h = hitsFor(p, k, line, side), g = gradeOf(prob);
     var reasons = [{ lean: side, label: (side === "over" ? "Cleared " : "Stayed under ") + line + " in " + h.l10[0] + " of the last " + h.l10[1] }, { lean: pr.proj > line ? "over" : "under", label: "Projects " + pr.proj + " (L5 " + p.stats[k].l5 + " · L10 " + p.stats[k].l10 + " · season " + p.stats[k].season + ")" }].concat(pr.reasons);
+    if (p.log.length < MIN_GAMES) reasons.push({ lean: "neutral", label: "Small sample: " + p.log.length + " game" + (p.log.length === 1 ? "" : "s") + " logged, so the grade is pulled toward even" });
     var trend = p.signals.filter(function (x) { return x.key === k || (k === "pra" && (x.key === "pts" || x.key === "reb" || x.key === "ast")) || x.key === "steady"; }).map(function (x) { return { lean: x.lean, label: x.label }; });
     reasons = reasons.concat(trend);
     var mine = reasons.filter(function (x) { return x.lean === side; }), theirs = reasons.filter(function (x) { return x.lean !== side && x.lean !== "neutral"; }), neutral = reasons.filter(function (x) { return x.lean === "neutral"; });
@@ -192,7 +196,9 @@
   function allSides(p) { return STAT_KEYS.map(function (k) { return sideFor(p, k); }).filter(Boolean); }
   /* likeliest first: our probability, then the raw hit rate, then the longer sample */
   function better(a, b) { return (b.prob - a.prob) || (b.l10 - a.l10) || (b.hit.l10[1] - a.hit.l10[1]); }
-  function bestSide(p) { var s = fStat.value ? [sideFor(p, fStat.value)].filter(Boolean) : allSides(p); return s.length ? s.sort(better)[0] : null; }
+  /* the board: only stats with a line the books quote both ways and at least four games behind the player */
+  function boardable(p, k) { return twoSided(p.lines && p.lines[k]) && p.log.length >= MIN_GAMES; }
+  function bestSide(p) { var keys = fStat.value ? [fStat.value] : STAT_KEYS; var s = keys.filter(function (k) { return boardable(p, k); }).map(function (k) { return sideFor(p, k); }).filter(Boolean); return s.length ? s.sort(better)[0] : null; }
   var SIDES = {}; /* player id -> best side under the current filters; filled by render */
   var RANK = {};  /* player id -> board rank */
 
@@ -413,7 +419,8 @@
         E.el("div", { class: "prop-chips" }, [
           p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null),
           p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null,
-          !p.lines && HAS_LINES ? E.el("span", { class: "badge", text: "No line" }) : null
+          HAS_LINES && !STAT_KEYS.some(function (k) { return twoSided(p.lines && p.lines[k]); }) ? E.el("span", { class: "badge", text: "No line" }) : null,
+          HAS_LINES && p.log.length < MIN_GAMES ? E.el("span", { class: "badge", text: p.log.length + " game" + (p.log.length === 1 ? "" : "s") }) : null
         ])
       ]),
       statBlock(p, startKey),
