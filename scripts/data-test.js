@@ -98,6 +98,12 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("dk: direction maths: spreads, totals, moneylines, unchanged", (() => { const C = require("./context.js"); const sp = { marketKey: "spreads", outcome: { name: "X" } }, ov = { marketKey: "totals", outcome: { name: "Over" } }, un = { marketKey: "totals", outcome: { name: "Under" } }, ml = { marketKey: "h2h", outcome: { name: "X" } };
     return C.movedToward(sp, { line: -3, odds: -110 }, { line: -3.5, odds: -110 }) === "toward" && C.movedToward(sp, { line: 3, odds: -110 }, { line: 3.5, odds: -110 }) === "away" && C.movedToward(ov, { line: 44.5 }, { line: 46 }) === "toward" && C.movedToward(un, { line: 44.5 }, { line: 46 }) === "away" && C.movedToward(ml, { odds: 130 }, { odds: 120 }) === "toward" && C.movedToward(ml, { odds: 130 }, { odds: 130 }) === null && C.movedToward(sp, { line: -3, odds: -110 }, { line: -3, odds: -120 }) === "toward"; })());
 
+  /* the market board file: every main-line market priced this run, pick / watch / none, best edge first */
+  const mk3 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp, "market.js"), "utf8"), mk3);
+  const MK = mk3.window.MARKET_DATA;
+  check("market.js: 11 markets in 2 games (NBA 6, EPL 5), sorted by edge, picks flagged with their id, thresholds published", MK && MK.rows.length === 11 && MK.games === 2 && MK.rows.every((r, i) => i === 0 || r.edge <= MK.rows[i - 1].edge) && MK.rows.filter(r => r.status === "pick").length === 2 && MK.rows.find(r => r.pick === "Milwaukee Bucks ML").pickId === bucks.id && MK.rows.find(r => r.pick === "Boston Celtics ML").status === "none" && MK.threshold === 0.01 && MK.watch === 0.005 && r1.market === 11, MK && JSON.stringify(MK.rows.map(r => r.pick + ":" + r.status)));
+  check("market.js: rows carry what the board needs (start label, prices, fair, edge, ev, anchor)", MK.rows.every(r => /ET$/.test(r.start) && r.prices && Object.keys(r.prices).length >= 3 && typeof r.modelProb === "number" && typeof r.ev === "number" && "anchor" in r && r.outcome && r.event));
+
   /* play of the day and parlay of the day on the fixture board */
   check("potd: the Draw (higher EV) is play of the day and is flagged in the log", PD.playOfDay && PD.playOfDay.pick === "Draw" && log.find(e => e.potd === "2026-11-05").pick === "Draw", PD.playOfDay && PD.playOfDay.pick);
   check("potd: board picks carry prices per book and ev", PD.picks.every(p => p.prices && Object.keys(p.prices).length >= 3 && typeof p.ev === "number"));
@@ -178,6 +184,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("track: picks keep their breakdown and DraftKings block", sb3.window.PICKS_DATA.picks.every(p => p.breakdown && p.breakdown.verdict) && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Milwaukee Bucks ML").dk.moved === "away");
   check("track: SportsGameOdds refreshed by event id with no new history point when nothing moved", rt2.sgoEntities === 1 && rt2.sgoMoved === 0 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Milwaukee Bucks ML").sgoHistory.length === 1 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Milwaukee Bucks ML").mkt.moved === "away", JSON.stringify(rt2));
   check("track: performance.js is left alone", fs.readFileSync(path.join(tmp, "performance.js"), "utf8").indexOf("2026-11-05") !== -1);
+  check("track: market.js is left alone (no odds in a track run)", fs.readFileSync(path.join(tmp, "market.js"), "utf8").indexOf("2026-11-05T16:00:00") !== -1);
 
   /* after the games: the board empties, grading finds no scores yet for the new events */
   const r3 = await P.run({ fixture: true, out: tmp, now: "2026-11-07T15:00:00Z" });

@@ -31,7 +31,7 @@
     /* hide "Sample data" labels once the files come from the real pipeline */
     document.querySelectorAll("[data-sample-flag]").forEach(function (elm) {
       const which = elm.getAttribute("data-sample-flag");
-      const d = which === "perf" ? window.PERF_DATA : which === "props" ? window.PROPS_DATA : window.PICKS_DATA;
+      const d = which === "perf" ? window.PERF_DATA : which === "props" ? window.PROPS_DATA : which === "market" ? window.MARKET_DATA : window.PICKS_DATA;
       if (d && d.sample === false) elm.hidden = true;
     });
     initReveal();
@@ -167,6 +167,77 @@
     ])]);
   }
 
+  /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
+  function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: 0.01, watch: 0.005, games: 0, generatedAt: null }; }
+  function statusLabel(st) { return st === "pick" ? "Pick" : st === "watch" ? "Watch" : "No bet"; }
+  /* a market row dressed as a pick so the card, board and digest code can show it; never confused with a real pick */
+  function marketAsPick(r, i, onBoard) {
+    const m = marketData(), edgePts = (r.edge * 100).toFixed(1);
+    /* a row is a pick only while that pick is on the current board; otherwise it is market information, whatever the file says */
+    const status = onBoard ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
+    const basis = r.anchor ? (r.anchorShift ? r.anchor + "'s price carried " + r.anchorShift + " point" + (r.anchorShift === 1 ? "" : "s") : r.anchor + "'s de-vigged price") : "the de-vigged consensus of " + r.books + " books";
+    const why = r.edge >= (m.threshold || 0.01) ? "Clears the " + ((m.threshold || 0.01) * 100).toFixed(0) + "-point bar." : r.edge > 0 ? "Edge of " + edgePts + " points sits under the " + ((m.threshold || 0.01) * 100).toFixed(0) + "-point bar: priced about right, not a bet." : "No edge: the best price is " + (-r.edge * 100).toFixed(1) + " points worse than fair.";
+    return { id: onBoard ? r.pickId : "m" + i, isMarket: !onBoard, status: status, sport: r.sport, league: r.league, sportKey: r.sportKey, event: r.event, home: r.home, away: r.away, commence: r.commence, start: r.start, marketKey: r.marketKey, market: r.market, outcome: r.outcome, pick: r.pick, odds: r.odds, book: r.book, prices: r.prices || {}, books: r.books, anchor: r.anchor, modelProb: r.modelProb, ev: r.ev,
+      confidence: onBoard ? "Lean" : statusLabel(status),
+      rationale: "Fair probability is " + pct(r.modelProb) + " by " + basis + ". " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + pct(impliedProb(r.odds)) + ". " + why,
+      factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, r.anchor ? "Fair line from " + r.anchor : "Fair line from " + r.books + "-book consensus", "Edge " + signed(r.edge * 100, 1) + " points vs fair"], breakdown: null, context: null, movement: null };
+  }
+  /* the closest markets to the bar, best first, skipping the ones that are already picks on the board */
+  function marketRows(opts) {
+    opts = opts || {};
+    const picksOnBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { picksOnBoard[p.id] = true; });
+    let rows = marketData().rows.filter(r => !(r.pickId && picksOnBoard[r.pickId]) || opts.includePicks);
+    if (opts.sport) rows = rows.filter(r => r.sport === opts.sport);
+    if (opts.positive) rows = rows.filter(r => r.edge > 0);
+    if (opts.oneSidePerMarket) { const seen = {}; rows = rows.filter(r => { const k = r.eventId + "|" + r.marketKey; if (seen[k]) return false; seen[k] = true; return true; }); }
+    if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
+    return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
+  }
+  function marketSummary() {
+    const m = marketData(), rows = m.rows || [];
+    const watch = rows.filter(r => r.status === "watch").length, picks = rows.filter(r => r.status === "pick").length;
+    const best = rows[0] || null;
+    const when = m.generatedAt ? new Date(m.generatedAt) : null;
+    return { games: m.games || 0, markets: rows.length, picks: picks, watch: watch, best: best, sports: m.sports || [], generatedAt: when && !isNaN(when) ? when : null, threshold: m.threshold || 0.01 };
+  }
+  /* the full board as a table: every side of every main-line market, sorted by edge */
+  function marketTable(rows, opts) {
+    opts = opts || {};
+    const m = marketData(), onBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { onBoard[p.id] = true; });
+    const body = rows.map(function (r) {
+      const isPick = !!(r.pickId && onBoard[r.pickId]);
+      const st = isPick ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
+      r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
+      return el("tr", { class: "mkt-" + st }, [
+        el("td", {}, [el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
+        el("td", {}, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: r.start || "" })]),
+        el("td", { text: r.market }),
+        el("td", {}, [el("strong", { text: r.pick })]),
+        el("td", { class: "num mono", text: fmtOdds(r.odds) }),
+        el("td", { text: r.book }),
+        el("td", { class: "num mono", text: pct(r.modelProb) }),
+        el("td", { class: "num mono", text: pct(impliedProb(r.odds)) }),
+        el("td", { class: "num mono " + (r.edge > 0 ? "edge-pos" : "edge-neg"), text: signed(r.edge * 100, 1) }),
+        el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: "Pick" }) : el("span", { class: "badge badge-status badge-" + st, text: statusLabel(st) })])
+      ]);
+    });
+    const head = el("tr", {}, ["Sport", "Game", "Market", "Side", "Best", "Book", "Fair", "Implied", "Edge", "Status"].map((h, i) => el("th", { scope: "col", class: i >= 4 && i <= 8 && i !== 5 ? "num" : "", text: h })));
+    return el("div", { class: "table-wrap market-table", tabindex: "0", role: "region", "aria-label": "Market board" }, [el("table", { class: "data" }, [el("thead", {}, [head]), el("tbody", {}, body)])]);
+  }
+  /* a compact card for a slot that would otherwise be empty: what the market looks like right now */
+  function pulseCard(opts) {
+    opts = opts || {};
+    const s = marketSummary();
+    if (!s.markets) return el("div", { class: "card empty", text: opts.emptyText || "The market board fills at the next price refresh." });
+    const top = marketRows({ limit: 3, oneSidePerMarket: true, positive: false });
+    return el("article", { class: "card pulse", "data-tilt": "" }, [
+      el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
+      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ". " + (s.picks ? s.picks + " clear the " + (s.threshold * 100).toFixed(0) + "-point bar. " : "None clears the " + (s.threshold * 100).toFixed(0) + "-point bar" + (s.watch ? "; " + s.watch + " sit within half a point. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", " + signed(s.best.edge * 100, 1) + " points." : "")]),
+      el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), el("span", { class: "leg-event", text: p.event + " · " + p.start })]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
+      el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
+    ]);
+  }
+
   /* ---------- live status slot: js/live.js fills these once games start ---------- */
   function liveSlot(id) { return el("span", { class: "live-slot", "data-live": id }); }
 
@@ -177,7 +248,7 @@
   /* a pick card is two faces: numbers on the front, the "why" on the back; it flips in 3D */
   function pickCard(p) {
     const edge = edgeOf(p);
-    const confClass = "badge badge-conf-" + String(p.confidence).toLowerCase();
+    const confClass = p.isMarket ? "badge badge-status badge-" + (p.status || "none") : "badge badge-conf-" + String(p.confidence).toLowerCase();
     const meterWidth = Math.max(4, Math.min(100, edge * 100 * 8)); // 12.5% edge fills the bar
     const factors = Array.isArray(p.factors) ? p.factors : [];
     const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: "Why this pick" });
@@ -207,23 +278,23 @@
       ]),
       el("div", { class: "pick-foot" }, [
         el("span", {}, [p.league + " · " + p.start, liveSlot(p.id)]),
-        el("span", { class: "pick-actions" }, [parlayButton(p.id), flipBtn])
+        el("span", { class: "pick-actions" }, [p.isMarket ? null : parlayButton(p.id), flipBtn])
       ])
     ]);
     const back = el("div", { class: "pick-face pick-back", "aria-hidden": "true" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "eyebrow", text: "Why the model likes it" }),
+        el("span", { class: "eyebrow", text: p.isMarket ? "Where the market sits" : "Why the model likes it" }),
         el("span", { class: confClass, text: p.confidence })
       ]),
       el("h3", { class: "pick-selection", text: p.pick }),
       el("p", { class: "pick-rationale", text: p.rationale }),
       factors.length ? el("ul", { class: "pick-factors" }, factors.map(function (f) { return el("li", { text: f }); })) : null,
       el("div", { class: "pick-foot" }, [
-        el("button", { type: "button", class: "flip-btn bd-btn", "data-breakdown": p.id, text: "Full breakdown" }),
+        p.isMarket ? el("a", { class: "flip-btn bd-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn bd-btn", "data-breakdown": p.id, text: "Full breakdown" }),
         backBtn
       ])
     ]);
-    const card = el("article", { class: "card pick", "data-id": p.id, "data-sport": p.sport, "data-tilt": "" }, [
+    const card = el("article", { class: "card pick" + (p.isMarket ? " market-card" : ""), "data-id": p.id, "data-sport": p.sport, "data-tilt": "" }, [
       el("div", { class: "pick-inner" }, [front, back])
     ]);
     function setFlipped(f) {
@@ -282,13 +353,18 @@
   /* ---------- play of the day ---------- */
   function isPlayOfDay(id) { const d = window.PICKS_DATA; return !!(d && d.playOfDay && d.playOfDay.id === id); }
   function potdCard(p) {
-    if (!p) return el("div", { class: "card empty", text: "No play of the day yet. It is chosen at the first refresh with picks, around noon ET." });
+    if (!p) {
+      /* nothing cleared the bar: show the closest market instead, labelled as such */
+      const alt = marketRows({ limit: 1, oneSidePerMarket: true })[0];
+      if (alt) { const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: "No pick clears the 1-point bar yet, so this is the market's nearest miss, not a play. It becomes the play of the day at the first refresh that finds an edge." })); c.classList.add("potd-market"); return c; }
+      return el("div", { class: "card empty", text: "No play of the day yet. It is chosen at the first refresh with picks, around noon ET." });
+    }
     const edge = edgeOf(p);
     const status = p.result ? "Result: " + p.result : p.started ? "Started" : p.start;
     return el("article", { class: "card potd", "data-sport": p.sport, "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "eyebrow", text: "Play of the day" }),
-        el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })
+        el("span", { class: "eyebrow", text: p._eyebrow || "Play of the day" }),
+        el("span", { class: "pick-head-right" }, [p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
       ]),
       el("div", { class: "potd-event", text: p.event }),
       el("h3", { class: "potd-selection", text: p.pick }),
@@ -298,10 +374,10 @@
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "EV / unit" }), el("div", { class: "v edge", text: signed((p.ev == null ? p.modelProb * decimalOdds(p.odds) - 1 : p.ev) * 100, 1) + "%" })])
       ]),
-      el("p", { class: "pick-rationale", text: p.rationale }),
+      el("p", { class: "pick-rationale", text: p._note || p.rationale }),
       el("div", { class: "pick-foot" }, [
-        el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "" }, [status, p.result ? null : liveSlot(p.id)]),
-        el("span", { class: "pick-actions" }, [p.started ? null : parlayButton(p.id), el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
+        el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "" }, [status, p.result || p.isMarket ? null : liveSlot(p.id)]),
+        el("span", { class: "pick-actions" }, [p.started || p.isMarket ? null : parlayButton(p.id), p.isMarket ? el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
       ])
     ]);
   }
@@ -371,7 +447,7 @@
 
   function parlayCard(par, opts) {
     opts = opts || {};
-    if (!par) return el("div", { class: "card empty", text: "No parlay of the day yet. It needs two or more picks from different games that are all worth a bet at the same book." });
+    if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No parlay of the day yet. It needs two or more picks from different games that are all worth a bet at the same book." });
     const status = par.result ? "Result: " + par.result : par.legs.some(l => l.started) ? "In progress" : "All legs ahead";
     return el("article", { class: "card parlay", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
@@ -521,6 +597,7 @@
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
-    lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot
+    lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
+    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel
   };
 })();

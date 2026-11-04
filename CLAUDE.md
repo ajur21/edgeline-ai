@@ -24,6 +24,7 @@ js/charts.js         Dependency-free SVG line + bar charts with tooltips, keyboa
 js/space.js          Canvas space backdrop (parallax stars, nebulae, flare, shooting stars, vignette); light theme = daylight sky; still frame under reduced motion
 data/picks.js        -> window.PICKS_DATA  { sample, source, generatedAt, picks: [...] }   (sample until the pipeline runs)
 data/performance.js  -> window.PERF_DATA   { sample, asOf, record, units, roi, avgEdge, daily, bySport, recent }
+data/market.js       -> window.MARKET_DATA { sample, generatedAt, threshold, watch, games, sports, rows: [...] }  every main-line market priced in the last odds run, pick or not (the market board)
 data/picks-log.json  Every pick ever published, with grading; the pipeline's source of truth (created on first real run)
 scripts/update-data.js  Data pipeline: The Odds API -> de-vigged consensus -> edges -> log -> grade -> rewrite the two data files
 scripts/data-test.js    Offline pipeline test against scripts/fixtures/ (run by `npm test`)
@@ -87,6 +88,12 @@ Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending
 
 To run locally: `ODDS_API_KEY=... npm run data`. To test without the network: `npm test` (uses `scripts/fixtures/`).
 
+## The market board and the never-empty rule
+
+Every full run writes `data/market.js`: both sides of every main-line market it priced (`priceOutcomes` rows with `qualifies`), with event, start label, best price and book, every book's price, fair (`modelProb`), edge, EV, anchor and `anchorShift`, flagged `status`: `pick` (a pending pick on the board, with `pickId`), `watch` (edge of at least `RULES.watchEdge` = half a point, never a pick) or `none`. Sorted by edge; `--track` runs leave it alone. The picks page shows it as the **Market board** (`#market`): summary line, sport / market / status / search filters, 40 rows at a time with a pick row linking to its card.
+
+**Owner rule (2026-11-04): nothing on the site stays empty.** When no pick clears the bar, every slot falls back to the closest markets, always labelled Watch / No bet and never dressed as a play: the home ticker and hero board ("Closest to the bar"), the play-of-the-day slot (`potdCard(null)` shows the nearest miss with a note), the parlay slot and the best-parlays list (`pulseCard`: games, markets, watch count, top three), the top-three grid and the picks grid (market cards: status badge instead of a confidence badge, no parlay button, a Market board link instead of Full breakdown), and the digest (lede, tiles, top three, slate retitled "The watch list"). `EdgeLine.marketRows()` does the dressing (`marketAsPick`): a row counts as a pick only while its `pickId` is on the current board; otherwise it is market information whatever the file says. Keep this rule when adding slots.
+
 ## Second price source: SportsGameOdds (`scripts/sgo.js`)
 
 Free "amateur" tier: 2,500 event objects a month (every event in a response costs one, usage endpoint is free), 10 requests a minute (the adapter spaces calls 6.2 s apart), leagues NBA, NFL, MLB, NHL, NCAAB, NCAAF, MLS, UCL (no EPL: soccer stays Odds-API-only), nine books (DraftKings, FanDuel, BetMGM, Caesars, ESPN BET, Bovada, PointsBet, Unibet; `williamhill` is folded into Caesars) and the vendor's own de-vigged `fairOdds` with `openFairOdds`/`openFairSpread`/`openFairOverUnder`. **No Pinnacle**, so it never finds edges; The Odds API keeps discovery and the anchor. What it does:
@@ -134,7 +141,8 @@ Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://githu
 3. Email capture on the Free plan.
 3b. Accounts with sync for the journal (currently device-only), and a shared parlay link.
 3c. CLV by confidence tier and by sport on the performance page (the per-pick `clv` is already in the log); steam flags from `dkHistory`/`sgoHistory` (several moves the same way inside a few hours); Kelly stake sizing from a stored bankroll.
-3d. Props lines on the props page from SportsGameOdds (one entity per game covers every player prop at nine books); needs the `SGO_API_KEY` secret and roughly 12–15 entities an NBA night.
+3d. Steam flags on the market board (several books moving the same way within the hour, from `sgoHistory`).
+3e. Props lines on the props page from SportsGameOdds (one entity per game covers every player prop at nine books); needs the `SGO_API_KEY` secret and roughly 12–15 entities an NBA night.
 4. Terms, privacy and responsible-gambling pages.
 5. Social preview image (`og:image`); tags and favicon are in place.
 6. ~~Deploy~~ done: GitHub Pages via Actions (see Deploy). A custom domain is the remaining step: add a CNAME in the repo settings.

@@ -234,44 +234,53 @@
 
 <script src="data/picks.js"></script>
 <script src="data/performance.js"></script>
+<script src="data/market.js"></script>
 <script>
 (function () {
   var E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
   var ranked = E.sortByEdge(P);
+  /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
+  var fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
+  var shown = ranked.length ? ranked : fallback;
+  var summary = E.marketSummary();
 
-  /* ticker: every pick, twice, so the loop is seamless */
+  /* ticker: every pick (or the closest markets), twice, so the loop is seamless */
   var track = document.getElementById("ticker-track");
-  if (!ranked.length) document.querySelector(".ticker").hidden = true;
+  if (!shown.length) document.querySelector(".ticker").hidden = true;
   [false, true].forEach(function (dup) {
     var group = E.el("div", { class: "ticker-group" });
     if (dup) group.setAttribute("aria-hidden", "true");
-    ranked.forEach(function (p) {
-      group.appendChild(E.el("a", { class: "ticker-item", href: "picks.html#" + p.id }, [
+    shown.forEach(function (p) {
+      group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
         E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
         E.el("span", { class: "t-pick", text: p.pick }),
         E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
-        E.el("span", { class: "t-edge", text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
+        E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + " " + E.signed(E.edgeOf(p) * 100, 1) + "%" : E.signed(E.edgeOf(p) * 100, 1) + "%" })
       ]));
     });
     track.appendChild(group);
   });
 
-  /* hero board: four best edges, each a link to its card */
+  /* hero board: four best edges, each a link to its card; or the four closest markets when nothing clears the bar */
   var rows = document.getElementById("board-rows");
-  if (!ranked.length) rows.appendChild(E.el("p", { class: "board-empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
-  ranked.slice(0, 4).forEach(function (p) {
-    rows.appendChild(E.el("a", { class: "board-row", href: "picks.html#" + p.id }, [
+  if (!ranked.length) {
+    document.getElementById("board-title").textContent = summary.markets ? "Closest to the bar" : "Today's board";
+    if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
+  }
+  shown.slice(0, 4).forEach(function (p) {
+    rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
       E.el("span", { class: "board-sport", text: p.sport.toUpperCase() }),
       E.el("div", { class: "board-pick" }, [
         E.el("div", { class: "sel", text: p.pick }),
-        E.el("div", { class: "ev", text: p.event + " · " + p.market })
+        E.el("div", { class: "ev", text: p.event + " · " + p.market + (p.isMarket ? " · " + E.statusLabel(p.status) : "") })
       ]),
       E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
-      E.el("span", { class: "board-edge", text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
+      E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
     ]));
   });
   var foot = document.getElementById("board-foot");
-  if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
+  if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none clears the 1-point bar. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
+  else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
   else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
    ["Units", E.signed(S.units, 1) + "u"],
    ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
@@ -282,10 +291,11 @@
   document.getElementById("potd-host").appendChild(E.potdCard(window.PICKS_DATA.playOfDay || null));
   document.getElementById("parlay-host").appendChild(E.parlayCard(window.PICKS_DATA.parlayOfDay || null));
 
-  /* top three picks by edge */
+  /* top three picks by edge, or the three closest markets */
   var grid = document.getElementById("top-picks-grid");
-  if (!ranked.length) grid.appendChild(E.el("div", { class: "card empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
-  ranked.slice(0, 3).forEach(function (p) { grid.appendChild(E.pickCard(p)); });
+  if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
+  if (!ranked.length && shown.length) { var th = document.querySelector("#top-picks h2"); if (th) th.textContent = "Closest to the bar right now"; var tp = document.querySelector("#top-picks .section-head p"); if (tp) tp.textContent = "No market clears the 1-point bar yet. These are the nearest misses from the last price check; Watch means within half a point. They are not plays."; }
+  shown.slice(0, 3).forEach(function (p) { grid.appendChild(E.pickCard(p)); });
 
   /* edge calculator: the slider walks a list of valid American odds (no -99..+99 dead zone) */
   var ODDS = [];

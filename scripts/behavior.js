@@ -14,6 +14,7 @@ const server = http.createServer((req, res) => {
   if (useSample && rel === 'data/picks.js') rel = 'scripts/fixtures/sample-picks.js';
   if (useSample && rel === 'data/performance.js') rel = 'scripts/fixtures/sample-performance.js';
   if (useSample && rel === 'data/props.js') rel = 'scripts/fixtures/sample-props.js';
+  if (useSample && rel === 'data/market.js') rel = 'scripts/fixtures/sample-market.js';
   const file = path.join(root, rel);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
@@ -291,6 +292,36 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await page.keyboard.press('Escape'); await page.waitForTimeout(200);
   await page.click('#view-table');
   check('shop: table view has a Books column showing clears/total', (await page.locator('#picks-host thead th').allTextContents()).includes('Books') && /^\d+\/\d+$/.test((await page.locator('#picks-host tbody tr').first().locator('td').nth(10).textContent()).trim()), await page.locator('#picks-host tbody tr').first().locator('td').nth(10).textContent());
+
+  // market board on the picks page: every priced market with status, filters, link to the pick
+  check('market: board renders rows sorted by edge with pick, watch and no-bet statuses', (await page.locator('#market-host tbody tr').count()) === 40 && (await page.locator('#market-host tbody tr.mkt-pick').count()) >= 1 && (await page.locator('#market-host tbody tr.mkt-watch').count()) >= 1 && (await page.locator('#market-host tbody tr.mkt-none').count()) >= 1 && await page.evaluate(() => { const v = [...document.querySelectorAll('#market-host tbody tr td:nth-child(9)')].map(td => parseFloat(td.textContent)); return v.every((x, i) => i === 0 || x <= v[i - 1]); }), 'rows ' + (await page.locator('#market-host tbody tr').count()));
+  check('market: summary line counts markets, games, picks and watch', /48 markets in 8 games/.test(await page.textContent('#market-sub')) && /2 clear the 1-point bar/.test(await page.textContent('#market-sub')), await page.textContent('#market-sub'));
+  check('market: a pick row links to its card', (await page.locator('#market-host tbody tr.mkt-pick a.badge-pick').first().getAttribute('href')) === '#p3' || (await page.locator('#market-host tbody tr.mkt-pick a.badge-pick').first().getAttribute('href')) === '#p11');
+  await page.click('#market-more button'); await page.waitForTimeout(200);
+  check('market: show more reveals the rest', (await page.locator('#market-host tbody tr').count()) === 48);
+  await page.selectOption('#m-status', 'watch');
+  check('market: watch filter keeps only picks and watch rows', (await page.locator('#market-host tbody tr.mkt-none').count()) === 0 && (await page.locator('#market-host tbody tr').count()) > 0);
+  await page.selectOption('#m-status', ''); await page.fill('#m-search', 'Phoenix');
+  check('market: search narrows to the game', (await page.locator('#market-host tbody tr').count()) === 6 && (await page.textContent('#market-host')).includes('Denver @ Phoenix'));
+  await page.fill('#m-search', '');
+
+  // never empty: with no picks at all, home, picks and digest fall back to the closest markets
+  const ectx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const ep = await ectx.newPage(); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
+  await ep.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };' }));
+  await ep.goto(url('index.html')); await ep.waitForTimeout(500);
+  check('empty: home board shows the four closest markets with a status, retitled', (await ep.locator('#board-rows .board-row.board-market').count()) === 4 && (await ep.textContent('#board-title')) === 'Closest to the bar' && /Watch|No bet/.test(await ep.textContent('#board-rows')) && /markets priced in 8 games/.test(await ep.textContent('#board-foot')));
+  check('empty: ticker carries the watch list', (await ep.locator('#ticker-track .ticker-item').count()) > 0 && (await ep.locator('#ticker-track .t-watch').count()) > 0);
+  check('empty: play of the day slot shows the closest market, labelled, with no parlay button', (await ep.locator('#potd-host .potd.potd-market').count()) === 1 && (await ep.textContent('#potd-host .eyebrow')) === 'Closest to the bar' && (await ep.locator('#potd-host .add-parlay').count()) === 0);
+  check('empty: parlay slot shows the market pulse with the three closest markets', (await ep.locator('#parlay-host .pulse').count()) === 1 && (await ep.locator('#parlay-host .pulse .parlay-legs li').count()) === 3 && /48 markets/.test(await ep.textContent('#parlay-host')));
+  check('empty: top picks grid shows three market cards with status badges and no parlay buttons', (await ep.locator('#top-picks-grid article.market-card').count()) === 3 && (await ep.locator('#top-picks-grid .add-parlay').count()) === 0 && (await ep.locator('#top-picks-grid .badge-status').count()) >= 3 && (await ep.textContent('#top-picks h2')).includes('Closest to the bar'));
+  await ep.goto(url('picks.html')); await ep.waitForTimeout(500);
+  check('empty: picks page shows a labelled watch grid, the market pulse where parlays go, and the full board', (await ep.locator('#picks-host .watch-note').count()) === 1 && (await ep.locator('#picks-host article.market-card').count()) === 6 && (await ep.locator('#parlays-host .pulse').count()) === 1 && (await ep.locator('#market-host tbody tr').count()) === 40);
+  await ep.goto(url('digest.html')); await ep.waitForTimeout(500);
+  check('empty: digest lede explains, tiles switch to market counts, slate lists the watch list', /No pick clears the 1-point bar/.test(await ep.textContent('#digest-lede')) && /Markets priced/.test(await ep.textContent('#digest-tiles')) && (await ep.locator('.digest-row').count()) === 12 && (await ep.locator('.digest-row .badge-status').count()) === 12 && (await ep.textContent('.digest-slate h2')).includes('watch list'));
+  check('empty: digest copy text says it is a watch list', await ep.evaluate(() => /Watch list \(closest markets, not plays\)/.test(window.EdgeLineDigest.asText())));
+  check('empty: no page errors across the fallbacks', eerr.length === 0, eerr.join(' | '));
+  await ectx.close();
 
   // live in-game status: ESPN scoreboard mocked, sample flag cleared so the poller runs
   const lctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });

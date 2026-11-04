@@ -118,6 +118,23 @@
     <p class="filter-summary" id="summary" role="status"></p>
     <h2 class="visually-hidden">Picks</h2>
     <div id="picks-host"></div>
+
+    <div class="section-head row market-head" id="market">
+      <div>
+        <span class="eyebrow">Market board</span>
+        <h2>Every market we priced</h2>
+        <p class="market-sub" id="market-sub"></p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="market">Sample data</span>
+    </div>
+    <div class="market-filters" role="group" aria-label="Market board filters">
+      <label class="filter">Sport<select id="m-sport"><option value="">All sports</option></select></label>
+      <label class="filter">Market<select id="m-market"><option value="">All markets</option></select></label>
+      <label class="filter">Show<select id="m-status"><option value="">Everything</option><option value="positive">Positive edge only</option><option value="watch">Picks and watch list</option></select></label>
+      <label class="filter">Search<input type="search" id="m-search" placeholder="Team or side" autocomplete="off"></label>
+    </div>
+    <div id="market-host"></div>
+    <div class="more-row market-more" id="market-more"></div>
   </div>
 </section>
 
@@ -143,6 +160,7 @@
 </aside>
 
 <script src="data/picks.js"></script>
+<script src="data/market.js"></script>
 <script>
 (function () {
   var E = window.EdgeLine, D = window.PICKS_DATA, P = D.picks;
@@ -179,7 +197,15 @@
     var list = filtered();
     host.textContent = "";
     summary.textContent = P.length ? list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || "edge") + "." : "Nothing on the board yet.";
-    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No picks match these filters." : "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." })); return; }
+    if (!list.length && !P.length) {
+      /* nothing clears the bar: show the closest markets as cards, clearly labelled, so the page is never bare */
+      var near = E.marketRows({ limit: 6, oneSidePerMarket: true });
+      var s = E.marketSummary();
+      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: "No pick clears the 1-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games were priced; these are the closest to it. Watch means within half a point. They are not plays." : "The market board fills at the next price refresh."]));
+      if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }); near.forEach(function (p, i) { var c = E.pickCard(p); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
+      return;
+    }
+    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: "No picks match these filters." })); return; }
     if (view === "cards") {
       var grid = E.el("div", { class: "picks-grid stagger" });
       list.forEach(function (p, i) { var c = E.pickCard(p); c.style.setProperty("--i", i); grid.appendChild(c); });
@@ -218,13 +244,43 @@
   render();
   highlightFromHash();
 
+  /* ---------- market board: every priced market, pick or not ---------- */
+  var M = E.marketData(), mHost = document.getElementById("market-host"), mMore = document.getElementById("market-more"), mShown = 40;
+  var ms = document.getElementById("m-sport"), mm = document.getElementById("m-market"), mst = document.getElementById("m-status"), mq = document.getElementById("m-search");
+  (M.sports || []).forEach(function (v) { ms.appendChild(E.el("option", { value: v, text: v })); });
+  M.rows.map(function (r) { return r.market; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (v) { mm.appendChild(E.el("option", { value: v, text: v })); });
+  function marketFiltered() {
+    var q = mq.value.trim().toLowerCase();
+    return M.rows.filter(function (r) {
+      if (ms.value && r.sport !== ms.value) return false;
+      if (mm.value && r.market !== mm.value) return false;
+      if (mst.value === "positive" && !(r.edge > 0)) return false;
+      if (mst.value === "watch" && r.status === "none") return false;
+      if (q && (r.event + " " + r.pick).toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+  function renderMarket() {
+    var rows = marketFiltered(), s = E.marketSummary();
+    mHost.textContent = ""; mMore.textContent = "";
+    var sub = document.getElementById("market-sub"); sub.textContent = "";
+    if (!M.rows.length) { sub.textContent = "The market board fills at the next price refresh."; mHost.appendChild(E.el("div", { class: "card empty", text: "Nothing priced yet." })); return; }
+    [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (s.generatedAt ? " at " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "") + ". " + s.picks + " clear the " + (s.threshold * 100).toFixed(0) + "-point bar (picks), " + s.watch + " sit within half a point (watch). Best price and the sharp fair line for every side; sorted by edge." + (rows.length !== M.rows.length ? " Showing " + rows.length + "." : "")].forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    if (!rows.length) { mHost.appendChild(E.el("div", { class: "card empty", text: "No markets match these filters." })); return; }
+    mHost.appendChild(E.marketTable(rows.slice(0, mShown), { pickHref: "#" }));
+    if (rows.length > mShown) { var b = E.el("button", { type: "button", class: "btn btn-secondary btn-sm", text: "Show " + Math.min(40, rows.length - mShown) + " more of " + rows.length }); b.addEventListener("click", function () { mShown += 40; renderMarket(); }); mMore.appendChild(b); }
+  }
+  [ms, mm, mst].forEach(function (s) { s.addEventListener("change", function () { mShown = 40; renderMarket(); }); });
+  mq.addEventListener("input", function () { mShown = 40; renderMarket(); });
+  renderMarket();
+
   /* ---------- best parlays on the board ---------- */
   var parlaysHost = document.getElementById("parlays-host"), parlaySize = 0;
   function sameLegs(a, b) { return a && b && a.legs.map(function (l) { return l.id; }).sort().join() === b.legs.map(function (l) { return l.id; }).sort().join(); }
   function renderParlays() {
     parlaysHost.textContent = "";
     var list = E.bestParlays(P, { size: parlaySize || null, limit: 6 });
-    if (!list.length) { parlaysHost.appendChild(E.el("div", { class: "card empty", text: P.length < 2 ? "Parlays need at least two picks on the board." : "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); return; }
+    if (!list.length) { parlaysHost.appendChild(P.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); E.initTilt(parlaysHost); return; }
     list.forEach(function (par, i) {
       var card = E.parlayCard(par, { loadButton: true, title: "#" + (i + 1) + " · " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
       card.querySelector("[data-load-parlay]").addEventListener("click", function () {

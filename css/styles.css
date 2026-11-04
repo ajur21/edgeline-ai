@@ -880,3 +880,35 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .bd-dk .dk-dir { font-family: var(--font-condensed); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; background: var(--surface-2); color: var(--text-2); margin-right: 4px; }
 .bd-dk .dk-toward { background: var(--accent-3-wash); color: var(--accent-3-text); }
 .bd-dk .dk-away { background: var(--accent-4-wash); color: var(--accent-4-text); }
+
+/* ---------- market board: every priced market, pick or not ---------- */
+.badge-status { font-weight: 600; }
+.badge-pick { background: var(--accent-3); color: #1a2a00; }
+a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
+.badge-watch { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.badge-none { background: var(--surface-2); color: var(--muted); }
+.market-card { --card-glow: var(--muted); }
+.market-card .meter > span { background: linear-gradient(90deg, var(--muted), var(--accent-4)); }
+.market-card .pick-metric .v.edge { color: var(--accent-4-text); }
+.market-card .pick-metric .v.edge.neg, .edge-neg { color: var(--muted); }
+.edge-pos { color: var(--good-text); font-weight: 600; }
+.market-table table.data th, .market-table table.data td { padding: 8px 10px; font-size: 0.85rem; white-space: nowrap; }
+.market-table .mkt-event { display: block; }
+.market-table .mkt-start { display: block; font-size: 0.75rem; color: var(--muted); }
+.market-table tr.mkt-pick td { background: color-mix(in srgb, var(--accent-3) 10%, transparent); }
+.market-table tr.mkt-none td { color: var(--text-2); }
+.market-head { margin-top: 44px; margin-bottom: 8px; }
+.market-head h2 { font-size: 1.4rem; }
+.market-sub { font-size: 0.9rem; color: var(--text-2); margin: 0 0 12px; }
+.market-sub strong { color: var(--text); }
+.market-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+.market-more { margin-top: 12px; }
+.pulse { display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 3px 0 var(--accent-4); }
+.pulse .eyebrow { margin: 0; color: var(--accent-4-text); }
+.pulse-lede { margin: 0; color: var(--text-2); font-size: 0.95rem; line-height: 1.5; }
+.pulse-lede strong { color: var(--text); font-family: var(--font-display); }
+.potd-market { box-shadow: inset 0 3px 0 var(--accent-4); }
+.potd-market .eyebrow { color: var(--accent-4-text); }
+.watch-note { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
+.t-watch { color: var(--accent-4); }
+.board-market .board-edge-watch { color: var(--accent-4-text); }

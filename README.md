@@ -12,7 +12,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 | File | What it is |
 |---|---|
 | `index.html` | Landing page: odds ticker, hero with today's board, play of the day, parlay of the day, how it works with an edge calculator, top three picks, pricing, FAQ |
-| `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, line shopping across every book, and a parlay builder |
+| `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, line shopping across every book, a parlay builder, and the market board: every market priced against the sharp line, pick or not |
 | `digest.html` | The daily digest: one page with the whole slate by tip-off time, the play and parlay of the day, the top three by expected value, and live scores once games start. Print it, save it as a PDF, or copy it as text |
 | `performance.html` | Track record: stat tiles, play and parlay records, closing line value, profit calendar, cumulative units chart, units by sport, recent graded picks |
 | `props.html` | NBA props research: tonight's players with faces, form, splits, a line checker, confluence signals and game logs (stats from ESPN's public API; no betting lines) |
@@ -29,6 +29,7 @@ js/charts.js        dependency-free SVG line and bar charts with hover tooltips 
 js/space.js         canvas space backdrop: parallax stars, nebulae, shooting stars; dark by default, light = daylight sky
 data/picks.js       SAMPLE picks  -> window.PICKS_DATA
 data/performance.js SAMPLE results -> window.PERF_DATA
+data/market.js      every priced market from the last run -> window.MARKET_DATA (the site falls back to it so no page is ever empty)
 ```
 
 ## Real data
