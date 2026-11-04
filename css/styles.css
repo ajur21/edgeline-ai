@@ -1161,7 +1161,7 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .pb-rank { min-width: 40px; }
 .pb-face { width: 40px; height: 40px; }
 .pb-who { display: grid; gap: 1px; min-width: 0; }
-.pb-name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; line-height: 1.2; overflow-wrap: anywhere; }
 .pb-meta { font-size: 0.76rem; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pb-prop { display: grid; gap: 2px; min-width: 0; }
 .pb-line { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; white-space: nowrap; }

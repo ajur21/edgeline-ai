@@ -151,8 +151,9 @@
     return { p: p, k: k, line: ln.line, side: side, fair: fair, odds: odds, book: s.book || null, n: s.n || 0, books: s.books || {}, edge: edge, hit: h, l10: rate(h.l10), agree: ag.yes, against: ag.no, other: side === "over" ? u : o };
   }
   function allSides(p) { return STAT_KEYS.map(function (k) { return sideFor(p, k); }).filter(Boolean); }
-  /* positive edge first, then the likeliest (fair), then the form on the line */
-  function better(a, b) { return ((b.edge > 0) - (a.edge > 0)) || ((b.fair || 0) - (a.fair || 0)) || (b.l10 - a.l10) || ((b.edge || -1) - (a.edge || -1)); }
+  /* positive edge first (at least +0.1 of a point, so "+0.0" never sits in the better-than-fair tier), then the likeliest (fair), then the form on the line */
+  function plus(s) { return s.edge != null && s.edge >= 0.0005; }
+  function better(a, b) { return (plus(b) - plus(a)) || ((b.fair || 0) - (a.fair || 0)) || (b.l10 - a.l10) || ((b.edge || -1) - (a.edge || -1)); }
   function bestSide(p) { var s = fStat.value ? [sideFor(p, fStat.value)].filter(Boolean) : allSides(p); return s.length ? s.sort(better)[0] : null; }
   var SIDES = {}; /* player id -> best side under the current filters; filled by render */
   var RANK = {};  /* player id -> board rank */
@@ -198,7 +199,7 @@
   /* ---------- the board ---------- */
   function boardRow(s, rank) {
     var p = s.p;
-    var row = E.el("article", { class: "card pb-row" + (rank === 1 ? " is-top" : "") + (s.edge > 0 ? " pb-plus" : ""), "data-tilt": "", "data-player": p.id, "data-side": s.side, "data-stat": s.k });
+    var row = E.el("article", { class: "card pb-row" + (rank === 1 ? " is-top" : "") + (plus(s) ? " pb-plus" : ""), "data-tilt": "", "data-player": p.id, "data-side": s.side, "data-stat": s.k });
     row.appendChild(E.el("div", { class: "pb-rank" }, [E.rankChip(rank, true)]));
     row.appendChild(face(p, 40, "headshot pb-face"));
     row.appendChild(E.el("div", { class: "pb-who" }, [
@@ -234,14 +235,14 @@
     board.textContent = "";
     var old = document.getElementById("pb-more"); if (old) old.remove();
     if (!HAS_LINES) return;
-    var plus = sides.filter(function (s) { return s.edge > 0; }).length;
-    boardSummary.textContent = sides.length ? sides.length + " props ranked" + (fStat.value ? " · " + STAT_LABEL[fStat.value] : " · best stat per player") + " · " + plus + " with a price better than fair" : "No priced props match these filters.";
+    var nPlus = sides.filter(plus).length;
+    boardSummary.textContent = sides.length ? sides.length + " props ranked" + (fStat.value ? " · " + STAT_LABEL[fStat.value] : " · best stat per player") + " · " + nPlus + " with a price better than fair" : "No priced props match these filters.";
     if (!sides.length) { board.appendChild(E.el("div", { class: "card empty", text: "Nothing priced here yet." })); return; }
     var shown = 0;
     function more(all) {
       var upto = all ? sides.length : Math.min(sides.length, shown + BOARD_CAP);
       for (var i = shown; i < upto; i++) {
-        if (plus && i === plus) board.appendChild(E.el("div", { class: "grid-divider", text: "Priced against you from here: fair probability below what the best price implies" }));
+        if (nPlus && i === nPlus) board.appendChild(E.el("div", { class: "grid-divider", text: "Priced against you from here: fair probability below what the best price implies" }));
         var r = boardRow(sides[i], i + 1); r.style.setProperty("--i", Math.min(i, 12)); board.appendChild(r);
       }
       shown = upto;
@@ -321,7 +322,7 @@
             E.el("span", { class: "mono", text: (x.fair != null ? E.pct(x.fair, 0) + " fair" : "") + (x.odds != null ? " · " + E.fmtOdds(x.odds) + (x.book ? " " + E.bookAbbr(x.book) : "") : "") })
           ]));
         });
-        if (side.edge != null) market.appendChild(E.el("span", { class: "mkt-edge mono small" + (side.edge > 0 ? " up" : ""), text: "edge " + E.signed(side.edge * 100, 1) + " at " + (side.book ? E.bookAbbr(side.book) : "best") }));
+        if (side.edge != null) market.appendChild(E.el("span", { class: "mkt-edge mono small" + (plus(side) ? " up" : ""), text: "edge " + E.signed(side.edge * 100, 1) + " at " + (side.book ? E.bookAbbr(side.book) : "best") }));
       }
       chartHost.textContent = ""; chartHost.appendChild(historyChart(p, statKey, lineVal, span));
       hits.textContent = ""; pill.textContent = "";
@@ -386,7 +387,7 @@
   /* ---------- ordering: likeliest first when lines exist; the older orders stay as opt-ins ---------- */
   function score(p) {
     var k = fStat.value || "pts", s = p.stats[k], best = SIDES[p.id];
-    if (fSort.value === "prob") return best ? (best.edge > 0 ? 10 : 0) + (best.fair || 0) * 5 + best.l10 : -1 + (s.l5 - s.season) / 1000;
+    if (fSort.value === "prob") return RANK[p.id] ? 1e6 - RANK[p.id] : (s.l5 - s.season); /* the board's order, then the unpriced by heat */
     if (fSort.value === "form") return best ? best.l10 * 10 + (best.fair || 0) : -1;
     if (fSort.value === "season") return s.season;
     if (fSort.value === "minutes") return p.minutes.season;
