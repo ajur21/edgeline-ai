@@ -28,5 +28,16 @@ window.PERF_DATA = {
     "losses": 0,
     "pushes": 0,
     "units": 0
+  },
+  "clv": {
+    "n": 0,
+    "avg": null,
+    "beat": 0,
+    "beatPct": null,
+    "graded": 0,
+    "lineToward": 0,
+    "lineAway": 0,
+    "espnCloses": 0,
+    "sgoCloses": 0
   }
 };
