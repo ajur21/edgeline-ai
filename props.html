@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Props · EdgeLine AI</title>
+  <meta name="description" content="NBA props research: every rotation player on tonight's slate with form, splits, rest, matchup and a line checker.">
+  <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EdgeLine AI">
+  <meta property="og:title" content="Props · EdgeLine AI">
+  <meta property="og:description" content="NBA props research: form, faces, game logs and confluences for tonight's slate.">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+  <script src="js/space.js" defer></script>
+</head>
+<body>
+
+<a class="visually-hidden" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+    <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="props.html">Props</a></li>
+      <li><a href="performance.html">Performance</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head row page-head">
+      <div>
+        <span class="eyebrow">Props research</span>
+        <h1 class="page-title">Tonight's players: form, faces and the matchup</h1>
+        <p class="muted page-sub" id="props-asof"></p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="props">Sample data</span>
+    </div>
+
+    <div class="filter-row" role="group" aria-label="Filters">
+      <label class="filter">Game<select id="p-game"><option value="">All games</option></select></label>
+      <label class="filter">Stat
+        <select id="p-stat">
+          <option value="pts">Points</option><option value="reb">Rebounds</option><option value="ast">Assists</option><option value="threes">Threes</option><option value="pra">Pts + Reb + Ast</option>
+        </select>
+      </label>
+      <label class="filter">Sort by
+        <select id="p-sort">
+          <option value="heat">Hottest (last 5 above season)</option><option value="season">Season average</option><option value="minutes">Minutes</option><option value="signals">Signals agreeing</option>
+        </select>
+      </label>
+      <label class="filter">Lean<select id="p-lean"><option value="">Any</option><option value="over">Over signals</option><option value="under">Under signals</option></select></label>
+      <label class="filter">Search<input type="search" id="p-search" placeholder="Player or team" autocomplete="off"></label>
+    </div>
+
+    <p class="filter-summary" id="p-summary" role="status"></p>
+    <h2 class="visually-hidden">Players</h2>
+    <div class="props-grid" id="props-host"></div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="notice">
+      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player's averages for the stat you chose; the bars are the last ten games, oldest to newest, green above the season average. Type a line to see how often the player has cleared it. Signals are confluences from the player's own form, minutes, home/road split, rest and the opponent's defence; they are context, not a bet. Betting lines for props need a paid odds plan and are not shown. <span id="props-credit"></span>
+    </div>
+  </div>
+</section>
+
+<script src="data/props.js"></script>
+<script>
+(function () {
+  var E = window.EdgeLine, D = window.PROPS_DATA || { players: [], games: [], generatedAt: null };
+  var P = D.players || [], host = document.getElementById("props-host"), summary = document.getElementById("p-summary");
+  var fGame = document.getElementById("p-game"), fStat = document.getElementById("p-stat"), fSort = document.getElementById("p-sort"), fLean = document.getElementById("p-lean"), fSearch = document.getElementById("p-search");
+  var STAT_LABEL = { pts: "Points", reb: "Rebounds", ast: "Assists", threes: "Threes", pra: "Pts + Reb + Ast" };
+  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + "Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
+  document.getElementById("props-credit").textContent = D.attribution || "";
+  (D.games || []).forEach(function (g) { fGame.appendChild(E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + " · " + g.startLabel })); });
+
+  function val(p, r) { return r[fStat.value] != null ? r[fStat.value] : (fStat.value === "pra" ? r.pts + r.reb + r.ast : null); }
+  function lineKey(p) { return "prop-line:" + p.id + ":" + fStat.value; }
+  function savedLine(p) { try { var v = localStorage.getItem(lineKey(p)); return v == null ? "" : v; } catch (e) { return ""; } }
+  function hits(p, line) {
+    var vals = p.log.map(function (r) { return val(p, r); }).filter(function (v) { return v != null; });
+    var over = function (arr) { return arr.filter(function (v) { return v > line; }).length; };
+    return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
+  }
+  function spark(p) {
+    var s = p.stats[fStat.value], series = s.last.slice().reverse(), max = Math.max.apply(null, series.concat([1]));
+    return E.el("div", { class: "spark", role: "img", "aria-label": STAT_LABEL[fStat.value] + " over the last " + series.length + " games: " + series.join(", ") }, series.map(function (v) {
+      var b = E.el("span", { class: "spark-bar" + (v >= s.season ? " up" : " down"), title: String(v) });
+      b.style.setProperty("--h", Math.max(6, Math.round(v / max * 100)) + "%");
+      return b;
+    }));
+  }
+  function lineRow(p, s) {
+    var input = E.el("input", { type: "number", step: "0.5", min: "0", inputmode: "decimal", placeholder: s.l10 ? String(Math.round(s.l10 * 2) / 2) : "e.g. 18.5", "aria-label": STAT_LABEL[fStat.value] + " line for " + p.name, value: savedLine(p) });
+    var out = E.el("div", { class: "hits" });
+    function update() {
+      var line = Number(input.value);
+      if (!input.value || !Number.isFinite(line)) { out.textContent = ""; return; }
+      var h = hits(p, line);
+      out.textContent = "";
+      [["L5", h.l5], ["L10", h.l10], ["Season", h.season]].forEach(function (pair) {
+        var o = pair[1][0], n = pair[1][1], rate = n ? Math.round(o / n * 100) : 0;
+        out.appendChild(E.el("span", { class: "hit" + (rate >= 60 ? " hit-over" : rate <= 40 ? " hit-under" : "") }, [E.el("strong", { text: "Over " + o + "/" + n }), " " + pair[0] + " · " + rate + "%"]));
+      });
+      try { localStorage.setItem(lineKey(p), input.value); } catch (e) {}
+    }
+    input.addEventListener("input", update); update();
+    return E.el("div", { class: "line-row" }, [E.el("label", { class: "line-label" }, ["Line", input]), out]);
+  }
+  function logTable(p) {
+    var head = E.el("tr", {}, ["Date", "Opp", "", "W/L", "Min", "Pts", "Reb", "Ast", "3PM"].map(function (h, i) { return E.el("th", { scope: "col", class: i >= 4 ? "num" : "", text: h }); }));
+    var rows = p.log.map(function (r) {
+      return E.el("tr", { class: val(p, r) != null && val(p, r) >= p.stats[fStat.value].season ? "row-up" : "" }, [
+        E.el("td", { text: r.date.slice(5) }), E.el("td", { text: r.opp || "" }), E.el("td", { text: r.home ? "vs" : "@" }), E.el("td", { text: r.result || "" }),
+        E.el("td", { class: "num", text: String(r.min) }), E.el("td", { class: "num", text: String(r.pts) }), E.el("td", { class: "num", text: String(r.reb) }), E.el("td", { class: "num", text: String(r.ast) }), E.el("td", { class: "num", text: String(r.threes) })
+      ]);
+    });
+    return E.el("details", { class: "prop-log" }, [E.el("summary", { text: "Last " + p.log.length + " games" }), E.el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Game log for " + p.name }, [E.el("table", { class: "data" }, [E.el("thead", {}, [head]), E.el("tbody", {}, rows)])])]);
+  }
+  function card(p) {
+    var s = p.stats[fStat.value], over = p.signals.filter(function (x) { return x.lean === "over"; }).length, under = p.signals.filter(function (x) { return x.lean === "under"; }).length;
+    var img = E.el("img", { class: "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/nba/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: "64", height: "64" });
+    img.addEventListener("error", function () { img.replaceWith(E.el("span", { class: "headshot headshot-fallback", text: p.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
+    return E.el("article", { class: "card prop-card", "data-sport": "NBA", "data-tilt": "", "data-id": p.id }, [
+      E.el("div", { class: "prop-head" }, [
+        img,
+        E.el("div", { class: "prop-who" }, [
+          E.el("h3", { class: "prop-name", text: p.name }),
+          E.el("div", { class: "prop-meta", text: (p.pos || "") + (p.jersey ? " · #" + p.jersey : "") + " · " + p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start })
+        ]),
+        E.el("div", { class: "prop-chips" }, [
+          p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null),
+          p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null
+        ])
+      ]),
+      E.el("div", { class: "prop-stats" }, [
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Season" }), E.el("div", { class: "v", text: String(s.season) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Last 5" }), E.el("div", { class: "v" + (s.l5 > s.season ? " up" : s.l5 < s.season ? " down" : ""), text: String(s.l5) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Last 10" }), E.el("div", { class: "v", text: String(s.l10) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: p.home ? "At home" : "On road" }), E.el("div", { class: "v", text: String(p.home ? s.home : s.away) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Min L5" }), E.el("div", { class: "v" }, [String(p.minutes.l5), E.el("span", { class: "v-sub", text: " szn " + p.minutes.season })])])
+      ]),
+      spark(p),
+      lineRow(p, s),
+      E.el("div", { class: "signals" }, [
+        E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over · " + under + " under" })]),
+        p.signals.length ? E.el("ul", { class: "signal-list" }, p.signals.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })) : E.el("p", { class: "small muted", text: "Nothing stands out; form is in line with the season." })
+      ]),
+      p.opp ? E.el("p", { class: "small muted prop-opp", text: p.oppAbbr + " allows " + p.opp.ptsAllowed + " points per game, " + (function (n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); })(p.opp.rank) + " most in the league." }) : null,
+      logTable(p)
+    ]);
+  }
+  function score(p) {
+    var s = p.stats[fStat.value];
+    if (fSort.value === "season") return s.season;
+    if (fSort.value === "minutes") return p.minutes.season;
+    if (fSort.value === "signals") return p.signals.filter(function (x) { return x.lean === "over"; }).length - p.signals.filter(function (x) { return x.lean === "under"; }).length;
+    return s.l5 - s.season; /* absolute gain over the season average favours volume players */
+  }
+  function render() {
+    var q = fSearch.value.trim().toLowerCase();
+    var list = P.filter(function (p) {
+      if (fGame.value && p.gameId !== fGame.value) return false;
+      if (fLean.value && !p.signals.some(function (x) { return x.lean === fLean.value; })) return false;
+      if (q && (p.name + " " + p.team + " " + p.teamAbbr + " " + p.opp + " " + p.oppAbbr).toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    }).sort(function (a, b) { return score(b) - score(a); });
+    host.textContent = "";
+    summary.textContent = P.length ? list.length + " of " + P.length + " players · " + STAT_LABEL[fStat.value] : "No props data yet. It refreshes with the picks, around noon and 4:30 PM ET on game days.";
+    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No players match." : "Nothing to show until the first refresh." })); return; }
+    var PAGE = 24, shown = 0;
+    function more() {
+      list.slice(shown, shown + PAGE).forEach(function (p, i) { var c = card(p); c.style.setProperty("--i", Math.min(i, 12)); host.appendChild(c); });
+      shown = Math.min(list.length, shown + PAGE);
+      E.initTilt(host);
+      var old = document.getElementById("p-more"); if (old) old.remove();
+      if (shown < list.length) {
+        var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "p-more", text: "Show " + Math.min(PAGE, list.length - shown) + " more (" + (list.length - shown) + " left)" });
+        btn.addEventListener("click", more);
+        host.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), host.nextSibling);
+      }
+    }
+    more();
+  }
+  [fGame, fStat, fSort, fLean].forEach(function (s) { s.addEventListener("change", render); });
+  fSearch.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="notice">
+      <strong>Responsible gambling.</strong> EdgeLine AI provides statistical analysis for informational and entertainment purposes only. It is not financial advice and does not guarantee any outcome. Past performance does not predict future results. Sports betting involves risk; never wager more than you can afford to lose. You must be 21 or older (or the legal age in your jurisdiction) and bet only where it is legal. If you or someone you know has a gambling problem, call <a href="tel:1-800-426-2537">1-800-GAMBLER</a>.
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <nav aria-label="Product"><ul>
+          <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="props.html">Props</a></li>
+          <li><a href="performance.html">Performance</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+        </ul></nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Company"><ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul></nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> EdgeLine AI. All rights reserved.</span>
+      <span class="footer-age"><span class="age-badge" aria-hidden="true">21+</span><span class="visually-hidden">Must be 21 or older.</span> Gamble responsibly.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

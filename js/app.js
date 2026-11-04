@@ -30,7 +30,8 @@
     if (yr) yr.textContent = String(new Date().getFullYear());
     /* hide "Sample data" labels once the files come from the real pipeline */
     document.querySelectorAll("[data-sample-flag]").forEach(function (elm) {
-      const d = elm.getAttribute("data-sample-flag") === "perf" ? window.PERF_DATA : window.PICKS_DATA;
+      const which = elm.getAttribute("data-sample-flag");
+      const d = which === "perf" ? window.PERF_DATA : which === "props" ? window.PROPS_DATA : window.PICKS_DATA;
       if (d && d.sample === false) elm.hidden = true;
     });
     initReveal();

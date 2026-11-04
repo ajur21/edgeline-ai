@@ -13,6 +13,7 @@ const server = http.createServer((req, res) => {
   let rel = decodeURIComponent(req.url.split('?')[0].split('#')[0]).replace(/^\//, '') || 'index.html';
   if (useSample && rel === 'data/picks.js') rel = 'scripts/fixtures/sample-picks.js';
   if (useSample && rel === 'data/performance.js') rel = 'scripts/fixtures/sample-performance.js';
+  if (useSample && rel === 'data/props.js') rel = 'scripts/fixtures/sample-props.js';
   const file = path.join(root, rel);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
@@ -225,6 +226,28 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('journal: no page errors', jerr.length === 0, jerr.join(' | '));
   await jctx.close();
 
+  // props research page (sample ESPN-shaped data)
+  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const perr = []; pp.on('pageerror', e => perr.push(e.message));
+  await pp.goto(url('props.html')); await pp.waitForTimeout(500);
+  const nProps = await pp.locator('#props-host .prop-card').count();
+  check('props: player cards render with headshot, stats, sparkline and signals', nProps >= 4 && (await pp.locator('#props-host .prop-card').first().locator('.headshot, .prop-stats .pick-metric, .spark-bar, .signals').count()) > 8, 'cards ' + nProps);
+  check('props: game filter has tonight\'s games', (await pp.locator('#p-game option').count()) >= 3);
+  const firstName = await pp.locator('#props-host .prop-name').first().textContent();
+  await pp.fill('#p-search', firstName.split(' ')[1] || firstName);
+  check('props: search narrows to the player', (await pp.locator('#props-host .prop-card').count()) >= 1 && (await pp.locator('#props-host .prop-name').first().textContent()) === firstName);
+  await pp.fill('#p-search', '');
+  const lineInput = pp.locator('#props-host .prop-card').first().locator('.line-label input');
+  await lineInput.fill('-0.5');
+  check('props: a line below zero is cleared in every game (100%)', /Over (\d+)\/\1 L10 · 100%/.test(await pp.locator('#props-host .prop-card').first().locator('.hits').textContent()), await pp.locator('#props-host .prop-card').first().locator('.hits').textContent());
+  await pp.reload(); await pp.waitForTimeout(400);
+  check('props: the typed line is remembered', (await pp.locator('#props-host .prop-card').first().locator('.line-label input').inputValue()) === '-0.5');
+  await pp.selectOption('#p-stat', 'reb');
+  check('props: switching the stat relabels the summary', (await pp.textContent('#p-summary')).includes('Rebounds'));
+  await pp.locator('#props-host .prop-card').first().locator('.prop-log summary').click();
+  check('props: game log opens with rows', (await pp.locator('#props-host .prop-card').first().locator('.prop-log tbody tr').count()) >= 3);
+  check('props: no page errors', perr.length === 0, perr.join(' | '));
+  await pp.context().close();
+
   // phone board odds visible
   const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
   await ph.goto(url('index.html'));
@@ -241,7 +264,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   useSample = false;
   const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
-  for (const p of ['index.html', 'picks.html', 'performance.html', 'journal.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
+  for (const p of ['index.html', 'picks.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
   const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
   await rp.goto(url('index.html')); await rp.waitForTimeout(400);
   const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });

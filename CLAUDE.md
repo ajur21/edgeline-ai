@@ -14,6 +14,7 @@ A static marketing and product website for an AI sports betting picks service. T
 index.html           Landing: ticker, hero + today's board, play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
 picks.html           Best parlays (ranked by EV, 2-4 legs, one book per ticket; #parlays), all picks with filters and sort, card/table view, parlay builder slip (#parlay)
 performance.html     Stat tiles, play/parlay record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table
+props.html           NBA props research: tonight's rotation players with headshot, season/L5/L10 splits, last-10 bars, a type-your-own line checker, confluence signals and a game log. No betting lines
 journal.html         Personal bet log: form with screenshots, stats, profit calendar, export/import. IndexedDB on the visitor's device only; no backend
 css/styles.css       ALL styles. Design tokens live in :root at the top; dark theme in the two blocks below it
 js/app.js            Loaded in <head>. Theme, nav, odds math, pick cards/table, flip + tilt + reveal, play-of-the-day and parlay cards, parlay maths + slip (localStorage), profit calendar. Exposes window.EdgeLine
@@ -24,6 +25,9 @@ data/performance.js  -> window.PERF_DATA   { sample, asOf, record, units, roi, a
 data/picks-log.json  Every pick ever published, with grading; the pipeline's source of truth (created on first real run)
 scripts/update-data.js  Data pipeline: The Odds API -> de-vigged consensus -> edges -> log -> grade -> rewrite the two data files
 scripts/data-test.js    Offline pipeline test against scripts/fixtures/ (run by `npm test`)
+scripts/update-props.js Props research pipeline: ESPN public endpoints -> data/props.js (`npm run props`)
+scripts/props-test.js   Offline props pipeline test against scripts/fixtures/espn/
+data/props.js        -> window.PROPS_DATA { sample, source, attribution, generatedAt, games, players }
 scripts/screenshot.js Playwright render check (see Verify)
 scripts/behavior.js  Playwright behaviour checks: nav state, filters, chart edge cases, keyboard access (see Verify)
 package.json         Dev-only: `npm run check` runs the render check; Playwright is the only dependency
@@ -77,6 +81,14 @@ How a pick is made (all in `update-data.js`, tunable in `RULES`):
 Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending picks for grading, twice a day: roughly 450-480 a month against the free tier's 500. Adding La Liga or a third run needs the paid tier. The script stops fetching odds when the API reports fewer than 25 requests left. `node scripts/update-data.js --verbose --out /tmp/x` prints every line's best edge (costs real requests). Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
 
 To run locally: `ODDS_API_KEY=... npm run data`. To test without the network: `npm test` (uses `scripts/fixtures/`).
+
+## Props research (no odds)
+
+`scripts/update-props.js` runs in the same workflow step sequence as the picks (both daily runs) and never fails the job. It uses ESPN's public, undocumented endpoints with no key: scoreboard (tonight's games), every team's schedule (points allowed, ranked 1 = allows most), rosters of the teams playing (headshot, position, injury status), and each player's game log. Rotation players only (14+ minutes a game), up to 9 per team, last 10 regular-season games kept. About 300-500 ESPN requests per run with a 90 ms delay.
+
+Signals (`signals()` in the script) are confluences, not bets: a stat up or down 12%+ over the last 5 vs the season, minutes up or down 10%+, a home/road scoring split of 12%+, back-to-back or 3+ days' rest, opponent in the top 8 or bottom 8 for points allowed, a steady scorer (last-10 standard deviation under 22% of the average), and any injury listing. The page lets the visitor type a line per stat and shows over hit rates for L5, L10 and the season; typed lines are kept in localStorage.
+
+Prop betting lines are deliberately absent: they need The Odds API's paid tier (about 50 requests per NBA night). **Licensing:** ESPN's API is unofficial and its photos are not licensed for commercial use; the page credits ESPN and the data must move to a licensed provider (SportsDataIO, Sportradar) before this is sold.
 
 ## Journal
 
