@@ -28,7 +28,7 @@
     <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="picks.html">Today’s picks</a></li>
       <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
       <li><a href="performance.html">Performance</a></li>
@@ -116,7 +116,7 @@
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Screenshot"><img alt="Bet screenshot"></div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Screenshot"></div>
 
 <script>
 (function () {
@@ -136,7 +136,7 @@
 
   function unitsFor(e) { return e.result === "Win" ? Math.round(e.stake * (E.decimalOdds(e.odds) - 1) * 100) / 100 : e.result === "Loss" ? -e.stake : 0; }
   var urls = [];
-  function thumb(blob) { var u = URL.createObjectURL(blob); urls.push(u); var img = E.el("img", { class: "thumb", src: u, alt: "Bet screenshot", loading: "lazy" }); img.addEventListener("click", function () { lb.querySelector("img").src = u; lb.hidden = false; }); return img; }
+  function thumb(blob) { var u = URL.createObjectURL(blob); urls.push(u); var img = E.el("img", { class: "thumb", src: u, alt: "Bet screenshot", loading: "lazy" }); img.addEventListener("click", function () { lb.replaceChildren(E.el("img", { src: u, alt: "Bet screenshot" })); lb.hidden = false; }); return img; }
   var lb = document.getElementById("lightbox");
   lb.addEventListener("click", function () { lb.hidden = true; });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") lb.hidden = true; });
@@ -242,7 +242,7 @@
       <div>
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
-          <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="picks.html">Today’s picks</a></li>
           <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>
           <li><a href="performance.html">Performance</a></li>
@@ -262,7 +262,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> EdgeLine AI. All rights reserved.</span>
+      <span>© <span data-year>2026</span> EdgeLine AI.</span>
       <span class="footer-age"><span class="age-badge" aria-hidden="true">21+</span><span class="visually-hidden">Must be 21 or older.</span> Gamble responsibly.</span>
     </div>
   </div>

@@ -49,6 +49,7 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   function initReveal() {
+    document.documentElement.classList.add("js");
     const targets = document.querySelectorAll("main .section > .container, main .section-tight > .container");
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     const io = new IntersectionObserver(function (entries) {
@@ -201,6 +202,7 @@
     return { games: m.games || 0, markets: rows.length, picks: picks, watch: watch, best: best, sports: m.sports || [], generatedAt: when && !isNaN(when) ? when : null, threshold: m.threshold || 0.01 };
   }
   /* the full board as a table: every side of every main-line market, sorted by edge */
+  const MARKET_COLS = ["Sport", "Game", "Market", "Side", "Best", "Book", "Fair", "Implied", "Edge", "Status"];
   function marketTable(rows, opts) {
     opts = opts || {};
     const m = marketData(), onBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { onBoard[p.id] = true; });
@@ -208,7 +210,7 @@
       const isPick = !!(r.pickId && onBoard[r.pickId]);
       const st = isPick ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
       r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
-      return el("tr", { class: "mkt-" + st }, [
+      const tr = el("tr", { class: "mkt-" + st }, [
         el("td", {}, [el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
         el("td", {}, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: r.start || "" })]),
         el("td", { text: r.market }),
@@ -220,8 +222,11 @@
         el("td", { class: "num mono " + (r.edge > 0 ? "edge-pos" : "edge-neg"), text: signed(r.edge * 100, 1) }),
         el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: "Pick" }) : el("span", { class: "badge badge-status badge-" + st, text: statusLabel(st) })])
       ]);
+      /* phone layout restacks each row as a card and labels the cells from this attribute */
+      Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-label", MARKET_COLS[i]); });
+      return tr;
     });
-    const head = el("tr", {}, ["Sport", "Game", "Market", "Side", "Best", "Book", "Fair", "Implied", "Edge", "Status"].map((h, i) => el("th", { scope: "col", class: i >= 4 && i <= 8 && i !== 5 ? "num" : "", text: h })));
+    const head = el("tr", {}, MARKET_COLS.map((h, i) => el("th", { scope: "col", class: i >= 4 && i <= 8 && i !== 5 ? "num" : "", text: h })));
     return el("div", { class: "table-wrap market-table", tabindex: "0", role: "region", "aria-label": "Market board" }, [el("table", { class: "data" }, [el("thead", {}, [head]), el("tbody", {}, body)])]);
   }
   /* a compact card for a slot that would otherwise be empty: what the market looks like right now */
