@@ -14,7 +14,7 @@ A static marketing and product website for an AI sports betting picks service. T
 index.html           Landing: ticker, hero + today's board, play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
 picks.html           Best parlays (ranked by EV, 2-4 legs, one book per ticket; #parlays), all picks with filters and sort, card/table view, parlay builder slip (#parlay)
 performance.html     Stat tiles, play/parlay record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table
-props.html           NBA props research: tonight's rotation players with headshot, season/L5/L10 splits, last-10 bars, a type-your-own line checker, confluence signals and a game log. No betting lines
+props.html           NBA props research: tonight's rotation players with headshot, per-card stat chips, a PrizePicks-style history chart (bars per game, typed line drawn across, green over / red under, opponent + date labels, L5/L10 toggle, hit pill), confluence signals and a game log. No betting lines
 journal.html         Personal bet log: form with screenshots, stats, profit calendar, export/import. IndexedDB on the visitor's device only; no backend
 css/styles.css       ALL styles. Design tokens live in :root at the top; dark theme in the two blocks below it
 js/app.js            Loaded in <head>. Theme, nav, odds math, pick cards/table, flip + tilt + reveal, play-of-the-day and parlay cards, parlay maths + slip (localStorage), profit calendar. Exposes window.EdgeLine

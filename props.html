@@ -104,30 +104,83 @@
     var over = function (arr) { return arr.filter(function (v) { return v > line; }).length; };
     return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
   }
-  function spark(p) {
-    var s = p.stats[fStat.value], series = s.last.slice().reverse(), max = Math.max.apply(null, series.concat([1]));
-    return E.el("div", { class: "spark", role: "img", "aria-label": STAT_LABEL[fStat.value] + " over the last " + series.length + " games: " + series.join(", ") }, series.map(function (v) {
-      var b = E.el("span", { class: "spark-bar" + (v >= s.season ? " up" : " down"), title: String(v) });
-      b.style.setProperty("--h", Math.max(6, Math.round(v / max * 100)) + "%");
+  var SVG = "http://www.w3.org/2000/svg";
+  function sv(tag, attrs, text) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); if (text != null) n.textContent = text; return n; }
+  /* PrizePicks-style history: one bar per game, the line drawn across, green over / red under / grey push */
+  function historyChart(p, statKey, line, span) {
+    var rows = p.log.slice(0, span).slice().reverse(); /* oldest -> newest */
+    var vals = rows.map(function (r) { return statKey === "pra" ? r.pts + r.reb + r.ast : r[statKey]; });
+    var ref = line != null ? line : p.stats[statKey].season;
+    var W = 320, H = 150, padL = 6, padR = 44, padT = 18, padB = 30, plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = Math.max.apply(null, vals.concat([ref, 1])) * 1.15;
+    var y = function (v) { return padT + plotH - (v / max) * plotH; };
+    var slot = plotW / Math.max(rows.length, 1), bw = Math.min(26, slot * 0.62);
+    var svg = sv("svg", { viewBox: "0 0 " + W + " " + H, class: "hist", role: "img", "aria-label": STAT_LABEL[statKey] + " in the last " + rows.length + " games" + (line != null ? " against a line of " + line : "") });
+    svg.appendChild(sv("line", { x1: padL, x2: W - padR, y1: y(0), y2: y(0), class: "hist-axis" }));
+    rows.forEach(function (r, i) {
+      var v = vals[i], cx = padL + slot * i + slot / 2, top = y(v);
+      var cls = line == null ? "hist-bar neutral" : v > line ? "hist-bar over" : v < line ? "hist-bar under" : "hist-bar push";
+      svg.appendChild(sv("rect", { x: cx - bw / 2, y: Math.min(top, y(0) - 2), width: bw, height: Math.max(2, y(0) - top), rx: 4, class: cls }));
+      svg.appendChild(sv("text", { x: cx, y: top - 5, class: "hist-val", "text-anchor": "middle" }, String(v)));
+      svg.appendChild(sv("text", { x: cx, y: H - 17, class: "hist-opp", "text-anchor": "middle" }, (r.home ? "" : "@") + (r.opp || "")));
+      svg.appendChild(sv("text", { x: cx, y: H - 6, class: "hist-date", "text-anchor": "middle" }, r.date.slice(5).replace("-", "/")));
+    });
+    svg.appendChild(sv("line", { x1: padL, x2: W - padR + 4, y1: y(ref), y2: y(ref), class: "hist-line" + (line == null ? " avg" : "") }));
+    svg.appendChild(sv("text", { x: W - padR + 8, y: y(ref) + 4, class: "hist-line-label" }, (line == null ? "avg " : "") + ref));
+    return svg;
+  }
+  var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA" };
+  function lineKeyFor(p, statKey) { return "prop-line:" + p.id + ":" + statKey; }
+  function savedLineFor(p, statKey) { try { var v = localStorage.getItem(lineKeyFor(p, statKey)); return v == null ? "" : v; } catch (e) { return ""; } }
+  function hitsFor(p, statKey, line) {
+    var vals = p.log.map(function (r) { return statKey === "pra" ? r.pts + r.reb + r.ast : r[statKey]; }).filter(function (v) { return v != null; });
+    var over = function (arr) { return arr.filter(function (v) { return v > line; }).length; };
+    return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
+  }
+  /* the stat block: chips, line box, history chart with L5/L10 toggle, hit summary */
+  function statBlock(p) {
+    var statKey = fStat.value, span = 10;
+    var wrap = E.el("div", { class: "pp" });
+    var chips = E.el("div", { class: "stat-chips", role: "tablist", "aria-label": "Stat" }, STAT_KEYS.map(function (k) {
+      var b = E.el("button", { type: "button", role: "tab", "aria-selected": String(k === statKey), "data-stat": k, text: STAT_SHORT[k] });
+      b.addEventListener("click", function () { statKey = k; input.value = savedLineFor(p, k); draw(); });
       return b;
     }));
-  }
-  function lineRow(p, s) {
-    var input = E.el("input", { type: "number", step: "0.5", min: "0", inputmode: "decimal", placeholder: s.l10 ? String(Math.round(s.l10 * 2) / 2) : "e.g. 18.5", "aria-label": STAT_LABEL[fStat.value] + " line for " + p.name, value: savedLine(p) });
-    var out = E.el("div", { class: "hits" });
-    function update() {
-      var line = Number(input.value);
-      if (!input.value || !Number.isFinite(line)) { out.textContent = ""; return; }
-      var h = hits(p, line);
-      out.textContent = "";
+    var input = E.el("input", { type: "number", step: "0.5", min: "0", inputmode: "decimal", class: "line-big", "aria-label": "Line", value: savedLineFor(p, statKey) });
+    var avg = E.el("span", { class: "pp-avg" });
+    var spans = E.el("div", { class: "stat-chips spans", role: "group", "aria-label": "Games shown" }, [5, 10].map(function (n) {
+      var b = E.el("button", { type: "button", "aria-pressed": String(n === span), text: "L" + n });
+      b.addEventListener("click", function () { span = n; draw(); });
+      return b;
+    }));
+    var chartHost = E.el("div", { class: "hist-host" }), hits = E.el("div", { class: "hits" }), pill = E.el("div", { class: "hit-pill" });
+    function draw() {
+      var s = p.stats[statKey], lineVal = input.value === "" ? null : Number(input.value);
+      if (lineVal != null && !Number.isFinite(lineVal)) lineVal = null;
+      chips.querySelectorAll("[data-stat]").forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-stat") === statKey)); });
+      spans.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.textContent === "L" + span)); });
+      input.placeholder = s.l10 ? String(Math.round(s.l10 * 2) / 2) : "line";
+      avg.textContent = STAT_LABEL[statKey] + " · avg " + s.season + " · L5 " + s.l5 + " · L10 " + s.l10 + " · " + (p.home ? "home " + (s.home || "—") : "road " + (s.away || "—"));
+      chartHost.textContent = ""; chartHost.appendChild(historyChart(p, statKey, lineVal, span));
+      hits.textContent = ""; pill.textContent = "";
+      if (lineVal == null) { pill.textContent = "Type a line to grade each game"; pill.className = "hit-pill"; return; }
+      var h = hitsFor(p, statKey, lineVal), shown = span === 5 ? h.l5 : h.l10, rate = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
+      pill.textContent = "Over hit " + shown[0] + " of " + shown[1] + " · " + rate + "%";
+      pill.className = "hit-pill " + (rate >= 60 ? "pill-over" : rate <= 40 ? "pill-under" : "");
       [["L5", h.l5], ["L10", h.l10], ["Season", h.season]].forEach(function (pair) {
-        var o = pair[1][0], n = pair[1][1], rate = n ? Math.round(o / n * 100) : 0;
-        out.appendChild(E.el("span", { class: "hit" + (rate >= 60 ? " hit-over" : rate <= 40 ? " hit-under" : "") }, [E.el("strong", { text: "Over " + o + "/" + n }), " " + pair[0] + " · " + rate + "%"]));
+        var o = pair[1][0], n = pair[1][1], r = n ? Math.round(o / n * 100) : 0;
+        hits.appendChild(E.el("span", { class: "hit" + (r >= 60 ? " hit-over" : r <= 40 ? " hit-under" : "") }, [E.el("strong", { text: "Over " + o + "/" + n }), " " + pair[0] + " · " + r + "%"]));
       });
-      try { localStorage.setItem(lineKey(p), input.value); } catch (e) {}
+      try { localStorage.setItem(lineKeyFor(p, statKey), input.value); } catch (e) {}
     }
-    input.addEventListener("input", update); update();
-    return E.el("div", { class: "line-row" }, [E.el("label", { class: "line-label" }, ["Line", input]), out]);
+    input.addEventListener("input", draw);
+    wrap.appendChild(chips);
+    wrap.appendChild(E.el("div", { class: "pp-line" }, [E.el("label", { class: "line-label" }, ["Line", input]), pill, spans]));
+    wrap.appendChild(avg);
+    wrap.appendChild(chartHost);
+    wrap.appendChild(hits);
+    draw();
+    return wrap;
   }
   function logTable(p) {
     var head = E.el("tr", {}, ["Date", "Opp", "", "W/L", "Min", "Pts", "Reb", "Ast", "3PM"].map(function (h, i) { return E.el("th", { scope: "col", class: i >= 4 ? "num" : "", text: h }); }));
@@ -148,22 +201,14 @@
         img,
         E.el("div", { class: "prop-who" }, [
           E.el("h3", { class: "prop-name", text: p.name }),
-          E.el("div", { class: "prop-meta", text: (p.pos || "") + (p.jersey ? " · #" + p.jersey : "") + " · " + p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start })
+          E.el("div", { class: "prop-meta", text: (p.pos || "") + (p.jersey ? " · #" + p.jersey : "") + " · " + p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start + " · " + p.minutes.l5 + " min L5" })
         ]),
         E.el("div", { class: "prop-chips" }, [
           p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null),
           p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null
         ])
       ]),
-      E.el("div", { class: "prop-stats" }, [
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Season" }), E.el("div", { class: "v", text: String(s.season) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "L5" }), E.el("div", { class: "v" + (s.l5 > s.season ? " up" : s.l5 < s.season ? " down" : ""), text: String(s.l5) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "L10" }), E.el("div", { class: "v", text: String(s.l10) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: p.home ? "Home" : "Road" }), E.el("div", { class: "v", text: (p.home ? p.log.some(function (r) { return r.home; }) : p.log.some(function (r) { return !r.home; })) ? String(p.home ? s.home : s.away) : "\u2014" })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Min L5" }), E.el("div", { class: "v" }, [String(p.minutes.l5), E.el("span", { class: "v-sub", text: " szn " + p.minutes.season })])])
-      ]),
-      spark(p),
-      lineRow(p, s),
+      statBlock(p),
       E.el("div", { class: "signals" }, [
         E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over · " + under + " under" })]),
         p.signals.length ? E.el("ul", { class: "signal-list" }, p.signals.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })) : E.el("p", { class: "small muted", text: "Nothing stands out; form is in line with the season." })

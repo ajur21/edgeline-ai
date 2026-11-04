@@ -711,3 +711,29 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .prop-log table.data th, .prop-log table.data td { padding: 6px 8px; font-size: 0.8rem; }
 .prop-log tr.row-up td { color: var(--text); } .prop-log tbody td { color: var(--text-2); }
 .more-row { display: flex; justify-content: center; margin-top: 20px; }
+
+/* ---------- props: PrizePicks-style history block ---------- */
+.pp { display: grid; gap: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.stat-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+.stat-chips button { font: inherit; font-family: var(--font-condensed); font-size: 0.8rem; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-2); }
+.stat-chips button[aria-selected="true"], .stat-chips button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: transparent; }
+.stat-chips.spans button { padding: 2px 8px; font-size: 0.72rem; }
+.pp-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pp-line .line-label { gap: 8px; }
+.line-big { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; width: 92px; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 2px 8px; }
+.pp-avg { font-size: 0.78rem; color: var(--muted); }
+.hit-pill { font-family: var(--font-condensed); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); }
+.hit-pill.pill-over { background: var(--accent-3-wash); color: var(--accent-3-text); }
+.hit-pill.pill-under { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.hist-host svg.hist { width: 100%; height: auto; overflow: visible; display: block; }
+.hist-axis { stroke: var(--axis); stroke-width: 1; }
+.hist-bar.neutral { fill: var(--accent); fill-opacity: 0.55; }
+.hist-bar.over { fill: var(--good); }
+.hist-bar.under { fill: var(--bad); }
+.hist-bar.push { fill: var(--muted); }
+.hist-val { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: var(--text); }
+.hist-opp { font-family: var(--font-condensed); font-size: 9.5px; letter-spacing: 0.04em; fill: var(--text-2); }
+.hist-date { font-family: var(--font-mono); font-size: 8px; fill: var(--muted); }
+.hist-line { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.hist-line.avg { stroke: var(--muted); }
+.hist-line-label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: var(--text); }
