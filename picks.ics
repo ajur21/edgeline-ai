@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//EdgeLine AI//Picks//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:EdgeLine AI picks
+X-WR-CALDESC:Every EdgeLine AI pick at tip-off with its price\, book and ed
+ ge\; the grade follows when the game ends. Informational only\; 21+.
+X-WR-TIMEZONE:America/New_York
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:slate-2026-11-04@edgeline
+DTSTAMP:20261104T184621Z
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+SUMMARY:No play tonight: 176 sides priced in 30 games\, none clears the 1-p
+ oint bar
+DESCRIPTION:Every main-line market was priced against the sharp fair line. 
+ The best of them sits under the 1-point bar\, so there is no bet.\nClosest
+  to the bar:\n- NHL: New Jersey Devils -1.5 +140 at BetRivers (+0.5 pts) 
+ · St Louis Blues @ New Jersey Devils\n- NHL: Under 6.5 -110 at FanDuel (+
+ 0.5 pts) · Chicago Blackhawks @ Tampa Bay Lightning\n- NHL: Carolina Hurr
+ icanes -1.5 +155 at BetRivers (+0.4 pts) · Carolina Hurricanes @ New York
+  Islanders\nThe market board: https://ajur21.github.io/edgeline-ai/picks.h
+ tml#market
+URL:https://ajur21.github.io/edgeline-ai/picks.html#market
+CATEGORIES:Slate
+LAST-MODIFIED:20261104T184621Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

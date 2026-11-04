@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
   <script src="js/live.js" defer></script>
@@ -99,6 +100,47 @@
     <div class="plays">
       <div id="potd-host"></div>
       <div id="parlay-host"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-flush" id="subscribe" data-site="https://ajur21.github.io/edgeline-ai/">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <span class="eyebrow">Subscribe · no account, no inbox</span>
+        <h2>Every pick lands in your calendar. Every grade lands in your reader.</h2>
+        <p class="muted">Subscribe once. Each pick arrives at tip-off with the price, the book and the number behind it, and its grade is written into the same event when the game ends. On the nights we pass, you get one line saying so.</p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
+    </div>
+    <div class="subscribe">
+      <div class="sub-preview card" data-tilt aria-labelledby="sub-preview-title">
+        <div class="sub-preview-head"><span class="eyebrow" id="sub-preview-title">Next on your calendar</span><span class="badge badge-strong">Rebuilt every run</span></div>
+        <div id="sub-preview-host"></div>
+      </div>
+      <div class="sub-channels">
+        <div class="sub-channel card" data-tilt>
+          <span class="eyebrow">Calendar</span>
+          <h3>Picks at tip-off</h3>
+          <p class="muted">Apple Calendar, Outlook and Google. One event per pick, an alert 30 minutes before the start, the result written in after the final.</p>
+          <div class="sub-actions">
+            <a class="btn btn-primary" id="sub-webcal" href="webcal://ajur21.github.io/edgeline-ai/picks.ics">Add to calendar</a>
+            <button type="button" class="btn btn-secondary" data-copy="picks.ics">Copy calendar link</button>
+          </div>
+          <p class="sub-hint">Google Calendar: Other calendars, From URL, paste the link.</p>
+        </div>
+        <div class="sub-channel card" data-tilt>
+          <span class="eyebrow">Reader · Slack · email</span>
+          <h3>Picks and grades as a feed</h3>
+          <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per pick, one per grade, one per slate.</p>
+          <div class="sub-actions">
+            <a class="btn btn-primary" id="sub-rss" href="feed.xml">Open the feed</a>
+            <button type="button" class="btn btn-secondary" data-copy="feed.xml">Copy feed link</button>
+          </div>
+          <p class="sub-hint">Slack: <span class="mono">/feed subscribe</span> followed by the link.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -190,9 +232,9 @@
         <ul>
           <li>One featured pick per day</li>
           <li>Public performance page</li>
-          <li>Email digest</li>
+          <li>Calendar and feed subscriptions</li>
         </ul>
-        <a class="btn btn-secondary" href="#">Create free account</a>
+        <a class="btn btn-secondary" href="#subscribe">Subscribe free</a>
       </div>
       <div class="plan featured" data-tilt>
         <div class="plan-head"><h3>Pro</h3><span class="badge badge-strong">Most popular</span></div>
@@ -286,6 +328,71 @@
     document.getElementById("board-title").textContent = summary.markets ? "Closest to the bar" : "Today's board";
     if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
   }
+  /* subscribe: what the next calendar event looks like, built from the same data the feed is built from */
+  (function () {
+    var sec = document.getElementById("subscribe"), host = document.getElementById("sub-preview-host");
+    if (!sec || !host) return;
+    var http = /^https?:$/.test(location.protocol);
+    var site = http ? new URL(".", location.href).href : sec.getAttribute("data-site");
+    var webcal = document.getElementById("sub-webcal");
+    if (http) webcal.setAttribute("href", site.replace(/^https?:/, "webcal:") + "picks.ics");
+    function et(iso, opts) { return new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: "America/New_York" }, opts)).format(new Date(iso)); }
+    function dateBlock(iso) {
+      return E.el("div", { class: "cal-date", "aria-hidden": "true" }, [
+        E.el("span", { class: "cal-dow", text: et(iso, { weekday: "short" }) }),
+        E.el("span", { class: "cal-day", text: et(iso, { day: "numeric" }) }),
+        E.el("span", { class: "cal-mon", text: et(iso, { month: "short" }) })
+      ]);
+    }
+    var next = ranked.slice().sort(function (a, b) { return (a.commence ? Date.parse(a.commence) : Infinity) - (b.commence ? Date.parse(b.commence) : Infinity); })[0];
+    var gen = window.PICKS_DATA.generatedAt || new Date().toISOString();
+    if (next) {
+      var when = next.commence ? et(next.commence, { hour: "numeric", minute: "2-digit" }) + " ET" : next.start;
+      var alarm = next.commence ? et(Date.parse(next.commence) - 30 * 60000, { hour: "numeric", minute: "2-digit" }) : null;
+      var potd = window.PICKS_DATA.playOfDay && window.PICKS_DATA.playOfDay.id === next.id;
+      host.appendChild(E.el("div", { class: "cal-event" + (next.commence ? "" : " cal-event-nodate") }, [
+        next.commence ? dateBlock(next.commence) : E.el("span"),
+        E.el("div", { class: "cal-body" }, [
+          E.el("div", { class: "cal-time", text: when + (alarm ? " · alert at " + alarm : "") }),
+          E.el("div", { class: "cal-title", text: (potd ? "Play of the day: " : "") + next.pick + " " + E.fmtOdds(next.odds) + " at " + next.book }),
+          E.el("div", { class: "cal-meta" }, [
+            E.el("span", { class: "badge badge-sport", "data-sport": next.sport, text: next.sport }),
+            E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: next.confidence }),
+            E.el("span", { text: "Fair " + E.pct(next.modelProb) + " · Edge " + E.signed(E.edgeOf(next) * 100, 1) + " pts" })
+          ]),
+          E.el("div", { class: "cal-note", text: next.market + " · " + next.event })
+        ])
+      ]));
+      host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "After the final, the same event reads " }), E.el("strong", { text: "Won +" + (E.decimalOdds(next.odds) - 1).toFixed(2) + "u" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost −1.00u" }), E.el("span", { text: ". Nothing is edited afterwards." })]));
+    } else {
+      var near = E.marketRows({ limit: 1, oneSidePerMarket: true, positive: false })[0];
+      var barPts = ((E.marketData().threshold || 0.01) * 100).toFixed(0);
+      host.appendChild(E.el("div", { class: "cal-event cal-event-off" }, [
+        dateBlock(gen),
+        E.el("div", { class: "cal-body" }, [
+          E.el("div", { class: "cal-time", text: "All day" }),
+          E.el("div", { class: "cal-title", text: summary.markets ? "No play tonight: " + summary.markets + " sides priced in " + summary.games + " games, none clears the " + barPts + "-point bar" : "No play tonight: nothing priced yet" }),
+          near ? E.el("div", { class: "cal-meta" }, [
+            E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
+            E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
+            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + E.signed(E.edgeOf(near) * 100, 1) + " pts" })
+          ]) : E.el("span"),
+          E.el("div", { class: "cal-note", text: "One line, so you know we looked and passed." })
+        ])
+      ]));
+      host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "The moment a side clears the bar it lands here at tip-off, with its price and book, and " }), E.el("strong", { text: "Won" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost" }), E.el("span", { text: " written in after the final." })]));
+    }
+    Array.prototype.forEach.call(sec.querySelectorAll("[data-copy]"), function (btn) {
+      var label = btn.textContent, link = site + btn.getAttribute("data-copy");
+      btn.addEventListener("click", function () {
+        var done = function (ok) { btn.textContent = ok ? "Copied" : "Copy failed"; setTimeout(function () { btn.textContent = label; }, 1800); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+        else done(false);
+      });
+    });
+    E.initTilt(sec);
+  })();
+
   shown.slice(0, 4).forEach(function (p) {
     rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
       E.el("span", { class: "board-sport", text: p.sport.toUpperCase() }),
@@ -386,6 +493,7 @@
           <li><a href="performance.html">Performance</a></li>
           <li><a href="journal.html">Journal</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#subscribe">Subscribe</a></li>
           <li><a href="index.html#how">How it works</a></li>
         </ul></nav>
       </div>

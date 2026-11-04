@@ -30,7 +30,16 @@ js/space.js         canvas space backdrop: parallax stars, nebulae, shooting sta
 data/picks.js       SAMPLE picks  -> window.PICKS_DATA
 data/performance.js SAMPLE results -> window.PERF_DATA
 data/market.js      every priced market from the last run -> window.MARKET_DATA (the site falls back to it so no page is ever empty)
+scripts/feeds.js    writes picks.ics (calendar subscription) and feed.xml (RSS) from the data files; `npm run feeds`
+picks.ics, feed.xml the subscriptions, rebuilt by the workflow on every data change
 ```
+
+## Subscribing
+
+No account, no email list. The home page's Subscribe section offers two feeds the pipeline rebuilds on every data change:
+
+- `picks.ics`: a calendar subscription (webcal link for Apple Calendar and Outlook; Google Calendar takes the URL under Other calendars, From URL). One event per pick at tip-off with the price, book, fair probability, edge and breakdown, an alert 30 minutes before the start, and the result written into the same event after the game. On a night nothing clears the bar, one all-day event says so and names the closest side.
+- `feed.xml`: RSS for any reader, Slack's `/feed subscribe`, or an RSS-to-email service. One item per pick, one per grade, one per slate, newest first.
 
 ## Real data
 

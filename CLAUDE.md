@@ -34,6 +34,9 @@ scripts/sgo.js         SportsGameOdds adapter (second price source, free tier, k
 scripts/update-props.js Props research pipeline: ESPN public endpoints -> data/props.js (`npm run props`)
 scripts/props-test.js   Offline props pipeline test against scripts/fixtures/espn/
 data/props.js        -> window.PROPS_DATA { sample, source, attribution, generatedAt, games, players }
+scripts/feeds.js     Pick feeds: writes picks.ics (calendar subscription) and feed.xml (RSS) at the repo root from the data files (see Subscriptions)
+scripts/feeds-test.js   Offline feed test: escaping, folding, a pick night from the fixtures, a no-play night with a graded log (run by `npm test`)
+picks.ics, feed.xml  The subscriptions, committed by the workflows alongside data/ whenever a run changes them
 scripts/screenshot.js Playwright render check (see Verify)
 scripts/behavior.js  Playwright behaviour checks: nav state, filters, chart edge cases, keyboard access (see Verify)
 package.json         Dev-only: `npm run check` runs the render check; Playwright is the only dependency
@@ -99,6 +102,15 @@ Every full run writes `data/market.js`: both sides of every main-line market it 
 
 **Owner rule (2026-11-04): nothing on the site stays empty.** When no pick clears the bar, every slot falls back to the closest markets, always labelled Watch / No bet and never dressed as a play: the home ticker and hero board ("Closest to the bar"), the play-of-the-day slot (`potdCard(null)` shows the nearest miss with a note), the parlay slot and the best-parlays list (`pulseCard`: games, markets, watch count, top three), the top-three grid and the picks grid (market cards: status badge instead of a confidence badge, no parlay button, a Market board link instead of Full breakdown), and the digest (lede, tiles, top three, slate retitled "The watch list"). `EdgeLine.marketRows()` does the dressing (`marketAsPick`): a row counts as a pick only while its `pickId` is on the current board; otherwise it is market information whatever the file says. Keep this rule when adding slots.
 
+## Subscriptions: the calendar and the feed (`scripts/feeds.js`)
+
+Shipped 2026-11-04 as the session's bold change (the owner asked for one that improves conversions; not yet reviewed). The site had no way for a visitor to come back: every sign-up button was a dead `#`. The feeds are the zero-backend answer. `node scripts/feeds.js` reads `data/picks.js`, `data/market.js` and `data/picks-log.json` and writes two files at the repo root, deterministic for a given set of data files so the workflows only commit when a run changed something (both workflows run it after the pipeline and include the two files in the diff check and the commit):
+
+- **`picks.ics`**: `VCALENDAR` with a one-hour refresh hint. One `VEVENT` per board pick, `UID` = `<pick id>@edgeline`, `DTSTART` = `commence` (UTC), three hours long, a `VALARM` 30 minutes before, `SUMMARY` = "Play of the day: " prefix when it is, then `pick odds at book · tier`, `DESCRIPTION` = the rationale, support, risks, verdict, the price ladder and the breakdown link, `LOCATION` = the venue when known. Log entries from the last 30 days that are not on the board keep the **same UID**: a pick in play reads "· in play", a graded one "· Won +1.40u" / "· Lost −1.00u" / "· Push" with CLV in the description, so the calendar updates in place and becomes the public record. Void entries are left out. On a no-play night an all-day event (`slate-<ET date>@edgeline`) carries the never-empty line ("No play tonight: N sides priced in G games, none clears the bar") and the three closest sides, one per market. Lines are folded at 75 octets and text is escaped per RFC 5545 (`icsText`, `fold`).
+- **`feed.xml`**: RSS 2.0 with an `atom:link rel="self"`. One item per board pick (`guid` = pick id, `pubDate` = `loggedAt`), one per parlay of the day, one per grade (`guid` = `<id>#graded`, a new item so readers notify), and one per full run (`guid` = `slate-<generatedAt>`, so hourly track runs do not add items). Newest first, slate first on a tie, 80 items at most. Descriptions are escaped HTML built from the same text lines (`html()`); never raw data.
+- The site: `index.html#subscribe` (between the plays and how it works) shows the next calendar event built client-side from the same data (the earliest pick on the board, or the no-play all-day event with the closest side), two channel cards with "Add to calendar" (`webcal://` link, rewritten from `location` when served over http(s), else the `data-site` attribute), "Open the feed", and copy-link buttons; every page's `<head>` has the `rel="alternate"` RSS link and the footer has a Subscribe link; the Free plan's button points at the section; the digest has a one-line pointer under its tiles. The sample badge in the section follows `data-sample-flag="picks"`.
+- Base URL: `DEFAULT_BASE` in `scripts/feeds.js` and the `data-site` / `webcal` attributes in `index.html` carry the GitHub Pages URL. Change all three when the domain changes. Calendar clients refetch on their own schedule (Apple and Outlook roughly hourly, Google up to a day), so the feed is the faster channel.
+
 ## Second price source: SportsGameOdds (`scripts/sgo.js`)
 
 Free "amateur" tier: 2,500 event objects a month (every event in a response costs one, usage endpoint is free), 10 requests a minute (the adapter spaces calls 6.2 s apart), leagues NBA, NFL, MLB, NHL, NCAAB, NCAAF, MLS, UCL (no EPL: soccer stays Odds-API-only), nine books (DraftKings, FanDuel, BetMGM, Caesars, ESPN BET, Bovada, PointsBet, Unibet; `williamhill` is folded into Caesars) and the vendor's own de-vigged `fairOdds` with `openFairOdds`/`openFairSpread`/`openFairOverUnder`. **No Pinnacle**, so it never finds edges; The Odds API keeps discovery and the anchor. What it does:
@@ -136,14 +148,14 @@ Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://githu
 - Pricing tiers and prices on `index.html` (labelled "Sample pricing").
 - FAQ answer about sportsbooks is generic copy; confirm it matches the real odds feed.
 - Footer links: About, Terms, Privacy, Contact (all `href="#"`).
-- All sign-up / plan buttons (`href="#"`); there is no backend, auth or payments.
+- The Pro and Elite plan buttons (`href="#"`); there is no backend, auth or payments. The Free plan's button goes to the subscriptions, which work.
 - `data/picks.js` and `data/performance.js` are sample until the pipeline runs.
 
 ## Suggested backlog
 
 1. ~~Wire real picks and results~~ done: see Data pipeline. Remaining: add the `ODDS_API_KEY` secret and run the workflow once.
 2. Account sign-up / login and plan checkout (needs a backend; out of scope for the static site).
-3. Email capture on the Free plan.
+3. ~~Email capture on the Free plan~~ replaced by the calendar and RSS subscriptions (see Subscriptions). An email list still needs a backend or a form service.
 3b. Accounts with sync for the journal (currently device-only), and a shared parlay link.
 3c. CLV by confidence tier and by sport on the performance page (the per-pick `clv` is already in the log); steam flags from `dkHistory`/`sgoHistory` (several moves the same way inside a few hours); Kelly stake sizing from a stored bankroll.
 3d. Steam flags on the market board (several books moving the same way within the hour, from `sgoHistory`).

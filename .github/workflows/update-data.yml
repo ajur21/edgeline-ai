@@ -40,15 +40,17 @@ jobs:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Refresh NBA props research data (ESPN public API, no key)
         run: node scripts/update-props.js || echo "::warning::props refresh failed; keeping the previous data/props.js"
+      - name: Rebuild the pick feeds (calendar + RSS)
+        run: node scripts/feeds.js
       - name: Commit data if it changed
         id: commit
         run: |
-          if git diff --quiet -- data; then
+          if git diff --quiet -- data feed.xml picks.ics; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No data changes."; exit 0
           fi
           git config user.name "edgeline-data-bot"
           git config user.email "edgeline-data-bot@users.noreply.github.com"
-          git add data
+          git add data feed.xml picks.ics
           git commit -m "data: refresh picks and results ($(date -u +%Y-%m-%d))"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"

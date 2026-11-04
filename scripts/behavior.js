@@ -355,6 +355,16 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('digest: print button present, no page errors', (await dp.locator('#digest-print').count()) === 1 && derr.length === 0, derr.join(' | '));
   await dp.context().close();
 
+  // subscribe section: the preview event renders from the data, the links point at the feeds
+  const sp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  await sp.goto(url('index.html')); await sp.waitForTimeout(300);
+  check('subscribe: preview event rendered with a title and sport badge', await sp.locator('#sub-preview-host .cal-title').count() === 1 && await sp.locator('#sub-preview-host .badge-sport').count() === 1);
+  check('subscribe: calendar link is a webcal URL ending in picks.ics', /^webcal:\/\/.+\/picks\.ics$/.test(await sp.getAttribute('#sub-webcal', 'href') || ''));
+  check('subscribe: feed link and head alternate link point at feed.xml', (await sp.getAttribute('#sub-rss', 'href')) === 'feed.xml' && (await sp.getAttribute('link[rel="alternate"][type="application/rss+xml"]', 'href')) === 'feed.xml');
+  check('subscribe: free plan button goes to the section', (await sp.getAttribute('.plan:not(.featured) .btn', 'href')) === '#subscribe');
+  check('subscribe: copy buttons are present', await sp.locator('#subscribe [data-copy]').count() === 2);
+  await sp.context().close();
+
   // phone board odds visible
   const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
   await ph.goto(url('index.html'));
