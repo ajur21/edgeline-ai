@@ -53,6 +53,25 @@
       <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
     </div>
 
+    <div class="section-head row parlays-head" id="parlays">
+      <div>
+        <span class="eyebrow">Best parlays</span>
+        <h2>The best tickets on today's board</h2>
+        <p class="muted">Every combination of picks from different games that is worth a bet at one book, ranked by expected value.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Legs" id="parlay-size">
+        <button type="button" data-size="0" aria-pressed="true">Any</button>
+        <button type="button" data-size="2" aria-pressed="false">2 legs</button>
+        <button type="button" data-size="3" aria-pressed="false">3 legs</button>
+        <button type="button" data-size="4" aria-pressed="false">4 legs</button>
+      </div>
+    </div>
+    <div class="parlays-grid" id="parlays-host"></div>
+    <p class="small muted parlays-note">Fair probability treats legs as independent, so expected value is an estimate. Longer parlays pay more and hit less; pick the length that suits your bankroll.</p>
+
+    <div class="section-head row picks-head">
+      <div><h2>All picks</h2></div>
+    </div>
     <div class="filter-row" role="group" aria-label="Filters">
       <label class="filter">Sport
         <select id="f-sport">
@@ -196,6 +215,32 @@
   render();
   highlightFromHash();
 
+  /* ---------- best parlays on the board ---------- */
+  var parlaysHost = document.getElementById("parlays-host"), parlaySize = 0;
+  function sameLegs(a, b) { return a && b && a.legs.map(function (l) { return l.id; }).sort().join() === b.legs.map(function (l) { return l.id; }).sort().join(); }
+  function renderParlays() {
+    parlaysHost.textContent = "";
+    var list = E.bestParlays(P, { size: parlaySize || null, limit: 6 });
+    if (!list.length) { parlaysHost.appendChild(E.el("div", { class: "card empty", text: P.length < 2 ? "Parlays need at least two picks on the board." : "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); return; }
+    list.forEach(function (par, i) {
+      var card = E.parlayCard(par, { loadButton: true, title: "#" + (i + 1) + " · " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
+      card.querySelector("[data-load-parlay]").addEventListener("click", function () {
+        try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
+        E.slip.set(par.legs.map(function (l) { return l.id; }));
+        openSlip(true);
+      });
+      parlaysHost.appendChild(card);
+    });
+    E.initTilt(parlaysHost);
+  }
+  document.querySelectorAll("#parlay-size [data-size]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      parlaySize = Number(btn.getAttribute("data-size"));
+      document.querySelectorAll("#parlay-size [data-size]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      renderParlays();
+    });
+  });
+
   /* ---------- parlay builder slip ---------- */
   var slipEl = document.getElementById("slip"), slipBody = document.getElementById("slip-body"), slipToggle = document.getElementById("slip-toggle");
   var BOOK_KEY = "parlay-book";
@@ -255,6 +300,7 @@
     openSlip(true);
   });
   document.getElementById("slip-count").textContent = String(E.slip.get().length);
+  renderParlays();
   if (location.hash === "#parlay") openSlip(true);
   window.addEventListener("hashchange", function () { if (location.hash === "#parlay") openSlip(true); });
 })();

@@ -582,6 +582,16 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .leg-event { font-size: 0.8rem; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .leg-price { font-weight: 600; }
 
+/* ---------- best parlays list ---------- */
+.parlays-head { margin-top: 8px; }
+.parlays-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 1000px) { .parlays-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .parlays-grid { grid-template-columns: 1fr; } }
+.parlays-grid .parlay .eyebrow { color: var(--accent-2); }
+.parlays-note { margin: 12px 0 0; }
+.picks-head { margin-top: 44px; margin-bottom: 8px; }
+.picks-head h2 { font-size: 1.4rem; }
+
 /* ---------- add-to-parlay buttons ---------- */
 .add-parlay { font: inherit; font-family: var(--font-condensed); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 4px 9px; box-shadow: 0 2px 0 var(--edge); transition: transform 0.12s, box-shadow 0.12s, background 0.15s, color 0.15s; white-space: nowrap; }
 .add-parlay:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--edge); }

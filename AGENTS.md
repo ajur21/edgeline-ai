@@ -12,7 +12,7 @@ A static marketing and product website for an AI sports betting picks service. T
 
 ```
 index.html           Landing: ticker, hero + today's board, play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
-picks.html           All picks with filters and sort; card/table view; parlay builder slip (#parlay)
+picks.html           Best parlays (ranked by EV, 2-4 legs, one book per ticket; #parlays), all picks with filters and sort, card/table view, parlay builder slip (#parlay)
 performance.html     Stat tiles, play/parlay record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table
 journal.html         Personal bet log: form with screenshots, stats, profit calendar, export/import. IndexedDB on the visitor's device only; no backend
 css/styles.css       ALL styles. Design tokens live in :root at the top; dark theme in the two blocks below it
@@ -72,7 +72,7 @@ How a pick is made (all in `update-data.js`, tunable in `RULES`):
 5. Pending picks whose events started 3+ hours ago are graded from the scores endpoint (2 requests per sport with pending picks). Win pays the profit at the logged odds for 1 unit; loss is −1; push 0. Ungraded after 7 days becomes `void` and is excluded.
 6. `performance.js` summarises graded picks from the last 30 days by event date (Eastern), plus `byDate` (all-time daily profit for the calendar), `potd` and `parlays` records. `picks.js` is every pending pick whose event is still ahead, each with `prices` (price at every bettable book on that line) and `ev`.
 7. **Play of the day** (`playOfDay` in picks.js): the highest-EV pick on the board, chosen once per Eastern day at the first run that has picks (`potd` date on the log entry) and never swapped that day. **Parlay of the day** (`parlayOfDay`): 2-3 legs from different games, all +EV at one book, the combination with the highest EV (fair = product of fair probabilities, treating legs as independent); logged as a `type: "parlay"` entry with `legPrices`, one per day. Parlays grade once every leg settles: any loss loses, pushes drop out, the rest pay the combined price; a void leg voids it.
-8. The parlay builder (picks page) re-uses `prices` client-side: `EdgeLine.parlayMath` prices a slip at one book (auto-best, chosen, or mixed best prices with a warning). The slip lives in localStorage (`parlay-slip`, `parlay-book`).
+8. The picks page lists the best parlays client-side: `EdgeLine.bestParlays` enumerates every 2-4 leg combination of distinct games that is +EV at a single book, keeps the best book per leg set, and ranks by EV. The parlay builder re-uses `prices` the same way: `EdgeLine.parlayMath` prices a slip at one book (auto-best, chosen, or mixed best prices with a warning). The slip lives in localStorage (`parlay-slip`, `parlay-book`).
 
 Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending picks for grading, twice a day: roughly 450-480 a month against the free tier's 500. Adding La Liga or a third run needs the paid tier. The script stops fetching odds when the API reports fewer than 25 requests left. `node scripts/update-data.js --verbose --out /tmp/x` prints every line's best edge (costs real requests). Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
 

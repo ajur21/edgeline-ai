@@ -12,7 +12,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 | File | What it is |
 |---|---|
 | `index.html` | Landing page: odds ticker, hero with today's board, play of the day, parlay of the day, how it works with an edge calculator, top three picks, pricing, FAQ |
-| `picks.html` | Today's picks with filters and sort, card or table view, and a parlay builder |
+| `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, and a parlay builder |
 | `performance.html` | Track record: stat tiles, play and parlay records, profit calendar, cumulative units chart, units by sport, recent graded picks |
 | `journal.html` | Your own bet log with screenshots and a profit calendar, stored on your device |
 

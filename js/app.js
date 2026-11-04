@@ -255,6 +255,33 @@
     const dec = priced.reduce((d, x) => d * decimalOdds(x.price), 1), fair = legs.reduce((f, l) => f * Number(l.modelProb), 1);
     return { book: mixed ? "Best prices (mixed books)" : chosen, books: common, mixed: mixed, legs: priced, decimal: dec, odds: legs.length ? americanFromDecimal(dec) : 0, fairProb: fair, implied: legs.length ? 1 / dec : 0, edge: legs.length ? fair - 1 / dec : 0, ev: legs.length ? fair * dec - 1 : 0 };
   }
+  /* every +EV parlay on the board, best book per leg set, ranked by EV. opts: size (2|3|4|null), limit, maxLegs */
+  function bestParlays(picks, opts) {
+    opts = opts || {};
+    const maxLegs = opts.size || opts.maxLegs || 4, minLegs = opts.size || 2, limit = opts.limit || 5;
+    const legsAll = (picks || []).filter(p => p.prices && Object.keys(p.prices).length && Number.isFinite(Number(p.modelProb)));
+    const books = {}; legsAll.forEach(p => Object.keys(p.prices).forEach(b => { books[b] = true; }));
+    const bySet = {};
+    Object.keys(books).forEach(function (book) {
+      const legs = legsAll.filter(p => p.prices[book] != null && impliedProb(p.prices[book]) <= Number(p.modelProb));
+      function consider(combo) {
+        if (new Set(combo.map(p => p.event)).size !== combo.length) return;
+        const dec = combo.reduce((d, p) => d * decimalOdds(p.prices[book]), 1), fair = combo.reduce((f, p) => f * Number(p.modelProb), 1), ev = fair * dec - 1;
+        if (ev <= 0) return;
+        const key = combo.map(p => p.id).sort().join("|");
+        if (!bySet[key] || ev > bySet[key].ev) bySet[key] = { book: book, legs: combo.map(p => ({ id: p.id, pick: p.pick, event: p.event, sport: p.sport, price: p.prices[book] })), decimal: dec, odds: americanFromDecimal(dec), fairProb: fair, ev: ev };
+      }
+      const n = legs.length;
+      function rec(start, combo) {
+        if (combo.length >= minLegs) consider(combo);
+        if (combo.length === maxLegs) return;
+        for (let i = start; i < n; i++) rec(i + 1, combo.concat([legs[i]]));
+      }
+      rec(0, []);
+    });
+    return Object.values(bySet).sort((a, b) => b.ev - a.ev).slice(0, limit);
+  }
+
   /* the slip: pick ids kept in localStorage; buttons everywhere reflect it */
   const SLIP_KEY = "parlay-slip";
   const slip = {
@@ -286,8 +313,8 @@
     const status = par.result ? "Result: " + par.result : par.legs.some(l => l.started) ? "In progress" : "All legs ahead";
     return el("article", { class: "card parlay", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "eyebrow", text: "Parlay of the day" }),
-        el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })
+        el("span", { class: "eyebrow", text: opts.title || "Parlay of the day" }),
+        el("span", { class: "pick-head-right" }, [opts.tag ? el("span", { class: "badge badge-potd", text: opts.tag }) : null, el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })])
       ]),
       el("ul", { class: "parlay-legs" }, par.legs.map(function (l) {
         return el("li", {}, [
@@ -305,7 +332,7 @@
       el("p", { class: "pick-rationale", text: "Priced as one ticket at " + par.book + ". Legs are from different games and treated as independent; one loss loses the ticket, a push drops out." }),
       el("div", { class: "pick-foot" }, [
         el("span", { class: par.result ? "result result-" + par.result.toLowerCase() : "", text: status }),
-        opts.loadButton ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : el("a", { class: "flip-btn", href: "picks.html#parlay", text: "Open the builder" })
+        opts.loadButton ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
       ])
     ]);
   }
@@ -357,6 +384,6 @@
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, initTilt: initTilt, animateNumber: animateNumber,
-    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar
+    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar
   };
 })();
