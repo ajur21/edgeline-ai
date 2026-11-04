@@ -61,17 +61,17 @@ The render check scrolls each page first so scroll-revealed sections are in thei
 
 ## Data pipeline
 
-`scripts/update-data.js` is the "backend". `.github/workflows/update-data.yml` runs it daily at 20:30 UTC (late afternoon Eastern, when soft books lag line moves and edges actually exist; a morning run found none) and on demand, commits `data/`, and redeploys. It needs the `ODDS_API_KEY` repository secret (a key from https://the-odds-api.com; the free tier is 500 requests/month).
+`scripts/update-data.js` is the "backend". `.github/workflows/update-data.yml` runs it twice a day, 17:00 UTC (around noon Eastern) and 20:30 UTC (late afternoon, before the evening slates), and on demand, then commits `data/` and redeploys. A 4 AM run found no edges; the two-run schedule is an experiment, and each logged pick records `loggedAt` so the log shows which run produces edges. Drop the weaker one later. It needs the `ODDS_API_KEY` repository secret (a key from https://the-odds-api.com; the free tier is 500 requests/month).
 
 How a pick is made (all in `update-data.js`, tunable in `RULES`):
-1. For each active sport (on its game days: NBA/NHL/MLB daily, NFL Wed/Sat/Sun/Mon, soccer Fri-Sun), fetch moneyline, spread and total prices for ten named bookmakers: Pinnacle plus nine bettable U.S. books (ten bookmakers cost the same as one region: 3 requests per sport, 2 for soccer).
+1. For each active sport (on its game days: NBA/NHL/MLB daily, NFL Wed/Sat/Sun/Mon, Premier League Fri-Sun; La Liga is switched off to stay inside the free tier), fetch moneyline, spread and total prices for ten named bookmakers: Pinnacle plus nine bettable U.S. books (ten bookmakers cost the same as one region: 3 requests per sport, 2 for soccer).
 2. Per event and market, group books by exact line and keep the largest group (at least 3 books). The **fair** probability is Pinnacle's de-vigged price for that line (the sharp reference); if Pinnacle does not price it, the de-vigged average of the other books stands in. The site calls this "Fair"; the data field is still `modelProb`.
 3. For each outcome, take the best price among the bettable books (never Pinnacle). Edge = fair − implied(best price). Edge of 1 point or more becomes a pick (Lean; about +2% expected value at even odds); 2 is Medium; 3.5 is High. Each pick records `ev` (expected profit per unit). Only one side of a market can be picked.
 4. At most 4 picks per sport and 12 per run; only events starting within 36 hours. A pick is logged once per event+market+outcome+line, at the price seen.
 5. Pending picks whose events started 3+ hours ago are graded from the scores endpoint (2 requests per sport with pending picks). Win pays the profit at the logged odds for 1 unit; loss is −1; push 0. Ungraded after 7 days becomes `void` and is excluded.
 6. `performance.js` summarises graded picks from the last 30 days by event date (Eastern). `picks.js` is every pending pick whose event is still ahead.
 
-Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending picks for grading: about 10 on a weekday, 20 on a weekend day, roughly 350 a month against the free tier's 500. The script stops fetching odds when the API reports fewer than 25 requests left. `node scripts/update-data.js --verbose --out /tmp/x` prints every line's best edge (costs real requests). Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
+Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending picks for grading, twice a day: roughly 450-480 a month against the free tier's 500. Adding La Liga or a third run needs the paid tier. The script stops fetching odds when the API reports fewer than 25 requests left. `node scripts/update-data.js --verbose --out /tmp/x` prints every line's best edge (costs real requests). Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
 
 To run locally: `ODDS_API_KEY=... npm run data`. To test without the network: `npm test` (uses `scripts/fixtures/`).
 

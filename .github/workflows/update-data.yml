@@ -1,9 +1,11 @@
 # Refreshes picks and results from The Odds API, commits the data files, and redeploys.
-# Needs the ODDS_API_KEY repository secret. Runs daily at 20:30 UTC (3:30-4:30 PM Eastern, before the evening slates) and on demand.
+# Needs the ODDS_API_KEY repository secret. Runs twice daily, 17:00 UTC (noon-1 PM Eastern) and 20:30 UTC
+# (3:30-4:30 PM Eastern, before the evening slates), and on demand.
 name: Update data
 
 on:
   schedule:
+    - cron: "0 17 * * *"
     - cron: "30 20 * * *"
   workflow_dispatch:
 

@@ -26,8 +26,8 @@ const SPORTS = [
   { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
   { key: "baseball_mlb", sport: "MLB", league: "MLB", markets: ["h2h", "spreads", "totals"], spreadLabel: "Run line" },
   { key: "icehockey_nhl", sport: "NHL", league: "NHL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Puck line" },
-  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] },
-  { key: "soccer_spain_la_liga", sport: "Soccer", league: "La Liga", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] }
+  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] }
+  /* La Liga (soccer_spain_la_liga) is off to stay inside the free request tier; add it back here when the budget allows. */
 ];
 /* Pinnacle anchors the fair line; the rest are the books a pick can name. Ten bookmakers cost the same as one region. */
 const ANCHOR = "pinnacle";
