@@ -116,7 +116,7 @@ function signals(p) {
   if (p.b2b) out.push({ key: "rest", label: "Second night of a back-to-back", lean: "under" });
   else if (p.restDays >= 3 && p.restDays <= 10) out.push({ key: "rest", label: p.restDays + " days' rest", lean: "over" });
   else if (p.restDays > 10) out.push({ key: "rest", label: "First game in " + p.restDays + " days", lean: "neutral" });
-  if (p.opp && p.opp.rank) { if (p.opp.rank <= 8) out.push({ key: "opp", label: p.oppAbbr + " allows " + p.opp.ptsAllowed + " pts/g (" + p.opp.rank + "th most)", lean: "over" }); else if (p.opp.rank >= 23) out.push({ key: "opp", label: p.oppAbbr + " allows only " + p.opp.ptsAllowed + " pts/g (" + ordinal(31 - p.opp.rank) + " fewest)", lean: "under" }); }
+  if (p.opp && p.opp.rank) { if (p.opp.rank <= 8) out.push({ key: "opp", label: p.oppAbbr + " allows " + p.opp.ptsAllowed + " pts/g (" + ordinal(p.opp.rank) + " most)", lean: "over" }); else if (p.opp.rank >= 23) out.push({ key: "opp", label: p.oppAbbr + " allows only " + p.opp.ptsAllowed + " pts/g (" + ordinal(31 - p.opp.rank) + " fewest)", lean: "under" }); }
   if (p.stats.pts.sd && p.stats.pts.l10 && p.stats.pts.sd / p.stats.pts.l10 <= 0.22 && p.gp >= 5) out.push({ key: "steady", label: "Steady scorer: ±" + p.stats.pts.sd + " over last 10", lean: "neutral" });
   if (p.injury) out.push({ key: "injury", label: "Injury report: " + p.injury, lean: "under" });
   return out;

@@ -157,9 +157,9 @@
       ]),
       E.el("div", { class: "prop-stats" }, [
         E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Season" }), E.el("div", { class: "v", text: String(s.season) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Last 5" }), E.el("div", { class: "v" + (s.l5 > s.season ? " up" : s.l5 < s.season ? " down" : ""), text: String(s.l5) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Last 10" }), E.el("div", { class: "v", text: String(s.l10) })]),
-        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: p.home ? "At home" : "On road" }), E.el("div", { class: "v", text: String(p.home ? s.home : s.away) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "L5" }), E.el("div", { class: "v" + (s.l5 > s.season ? " up" : s.l5 < s.season ? " down" : ""), text: String(s.l5) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "L10" }), E.el("div", { class: "v", text: String(s.l10) })]),
+        E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: p.home ? "Home" : "Road" }), E.el("div", { class: "v", text: (p.home ? p.log.some(function (r) { return r.home; }) : p.log.some(function (r) { return !r.home; })) ? String(p.home ? s.home : s.away) : "\u2014" })]),
         E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Min L5" }), E.el("div", { class: "v" }, [String(p.minutes.l5), E.el("span", { class: "v-sub", text: " szn " + p.minutes.season })])])
       ]),
       spark(p),
