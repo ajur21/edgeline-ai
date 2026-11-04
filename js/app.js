@@ -192,6 +192,8 @@
     let rows = marketData().rows.filter(r => !(r.pickId && picksOnBoard[r.pickId]) || opts.includePicks);
     if (opts.sport) rows = rows.filter(r => r.sport === opts.sport);
     if (opts.positive) rows = rows.filter(r => r.edge > 0);
+    /* likeliest first (the file is by edge; byEdge keeps that for the nearest-miss slot) */
+    if (!opts.byEdge) rows = rows.slice().sort((a, b) => (b.modelProb - a.modelProb) || (b.edge - a.edge));
     if (opts.oneSidePerMarket) { const seen = {}; rows = rows.filter(r => { const k = r.eventId + "|" + r.marketKey; if (seen[k]) return false; seen[k] = true; return true; }); }
     if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
     return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
@@ -253,16 +255,16 @@
   function isSample() { const d = window.PICKS_DATA; return !d || d.sample !== false; }
 
   /* a pick card is two faces: numbers on the front, the "why" on the back; it flips in 3D */
-  function pickCard(p) {
-    const edge = edgeOf(p);
+  function pickCard(p, opts) {
+    opts = opts || {};
+    const edge = edgeOf(p), fair = Number(p.modelProb), imp = impliedProb(p.odds);
     const confClass = p.isMarket ? "badge badge-status badge-" + (p.status || "none") : "badge badge-conf-" + String(p.confidence).toLowerCase();
-    const meterWidth = Math.max(4, Math.min(100, edge * 100 * 8)); // 12.5% edge fills the bar
     const factors = Array.isArray(p.factors) ? p.factors : [];
     const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: "Why this pick" });
     const backBtn = el("button", { type: "button", class: "flip-btn", text: "Back to numbers" });
     const front = el("div", { class: "pick-face pick-front" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }),
+        el("span", { class: "pick-head-left" }, [rankChip(opts.rank), el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
         el("span", { class: "pick-head-right" }, [
           isSample() ? el("span", { class: "badge badge-sample", text: "Sample" }) : null,
           isPlayOfDay(p.id) ? el("span", { class: "badge badge-potd", text: "Play of the day" }) : null,
@@ -276,11 +278,12 @@
         el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
         shopChips(p)
       ]),
-      el("div", { class: "meter", "aria-hidden": "true" }, [
-        el("span", { style: "width:" + meterWidth + "%" })
+      /* the probability bar: fill = how often the model expects the side to hit, tick = what the price implies, hairline = a coin flip */
+      el("div", { class: "prob", role: "img", "aria-label": "Fair probability " + pct(fair) + "; the price implies " + pct(imp), title: "Fair " + pct(fair) + " · price implies " + pct(imp) + " · 50% line is a coin flip" }, [
+        el("div", { class: "prob-bar" }, [el("span", { class: "prob-fill", style: "width:" + Math.max(0, Math.min(100, fair * 100)).toFixed(1) + "%" }), el("span", { class: "prob-tick", style: "left:" + Math.max(0, Math.min(100, imp * 100)).toFixed(1) + "%" })])
       ]),
       el("div", { class: "pick-metrics" }, [
-        el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Fair" }), el("div", { class: "v", text: pct(p.modelProb) })]),
+        el("div", { class: "pick-metric lead" }, [el("div", { class: "k", text: "Fair" }), el("div", { class: "v", text: pct(p.modelProb) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Implied" }), el("div", { class: "v", text: pct(impliedProb(p.odds)) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })])
       ]),
@@ -331,9 +334,10 @@
     requestAnimationFrame(frame);
   }
 
-  function pickRow(p) {
+  function pickRow(p, i) {
     const edge = edgeOf(p);
     return el("tr", {}, [
+      el("td", { class: "num rank-cell", text: String(i + 1) }),
       el("td", { text: p.sport }),
       el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { text: p.event })])]),
       el("td", { text: p.start }),
@@ -350,8 +354,8 @@
   }
 
   function picksTable(picks) {
-    const head = el("tr", {}, ["Sport", "Event", "Start", "Market", "Pick", "Odds", "Fair", "Implied", "Edge", "Confidence", "Books", "Parlay"]
-      .map(function (h, i) { return el("th", { scope: "col", class: (i >= 5 && i <= 8) || i === 10 ? "num" : "", title: i === 10 ? "Books that still clear the 1-point bar, out of every book priced on this line" : null, text: h }); }));
+    const head = el("tr", {}, ["#", "Sport", "Event", "Start", "Market", "Pick", "Odds", "Fair", "Implied", "Edge", "Confidence", "Books", "Parlay"]
+      .map(function (h, i) { return el("th", { scope: "col", class: (i >= 6 && i <= 9) || i === 11 || i === 0 ? "num" : "", title: i === 0 ? "Rank by fair probability, likeliest first" : i === 11 ? "Books that still clear the 1-point bar, out of every book priced on this line" : null, text: h }); }));
     const tbody = el("tbody", {}, picks.map(pickRow));
     return el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Picks table" }, [el("table", { class: "data" }, [el("thead", {}, [head]), tbody])]);
   }
@@ -359,13 +363,22 @@
   function sortByEdge(picks) {
     return (picks || []).filter(isValidPick).sort(function (a, b) { return edgeOf(b) - edgeOf(a); });
   }
+  /* the site's order (owner rule): likeliest to hit first, by fair probability; edge breaks ties */
+  function sortByProb(picks) {
+    return (picks || []).filter(isValidPick).sort(function (a, b) { return (Number(b.modelProb) - Number(a.modelProb)) || (edgeOf(b) - edgeOf(a)); });
+  }
+  /* the rank chip: "#1 · Likeliest" on the top card, "#n" below it */
+  function rankChip(n, short) {
+    if (!n) return null;
+    return el("span", { class: "rank" + (n === 1 ? " rank-top" : ""), title: n === 1 ? "Likeliest to hit on this board (fair probability)" : "Rank " + n + " by fair probability", text: n === 1 && !short ? "#1 · Likeliest" : "#" + n });
+  }
 
   /* ---------- play of the day ---------- */
   function isPlayOfDay(id) { const d = window.PICKS_DATA; return !!(d && d.playOfDay && d.playOfDay.id === id); }
   function potdCard(p) {
     if (!p) {
       /* nothing cleared the bar: show the closest market instead, labelled as such */
-      const alt = marketRows({ limit: 1, oneSidePerMarket: true })[0];
+      const alt = marketRows({ limit: 1, oneSidePerMarket: true, byEdge: true })[0];
       if (alt) { const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: "No pick clears the 1-point bar yet, so this is the market's nearest miss, not a play. It becomes the play of the day at the first refresh that finds an edge." })); c.classList.add("potd-market"); return c; }
       return el("div", { class: "card empty", text: "No play of the day yet. It is chosen at the first refresh with picks, around noon ET." });
     }
@@ -430,7 +443,8 @@
       }
       rec(0, []);
     });
-    return Object.values(bySet).sort((a, b) => b.ev - a.ev).slice(0, limit);
+    /* likeliest ticket first, then expected value */
+    return Object.values(bySet).sort((a, b) => (b.fairProb - a.fairProb) || (b.ev - a.ev)).slice(0, limit);
   }
 
   /* the slip: pick ids kept in localStorage; buttons everywhere reflect it */
@@ -610,7 +624,7 @@
 
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
-    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, initTilt: initTilt, animateNumber: animateNumber,
+    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel

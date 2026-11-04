@@ -79,7 +79,7 @@
       <div id="parlay-host"></div>
     </div>
     <div class="section-head row digest-top" id="top3-head">
-      <div><h2>Top three by expected value</h2></div>
+      <div><h2>The three likeliest</h2></div>
     </div>
     <ol class="digest-top3" id="top3"></ol>
   </div>
@@ -90,8 +90,8 @@
     <div class="section-head row">
       <div>
         <span class="eyebrow">The slate</span>
-        <h2>Every pick, by tip-off</h2>
-        <p class="muted">Grouped by start time, Eastern. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
+        <h2>Every pick, likeliest first</h2>
+        <p class="muted">Ranked by fair probability, with the start time (Eastern) on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
       </div>
     </div>
     <div id="slate-host"></div>
@@ -110,7 +110,7 @@
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA || { picks: [] }, S = window.PERF_DATA || null;
-  var realPicks = E.sortByEdge(D.picks || []);
+  var realPicks = E.sortByProb(D.picks || []);
   var MS = E.marketSummary();
   /* nothing clears the bar: the digest lists the closest markets instead, labelled Watch / No bet, never empty */
   var fallbackMode = !realPicks.length && MS.markets > 0;
@@ -142,7 +142,8 @@
     var time = d.toLocaleTimeString("en-US", { timeZone: ET, hour: "numeric", minute: "2-digit" }) + " ET";
     return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : d.toLocaleDateString("en-US", { timeZone: ET, weekday: "short", month: "short", day: "numeric" })) + " · " + time;
   }
-  var ordered = P.slice().sort(function (a, b) { return sortKey(a) - sortKey(b) || E.edgeOf(b) - E.edgeOf(a); });
+  /* owner rule: likeliest first, everywhere; the start time rides on each line */
+  var ordered = E.sortByProb(P);
 
   /* ---------- lede + tiles ---------- */
   var sports = {}; P.forEach(function (p) { sports[p.sport] = (sports[p.sport] || 0) + 1; });
@@ -183,32 +184,31 @@
   document.getElementById("potd-host").appendChild(E.potdCard(D.playOfDay || null));
   document.getElementById("parlay-host").appendChild(E.parlayCard(D.parlayOfDay || null));
   var top3 = document.getElementById("top3");
-  var byEv = P.slice().sort(function (a, b) { return (b.ev == null ? b.modelProb * E.decimalOdds(b.odds) - 1 : b.ev) - (a.ev == null ? a.modelProb * E.decimalOdds(a.odds) - 1 : a.ev); }).slice(0, 3);
+  var byEv = ordered.slice(0, 3);
   if (!byEv.length) { document.getElementById("top3-head").hidden = true; top3.hidden = true; }
-  if (fallbackMode) document.querySelector("#top3-head h2").textContent = "Closest to the bar by expected value";
-  byEv.forEach(function (p) {
+  if (fallbackMode) document.querySelector("#top3-head h2").textContent = "The three likeliest sides";
+  byEv.forEach(function (p, i) {
     var ev = p.ev == null ? p.modelProb * E.decimalOdds(p.odds) - 1 : p.ev;
     top3.appendChild(E.el("li", {}, [
       E.el("span", { class: "leg-id" }, [T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
       E.el("span", { class: "leg-pick" }, [E.el("strong", { text: p.pick }), E.el("span", { class: "leg-event", text: p.event + " · " + p.market + " · " + slotLabel(p) })]),
       E.el("span", { class: "mono leg-price", text: E.fmtOdds(p.odds) + (p.book ? " " + E.bookAbbr(p.book) : "") }),
-      E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "EV " }), E.el("span", { class: "v edge" + (ev <= 0 ? " neg" : ""), text: E.signed(ev * 100, 1) + "%" })])
+      E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.pct(p.modelProb) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev <= 0 ? " neg" : ""), text: E.signed(ev * 100, 1) + "%" })])
     ]));
   });
-  if (fallbackMode) document.querySelector(".digest-slate .section-head h2").textContent = "The watch list, by tip-off";
+  if (fallbackMode) document.querySelector(".digest-slate .section-head h2").textContent = "The watch list, likeliest first";
 
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
   if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: "No picks to list. Check back after the next refresh." }));
-  var groups = [];
-  ordered.forEach(function (p) { var k = slotLabel(p), g = groups[groups.length - 1]; if (g && g.label === k) g.picks.push(p); else groups.push({ label: k, picks: [p] }); });
+  var groups = ordered.length ? [{ label: "Ranked by fair probability, likeliest first", picks: ordered }] : [];
   groups.forEach(function (g) {
     var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: g.picks.length + (g.picks.length === 1 ? " pick" : " picks") })])]);
-    g.picks.forEach(function (p) {
+    g.picks.forEach(function (p, i) {
       var shop = E.lineShop(p), b = p.breakdown, why = b && b.verdict ? b.verdict : p.rationale;
       sec.appendChild(E.el("article", { class: "digest-row", "data-id": p.id }, [
-        E.el("span", { class: "leg-id digest-id" }, [T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
-        E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.el("span", { class: "leg-event", text: p.event + " · " + p.market }), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear the bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
+        E.el("span", { class: "leg-id digest-id" }, [E.rankChip(i + 1, true), T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
+        E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.el("span", { class: "leg-event", text: p.event + " · " + p.market + " · " + slotLabel(p) }), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear the bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
         E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.signed(E.edgeOf(p) * 100, 1) + "% edge" }), E.el("span", { text: "Fair " + E.pct(p.modelProb) })]),
         E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: "Play of the day" }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
@@ -230,7 +230,7 @@
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
-      g.picks.forEach(function (p) { lines.push("  " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · " + p.confidence + " · edge " + E.signed(E.edgeOf(p) * 100, 1) + "% · " + p.event); });
+      g.picks.forEach(function (p, i) { lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.pct(p.modelProb) + " · " + p.confidence + " · edge " + E.signed(E.edgeOf(p) * 100, 1) + "% · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
     lines.push("Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");

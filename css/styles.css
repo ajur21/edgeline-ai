@@ -1123,3 +1123,25 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .market-table .matchup-sm .team-logo, .market-table .matchup-sm .team-mono { width: 22px; height: 22px; padding: 1px; }
 .market-table .matchup-sm .mu-at { display: none; }
 .market-table table.data th, .market-table table.data td { padding-left: 8px; padding-right: 8px; }
+
+/* ==========================================================================
+   Ranking (owner rule 2026-11-04): likeliest first everywhere. The rank chip, the
+   probability bar (fill = fair probability, tick = what the price implies, hairline = 50%)
+   and the lead metric make the order readable without a legend.
+   ========================================================================== */
+.pick-head-left { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.rank { display: inline-flex; align-items: center; font-family: var(--font-condensed); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rank-top { background: var(--accent-3); color: var(--ink); border-color: transparent; font-weight: 600; }
+.prob { display: grid; gap: 4px; padding: 4px 0 2px; }
+.prob-bar { position: relative; height: 8px; border-radius: 999px; background: var(--accent-wash); }
+.prob-bar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--border-strong); }
+.prob-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent-3)); transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.prob-tick { position: absolute; top: -3px; width: 3px; height: 14px; margin-left: -1.5px; border-radius: 2px; background: var(--text); box-shadow: 0 0 0 1.5px var(--surface); }
+.market-card .prob-fill { background: linear-gradient(90deg, var(--muted), var(--accent-4)); }
+.pick-metric.lead .v { font-size: 1.35rem; font-weight: 600; line-height: 1.1; }
+.pick-metric.lead .k { color: var(--text-2); }
+.how-to { margin: 6px 0 0; max-width: 72ch; font-size: 0.92rem; line-height: 1.5; }
+.board-sport .rank { padding: 1px 5px; font-size: 0.7rem; }
+.rank-cell { font-family: var(--font-condensed); color: var(--muted); }
+.digest-top3 .leg-id .rank, .digest-id .rank { padding: 1px 6px; font-size: 0.72rem; }
+@media (prefers-reduced-motion: reduce) { .prob-fill { transition: none; } }

@@ -200,8 +200,9 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Today’s top edges</span>
-        <h2>Highest-value picks right now</h2>
+        <span class="eyebrow">Today’s board, ranked</span>
+        <h2>The likeliest picks right now</h2>
+        <p class="muted how-to">Likeliest to hit first, by fair probability. The bar on each card is that probability; the tick is what the price implies.</p>
       </div>
       <a class="btn btn-secondary btn-sm" href="picks.html">All picks</a>
     </div>
@@ -302,7 +303,7 @@
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
-  var ranked = E.sortByEdge(P);
+  var ranked = E.sortByProb(P);
   /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
   var fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
   var shown = ranked.length ? ranked : fallback;
@@ -329,7 +330,7 @@
   /* hero board: four best edges, each a link to its card; or the four closest markets when nothing clears the bar */
   var rows = document.getElementById("board-rows");
   if (!ranked.length) {
-    document.getElementById("board-title").textContent = summary.markets ? "Closest to the bar" : "Today's board";
+    document.getElementById("board-title").textContent = summary.markets ? "Likeliest sides tonight" : "Today's board";
     if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
   }
   /* subscribe: what the next calendar event looks like, built from the same data the feed is built from */
@@ -397,9 +398,9 @@
     E.initTilt(sec);
   })();
 
-  shown.slice(0, 4).forEach(function (p) {
+  shown.slice(0, 4).forEach(function (p, i) {
     rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
-      E.el("span", { class: "board-sport" }, [T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
+      E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
       E.el("div", { class: "board-pick" }, [
         E.el("div", { class: "sel", text: p.pick }),
         E.el("div", { class: "ev", text: p.event + " · " + p.market + (p.isMarket ? " · " + E.statusLabel(p.status) : "") })
@@ -438,8 +439,8 @@
   /* top three picks by edge, or the three closest markets */
   var grid = document.getElementById("top-picks-grid");
   if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
-  if (!ranked.length && shown.length) { var th = document.querySelector("#top-picks h2"); if (th) th.textContent = "Closest to the bar right now"; var tp = document.querySelector("#top-picks .section-head p"); if (tp) tp.textContent = "No market clears the 1-point bar yet. These are the nearest misses from the last price check; Watch means within half a point. They are not plays."; }
-  shown.slice(0, 3).forEach(function (p) { grid.appendChild(E.pickCard(p)); });
+  if (!ranked.length && shown.length) { var th = document.querySelector("#top-picks h2"); if (th) th.textContent = "The likeliest sides right now"; var tp = document.querySelector("#top-picks .section-head p"); if (tp) tp.textContent = "No market clears the 1-point bar yet. These are the likeliest sides from the last price check, ranked by fair probability; Watch means within half a point of the bar. They are not plays."; }
+  shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
 
   /* edge calculator: the slider walks a list of valid American odds (no -99..+99 dead zone) */
   var ODDS = [];
