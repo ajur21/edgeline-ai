@@ -29,6 +29,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="picks.html">Today's picks</a></li>
       <li><a href="performance.html">Performance</a></li>
+      <li><a href="journal.html">Journal</a></li>
       <li><a href="index.html#pricing">Pricing</a></li>
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
@@ -53,11 +54,22 @@
     </div>
 
     <div class="grid-4" id="stat-tiles"></div>
+    <div class="grid-2 feature-tiles" id="feature-tiles"></div>
   </div>
 </section>
 
 <section class="section-tight section-flush">
   <div class="container stack">
+    <div class="card chart-card">
+      <div class="chart-head">
+        <div>
+          <h2 class="chart-title">Profit calendar</h2>
+          <p class="chart-sub">Units won or lost each day, all time. Darker means a bigger swing.</p>
+        </div>
+      </div>
+      <div id="pnl-cal"></div>
+    </div>
+
     <div class="card chart-card">
       <div class="chart-head">
         <div>
@@ -130,6 +142,20 @@
     ]));
     if (t.num != null) setTimeout(function () { E.animateNumber(valueEl, t.num, t.fmt, 1000); }, 120 * i);
   });
+
+  /* play of the day and parlay of the day records */
+  var ft = document.getElementById("feature-tiles");
+  [["Play of the day", S.potd], ["Parlay of the day", S.parlays]].forEach(function (pair) {
+    var r = pair[1] || { wins: 0, losses: 0, pushes: 0, units: 0 }, n = r.wins + r.losses + r.pushes;
+    ft.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [
+      E.el("div", { class: "stat-label", text: pair[0] }),
+      E.el("div", { class: "stat-value", text: n ? r.wins + "-" + r.losses + (r.pushes ? "-" + r.pushes : "") : "\u2014" }),
+      E.el("div", { class: "stat-sub", text: n ? E.signed(r.units, 2) + "u over " + n + " graded, last 30 days" : "Nothing graded yet" })
+    ]));
+  });
+
+  /* profit calendar, all time */
+  E.pnlCalendar(document.getElementById("pnl-cal"), S.byDate || []);
 
   /* cumulative units line, re-based to zero at the start of the chosen window */
   var unitsHost = document.getElementById("units-chart"), unitsTableHost = document.getElementById("units-table-host");
@@ -209,6 +235,7 @@
         <nav aria-label="Product"><ul>
           <li><a href="picks.html">Today's picks</a></li>
           <li><a href="performance.html">Performance</a></li>
+          <li><a href="journal.html">Journal</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a href="index.html#how">How it works</a></li>
         </ul></nav>

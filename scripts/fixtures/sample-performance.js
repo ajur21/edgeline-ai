@@ -1,4 +1,4 @@
-/* SAMPLE DATA — generated, not a real track record. Replace with your own results. */
+/* SAMPLE DATA (test fixture, not a real track record). Shape matches what scripts/update-data.js writes. */
 window.PERF_DATA = {
   "sample": true,
   "asOf": "2026-11-04",
@@ -167,7 +167,7 @@ window.PERF_DATA = {
       "pick": "Cleveland ML",
       "odds": 105,
       "result": "Loss",
-      "units": -1.0
+      "units": -1
     },
     {
       "date": "2026-11-04",
@@ -185,7 +185,7 @@ window.PERF_DATA = {
       "pick": "Under 2.5 goals",
       "odds": -115,
       "result": "Loss",
-      "units": -1.0
+      "units": -1
     },
     {
       "date": "2026-11-03",
@@ -212,7 +212,7 @@ window.PERF_DATA = {
       "pick": "Memphis +1.5",
       "odds": -130,
       "result": "Loss",
-      "units": -1.0
+      "units": -1
     },
     {
       "date": "2026-11-02",
@@ -257,7 +257,7 @@ window.PERF_DATA = {
       "pick": "Barcelona ML",
       "odds": -120,
       "result": "Loss",
-      "units": -1.0
+      "units": -1
     },
     {
       "date": "2026-11-01",
@@ -268,5 +268,230 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 1.2
     }
-  ]
+  ],
+  "byDate": [
+    {
+      "date": "2026-10-06",
+      "units": 0.68,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-07",
+      "units": -0.23,
+      "wins": 2,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-08",
+      "units": -3,
+      "wins": 0,
+      "losses": 3,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-09",
+      "units": 1.75,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-10",
+      "units": 4.2,
+      "wins": 3,
+      "losses": 0,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-11",
+      "units": 2.02,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-12",
+      "units": -3,
+      "wins": 0,
+      "losses": 3,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-13",
+      "units": -2.95,
+      "wins": 1,
+      "losses": 3,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-14",
+      "units": 1.1,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-15",
+      "units": -1.05,
+      "wins": 2,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-16",
+      "units": -1.03,
+      "wins": 1,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-17",
+      "units": 0.86,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-18",
+      "units": -2,
+      "wins": 1,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-19",
+      "units": 2.35,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-20",
+      "units": -0.03,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-21",
+      "units": -2.05,
+      "wins": 1,
+      "losses": 3,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-22",
+      "units": 1.01,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-23",
+      "units": -1.34,
+      "wins": 1,
+      "losses": 3,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-24",
+      "units": -2,
+      "wins": 1,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-25",
+      "units": 2.02,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-26",
+      "units": 0.82,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-27",
+      "units": 0.93,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-28",
+      "units": -0.1,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-29",
+      "units": 0.2,
+      "wins": 2,
+      "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-30",
+      "units": 0.2,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-10-31",
+      "units": 2.61,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-01",
+      "units": 2.23,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-02",
+      "units": 1.15,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-03",
+      "units": 1.01,
+      "wins": 3,
+      "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-04",
+      "units": -0.09,
+      "wins": 2,
+      "losses": 1,
+      "pushes": 0
+    }
+  ],
+  "potd": {
+    "wins": 16,
+    "losses": 12,
+    "pushes": 2,
+    "units": 4.1
+  },
+  "parlays": {
+    "wins": 5,
+    "losses": 19,
+    "pushes": 0,
+    "units": 7.9
+  },
+  "graded": 106
 };

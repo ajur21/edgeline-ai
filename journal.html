@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journal · EdgeLine AI</title>
+  <meta name="description" content="Log your own bets with screenshots and track your profit by day. Stored on your device.">
+  <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EdgeLine AI">
+  <meta property="og:title" content="Journal · EdgeLine AI">
+  <meta property="og:description" content="Log your own bets with screenshots and track your profit by day.">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+  <script src="js/space.js" defer></script>
+</head>
+<body>
+
+<a class="visually-hidden" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+    <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="picks.html">Today's picks</a></li>
+      <li><a href="performance.html">Performance</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head row page-head">
+      <div>
+        <span class="eyebrow">Journal</span>
+        <h1 class="page-title">Your bets, your record</h1>
+        <p class="muted page-sub">Log what you actually bet, attach the ticket, and watch the calendar fill in.</p>
+      </div>
+      <span class="badge badge-sample">Stored on this device</span>
+    </div>
+    <div class="grid-4" id="j-stats"></div>
+  </div>
+</section>
+
+<section class="section-tight section-flush">
+  <div class="container stack">
+    <div class="card chart-card">
+      <div class="chart-head">
+        <div>
+          <h2 class="chart-title">Profit calendar</h2>
+          <p class="chart-sub">Your settled bets by day, in units of stake.</p>
+        </div>
+      </div>
+      <div id="j-cal"></div>
+    </div>
+
+    <div class="journal-grid">
+      <div class="card">
+        <h2 class="chart-title">Log a bet</h2>
+        <p class="chart-sub">Stake is in units. Pick a result now or come back and settle it later.</p>
+        <form id="j-form" class="form-grid" novalidate>
+          <label class="field">Date<input type="date" name="date" required></label>
+          <label class="field">Sport
+            <select name="sport"><option>NFL</option><option>NBA</option><option>MLB</option><option>NHL</option><option>Soccer</option><option>Other</option></select>
+          </label>
+          <label class="field wide">Bet<input type="text" name="bet" placeholder="Buffalo -2.5" required maxlength="120"></label>
+          <label class="field">Odds (American)<input type="number" name="odds" placeholder="-110" required step="1" inputmode="numeric"></label>
+          <label class="field">Stake (units)<input type="number" name="stake" value="1" min="0.1" step="0.1" required inputmode="decimal"></label>
+          <label class="field">Result
+            <select name="result"><option>Pending</option><option>Win</option><option>Loss</option><option>Push</option></select>
+          </label>
+          <label class="field">Screenshots<input type="file" name="images" accept="image/*" multiple></label>
+          <label class="field wide">Notes<textarea name="notes" maxlength="2000" placeholder="Why you took it, the book, the closing line…"></textarea></label>
+          <div class="form-actions wide">
+            <button type="submit" class="btn btn-primary">Save bet</button>
+            <span class="small muted" id="j-form-msg" role="status"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="chart-head">
+          <div>
+            <h2 class="chart-title">Entries</h2>
+            <p class="chart-sub" id="j-count"></p>
+          </div>
+          <div class="chart-actions">
+            <button type="button" class="btn btn-secondary btn-sm" id="j-export">Export JSON</button>
+            <label class="btn btn-secondary btn-sm">Import<input type="file" id="j-import" accept="application/json" hidden></label>
+          </div>
+        </div>
+        <div id="j-list"></div>
+      </div>
+    </div>
+
+    <div class="notice local-note">
+      <strong>Where this lives.</strong> Entries and screenshots are saved in this browser only, on this device, and never leave it. Clearing site data deletes them, so export a backup now and then. Accounts with sync are on the roadmap.
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Screenshot"><img alt="Bet screenshot"></div>
+
+<script>
+(function () {
+  var E = window.EdgeLine;
+  var DB_NAME = "edgeline-journal", STORE = "bets";
+  function openDB() {
+    return new Promise(function (resolve, reject) {
+      var req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = function () { var db = req.result; if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: "id", autoIncrement: true }); };
+      req.onsuccess = function () { resolve(req.result); }; req.onerror = function () { reject(req.error); };
+    });
+  }
+  function tx(mode, fn) { return openDB().then(function (db) { return new Promise(function (resolve, reject) { var t = db.transaction(STORE, mode), s = t.objectStore(STORE), out = fn(s); t.oncomplete = function () { resolve(out && out.result !== undefined ? out.result : out); }; t.onerror = function () { reject(t.error); }; }); }); }
+  function all() { return tx("readonly", function (s) { return s.getAll(); }); }
+  function put(e) { return tx("readwrite", function (s) { return s.put(e); }); }
+  function del(id) { return tx("readwrite", function (s) { return s.delete(id); }); }
+
+  function unitsFor(e) { return e.result === "Win" ? Math.round(e.stake * (E.decimalOdds(e.odds) - 1) * 100) / 100 : e.result === "Loss" ? -e.stake : 0; }
+  var urls = [];
+  function thumb(blob) { var u = URL.createObjectURL(blob); urls.push(u); var img = E.el("img", { class: "thumb", src: u, alt: "Bet screenshot", loading: "lazy" }); img.addEventListener("click", function () { lb.querySelector("img").src = u; lb.hidden = false; }); return img; }
+  var lb = document.getElementById("lightbox");
+  lb.addEventListener("click", function () { lb.hidden = true; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") lb.hidden = true; });
+
+  var cal = null;
+  function render() {
+    return all().then(function (entries) {
+      urls.forEach(function (u) { URL.revokeObjectURL(u); }); urls = [];
+      entries.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : b.id - a.id; });
+      var settled = entries.filter(function (e) { return e.result !== "Pending"; });
+      var rec = { wins: 0, losses: 0, pushes: 0 }, units = 0, risked = 0;
+      settled.forEach(function (e) { rec[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++; units += unitsFor(e); risked += e.stake; });
+      units = Math.round(units * 100) / 100;
+      var stats = document.getElementById("j-stats"); stats.textContent = "";
+      [["Units", E.signed(units, 2) + "u", settled.length + " settled bets"], ["Record", rec.wins + "-" + rec.losses + "-" + rec.pushes, "wins-losses-pushes"],
+       ["ROI", risked ? E.signed(units / risked * 100, 1) + "%" : "—", "Units won ÷ units risked"], ["Pending", String(entries.length - settled.length), "Waiting on a result"]].forEach(function (t) {
+        stats.appendChild(E.el("div", { class: "card stat" }, [E.el("div", { class: "stat-label", text: t[0] }), E.el("div", { class: "stat-value", text: t[1] }), E.el("div", { class: "stat-sub", text: t[2] })]));
+      });
+      var byDate = {};
+      settled.forEach(function (e) { var d = byDate[e.date] = byDate[e.date] || { date: e.date, units: 0, wins: 0, losses: 0, pushes: 0 }; d.units = Math.round((d.units + unitsFor(e)) * 100) / 100; d[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++; });
+      var rows = Object.keys(byDate).sort().map(function (k) { return byDate[k]; });
+      if (!cal) cal = E.pnlCalendar(document.getElementById("j-cal"), rows); else cal.update(rows);
+      document.getElementById("j-count").textContent = entries.length ? entries.length + " entries" : "Nothing logged yet.";
+      var list = document.getElementById("j-list"); list.textContent = "";
+      if (!entries.length) { list.appendChild(E.el("p", { class: "empty", text: "Your first bet goes here." })); return; }
+      var days = {};
+      entries.forEach(function (e) { (days[e.date] = days[e.date] || []).push(e); });
+      Object.keys(days).sort().reverse().forEach(function (date) {
+        var dayUnits = days[date].reduce(function (s, e) { return s + unitsFor(e); }, 0);
+        var block = E.el("div", { class: "journal-day" }, [E.el("h3", {}, [E.el("span", { text: new Date(date + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" }) }), E.el("span", { class: "mono", text: E.signed(Math.round(dayUnits * 100) / 100, 2) + "u" })])]);
+        days[date].forEach(function (e) {
+          var sel = E.el("select", { "aria-label": "Result for " + e.bet }, ["Pending", "Win", "Loss", "Push"].map(function (r) { return E.el("option", { value: r, text: r }); }));
+          sel.value = e.result;
+          sel.addEventListener("change", function () { e.result = sel.value; put(e).then(render); });
+          var delBtn = E.el("button", { type: "button", class: "slip-remove", "aria-label": "Delete " + e.bet, text: "×" });
+          delBtn.addEventListener("click", function () { if (confirm("Delete this bet?")) del(e.id).then(render); });
+          block.appendChild(E.el("div", { class: "entry" }, [
+            E.el("span", { class: "badge badge-sport", "data-sport": e.sport, text: e.sport }),
+            E.el("div", { class: "entry-main" }, [
+              E.el("div", {}, [E.el("strong", { text: e.bet }), " ", E.el("span", { class: "mono", text: E.fmtOdds(e.odds) })]),
+              E.el("div", { class: "entry-meta", text: e.stake + "u stake" + (e.result !== "Pending" ? " · " + E.signed(unitsFor(e), 2) + "u" : "") }),
+              e.notes ? E.el("p", { class: "entry-notes", text: e.notes }) : null,
+              (e.images && e.images.length) ? E.el("div", { class: "thumbs" }, e.images.map(thumb)) : null
+            ]),
+            E.el("div", { class: "entry-side" }, [E.el("span", { class: "result result-" + e.result.toLowerCase() }, [E.el("span", { class: "dot", "aria-hidden": "true" }), e.result]), sel, delBtn])
+          ]));
+        });
+        list.appendChild(block);
+      });
+    });
+  }
+
+  var form = document.getElementById("j-form"), msg = document.getElementById("j-form-msg");
+  form.elements.date.value = new Date().toLocaleDateString("en-CA");
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var f = form.elements, odds = Number(f.odds.value), stake = Number(f.stake.value);
+    if (!f.date.value || !f.bet.value.trim() || !Number.isFinite(odds) || Math.abs(odds) < 100 || !(stake > 0)) { msg.textContent = "Need a date, a bet, American odds of at least ±100 and a stake."; return; }
+    var files = Array.from(f.images.files || []).filter(function (x) { return /^image\//.test(x.type); });
+    put({ date: f.date.value, sport: f.sport.value, bet: f.bet.value.trim(), odds: odds, stake: stake, result: f.result.value, notes: f.notes.value.trim(), images: files, createdAt: new Date().toISOString() })
+      .then(function () { msg.textContent = "Saved."; form.reset(); form.elements.date.value = new Date().toLocaleDateString("en-CA"); form.elements.stake.value = "1"; return render(); })
+      .catch(function (e) { msg.textContent = "Could not save: " + e.message; });
+  });
+
+  /* export / import: JSON with screenshots inlined as data URLs */
+  function blobToDataURL(b) { return new Promise(function (res) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.readAsDataURL(b); }); }
+  function dataURLToBlob(u) { var m = /^data:([^;]+);base64,(.*)$/.exec(u); if (!m) return null; var bin = atob(m[2]), arr = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); return new Blob([arr], { type: m[1] }); }
+  document.getElementById("j-export").addEventListener("click", function () {
+    all().then(function (entries) {
+      return Promise.all(entries.map(function (e) { return Promise.all((e.images || []).map(blobToDataURL)).then(function (imgs) { var c = Object.assign({}, e); delete c.id; c.images = imgs; return c; }); }));
+    }).then(function (out) {
+      var blob = new Blob([JSON.stringify({ app: "edgeline-journal", version: 1, exportedAt: new Date().toISOString(), entries: out }, null, 1)], { type: "application/json" });
+      var a = E.el("a", { href: URL.createObjectURL(blob), download: "edgeline-journal-" + new Date().toLocaleDateString("en-CA") + ".json" });
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  });
+  document.getElementById("j-import").addEventListener("change", function (ev) {
+    var file = ev.target.files[0]; if (!file) return;
+    file.text().then(function (txt) {
+      var data = JSON.parse(txt); if (!data || data.app !== "edgeline-journal" || !Array.isArray(data.entries)) throw new Error("Not a journal export");
+      return Promise.all(data.entries.map(function (e) {
+        var imgs = (e.images || []).map(dataURLToBlob).filter(Boolean);
+        return put({ date: String(e.date), sport: String(e.sport || "Other"), bet: String(e.bet || ""), odds: Number(e.odds), stake: Number(e.stake) || 1, result: ["Pending", "Win", "Loss", "Push"].indexOf(e.result) !== -1 ? e.result : "Pending", notes: String(e.notes || ""), images: imgs, createdAt: String(e.createdAt || new Date().toISOString()) });
+      }));
+    }).then(function () { msg.textContent = "Imported."; ev.target.value = ""; return render(); }).catch(function (e) { msg.textContent = "Import failed: " + e.message; });
+  });
+
+  render();
+})();
+</script>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="notice">
+      <strong>Responsible gambling.</strong> EdgeLine AI provides statistical analysis for informational and entertainment purposes only. It is not financial advice and does not guarantee any outcome. Past performance does not predict future results. Sports betting involves risk; never wager more than you can afford to lose. You must be 21 or older (or the legal age in your jurisdiction) and bet only where it is legal. If you or someone you know has a gambling problem, call <a href="tel:1-800-426-2537">1-800-GAMBLER</a>.
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
+        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <nav aria-label="Product"><ul>
+          <li><a href="picks.html">Today's picks</a></li>
+          <li><a href="performance.html">Performance</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+        </ul></nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Company"><ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul></nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> EdgeLine AI. All rights reserved.</span>
+      <span class="footer-age"><span class="age-badge" aria-hidden="true">21+</span><span class="visually-hidden">Must be 21 or older.</span> Gamble responsibly.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

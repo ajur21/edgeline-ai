@@ -29,6 +29,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="picks.html">Today's picks</a></li>
       <li><a href="performance.html">Performance</a></li>
+      <li><a href="journal.html">Journal</a></li>
       <li><a href="index.html#pricing">Pricing</a></li>
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
@@ -60,6 +61,23 @@
       <div id="board-rows"></div>
       <div class="board-foot" id="board-foot"></div>
     </section>
+  </div>
+</section>
+
+<section class="section section-flush" id="plays">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <span class="eyebrow">Today's plays</span>
+        <h2>Play of the day. Parlay of the day.</h2>
+        <p class="muted">Chosen once a day, locked in, and graded in public.</p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
+    </div>
+    <div class="plays">
+      <div id="potd-host"></div>
+      <div id="parlay-host"></div>
+    </div>
   </div>
 </section>
 
@@ -257,6 +275,10 @@
     foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
   });
 
+  /* play of the day and parlay of the day, as the pipeline chose them */
+  document.getElementById("potd-host").appendChild(E.potdCard(window.PICKS_DATA.playOfDay || null));
+  document.getElementById("parlay-host").appendChild(E.parlayCard(window.PICKS_DATA.parlayOfDay || null));
+
   /* top three picks by edge */
   var grid = document.getElementById("top-picks-grid");
   if (!ranked.length) grid.appendChild(E.el("div", { class: "card empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
@@ -298,6 +320,7 @@
 </script>
 
 </main>
+<a class="btn btn-primary btn-sm slip-link" href="picks.html#parlay" hidden>Parlay slip<strong>0</strong></a>
 <footer class="site-footer">
   <div class="container">
     <div class="notice">
@@ -313,6 +336,7 @@
         <nav aria-label="Product"><ul>
           <li><a href="picks.html">Today's picks</a></li>
           <li><a href="performance.html">Performance</a></li>
+          <li><a href="journal.html">Journal</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a href="index.html#how">How it works</a></li>
         </ul></nav>

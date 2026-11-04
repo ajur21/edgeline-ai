@@ -29,6 +29,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="picks.html">Today's picks</a></li>
       <li><a href="performance.html">Performance</a></li>
+      <li><a href="journal.html">Journal</a></li>
       <li><a href="index.html#pricing">Pricing</a></li>
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
@@ -106,6 +107,19 @@
   </div>
 </section>
 
+<button type="button" class="btn btn-primary btn-sm slip-toggle" id="slip-toggle" aria-expanded="false" aria-controls="slip">Parlay slip<strong id="slip-count">0</strong></button>
+<aside class="slip" id="slip" aria-label="Parlay builder" hidden>
+  <div class="slip-head">
+    <h2 id="parlay">Parlay builder</h2>
+    <button type="button" class="btn btn-secondary btn-sm" id="slip-close">Close</button>
+  </div>
+  <div class="slip-body" id="slip-body"></div>
+  <div class="slip-foot">
+    <button type="button" class="btn btn-secondary btn-sm" id="slip-load">Load parlay of the day</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="slip-clear">Clear</button>
+  </div>
+</aside>
+
 <script src="data/picks.js"></script>
 <script>
 (function () {
@@ -181,6 +195,68 @@
   vt.addEventListener("click", function () { setView("table"); });
   render();
   highlightFromHash();
+
+  /* ---------- parlay builder slip ---------- */
+  var slipEl = document.getElementById("slip"), slipBody = document.getElementById("slip-body"), slipToggle = document.getElementById("slip-toggle");
+  var BOOK_KEY = "parlay-book";
+  function chosenBook() { try { return localStorage.getItem(BOOK_KEY) || ""; } catch (e) { return ""; } }
+  function openSlip(open) { slipEl.hidden = !open; slipToggle.hidden = open; slipToggle.setAttribute("aria-expanded", String(open)); if (open) renderSlip(); }
+  function stakeValue() { var n = Number((document.getElementById("slip-stake") || {}).value); return Number.isFinite(n) && n > 0 ? n : 10; }
+  var stake = 10;
+  function renderSlip() {
+    var ids = E.slip.get(), byId = {}; P.forEach(function (p) { byId[p.id] = p; });
+    var legs = ids.map(function (id) { return byId[id]; }).filter(Boolean);
+    document.getElementById("slip-count").textContent = String(legs.length);
+    slipBody.textContent = "";
+    if (!legs.length) { slipBody.appendChild(E.el("p", { class: "slip-empty", text: "Add picks from the board to build a parlay. Legs must come from different games." })); return; }
+    /* one leg per game: later duplicates are kept on the list but left out of the maths */
+    var seen = {}, used = [], dupes = [];
+    legs.forEach(function (l) { if (seen[l.event]) dupes.push(l); else { seen[l.event] = true; used.push(l); } });
+    var m = E.parlayMath(used, chosenBook() || null);
+    slipBody.appendChild(E.el("ul", { class: "slip-legs" }, legs.map(function (l) {
+      var priced = m.legs.find(function (x) { return x.pick.id === l.id; });
+      return E.el("li", {}, [
+        E.el("span", { class: "leg-pick" }, [E.el("strong", { text: l.pick }), E.el("span", { class: "leg-event", text: l.event + " · " + l.market })]),
+        E.el("span", { class: "mono leg-price", text: priced ? E.fmtOdds(priced.price) : "—" }),
+        E.el("button", { type: "button", class: "slip-remove", "data-remove": l.id, "aria-label": "Remove " + l.pick, text: "×" })
+      ]);
+    })));
+    if (dupes.length) slipBody.appendChild(E.el("p", { class: "slip-warn", text: "Two legs from the same game (" + dupes[0].event + "). Only the first counts; remove one." }));
+    if (used.length < 2) { slipBody.appendChild(E.el("p", { class: "slip-empty", text: "Add one more leg from a different game to price the parlay." })); return; }
+    var sel = E.el("select", { id: "slip-book" }, [E.el("option", { value: "", text: "Best single book (auto)" })]
+      .concat(m.books.map(function (b) { return E.el("option", { value: b, text: b }); })));
+    sel.value = chosenBook() && m.books.indexOf(chosenBook()) !== -1 ? chosenBook() : "";
+    slipBody.appendChild(E.el("label", { class: "slip-book" }, ["Priced at", sel]));
+    if (m.mixed) slipBody.appendChild(E.el("p", { class: "slip-warn", text: "No single book prices every leg; this uses each leg's best price, so a real ticket will pay less." }));
+    else slipBody.appendChild(E.el("p", { class: "small muted", text: "One ticket at " + m.book + "." }));
+    slipBody.appendChild(E.el("div", { class: "pick-metrics slip-metrics" }, [
+      E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Combined odds" }), E.el("div", { class: "v", text: E.fmtOdds(m.odds) })]),
+      E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Fair" }), E.el("div", { class: "v", text: E.pct(m.fairProb) })]),
+      E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "Implied" }), E.el("div", { class: "v", text: E.pct(m.implied) })]),
+      E.el("div", { class: "pick-metric" }, [E.el("div", { class: "k", text: "EV / unit" }), E.el("div", { class: "v edge" + (m.ev <= 0 ? " neg" : ""), text: E.signed(m.ev * 100, 1) + "%" })])
+    ]));
+    var stakeIn = E.el("input", { type: "number", id: "slip-stake", min: "1", step: "1", value: String(stake), inputmode: "numeric" });
+    slipBody.appendChild(E.el("label", { class: "slip-stake" }, ["Stake", stakeIn]));
+    var payout = E.el("div", { class: "slip-payout" }, [E.el("span", { class: "k", text: "To win" }), E.el("span", { class: "v mono", id: "slip-win", text: E.signed(stake * (m.decimal - 1), 2) })]);
+    slipBody.appendChild(payout);
+    stakeIn.addEventListener("input", function () { stake = stakeValue(); document.getElementById("slip-win").textContent = E.signed(stake * (m.decimal - 1), 2); });
+    sel.addEventListener("change", function () { try { localStorage.setItem(BOOK_KEY, sel.value); } catch (e) {} renderSlip(); });
+  }
+  slipBody.addEventListener("click", function (e) { var b = e.target.closest("[data-remove]"); if (b) E.slip.toggle(b.getAttribute("data-remove")); });
+  document.addEventListener("slipchange", function () { document.getElementById("slip-count").textContent = String(E.slip.get().length); if (!slipEl.hidden) renderSlip(); });
+  slipToggle.addEventListener("click", function () { openSlip(true); });
+  document.getElementById("slip-close").addEventListener("click", function () { openSlip(false); slipToggle.focus(); });
+  document.getElementById("slip-clear").addEventListener("click", function () { E.slip.clear(); });
+  document.getElementById("slip-load").addEventListener("click", function () {
+    var par = D.parlayOfDay;
+    if (!par) { slipBody.appendChild(E.el("p", { class: "slip-warn", text: "There is no parlay of the day right now." })); return; }
+    try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
+    E.slip.set(par.legs.map(function (l) { return l.id; }));
+    openSlip(true);
+  });
+  document.getElementById("slip-count").textContent = String(E.slip.get().length);
+  if (location.hash === "#parlay") openSlip(true);
+  window.addEventListener("hashchange", function () { if (location.hash === "#parlay") openSlip(true); });
 })();
 </script>
 
@@ -200,6 +276,7 @@
         <nav aria-label="Product"><ul>
           <li><a href="picks.html">Today's picks</a></li>
           <li><a href="performance.html">Performance</a></li>
+          <li><a href="journal.html">Journal</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a href="index.html#how">How it works</a></li>
         </ul></nav>

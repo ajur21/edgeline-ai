@@ -62,6 +62,30 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("performance.js: 1-1-1 record, -0.09u, roi -3.0%", PF.record.wins === 1 && PF.record.losses === 1 && PF.record.pushes === 1 && near(PF.units, -0.09, 0.001) && near(PF.roi, -3.0, 0.01), JSON.stringify([PF.record, PF.units, PF.roi]));
   check("performance.js: one daily point, bySport NBA 1-1, 3 recent, void excluded", PF.daily.length === 1 && PF.bySport[0].record === "1-1" && PF.recent.length === 3);
 
+  /* play of the day and parlay of the day on the fixture board */
+  check("potd: the Draw (higher EV) is play of the day and is flagged in the log", PD.playOfDay && PD.playOfDay.pick === "Draw" && log.find(e => e.potd === "2026-11-05").pick === "Draw", PD.playOfDay && PD.playOfDay.pick);
+  check("potd: board picks carry prices per book and ev", PD.picks.every(p => p.prices && Object.keys(p.prices).length >= 3 && typeof p.ev === "number"));
+  check("parlay: none when the legs share no book where both are +EV", PD.parlayOfDay === null);
+
+  /* parlay maths and grading on synthetic legs */
+  const mk = (id, fair, prices, ev) => ({ id: id, eventId: "ev-" + id, modelProb: fair, prices: prices, status: "pending" });
+  const A = mk("A", 0.55, { DraftKings: 100, FanDuel: -105 }), B = mk("B", 0.6, { DraftKings: -110, FanDuel: -120 }), C = mk("C", 0.5, { DraftKings: -130 });
+  const par = P.bestParlay([A, B, C]);
+  check("parlay: picks DraftKings A+B (C is -EV at DK), +282, EV +26%", par && par.book === "DraftKings" && par.legs.join() === "A,B" && par.odds === 282 && near(par.ev, 0.26, 0.01), JSON.stringify(par));
+  check("parlay: same-event legs never combine", P.bestParlay([A, Object.assign(mk("A2", 0.6, { DraftKings: 100 }), { eventId: "ev-A" })]) === null);
+  const plog = () => [Object.assign({}, A), Object.assign({}, B), { type: "parlay", id: "parlay-x", legs: ["A", "B"], legPrices: [100, -110], status: "pending", units: 0 }];
+  let L = plog(); L[0].status = "graded"; L[0].result = "Win"; L[1].status = "graded"; L[1].result = "Win"; P.gradeParlays(L, new Date());
+  check("parlay grading: two wins pay the combined price (+2.82u)", L[2].result === "Win" && near(L[2].units, 2.82, 0.01), String(L[2].units));
+  L = plog(); L[0].status = "graded"; L[0].result = "Win"; L[1].status = "graded"; L[1].result = "Push"; P.gradeParlays(L, new Date());
+  check("parlay grading: a push drops out, the rest pays as a single (+1.00u)", L[2].result === "Win" && near(L[2].units, 1.0, 0.01));
+  L = plog(); L[0].status = "graded"; L[0].result = "Loss"; L[1].status = "graded"; L[1].result = "Win"; P.gradeParlays(L, new Date());
+  check("parlay grading: any loss loses the parlay", L[2].result === "Loss" && L[2].units === -1);
+  L = plog(); L[0].status = "void"; P.gradeParlays(L, new Date());
+  check("parlay grading: a void leg voids the parlay", L[2].status === "void");
+  L = plog(); L[0].status = "graded"; L[0].result = "Win"; P.gradeParlays(L, new Date());
+  check("parlay grading: waits until every leg is settled", L[2].status === "pending");
+  check("potd: sticks to the first choice for the day", (() => { const l = [{ id: "x", potd: "2026-11-05", ev: 0.01 }]; return P.choosePlayOfDay(l, [{ id: "y", ev: 0.5, edge: 0.1 }], "2026-11-05").id === "x"; })());
+
   /* idempotent: a second run at the same moment adds nothing and keeps the board */
   const r2 = await P.run({ fixture: true, out: tmp, now: NOW });
   check("rerun: no duplicates", r2.added === 0 && r2.board === 2);

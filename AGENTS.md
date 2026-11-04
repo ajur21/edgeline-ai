@@ -11,11 +11,12 @@ A static marketing and product website for an AI sports betting picks service. T
 ## File map
 
 ```
-index.html           Landing: hero + today's board, how it works, top 3 picks, pricing, FAQ
-picks.html           All picks with filters (sport, market, confidence, min edge); card/table view
-performance.html     Stat tiles, cumulative units line chart, units by sport bars, graded results table
+index.html           Landing: ticker, hero + today's board, play of the day + parlay of the day, how it works + edge calculator, top 3 picks, pricing, FAQ
+picks.html           All picks with filters and sort; card/table view; parlay builder slip (#parlay)
+performance.html     Stat tiles, play/parlay record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table
+journal.html         Personal bet log: form with screenshots, stats, profit calendar, export/import. IndexedDB on the visitor's device only; no backend
 css/styles.css       ALL styles. Design tokens live in :root at the top; dark theme in the two blocks below it
-js/app.js            Loaded in <head>. Theme toggle, nav state, odds math, pick card/table rendering. Exposes window.EdgeLine
+js/app.js            Loaded in <head>. Theme, nav, odds math, pick cards/table, flip + tilt + reveal, play-of-the-day and parlay cards, parlay maths + slip (localStorage), profit calendar. Exposes window.EdgeLine
 js/charts.js         Dependency-free SVG line + bar charts with tooltips, keyboard nav, table twins. Exposes window.EdgeLineCharts
 js/space.js          Canvas space backdrop (parallax stars, nebulae, flare, shooting stars, vignette); light theme = daylight sky; still frame under reduced motion
 data/picks.js        -> window.PICKS_DATA  { sample, source, generatedAt, picks: [...] }   (sample until the pipeline runs)
@@ -69,11 +70,17 @@ How a pick is made (all in `update-data.js`, tunable in `RULES`):
 3. For each outcome, take the best price among the bettable books (never Pinnacle). Edge = fair − implied(best price). Edge of 1 point or more becomes a pick (Lean; about +2% expected value at even odds); 2 is Medium; 3.5 is High. Each pick records `ev` (expected profit per unit). Only one side of a market can be picked.
 4. At most 4 picks per sport and 12 per run; only events starting within 36 hours. A pick is logged once per event+market+outcome+line, at the price seen.
 5. Pending picks whose events started 3+ hours ago are graded from the scores endpoint (2 requests per sport with pending picks). Win pays the profit at the logged odds for 1 unit; loss is −1; push 0. Ungraded after 7 days becomes `void` and is excluded.
-6. `performance.js` summarises graded picks from the last 30 days by event date (Eastern). `picks.js` is every pending pick whose event is still ahead.
+6. `performance.js` summarises graded picks from the last 30 days by event date (Eastern), plus `byDate` (all-time daily profit for the calendar), `potd` and `parlays` records. `picks.js` is every pending pick whose event is still ahead, each with `prices` (price at every bettable book on that line) and `ev`.
+7. **Play of the day** (`playOfDay` in picks.js): the highest-EV pick on the board, chosen once per Eastern day at the first run that has picks (`potd` date on the log entry) and never swapped that day. **Parlay of the day** (`parlayOfDay`): 2-3 legs from different games, all +EV at one book, the combination with the highest EV (fair = product of fair probabilities, treating legs as independent); logged as a `type: "parlay"` entry with `legPrices`, one per day. Parlays grade once every leg settles: any loss loses, pushes drop out, the rest pay the combined price; a void leg voids it.
+8. The parlay builder (picks page) re-uses `prices` client-side: `EdgeLine.parlayMath` prices a slip at one book (auto-best, chosen, or mixed best prices with a warning). The slip lives in localStorage (`parlay-slip`, `parlay-book`).
 
 Request budget: 3 per sport fetched (2 for soccer) plus 2 per sport with pending picks for grading, twice a day: roughly 450-480 a month against the free tier's 500. Adding La Liga or a third run needs the paid tier. The script stops fetching odds when the API reports fewer than 25 requests left. `node scripts/update-data.js --verbose --out /tmp/x` prints every line's best edge (costs real requests). Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
 
 To run locally: `ODDS_API_KEY=... npm run data`. To test without the network: `npm test` (uses `scripts/fixtures/`).
+
+## Journal
+
+`journal.html` is a personal bet log stored in IndexedDB on the visitor's device (entries with screenshot blobs). Nothing is uploaded. Export/import is a JSON file with images inlined as data URLs. It shares the calendar and stat tile components with the performance page. Accounts with sync are a backlog item.
 
 ## Deploy
 
@@ -93,6 +100,7 @@ Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://githu
 1. ~~Wire real picks and results~~ done: see Data pipeline. Remaining: add the `ODDS_API_KEY` secret and run the workflow once.
 2. Account sign-up / login and plan checkout (needs a backend; out of scope for the static site).
 3. Email capture on the Free plan.
+3b. Accounts with sync for the journal (currently device-only), and a shared parlay link.
 4. Terms, privacy and responsible-gambling pages.
 5. Social preview image (`og:image`); tags and favicon are in place.
 6. ~~Deploy~~ done: GitHub Pages via Actions (see Deploy). A custom domain is the remaining step: add a CNAME in the repo settings.

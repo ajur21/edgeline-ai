@@ -48,6 +48,8 @@ const RULES = {
 function implied(american) { const o = Number(american); return o < 0 ? -o / (-o + 100) : 100 / (o + 100); }
 function profitPerUnit(american) { const o = Number(american); return o > 0 ? o / 100 : 100 / -o; }
 function devig(prices) { const ps = prices.map(implied), s = ps.reduce((a, b) => a + b, 0); return ps.map(p => p / s); }
+function decimal(american) { const o = Number(american); return o > 0 ? 1 + o / 100 : 1 + 100 / -o; }
+function americanFromDecimal(dec) { return dec >= 2 ? Math.round((dec - 1) * 100) : -Math.round(100 / (dec - 1)); }
 function fmtOdds(o) { return (o > 0 ? "+" : "") + o; }
 function pct(p) { return (p * 100).toFixed(1) + "%"; }
 function round(n, d) { return Math.round(n * Math.pow(10, d)) / Math.pow(10, d); }
@@ -100,7 +102,9 @@ function analyzeEvent(cfg, ev) {
       let bestPrice = -Infinity, bestBook = "";
       bettable.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
       const o = best[0].outcomes[i];
-      return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, fair: fair[i], edge: fair[i] - implied(bestPrice), books: best.length, anchor: anchorBook ? anchorBook.book : null, market: market };
+      const prices = {};
+      bettable.forEach(function (b) { const bo = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); prices[b.book] = bo.price; });
+      return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, prices: prices, fair: fair[i], edge: fair[i] - implied(bestPrice), books: best.length, anchor: anchorBook ? anchorBook.book : null, market: market };
     }).sort((a, b) => b.edge - a.edge);
     if (VERBOSE && candidates.length) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + best.length + " books" + (anchorBook ? " (anchored)" : " (consensus)") + " | best edge " + (candidates[0].edge * 100).toFixed(2) + " pts on " + candidates[0].outcome.name + " " + (candidates[0].outcome.point == null ? "" : candidates[0].outcome.point) + " at " + fmtOdds(candidates[0].odds) + " (" + candidates[0].book + ")");
     if (candidates.length && candidates[0].edge >= RULES.minEdge) out.push(candidates[0]); /* never both sides of one market */
@@ -141,10 +145,65 @@ function grade(entry, scoreEv) {
   return { result, units, score: away + "-" + home };
 }
 
+/* ---------- play of the day: one per Eastern day, the highest-EV pick on the board when first chosen ---------- */
+function choosePlayOfDay(log, board, today) {
+  let cur = log.find(e => !e.type && e.potd === today);
+  if (!cur && board.length) { cur = board.slice().sort((a, b) => (b.ev - a.ev) || (b.edge - a.edge))[0]; cur.potd = today; }
+  return cur || null;
+}
+
+/* ---------- parlay of the day: 2-3 legs from different games, priced at one book, max EV ---------- */
+function bestParlay(board) {
+  const legsAll = board.filter(e => e.prices && Object.keys(e.prices).length);
+  const books = {}; legsAll.forEach(e => Object.keys(e.prices).forEach(b => { books[b] = true; }));
+  let best = null;
+  Object.keys(books).forEach(function (book) {
+    const legs = legsAll.filter(e => e.prices[book] != null && implied(e.prices[book]) <= e.modelProb); /* each leg must still be +EV at this book */
+    const n = legs.length;
+    function consider(combo) {
+      const events = new Set(combo.map(e => e.eventId)); if (events.size !== combo.length) return;
+      const dec = combo.reduce((d, e) => d * decimal(e.prices[book]), 1), fair = combo.reduce((f, e) => f * e.modelProb, 1), ev = fair * dec - 1;
+      if (ev > 0 && (!best || ev > best.ev)) best = { book: book, legs: combo.map(e => e.id), legPrices: combo.map(e => e.prices[book]), decimal: round(dec, 4), odds: americanFromDecimal(dec), fairProb: round(fair, 4), ev: round(ev, 4) };
+    }
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { consider([legs[i], legs[j]]); for (let k = j + 1; k < n; k++) consider([legs[i], legs[j], legs[k]]); }
+  });
+  return best;
+}
+function ensureParlayOfDay(log, board, today, now) {
+  let cur = log.find(e => e.type === "parlay" && e.date === today);
+  if (cur) return cur;
+  const b = bestParlay(board);
+  if (!b) return null;
+  cur = Object.assign({ type: "parlay", id: "parlay-" + today, date: today, status: "pending", units: 0, loggedAt: now.toISOString() }, b);
+  log.push(cur);
+  return cur;
+}
+/* a parlay settles once every leg has: any loss loses it, pushes drop out, the rest must all win */
+function gradeParlays(log, now) {
+  const byId = {}; log.forEach(e => { byId[e.id] = e; });
+  log.filter(e => e.type === "parlay" && e.status === "pending").forEach(function (p) {
+    const legs = p.legs.map(id => byId[id]);
+    if (legs.some(l => !l || l.status === "void")) { p.status = "void"; return; }
+    if (!legs.every(l => l.status === "graded")) return;
+    const wins = [], losses = [];
+    legs.forEach(function (l, i) { if (l.result === "Loss") losses.push(l); else if (l.result === "Win") wins.push(p.legPrices[i]); });
+    p.status = "graded"; p.gradedAt = now.toISOString();
+    if (losses.length) { p.result = "Loss"; p.units = -1; }
+    else if (!wins.length) { p.result = "Push"; p.units = 0; }
+    else { p.result = "Win"; p.units = round(wins.reduce((d, pr) => d * decimal(pr), 1) - 1, 2); }
+  });
+}
+function record(entries) {
+  const r = { wins: 0, losses: 0, pushes: 0, units: 0 };
+  entries.forEach(e => { r[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++; r.units = round(r.units + e.units, 2); });
+  return r;
+}
+
 /* ---------- performance aggregation ---------- */
 function summarize(log, now) {
   const since = etDate(new Date(now.getTime() - RULES.windowDays * 864e5));
-  const graded = log.filter(e => e.status === "graded" && e.date >= since).sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.commence < b.commence ? -1 : 1);
+  const singles = log.filter(e => !e.type);
+  const graded = singles.filter(e => e.status === "graded" && e.date >= since).sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.commence < b.commence ? -1 : 1);
   const rec = { wins: 0, losses: 0, pushes: 0 };
   graded.forEach(e => { rec[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++; });
   const units = round(graded.reduce((s, e) => s + e.units, 0), 2);
@@ -163,7 +222,16 @@ function summarize(log, now) {
   const bySport = Object.values(bySportMap).map(b => ({ sport: b.sport, units: b.units, record: b.w + "-" + b.l }));
   const recent = graded.slice().reverse().slice(0, 12).map(e => ({ date: e.date, sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units }));
   const avgEdge = graded.length ? round(graded.reduce((s, e) => s + e.edge, 0) / graded.length * 100, 1) : 0;
-  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recent };
+  /* all-time profit by day, for the calendar */
+  const byDateMap = {};
+  singles.filter(e => e.status === "graded").forEach(function (e) {
+    const d = byDateMap[e.date] = byDateMap[e.date] || { date: e.date, units: 0, wins: 0, losses: 0, pushes: 0 };
+    d.units = round(d.units + e.units, 2); d[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++;
+  });
+  const byDate = Object.values(byDateMap).sort((a, b) => a.date < b.date ? -1 : 1);
+  const potd = record(singles.filter(e => e.potd && e.status === "graded" && e.date >= since));
+  const parlays = record(log.filter(e => e.type === "parlay" && e.status === "graded" && e.date >= since));
+  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recent, byDate: byDate, potd: potd, parlays: parlays };
 }
 
 /* ---------- API ---------- */
@@ -201,6 +269,8 @@ async function run(opts) {
     });
   }
 
+  gradeParlays(log, now);
+
   /* 2. fetch odds and find today's edges */
   const active = await source.activeSports();
   const fresh = [];
@@ -222,7 +292,7 @@ async function run(opts) {
           key: key, id: slug(ev.id.slice(0, 10) + "-" + c.market + "-" + c.outcome.name), date: etDate(new Date(t)), commence: ev.commence_time,
           sport: cfg.sport, league: cfg.league, sportKey: cfg.key, eventId: ev.id, home: ev.home_team, away: ev.away_team,
           event: eventName(cfg, ev), market: marketLabel(cfg, c.market), marketKey: c.market, outcome: c.outcome, threeWay: !!cfg.goals && c.market === "h2h",
-          pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, books: c.books, anchor: c.anchor,
+          pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, prices: c.prices, books: c.books, anchor: c.anchor,
           modelProb: round(c.fair, 4), edge: round(c.edge, 4), ev: round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), confidence: confidence(c.edge),
           rationale: rationale(c, cfg), factors: factors(c), status: "pending", units: 0, loggedAt: now.toISOString()
         });
@@ -233,18 +303,26 @@ async function run(opts) {
   }
   fresh.sort((a, b) => b.edge - a.edge).slice(0, RULES.maxPicks).forEach(p => log.push(p));
 
-  /* 3. today's board = every pending pick whose event is still ahead */
-  const board = log.filter(e => e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge)
-    .map(e => ({ id: e.id, sport: e.sport, league: e.league, event: e.event, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, modelProb: e.modelProb, confidence: e.confidence, rationale: e.rationale, factors: e.factors }));
+  /* 3. today's board = every pending pick whose event is still ahead; then the day's play and parlay */
+  const boardEntries = log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge);
+  const today = etDate(now);
+  const potdEntry = choosePlayOfDay(log, boardEntries, today);
+  const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
+  const byId = {}; log.forEach(e => { byId[e.id] = e; });
+  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, event: e.event, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors });
+  const board = boardEntries.map(publicPick);
+  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
+  const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
+    legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
 
   /* 4. write */
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
-  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), picks: board };
+  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: board };
   fs.writeFileSync(path.join(dataDir, "picks.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
   const perf = summarize(log, now);
   fs.writeFileSync(path.join(dataDir, "performance.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n");
-  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining };
+  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length };
 }
 
 function liveSource(key, usage) {
@@ -277,7 +355,7 @@ function parseArgs(argv) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
-    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + (r.remaining != null ? ", API requests remaining: " + r.remaining : ""));
+    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + (r.remaining != null ? ", API requests remaining: " + r.remaining : ""));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, analyzeEvent, grade, summarize, profitPerUnit, RULES, SPORTS };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS };
