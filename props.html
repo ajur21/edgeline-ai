@@ -116,7 +116,7 @@
   var L = D.lines || {};
   if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + P.length + " rotation players · Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
   var linesNote = document.getElementById("props-lines");
-  if (HAS_LINES) { var at = L.at ? new Date(L.at) : null; linesNote.textContent = "Lines: " + (L.players || P.filter(function (p) { return p.lines; }).length) + " players priced in " + (L.games || "") + (L.of ? " of " + L.of : "") + " games at " + ((L.books || []).length || "several") + " books" + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + "."; }
+  if (HAS_LINES) { var at = L.at ? new Date(L.at) : null, priced = P.filter(function (p) { return p.lines; }).length; linesNote.textContent = "Lines: " + priced + " players priced" + (L.games ? " in " + L.games + (L.of ? " of " + L.of : "") + " games" : "") + ((L.books || []).length ? " at " + L.books.length + " books" : "") + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + "."; }
   else { linesNote.textContent = P.length ? "No lines posted yet tonight: the board fills at the afternoon refresh. Type a line on any card to grade it now." : ""; }
   document.getElementById("props-credit").textContent = D.attribution || "";
   (D.games || []).forEach(function (g) { fGame.appendChild(E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + " · " + g.startLabel })); });

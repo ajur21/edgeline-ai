@@ -2314,57 +2314,7 @@
     "openFairOverUnder": "1.5",
     "bookOverUnder": "1.5",
     "fairOddsAvailable": true,
-    "bookOddsAvailable": true,
-    "byBookmaker": {
-     "draftkings": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "fanduel": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "betmgm": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "caesars": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "espnbet": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "bovada": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "pointsbet": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     },
-     "unibet": {
-      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
-      "available": true,
-      "odds": "+115",
-      "overUnder": "1.5"
-     }
-    }
+    "bookOddsAvailable": true
    }
   }
  }

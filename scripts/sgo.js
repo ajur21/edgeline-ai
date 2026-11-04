@@ -228,7 +228,7 @@ function propSnapshot(ev, playerID, statID) {
      where only one side is offered never becomes the line. Vendor consensus, then the most common one-sided number, as fallbacks */
   const two = {}, vendor = num(main.bookOverUnder);
   if (over && under) Object.keys(over.byBookmaker || {}).forEach(b => {
-    const o = over.byBookmaker[b], u = under.byBookmaker[b]; if (!o || !u || o.available === false || u.available === false) return;
+    const o = (over.byBookmaker || {})[b], u = (under.byBookmaker || {})[b]; if (!o || !u || o.available === false || u.available === false) return;
     const lo = num(o.overUnder), lu = num(u.overUnder); if (lo == null || !sameLine(lo, lu) || american(o.odds) == null || american(u.odds) == null) return;
     two[lo] = (two[lo] || 0) + 1;
   });

@@ -47,6 +47,8 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
   check("lines: the main line is the number the books quote both ways, not the vendor's consensus", pg && pg.lines.reb.line === 5.5 && pg.lines.reb.over.n === 8 && pg.lines.reb.under.n === 8);
   check("lines: a player is matched from the odd ids when the event has no players map", pg && pg.sgoPlayerId === "PAUL_GEORGE_1_NBA" && Object.keys(pg.lines).length === 5);
   check("lines: a player the books do not price has none", !D.players.find(p => p.name === "Kingston Flemings").lines);
+  const sh = D.players.find(p => p.name === "Sam Hauser");
+  check("lines: an odd with no bookmaker map does not break the run; that side simply has no books", sh && sh.lines.threes && sh.lines.threes.line === 1.5 && sh.lines.threes.under.n === 0 && sh.lines.threes.over.n === 8);
   check("sgo: names match through accents, suffixes and hyphens", sgo.normName("Luka Dončić") === "lukadoncic" && sgo.normName("Jaren Jackson Jr.") === "jarenjackson" && sgo.findPlayer(sgo.playerIndex({ odds: { "points-JAREN_JACKSON_1_NBA-game-ou-over": { statEntityID: "JAREN_JACKSON_1_NBA" } } }), "Jaren Jackson Jr.") === "JAREN_JACKSON_1_NBA" && sgo.findPlayer(sgo.playerIndex({ players: { X_1_NBA: { name: "Nikola Jokic" } } }), "Nikola Jokić") === "X_1_NBA");
   const tmp2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-props-"));
   const r2 = await P.run({ fixture: true, out: tmp2, now: "2026-11-04T18:00:00Z", lines: false });

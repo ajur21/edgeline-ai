@@ -135,16 +135,21 @@ async function attachLines(players, games, opts, now) {
   if (usage && usage.max && usage.max - usage.used - games.length < RULES.sgoReserve) return { skipped: "budget", used: usage.used, max: usage.max };
   let list;
   try { list = await sgo.nightEvents(src, "NBA", games.map(g => g.start)); } catch (e) { return { skipped: e.message }; }
+  try { return readLines(list); } catch (e) { return { skipped: e.message, entities: src.stats().entities }; }
+  function readLines(list) {
   const byGame = {}; let matched = 0;
   games.forEach(g => { const ev = sgo.eventFor(list, g.home.name, g.away.name); if (ev) { byGame[g.id] = { ev: ev, index: sgo.playerIndex(ev) }; matched++; } });
-  let priced = 0; const books = {};
+  /* all or nothing: every player is read before any is written, so a bad odd never leaves half a board behind */
+  let priced = 0; const books = {}, found = {};
   players.forEach(function (p) {
     const m = byGame[p.gameId]; if (!m) return;
     const pp = sgo.playerProps(m.ev, p.name, m.index); if (!pp) return;
-    p.lines = pp.stats; p.sgoPlayerId = pp.playerID; priced++;
+    found[p.id] = pp; priced++;
     Object.keys(pp.stats).forEach(k => { Object.keys(pp.stats[k].over.books).concat(Object.keys(pp.stats[k].under.books)).forEach(b => { books[b] = true; }); });
   });
+  players.forEach(function (p) { const pp = found[p.id]; if (pp) { p.lines = pp.stats; p.sgoPlayerId = pp.playerID; } });
   return { source: sgo.SOURCE, at: now.toISOString(), games: matched, of: games.length, players: priced, books: Object.keys(books).sort(), entities: src.stats().entities, used: usage ? usage.used : null, max: usage ? usage.max : null };
+  }
 }
 
 /* ---------- main ---------- */
