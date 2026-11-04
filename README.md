@@ -31,6 +31,8 @@ data/performance.js SAMPLE results -> window.PERF_DATA
 
 ## Real data
 
+Every pick carries a full breakdown: why it sits at its confidence tier, what supports it and what could go wrong, with the injury report for both teams, rest and back-to-backs, venue, records, probable pitchers, kickoff weather for outdoor games and line movement since the pick was logged. Open it from any card's "Full breakdown" button.
+
 `scripts/update-data.js` pulls prices from [The Odds API](https://the-odds-api.com), de-vigs every book into a consensus "fair" probability, flags prices that sit below it (the edge), grades finished picks from final scores, and rewrites the two data files. A GitHub Actions workflow runs it daily once the `ODDS_API_KEY` repository secret exists. Until then the site shows labelled sample data. See CLAUDE.md for the rules and request budget.
 
 ## Plugging in a different model

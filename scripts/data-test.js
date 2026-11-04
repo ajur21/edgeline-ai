@@ -62,6 +62,17 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("performance.js: 1-1-1 record, -0.09u, roi -3.0%", PF.record.wins === 1 && PF.record.losses === 1 && PF.record.pushes === 1 && near(PF.units, -0.09, 0.001) && near(PF.roi, -3.0, 0.01), JSON.stringify([PF.record, PF.units, PF.roi]));
   check("performance.js: one daily point, bySport NBA 1-1, 3 recent, void excluded", PF.daily.length === 1 && PF.bySport[0].record === "1-1" && PF.recent.length === 3);
 
+  /* context + breakdown (fixture ESPN scoreboard, injuries, schedules, weather) */
+  const bucksPub = PD.picks.find(p => p.pick === "Milwaukee Bucks ML"), drawPub = PD.picks.find(p => p.pick === "Draw");
+  check("breakdown: every board pick carries a breakdown with a tier explanation", PD.picks.every(p => p.breakdown && p.breakdown.tierWhy.indexOf("Medium at 2.0 points") !== -1 && p.breakdown.tier === p.confidence));
+  check("breakdown: Bucks ML sees Tatum out as support and Lillard day-to-day as a risk", bucksPub.breakdown.support.some(t => /Tatum/.test(t)) && bucksPub.breakdown.risks.some(t => /Lillard/.test(t)), JSON.stringify(bucksPub.breakdown.risks));
+  check("breakdown: Bucks on a back-to-back is a risk; Celtics rest shown", bucksPub.breakdown.risks.some(t => /back-to-back/.test(t)) && bucksPub.context.rest["Boston Celtics"].restDays === 1, JSON.stringify(bucksPub.context.rest));
+  check("breakdown: indoor venue, records and TV in context", bucksPub.context.indoor === true && bucksPub.context.records["Boston Celtics"].overall === "5-2" && bucksPub.context.broadcast === "ESPN");
+  check("breakdown: outdoor soccer gets Open-Meteo wind and rain at kickoff", drawPub.context.weather && drawPub.context.weather.windMph === 19 && drawPub.context.weather.precipPct === 70 && drawPub.context.weather.source === "Open-Meteo", JSON.stringify(drawPub.context.weather));
+  check("breakdown: rough weather on a side pick is listed as a risk", drawPub.breakdown.risks.some(t => /Weather at kickoff/.test(t)));
+  check("breakdown: Pinnacle absent in fixtures -> no-anchor risk; verdict written", bucksPub.breakdown.risks.some(t => /No sharp anchor/.test(t)) && typeof bucksPub.breakdown.verdict === "string" && bucksPub.breakdown.verdict.length > 10);
+  check("movement: a fresh pick records its first price in history", bucksPub.movement === null && log.find(e => e.pick === "Milwaukee Bucks ML" && e.loggedAt).history.length === 1);
+
   /* play of the day and parlay of the day on the fixture board */
   check("potd: the Draw (higher EV) is play of the day and is flagged in the log", PD.playOfDay && PD.playOfDay.pick === "Draw" && log.find(e => e.potd === "2026-11-05").pick === "Draw", PD.playOfDay && PD.playOfDay.pick);
   check("potd: board picks carry prices per book and ev", PD.picks.every(p => p.prices && Object.keys(p.prices).length >= 3 && typeof p.ev === "number"));
@@ -87,8 +98,13 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("potd: sticks to the first choice for the day", (() => { const l = [{ id: "x", potd: "2026-11-05", ev: 0.01 }]; return P.choosePlayOfDay(l, [{ id: "y", ev: 0.5, edge: 0.1 }], "2026-11-05").id === "x"; })());
 
   /* idempotent: a second run at the same moment adds nothing and keeps the board */
-  const r2 = await P.run({ fixture: true, out: tmp, now: NOW });
+  const r2 = await P.run({ fixture: true, out: tmp, now: "2026-11-05T16:00:00Z" }); /* an hour later, same day */
   check("rerun: no duplicates", r2.added === 0 && r2.board === 2);
+  const log2 = JSON.parse(fs.readFileSync(path.join(tmp, "picks-log.json"), "utf8")), bucks2 = log2.find(e => e.pick === "Milwaukee Bucks ML" && e.loggedAt);
+  check("rerun: price history grows and current price is tracked", bucks2.history.length === 2 && bucks2.current && bucks2.current.odds === 160);
+  const sb2 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp, "picks.js"), "utf8"), sb2);
+  const bucksPub2 = sb2.window.PICKS_DATA.picks.find(p => p.pick === "Milwaukee Bucks ML");
+  check("rerun: movement block appears once a later check exists (flat line here)", bucksPub2.movement && bucksPub2.movement.currentOdds === 160 && bucksPub2.movement.history.length === 2);
 
   /* after the games: the board empties, grading finds no scores yet for the new events */
   const r3 = await P.run({ fixture: true, out: tmp, now: "2026-11-07T15:00:00Z" });

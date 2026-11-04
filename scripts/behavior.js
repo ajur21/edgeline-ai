@@ -50,9 +50,25 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('flip: card flipped, back visible, front hidden', await firstCard.evaluate(c => c.classList.contains('flipped') && c.querySelector('.pick-back').getAttribute('aria-hidden') === 'false' && c.querySelector('.pick-front').getAttribute('aria-hidden') === 'true'));
   check('flip: back has factors', await firstCard.locator('.pick-back .pick-factors li').count() >= 2);
   check('flip: focus moved to back button', await page.evaluate(() => document.activeElement && document.activeElement.textContent === 'Back to numbers'));
-  await firstCard.locator('.pick-back .flip-btn').click();
+  await firstCard.locator('.pick-back .flip-btn:not([data-breakdown])').click();
   await page.waitForTimeout(700);
   check('flip: flips back', await firstCard.evaluate(c => !c.classList.contains('flipped')));
+  // full breakdown dialog from the card back, the play of the day and the parlay legs
+  await firstCard.locator('.pick-front .flip-btn').click(); await page.waitForTimeout(700);
+  await firstCard.locator('.pick-back [data-breakdown]').click(); await page.waitForTimeout(300);
+  check('breakdown: dialog opens from the card back with tier, number, support and risks', await page.locator('#bd[open]').count() === 1 && (await page.locator('#bd .bd-pick').count()) === 1 && (await page.textContent('#bd')).includes('Why High') && (await page.locator('#bd .bd-support li').count()) >= 1 && (await page.locator('#bd .bd-risk li').count()) >= 1);
+  check('breakdown: injury report, rest, records and weather or indoor shown', (await page.locator('#bd .bd-inj li').count()) >= 1 && (await page.textContent('#bd')).includes('Rest') && (await page.textContent('#bd')).includes('Records'));
+  check('breakdown: verdict line present', (await page.locator('#bd .bd-verdict').count()) === 1);
+  await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+  check('breakdown: Escape closes it', await page.locator('#bd[open]').count() === 0);
+  await firstCard.locator('.pick-back .flip-btn:not([data-breakdown])').click(); await page.waitForTimeout(500);
+  await page.locator('#potd-host [data-breakdown]').click(); await page.waitForTimeout(300);
+  check('breakdown: opens from the play of the day', await page.locator('#bd[open] .bd-pick').count() === 1 && (await page.textContent('#bd .bd-title')) === (await page.textContent('#potd-host .potd-selection')));
+  await page.click('#bd [data-bd-close]'); await page.waitForTimeout(200);
+  await page.locator('#parlay-host [data-breakdown]').click(); await page.waitForTimeout(300);
+  const legN = await page.locator('#parlay-host .parlay-legs li').count();
+  check('breakdown: parlay opens one section per leg', (await page.locator('#bd[open] .bd-pick').count()) === legN, 'legs ' + legN);
+  await page.click('#bd [data-bd-close]'); await page.waitForTimeout(200);
   // calculator
   const edgeBefore = await page.textContent('#calc-edge');
   await page.locator('#calc-prob').evaluate(el => { el.value = '70'; el.dispatchEvent(new Event('input', { bubbles: true })); });

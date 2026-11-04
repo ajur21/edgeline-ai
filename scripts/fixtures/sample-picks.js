@@ -28,7 +28,83 @@ window.PICKS_DATA = {
         "Caesars": -115,
         "BetRivers": -120
       },
-      "ev": 0.1168
+      "ev": 0.1168,
+      "away": "Kansas City",
+      "home": "Buffalo",
+      "marketKey": "spreads",
+      "context": {
+        "espnEventId": "x0",
+        "venue": "Highmark Stadium, Orchard Park",
+        "indoor": false,
+        "records": {
+          "Buffalo": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Kansas City": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Buffalo": [],
+          "Kansas City": [
+            {
+              "name": "Key Forward",
+              "pos": "F",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Sprain",
+              "returnDate": "2026-11-20",
+              "note": "Out at least two weeks."
+            }
+          ]
+        },
+        "rest": {
+          "Buffalo": {
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Kansas City": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Clear",
+          "tempF": 48,
+          "windMph": 6,
+          "precipPct": 5,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "High",
+        "tierWhy": "Edge of 6.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+        "support": [
+          "Kansas City missing Key Forward (F), knee."
+        ],
+        "risks": [
+          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
+          "Buffalo are on the second night of a back-to-back."
+        ],
+        "notes": [
+          "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
+          "Records: Kansas City 4-3 · Buffalo 5-2 · Highmark Stadium, Orchard Park."
+        ],
+        "verdict": "More working against this one than for it beyond the price; size down."
+      },
+      "movement": null
     },
     {
       "id": "p2",
@@ -55,7 +131,91 @@ window.PICKS_DATA = {
         "Caesars": -118,
         "BetRivers": -123
       },
-      "ev": 0.092
+      "ev": 0.092,
+      "away": "Boston",
+      "home": "Milwaukee",
+      "marketKey": "totals",
+      "context": {
+        "espnEventId": "x1",
+        "venue": "Arena",
+        "indoor": true,
+        "records": {
+          "Milwaukee": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Boston": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Milwaukee": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "Boston": []
+        },
+        "rest": {
+          "Milwaukee": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Boston": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "High",
+        "tierWhy": "Edge of 4.8 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Both teams rank top-six in pace over the last ten games; projected total sits 4 points above the market.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "6 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 56.7% → 57.9%).",
+          "A better price is now available: -103 at FanDuel."
+        ],
+        "risks": [],
+        "notes": [
+          "Indoor venue; weather is not a factor.",
+          "Records: Boston 4-3 · Milwaukee 5-2 · Arena."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": -108,
+        "loggedFair": 0.567,
+        "currentOdds": -103,
+        "currentBook": "FanDuel",
+        "currentFair": 0.579,
+        "currentEdge": 0.059769230769230686,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": -108,
+            "fair": 0.567
+          }
+        ]
+      }
     },
     {
       "id": "p3",
@@ -82,7 +242,65 @@ window.PICKS_DATA = {
         "Caesars": -150,
         "BetRivers": -140
       },
-      "ev": 0.0706
+      "ev": 0.0706,
+      "away": "Toronto",
+      "home": "Colorado",
+      "marketKey": "h2h",
+      "context": {
+        "espnEventId": "x2",
+        "venue": "Arena",
+        "indoor": true,
+        "records": {
+          "Colorado": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Toronto": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Colorado": [],
+          "Toronto": []
+        },
+        "rest": {
+          "Colorado": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Toronto": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Edge of 4.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Goalie confirmation tilts the expected goals model; altitude and back-to-back effects included.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "7 books price this exact line, so the fair number is well established.",
+          "Colorado are rested: 3 days since their last game."
+        ],
+        "risks": [],
+        "notes": [
+          "Indoor venue; weather is not a factor.",
+          "Records: Toronto 4-3 · Colorado 5-2 · Arena."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": null
     },
     {
       "id": "p4",
@@ -109,7 +327,116 @@ window.PICKS_DATA = {
         "Caesars": 120,
         "BetRivers": 110
       },
-      "ev": 0.089
+      "ev": 0.089,
+      "away": "LA Dodgers",
+      "home": "Atlanta",
+      "marketKey": "h2h",
+      "context": {
+        "espnEventId": "x3",
+        "venue": "Highmark Stadium, Orchard Park",
+        "indoor": false,
+        "records": {
+          "Atlanta": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "LA Dodgers": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {
+          "Atlanta": "Spencer Strider (ERA 2.91)",
+          "LA Dodgers": "Yoshinobu Yamamoto (ERA 2.40)"
+        },
+        "injuries": {
+          "Atlanta": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "LA Dodgers": [
+            {
+              "name": "Key Forward",
+              "pos": "F",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Sprain",
+              "returnDate": "2026-11-20",
+              "note": "Out at least two weeks."
+            }
+          ]
+        },
+        "rest": {
+          "Atlanta": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "LA Dodgers": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Rain",
+          "tempF": 48,
+          "windMph": 18,
+          "precipPct": 70,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Edge of 4.0 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Market overweights the road starter's season ERA; the model's pitch-level projection is closer to even.",
+        "support": [
+          "8 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 49.5% → 50.7%).",
+          "A better price is now available: +125 at Caesars.",
+          "LA Dodgers missing Key Forward (F), knee.",
+          "Atlanta are rested: 3 days since their last game."
+        ],
+        "risks": [
+          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
+          "Atlanta listed Starting Guard (G), ankle as questionable.",
+          "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
+        ],
+        "notes": [
+          "Probable pitchers: Atlanta Spencer Strider (ERA 2.91) · Dodgers Yoshinobu Yamamoto (ERA 2.40).",
+          "Records: LA Dodgers 4-3 · Atlanta 5-2 · Highmark Stadium, Orchard Park."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": 120,
+        "loggedFair": 0.495,
+        "currentOdds": 125,
+        "currentBook": "Caesars",
+        "currentFair": 0.507,
+        "currentEdge": 0.052454545454545476,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": 120,
+            "fair": 0.495
+          }
+        ]
+      }
     },
     {
       "id": "p5",
@@ -136,7 +463,72 @@ window.PICKS_DATA = {
         "Caesars": -125,
         "BetRivers": -115
       },
-      "ev": 0.0806
+      "ev": 0.0806,
+      "home": "Arsenal",
+      "away": "Liverpool",
+      "marketKey": "totals",
+      "context": {
+        "espnEventId": "x4",
+        "venue": "Truist Park, Atlanta",
+        "indoor": false,
+        "records": {
+          "Arsenal": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Liverpool": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Arsenal": [],
+          "Liverpool": []
+        },
+        "rest": {
+          "Arsenal": {
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Liverpool": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Clear",
+          "tempF": 48,
+          "windMph": 6,
+          "precipPct": 5,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Edge of 4.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Expected-goals simulation produces 2.5+ in 58% of runs; both sides pressing high in recent fixtures.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market."
+        ],
+        "risks": [
+          "Arsenal on a back-to-back; tired legs lean under."
+        ],
+        "notes": [
+          "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
+          "Records: Liverpool 4-3 · Arsenal 5-2 · Truist Park, Atlanta."
+        ],
+        "verdict": "Context is neutral; the price edge carries the pick."
+      },
+      "movement": null
     },
     {
       "id": "p6",
@@ -163,7 +555,92 @@ window.PICKS_DATA = {
         "Caesars": -125,
         "BetRivers": -115
       },
-      "ev": 0.0538
+      "ev": 0.0538,
+      "away": "Denver",
+      "home": "Phoenix",
+      "marketKey": "spreads",
+      "context": {
+        "espnEventId": "x5",
+        "venue": "Arena",
+        "indoor": true,
+        "records": {
+          "Phoenix": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Denver": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Phoenix": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "Denver": []
+        },
+        "rest": {
+          "Phoenix": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Denver": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Edge of 2.8 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Injury report updated this morning; the model's lineup-adjusted rating moves the fair line to +1.5.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "6 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 55.2% → 56.4%).",
+          "A better price is now available: -105 at DraftKings."
+        ],
+        "risks": [],
+        "notes": [
+          "Phoenix have Starting Guard (G), ankle questionable.",
+          "Indoor venue; weather is not a factor.",
+          "Records: Denver 4-3 · Phoenix 5-2 · Arena."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": -110,
+        "loggedFair": 0.552,
+        "currentOdds": -105,
+        "currentBook": "DraftKings",
+        "currentFair": 0.5640000000000001,
+        "currentEdge": 0.04019047619047622,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": -110,
+            "fair": 0.552
+          }
+        ]
+      }
     },
     {
       "id": "p7",
@@ -190,7 +667,83 @@ window.PICKS_DATA = {
         "Caesars": -117,
         "BetRivers": -122
       },
-      "ev": 0.0619
+      "ev": 0.0619,
+      "away": "Dallas",
+      "home": "Philadelphia",
+      "marketKey": "totals",
+      "context": {
+        "espnEventId": "x6",
+        "venue": "Highmark Stadium, Orchard Park",
+        "indoor": false,
+        "records": {
+          "Philadelphia": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Dallas": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Philadelphia": [],
+          "Dallas": [
+            {
+              "name": "Key Forward",
+              "pos": "F",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Sprain",
+              "returnDate": "2026-11-20",
+              "note": "Out at least two weeks."
+            }
+          ]
+        },
+        "rest": {
+          "Philadelphia": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Dallas": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Clear",
+          "tempF": 48,
+          "windMph": 6,
+          "precipPct": 5,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Edge of 3.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Wind forecast above 15 mph suppresses deep passing; historical totals in similar conditions skew under.",
+        "support": [
+          "7 books price this exact line, so the fair number is well established.",
+          "Scorers out: Key Forward (F), knee. Fewer healthy scorers leans under."
+        ],
+        "risks": [
+          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer."
+        ],
+        "notes": [
+          "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
+          "Records: Dallas 4-3 · Philadelphia 5-2 · Highmark Stadium, Orchard Park."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": null
     },
     {
       "id": "p8",
@@ -217,7 +770,91 @@ window.PICKS_DATA = {
         "Caesars": -130,
         "BetRivers": -135
       },
-      "ev": 0.078
+      "ev": 0.078,
+      "away": "NY Rangers",
+      "home": "Boston",
+      "marketKey": "totals",
+      "context": {
+        "espnEventId": "x7",
+        "venue": "Arena",
+        "indoor": true,
+        "records": {
+          "Boston": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "NY Rangers": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Boston": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "NY Rangers": []
+        },
+        "rest": {
+          "Boston": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "NY Rangers": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Edge of 4.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Both starting goalies rank top-ten in goals saved above expected over the last 30 days.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "8 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 58.8% → 60.0%).",
+          "A better price is now available: -115 at BetMGM."
+        ],
+        "risks": [],
+        "notes": [
+          "Indoor venue; weather is not a factor.",
+          "Records: NY Rangers 4-3 · Boston 5-2 · Arena."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": -120,
+        "loggedFair": 0.588,
+        "currentOdds": -115,
+        "currentBook": "BetMGM",
+        "currentFair": 0.6,
+        "currentEdge": 0.054545454545454564,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": -120,
+            "fair": 0.588
+          }
+        ]
+      }
     },
     {
       "id": "p9",
@@ -244,7 +881,75 @@ window.PICKS_DATA = {
         "Caesars": 145,
         "BetRivers": 140
       },
-      "ev": 0.1148
+      "ev": 0.1148,
+      "away": "NY Yankees",
+      "home": "Houston",
+      "marketKey": "spreads",
+      "context": {
+        "espnEventId": "x8",
+        "venue": "Emirates Stadium, London",
+        "indoor": false,
+        "records": {
+          "Houston": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "NY Yankees": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {
+          "Houston": "Spencer Strider (ERA 2.91)",
+          "NY Yankees": "Yoshinobu Yamamoto (ERA 2.40)"
+        },
+        "injuries": {
+          "Houston": [],
+          "NY Yankees": []
+        },
+        "rest": {
+          "Houston": {
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "NY Yankees": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Clear",
+          "tempF": 48,
+          "windMph": 6,
+          "precipPct": 5,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Edge of 4.7 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Plus-money run line with a favorable bullpen matchup; model edge is thin, so sized as a lean.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "Houston are on a back-to-back."
+        ],
+        "risks": [],
+        "notes": [
+          "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
+          "Probable pitchers: Houston Spencer Strider (ERA 2.91) · Yankees Yoshinobu Yamamoto (ERA 2.40).",
+          "Records: NY Yankees 4-3 · Houston 5-2 · Emirates Stadium, London."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": null
     },
     {
       "id": "p10",
@@ -271,7 +976,112 @@ window.PICKS_DATA = {
         "Caesars": -195,
         "BetRivers": -190
       },
-      "ev": 0.0608
+      "ev": 0.0608,
+      "home": "Real Madrid",
+      "away": "Sevilla",
+      "marketKey": "h2h",
+      "context": {
+        "espnEventId": "x9",
+        "venue": "Highmark Stadium, Orchard Park",
+        "indoor": false,
+        "records": {
+          "Real Madrid": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Sevilla": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Real Madrid": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "Sevilla": [
+            {
+              "name": "Key Forward",
+              "pos": "F",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Sprain",
+              "returnDate": "2026-11-20",
+              "note": "Out at least two weeks."
+            }
+          ]
+        },
+        "rest": {
+          "Real Madrid": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Sevilla": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Rain",
+          "tempF": 48,
+          "windMph": 18,
+          "precipPct": 70,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "High",
+        "tierWhy": "Edge of 4.0 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Simulation gives the home side a 69.5% win probability versus 65.5% implied by the price.",
+        "support": [
+          "6 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 69.5% → 70.7%).",
+          "A better price is now available: -185 at BetRivers.",
+          "Sevilla missing Key Forward (F), knee.",
+          "Real Madrid are rested: 3 days since their last game."
+        ],
+        "risks": [
+          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
+          "Real Madrid listed Starting Guard (G), ankle as questionable.",
+          "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
+        ],
+        "notes": [
+          "Records: Sevilla 4-3 · Real Madrid 5-2 · Highmark Stadium, Orchard Park."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": -190,
+        "loggedFair": 0.695,
+        "currentOdds": -185,
+        "currentBook": "BetRivers",
+        "currentFair": 0.707,
+        "currentEdge": 0.051827586206896537,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": -190,
+            "fair": 0.695
+          }
+        ]
+      }
     },
     {
       "id": "p11",
@@ -298,7 +1108,65 @@ window.PICKS_DATA = {
         "Caesars": 95,
         "BetRivers": 90
       },
-      "ev": 0.0557
+      "ev": 0.0557,
+      "away": "Golden State",
+      "home": "Sacramento",
+      "marketKey": "h2h",
+      "context": {
+        "espnEventId": "x10",
+        "venue": "Arena",
+        "indoor": true,
+        "records": {
+          "Sacramento": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "Golden State": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Sacramento": [],
+          "Golden State": []
+        },
+        "rest": {
+          "Sacramento": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "Golden State": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Edge of 2.7 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Home underdog with a positive net rating in the last ten; the model marks the fair price near even.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "7 books price this exact line, so the fair number is well established.",
+          "Sacramento are rested: 3 days since their last game."
+        ],
+        "risks": [],
+        "notes": [
+          "Indoor venue; weather is not a factor.",
+          "Records: Golden State 4-3 · Sacramento 5-2 · Arena."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": null
     },
     {
       "id": "p12",
@@ -325,7 +1193,100 @@ window.PICKS_DATA = {
         "Caesars": -120,
         "BetRivers": -110
       },
-      "ev": 0.0699
+      "ev": 0.0699,
+      "away": "San Francisco",
+      "home": "Seattle",
+      "marketKey": "spreads",
+      "context": {
+        "espnEventId": "x11",
+        "venue": "Emirates Stadium, London",
+        "indoor": false,
+        "records": {
+          "Seattle": {
+            "overall": "5-2",
+            "home": "3-0",
+            "away": null
+          },
+          "San Francisco": {
+            "overall": "4-3",
+            "home": null,
+            "away": "1-2"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Seattle": [
+            {
+              "name": "Starting Guard",
+              "pos": "G",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Sprain",
+              "returnDate": null,
+              "note": "Listed questionable; will test it pregame."
+            }
+          ],
+          "San Francisco": []
+        },
+        "rest": {
+          "Seattle": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-03",
+            "gamesLast7": 3
+          },
+          "San Francisco": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-02",
+            "gamesLast7": 3
+          }
+        },
+        "weather": {
+          "summary": "Rain",
+          "tempF": 48,
+          "windMph": 18,
+          "precipPct": 70,
+          "source": "Open-Meteo",
+          "city": "Buffalo, NY, USA"
+        },
+        "broadcast": "ESPN"
+      },
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Edge of 3.6 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+        "price": "Key number at 3 with a reduced price; the model's fair line is -4, giving modest value at -105.",
+        "support": [
+          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "8 books price this exact line, so the fair number is well established.",
+          "The sharp line has moved toward this side since it was logged (fair 54.8% → 56.0%).",
+          "A better price is now available: -100 at FanDuel."
+        ],
+        "risks": [
+          "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
+        ],
+        "notes": [
+          "Seattle have Starting Guard (G), ankle questionable.",
+          "Records: San Francisco 4-3 · Seattle 5-2 · Emirates Stadium, London."
+        ],
+        "verdict": "The context lines up with the price."
+      },
+      "movement": {
+        "loggedOdds": -105,
+        "loggedFair": 0.548,
+        "currentOdds": -100,
+        "currentBook": "FanDuel",
+        "currentFair": 0.56,
+        "currentEdge": 0.04780487804878053,
+        "checkedAt": "2026-11-04T16:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T12:00:00Z",
+            "odds": -105,
+            "fair": 0.548
+          }
+        ]
+      }
     }
   ],
   "playOfDay": {
@@ -356,7 +1317,83 @@ window.PICKS_DATA = {
     "ev": 0.1168,
     "started": false,
     "status": "pending",
-    "result": null
+    "result": null,
+    "home": "Buffalo",
+    "away": "Kansas City",
+    "marketKey": "spreads",
+    "context": {
+      "espnEventId": "x0",
+      "venue": "Highmark Stadium, Orchard Park",
+      "indoor": false,
+      "records": {
+        "Buffalo": {
+          "overall": "5-2",
+          "home": "3-0",
+          "away": null
+        },
+        "Kansas City": {
+          "overall": "4-3",
+          "home": null,
+          "away": "1-2"
+        }
+      },
+      "probables": {},
+      "injuries": {
+        "Buffalo": [],
+        "Kansas City": [
+          {
+            "name": "Key Forward",
+            "pos": "F",
+            "status": "Out",
+            "type": "Knee",
+            "detail": "Sprain",
+            "returnDate": "2026-11-20",
+            "note": "Out at least two weeks."
+          }
+        ]
+      },
+      "rest": {
+        "Buffalo": {
+          "restDays": 1,
+          "b2b": true,
+          "lastGame": "2026-11-03",
+          "gamesLast7": 3
+        },
+        "Kansas City": {
+          "restDays": 2,
+          "b2b": false,
+          "lastGame": "2026-11-02",
+          "gamesLast7": 3
+        }
+      },
+      "weather": {
+        "summary": "Clear",
+        "tempF": 48,
+        "windMph": 6,
+        "precipPct": 5,
+        "source": "Open-Meteo",
+        "city": "Buffalo, NY, USA"
+      },
+      "broadcast": "ESPN"
+    },
+    "breakdown": {
+      "tier": "High",
+      "tierWhy": "Edge of 6.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
+      "price": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+      "support": [
+        "Kansas City missing Key Forward (F), knee."
+      ],
+      "risks": [
+        "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
+        "Buffalo are on the second night of a back-to-back."
+      ],
+      "notes": [
+        "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
+        "Records: Kansas City 4-3 · Buffalo 5-2 · Highmark Stadium, Orchard Park."
+      ],
+      "verdict": "More working against this one than for it beyond the price; size down."
+    },
+    "movement": null
   },
   "parlayOfDay": {
     "id": "parlay-sample",

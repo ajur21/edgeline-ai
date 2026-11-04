@@ -159,7 +159,7 @@
       el("p", { class: "pick-rationale", text: p.rationale }),
       factors.length ? el("ul", { class: "pick-factors" }, factors.map(function (f) { return el("li", { text: f }); })) : null,
       el("div", { class: "pick-foot" }, [
-        el("span", { class: "mono", text: "Edge " + signed(edge * 100, 1) + "%" }),
+        el("button", { type: "button", class: "flip-btn bd-btn", "data-breakdown": p.id, text: "Full breakdown" }),
         backBtn
       ])
     ]);
@@ -240,7 +240,7 @@
       el("p", { class: "pick-rationale", text: p.rationale }),
       el("div", { class: "pick-foot" }, [
         el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "", text: status }),
-        el("span", { class: "pick-actions" }, [p.started ? null : parlayButton(p.id), el("a", { class: "flip-btn", href: "picks.html#" + p.id, text: "See on the board" })])
+        el("span", { class: "pick-actions" }, [p.started ? null : parlayButton(p.id), el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
       ])
     ]);
   }
@@ -333,10 +333,78 @@
       el("p", { class: "pick-rationale", text: "Priced as one ticket at " + par.book + ". Legs are from different games and treated as independent; one loss loses the ticket, a push drops out." }),
       el("div", { class: "pick-foot" }, [
         el("span", { class: par.result ? "result result-" + par.result.toLowerCase() : "", text: status }),
-        opts.loadButton ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
+        el("span", { class: "pick-actions" }, [
+          el("button", { type: "button", class: "flip-btn", "data-breakdown": par.legs.map(l => l.id).join(","), text: "Leg breakdowns" }),
+          opts.loadButton ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
+        ])
       ])
     ]);
   }
+
+  /* ---------- full breakdown dialog ---------- */
+  function findPick(id) {
+    const d = window.PICKS_DATA; if (!d) return null;
+    return (d.picks || []).find(p => p.id === id) || (d.playOfDay && d.playOfDay.id === id ? d.playOfDay : null);
+  }
+  function statusClass(st) { return /^(out|injured|ir|doubtful|suspended)/i.test(st) ? "inj-out" : /^(questionable|day|probable|game)/i.test(st) ? "inj-q" : ""; }
+  function breakdownSection(p) {
+    const b = p.breakdown, c = p.context || {};
+    const sec = el("section", { class: "bd-pick" }, [
+      el("div", { class: "bd-head" }, [
+        el("div", {}, [
+          el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }),
+          el("h3", { class: "bd-title", text: p.pick }),
+          el("div", { class: "bd-sub", text: p.event + " · " + p.market + " · " + fmtOdds(p.odds) + (p.book ? " at " + p.book : "") + " · " + p.start })
+        ]),
+        el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase() + " bd-tier", text: p.confidence })
+      ])
+    ]);
+    if (!b) { sec.appendChild(el("p", { class: "muted", text: "No breakdown for this pick yet. It is written at the next data refresh." })); return sec; }
+    const list = (title, items, cls) => items && items.length ? el("div", { class: "bd-block" }, [el("h4", { text: title }), el("ul", { class: "bd-list " + cls }, items.map(t => el("li", { text: t })))]) : null;
+    sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + b.tier }), el("p", { text: b.tierWhy })]));
+    sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "The number" }), el("p", { text: b.price })]));
+    [list("What supports it", b.support, "bd-support"), list("What could go wrong", b.risks, "bd-risk"), list("Also worth knowing", b.notes, "bd-note")].forEach(function (n) { if (n) sec.appendChild(n); });
+    sec.appendChild(el("p", { class: "bd-verdict", text: b.verdict }));
+    /* raw context */
+    const grid = el("div", { class: "bd-grid" });
+    const teams = Object.keys(c.injuries || {});
+    if (teams.length) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Injury report" })].concat(teams.map(function (t) {
+      const items = c.injuries[t] || [];
+      return el("div", { class: "bd-team" }, [el("strong", { text: t }), items.length ? el("ul", { class: "bd-inj" }, items.map(i => el("li", {}, [el("span", { class: "inj-status " + statusClass(i.status), text: i.status }), " " + i.name + (i.pos ? " (" + i.pos + ")" : "") + (i.type ? " · " + i.type : "") + (i.returnDate ? " · back " + i.returnDate : ""), i.note ? el("span", { class: "inj-note", text: i.note }) : null]))) : el("p", { class: "small muted", text: "No one listed." })]);
+    }))));
+    if (c.weather) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: [c.weather.summary, c.weather.tempF != null ? c.weather.tempF + "°F" : null, c.weather.windMph != null ? "wind " + c.weather.windMph + " mph" : null, c.weather.precipPct != null ? c.weather.precipPct + "% rain" : null].filter(Boolean).join(" · ") + (c.weather.city ? " · " + c.weather.city : "") })]));
+    else if (c.indoor) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: "Indoor venue." })]));
+    const restTeams = Object.keys(c.rest || {}).filter(t => c.rest[t]);
+    if (restTeams.length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Rest" })].concat(restTeams.map(t => el("p", { text: t + ": " + (c.rest[t].b2b ? "back-to-back" : c.rest[t].restDays + " days' rest") + ", " + c.rest[t].gamesLast7 + " games in 7 days" })))));
+    const recTeams = Object.keys(c.records || {}).filter(t => c.records[t] && c.records[t].overall);
+    if (recTeams.length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Records" })].concat(recTeams.map(t => el("p", { text: t + ": " + c.records[t].overall + (c.records[t].home ? " · home " + c.records[t].home : "") + (c.records[t].away ? " · road " + c.records[t].away : "") })))));
+    if (c.probables && Object.keys(c.probables).length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Probable pitchers" })].concat(Object.keys(c.probables).map(t => el("p", { text: t + ": " + c.probables[t] })))));
+    if (p.movement) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Line movement" }), el("p", { text: "Logged " + fmtOdds(p.movement.loggedOdds) + " (fair " + pct(p.movement.loggedFair) + "). Now " + fmtOdds(p.movement.currentOdds) + " at " + p.movement.currentBook + " (fair " + pct(p.movement.currentFair) + ", edge " + signed(p.movement.currentEdge * 100, 1) + "%)." })]));
+    if (c.venue || c.broadcast) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Where" }), el("p", { text: [c.venue, c.broadcast ? "TV: " + c.broadcast : null].filter(Boolean).join(" · ") })]));
+    if (grid.children.length) sec.appendChild(grid);
+    return sec;
+  }
+  function openBreakdown(ids) {
+    let dlg = document.getElementById("bd");
+    if (!dlg) {
+      dlg = el("dialog", { id: "bd", class: "bd", "aria-label": "Full breakdown" }, [
+        el("div", { class: "bd-top" }, [el("span", { class: "eyebrow", text: "Full breakdown" }), el("button", { type: "button", class: "btn btn-secondary btn-sm", "data-bd-close": "", text: "Close" })]),
+        el("div", { class: "bd-body" })
+      ]);
+      dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("[data-bd-close]")) dlg.close(); });
+      document.body.appendChild(dlg);
+    }
+    const body = dlg.querySelector(".bd-body"); body.textContent = "";
+    const picks = ids.map(findPick).filter(Boolean);
+    if (!picks.length) body.appendChild(el("p", { class: "muted", text: "That pick is no longer on the board." }));
+    picks.forEach(p => body.appendChild(breakdownSection(p)));
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    body.scrollTop = 0;
+  }
+  document.addEventListener("click", function (e) {
+    const b = e.target.closest && e.target.closest("[data-breakdown]");
+    if (b) openBreakdown(b.getAttribute("data-breakdown").split(","));
+  });
 
   /* ---------- profit calendar: a month grid of daily units ---------- */
   function pnlCalendar(container, byDate, opts) {
@@ -385,6 +453,6 @@
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, initTilt: initTilt, animateNumber: animateNumber,
-    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar
+    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown
   };
 })();
