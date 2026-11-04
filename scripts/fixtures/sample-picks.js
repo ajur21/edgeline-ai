@@ -104,7 +104,36 @@ window.PICKS_DATA = {
         ],
         "verdict": "More working against this one than for it beyond the price; size down."
       },
-      "movement": null
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": -1.5,
+          "odds": -110,
+          "fair": 0.5
+        },
+        "now": {
+          "line": -2.5,
+          "odds": -110,
+          "fair": 0.5
+        },
+        "moved": "toward",
+        "label": "DraftKings opened -1.5 (-110), now -2.5 (-110)"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-04T17:00:00Z",
+          "line": -1.5,
+          "odds": -110,
+          "fair": 0.5
+        },
+        {
+          "at": "2026-11-04T21:00:00Z",
+          "line": -2.5,
+          "odds": -110,
+          "fair": 0.5
+        }
+      ]
     },
     {
       "id": "p2",

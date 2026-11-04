@@ -877,3 +877,6 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
   .footer-grid { display: none; }
   .digest-row { grid-template-columns: 56px minmax(0, 1.3fr) minmax(0, 1fr) auto auto; gap: 10px; font-size: 0.9rem; }
 }
+.bd-dk .dk-dir { font-family: var(--font-condensed); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; background: var(--surface-2); color: var(--text-2); margin-right: 4px; }
+.bd-dk .dk-toward { background: var(--accent-3-wash); color: var(--accent-3-text); }
+.bd-dk .dk-away { background: var(--accent-4-wash); color: var(--accent-4-text); }

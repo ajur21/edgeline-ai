@@ -169,7 +169,10 @@ window.PERF_DATA = {
       "result": "Loss",
       "units": -1,
       "clv": 0.021,
-      "closeOdds": 95
+      "closeOdds": 95,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-04",
@@ -180,7 +183,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 0.91,
       "clv": -0.008,
-      "closeOdds": -120
+      "closeOdds": -120,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-03",
@@ -191,7 +197,10 @@ window.PERF_DATA = {
       "result": "Loss",
       "units": -1,
       "clv": 0.034,
-      "closeOdds": -125
+      "closeOdds": -125,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-03",
@@ -202,7 +211,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 0.91,
       "clv": null,
-      "closeOdds": null
+      "closeOdds": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "toward",
+      "closeLine": 216.5
     },
     {
       "date": "2026-11-03",
@@ -213,7 +225,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 1.1,
       "clv": 0.012,
-      "closeOdds": 100
+      "closeOdds": 100,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-02",
@@ -224,7 +239,10 @@ window.PERF_DATA = {
       "result": "Loss",
       "units": -1,
       "clv": 0.005,
-      "closeOdds": -140
+      "closeOdds": -140,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-02",
@@ -235,7 +253,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 1.2,
       "clv": -0.015,
-      "closeOdds": 110
+      "closeOdds": 110,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-02",
@@ -246,7 +267,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 0.95,
       "clv": 0.027,
-      "closeOdds": -115
+      "closeOdds": -115,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-01",
@@ -257,7 +281,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 0.83,
       "clv": null,
-      "closeOdds": null
+      "closeOdds": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "closeLine": 216.5
     },
     {
       "date": "2026-11-01",
@@ -268,7 +295,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 1.2,
       "clv": 0.018,
-      "closeOdds": 110
+      "closeOdds": 110,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-01",
@@ -279,7 +309,10 @@ window.PERF_DATA = {
       "result": "Loss",
       "units": -1,
       "clv": 0.009,
-      "closeOdds": -130
+      "closeOdds": -130,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     },
     {
       "date": "2026-11-01",
@@ -290,7 +323,10 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 1.2,
       "clv": 0.031,
-      "closeOdds": 110
+      "closeOdds": 110,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "closeLine": null
     }
   ],
   "byDate": [
@@ -523,6 +559,9 @@ window.PERF_DATA = {
     "avg": 1.42,
     "beat": 57,
     "beatPct": 62,
-    "graded": 106
+    "graded": 106,
+    "lineToward": 9,
+    "lineAway": 5,
+    "espnCloses": 101
   }
 };

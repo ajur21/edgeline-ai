@@ -114,7 +114,7 @@
     </div>
 
     <div class="notice">
-      <strong>How grading works.</strong> Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked. <strong>Closing line value</strong> (CLV) compares the price we published with the sharp market's last pre-game line: the closing fair probability minus the probability implied by our price, in points. Positive CLV means the market moved our way after we posted, which is the best available evidence that an edge was real rather than lucky. Prices are checked twice a day, so a pick logged at the last refresh before tip-off has no closing sample and is left out.
+      <strong>How grading works.</strong> Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked. <strong>Closing line value</strong> (CLV) compares the price we published with the sharp market's last pre-game line: the closing fair probability minus the probability implied by our price, in points. Positive CLV means the market moved our way after we posted, which is the best available evidence that an edge was real rather than lucky. The close is DraftKings' closing number as published by ESPN (free, available after every game); when a spread or total closes on a different number than ours, the column shows whether the line moved toward (▲) or against (▼) the pick instead of a price figure. Between the two daily odds runs, a lighter job refreshes DraftKings' open and current numbers every two hours so each breakdown shows the market's drift.
     </div>
   </div>
 </section>
@@ -160,7 +160,7 @@
   var clvTile = E.el("div", { class: "card stat", "data-tilt": "", id: "clv-tile" }, [
     E.el("div", { class: "stat-label", text: "Closing line value" }),
     E.el("div", { class: "stat-value" + (clv.n ? (clv.avg > 0 ? " clv-pos" : clv.avg < 0 ? " clv-neg" : "") : ""), text: clv.n ? E.signed(clv.avg, 2) + " pts" : "\u2014" }),
-    E.el("div", { class: "stat-sub", text: clv.n ? "Beat the close on " + clv.beatPct.toFixed(0) + "% of " + clv.n + " picks with a pre-game price check" + (clv.graded && clv.graded > clv.n ? " (" + (clv.graded - clv.n) + " had none)" : "") : "Scored once picks have a price check between publish and tip-off" })
+    E.el("div", { class: "stat-sub", text: clv.n ? "Beat the close on " + clv.beatPct.toFixed(0) + "% of " + clv.n + " picks priced against the close" + ((clv.lineToward || clv.lineAway) ? "; " + (clv.lineToward || 0) + " of " + ((clv.lineToward || 0) + (clv.lineAway || 0)) + " line moves went our way" : "") : "Scored against DraftKings' closing number once picks are graded" })
   ]);
   ft.appendChild(clvTile);
 
@@ -219,7 +219,9 @@
       E.el("td", { class: "num", text: E.fmtOdds(r.odds) }),
       E.el("td", {}, [E.el("span", { class: cls }, [E.el("span", { class: "dot", "aria-hidden": "true" }), r.result])]),
       E.el("td", { class: "num", text: E.signed(r.units, 2) + "u" }),
-      E.el("td", { class: "num" }, [typeof r.clv === "number" ? E.el("span", { class: r.clv > 0 ? "clv-pos" : r.clv < 0 ? "clv-neg" : "", title: r.closeOdds != null ? "Closed " + E.fmtOdds(r.closeOdds) : null, text: E.signed(r.clv * 100, 1) }) : E.el("span", { class: "muted", title: "No price check between publish and tip-off", text: "\u2014" })])
+      E.el("td", { class: "num" }, [typeof r.clv === "number" ? E.el("span", { class: r.clv > 0 ? "clv-pos" : r.clv < 0 ? "clv-neg" : "", title: (r.closeOdds != null ? "Closed " + E.fmtOdds(r.closeOdds) : "") + (r.closeSource ? " · " + r.closeSource : ""), text: E.signed(r.clv * 100, 1) })
+        : r.lineMove ? E.el("span", { class: r.lineMove === "toward" ? "clv-pos" : "clv-neg", title: "Closed on a different number (" + (r.closeLine != null ? r.closeLine : "") + "); the line moved " + (r.lineMove === "toward" ? "toward" : "against") + " the pick", text: r.lineMove === "toward" ? "line \u25B2" : "line \u25BC" })
+        : E.el("span", { class: "muted", title: "No closing number for this pick", text: "\u2014" })])
     ]);
   });
   var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units", "CLV"].map(function (h, i) {

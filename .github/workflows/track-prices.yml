@@ -1,0 +1,62 @@
+# Free refresh between the two odds runs: pulls DraftKings' open and current numbers from ESPN for every pick on the
+# board (no Odds API requests), rebuilds the breakdowns and rewrites data/picks.js. Commits and redeploys only when a
+# number actually moved. Runs every two hours through the US afternoon and evening, and on demand.
+name: Track prices
+
+on:
+  schedule:
+    - cron: "0 15,19,21,23 * * *"
+    - cron: "0 1,3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: data
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Refresh DraftKings numbers from ESPN and rebuild breakdowns
+        run: node scripts/update-data.js --track
+      - name: Commit data if it changed
+        id: commit
+        run: |
+          if git diff --quiet -- data; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No movement."; exit 0
+          fi
+          git config user.name "edgeline-data-bot"
+          git config user.email "edgeline-data-bot@users.noreply.github.com"
+          git add data
+          git commit -m "data: track DraftKings line movement ($(date -u +%Y-%m-%dT%H:%M))"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: track
+    if: needs.track.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

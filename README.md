@@ -33,7 +33,7 @@ data/performance.js SAMPLE results -> window.PERF_DATA
 
 ## Real data
 
-Every pick shows the price at every book on its line (best first, with how many still clear the 1-point bar and a flag when only one does), and once its game starts, the live score and where the pick stands. After grading, each pick is scored for closing line value: whether the price we published beat the sharp market's last pre-game line. The performance page shows the average and the beat rate.
+Every pick shows the price at every book on its line (best first, with how many still clear the 1-point bar and a flag when only one does), and once its game starts, the live score and where the pick stands. After grading, each pick is scored for closing line value against DraftKings' closing number (published free by ESPN after every game): whether the price we published beat the close, or for spreads and totals that closed on a different number, whether the line moved toward the pick. Between odds runs, a light job refreshes DraftKings' open and current numbers every two hours so each breakdown shows the market's drift. The performance page shows the average and the beat rate.
 
 Every pick carries a full breakdown: why it sits at its confidence tier, what supports it and what could go wrong, with the injury report for both teams, rest and back-to-backs, venue, records, probable pitchers, kickoff weather for outdoor games and line movement since the pick was logged. Open it from any card's "Full breakdown" button.
 

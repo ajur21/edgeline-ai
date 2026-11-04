@@ -12,6 +12,7 @@
    Flags: --out <dir>   write data files elsewhere (tests)
           --now <iso>   pretend it is this moment (tests)
           --verbose     print every candidate edge per sport, even below the threshold
+          --track       no Odds API calls: refresh DraftKings numbers (ESPN, free) on the board, rebuild breakdowns, rewrite picks.js
    ========================================================================== */
 "use strict";
 const fs = require("fs");
@@ -258,11 +259,13 @@ function summarize(log, now) {
     b.units = round(b.units + e.units, 2); if (e.result === "Win") b.w++; if (e.result === "Loss") b.l++;
   });
   const bySport = Object.values(bySportMap).map(b => ({ sport: b.sport, units: b.units, record: b.w + "-" + b.l }));
-  const recent = graded.slice().reverse().slice(0, 12).map(e => ({ date: e.date, sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units, clv: typeof e.clv === "number" ? e.clv : null, closeOdds: e.close ? e.close.odds : null }));
-  /* closing line value over the picks that had at least one price check after being logged */
+  const recent = graded.slice().reverse().slice(0, 12).map(e => ({ date: e.date, sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units, clv: typeof e.clv === "number" ? e.clv : null, closeOdds: e.close ? e.close.odds : null, closeLine: e.close && e.close.line != null ? e.close.line : null, closeSource: e.close ? e.close.source : null, lineMove: e.lineMove || null }));
+  /* closing line value: price CLV where the closing line matches ours (always for moneylines), plus a count of the picks
+     whose spread or total closed on a different number, by whether it moved toward us */
   const withClv = graded.filter(e => typeof e.clv === "number");
   const clvSum = withClv.reduce((s, e) => s + e.clv, 0), beat = withClv.filter(e => e.clv > 0).length;
-  const clv = { n: withClv.length, avg: withClv.length ? round(clvSum / withClv.length * 100, 2) : null, beat: beat, beatPct: withClv.length ? round(beat / withClv.length * 100, 1) : null, graded: graded.length };
+  const clv = { n: withClv.length, avg: withClv.length ? round(clvSum / withClv.length * 100, 2) : null, beat: beat, beatPct: withClv.length ? round(beat / withClv.length * 100, 1) : null, graded: graded.length,
+    lineToward: graded.filter(e => e.clv == null && e.lineMove === "toward").length, lineAway: graded.filter(e => e.clv == null && e.lineMove === "away").length, espnCloses: graded.filter(e => e.close && /ESPN/.test(e.close.source || "")).length };
   const avgEdge = graded.length ? round(graded.reduce((s, e) => s + e.edge, 0) / graded.length * 100, 1) : 0;
   /* all-time profit by day, for the calendar */
   const byDateMap = {};
@@ -295,7 +298,9 @@ async function run(opts) {
   const logPath = path.join(dataDir, "picks-log.json");
   const log = fs.existsSync(logPath) ? JSON.parse(fs.readFileSync(logPath, "utf8")) : [];
   const usage = { remaining: null };
+  if (opts.track) return trackRun(opts, now, dataDir, logPath, log);
   const source = opts.fixture ? fixtureSource() : liveSource(opts.key, usage);
+  const ctxSource = context.source({ fixture: opts.fixture });
 
   /* 1. grade pending picks whose events have finished */
   const cutoff = now.getTime() - RULES.gradeAfterHours * 36e5;
@@ -304,11 +309,20 @@ async function run(opts) {
   for (const sportKey of Object.keys(pendingBySport)) {
     const scores = await source.scores(sportKey);
     const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
-    pendingBySport[sportKey].forEach(function (e) {
+    for (const e of pendingBySport[sportKey]) {
       const g = grade(e, byId[e.eventId]);
-      if (g) { e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString(); e.close = closingLine(e); e.clv = clvOf(e); }
+      if (g) {
+        e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString();
+        /* the close: DraftKings' closing number from ESPN when the game is matched (a true close), else our last pre-game check */
+        let esp = null;
+        try { esp = await context.closingOdds(ctxSource, e); } catch (err) { esp = null; }
+        const own = closingLine(e);
+        e.close = esp ? Object.assign(esp, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
+        e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
+        e.lineMove = e.close && e.close.moved ? e.close.moved : null;
+      }
       else if (Date.parse(e.commence) < now.getTime() - RULES.voidAfterDays * 864e5) { e.status = "void"; }
-    });
+    }
   }
 
   gradeParlays(log, now);
@@ -359,11 +373,11 @@ async function run(opts) {
   const today = etDate(now);
   /* context (injuries, weather, rest, records) and the written breakdown for every pick on the board */
   let ctxRequests = 0;
-  try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES }); } catch (err) { console.warn("context step failed: " + err.message); }
+  try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES, now: now }); } catch (err) { console.warn("context step failed: " + err.message); }
   const potdEntry = choosePlayOfDay(log, boardEntries, today);
   const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null });
+  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [] });
   const board = boardEntries.map(publicPick);
   const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
   const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
@@ -377,6 +391,30 @@ async function run(opts) {
   const perf = summarize(log, now);
   fs.writeFileSync(path.join(dataDir, "performance.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n");
   return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests };
+}
+
+/* ---------- track mode: free ESPN refresh of the board between odds runs ---------- */
+async function trackRun(opts, now, dataDir, logPath, log) {
+  const boardEntries = log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge);
+  const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now });
+  boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
+  const today = etDate(now);
+  const potdEntry = log.find(e => !e.type && e.potd === today) || null;
+  const parlayEntry = log.find(e => e.type === "parlay" && e.date === today) || null;
+  const byId = {}; log.forEach(e => { byId[e.id] = e; });
+  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [] });
+  /* keep the odds run's timestamp as generatedAt; trackedAt says when DraftKings numbers were last refreshed */
+  let generatedAt = now.toISOString();
+  const picksPath = path.join(dataDir, "picks.js");
+  if (fs.existsSync(picksPath)) { const m = fs.readFileSync(picksPath, "utf8").match(/"generatedAt":\s*"([^"]+)"/); if (m) generatedAt = m[1]; }
+  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
+  const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
+    legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
+  const picksData = { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: boardEntries.map(publicPick) };
+  fs.writeFileSync(picksPath, "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
+  return { track: true, board: boardEntries.length, moved: t.changed, contextRequests: t.requests };
 }
 
 function liveSource(key, usage) {
@@ -397,9 +435,10 @@ function fixtureSource() {
 }
 
 function parseArgs(argv) {
-  const o = { fixture: false, out: null, now: null, key: process.env.ODDS_API_KEY };
+  const o = { fixture: false, out: null, now: null, key: process.env.ODDS_API_KEY, track: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--fixture") o.fixture = true;
+    else if (argv[i] === "--track") o.track = true;
     else if (argv[i] === "--out") o.out = argv[++i];
     else if (argv[i] === "--now") o.now = argv[++i];
     else if (argv[i] === "--verbose") VERBOSE = true;
@@ -409,6 +448,7 @@ function parseArgs(argv) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
+    if (r.track) { console.log("Track: " + r.board + " on the board, DraftKings moved on " + r.moved + ", ESPN requests: " + r.contextRequests); return; }
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : ""));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }

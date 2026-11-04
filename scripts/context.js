@@ -13,6 +13,9 @@ const fs = require("fs");
 const path = require("path");
 
 const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1" };
+/* the "core" API uses sport/leagues/league paths; it keeps DraftKings' opening and closing numbers after a game ends */
+const ESPN_CORE = { americanfootball_nfl: "football/leagues/nfl", basketball_nba: "basketball/leagues/nba", baseball_mlb: "baseball/leagues/mlb", icehockey_nhl: "hockey/leagues/nhl", soccer_epl: "soccer/leagues/eng.1", soccer_spain_la_liga: "soccer/leagues/esp.1" };
+const DK_PROVIDER = "100"; /* ESPN's provider id for DraftKings, the only book it publishes */
 const OUTDOOR = { americanfootball_nfl: true, baseball_mlb: true, soccer_epl: true, soccer_spain_la_liga: true };
 const ET = "America/New_York";
 const DAY = 864e5;
@@ -34,6 +37,7 @@ function liveSource() {
   const site = sport => "https://site.api.espn.com/apis/site/v2/sports/" + ESPN[sport];
   return {
     scoreboard: (sport, yyyymmdd) => get(site(sport) + "/scoreboard?dates=" + yyyymmdd).catch(() => null),
+    odds: (sport, eventId) => get("https://sports.core.api.espn.com/v2/sports/" + ESPN_CORE[sport] + "/events/" + eventId + "/competitions/" + eventId + "/odds/" + DK_PROVIDER).catch(() => null),
     injuries: sport => get(site(sport) + "/injuries").catch(() => null),
     schedule: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/schedule").catch(() => null),
     geocode: city => get("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json").catch(() => null),
@@ -47,6 +51,7 @@ function fixtureSource() {
   const slug = s => ESPN[s].replace("/", "-");
   return {
     scoreboard: async (sport, d) => read("ctx-scoreboard-" + slug(sport) + "-" + d),
+    odds: async (sport, id) => read("ctx-odds-" + slug(sport) + "-" + id),
     injuries: async sport => read("ctx-injuries-" + slug(sport)),
     schedule: async (sport, id) => read("ctx-schedule-" + slug(sport) + "-" + id),
     geocode: async city => read("ctx-geocode-" + norm(city)),
@@ -88,6 +93,132 @@ function restFromSchedule(sched, teamId, commenceMs) {
   const restDays = Math.floor((commenceMs - dates[0]) / DAY);
   return { restDays: restDays, b2b: restDays <= 1, lastGame: new Date(dates[0]).toISOString().slice(0, 10), gamesLast7: dates.filter(t => commenceMs - t <= 7 * DAY).length };
 }
+/* ---------- DraftKings numbers from ESPN ---------- */
+function american(s) {
+  if (s == null) return null;
+  const t = String(s).trim().toUpperCase();
+  if (t === "EVEN" || t === "EV" || t === "PK") return 100;
+  const n = Number(t.replace(/^\+/, ""));
+  return Number.isFinite(n) && n !== 0 ? n : null;
+}
+function lineNum(s) { if (s == null) return null; const n = Number(String(s).replace(/^[ou]/i, "").replace(/^\+/, "")); return Number.isFinite(n) ? n : null; }
+function impliedP(a) { return a < 0 ? -a / (-a + 100) : 100 / (a + 100); }
+function devig2(a, b) { if (a == null || b == null) return null; const pa = impliedP(a), pb = impliedP(b); return pa / (pa + pb); }
+/* the scoreboard's odds block (pre-game): "close" here is the current number, "open" the opener */
+function scoreboardOdds(comp) {
+  const o = (comp.odds || []).find(x => x.provider && (String(x.provider.id) === DK_PROVIDER || /draft\s*kings/i.test(x.provider.name))) || (comp.odds || [])[0];
+  if (!o) return null;
+  const side = (blk, who, key) => blk && blk[who] && blk[who][key] ? blk[who][key] : null;
+  const snap = key => ({
+    spread: lineNum(side(o.pointSpread, "home", key) && side(o.pointSpread, "home", key).line), spreadOdds: { home: american(side(o.pointSpread, "home", key) && side(o.pointSpread, "home", key).odds), away: american(side(o.pointSpread, "away", key) && side(o.pointSpread, "away", key).odds) },
+    total: lineNum(side(o.total, "over", key) && side(o.total, "over", key).line), totalOdds: { over: american(side(o.total, "over", key) && side(o.total, "over", key).odds), under: american(side(o.total, "under", key) && side(o.total, "under", key).odds) },
+    ml: { home: american(side(o.moneyline, "home", key) && side(o.moneyline, "home", key).odds), away: american(side(o.moneyline, "away", key) && side(o.moneyline, "away", key).odds) }
+  });
+  const now = snap("close"), open = snap("open");
+  if (now.spread == null && o.spread != null) now.spread = Number(o.spread);
+  if (now.total == null && o.overUnder != null) now.total = Number(o.overUnder);
+  return { provider: (o.provider && o.provider.name || "DraftKings").replace(/\s+/g, "") === "DraftKings" ? "DraftKings" : (o.provider && o.provider.name) || "DraftKings", now: now, open: open };
+}
+/* the core API's odds record (any time, and kept after the game): open / current / close blocks per side */
+function coreOdds(o) {
+  if (!o || !o.homeTeamOdds) return null;
+  const blk = (team, key) => (o[team] && o[team][key]) || null;
+  const snap = key => {
+    const h = blk("homeTeamOdds", key), a = blk("awayTeamOdds", key), t = o[key] || null;
+    return {
+      spread: h && h.pointSpread ? lineNum(h.pointSpread.american) : null, spreadOdds: { home: h && h.spread ? american(h.spread.american) : null, away: a && a.spread ? american(a.spread.american) : null },
+      total: t && t.total ? lineNum(t.total.american) : null, totalOdds: { over: t && t.over ? american(t.over.american) : null, under: t && t.under ? american(t.under.american) : null },
+      ml: { home: h && h.moneyLine ? american(h.moneyLine.american) : null, away: a && a.moneyLine ? american(a.moneyLine.american) : null }
+    };
+  };
+  const close = snap("close"), current = snap("current"), open = snap("open");
+  /* before a game ends only `current` is filled; after it ends `close` is the number that counts */
+  const fin = close.ml.home != null || close.spread != null || close.total != null;
+  return { provider: "DraftKings", close: fin ? close : null, now: fin ? close : current, open: open };
+}
+/* the pick's own side of a DraftKings snapshot: line (null for a moneyline), price, de-vigged fair */
+function dkSide(e, snap) {
+  if (!snap) return null;
+  const home = e.outcome && e.outcome.name === e.home, away = e.outcome && e.outcome.name === e.away;
+  if (e.marketKey === "h2h") {
+    if (!home && !away) return null; /* draws are not in ESPN's two-way block */
+    const mine = home ? snap.ml.home : snap.ml.away, theirs = home ? snap.ml.away : snap.ml.home;
+    return mine == null ? null : { line: null, odds: mine, fair: devig2(mine, theirs) };
+  }
+  if (e.marketKey === "spreads") {
+    if (!home && !away || snap.spread == null) return null;
+    const mine = home ? snap.spreadOdds.home : snap.spreadOdds.away, theirs = home ? snap.spreadOdds.away : snap.spreadOdds.home;
+    return { line: home ? snap.spread : -snap.spread, odds: mine, fair: devig2(mine, theirs) };
+  }
+  if (e.marketKey === "totals") {
+    if (snap.total == null) return null;
+    const over = e.outcome && /^over$/i.test(e.outcome.name);
+    const mine = over ? snap.totalOdds.over : snap.totalOdds.under, theirs = over ? snap.totalOdds.under : snap.totalOdds.over;
+    return { line: snap.total, odds: mine, fair: devig2(mine, theirs) };
+  }
+  return null;
+}
+/* did the market move toward the pick between two snapshots of its side? spreads: a worse number for our side means the
+   market likes it; totals: up for an over, down for an under; moneyline: a shorter price. null when nothing moved */
+function movedToward(e, from, to) {
+  if (!from || !to) return null;
+  if (e.marketKey === "h2h") { if (from.odds == null || to.odds == null || from.odds === to.odds) return null; return impliedP(to.odds) > impliedP(from.odds) ? "toward" : "away"; }
+  if (from.line == null || to.line == null || from.line === to.line) {
+    if (from.odds != null && to.odds != null && from.odds !== to.odds && from.line === to.line) return impliedP(to.odds) > impliedP(from.odds) ? "toward" : "away";
+    return null;
+  }
+  if (e.marketKey === "spreads") return to.line < from.line ? "toward" : "away";
+  const over = e.outcome && /^over$/i.test(e.outcome.name);
+  return (to.line > from.line) === !!over ? "toward" : "away";
+}
+function fmtLine(e, s) { if (!s) return "—"; const a = s.odds == null ? "" : (s.odds > 0 ? "+" : "") + s.odds; if (e.marketKey === "h2h") return a; if (e.marketKey === "spreads") return (s.line > 0 ? "+" : "") + s.line + (a ? " (" + a + ")" : ""); return s.line + (a ? " (" + a + ")" : ""); }
+/* what the site shows: DraftKings open and now for the pick's side, and the direction */
+function dkSummary(e, odds) {
+  if (!odds) return null;
+  const open = dkSide(e, odds.open), now = dkSide(e, odds.now);
+  if (!now) return null;
+  return { book: odds.provider || "DraftKings", open: open, now: now, moved: movedToward(e, open, now), label: "DraftKings " + (open ? "opened " + fmtLine(e, open) + ", now " : "now ") + fmtLine(e, now) };
+}
+/* DraftKings' close for a finished pick from ESPN's core odds record: null when the game is not matched or not closed */
+async function closingOdds(src, e) {
+  if (!ESPN_CORE[e.sportKey]) return null;
+  let id = e.context && e.context.espnEventId;
+  if (!id) {
+    const sb = await src.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
+    const m = findEvent(sb, e.home, e.away); id = m ? m.event.id : null;
+  }
+  if (!id) return null;
+  const o = coreOdds(await src.odds(e.sportKey, id));
+  if (!o || !o.close) return null;
+  const side = dkSide(e, o.close); if (!side || side.odds == null) return null;
+  const logged = { line: e.outcome && e.outcome.point != null ? Number(e.outcome.point) : null, odds: e.odds };
+  const sameLine = e.marketKey === "h2h" || (side.line != null && logged.line != null && Math.abs(side.line - logged.line) < 1e-9);
+  return { source: "DraftKings close (ESPN)", espnEventId: String(id), line: side.line, odds: side.odds, fair: sameLine ? round(side.fair, 4) : null, moved: sameLine ? null : movedToward(e, logged, side), open: (function (op) { return op ? { line: op.line, odds: op.odds, fair: op.fair == null ? null : round(op.fair, 4) } : null; })(dkSide(e, o.open)) };
+}
+/* track mode: refresh only the DraftKings numbers on every board entry (one scoreboard call per sport and day) */
+async function trackOdds(entries, opts) {
+  const src = opts && opts.fixture ? fixtureSource() : liveSource();
+  let changed = 0;
+  for (const e of entries) {
+    if (!ESPN[e.sportKey]) continue;
+    const sb = await src.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
+    const m = findEvent(sb, e.home, e.away); if (!m) continue;
+    const odds = scoreboardOdds(m.comp); if (!odds) continue;
+    e.context = e.context || { espnEventId: m.event.id, venue: null, indoor: null, records: {}, probables: {}, injuries: {}, rest: {}, weather: null, broadcast: null };
+    if (recordDk(e, odds, opts && opts.now)) changed++;
+  }
+  return { changed: changed, requests: src.count() };
+}
+/* store the snapshot on the entry; append to dkHistory only when the pick's side actually moved */
+function recordDk(e, odds, now) {
+  e.context.odds = odds;
+  const side = dkSide(e, odds.now); if (!side) return false;
+  const last = (e.dkHistory || [])[0] ? e.dkHistory[e.dkHistory.length - 1] : null;
+  if (last && last.line === side.line && last.odds === side.odds) return false;
+  e.dkHistory = (e.dkHistory || []).concat([{ at: (now ? new Date(now) : new Date()).toISOString(), line: side.line, odds: side.odds, fair: side.fair == null ? null : round(side.fair, 4) }]).slice(-48);
+  return true;
+}
+
 function recordsOf(comp) {
   const recs = (comp.records || []).reduce((o, r) => { o[r.type || r.name] = r.summary; return o; }, {});
   return { overall: recs.total || recs.overall || null, home: recs.home || null, away: recs.road || recs.away || null };
@@ -124,6 +255,7 @@ async function fetchContext(entries, opts) {
       ctx.broadcast = (m.comp.broadcasts && m.comp.broadcasts[0] && m.comp.broadcasts[0].names || []).join(", ") || null;
       for (const pair of [[e.home, m.home.team.id], [e.away, m.away.team.id]]) ctx.rest[pair[0]] = restFromSchedule(await src.schedule(e.sportKey, pair[1]), pair[1], commenceMs);
       if (m.event.weather) ctx.weather = { summary: m.event.weather.displayValue, tempF: m.event.weather.temperature, source: "ESPN" };
+      ctx.odds = scoreboardOdds(m.comp);
       if (OUTDOOR[e.sportKey] && ctx.indoor === false) { const w = await weatherFor(src, v, commenceMs); if (w) ctx.weather = Object.assign(ctx.weather || {}, w); }
     }
     out[e.id] = ctx;
@@ -152,6 +284,11 @@ function buildBreakdown(e, ctx, rules) {
     else if (dOdds > 0) support.push("A better price is now available: " + (e.current.odds > 0 ? "+" : "") + e.current.odds + " at " + e.current.book + ".");
     e.movement = mv;
   }
+  /* DraftKings open -> now from ESPN (free, every run): the public market's own drift on this pick */
+  const dk = dkSummary(e, ctx && ctx.odds);
+  e.dk = dk;
+  if (dk && dk.moved === "toward") support.push(dk.label + ": the market has moved toward this side since the open.");
+  else if (dk && dk.moved === "away") risks.push(dk.label + ": the market has moved against this side since the open.");
   const team = pickTeam(e), opp = team ? (team === e.home ? e.away : e.home) : null, isTotal = e.marketKey === "totals", over = isTotal && /^over/i.test(e.pick);
   if (ctx) {
     const injList = (t) => (ctx.injuries && ctx.injuries[t]) || [];
@@ -193,7 +330,8 @@ function buildBreakdown(e, ctx, rules) {
 
 async function enrich(entries, opts) {
   const got = await fetchContext(entries, opts);
-  entries.forEach(function (e) { e.context = got.byId[e.id] || null; e.breakdown = buildBreakdown(e, e.context, opts && opts.rules); });
+  entries.forEach(function (e) { e.context = got.byId[e.id] || null; if (e.context && e.context.odds) recordDk(e, e.context.odds, opts && opts.now); e.breakdown = buildBreakdown(e, e.context, opts && opts.rules); });
   return got.requests;
 }
-module.exports = { enrich, fetchContext, buildBreakdown, findEvent, teamInjuries, restFromSchedule, weatherFor, ESPN };
+function source(opts) { return opts && opts.fixture ? fixtureSource() : liveSource(); }
+module.exports = { enrich, fetchContext, buildBreakdown, findEvent, teamInjuries, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };
