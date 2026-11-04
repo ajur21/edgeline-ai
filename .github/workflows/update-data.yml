@@ -8,6 +8,11 @@ on:
     - cron: "0 17 * * *"
     - cron: "30 20 * * *"
   workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Print every market's best edge (diagnostics; same credit cost)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -29,7 +34,7 @@ jobs:
         with:
           node-version: 22
       - name: Pull odds, grade results, rewrite data files
-        run: node scripts/update-data.js
+        run: node scripts/update-data.js ${{ inputs.verbose && '--verbose' || '' }}
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
