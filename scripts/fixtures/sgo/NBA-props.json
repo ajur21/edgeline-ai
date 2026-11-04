@@ -1,0 +1,2371 @@
+[
+ {
+  "eventID": "sgo-nba-props-1",
+  "sportID": "BASKETBALL",
+  "leagueID": "NBA",
+  "status": {
+   "startsAt": "2026-11-05T00:00:00.000Z",
+   "started": false,
+   "completed": false,
+   "ended": false,
+   "oddsAvailable": true
+  },
+  "teams": {
+   "home": {
+    "teamID": "WASHINGTON_WIZARDS_NBA",
+    "names": {
+     "long": "Washington Wizards",
+     "medium": "Wizards",
+     "short": "WSH",
+     "location": "Washington"
+    }
+   },
+   "away": {
+    "teamID": "ATLANTA_HAWKS_NBA",
+    "names": {
+     "long": "Atlanta Hawks",
+     "medium": "Hawks",
+     "short": "ATL",
+     "location": "Atlanta"
+    }
+   }
+  },
+  "players": {
+   "NICKEIL_ALEXANDER_WALKER_1_NBA": {
+    "playerID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "teamID": "ATLANTA_HAWKS_NBA",
+    "firstName": "Nickeil",
+    "lastName": "Alexander-Walker",
+    "name": "Nickeil Alexander-Walker"
+   },
+   "DYSON_DANIELS_1_NBA": {
+    "playerID": "DYSON_DANIELS_1_NBA",
+    "teamID": "ATLANTA_HAWKS_NBA",
+    "firstName": "Dyson",
+    "lastName": "Daniels",
+    "name": "Dyson Daniels"
+   },
+   "LUGUENTZ_DORT_1_NBA": {
+    "playerID": "LUGUENTZ_DORT_1_NBA",
+    "teamID": "ATLANTA_HAWKS_NBA",
+    "firstName": "Luguentz",
+    "lastName": "Dort",
+    "name": "Luguentz Dort"
+   }
+  },
+  "odds": {
+   "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over": {
+    "oddID": "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "opposingOddID": "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "statID": "points",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-102",
+    "openFairOdds": "-102",
+    "bookOdds": "-105",
+    "fairOverUnder": "20.5",
+    "openFairOverUnder": "20.5",
+    "bookOverUnder": "20.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "20.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "20.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "20.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-95",
+      "overUnder": "20.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "20.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "20.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "20.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "20.5"
+     }
+    }
+   },
+   "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under": {
+    "oddID": "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "opposingOddID": "points-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "statID": "points",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-108",
+    "openFairOdds": "-108",
+    "bookOdds": "-115",
+    "fairOverUnder": "20.5",
+    "openFairOverUnder": "20.5",
+    "bookOverUnder": "20.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "20.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "20.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "20.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "20.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "20.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "20.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "20.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "20.5"
+     }
+    }
+   },
+   "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over": {
+    "oddID": "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "opposingOddID": "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "statID": "rebounds",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-125",
+    "openFairOdds": "-125",
+    "bookOdds": "-120",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under": {
+    "oddID": "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "opposingOddID": "rebounds-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "statID": "rebounds",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "+105",
+    "openFairOdds": "+105",
+    "bookOdds": "-100",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over": {
+    "oddID": "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "opposingOddID": "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "statID": "assists",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-110",
+    "openFairOdds": "-110",
+    "bookOdds": "-110",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under": {
+    "oddID": "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "opposingOddID": "assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "statID": "assists",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-110",
+    "openFairOdds": "-110",
+    "bookOdds": "-110",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over": {
+    "oddID": "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "opposingOddID": "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "statID": "threePointersMade",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "+110",
+    "openFairOdds": "+110",
+    "bookOdds": "+105",
+    "fairOverUnder": "2.5",
+    "openFairOverUnder": "2.5",
+    "bookOverUnder": "2.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "2.5"
+     }
+    }
+   },
+   "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under": {
+    "oddID": "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "opposingOddID": "threePointersMade-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "statID": "threePointersMade",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-130",
+    "openFairOdds": "-130",
+    "bookOdds": "-125",
+    "fairOverUnder": "2.5",
+    "openFairOverUnder": "2.5",
+    "bookOverUnder": "2.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "2.5"
+     }
+    }
+   },
+   "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over": {
+    "oddID": "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "opposingOddID": "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "statID": "points+rebounds+assists",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-105",
+    "openFairOdds": "-105",
+    "bookOdds": "-110",
+    "fairOverUnder": "28.5",
+    "openFairOverUnder": "28.5",
+    "bookOverUnder": "28.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     }
+    }
+   },
+   "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under": {
+    "oddID": "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-under",
+    "opposingOddID": "points+rebounds+assists-NICKEIL_ALEXANDER_WALKER_1_NBA-game-ou-over",
+    "statID": "points+rebounds+assists",
+    "statEntityID": "NICKEIL_ALEXANDER_WALKER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-115",
+    "openFairOdds": "-115",
+    "bookOdds": "-110",
+    "fairOverUnder": "28.5",
+    "openFairOverUnder": "28.5",
+    "bookOverUnder": "28.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     }
+    }
+   },
+   "points-DYSON_DANIELS_1_NBA-game-ou-over": {
+    "oddID": "points-DYSON_DANIELS_1_NBA-game-ou-over",
+    "opposingOddID": "points-DYSON_DANIELS_1_NBA-game-ou-under",
+    "statID": "points",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-135",
+    "openFairOdds": "-135",
+    "bookOdds": "-125",
+    "fairOverUnder": "9.5",
+    "openFairOverUnder": "9.5",
+    "bookOverUnder": "9.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "9.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "9.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "9.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "9.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "9.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-135",
+      "overUnder": "10.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "9.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-125",
+      "overUnder": "9.5"
+     }
+    }
+   },
+   "points-DYSON_DANIELS_1_NBA-game-ou-under": {
+    "oddID": "points-DYSON_DANIELS_1_NBA-game-ou-under",
+    "opposingOddID": "points-DYSON_DANIELS_1_NBA-game-ou-over",
+    "statID": "points",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "+115",
+    "openFairOdds": "+115",
+    "bookOdds": "+100",
+    "fairOverUnder": "9.5",
+    "openFairOverUnder": "9.5",
+    "bookOverUnder": "9.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+100",
+      "overUnder": "9.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "9.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+95",
+      "overUnder": "9.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+110",
+      "overUnder": "9.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+100",
+      "overUnder": "9.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+90",
+      "overUnder": "10.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "9.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+100",
+      "overUnder": "9.5"
+     }
+    }
+   },
+   "rebounds-DYSON_DANIELS_1_NBA-game-ou-over": {
+    "oddID": "rebounds-DYSON_DANIELS_1_NBA-game-ou-over",
+    "opposingOddID": "rebounds-DYSON_DANIELS_1_NBA-game-ou-under",
+    "statID": "rebounds",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-115",
+    "openFairOdds": "-115",
+    "bookOdds": "-110",
+    "fairOverUnder": "5.5",
+    "openFairOverUnder": "5.5",
+    "bookOverUnder": "5.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     }
+    }
+   },
+   "rebounds-DYSON_DANIELS_1_NBA-game-ou-under": {
+    "oddID": "rebounds-DYSON_DANIELS_1_NBA-game-ou-under",
+    "opposingOddID": "rebounds-DYSON_DANIELS_1_NBA-game-ou-over",
+    "statID": "rebounds",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-105",
+    "openFairOdds": "-105",
+    "bookOdds": "-110",
+    "fairOverUnder": "5.5",
+    "openFairOverUnder": "5.5",
+    "bookOverUnder": "5.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "5.5"
+     }
+    }
+   },
+   "assists-DYSON_DANIELS_1_NBA-game-ou-over": {
+    "oddID": "assists-DYSON_DANIELS_1_NBA-game-ou-over",
+    "opposingOddID": "assists-DYSON_DANIELS_1_NBA-game-ou-under",
+    "statID": "assists",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-118",
+    "openFairOdds": "-118",
+    "bookOdds": "-115",
+    "fairOverUnder": "4.5",
+    "openFairOverUnder": "4.5",
+    "bookOverUnder": "4.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "4.5"
+     }
+    }
+   },
+   "assists-DYSON_DANIELS_1_NBA-game-ou-under": {
+    "oddID": "assists-DYSON_DANIELS_1_NBA-game-ou-under",
+    "opposingOddID": "assists-DYSON_DANIELS_1_NBA-game-ou-over",
+    "statID": "assists",
+    "statEntityID": "DYSON_DANIELS_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-102",
+    "openFairOdds": "-102",
+    "bookOdds": "-105",
+    "fairOverUnder": "4.5",
+    "openFairOverUnder": "4.5",
+    "bookOverUnder": "4.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "4.5"
+     }
+    }
+   },
+   "points-LUGUENTZ_DORT_1_NBA-game-ou-over": {
+    "oddID": "points-LUGUENTZ_DORT_1_NBA-game-ou-over",
+    "opposingOddID": "points-LUGUENTZ_DORT_1_NBA-game-ou-under",
+    "statID": "points",
+    "statEntityID": "LUGUENTZ_DORT_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-110",
+    "openFairOdds": "-110",
+    "bookOdds": "-110",
+    "fairOverUnder": "9.5",
+    "openFairOverUnder": "8.5",
+    "bookOverUnder": "8.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     }
+    }
+   },
+   "points-LUGUENTZ_DORT_1_NBA-game-ou-under": {
+    "oddID": "points-LUGUENTZ_DORT_1_NBA-game-ou-under",
+    "opposingOddID": "points-LUGUENTZ_DORT_1_NBA-game-ou-over",
+    "statID": "points",
+    "statEntityID": "LUGUENTZ_DORT_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-110",
+    "openFairOdds": "-110",
+    "bookOdds": "-110",
+    "fairOverUnder": "9.5",
+    "openFairOverUnder": "8.5",
+    "bookOverUnder": "8.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "8.5"
+     }
+    }
+   },
+   "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-over": {
+    "oddID": "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-over",
+    "opposingOddID": "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-under",
+    "statID": "threePointersMade",
+    "statEntityID": "LUGUENTZ_DORT_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-140",
+    "openFairOdds": "-140",
+    "bookOdds": "-130",
+    "fairOverUnder": "1.5",
+    "openFairOverUnder": "1.5",
+    "bookOverUnder": "1.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-130",
+      "overUnder": "1.5"
+     }
+    }
+   },
+   "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-under": {
+    "oddID": "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-under",
+    "opposingOddID": "threePointersMade-LUGUENTZ_DORT_1_NBA-game-ou-over",
+    "statID": "threePointersMade",
+    "statEntityID": "LUGUENTZ_DORT_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "+115",
+    "openFairOdds": "+115",
+    "bookOdds": "+105",
+    "fairOverUnder": "1.5",
+    "openFairOverUnder": "1.5",
+    "bookOverUnder": "1.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+105",
+      "overUnder": "1.5"
+     }
+    }
+   }
+  }
+ },
+ {
+  "eventID": "sgo-nba-props-2",
+  "sportID": "BASKETBALL",
+  "leagueID": "NBA",
+  "status": {
+   "startsAt": "2026-11-05T00:30:00.000Z",
+   "started": false,
+   "completed": false,
+   "ended": false,
+   "oddsAvailable": true
+  },
+  "teams": {
+   "home": {
+    "teamID": "BOSTON_CELTICS_NBA",
+    "names": {
+     "long": "Boston Celtics",
+     "medium": "Celtics",
+     "short": "BOS",
+     "location": "Boston"
+    }
+   },
+   "away": {
+    "teamID": "MILWAUKEE_BUCKS_NBA",
+    "names": {
+     "long": "Milwaukee Bucks",
+     "medium": "Bucks",
+     "short": "MIL",
+     "location": "Milwaukee"
+    }
+   }
+  },
+  "odds": {
+   "points-PAUL_GEORGE_1_NBA-game-ou-over": {
+    "oddID": "points-PAUL_GEORGE_1_NBA-game-ou-over",
+    "opposingOddID": "points-PAUL_GEORGE_1_NBA-game-ou-under",
+    "statID": "points",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-112",
+    "openFairOdds": "-112",
+    "bookOdds": "-108",
+    "fairOverUnder": "19.5",
+    "openFairOverUnder": "19.5",
+    "bookOverUnder": "19.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-108",
+      "overUnder": "19.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-103",
+      "overUnder": "19.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-113",
+      "overUnder": "19.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-98",
+      "overUnder": "19.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-108",
+      "overUnder": "19.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-118",
+      "overUnder": "19.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-103",
+      "overUnder": "19.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-108",
+      "overUnder": "19.5"
+     }
+    }
+   },
+   "points-PAUL_GEORGE_1_NBA-game-ou-under": {
+    "oddID": "points-PAUL_GEORGE_1_NBA-game-ou-under",
+    "opposingOddID": "points-PAUL_GEORGE_1_NBA-game-ou-over",
+    "statID": "points",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-108",
+    "openFairOdds": "-108",
+    "bookOdds": "-112",
+    "fairOverUnder": "19.5",
+    "openFairOverUnder": "19.5",
+    "bookOverUnder": "19.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-112",
+      "overUnder": "19.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-107",
+      "overUnder": "19.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-117",
+      "overUnder": "19.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-102",
+      "overUnder": "19.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-112",
+      "overUnder": "19.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-122",
+      "overUnder": "19.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-107",
+      "overUnder": "19.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-112",
+      "overUnder": "19.5"
+     }
+    }
+   },
+   "rebounds-PAUL_GEORGE_1_NBA-game-ou-over": {
+    "oddID": "rebounds-PAUL_GEORGE_1_NBA-game-ou-over",
+    "opposingOddID": "rebounds-PAUL_GEORGE_1_NBA-game-ou-under",
+    "statID": "rebounds",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-120",
+    "openFairOdds": "-120",
+    "bookOdds": "-115",
+    "fairOverUnder": "5.5",
+    "openFairOverUnder": "5.5",
+    "bookOverUnder": "5.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "5.5"
+     }
+    }
+   },
+   "rebounds-PAUL_GEORGE_1_NBA-game-ou-under": {
+    "oddID": "rebounds-PAUL_GEORGE_1_NBA-game-ou-under",
+    "opposingOddID": "rebounds-PAUL_GEORGE_1_NBA-game-ou-over",
+    "statID": "rebounds",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "+100",
+    "openFairOdds": "+100",
+    "bookOdds": "-105",
+    "fairOverUnder": "5.5",
+    "openFairOverUnder": "5.5",
+    "bookOverUnder": "5.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "5.5"
+     }
+    }
+   },
+   "assists-PAUL_GEORGE_1_NBA-game-ou-over": {
+    "oddID": "assists-PAUL_GEORGE_1_NBA-game-ou-over",
+    "opposingOddID": "assists-PAUL_GEORGE_1_NBA-game-ou-under",
+    "statID": "assists",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-100",
+    "openFairOdds": "-100",
+    "bookOdds": "-105",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "assists-PAUL_GEORGE_1_NBA-game-ou-under": {
+    "oddID": "assists-PAUL_GEORGE_1_NBA-game-ou-under",
+    "opposingOddID": "assists-PAUL_GEORGE_1_NBA-game-ou-over",
+    "statID": "assists",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-120",
+    "openFairOdds": "-120",
+    "bookOdds": "-115",
+    "fairOverUnder": "3.5",
+    "openFairOverUnder": "3.5",
+    "bookOverUnder": "3.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "3.5"
+     }
+    }
+   },
+   "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-over": {
+    "oddID": "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-over",
+    "opposingOddID": "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-under",
+    "statID": "threePointersMade",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-105",
+    "openFairOdds": "-105",
+    "bookOdds": "-110",
+    "fairOverUnder": "2.5",
+    "openFairOverUnder": "2.5",
+    "bookOverUnder": "2.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     }
+    }
+   },
+   "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-under": {
+    "oddID": "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-under",
+    "opposingOddID": "threePointersMade-PAUL_GEORGE_1_NBA-game-ou-over",
+    "statID": "threePointersMade",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-115",
+    "openFairOdds": "-115",
+    "bookOdds": "-110",
+    "fairOverUnder": "2.5",
+    "openFairOverUnder": "2.5",
+    "bookOverUnder": "2.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "2.5"
+     }
+    }
+   },
+   "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-over": {
+    "oddID": "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-over",
+    "opposingOddID": "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-under",
+    "statID": "points+rebounds+assists",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-108",
+    "openFairOdds": "-108",
+    "bookOdds": "-110",
+    "fairOverUnder": "28.5",
+    "openFairOverUnder": "28.5",
+    "bookOverUnder": "28.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     }
+    }
+   },
+   "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-under": {
+    "oddID": "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-under",
+    "opposingOddID": "points+rebounds+assists-PAUL_GEORGE_1_NBA-game-ou-over",
+    "statID": "points+rebounds+assists",
+    "statEntityID": "PAUL_GEORGE_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-112",
+    "openFairOdds": "-112",
+    "bookOdds": "-110",
+    "fairOverUnder": "28.5",
+    "openFairOverUnder": "28.5",
+    "bookOverUnder": "28.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "28.5"
+     }
+    }
+   },
+   "points-SAM_HAUSER_1_NBA-game-ou-over": {
+    "oddID": "points-SAM_HAUSER_1_NBA-game-ou-over",
+    "opposingOddID": "points-SAM_HAUSER_1_NBA-game-ou-under",
+    "statID": "points",
+    "statEntityID": "SAM_HAUSER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-115",
+    "openFairOdds": "-115",
+    "bookOdds": "-110",
+    "fairOverUnder": "7.5",
+    "openFairOverUnder": "7.5",
+    "bookOverUnder": "7.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "7.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "7.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "7.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "7.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "7.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     }
+    }
+   },
+   "points-SAM_HAUSER_1_NBA-game-ou-under": {
+    "oddID": "points-SAM_HAUSER_1_NBA-game-ou-under",
+    "opposingOddID": "points-SAM_HAUSER_1_NBA-game-ou-over",
+    "statID": "points",
+    "statEntityID": "SAM_HAUSER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "-105",
+    "openFairOdds": "-105",
+    "bookOdds": "-110",
+    "fairOverUnder": "7.5",
+    "openFairOverUnder": "7.5",
+    "bookOverUnder": "7.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "7.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-115",
+      "overUnder": "7.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-100",
+      "overUnder": "7.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-120",
+      "overUnder": "7.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-105",
+      "overUnder": "7.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-110",
+      "overUnder": "7.5"
+     }
+    }
+   },
+   "threePointersMade-SAM_HAUSER_1_NBA-game-ou-over": {
+    "oddID": "threePointersMade-SAM_HAUSER_1_NBA-game-ou-over",
+    "opposingOddID": "threePointersMade-SAM_HAUSER_1_NBA-game-ou-under",
+    "statID": "threePointersMade",
+    "statEntityID": "SAM_HAUSER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "over",
+    "fairOdds": "-150",
+    "openFairOdds": "-150",
+    "bookOdds": "-145",
+    "fairOverUnder": "1.5",
+    "openFairOverUnder": "1.5",
+    "bookOverUnder": "1.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "-145",
+      "overUnder": "1.5"
+     }
+    }
+   },
+   "threePointersMade-SAM_HAUSER_1_NBA-game-ou-under": {
+    "oddID": "threePointersMade-SAM_HAUSER_1_NBA-game-ou-under",
+    "opposingOddID": "threePointersMade-SAM_HAUSER_1_NBA-game-ou-over",
+    "statID": "threePointersMade",
+    "statEntityID": "SAM_HAUSER_1_NBA",
+    "periodID": "game",
+    "betTypeID": "ou",
+    "sideID": "under",
+    "fairOdds": "+125",
+    "openFairOdds": "+125",
+    "bookOdds": "+115",
+    "fairOverUnder": "1.5",
+    "openFairOverUnder": "1.5",
+    "bookOverUnder": "1.5",
+    "fairOddsAvailable": true,
+    "bookOddsAvailable": true,
+    "byBookmaker": {
+     "draftkings": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "fanduel": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "betmgm": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "caesars": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "espnbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "bovada": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "pointsbet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     },
+     "unibet": {
+      "lastUpdatedAt": "2026-11-04T20:00:00.000Z",
+      "available": true,
+      "odds": "+115",
+      "overUnder": "1.5"
+     }
+    }
+   }
+  }
+ }
+]

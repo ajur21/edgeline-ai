@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Props · EdgeLine AI</title>
-  <meta name="description" content="NBA props research: every rotation player on tonight's slate with form, splits, rest, matchup and a line checker.">
+  <meta name="description" content="NBA props, likeliest first: tonight's lines at nine books, the fair probability of each side, how often the player has cleared the line, and the matchup.">
   <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="EdgeLine AI">
   <meta property="og:title" content="Props · EdgeLine AI">
-  <meta property="og:description" content="NBA props research: form, faces, game logs and confluences for tonight's slate.">
+  <meta property="og:description" content="NBA props, likeliest first: tonight's lines, fair probability per side, hit rates and confluences.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,8 +51,9 @@
     <div class="section-head row page-head">
       <div>
         <span class="eyebrow">Props research</span>
-        <h1 class="page-title">Tonight’s players: form, faces and the matchup</h1>
+        <h1 class="page-title">Tonight’s props, likeliest first</h1>
         <p class="muted page-sub" id="props-asof"></p>
+        <p class="muted page-sub" id="props-lines"></p>
       </div>
       <span class="badge badge-sample" data-sample-flag="props">Sample data</span>
     </div>
@@ -61,20 +62,34 @@
       <label class="filter">Game<select id="p-game"><option value="">All games</option></select></label>
       <label class="filter">Stat
         <select id="p-stat">
-          <option value="pts">Points</option><option value="reb">Rebounds</option><option value="ast">Assists</option><option value="threes">Threes</option><option value="pra">Pts + Reb + Ast</option>
+          <option value="">Best per player</option><option value="pts">Points</option><option value="reb">Rebounds</option><option value="ast">Assists</option><option value="threes">Threes</option><option value="pra">Pts + Reb + Ast</option>
         </select>
       </label>
       <label class="filter">Sort by
         <select id="p-sort">
-          <option value="heat">Hottest (last 5 above season)</option><option value="season">Season average</option><option value="minutes">Minutes</option><option value="signals">Signals agreeing</option>
+          <option value="prob">Likeliest first</option><option value="form">Form (hit rate at the line)</option><option value="heat">Hottest (last 5 above season)</option><option value="season">Season average</option><option value="minutes">Minutes</option><option value="signals">Confluences agreeing</option>
         </select>
       </label>
-      <label class="filter">Lean<select id="p-lean"><option value="">Any</option><option value="over">Over signals</option><option value="under">Under signals</option></select></label>
+      <label class="filter">Side<select id="p-lean"><option value="">Any</option><option value="over">Over</option><option value="under">Under</option></select></label>
       <label class="filter">Search<input type="search" id="p-search" placeholder="Player or team" autocomplete="off"></label>
     </div>
 
+    <div class="section-head sub-head" id="props-board-head">
+      <div>
+        <h2>The props board</h2>
+        <p class="how-to muted" id="props-board-how">Ranked positive edge first, then by the market’s fair probability for the side it leans to. Fair is the de-vigged consensus of the books on tonight’s line; the bar’s tick is what the best price implies; the hit pill is how often the player cleared this line in the last ten.</p>
+      </div>
+    </div>
+    <p class="filter-summary" id="pb-summary" role="status"></p>
+    <div class="props-board" id="props-board" aria-label="Props board, likeliest first"></div>
+
+    <div class="section-head sub-head">
+      <div>
+        <h2>Every player</h2>
+        <p class="how-to muted" id="p-how">Each card opens on the prop the board ranked, with tonight’s line typed in. Change the stat, the line or the span and the bars regrade.</p>
+      </div>
+    </div>
     <p class="filter-summary" id="p-summary" role="status"></p>
-    <h2 class="visually-hidden">Players</h2>
     <div class="props-grid" id="props-host"></div>
   </div>
 </section>
@@ -82,7 +97,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat you chose; the bars are the last ten games, oldest to newest, green above the season average. Type a line to see how often the player has cleared it. Signals are confluences from the player’s own form, minutes, home/road split, rest and the opponent’s defence; they are context, not a bet. Betting lines for props need a paid odds plan and are not shown. <span id="props-credit"></span>
+      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at tonight’s market line when one is posted (the two pills under it show each side’s fair probability and best price) and you can type any other number; your line is kept on this device. Confluences are context from the player’s own form, minutes, home/road split, rest and the opponent’s defence; they are not a bet. Without a posted line, type one to grade each game. <span id="props-credit"></span>
     </div>
   </div>
 </section>
@@ -92,26 +107,162 @@
 (function () {
   var E = window.EdgeLine, D = window.PROPS_DATA || { players: [], games: [], generatedAt: null };
   var P = D.players || [], host = document.getElementById("props-host"), summary = document.getElementById("p-summary");
+  var board = document.getElementById("props-board"), boardSummary = document.getElementById("pb-summary");
   var fGame = document.getElementById("p-game"), fStat = document.getElementById("p-stat"), fSort = document.getElementById("p-sort"), fLean = document.getElementById("p-lean"), fSearch = document.getElementById("p-search");
   var STAT_LABEL = { pts: "Points", reb: "Rebounds", ast: "Assists", threes: "Threes", pra: "Pts + Reb + Ast" };
-  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + "Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
+  var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA" };
+  var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).length; });
+  var L = D.lines || {};
+  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + P.length + " rotation players · Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
+  var linesNote = document.getElementById("props-lines");
+  if (HAS_LINES) { var at = L.at ? new Date(L.at) : null; linesNote.textContent = "Lines: " + (L.players || P.filter(function (p) { return p.lines; }).length) + " players priced in " + (L.games || "") + (L.of ? " of " + L.of : "") + " games at " + ((L.books || []).length || "several") + " books" + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + "."; }
+  else { linesNote.textContent = P.length ? "No lines posted yet tonight: the board fills at the afternoon refresh. Type a line on any card to grade it now." : ""; }
   document.getElementById("props-credit").textContent = D.attribution || "";
   (D.games || []).forEach(function (g) { fGame.appendChild(E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + " · " + g.startLabel })); });
+  if (!HAS_LINES) { fSort.value = "heat"; fSort.querySelector('[value="prob"]').disabled = true; fSort.querySelector('[value="form"]').disabled = true; document.getElementById("props-board-head").hidden = true; board.hidden = true; boardSummary.hidden = true; }
 
-  function val(p, r) { return r[fStat.value] != null ? r[fStat.value] : (fStat.value === "pra" ? r.pts + r.reb + r.ast : null); }
-  function lineKey(p) { return "prop-line:" + p.id + ":" + fStat.value; }
-  function savedLine(p) { try { var v = localStorage.getItem(lineKey(p)); return v == null ? "" : v; } catch (e) { return ""; } }
-  function hits(p, line) {
-    var vals = p.log.map(function (r) { return val(p, r); }).filter(function (v) { return v != null; });
-    var over = function (arr) { return arr.filter(function (v) { return v > line; }).length; };
+  /* ---------- the maths: one side per player per stat ---------- */
+  function statVal(r, k) { return k === "pra" ? r.pts + r.reb + r.ast : r[k]; }
+  function hitsFor(p, statKey, line, side) {
+    var vals = p.log.map(function (r) { return statVal(r, statKey); }).filter(function (v) { return v != null; });
+    var over = function (arr) { return arr.filter(function (v) { return side === "under" ? v < line : v > line; }).length; };
     return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
   }
+  function rate(pair) { return pair[1] ? pair[0] / pair[1] : 0; }
+  /* confluences that bear on this stat and lean this way: the stat's own trend plus the general ones (minutes, rest, split, opponent, injury) */
+  function agreeing(p, statKey, side) {
+    var general = { min: 1, rest: 1, split: 1, opp: 1, injury: 1 };
+    var parts = statKey === "pra" ? { pts: 1, reb: 1, ast: 1 } : {}; parts[statKey] = 1;
+    var yes = 0, no = 0;
+    p.signals.forEach(function (x) { if (!(general[x.key] || parts[x.key])) return; if (x.lean === side) yes++; else if (x.lean === "over" || x.lean === "under") no++; });
+    return { yes: yes, no: no };
+  }
+  /* the side the market leans to for one stat, with its fair, best price, edge and the player's hit rate on the line */
+  function sideFor(p, k) {
+    var ln = p.lines && p.lines[k]; if (!ln || ln.line == null) return null;
+    var o = ln.over || {}, u = ln.under || {};
+    var fo = o.fair, fu = u.fair;
+    var side = fo == null && fu == null ? null : fu == null || (fo != null && fo >= fu) ? "over" : "under";
+    if (side && fo != null && fu != null && Math.abs(fo - fu) < 1e-9) side = rate(hitsFor(p, k, ln.line, "under").l10) > rate(hitsFor(p, k, ln.line, "over").l10) ? "under" : "over";
+    if (!side) side = "over";
+    var s = side === "over" ? o : u, fair = s.fair != null ? s.fair : null, odds = s.odds != null ? s.odds : null;
+    var edge = fair != null && odds != null ? fair - E.impliedProb(odds) : null;
+    var h = hitsFor(p, k, ln.line, side), ag = agreeing(p, k, side);
+    return { p: p, k: k, line: ln.line, side: side, fair: fair, odds: odds, book: s.book || null, n: s.n || 0, books: s.books || {}, edge: edge, hit: h, l10: rate(h.l10), agree: ag.yes, against: ag.no, other: side === "over" ? u : o };
+  }
+  function allSides(p) { return STAT_KEYS.map(function (k) { return sideFor(p, k); }).filter(Boolean); }
+  /* positive edge first, then the likeliest (fair), then the form on the line */
+  function better(a, b) { return ((b.edge > 0) - (a.edge > 0)) || ((b.fair || 0) - (a.fair || 0)) || (b.l10 - a.l10) || ((b.edge || -1) - (a.edge || -1)); }
+  function bestSide(p) { var s = fStat.value ? [sideFor(p, fStat.value)].filter(Boolean) : allSides(p); return s.length ? s.sort(better)[0] : null; }
+  var SIDES = {}; /* player id -> best side under the current filters; filled by render */
+  var RANK = {};  /* player id -> board rank */
+
+  /* ---------- the typed line: the market line unless the visitor overrides it for tonight's number ---------- */
+  function lineKeyFor(p, statKey) { return "prop-line:" + p.id + ":" + statKey; }
+  function marketLine(p, statKey) { var ln = p.lines && p.lines[statKey]; return ln && ln.line != null ? ln.line : null; }
+  function savedLineFor(p, statKey) {
+    var m = marketLine(p, statKey), raw = null;
+    try { raw = localStorage.getItem(lineKeyFor(p, statKey)); } catch (e) {}
+    if (raw == null) return m == null ? "" : String(m);
+    var v = raw, saved = null;
+    if (raw.charAt(0) === "{") { try { var j = JSON.parse(raw); v = j.v; saved = j.m; } catch (e) { v = ""; } }
+    /* an override only counts against the market line it was typed over; a stale one gives way to tonight's number */
+    if (m != null && (saved == null || Number(saved) !== m)) return String(m);
+    return v == null ? "" : String(v);
+  }
+  function rememberLine(p, statKey, value) {
+    var m = marketLine(p, statKey);
+    try { if (value === "" || (m != null && Number(value) === m)) localStorage.removeItem(lineKeyFor(p, statKey)); else localStorage.setItem(lineKeyFor(p, statKey), m == null ? value : JSON.stringify({ v: value, m: m })); } catch (e) {}
+  }
+
+  /* ---------- faces and small pieces ---------- */
+  function face(p, px, cls) {
+    var img = E.el("img", { class: cls || "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/nba/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: String(px), height: String(px) });
+    img.addEventListener("error", function () { img.replaceWith(E.el("span", { class: (cls || "headshot") + " headshot-fallback", text: p.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
+    return img;
+  }
+  function sideWord(s) { return s === "under" ? "Under" : "Over"; }
+  function probBar(fair, odds) {
+    var imp = odds != null ? E.impliedProb(odds) : null;
+    return E.el("div", { class: "prob-bar", title: "Fair " + E.pct(fair) + (imp != null ? " · price implies " + E.pct(imp) : "") }, [
+      E.el("span", { class: "prob-fill", style: "width:" + Math.max(0, Math.min(100, (fair || 0) * 100)).toFixed(1) + "%" }),
+      imp != null ? E.el("span", { class: "prob-tick", style: "left:" + Math.max(0, Math.min(100, imp * 100)).toFixed(1) + "%" }) : null
+    ]);
+  }
+  function hitPill(s) {
+    var shown = s.hit.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
+    return E.el("span", { class: "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : ""), text: sideWord(s.side) + " hit " + shown[0] + " of " + shown[1] + " · " + r + "%" });
+  }
+  function ordinalText(n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+
+  /* ---------- the board ---------- */
+  function boardRow(s, rank) {
+    var p = s.p;
+    var row = E.el("article", { class: "card pb-row" + (rank === 1 ? " is-top" : "") + (s.edge > 0 ? " pb-plus" : ""), "data-tilt": "", "data-player": p.id, "data-side": s.side, "data-stat": s.k });
+    row.appendChild(E.el("div", { class: "pb-rank" }, [E.rankChip(rank, true)]));
+    row.appendChild(face(p, 40, "headshot pb-face"));
+    row.appendChild(E.el("div", { class: "pb-who" }, [
+      E.el("strong", { class: "pb-name", text: p.name }),
+      E.el("span", { class: "pb-meta", text: p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start + (p.injury ? " · " + p.injury.split(":")[0] : "") })
+    ]));
+    row.appendChild(E.el("div", { class: "pb-prop" }, [
+      E.el("strong", { class: "pb-line pb-side-" + s.side, text: sideWord(s.side) + " " + s.line + " " + STAT_SHORT[s.k] }),
+      E.el("span", { class: "pb-sub mono", title: s.n ? s.n + " books on this line" : "", text: (s.odds != null ? E.fmtOdds(s.odds) + (s.book ? " " + E.bookAbbr(s.book) : "") : "no price") + (s.edge != null ? " · edge " + E.signed(s.edge * 100, 1) : "") })
+    ]));
+    row.appendChild(E.el("div", { class: "pb-prob" }, [
+      E.el("span", { class: "pb-fair" }, [E.el("span", { class: "k", text: "Fair" }), " ", E.el("strong", { class: "mono", text: s.fair != null ? E.pct(s.fair) : "—" })]),
+      s.fair != null ? probBar(s.fair, s.odds) : null
+    ]));
+    row.appendChild(E.el("div", { class: "pb-hit" }, [hitPill(s)]));
+    row.appendChild(E.el("div", { class: "pb-agree small", text: s.agree + " agree · " + s.against + " against" }));
+    var open = E.el("button", { type: "button", class: "btn btn-secondary btn-sm pb-open", text: "Open card" });
+    open.addEventListener("click", function () { openCard(p, s.k); });
+    row.appendChild(open);
+    return row;
+  }
+  function openCard(p, k) {
+    var card = host.querySelector('.prop-card[data-id="' + p.id + '"]');
+    if (!card) { showAll(); card = host.querySelector('.prop-card[data-id="' + p.id + '"]'); }
+    if (!card) return;
+    var chip = card.querySelector('.stat-chips [data-stat="' + k + '"]'); if (chip && chip.getAttribute("aria-selected") !== "true") chip.click();
+    card.scrollIntoView({ behavior: "smooth", block: "start" });
+    card.classList.add("is-focus"); setTimeout(function () { card.classList.remove("is-focus"); }, 1800);
+    var input = card.querySelector(".line-big"); if (input) input.focus({ preventScroll: true });
+  }
+  var BOARD_CAP = 10;
+  function renderBoard(sides) {
+    board.textContent = "";
+    var old = document.getElementById("pb-more"); if (old) old.remove();
+    if (!HAS_LINES) return;
+    var plus = sides.filter(function (s) { return s.edge > 0; }).length;
+    boardSummary.textContent = sides.length ? sides.length + " props ranked" + (fStat.value ? " · " + STAT_LABEL[fStat.value] : " · best stat per player") + " · " + plus + " with a price better than fair" : "No priced props match these filters.";
+    if (!sides.length) { board.appendChild(E.el("div", { class: "card empty", text: "Nothing priced here yet." })); return; }
+    var shown = 0;
+    function more(all) {
+      var upto = all ? sides.length : Math.min(sides.length, shown + BOARD_CAP);
+      for (var i = shown; i < upto; i++) {
+        if (plus && i === plus) board.appendChild(E.el("div", { class: "grid-divider", text: "Priced against you from here: fair probability below what the best price implies" }));
+        var r = boardRow(sides[i], i + 1); r.style.setProperty("--i", Math.min(i, 12)); board.appendChild(r);
+      }
+      shown = upto;
+      E.initTilt(board);
+      var b = document.getElementById("pb-more"); if (b) b.remove();
+      if (shown < sides.length) {
+        var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "pb-more", text: "Show all " + sides.length + " props" });
+        btn.addEventListener("click", function () { more(true); });
+        board.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), board.nextSibling);
+      }
+    }
+    more(false);
+  }
+
+  /* ---------- the history chart ---------- */
   var SVG = "http://www.w3.org/2000/svg";
   function sv(tag, attrs, text) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); if (text != null) n.textContent = text; return n; }
   /* PrizePicks-style history: one bar per game, the line drawn across, green over / red under / grey push */
   function historyChart(p, statKey, line, span) {
     var rows = p.log.slice(0, span).slice().reverse(); /* oldest -> newest */
-    var vals = rows.map(function (r) { return statKey === "pra" ? r.pts + r.reb + r.ast : r[statKey]; });
+    var vals = rows.map(function (r) { return statVal(r, statKey); });
     var ref = line != null ? line : p.stats[statKey].season;
     var W = 320, H = 150, padL = 6, padR = 44, padT = 18, padB = 30, plotW = W - padL - padR, plotH = H - padT - padB;
     var max = Math.max.apply(null, vals.concat([ref, 1])) * 1.15;
@@ -131,25 +282,21 @@
     svg.appendChild(sv("text", { x: W - padR + 8, y: y(ref) + 4, class: "hist-line-label" }, (line == null ? "avg " : "") + ref));
     return svg;
   }
-  var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA" };
-  function lineKeyFor(p, statKey) { return "prop-line:" + p.id + ":" + statKey; }
-  function savedLineFor(p, statKey) { try { var v = localStorage.getItem(lineKeyFor(p, statKey)); return v == null ? "" : v; } catch (e) { return ""; } }
-  function hitsFor(p, statKey, line) {
-    var vals = p.log.map(function (r) { return statKey === "pra" ? r.pts + r.reb + r.ast : r[statKey]; }).filter(function (v) { return v != null; });
-    var over = function (arr) { return arr.filter(function (v) { return v > line; }).length; };
-    return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
-  }
-  /* the stat block: chips, line box, history chart with L5/L10 toggle, hit summary */
-  function statBlock(p) {
-    var statKey = fStat.value, span = 10;
+
+  /* ---------- the stat block: chips, line box, market pills, history chart with L5/L10 toggle, hit summary ---------- */
+  function statBlock(p, startKey) {
+    var statKey = startKey || "pts", span = 10;
     var wrap = E.el("div", { class: "pp" });
     var chips = E.el("div", { class: "stat-chips", role: "tablist", "aria-label": "Stat" }, STAT_KEYS.map(function (k) {
-      var b = E.el("button", { type: "button", role: "tab", "aria-selected": String(k === statKey), "data-stat": k, text: STAT_SHORT[k] });
+      var b = E.el("button", { type: "button", role: "tab", "aria-selected": String(k === statKey), "data-stat": k, text: STAT_SHORT[k] + (marketLine(p, k) != null ? " " + marketLine(p, k) : "") });
       b.addEventListener("click", function () { statKey = k; input.value = savedLineFor(p, k); draw(); });
       return b;
     }));
     var input = E.el("input", { type: "number", step: "0.5", min: "0", inputmode: "decimal", class: "line-big", "aria-label": "Line", value: savedLineFor(p, statKey) });
+    var reset = E.el("button", { type: "button", class: "line-reset", text: "Market line" });
+    reset.addEventListener("click", function () { input.value = String(marketLine(p, statKey)); draw(); });
     var avg = E.el("span", { class: "pp-avg" });
+    var market = E.el("div", { class: "pp-market" });
     var spans = E.el("div", { class: "stat-chips spans", role: "group", "aria-label": "Games shown" }, [5, 10].map(function (n) {
       var b = E.el("button", { type: "button", "aria-pressed": String(n === span), text: "L" + n });
       b.addEventListener("click", function () { span = n; draw(); });
@@ -159,35 +306,51 @@
     function draw() {
       var s = p.stats[statKey], lineVal = input.value === "" ? null : Number(input.value);
       if (lineVal != null && !Number.isFinite(lineVal)) lineVal = null;
+      var m = marketLine(p, statKey), side = sideFor(p, statKey), lean = side ? side.side : "over";
       chips.querySelectorAll("[data-stat]").forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-stat") === statKey)); });
       spans.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.textContent === "L" + span)); });
-      input.placeholder = s.l10 ? String(Math.round(s.l10 * 2) / 2) : "line";
+      input.placeholder = m != null ? String(m) : s.l10 ? String(Math.round(s.l10 * 2) / 2) : "line";
+      reset.hidden = !(m != null && lineVal !== m);
       avg.textContent = STAT_LABEL[statKey] + " · avg " + s.season + " · L5 " + s.l5 + " · L10 " + s.l10 + " · " + (p.home ? "home " + (s.home || "—") : "road " + (s.away || "—"));
+      market.textContent = "";
+      if (side) {
+        ["over", "under"].forEach(function (sd) {
+          var x = sd === side.side ? side : { fair: side.other.fair, odds: side.other.odds, book: side.other.book, n: side.other.n };
+          market.appendChild(E.el("span", { class: "mkt-side" + (sd === side.side ? " lead" : ""), title: sd === side.side ? "The market leans this way" : "" }, [
+            E.el("strong", { text: sideWord(sd) + " " + side.line }), " ",
+            E.el("span", { class: "mono", text: (x.fair != null ? E.pct(x.fair, 0) + " fair" : "") + (x.odds != null ? " · " + E.fmtOdds(x.odds) + (x.book ? " " + E.bookAbbr(x.book) : "") : "") })
+          ]));
+        });
+        if (side.edge != null) market.appendChild(E.el("span", { class: "mkt-edge mono small" + (side.edge > 0 ? " up" : ""), text: "edge " + E.signed(side.edge * 100, 1) + " at " + (side.book ? E.bookAbbr(side.book) : "best") }));
+      }
       chartHost.textContent = ""; chartHost.appendChild(historyChart(p, statKey, lineVal, span));
       hits.textContent = ""; pill.textContent = "";
       if (lineVal == null) { pill.textContent = "Type a line to grade each game"; pill.className = "hit-pill"; return; }
-      var h = hitsFor(p, statKey, lineVal), shown = span === 5 ? h.l5 : h.l10, rate = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
-      pill.textContent = "Over hit " + shown[0] + " of " + shown[1] + " · " + rate + "%";
-      pill.className = "hit-pill " + (rate >= 60 ? "pill-over" : rate <= 40 ? "pill-under" : "");
+      var gradeSide = m != null && lineVal === m ? lean : "over";
+      var h = hitsFor(p, statKey, lineVal, gradeSide), shown = span === 5 ? h.l5 : h.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
+      pill.textContent = sideWord(gradeSide) + " hit " + shown[0] + " of " + shown[1] + " · " + r + "%";
+      pill.className = "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : "");
       [["L5", h.l5], ["L10", h.l10], ["Season", h.season]].forEach(function (pair) {
-        var o = pair[1][0], n = pair[1][1], r = n ? Math.round(o / n * 100) : 0;
-        hits.appendChild(E.el("span", { class: "hit" + (r >= 60 ? " hit-over" : r <= 40 ? " hit-under" : "") }, [E.el("strong", { text: "Over " + o + "/" + n }), " " + pair[0] + " · " + r + "%"]));
+        var o = pair[1][0], n = pair[1][1], rr = n ? Math.round(o / n * 100) : 0;
+        hits.appendChild(E.el("span", { class: "hit" + (rr >= 60 ? " hit-over" : rr <= 40 ? " hit-under" : "") }, [E.el("strong", { text: sideWord(gradeSide) + " " + o + "/" + n }), " " + pair[0] + " · " + rr + "%"]));
       });
-      try { localStorage.setItem(lineKeyFor(p, statKey), input.value); } catch (e) {}
+      rememberLine(p, statKey, input.value);
     }
     input.addEventListener("input", draw);
     wrap.appendChild(chips);
-    wrap.appendChild(E.el("div", { class: "pp-line" }, [E.el("label", { class: "line-label" }, ["Line", input]), pill, spans]));
+    wrap.appendChild(E.el("div", { class: "pp-line" }, [E.el("label", { class: "line-label" }, ["Line", input]), reset, pill, spans]));
+    wrap.appendChild(market);
     wrap.appendChild(avg);
     wrap.appendChild(chartHost);
     wrap.appendChild(hits);
     draw();
     return wrap;
   }
-  function logTable(p) {
+  function logTable(p, statKey) {
     var head = E.el("tr", {}, ["Date", "Opp", "", "W/L", "Min", "Pts", "Reb", "Ast", "3PM"].map(function (h, i) { return E.el("th", { scope: "col", class: i >= 4 ? "num" : "", text: h }); }));
     var rows = p.log.map(function (r) {
-      return E.el("tr", { class: val(p, r) != null && val(p, r) >= p.stats[fStat.value].season ? "row-up" : "" }, [
+      var v = statVal(r, statKey);
+      return E.el("tr", { class: v != null && v >= p.stats[statKey].season ? "row-up" : "" }, [
         E.el("td", { text: r.date.slice(5) }), E.el("td", { text: r.opp || "" }), E.el("td", { text: r.home ? "vs" : "@" }), E.el("td", { text: r.result || "" }),
         E.el("td", { class: "num", text: String(r.min) }), E.el("td", { class: "num", text: String(r.pts) }), E.el("td", { class: "num", text: String(r.reb) }), E.el("td", { class: "num", text: String(r.ast) }), E.el("td", { class: "num", text: String(r.threes) })
       ]);
@@ -195,61 +358,74 @@
     return E.el("details", { class: "prop-log" }, [E.el("summary", { text: "Last " + p.log.length + " games" }), E.el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Game log for " + p.name }, [E.el("table", { class: "data" }, [E.el("thead", {}, [head]), E.el("tbody", {}, rows)])])]);
   }
   function card(p) {
-    var s = p.stats[fStat.value], over = p.signals.filter(function (x) { return x.lean === "over"; }).length, under = p.signals.filter(function (x) { return x.lean === "under"; }).length;
-    var img = E.el("img", { class: "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/nba/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: "64", height: "64" });
-    img.addEventListener("error", function () { img.replaceWith(E.el("span", { class: "headshot headshot-fallback", text: p.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
+    var best = SIDES[p.id], startKey = fStat.value || (best ? best.k : "pts");
+    var over = p.signals.filter(function (x) { return x.lean === "over"; }).length, under = p.signals.filter(function (x) { return x.lean === "under"; }).length;
     return E.el("article", { class: "card prop-card", "data-sport": "NBA", "data-tilt": "", "data-id": p.id }, [
       E.el("div", { class: "prop-head" }, [
-        img,
+        face(p, 64),
         E.el("div", { class: "prop-who" }, [
-          E.el("h3", { class: "prop-name", text: p.name }),
+          E.el("div", { class: "prop-name-row" }, [RANK[p.id] ? E.rankChip(RANK[p.id], true) : null, E.el("h3", { class: "prop-name", text: p.name })]),
           E.el("div", { class: "prop-meta", text: (p.pos || "") + (p.jersey ? " · #" + p.jersey : "") + " · " + p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start + " · " + p.minutes.l5 + " min L5" })
         ]),
         E.el("div", { class: "prop-chips" }, [
           p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null),
-          p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null
+          p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null,
+          !p.lines && HAS_LINES ? E.el("span", { class: "badge", text: "No line" }) : null
         ])
       ]),
-      statBlock(p),
+      statBlock(p, startKey),
       E.el("div", { class: "signals" }, [
         E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over · " + under + " under" })]),
         p.signals.length ? E.el("ul", { class: "signal-list" }, p.signals.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })) : E.el("p", { class: "small muted", text: "Nothing stands out; form is in line with the season." })
       ]),
-      p.opp ? E.el("p", { class: "small muted prop-opp", text: p.oppAbbr + " allows " + p.opp.ptsAllowed + " points per game, " + (function (n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); })(p.opp.rank) + " most in the league." }) : null,
-      logTable(p)
+      p.opp ? E.el("p", { class: "small muted prop-opp", text: p.oppAbbr + " allows " + p.opp.ptsAllowed + " points per game, " + ordinalText(p.opp.rank) + " most in the league." }) : null,
+      logTable(p, startKey)
     ]);
   }
+
+  /* ---------- ordering: likeliest first when lines exist; the older orders stay as opt-ins ---------- */
   function score(p) {
-    var s = p.stats[fStat.value];
+    var k = fStat.value || "pts", s = p.stats[k], best = SIDES[p.id];
+    if (fSort.value === "prob") return best ? (best.edge > 0 ? 10 : 0) + (best.fair || 0) * 5 + best.l10 : -1 + (s.l5 - s.season) / 1000;
+    if (fSort.value === "form") return best ? best.l10 * 10 + (best.fair || 0) : -1;
     if (fSort.value === "season") return s.season;
     if (fSort.value === "minutes") return p.minutes.season;
-    if (fSort.value === "signals") return p.signals.filter(function (x) { return x.lean === "over"; }).length - p.signals.filter(function (x) { return x.lean === "under"; }).length;
+    if (fSort.value === "signals") return best ? best.agree - best.against : p.signals.filter(function (x) { return x.lean === "over"; }).length - p.signals.filter(function (x) { return x.lean === "under"; }).length;
     return s.l5 - s.season; /* absolute gain over the season average favours volume players */
+  }
+  var LIST = [], shownCards = 0, PAGE = 24;
+  function showAll() { while (shownCards < LIST.length) moreCards(); }
+  function moreCards() {
+    LIST.slice(shownCards, shownCards + PAGE).forEach(function (p, i) { var c = card(p); c.style.setProperty("--i", Math.min(i, 12)); host.appendChild(c); });
+    shownCards = Math.min(LIST.length, shownCards + PAGE);
+    E.initTilt(host);
+    var old = document.getElementById("p-more"); if (old) old.remove();
+    if (shownCards < LIST.length) {
+      var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "p-more", text: "Show " + Math.min(PAGE, LIST.length - shownCards) + " more (" + (LIST.length - shownCards) + " left)" });
+      btn.addEventListener("click", moreCards);
+      host.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), host.nextSibling);
+    }
   }
   function render() {
     var q = fSearch.value.trim().toLowerCase();
+    SIDES = {}; RANK = {};
     var list = P.filter(function (p) {
       if (fGame.value && p.gameId !== fGame.value) return false;
-      if (fLean.value && !p.signals.some(function (x) { return x.lean === fLean.value; })) return false;
       if (q && (p.name + " " + p.team + " " + p.teamAbbr + " " + p.opp + " " + p.oppAbbr).toLowerCase().indexOf(q) === -1) return false;
       return true;
-    }).sort(function (a, b) { return score(b) - score(a); });
-    host.textContent = "";
-    summary.textContent = P.length ? list.length + " of " + P.length + " players · " + STAT_LABEL[fStat.value] : "No props data yet. It refreshes with the picks, around noon and 4:30 PM ET on game days.";
-    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No players match." : "Nothing to show until the first refresh." })); return; }
-    var PAGE = 24, shown = 0;
-    function more() {
-      list.slice(shown, shown + PAGE).forEach(function (p, i) { var c = card(p); c.style.setProperty("--i", Math.min(i, 12)); host.appendChild(c); });
-      shown = Math.min(list.length, shown + PAGE);
-      E.initTilt(host);
-      var old = document.getElementById("p-more"); if (old) old.remove();
-      if (shown < list.length) {
-        var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "p-more", text: "Show " + Math.min(PAGE, list.length - shown) + " more (" + (list.length - shown) + " left)" });
-        btn.addEventListener("click", more);
-        host.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), host.nextSibling);
-      }
-    }
-    more();
+    });
+    list.forEach(function (p) { var b = bestSide(p); if (b) SIDES[p.id] = b; });
+    if (fLean.value) list = list.filter(function (p) { var b = SIDES[p.id]; return b ? b.side === fLean.value : p.signals.some(function (x) { return x.lean === fLean.value; }); });
+    /* the board: every priced side in the list, ranked; the rank carries onto the card */
+    var sides = list.map(function (p) { return SIDES[p.id]; }).filter(Boolean).sort(better);
+    sides.forEach(function (s, i) { RANK[s.p.id] = i + 1; });
+    renderBoard(sides);
+    LIST = list.sort(function (a, b) { return score(b) - score(a); });
+    host.textContent = ""; shownCards = 0;
+    var statName = fStat.value ? STAT_LABEL[fStat.value] : "best stat per player";
+    summary.textContent = P.length ? LIST.length + " of " + P.length + " players · " + statName + (fSort.value === "prob" && HAS_LINES ? " · likeliest first" : "") : "No props data yet. It refreshes with the picks, around noon and 4:30 PM ET on game days.";
+    if (!LIST.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No players match." : "Nothing to show until the first refresh." })); return; }
+    moreCards();
   }
   [fGame, fStat, fSort, fLean].forEach(function (s) { s.addEventListener("change", render); });
   fSearch.addEventListener("input", render);

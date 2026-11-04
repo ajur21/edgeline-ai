@@ -13,6 +13,10 @@ on:
         description: "Print every market's best edge (diagnostics; same credit cost)"
         type: boolean
         default: false
+      props_only:
+        description: "Skip the odds run; refresh only the props research, lines and team identity (no Odds API credits)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -34,12 +38,17 @@ jobs:
         with:
           node-version: 22
       - name: Pull odds, grade results, rewrite data files
+        if: ${{ !inputs.props_only }}
         run: node scripts/update-data.js ${{ inputs.verbose && '--verbose' || '' }}
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
-      - name: Refresh NBA props research data (ESPN public API, no key)
-        run: node scripts/update-props.js || echo "::warning::props refresh failed; keeping the previous data/props.js"
+      # Lines ride along from SportsGameOdds (one entity per game, about 14 a night); only the afternoon run and
+      # manual runs spend them, the noon run passes --no-lines so the month stays inside the free tier.
+      - name: Refresh NBA props research data (ESPN, no key) and tonight's lines (SportsGameOdds)
+        run: node scripts/update-props.js ${{ github.event.schedule == '0 17 * * *' && '--no-lines' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
+        env:
+          SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Refresh team identity (logos and colours from ESPN, no key)
         run: node scripts/update-teams.js || echo "::warning::team refresh failed; keeping the previous data/teams.js"
       - name: Rebuild the pick feeds (calendar + RSS)

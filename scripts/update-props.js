@@ -2,22 +2,26 @@
    EdgeLine AI — NBA props research data
    Builds data/props.js from ESPN's public (undocumented) endpoints: today's
    games, rosters with headshots and injury status, each rotation player's
-   last games, and every team's points allowed for a defence ranking. No
-   betting lines (those need the paid odds tier); the page lets the visitor
-   type a line and see hit rates. Signals ("confluences") compare a player's
-   recent form, home/away split, minutes, rest and opponent defence.
+   last games, and every team's points allowed for a defence ranking. Then,
+   when SGO_API_KEY is set, one SportsGameOdds call for tonight's games (one
+   entity per game) attaches every player's lines: the consensus line per stat,
+   each book's price on it for over and under, and the de-vigged fair
+   probability per side. Without lines the page still lets the visitor type
+   one. Signals ("confluences") compare a player's recent form, home/away
+   split, minutes, rest and opponent defence.
 
-   Run:   node scripts/update-props.js            (hits ESPN, ~300-450 requests, polite delay)
-   Test:  node scripts/update-props.js --fixture  (reads scripts/fixtures/espn/)
-   Flags: --out <dir>  --now <iso>  --cache <dir> (save raw responses)  --teams <n> (limit, for quick runs)
+   Run:   node scripts/update-props.js            (hits ESPN, ~300-450 requests, polite delay; + 1 SportsGameOdds call)
+   Test:  node scripts/update-props.js --fixture  (reads scripts/fixtures/espn/ and fixtures/sgo/NBA-props.json)
+   Flags: --out <dir>  --now <iso>  --cache <dir> (save raw responses)  --teams <n> (limit, for quick runs)  --no-lines (skip the odds call)
    ========================================================================== */
 "use strict";
 const fs = require("fs");
 const path = require("path");
+const sgo = require("./sgo.js");
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba";
 const WEB = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba";
-const RULES = { minMinutes: 14, playersPerTeam: 9, logGames: 10, delayMs: 90 };
+const RULES = { minMinutes: 14, playersPerTeam: 9, logGames: 10, delayMs: 90, sgoReserve: 150 /* SportsGameOdds entities never spent (shared with update-data.js) */ };
 const STATS = { pts: "points", reb: "totalRebounds", ast: "assists", threes: "threePointFieldGoalsMade-threePointFieldGoalsAttempted" };
 const ET = "America/New_York";
 
@@ -122,6 +126,27 @@ function signals(p) {
   return out;
 }
 
+/* ---------- lines: one SportsGameOdds call for the night, every player prop rides along ---------- */
+async function attachLines(players, games, opts, now) {
+  if (opts.lines === false || !games.length) return { skipped: opts.lines === false ? "off" : "no games" };
+  const src = sgo.source({ fixture: opts.fixture, fixtureName: "NBA-props" });
+  if (!src.enabled) return { skipped: "no key" };
+  const usage = await src.usage();
+  if (usage && usage.max && usage.max - usage.used - games.length < RULES.sgoReserve) return { skipped: "budget", used: usage.used, max: usage.max };
+  let list;
+  try { list = await sgo.nightEvents(src, "NBA", games.map(g => g.start)); } catch (e) { return { skipped: e.message }; }
+  const byGame = {}; let matched = 0;
+  games.forEach(g => { const ev = sgo.eventFor(list, g.home.name, g.away.name); if (ev) { byGame[g.id] = { ev: ev, index: sgo.playerIndex(ev) }; matched++; } });
+  let priced = 0; const books = {};
+  players.forEach(function (p) {
+    const m = byGame[p.gameId]; if (!m) return;
+    const pp = sgo.playerProps(m.ev, p.name, m.index); if (!pp) return;
+    p.lines = pp.stats; p.sgoPlayerId = pp.playerID; priced++;
+    Object.keys(pp.stats).forEach(k => { Object.keys(pp.stats[k].over.books).concat(Object.keys(pp.stats[k].under.books)).forEach(b => { books[b] = true; }); });
+  });
+  return { source: sgo.SOURCE, at: now.toISOString(), games: matched, of: games.length, players: priced, books: Object.keys(books).sort(), entities: src.stats().entities, used: usage ? usage.used : null, max: usage ? usage.max : null };
+}
+
 /* ---------- main ---------- */
 async function run(opts) {
   const now = opts.now ? new Date(opts.now) : new Date();
@@ -177,11 +202,12 @@ async function run(opts) {
     }
     cands.sort((a, b) => b.minutes.season - a.minutes.season).slice(0, RULES.playersPerTeam).forEach(p => players.push(p));
   }
-  const data = { sample: false, source: "ESPN", attribution: "Stats, schedules and player photos from ESPN's public API.", generatedAt: now.toISOString(), date: etDate(now), games: games.map(g => ({ id: g.id, start: g.start, startLabel: startLabel(new Date(g.start)), home: g.home, away: g.away })), players: players };
+  const lines = await attachLines(players, games, opts, now).catch(e => ({ skipped: e.message }));
+  const data = { sample: false, source: "ESPN", attribution: "Stats, schedules and player photos from ESPN's public API." + (lines.players ? " Lines from " + lines.source + " (" + lines.books.length + " books)." : ""), generatedAt: now.toISOString(), date: etDate(now), lines: lines, games: games.map(g => ({ id: g.id, start: g.start, startLabel: startLabel(new Date(g.start)), home: g.home, away: g.away })), players: players };
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(path.join(dataDir, "props.js"), "/* Generated by scripts/update-props.js from ESPN public data. Do not edit. */\nwindow.PROPS_DATA = " + JSON.stringify(data) + ";\n");
   writeFaces(dataDir, facesFrom(players, outs, now));
-  return { games: games.length, players: players.length, requests: src.count(), bytes: fs.statSync(path.join(dataDir, "props.js")).size };
+  return { games: games.length, players: players.length, requests: src.count(), lines: lines, bytes: fs.statSync(path.join(dataDir, "props.js")).size };
 }
 /* data/faces.js: a slim roster for the faces strips on the pick cards and the breakdown (js/teams.js):
    every rotation player with season points and minutes, plus the players ESPN lists as Out */
@@ -196,14 +222,14 @@ function writeFaces(dataDir, data) {
   fs.writeFileSync(path.join(dataDir, "faces.js"), "/* Generated by scripts/update-props.js from ESPN public data. Do not edit. */\nwindow.FACES_DATA = " + JSON.stringify(data) + ";\n");
 }
 function parseArgs(argv) {
-  const o = { fixture: false, out: null, now: null, cache: null, teams: 0 };
+  const o = { fixture: false, out: null, now: null, cache: null, teams: 0, lines: true };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--fixture") o.fixture = true; else if (argv[i] === "--out") o.out = argv[++i]; else if (argv[i] === "--now") o.now = argv[++i];
-    else if (argv[i] === "--cache") o.cache = argv[++i]; else if (argv[i] === "--teams") o.teams = Number(argv[++i]);
+    else if (argv[i] === "--cache") o.cache = argv[++i]; else if (argv[i] === "--teams") o.teams = Number(argv[++i]); else if (argv[i] === "--no-lines") o.lines = false;
   }
   return o;
 }
 if (require.main === module) {
-  run(parseArgs(process.argv.slice(2))).then(r => console.log("Props: " + r.games + " games, " + r.players + " players, " + r.requests + " ESPN requests, " + Math.round(r.bytes / 1024) + " KB")).catch(e => { console.error(e.message); process.exit(1); });
+  run(parseArgs(process.argv.slice(2))).then(r => console.log("Props: " + r.games + " games, " + r.players + " players, " + r.requests + " ESPN requests, " + Math.round(r.bytes / 1024) + " KB; lines: " + (r.lines.players != null ? r.lines.players + " players priced in " + r.lines.games + " of " + r.lines.of + " games (" + r.lines.entities + " SportsGameOdds entities, month " + r.lines.used + "/" + r.lines.max + ")" : "skipped (" + r.lines.skipped + ")"))).catch(e => { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, facesFrom, writeFaces, parseGamelog, parseScoreboard, pointsAllowed, statBlock, signals, seasonLabel, ordinal, RULES };
+module.exports = { run, attachLines, facesFrom, writeFaces, parseGamelog, parseScoreboard, pointsAllowed, statBlock, signals, seasonLabel, ordinal, RULES };

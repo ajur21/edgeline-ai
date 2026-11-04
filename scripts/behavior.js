@@ -248,15 +248,31 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('journal: no page errors', jerr.length === 0, jerr.join(' | '));
   await jctx.close();
 
-  // props research page (sample ESPN-shaped data)
+  // props research page (sample ESPN-shaped data with fixture lines from SportsGameOdds)
   const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const perr = []; pp.on('pageerror', e => perr.push(e.message));
   await pp.goto(url('props.html')); await pp.waitForTimeout(500);
   const nProps = await pp.locator('#props-host .prop-card').count();
   check('props: player cards render with headshot, stat chips, history bars and signals', nProps >= 4 && (await pp.locator('#props-host .prop-card').first().locator('.headshot, .stat-chips [data-stat], svg.hist rect.hist-bar, .signals').count()) > 8, 'cards ' + nProps);
+  check('props: sort defaults to likeliest first and the lines note names the books', (await pp.inputValue('#p-sort')) === 'prob' && /priced in .* at \d+ books/.test(await pp.textContent('#props-lines')));
+  const rows = pp.locator('#props-board .pb-row');
+  check('props board: ranked rows with #1 on top, a face, the side and line, a fair bar and a hit pill', (await rows.count()) >= 4 && (await rows.first().locator('.rank-top').count()) === 1 && (await rows.first().locator('.pb-face, .pb-line, .prob-bar, .hit-pill').count()) === 4, 'rows ' + await rows.count());
+  const order = await pp.evaluate(() => Array.from(document.querySelectorAll('#props-board > *')).map(e => ({ div: e.classList.contains('grid-divider'), plus: e.classList.contains('pb-plus'), fair: parseFloat((e.querySelector('.pb-fair strong') || { textContent: '0' }).textContent) || 0 })));
+  let okOrder = true, afterDiv = false, lastFair = Infinity, divAt = -1;
+  order.forEach((r, i) => { if (r.div) { afterDiv = true; lastFair = Infinity; divAt = i; return; } if (r.plus === afterDiv) okOrder = false; if (r.fair > lastFair + 1e-9) okOrder = false; lastFair = r.fair; });
+  check('props board: positive edge first, then fair probability descending within each tier, the divider at the tier line', okOrder && divAt === order.filter(r => r.plus).length, JSON.stringify(order));
+  const r2 = rows.nth(1), pid2 = await r2.getAttribute('data-player'), stat2 = await r2.getAttribute('data-stat');
+  await r2.locator('.pb-open').click(); await pp.waitForTimeout(300);
+  const oc = pp.locator('#props-host .prop-card[data-id="' + pid2 + '"]');
+  check('props board: Open card lands on the ranked stat with tonight\'s line typed in and the leaning side marked', (await oc.locator('.stat-chips [data-stat="' + stat2 + '"]').getAttribute('aria-selected')) === 'true' && (await oc.locator('.line-big').inputValue()) !== '' && (await oc.locator('.mkt-side.lead').count()) === 1);
   const fc = pp.locator('#props-host .prop-card').first();
-  check('props: without a line the bars are neutral and the pill asks for one', (await fc.locator('rect.hist-bar.neutral').count()) > 0 && (await fc.locator('.hit-pill').textContent()).includes('Type a line'));
+  const marketLine = await fc.locator('.line-big').inputValue();
+  check('props: a priced card starts on the market line with coloured bars, a graded pill and its board rank', marketLine !== '' && (await fc.locator('rect.hist-bar.neutral').count()) === 0 && /hit \d+ of \d+/.test(await fc.locator('.hit-pill').textContent()) && (await fc.locator('.prop-name-row .rank').textContent()) === '#1');
+  const nl = pp.locator('#props-host .prop-card').filter({ has: pp.locator('.badge', { hasText: 'No line' }) }).first();
+  check('props: an unpriced card shows neutral bars and asks for a line', (await nl.count()) === 1 && (await nl.locator('rect.hist-bar.neutral').count()) > 0 && (await nl.locator('.hit-pill').textContent()).includes('Type a line'));
   await fc.locator('.line-big').fill('-0.5');
   check('props: with a line every bar is green and the pill reads 100%', (await fc.locator('rect.hist-bar.under').count()) === 0 && (await fc.locator('rect.hist-bar.over').count()) > 0 && /100%/.test(await fc.locator('.hit-pill').textContent()));
+  await fc.locator('.line-reset').click();
+  check('props: the Market line button restores tonight\'s number and hides itself', (await fc.locator('.line-big').inputValue()) === marketLine && (await fc.locator('.line-reset').isHidden()));
   await fc.locator('.stat-chips.spans button').first().click();
   check('props: L5 toggle shows at most five bars', (await fc.locator('rect.hist-bar').count()) <= 5 && (await fc.locator('.stat-chips.spans button').first().getAttribute('aria-pressed')) === 'true');
   await fc.locator('.stat-chips [data-stat="reb"]').click();
@@ -264,15 +280,18 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('props: game filter has tonight\'s games', (await pp.locator('#p-game option').count()) >= 3);
   const firstName = await pp.locator('#props-host .prop-name').first().textContent();
   await pp.fill('#p-search', firstName.split(' ')[1] || firstName);
-  check('props: search narrows to the player', (await pp.locator('#props-host .prop-card').count()) >= 1 && (await pp.locator('#props-host .prop-name').first().textContent()) === firstName);
+  check('props: search narrows to the player and the board follows', (await pp.locator('#props-host .prop-card').count()) >= 1 && (await pp.locator('#props-host .prop-name').first().textContent()) === firstName && (await rows.count()) === 1);
   await pp.fill('#p-search', '');
-  const lineInput = pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]'); await lineInput.click();
+  await pp.selectOption('#p-lean', 'under');
+  check('props: the Side filter keeps only props leaning under', (await rows.count()) >= 1 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-side') === 'under'))));
+  await pp.selectOption('#p-lean', '');
+  await pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]').click();
   await pp.locator('#props-host .prop-card').first().locator('.line-big').fill('-0.5');
   check('props: a line below zero is cleared in every game (100%)', /Over (\d+)\/\1 L10 · 100%/.test(await pp.locator('#props-host .prop-card').first().locator('.hits').textContent()), await pp.locator('#props-host .prop-card').first().locator('.hits').textContent());
   await pp.reload(); await pp.waitForTimeout(400);
-  check('props: the typed line is remembered', (await pp.locator('#props-host .prop-card').first().locator('.line-big').inputValue()) === '-0.5');
+  check('props: the typed line is remembered over the market line', (await pp.locator('#props-host .prop-card').first().locator('.line-big').inputValue()) === '-0.5');
   await pp.selectOption('#p-stat', 'reb');
-  check('props: switching the stat relabels the summary', (await pp.textContent('#p-summary')).includes('Rebounds'));
+  check('props: switching the stat relabels the summary and the board', (await pp.textContent('#p-summary')).includes('Rebounds') && (await pp.textContent('#pb-summary')).includes('Rebounds') && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-stat') === 'reb'))));
   await pp.locator('#props-host .prop-card').first().locator('.prop-log summary').click();
   check('props: game log opens with rows', (await pp.locator('#props-host .prop-card').first().locator('.prop-log tbody tr').count()) >= 3);
   check('props: no page errors', perr.length === 0, perr.join(' | '));

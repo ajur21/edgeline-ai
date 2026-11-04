@@ -46,15 +46,15 @@ function liveSource(key) {
     enabled: !!key,
     usage: async function () { try { const u = (await get("/account/usage", {})).data.rateLimits["per-month"]; return { used: Number(u["current-entities"]) || 0, max: Number(u["max-entities"]) || 0 }; } catch (e) { return null; } },
     events: async function (p) {
-      const params = { leagueID: p.league, startsAfter: p.startsAfter, startsBefore: p.startsBefore, eventIDs: p.eventIDs && p.eventIDs.join(","), oddIDs: ODD_IDS.join(","), limit: 50 };
+      const params = { leagueID: p.league, startsAfter: p.startsAfter, startsBefore: p.startsBefore, eventIDs: p.eventIDs && p.eventIDs.join(","), oddIDs: p.allOdds ? null : ODD_IDS.join(","), oddsAvailable: p.allOdds ? "true" : null, limit: 50 };
       try { const body = await get("/events", params); const list = body.data || []; entities += list.length; return list; } catch (e) { return null; }
     },
     stats: () => ({ requests: requests, entities: entities })
   };
 }
-function fixtureSource() {
+function fixtureSource(name) {
   const dir = path.join(__dirname, "fixtures", "sgo");
-  const read = league => { const f = path.join(dir, league + ".json"); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : []; };
+  const read = league => { const f = path.join(dir, (name || league) + ".json"); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : []; };
   let entities = 0;
   return {
     enabled: true,
@@ -69,7 +69,7 @@ function fixtureSource() {
     stats: () => ({ requests: 0, entities: entities })
   };
 }
-function source(opts) { return opts && opts.fixture ? fixtureSource() : liveSource(opts && opts.key != null ? opts.key : process.env.SGO_API_KEY); }
+function source(opts) { return opts && opts.fixture ? fixtureSource(opts.fixtureName) : liveSource(opts && opts.key != null ? opts.key : process.env.SGO_API_KEY); }
 
 /* ---------- matching ---------- */
 function teamMatches(name, team) {
@@ -194,4 +194,77 @@ async function close(src, e, movedToward) {
     moved: fair == null && movedToward ? movedToward(e, logged, closeSide) : null, open: s.open, score: s.score, books: s.books };
 }
 
-module.exports = { source, refresh, close, snapshot, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOURCE };
+/* ---------- player props: every player's lines ride along in the game's event object ----------
+   oddID = <statID>-<playerID>-game-ou-<over|under>, e.g. points-LEBRON_JAMES_1_NBA-game-ou-over.
+   The event's `players` map gives names; when it is missing the name is read back out of the id. */
+const PROP_STATS = { pts: "points", reb: "rebounds", ast: "assists", threes: "threePointersMade", pra: "points+rebounds+assists" };
+function normName(s) {
+  return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, "").replace(/[^a-z]/g, "");
+}
+function nameFromId(id) { const parts = String(id || "").split("_"); return parts.length > 2 ? parts.slice(0, -2).join(" ") : parts.join(" "); }
+/* normalised name -> playerID, from the players map and from every player oddID */
+function playerIndex(ev) {
+  const idx = {}, last = {};
+  const add = (id, name) => { if (!id || !name) return; const n = normName(name); if (!n) return; idx[n] = idx[n] || id; const parts = String(name).trim().split(/\s+/); const key = normName(parts[parts.length - 1]) + "|" + normName(parts[0]).charAt(0); (last[key] = last[key] || []).push(id); };
+  Object.keys(ev && ev.players || {}).forEach(id => { const pl = ev.players[id]; add(id, pl && (pl.name || ((pl.firstName || "") + " " + (pl.lastName || "")))); });
+  Object.keys(ev && ev.odds || {}).forEach(oid => { const o = ev.odds[oid]; const ent = (o && o.statEntityID) || oid.split("-")[1]; if (!ent || /^(all|home|away)$/.test(ent)) return; if (!ev.players || !ev.players[ent]) add(ent, nameFromId(ent)); });
+  return { byName: idx, byLast: last };
+}
+function findPlayer(index, name) {
+  if (!index) return null;
+  const n = normName(name); if (index.byName[n]) return index.byName[n];
+  const parts = String(name || "").trim().split(/\s+/); if (parts.length < 2) return null;
+  const c = index.byLast[normName(parts[parts.length - 1]) + "|" + normName(parts[0]).charAt(0)];
+  return c && c.length === 1 ? c[0] : null;
+}
+/* one stat for one player: the consensus line, every book's price on it for each side, the fair probability per side */
+function propSnapshot(ev, playerID, statID) {
+  if (!ev || !ev.odds || !playerID) return null;
+  const over = ev.odds[statID + "-" + playerID + "-game-ou-over"], under = ev.odds[statID + "-" + playerID + "-game-ou-under"];
+  if (!over && !under) return null;
+  const main = over || under;
+  let line = num(main.bookOverUnder); if (line == null) line = num(main.fairOverUnder);
+  if (line == null) { /* the most common book line */
+    const count = {}; Object.keys(main.byBookmaker || {}).forEach(b => { const l = num(main.byBookmaker[b].overUnder); if (l != null) count[l] = (count[l] || 0) + 1; });
+    const ls = Object.keys(count).sort((a, b) => count[b] - count[a]); line = ls.length ? Number(ls[0]) : null;
+  }
+  if (line == null) return null;
+  const side = o => {
+    const books = {}, seen = {};
+    Object.keys(o && o.byBookmaker || {}).forEach(b => { const title = BOOKS[b]; if (!title || seen[title]) return; const m = o.byBookmaker[b]; if (!m || m.available === false) return; const price = american(m.odds); if (price == null || !sameLine(num(m.overUnder), line)) return; seen[title] = true; books[title] = price; });
+    let best = null; Object.keys(books).forEach(t => { if (!best || implied(books[t]) < implied(books[best])) best = t; });
+    const vendor = o && sameLine(num(o.fairOverUnder), line) ? american(o.fairOdds) : null;
+    return { books: books, n: Object.keys(books).length, best: best ? { book: best, odds: books[best] } : null, vendorOdds: vendor };
+  };
+  const o = side(over), u = side(under);
+  /* fair: the vendor's de-vigged pair when it is quoted on this line, else our own de-vig across the books carrying both sides */
+  let fairOver = null, fairBooks = 0;
+  if (o.vendorOdds != null && u.vendorOdds != null) { const a = implied(o.vendorOdds), b = implied(u.vendorOdds); fairOver = a / (a + b); }
+  else {
+    const pairs = []; Object.keys(o.books).forEach(t => { if (u.books[t] != null) pairs.push(implied(o.books[t]) / (implied(o.books[t]) + implied(u.books[t]))); });
+    if (pairs.length) { fairOver = pairs.reduce((x, y) => x + y, 0) / pairs.length; fairBooks = pairs.length; }
+  }
+  const openLine = num(main.openFairOverUnder);
+  return {
+    line: line, fairLine: num(main.fairOverUnder), openLine: openLine, fairBooks: fairBooks, vendorFair: o.vendorOdds != null,
+    over: { fair: fairOver == null ? null : round(fairOver, 4), odds: o.best ? o.best.odds : null, book: o.best ? o.best.book : null, n: o.n, books: o.books },
+    under: { fair: fairOver == null ? null : round(1 - fairOver, 4), odds: u.best ? u.best.odds : null, book: u.best ? u.best.book : null, n: u.n, books: u.books }
+  };
+}
+/* every tracked stat for one named player on one event; null when the player is not priced */
+function playerProps(ev, name, index) {
+  const id = findPlayer(index || playerIndex(ev), name); if (!id) return null;
+  const out = {}; let any = false;
+  Object.keys(PROP_STATS).forEach(k => { const s = propSnapshot(ev, id, PROP_STATS[k]); if (s && (s.over.n || s.under.n || s.over.fair != null)) { out[k] = s; any = true; } });
+  return any ? { playerID: id, stats: out } : null;
+}
+/* tonight's events for a league, all odds included (one entity per game) */
+async function nightEvents(src, league, starts) {
+  const ts = (starts || []).map(s => Date.parse(s)).filter(Number.isFinite); if (!ts.length) return [];
+  const list = await src.events({ league: league, allOdds: true, startsAfter: new Date(Math.min.apply(null, ts) - 60 * 60e3).toISOString(), startsBefore: new Date(Math.max.apply(null, ts) + 60 * 60e3).toISOString() });
+  return list || [];
+}
+function eventFor(list, home, away) { return (list || []).find(ev => ev.teams && teamMatches(home, ev.teams.home) && teamMatches(away, ev.teams.away)) || null; }
+
+module.exports = { source, refresh, close, snapshot, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOURCE, PROP_STATS, propSnapshot, playerProps, playerIndex, findPlayer, normName, nightEvents, eventFor, teamMatches };

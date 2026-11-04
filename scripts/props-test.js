@@ -2,6 +2,7 @@
 "use strict";
 const fs = require("fs"), path = require("path"), os = require("os"), vm = require("vm");
 const P = require("./update-props.js");
+const sgo = require("./sgo.js");
 const fails = [];
 const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name + (extra ? "  " + extra : "")); if (!ok) fails.push(name); };
 (async () => {
@@ -37,7 +38,19 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
   check("run: players carry matchup, stats, signals and a 10-game log (headshot derivable from id)", D.players.every(p => (p.headshot || p.id) && p.oppAbbr && p.stats.pts && Array.isArray(p.signals) && p.log.length > 0 && p.log.length <= 10));
   check("run: opponent defence rank attached", D.players.some(p => p.opp && p.opp.rank >= 1));
   check("run: sorted by minutes within a team, rotation players only", D.players.every(p => p.minutes.season >= P.RULES.minMinutes));
-  check("run: attribution to ESPN present", /ESPN/.test(D.attribution));
+  check("run: attribution names ESPN and SportsGameOdds", /ESPN/.test(D.attribution) && /SportsGameOdds/.test(D.attribution));
+  const naw = D.players.find(p => p.name === "Nickeil Alexander-Walker"), dort = D.players.find(p => p.name === "Luguentz Dort"), pg = D.players.find(p => p.name === "Paul George");
+  check("lines: five players priced in both fixture games, summary written", D.lines && D.lines.players === 5 && D.lines.games === 2 && D.lines.books.length === 8 && D.players.filter(p => p.lines).length === 5, JSON.stringify(D.lines));
+  check("lines: consensus line, vendor fair per side summing to one, best book and price on that line", naw && naw.lines.pts.line === 20.5 && naw.lines.pts.vendorFair && Math.abs(naw.lines.pts.over.fair + naw.lines.pts.under.fair - 1) < 1e-6 && naw.lines.pts.over.book === "Caesars" && naw.lines.pts.over.odds === -95 && naw.lines.pts.over.n === 8);
+  check("lines: vendor fair on another line falls back to our own de-vig across the books", dort && dort.lines.pts.vendorFair === false && dort.lines.pts.fairBooks === 8 && dort.lines.pts.over.fair === 0.5 && dort.lines.pts.fairLine === 9.5);
+  check("lines: a book on an alternate line is left out of the count", D.players.find(p => p.name === "Dyson Daniels").lines.pts.over.n === 7);
+  check("lines: a player is matched from the odd ids when the event has no players map", pg && pg.sgoPlayerId === "PAUL_GEORGE_1_NBA" && Object.keys(pg.lines).length === 5);
+  check("lines: a player the books do not price has none", !D.players.find(p => p.name === "Kingston Flemings").lines);
+  check("sgo: names match through accents, suffixes and hyphens", sgo.normName("Luka Dončić") === "lukadoncic" && sgo.normName("Jaren Jackson Jr.") === "jarenjackson" && sgo.findPlayer(sgo.playerIndex({ odds: { "points-JAREN_JACKSON_1_NBA-game-ou-over": { statEntityID: "JAREN_JACKSON_1_NBA" } } }), "Jaren Jackson Jr.") === "JAREN_JACKSON_1_NBA" && sgo.findPlayer(sgo.playerIndex({ players: { X_1_NBA: { name: "Nikola Jokic" } } }), "Nikola Jokić") === "X_1_NBA");
+  const tmp2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-props-"));
+  const r2 = await P.run({ fixture: true, out: tmp2, now: "2026-11-04T18:00:00Z", lines: false });
+  check("run: --no-lines skips the odds call and writes no lines", r2.lines.skipped === "off" && (() => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp2, "props.js"), "utf8"), sb); return !sb.window.PROPS_DATA.players.some(p => p.lines); })());
+  fs.rmSync(tmp2, { recursive: true, force: true });
   fs.rmSync(tmp, { recursive: true, force: true });
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
