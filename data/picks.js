@@ -2,6 +2,6 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-04T09:01:56.734Z",
+  "generatedAt": "2026-11-04T09:10:00.461Z",
   "picks": []
 };
