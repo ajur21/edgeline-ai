@@ -289,6 +289,13 @@ function buildBreakdown(e, ctx, rules) {
   e.dk = dk;
   if (dk && dk.moved === "toward") support.push(dk.label + ": the market has moved toward this side since the open.");
   else if (dk && dk.moved === "away") risks.push(dk.label + ": the market has moved against this side since the open.");
+  /* the whole market (SportsGameOdds' nine-book fair) since the open, and a better price if one of its books has it */
+  const s = e.sgo;
+  const mk = s && s.now && (s.now.odds != null || s.now.line != null) ? { book: "Market consensus", n: s.n, open: s.open, now: s.now, moved: movedToward(e, s.open, s.now), label: "The market (" + (s.n || 0) + " books) " + (s.open ? "opened " + fmtLine(e, s.open) + ", now " : "now ") + fmtLine(e, s.now) } : null;
+  e.mkt = mk;
+  if (mk && mk.moved === "toward") support.push(mk.label + ": the consensus has moved toward this side since the open.");
+  else if (mk && mk.moved === "away") risks.push(mk.label + ": the consensus has moved against this side since the open.");
+  if (s && s.best && impliedP(s.best.odds) < impliedP(e.odds) - 1e-9) support.push("A better price is available now: " + (s.best.odds > 0 ? "+" : "") + s.best.odds + " at " + s.best.book + ".");
   const team = pickTeam(e), opp = team ? (team === e.home ? e.away : e.home) : null, isTotal = e.marketKey === "totals", over = isTotal && /^over/i.test(e.pick);
   if (ctx) {
     const injList = (t) => (ctx.injuries && ctx.injuries[t]) || [];

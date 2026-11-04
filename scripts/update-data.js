@@ -18,6 +18,7 @@
 const fs = require("fs");
 const path = require("path");
 const context = require("./context.js");
+const sgo = require("./sgo.js");
 
 const API = "https://api.the-odds-api.com/v4";
 let VERBOSE = false;
@@ -43,7 +44,8 @@ const RULES = {
   gradeAfterHours: 3,   // grade events that started at least this long ago
   voidAfterDays: 7,     // give up on ungraded events after this long
   windowDays: 30,       // performance window
-  minRequestsLeft: 25   // stop fetching odds when the API quota runs this low
+  minRequestsLeft: 25,  // stop fetching odds when the API quota runs this low
+  sgoReserve: 150       // leave this many SportsGameOdds entities untouched each month (free tier: 2,500)
 };
 
 /* ---------- odds math ---------- */
@@ -265,7 +267,7 @@ function summarize(log, now) {
   const withClv = graded.filter(e => typeof e.clv === "number");
   const clvSum = withClv.reduce((s, e) => s + e.clv, 0), beat = withClv.filter(e => e.clv > 0).length;
   const clv = { n: withClv.length, avg: withClv.length ? round(clvSum / withClv.length * 100, 2) : null, beat: beat, beatPct: withClv.length ? round(beat / withClv.length * 100, 1) : null, graded: graded.length,
-    lineToward: graded.filter(e => e.clv == null && e.lineMove === "toward").length, lineAway: graded.filter(e => e.clv == null && e.lineMove === "away").length, espnCloses: graded.filter(e => e.close && /ESPN/.test(e.close.source || "")).length };
+    lineToward: graded.filter(e => e.clv == null && e.lineMove === "toward").length, lineAway: graded.filter(e => e.clv == null && e.lineMove === "away").length, espnCloses: graded.filter(e => e.close && /ESPN/.test(e.close.source || "")).length, sgoCloses: graded.filter(e => e.close && /SportsGameOdds/.test(e.close.source || "")).length };
   const avgEdge = graded.length ? round(graded.reduce((s, e) => s + e.edge, 0) / graded.length * 100, 1) : 0;
   /* all-time profit by day, for the calendar */
   const byDateMap = {};
@@ -301,27 +303,52 @@ async function run(opts) {
   if (opts.track) return trackRun(opts, now, dataDir, logPath, log);
   const source = opts.fixture ? fixtureSource() : liveSource(opts.key, usage);
   const ctxSource = context.source({ fixture: opts.fixture });
+  const sgoSrc = sgo.source({ fixture: opts.fixture });
+  const sgoBudget = sgoSrc.enabled ? await sgoSrc.usage() : null;
+  const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > RULES.sgoReserve);
 
-  /* 1. grade pending picks whose events have finished */
+  /* 1. grade pending picks whose events have finished. Scores come from free sources first (ESPN's scoreboard, then
+     SportsGameOdds' results); The Odds API scores endpoint is called only for picks neither could settle. */
   const cutoff = now.getTime() - RULES.gradeAfterHours * 36e5;
   const pendingBySport = {};
   log.filter(e => e.status === "pending" && Date.parse(e.commence) < cutoff).forEach(e => { (pendingBySport[e.sportKey] = pendingBySport[e.sportKey] || []).push(e); });
+  let scoresRequests = 0;
+  const fromScores = (e, home, away) => ({ completed: true, home_team: e.home, away_team: e.away, scores: [{ name: e.home, score: home }, { name: e.away, score: away }] });
+  async function settle(e, scoreEv, sgoClose) {
+    const g = grade(e, scoreEv); if (!g) return false;
+    e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString();
+    /* the close, best source first: the nine-book consensus (SportsGameOdds), DraftKings' close (ESPN), our last pre-game check */
+    let c = sgoClose || null;
+    if (!c && sgoOk()) { try { c = await sgo.close(sgoSrc, e, context.movedToward); } catch (err) { c = null; } }
+    if (!c) { try { c = await context.closingOdds(ctxSource, e); } catch (err) { c = null; } }
+    const own = closingLine(e);
+    e.close = c ? Object.assign(c, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
+    if (e.close) delete e.close.score;
+    e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
+    e.lineMove = e.close && e.close.moved ? e.close.moved : null;
+    return true;
+  }
   for (const sportKey of Object.keys(pendingBySport)) {
-    const scores = await source.scores(sportKey);
-    const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
+    const left = [];
     for (const e of pendingBySport[sportKey]) {
-      const g = grade(e, byId[e.eventId]);
-      if (g) {
-        e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString();
-        /* the close: DraftKings' closing number from ESPN when the game is matched (a true close), else our last pre-game check */
-        let esp = null;
-        try { esp = await context.closingOdds(ctxSource, e); } catch (err) { esp = null; }
-        const own = closingLine(e);
-        e.close = esp ? Object.assign(esp, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
-        e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
-        e.lineMove = e.close && e.close.moved ? e.close.moved : null;
+      let scoreEv = null, sgoClose = null;
+      try {
+        const sb = await ctxSource.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
+        const m = context.findEvent(sb, e.home, e.away);
+        if (m && m.comp.status && m.comp.status.type && m.comp.status.type.completed && m.home.score != null && m.away.score != null) scoreEv = fromScores(e, m.home.score, m.away.score);
+      } catch (err) { scoreEv = null; }
+      if (!scoreEv && sgoOk()) {
+        try { sgoClose = await sgo.close(sgoSrc, e, context.movedToward); } catch (err) { sgoClose = null; }
+        if (sgoClose && sgoClose.score) scoreEv = fromScores(e, sgoClose.score.home, sgoClose.score.away);
       }
-      else if (Date.parse(e.commence) < now.getTime() - RULES.voidAfterDays * 864e5) { e.status = "void"; }
+      if (!scoreEv || !(await settle(e, scoreEv, sgoClose))) left.push(e);
+    }
+    if (!left.length) continue;
+    const scores = await source.scores(sportKey); scoresRequests++;
+    const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
+    for (const e of left) {
+      if (await settle(e, byId[e.eventId], null)) continue;
+      if (Date.parse(e.commence) < now.getTime() - RULES.voidAfterDays * 864e5) e.status = "void";
     }
   }
 
@@ -374,12 +401,14 @@ async function run(opts) {
   /* context (injuries, weather, rest, records) and the written breakdown for every pick on the board */
   let ctxRequests = 0;
   try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES, now: now }); } catch (err) { console.warn("context step failed: " + err.message); }
+  /* second price source: every book's price on each pick's line and the market's drift since the open, then the breakdowns again */
+  let sgoStats = { changed: 0, entities: 0 };
+  if (sgoOk() && boardEntries.length) { try { sgoStats = await sgo.refresh(boardEntries, { fixture: opts.fixture, now: now, source: sgoSrc }); boardEntries.forEach(e => { e.breakdown = context.buildBreakdown(e, e.context, RULES); }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
   const potdEntry = choosePlayOfDay(log, boardEntries, today);
   const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [] });
-  const board = boardEntries.map(publicPick);
-  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
+  const board = boardEntries.map(e => publicPick(e, now));
+  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry, now), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
   const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
     legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
 
@@ -390,31 +419,41 @@ async function run(opts) {
   fs.writeFileSync(path.join(dataDir, "picks.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
   const perf = summarize(log, now);
   fs.writeFileSync(path.join(dataDir, "performance.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n");
-  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests };
+  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, scoresRequests: scoresRequests, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+}
+/* the pick as the site sees it */
+function publicPick(e, now) {
+  return { id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, pricesAt: e.pricesAt || e.loggedAt || null, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [], mkt: e.mkt || null,
+    sgo: e.sgo ? { at: e.sgo.at, n: e.sgo.n, best: e.sgo.best, fair: e.sgo.fair, vendorFair: e.sgo.vendor ? e.sgo.vendor.fair : null, open: e.sgo.open, now: e.sgo.now } : null, sgoHistory: e.sgoHistory || [] };
 }
 
 /* ---------- track mode: free ESPN refresh of the board between odds runs ---------- */
 async function trackRun(opts, now, dataDir, logPath, log) {
   const boardEntries = log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge);
   const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now });
+  const sgoSrc = sgo.source({ fixture: opts.fixture });
+  let sgoStats = { changed: 0, entities: 0 };
+  if (sgoSrc.enabled && boardEntries.length) {
+    const u = await sgoSrc.usage();
+    if (!u || u.max - u.used > RULES.sgoReserve) { try { sgoStats = await sgo.refresh(boardEntries, { fixture: opts.fixture, now: now, source: sgoSrc }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
+  }
   boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
   const today = etDate(now);
   const potdEntry = log.find(e => !e.type && e.potd === today) || null;
   const parlayEntry = log.find(e => e.type === "parlay" && e.date === today) || null;
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  const publicPick = e => ({ id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [] });
-  /* keep the odds run's timestamp as generatedAt; trackedAt says when DraftKings numbers were last refreshed */
+  /* keep the odds run's timestamp as generatedAt; trackedAt says when the book numbers were last refreshed */
   let generatedAt = now.toISOString();
   const picksPath = path.join(dataDir, "picks.js");
   if (fs.existsSync(picksPath)) { const m = fs.readFileSync(picksPath, "utf8").match(/"generatedAt":\s*"([^"]+)"/); if (m) generatedAt = m[1]; }
-  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
+  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry, now), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
   const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
     legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
-  const picksData = { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: boardEntries.map(publicPick) };
+  const picksData = { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: boardEntries.map(e => publicPick(e, now)) };
   fs.writeFileSync(picksPath, "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
-  return { track: true, board: boardEntries.length, moved: t.changed, contextRequests: t.requests };
+  return { track: true, board: boardEntries.length, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoStats.entities, contextRequests: t.requests };
 }
 
 function liveSource(key, usage) {
@@ -448,8 +487,8 @@ function parseArgs(argv) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
-    if (r.track) { console.log("Track: " + r.board + " on the board, DraftKings moved on " + r.moved + ", ESPN requests: " + r.contextRequests); return; }
-    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : ""));
+    if (r.track) { console.log("Track: " + r.board + " on the board, DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), ESPN requests: " + r.contextRequests); return; }
+    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
 module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, closingLine, clvOf, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS };

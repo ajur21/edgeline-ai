@@ -32,6 +32,7 @@ jobs:
         run: node scripts/update-data.js
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Refresh NBA props research data (ESPN public API, no key)
         run: node scripts/update-props.js || echo "::warning::props refresh failed; keeping the previous data/props.js"
       - name: Commit data if it changed

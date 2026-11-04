@@ -114,7 +114,7 @@
 
   /* ---------- line shopping: every book's price on the pick's line ---------- */
   const BAR = 0.01; /* a book "clears the bar" when its price still leaves a 1-point edge, the site's Lean threshold */
-  const BOOK_ABBR = { DraftKings: "DK", FanDuel: "FD", BetMGM: "MGM", Caesars: "CZR", BetRivers: "BR", Fanatics: "FAN", "ESPN BET": "ESPN", Bovada: "BOV", "BetOnline.ag": "BOL", Pinnacle: "PIN", LowVig: "LV", "Hard Rock Bet": "HRB", Bet365: "365", PointsBet: "PB" };
+  const BOOK_ABBR = { DraftKings: "DK", FanDuel: "FD", BetMGM: "MGM", Caesars: "CZR", BetRivers: "BR", Fanatics: "FAN", "ESPN BET": "ESPN", Bovada: "BOV", "BetOnline.ag": "BOL", Pinnacle: "PIN", LowVig: "LV", "Hard Rock Bet": "HRB", Bet365: "365", PointsBet: "PB", Unibet: "UNI" };
   function bookAbbr(name) { return BOOK_ABBR[name] || String(name || "").replace(/[^A-Za-z0-9]/g, "").slice(0, 3).toUpperCase(); }
   function lineShop(p) {
     const fair = Number(p && p.modelProb), prices = (p && p.prices) || {};
@@ -442,8 +442,9 @@
     if (c.probables && Object.keys(c.probables).length) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Probable pitchers" })].concat(Object.keys(c.probables).map(t => el("p", { text: t + ": " + c.probables[t] })))));
     if (p.movement || p.dk) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Line movement" }),
       p.movement ? el("p", { text: "Logged " + fmtOdds(p.movement.loggedOdds) + " (fair " + pct(p.movement.loggedFair) + "). Now " + fmtOdds(p.movement.currentOdds) + " at " + p.movement.currentBook + " (fair " + pct(p.movement.currentFair) + ", edge " + signed(p.movement.currentEdge * 100, 1) + "%)." }) : null,
+      p.mkt ? el("p", { class: "bd-dk bd-mkt" }, [el("span", { class: "dk-dir dk-" + (p.mkt.moved || "flat"), text: p.mkt.moved === "toward" ? "▲ toward" : p.mkt.moved === "away" ? "▼ against" : "● flat" }), " " + p.mkt.label + "." + (p.sgoHistory && p.sgoHistory.length > 1 ? " " + p.sgoHistory.length + " moves tracked." : "")]) : null,
       p.dk ? el("p", { class: "bd-dk" }, [el("span", { class: "dk-dir dk-" + (p.dk.moved || "flat"), text: p.dk.moved === "toward" ? "▲ toward" : p.dk.moved === "away" ? "▼ against" : "● flat" }), " " + p.dk.label + "." + (p.dkHistory && p.dkHistory.length > 1 ? " " + p.dkHistory.length + " moves tracked." : "")]) : null,
-      el("p", { class: "small muted", text: "Closing line value is scored after the game against DraftKings' closing number; see Performance." })]));
+      el("p", { class: "small muted", text: "Closing line value is scored after the game against the market's closing number; see Performance." })]));
     const shop = shopTable(p);
     if (shop) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Line shopping" }), el("p", { text: shopSummary(p) }), shop, lineShop(p).sole ? el("p", { class: "shop-warn", text: "When one book is alone on a price it is often the one that is wrong, and it can be limited or pulled quickly. Treat a sole-book edge as thinner than the number." }) : null]));
     if (c.venue || c.broadcast) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Where" }), el("p", { text: [c.venue, c.broadcast ? "TV: " + c.broadcast : null].filter(Boolean).join(" · ") })]));

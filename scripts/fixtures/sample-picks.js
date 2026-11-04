@@ -26,7 +26,9 @@ window.PICKS_DATA = {
         "FanDuel": -120,
         "BetMGM": -125,
         "Caesars": -115,
-        "BetRivers": -120
+        "BetRivers": -120,
+        "PointsBet": -105,
+        "Unibet": -112
       },
       "ev": 0.1168,
       "away": "Kansas City",
@@ -132,6 +134,64 @@ window.PICKS_DATA = {
           "line": -2.5,
           "odds": -110,
           "fair": 0.5
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": -1.5,
+          "odds": -104
+        },
+        "now": {
+          "line": -2.5,
+          "odds": 102
+        },
+        "moved": "toward",
+        "label": "The market (7 books) opened -1.5 (-104), now -2.5 (+102)"
+      },
+      "sgo": {
+        "at": "2026-11-04T21:00:00Z",
+        "n": 7,
+        "best": {
+          "book": "PointsBet",
+          "odds": -105
+        },
+        "fair": 0.49,
+        "vendorFair": 0.495,
+        "open": {
+          "line": -1.5,
+          "odds": -104
+        },
+        "now": {
+          "line": -2.5,
+          "odds": 102
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-04T17:00:00Z",
+          "fair": 0.5,
+          "line": -1.5,
+          "odds": -104,
+          "best": -110,
+          "n": 7
+        },
+        {
+          "at": "2026-11-04T19:00:00Z",
+          "fair": 0.495,
+          "line": -2.5,
+          "odds": 100,
+          "best": -108,
+          "n": 7
+        },
+        {
+          "at": "2026-11-04T21:00:00Z",
+          "fair": 0.49,
+          "line": -2.5,
+          "odds": 102,
+          "best": -105,
+          "n": 7
         }
       ]
     },

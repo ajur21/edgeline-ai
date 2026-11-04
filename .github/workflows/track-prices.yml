@@ -30,6 +30,8 @@ jobs:
           node-version: 22
       - name: Refresh DraftKings numbers from ESPN and rebuild breakdowns
         run: node scripts/update-data.js --track
+        env:
+          SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Commit data if it changed
         id: commit
         run: |
