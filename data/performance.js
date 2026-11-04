@@ -1,5 +1,6 @@
 /* SAMPLE DATA — generated, not a real track record. Replace with your own results. */
 window.PERF_DATA = {
+  "sample": true,
   "asOf": "2026-11-04",
   "record": {
     "wins": 54,

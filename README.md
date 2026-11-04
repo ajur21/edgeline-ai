@@ -27,7 +27,11 @@ data/picks.js       SAMPLE picks  -> window.PICKS_DATA
 data/performance.js SAMPLE results -> window.PERF_DATA
 ```
 
-## Plugging in a real model
+## Real data
+
+`scripts/update-data.js` pulls prices from [The Odds API](https://the-odds-api.com), de-vigs every book into a consensus "fair" probability, flags prices that sit below it (the edge), grades finished picks from final scores, and rewrites the two data files. A GitHub Actions workflow runs it daily once the `ODDS_API_KEY` repository secret exists. Until then the site shows labelled sample data. See CLAUDE.md for the rules and request budget.
+
+## Plugging in a different model
 
 The pages read `window.PICKS_DATA` and `window.PERF_DATA`. Either:
 

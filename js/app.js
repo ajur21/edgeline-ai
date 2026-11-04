@@ -28,6 +28,11 @@
     });
     const yr = document.querySelector("[data-year]");
     if (yr) yr.textContent = String(new Date().getFullYear());
+    /* hide "Sample data" labels once the files come from the real pipeline */
+    document.querySelectorAll("[data-sample-flag]").forEach(function (elm) {
+      const d = elm.getAttribute("data-sample-flag") === "perf" ? window.PERF_DATA : window.PICKS_DATA;
+      if (d && d.sample === false) elm.hidden = true;
+    });
     initReveal();
     initTilt(document);
     const btn = document.querySelector(".theme-toggle");
@@ -104,6 +109,9 @@
   }
 
   /* ---------- pick card ---------- */
+  /* sample data files set sample:true; real data from scripts/update-data.js sets it false */
+  function isSample() { const d = window.PICKS_DATA; return !d || d.sample !== false; }
+
   /* a pick card is two faces: numbers on the front, the "why" on the back; it flips in 3D */
   function pickCard(p) {
     const edge = edgeOf(p);
@@ -116,20 +124,20 @@
       el("div", { class: "pick-head" }, [
         el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport }),
         el("span", { class: "pick-head-right" }, [
-          el("span", { class: "badge badge-sample", text: "Sample" }),
+          isSample() ? el("span", { class: "badge badge-sample", text: "Sample" }) : null,
           el("span", { class: confClass, text: p.confidence })
         ])
       ]),
       el("div", {}, [
         el("div", { class: "pick-event", text: p.event }),
         el("h3", { class: "pick-selection", text: p.pick }),
-        el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) })])
+        el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""])
       ]),
       el("div", { class: "meter", "aria-hidden": "true" }, [
         el("span", { style: "width:" + meterWidth + "%" })
       ]),
       el("div", { class: "pick-metrics" }, [
-        el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Model" }), el("div", { class: "v", text: pct(p.modelProb) })]),
+        el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Fair" }), el("div", { class: "v", text: pct(p.modelProb) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Implied" }), el("div", { class: "v", text: pct(impliedProb(p.odds)) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })])
       ]),
@@ -195,7 +203,7 @@
   }
 
   function picksTable(picks) {
-    const head = el("tr", {}, ["Sport", "Event", "Start", "Market", "Pick", "Odds", "Model", "Implied", "Edge", "Confidence"]
+    const head = el("tr", {}, ["Sport", "Event", "Start", "Market", "Pick", "Odds", "Fair", "Implied", "Edge", "Confidence"]
       .map(function (h, i) { return el("th", { scope: "col", class: i >= 5 && i <= 8 ? "num" : "" , text: h }); }));
     const tbody = el("tbody", {}, picks.map(pickRow));
     return el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Picks table" }, [el("table", { class: "data" }, [el("thead", {}, [head]), tbody])]);

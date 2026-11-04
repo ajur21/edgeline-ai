@@ -1,0 +1,7 @@
+[
+  { "id": "nba-old-1", "sport_key": "basketball_nba", "sport_title": "NBA", "commence_time": "2026-11-04T00:00:00Z", "completed": true,
+    "home_team": "Boston Celtics", "away_team": "Milwaukee Bucks",
+    "scores": [ { "name": "Boston Celtics", "score": "110" }, { "name": "Milwaukee Bucks", "score": "104" } ], "last_update": "2026-11-04T03:00:00Z" },
+  { "id": "nba-old-live", "sport_key": "basketball_nba", "sport_title": "NBA", "commence_time": "2026-11-05T00:00:00Z", "completed": false,
+    "home_team": "Denver Nuggets", "away_team": "Phoenix Suns", "scores": null, "last_update": null }
+]

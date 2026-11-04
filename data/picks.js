@@ -6,6 +6,7 @@
    factors is an optional list of 2–3 short reasons shown on the back of the card.
    ========================================================================== */
 window.PICKS_DATA = {
+  sample: true,
   generatedAt: "2026-11-04T09:00:00-05:00",
   picks: [
     { id: "p1", sport: "NFL", league: "NFL", event: "Kansas City @ Buffalo", start: "Sun 4:25 PM ET",

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "nba-fix-1", "sport_key": "basketball_nba", "sport_title": "NBA", "commence_time": "2026-11-06T00:00:00Z",
+    "home_team": "Boston Celtics", "away_team": "Milwaukee Bucks",
+    "bookmakers": [
+      { "key": "draftkings", "title": "DraftKings", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Boston Celtics", "price": -150 }, { "name": "Milwaukee Bucks", "price": 130 } ] },
+        { "key": "spreads", "outcomes": [ { "name": "Boston Celtics", "price": -110, "point": -3.5 }, { "name": "Milwaukee Bucks", "price": -110, "point": 3.5 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -110, "point": 226.5 }, { "name": "Under", "price": -110, "point": 226.5 } ] } ] },
+      { "key": "fanduel", "title": "FanDuel", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Boston Celtics", "price": -155 }, { "name": "Milwaukee Bucks", "price": 135 } ] },
+        { "key": "spreads", "outcomes": [ { "name": "Boston Celtics", "price": -105, "point": -3.5 }, { "name": "Milwaukee Bucks", "price": -115, "point": 3.5 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -110, "point": 226.5 }, { "name": "Under", "price": -110, "point": 226.5 } ] } ] },
+      { "key": "betmgm", "title": "BetMGM", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Boston Celtics", "price": -150 }, { "name": "Milwaukee Bucks", "price": 130 } ] },
+        { "key": "spreads", "outcomes": [ { "name": "Boston Celtics", "price": -110, "point": -3.5 }, { "name": "Milwaukee Bucks", "price": -110, "point": 3.5 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -110, "point": 226.5 }, { "name": "Under", "price": -110, "point": 226.5 } ] } ] },
+      { "key": "williamhill_us", "title": "Caesars", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Boston Celtics", "price": -145 }, { "name": "Milwaukee Bucks", "price": 160 } ] },
+        { "key": "spreads", "outcomes": [ { "name": "Boston Celtics", "price": -110, "point": -3.5 }, { "name": "Milwaukee Bucks", "price": -110, "point": 3.5 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -110, "point": 226.5 }, { "name": "Under", "price": -110, "point": 226.5 } ] } ] }
+    ]
+  },
+  {
+    "id": "nfl-fix-far", "sport_key": "americanfootball_nfl", "sport_title": "NFL", "commence_time": "2026-11-08T21:25:00Z",
+    "home_team": "Buffalo Bills", "away_team": "Kansas City Chiefs",
+    "bookmakers": [
+      { "key": "draftkings", "title": "DraftKings", "markets": [ { "key": "h2h", "outcomes": [ { "name": "Buffalo Bills", "price": -130 }, { "name": "Kansas City Chiefs", "price": 110 } ] } ] },
+      { "key": "fanduel", "title": "FanDuel", "markets": [ { "key": "h2h", "outcomes": [ { "name": "Buffalo Bills", "price": -130 }, { "name": "Kansas City Chiefs", "price": 110 } ] } ] },
+      { "key": "betmgm", "title": "BetMGM", "markets": [ { "key": "h2h", "outcomes": [ { "name": "Buffalo Bills", "price": -120 }, { "name": "Kansas City Chiefs", "price": 140 } ] } ] }
+    ]
+  },
+  {
+    "id": "nfl-fix-thin", "sport_key": "americanfootball_nfl", "sport_title": "NFL", "commence_time": "2026-11-06T01:15:00Z",
+    "home_team": "Philadelphia Eagles", "away_team": "Dallas Cowboys",
+    "bookmakers": [
+      { "key": "draftkings", "title": "DraftKings", "markets": [ { "key": "h2h", "outcomes": [ { "name": "Philadelphia Eagles", "price": -200 }, { "name": "Dallas Cowboys", "price": 170 } ] } ] },
+      { "key": "fanduel", "title": "FanDuel", "markets": [ { "key": "h2h", "outcomes": [ { "name": "Philadelphia Eagles", "price": -180 }, { "name": "Dallas Cowboys", "price": 200 } ] } ] }
+    ]
+  },
+  {
+    "id": "epl-fix-1", "sport_key": "soccer_epl", "sport_title": "EPL", "commence_time": "2026-11-06T20:00:00Z",
+    "home_team": "Arsenal", "away_team": "Liverpool",
+    "bookmakers": [
+      { "key": "draftkings", "title": "DraftKings", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Arsenal", "price": 120 }, { "name": "Liverpool", "price": 210 }, { "name": "Draw", "price": 250 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -120, "point": 2.5 }, { "name": "Under", "price": 100, "point": 2.5 } ] } ] },
+      { "key": "fanduel", "title": "FanDuel", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Arsenal", "price": 125 }, { "name": "Liverpool", "price": 200 }, { "name": "Draw", "price": 245 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -120, "point": 2.5 }, { "name": "Under", "price": 100, "point": 2.5 } ] } ] },
+      { "key": "betmgm", "title": "BetMGM", "markets": [
+        { "key": "h2h", "outcomes": [ { "name": "Arsenal", "price": 115 }, { "name": "Liverpool", "price": 215 }, { "name": "Draw", "price": 330 } ] },
+        { "key": "totals", "outcomes": [ { "name": "Over", "price": -120, "point": 2.5 }, { "name": "Under", "price": 100, "point": 2.5 } ] } ] }
+    ]
+  }
+]

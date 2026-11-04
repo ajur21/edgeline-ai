@@ -46,9 +46,9 @@
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow">AI-driven picks · NFL · NBA · MLB · NHL · Soccer</span>
+      <span class="eyebrow">Market-driven picks · NFL · NBA · MLB · NHL · Soccer</span>
       <h1>Only bet when the model <span class="hl">beats the price.</span></h1>
-      <p class="lead">EdgeLine AI compares its own win probabilities against sportsbook prices and surfaces only the bets where the model sees value. Every pick ships with the number behind it.</p>
+      <p class="lead">EdgeLine AI strips the vig from every major sportsbook's prices, averages them into a fair probability, and surfaces the bets where one book is off the market. Every pick ships with the number behind it.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="picks.html">See today's picks</a>
         <a class="btn btn-secondary" href="performance.html">View track record</a>
@@ -56,7 +56,7 @@
       <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
     </div>
     <section class="board" id="board" aria-labelledby="board-title" data-tilt>
-      <div class="board-head"><span class="live" id="board-title">Today's board</span><span class="badge badge-sample">Sample data</span></div>
+      <div class="board-head"><span class="live" id="board-title">Today's board</span><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
       <div id="board-rows"></div>
       <div class="board-foot" id="board-foot"></div>
     </section>
@@ -68,23 +68,23 @@
     <div class="section-head">
       <span class="eyebrow">How it works</span>
       <h2>Three steps from data to a pick</h2>
-      <p class="muted">The model only recommends a bet when its probability beats the price the market is offering.</p>
+      <p class="muted">A pick only happens when a book's price implies a lower probability than the market's own consensus.</p>
     </div>
     <div class="steps">
       <div class="step">
-        <span class="step-term">Inputs</span>
-        <h3>Ingest the signal</h3>
-        <p>Team and player ratings, injuries, rest, travel, weather and line movement are pulled in before every slate.</p>
+        <span class="step-term">Prices</span>
+        <h3>Ingest the market</h3>
+        <p>Moneyline, spread and total prices from the major U.S. sportsbooks are pulled in every day before the slate.</p>
       </div>
       <div class="step">
-        <span class="step-term">Simulation</span>
-        <h3>Simulate the game</h3>
-        <p>Thousands of simulations produce a win probability for each side, total and spread.</p>
+        <span class="step-term">Consensus</span>
+        <h3>Strip the vig</h3>
+        <p>Each book's prices are de-vigged into fair probabilities and averaged into a consensus: the market's own best estimate.</p>
       </div>
       <div class="step">
-        <span class="step-term">Edge = model % − implied %</span>
+        <span class="step-term">Edge = fair % − implied %</span>
         <h3>Find the edge</h3>
-        <p>The model probability is compared with the implied probability of the odds. If the gap clears the threshold, it becomes a pick.</p>
+        <p>When one book's price implies a lower probability than the consensus, that gap is the edge. Clear 1.5 points and it becomes a pick; 2.5 is Medium, 4 is High.</p>
       </div>
     </div>
 
@@ -92,7 +92,7 @@
       <div class="calc-head">
         <span class="eyebrow">Try it</span>
         <h3>Find the edge yourself</h3>
-        <p class="muted">Drag the odds and the model's win probability. A pick only happens when the edge is positive.</p>
+        <p class="muted">Drag the odds and the fair win probability. A pick only happens when the edge is positive.</p>
       </div>
       <div class="calc-grid">
         <label class="calc-field">
@@ -100,7 +100,7 @@
           <input type="range" id="calc-odds" min="0" max="81" step="1" value="38">
         </label>
         <label class="calc-field">
-          <span class="calc-label">Model win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
+          <span class="calc-label">Fair win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
           <input type="range" id="calc-prob" min="30" max="80" step="0.5" value="55">
         </label>
       </div>
@@ -159,7 +159,7 @@
         <div class="plan-price"><span data-monthly="$29" data-yearly="$23">$29</span><small> /month</small></div>
         <ul>
           <li>Every pick across all sports</li>
-          <li>Model probability and edge on each pick</li>
+          <li>Fair probability and edge on each pick</li>
           <li>Line-move alerts</li>
           <li>Full historical database</li>
         </ul>
@@ -189,11 +189,11 @@
     <div class="faq">
       <details open>
         <summary>What does "edge" mean?</summary>
-        <p>Edge is the difference between the model's win probability and the probability implied by the sportsbook odds. A +4% edge means the model thinks the bet wins 4 percentage points more often than the price suggests.</p>
+        <p>Edge is the difference between the fair probability (the de-vigged consensus of every book pricing the market) and the probability implied by the best available price. A +4% edge means the market as a whole thinks the bet wins 4 percentage points more often than that one price suggests.</p>
       </details>
       <details>
         <summary>Does the model guarantee winners?</summary>
-        <p>No. Nothing does. Even a well-calibrated model loses often; the goal is positive expected value over a large number of bets, not winning every one.</p>
+        <p>No. Nothing does. Even a true edge loses often; the goal is positive expected value over a large number of bets, not winning every one.</p>
       </details>
       <details>
         <summary>How are results tracked?</summary>
@@ -201,7 +201,7 @@
       </details>
       <details>
         <summary>Which sportsbooks do you use for odds?</summary>
-        <p>Prices are captured from a consensus of major licensed sportsbooks at the moment a pick is published, and that is the price each pick is graded against. Your book may differ slightly, so compare before you bet.</p>
+        <p>Prices come from the major U.S. sportsbooks covered by The Odds API, including DraftKings, FanDuel, BetMGM and Caesars. The consensus uses every book listing the market; each pick names the book offering the best price, and that is the price it is graded against.</p>
       </details>
       <details>
         <summary>Is this legal where I live?</summary>

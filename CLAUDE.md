@@ -18,8 +18,11 @@ css/styles.css       ALL styles. Design tokens live in :root at the top; dark th
 js/app.js            Loaded in <head>. Theme toggle, nav state, odds math, pick card/table rendering. Exposes window.EdgeLine
 js/charts.js         Dependency-free SVG line + bar charts with tooltips, keyboard nav, table twins. Exposes window.EdgeLineCharts
 js/space.js          Canvas space backdrop (parallax stars, nebulae, flare, shooting stars, vignette); light theme = daylight sky; still frame under reduced motion
-data/picks.js        SAMPLE picks  -> window.PICKS_DATA  { generatedAt, picks: [...] }
-data/performance.js  SAMPLE results -> window.PERF_DATA  { asOf, record, units, roi, avgEdge, daily, bySport, recent }
+data/picks.js        -> window.PICKS_DATA  { sample, source, generatedAt, picks: [...] }   (sample until the pipeline runs)
+data/performance.js  -> window.PERF_DATA   { sample, asOf, record, units, roi, avgEdge, daily, bySport, recent }
+data/picks-log.json  Every pick ever published, with grading; the pipeline's source of truth (created on first real run)
+scripts/update-data.js  Data pipeline: The Odds API -> de-vigged consensus -> edges -> log -> grade -> rewrite the two data files
+scripts/data-test.js    Offline pipeline test against scripts/fixtures/ (run by `npm test`)
 scripts/screenshot.js Playwright render check (see Verify)
 scripts/behavior.js  Playwright behaviour checks: nav state, filters, chart edge cases, keyboard access (see Verify)
 package.json         Dev-only: `npm run check` runs the render check; Playwright is the only dependency
@@ -40,7 +43,7 @@ The header and footer are duplicated verbatim in all three HTML files. If you ch
 - User-facing copy never contains developer instructions ("placeholder", "replace with your own", "edit these"). Mark sample content with the `badge-sample` label instead.
 - The favicon is an inline SVG data URI and each page carries Open Graph and Twitter card meta in `<head>`; keep the three heads in step.
 - Fonts, each with a job: Sora (headlines and pick selections: geometric, confident), Inter (body: neutral, trustworthy), Oswald (eyebrows, badges, stat labels, table headers, ticker: condensed uppercase scoreboard energy), JetBrains Mono (odds, figures, axis ticks: precision). Loaded from Google Fonts with system fallbacks. Keep the roles; do not let one font take over.
-- Odds are American format. Implied probability and edge are computed client-side in `js/app.js` (`impliedProb`, `edgeOf`). Edge = model probability − implied probability.
+- Odds are American format. Implied probability and edge are computed client-side in `js/app.js` (`impliedProb`, `edgeOf`). Edge = fair (consensus) probability − implied probability. The pipeline computes the same numbers server-side; keep the two in agreement.
 - Charts: 2px accent line with a vertical gradient fade underneath (SVG gradient, stop colors from tokens), hairline solid gridlines, 24px bars with 4px rounded data-ends square at the baseline, bars colored by sport via `data-cat` and the `--sport-*` tokens, legend omitted, a table view for every chart, tooltips that enhance but never gate. Status colors (green win, red loss) are reserved for results.
 - Theme: dark by default (space backdrop); light is an opt-in via the toggle and renders the same field as a pale daylight sky. Surfaces are translucent tokens with `backdrop-filter` so the stars show through; keep that when adding surfaces.
 - Design direction: vibrant and tactile, set against a cinematic space canvas (`js/space.js`). Left-aligned layout, small radii (6px/10px), cards only for distinct objects (a pick, a plan, a chart). Electric blue leads; magenta (`--accent-2`), lime (`--accent-3`) and orange (`--accent-4`) are accents, and each sport has its own hue (`--sport-nfl` etc.) used on sport badges and chart bars. Confidence badges: High lime, Medium blue, Lean orange. 3D cues: buttons sit on a solid `--edge` and press down on click; elements marked `data-tilt` lean toward the cursor with a spotlight (`initTilt` in `js/app.js`); section containers rotate into place on scroll (`.reveal`, `initReveal`). Hero carries two blurred color glows. All motion is disabled under `prefers-reduced-motion`. Avoid: emoji, centered hero, blurred gradient blobs, gradient-filled text, uniform tinted cards.
@@ -56,6 +59,22 @@ npm test                                         # behaviour checks (nav, filter
 
 The render check scrolls each page first so scroll-revealed sections are in their final state, then exits non-zero on any console error or horizontal overflow and writes 12 full-page screenshots to `screenshots/`. The behaviour check exits non-zero on any failed assertion. Run both after any change to HTML, CSS or JS and look at the images.
 
+## Data pipeline
+
+`scripts/update-data.js` is the "backend". `.github/workflows/update-data.yml` runs it daily at 14:00 UTC and on demand, commits `data/`, and redeploys. It needs the `ODDS_API_KEY` repository secret (a key from https://the-odds-api.com; the free tier is 500 requests/month).
+
+How a pick is made (all in `update-data.js`, tunable in `RULES`):
+1. For each active sport, fetch moneyline, spread and total prices from US books (soccer: moneyline and totals; 3 requests per sport).
+2. Per event and market, group books by exact line and keep the largest group (at least 3 books). De-vig each book's prices (divide each implied probability by their sum) and average across books: the **fair** probability. The site calls this "Fair"; the data field is still `modelProb`.
+3. For each outcome, take the best price across those books. Edge = fair − implied(best price). Edge of 1.5 points or more becomes a pick (Lean); 2.5 is Medium; 4 is High. Only one side of a market can be picked.
+4. At most 4 picks per sport and 12 per run; only events starting within 36 hours. A pick is logged once per event+market+outcome+line, at the price seen.
+5. Pending picks whose events started 3+ hours ago are graded from the scores endpoint (2 requests per sport with pending picks). Win pays the profit at the logged odds for 1 unit; loss is −1; push 0. Ungraded after 7 days becomes `void` and is excluded.
+6. `performance.js` summarises graded picks from the last 30 days by event date (Eastern). `picks.js` is every pending pick whose event is still ahead.
+
+Request budget: roughly 3 per active sport for odds plus 2 per sport with pending picks for grading, so 20–25 per daily run. The script stops fetching odds when the API reports fewer than 25 requests left. Sample data stays in place (flagged `sample: true`) until the first real run; the UI hides "Sample" labels when `sample` is false.
+
+To run locally: `ODDS_API_KEY=... npm run data`. To test without the network: `npm test` (uses `scripts/fixtures/`).
+
 ## Deploy
 
 Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://github.com/ajur21/edgeline-ai. Every push to `main` runs `.github/workflows/pages.yml`, which publishes the repository root to GitHub Pages (no build step). To ship a change: run both checks, commit, `git push`. `node_modules/` and `screenshots/` are ignored and never deployed.
@@ -67,11 +86,11 @@ Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://githu
 - FAQ answer about sportsbooks is generic copy; confirm it matches the real odds feed.
 - Footer links: About, Terms, Privacy, Contact (all `href="#"`).
 - All sign-up / plan buttons (`href="#"`); there is no backend, auth or payments.
-- `data/picks.js` and `data/performance.js`.
+- `data/picks.js` and `data/performance.js` are sample until the pipeline runs.
 
 ## Suggested backlog
 
-1. Wire real picks and results (backend writes the two data files, or an API + fetch).
+1. ~~Wire real picks and results~~ done: see Data pipeline. Remaining: add the `ODDS_API_KEY` secret and run the workflow once.
 2. Account sign-up / login and plan checkout (needs a backend; out of scope for the static site).
 3. Email capture on the Free plan.
 4. Terms, privacy and responsible-gambling pages.
