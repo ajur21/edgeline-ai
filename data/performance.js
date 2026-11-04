@@ -15,5 +15,18 @@ window.PERF_DATA = {
   "graded": 0,
   "daily": [],
   "bySport": [],
-  "recent": []
+  "recent": [],
+  "byDate": [],
+  "potd": {
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "units": 0
+  },
+  "parlays": {
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "units": 0
+  }
 };
