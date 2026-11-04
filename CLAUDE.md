@@ -56,6 +56,10 @@ npm test                                         # behaviour checks (nav, filter
 
 The render check scrolls each page first so scroll-revealed sections are in their final state, then exits non-zero on any console error or horizontal overflow and writes 12 full-page screenshots to `screenshots/`. The behaviour check exits non-zero on any failed assertion. Run both after any change to HTML, CSS or JS and look at the images.
 
+## Deploy
+
+Live at https://ajur21.github.io/edgeline-ai/ from the public repo https://github.com/ajur21/edgeline-ai. Every push to `main` runs `.github/workflows/pages.yml`, which publishes the repository root to GitHub Pages (no build step). To ship a change: run both checks, commit, `git push`. `node_modules/` and `screenshots/` are ignored and never deployed.
+
 ## Known placeholders to replace
 
 - Brand name "EdgeLine AI" and the inline SVG mark (header and footer of each page).
@@ -72,4 +76,4 @@ The render check scrolls each page first so scroll-revealed sections are in thei
 3. Email capture on the Free plan.
 4. Terms, privacy and responsible-gambling pages.
 5. Social preview image (`og:image`); tags and favicon are in place.
-6. Deploy (GitHub Pages, Netlify, Cloudflare Pages).
+6. ~~Deploy~~ done: GitHub Pages via Actions (see Deploy). A custom domain is the remaining step: add a CNAME in the repo settings.

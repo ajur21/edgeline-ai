@@ -5,6 +5,8 @@ Open `index.html` in a browser, or serve the folder with any static host (GitHub
 
 "EdgeLine AI" and all copy, prices and numbers are placeholders.
 
+Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Actions).
+
 ## Pages
 
 | File | What it is |
