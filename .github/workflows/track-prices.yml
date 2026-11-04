@@ -1,12 +1,13 @@
-# Free refresh between the two odds runs: pulls DraftKings' open and current numbers from ESPN for every pick on the
-# board (no Odds API requests), rebuilds the breakdowns and rewrites data/picks.js. Commits and redeploys only when a
-# number actually moved. Runs every two hours through the US afternoon and evening, and on demand.
+# Free refresh between the two odds runs: pulls DraftKings' open and current numbers from ESPN and, for games within
+# eight hours of tip-off, every book's price from SportsGameOdds, for every pick on the board (no Odds API requests),
+# rebuilds the breakdowns and rewrites data/picks.js. Commits and redeploys only when a number actually moved.
+# Runs hourly for sixteen hours, 10 AM to 1 AM Eastern (15:00-06:00 UTC), and on demand.
 name: Track prices
 
 on:
   schedule:
-    - cron: "0 15,19,21,23 * * *"
-    - cron: "0 1,3 * * *"
+    - cron: "0 15-23 * * *"
+    - cron: "0 0-6 * * *"
   workflow_dispatch:
 
 permissions:

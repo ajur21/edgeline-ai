@@ -272,7 +272,8 @@ function buildBreakdown(e, ctx, rules) {
   const tier = e.confidence;
   const tierWhy = "Edge of " + pts(e.edge) + " over the fair line. Lean starts at " + pts(rules.minEdge) + ", Medium at " + pts(rules.medium) + ", High at " + pts(rules.high) + ". Confidence is the size of the price edge only; the context below is what could move the result, not the number.";
   const support = [], risks = [], notes = [];
-  if (e.anchor) support.push("Fair line comes from " + e.anchor + "'s de-vigged price, the sharpest public market."); else risks.push("No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.");
+  if (e.anchor && e.anchorShift) notes.push("Fair line comes from " + e.anchor + ", carried across a line gap: " + e.anchorNote + " A carried price is a fair estimate, not a quote.");
+  else if (e.anchor) support.push("Fair line comes from " + e.anchor + "'s de-vigged price, the sharpest public market."); else risks.push("No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.");
   if (e.books >= 6) support.push(e.books + " books price this exact line, so the fair number is well established."); else if (e.books <= 4) risks.push("Only " + e.books + " books price this exact line; thin markets move fast.");
   /* movement since logged */
   if (e.current && e.current.at !== e.loggedAt) {
