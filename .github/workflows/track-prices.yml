@@ -1,6 +1,9 @@
-# Free refresh between the two odds runs: pulls DraftKings' open and current numbers from ESPN and, for games within
-# eight hours of tip-off, every book's price from SportsGameOdds, for every pick on the board (no Odds API requests),
-# rebuilds the breakdowns and rewrites data/picks.js. Commits and redeploys only when a number actually moved.
+# The hourly run between the two odds runs (no Odds API requests, ever): grades every pick whose game has finished
+# from the free score sources (ESPN's scoreboard, then SportsGameOdds' results) and, when it grades anything, rewrites
+# data/performance.js so results land within the hour; pulls DraftKings' open and current numbers from ESPN and, for
+# games within eight hours of tip-off, every book's price from SportsGameOdds, for every pick on the board; rebuilds
+# the breakdowns and rewrites data/picks.js (the day's card, started and graded picks included) and the feeds.
+# Commits and redeploys when any of those files changed.
 # Runs hourly for sixteen hours, 10 AM to 1 AM Eastern (15:00-06:00 UTC), and on demand.
 name: Track prices
 
@@ -25,26 +28,33 @@ jobs:
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:
+      # The branch head when the job starts, not the commit current when the run was queued: a run that waited behind
+      # the other data job must build on (and push after) the log that job just committed.
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Refresh DraftKings numbers from ESPN and rebuild breakdowns
+      - name: Grade finished games, refresh DraftKings numbers from ESPN and rebuild breakdowns
         run: node scripts/update-data.js --track
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Rebuild the pick feeds (calendar + RSS)
         run: node scripts/feeds.js
+      # What a track run writes: data/picks.js (the card), data/picks-log.json (grades, closes, prices),
+      # data/performance.js (only when it graded something), picks.ics and feed.xml. `git status` also sees a file the
+      # run created, which `git diff` would miss.
       - name: Commit data if it changed
         id: commit
         run: |
-          if git diff --quiet -- data feed.xml picks.ics; then
+          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js picks.ics feed.xml)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No movement."; exit 0
           fi
           git config user.name "edgeline-data-bot"
           git config user.email "edgeline-data-bot@users.noreply.github.com"
-          git add data feed.xml picks.ics
-          git commit -m "data: track DraftKings line movement ($(date -u +%Y-%m-%dT%H:%M))"
+          git add -A -- data feed.xml picks.ics
+          git commit -m "data: track prices and grade finished games ($(date -u +%Y-%m-%dT%H:%M))"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 

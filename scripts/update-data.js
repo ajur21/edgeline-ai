@@ -12,7 +12,9 @@
    Flags: --out <dir>   write data files elsewhere (tests)
           --now <iso>   pretend it is this moment (tests)
           --verbose     print every candidate edge per sport, even below the threshold
-          --track       no Odds API calls: refresh DraftKings numbers (ESPN, free) on the board, rebuild breakdowns, rewrite picks.js
+          --track       no Odds API calls: grade finished games from the free sources (ESPN, SportsGameOdds), refresh
+                        DraftKings numbers (ESPN, free) on the board, rebuild breakdowns, rewrite picks.js (and
+                        performance.js when anything was graded)
    ========================================================================== */
 "use strict";
 const fs = require("fs");
@@ -42,7 +44,8 @@ const RULES = {
   medium: 0.05, high: 0.08,
   maxPerSport: 4, maxPicks: 12,
   horizonHours: 36,     // only events starting within this window
-  gradeAfterHours: 3,   // grade events that started at least this long ago
+  gradeAfterHours: 3,   // a completed flag grades at once; a score source without one is trusted, and The Odds API's scores asked (full runs), only this long after the start
+  cardHours: 18,        // a started pick stays on picks.js this long after its start, with its status and grade
   voidAfterDays: 7,     // give up on ungraded events after this long
   windowDays: 30,       // performance window
   minRequestsLeft: 25,  // stop fetching odds when the API quota runs this low
@@ -67,16 +70,30 @@ function pct(p) { return (p * 100).toFixed(1) + "%"; }
 function round(n, d) { return Math.round(n * Math.pow(10, d)) / Math.pow(10, d); }
 function num(n, d) { return n == null || !Number.isFinite(Number(n)) ? null : round(n, d); }
 function edgeNum(c) { return c.edge == null ? -1 : c.edge; } /* a side with no model sorts last and never clears a bar */
+/* the worst price that still makes the pick: the American number whose implied probability is our probability minus
+   the bar (RULES.minEdge), as a whole number on the side that still clears it (-118.4 -> -118, +134.2 -> +135).
+   Prices are only the number to beat; this says how far the price can drift before the bet stops being one.
+   Null when that probability is not strictly between 0 and 1. */
+function valueTo(modelProb) {
+  if (modelProb == null || modelProb === "") return null;
+  const p = Number(modelProb) - RULES.minEdge;
+  if (!Number.isFinite(p) || p <= 0 || p >= 1) return null;
+  const exact = p >= 0.5 ? -100 * p / (1 - p) : 100 * (1 - p) / p;
+  const whole = Math.ceil(exact - 1e-9); /* the epsilon keeps an exact whole price (p = 0.6 -> -150) from rounding past it */
+  return whole === -100 ? 100 : whole; /* even money is written +100 */
+}
 
 /* ---------- time (everything user-facing is Eastern) ---------- */
 const ET = "America/New_York";
 function etWeekday(d) { return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(new Intl.DateTimeFormat("en-US", { timeZone: ET, weekday: "short" }).format(d)); }
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
+/* "Today 7:00 PM ET", "Tomorrow …", a weekday for a later day, and "Yesterday …" for a started pick still on the card
+   (the pages read a bare weekday as a later day) */
 function startLabel(d, now) {
-  const day = etDate(d), today = etDate(now), tomorrow = etDate(new Date(now.getTime() + 864e5));
+  const day = etDate(d), today = etDate(now), tomorrow = etDate(new Date(now.getTime() + 864e5)), yesterday = etDate(new Date(now.getTime() - 864e5));
   const time = new Intl.DateTimeFormat("en-US", { timeZone: ET, hour: "numeric", minute: "2-digit" }).format(d) + " ET";
   const dow = new Intl.DateTimeFormat("en-US", { timeZone: ET, weekday: "short" }).format(d);
-  return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : dow) + " " + time;
+  return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : day === yesterday ? "Yesterday" : dow) + " " + time;
 }
 
 /* ---------- consensus + edge for one event ---------- */
@@ -221,25 +238,114 @@ function clvOf(entry) {
 }
 
 /* ---------- grading ---------- */
+/* the market a log entry is graded on. The pipeline logs the label in `market` ("Moneyline", "Puck line", "Total") and
+   the key in `marketKey`; grading on the label sent every moneyline and spread down the totals branch. */
+const MARKET_KEYS = { Moneyline: "h2h", Spread: "spreads", "Run line": "spreads", "Puck line": "spreads", Total: "totals" };
+function marketKeyOf(e) { const k = e.marketKey || e.market; return MARKET_KEYS[k] || k; }
 function grade(entry, scoreEv) {
   if (!scoreEv || !scoreEv.completed || !Array.isArray(scoreEv.scores)) return null;
   const sc = {}; scoreEv.scores.forEach(s => { sc[s.name] = Number(s.score); });
   const home = sc[scoreEv.home_team], away = sc[scoreEv.away_team];
   if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
-  const o = entry.outcome; let result;
-  if (entry.market === "h2h") {
+  const o = entry.outcome || {}, market = marketKeyOf(entry); let result;
+  if (market === "h2h") {
     const winner = home > away ? scoreEv.home_team : away > home ? scoreEv.away_team : "Draw";
     result = o.name === winner ? "Win" : (winner === "Draw" && o.name !== "Draw" && !entry.threeWay) ? "Push" : "Loss";
-  } else if (entry.market === "spreads") {
+  } else if (market === "spreads") {
+    if (o.point == null) return null;
     const mine = o.name === scoreEv.home_team ? home : away, theirs = o.name === scoreEv.home_team ? away : home;
-    const diff = mine + o.point - theirs;
+    const diff = mine + Number(o.point) - theirs;
     result = diff > 0 ? "Win" : diff < 0 ? "Loss" : "Push";
-  } else {
-    const total = home + away;
-    result = total === o.point ? "Push" : (o.name === "Over") === (total > o.point) ? "Win" : "Loss";
-  }
+  } else if (market === "totals") {
+    if (o.point == null) return null;
+    const total = home + away, line = Number(o.point);
+    result = total === line ? "Push" : (o.name === "Over") === (total > line) ? "Win" : "Loss";
+  } else return null; /* a market we cannot read is never guessed at */
   const units = result === "Win" ? round(profitPerUnit(entry.odds), 2) : result === "Loss" ? -1 : 0;
-  return { result, units, score: away + "-" + home };
+  return { result, units, score: away + "-" + home, final: { home: home, away: away } };
+}
+/* has a score source's game finished? Its completed flag settles that at once; a source with no flag at all is trusted
+   only once the game started RULES.gradeAfterHours ago */
+function isFinal(flag, commence, now) {
+  if (flag === true) return true;
+  if (flag === false) return false;
+  return Date.parse(commence) < now.getTime() - RULES.gradeAfterHours * 36e5;
+}
+/* one SportsGameOdds lookup per game per run: the picks on one game (its moneyline, spread and total) share the result
+   and the close, so a game costs one entity however many picks it carries */
+function onceEach(src) {
+  if (!src || !src.enabled) return src;
+  const memo = {};
+  return Object.assign({}, src, { events: function (p) { const k = JSON.stringify(p); return memo[k] || (memo[k] = src.events(p)); } });
+}
+/* a graded pick's final score, home and away, as the grading source reported it */
+function finalOf(e) {
+  if (e.finalScore && Number.isFinite(Number(e.finalScore.home)) && Number.isFinite(Number(e.finalScore.away))) return { home: Number(e.finalScore.home), away: Number(e.finalScore.away) };
+  const m = /^(\d+)-(\d+)$/.exec(String(e.score == null ? "" : e.score)); /* the log's display form is "away-home" */
+  return m ? { home: Number(m[2]), away: Number(m[1]) } : null;
+}
+
+/* Every pending single whose game has started is looked at, in full runs and hourly track runs alike. Scores come from
+   the free sources first: ESPN's scoreboard for the game's Eastern date, then SportsGameOdds' results. A completed flag
+   grades the game at once; RULES.gradeAfterHours is the floor only for a source without one. A game ESPN reports as
+   still on is left for the next run rather than spending a SportsGameOdds entity on it: inside the floor always, and
+   in track runs (`deps.track`) past it too, so a postponed game does not cost an entity an hour until it is voided;
+   the full runs still ask SportsGameOdds past the floor, as before. The Odds API scores endpoint (`deps.scores`, full
+   runs only: it costs credits) is called once per sport, and only when a pick past the floor is still unsettled; track
+   runs pass no `scores`, so they never call it and never void anything. The close and CLV are written at grading, best
+   source first. Returns how many picks were graded and how many score calls it made. */
+async function gradeStarted(log, now, deps) {
+  deps = Object.assign({}, deps, { sgoSrc: onceEach(deps.sgoSrc) });
+  const t = now.getTime(), floor = t - RULES.gradeAfterHours * 36e5;
+  const bySport = {};
+  log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) <= t).forEach(e => { (bySport[e.sportKey] = bySport[e.sportKey] || []).push(e); });
+  let graded = 0, scoresRequests = 0;
+  const fromScores = (e, home, away) => ({ completed: true, home_team: e.home, away_team: e.away, scores: [{ name: e.home, score: home }, { name: e.away, score: away }] });
+  async function settle(e, scoreEv, sgoClose) {
+    const g = grade(e, scoreEv); if (!g) return false;
+    e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.finalScore = g.final; e.gradedAt = now.toISOString();
+    /* the close, best source first: the nine-book consensus (SportsGameOdds), DraftKings' close (ESPN), our last pre-game check */
+    let c = sgoClose || null;
+    if (!c && deps.sgoOk()) { try { c = await sgo.close(deps.sgoSrc, e, context.movedToward); } catch (err) { c = null; } }
+    if (!c) { try { c = await context.closingOdds(deps.ctx, e); } catch (err) { c = null; } }
+    const own = closingLine(e);
+    e.close = c ? Object.assign(c, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
+    if (e.close) delete e.close.score;
+    e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
+    e.lineMove = e.close && e.close.moved ? e.close.moved : null;
+    graded++;
+    return true;
+  }
+  for (const sportKey of Object.keys(bySport)) {
+    const left = [];
+    for (const e of bySport[sportKey]) {
+      const past = Date.parse(e.commence) < floor;
+      let scoreEv = null, sgoClose = null, live = false;
+      try {
+        const sb = await deps.ctx.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
+        const m = context.findEvent(sb, e.home, e.away);
+        if (m) {
+          const type = m.comp.status && m.comp.status.type, flag = type && typeof type.completed === "boolean" ? type.completed : undefined;
+          if (isFinal(flag, e.commence, now) && m.home.score != null && m.away.score != null) scoreEv = fromScores(e, m.home.score, m.away.score);
+          else live = flag === false;
+        }
+      } catch (err) { scoreEv = null; }
+      if (!scoreEv && (!live || (past && !deps.track)) && deps.sgoOk()) {
+        try { sgoClose = await sgo.close(deps.sgoSrc, e, context.movedToward); } catch (err) { sgoClose = null; }
+        if (sgoClose && sgoClose.score) scoreEv = fromScores(e, sgoClose.score.home, sgoClose.score.away);
+      }
+      if (!scoreEv || !(await settle(e, scoreEv, sgoClose))) left.push(e);
+    }
+    if (!deps.scores || !left.some(e => Date.parse(e.commence) < floor)) continue;
+    const scores = await deps.scores(sportKey); scoresRequests++;
+    const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
+    for (const e of left) {
+      const s = byId[e.eventId];
+      if (s && isFinal(typeof s.completed === "boolean" ? s.completed : undefined, e.commence, now) && await settle(e, Object.assign({}, s, { completed: true }), null)) continue;
+      if (Date.parse(e.commence) < t - RULES.voidAfterDays * 864e5) e.status = "void";
+    }
+  }
+  return { graded: graded, scoresRequests: scoresRequests };
 }
 
 /* ---------- play of the day: one per Eastern day, the highest-EV pick on the board when first chosen ---------- */
@@ -275,20 +381,22 @@ function ensureParlayOfDay(log, board, today, now) {
   log.push(cur);
   return cur;
 }
-/* a parlay settles once every leg has: any loss loses it, pushes drop out, the rest must all win */
+/* a parlay settles once every leg has: any loss loses it, pushes drop out, the rest must all win. Returns how many settled. */
 function gradeParlays(log, now) {
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
+  let settled = 0;
   log.filter(e => e.type === "parlay" && e.status === "pending").forEach(function (p) {
     const legs = p.legs.map(id => byId[id]);
-    if (legs.some(l => !l || l.status === "void")) { p.status = "void"; return; }
+    if (legs.some(l => !l || l.status === "void")) { p.status = "void"; settled++; return; }
     if (!legs.every(l => l.status === "graded")) return;
     const wins = [], losses = [];
     legs.forEach(function (l, i) { if (l.result === "Loss") losses.push(l); else if (l.result === "Win") wins.push(p.legPrices[i]); });
-    p.status = "graded"; p.gradedAt = now.toISOString();
+    p.status = "graded"; p.gradedAt = now.toISOString(); settled++;
     if (losses.length) { p.result = "Loss"; p.units = -1; }
     else if (!wins.length) { p.result = "Push"; p.units = 0; }
     else { p.result = "Win"; p.units = round(wins.reduce((d, pr) => d * decimal(pr), 1) - 1, 2); }
   });
+  return settled;
 }
 function record(entries) {
   const r = { wins: 0, losses: 0, pushes: 0, units: 0, n: entries.length };
@@ -373,51 +481,10 @@ async function run(opts) {
   const sgoBudget = sgoSrc.enabled ? await sgoSrc.usage() : null;
   const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > RULES.sgoReserve);
 
-  /* 1. grade pending picks whose events have finished. Scores come from free sources first (ESPN's scoreboard, then
-     SportsGameOdds' results); The Odds API scores endpoint is called only for picks neither could settle. */
-  const cutoff = now.getTime() - RULES.gradeAfterHours * 36e5;
-  const pendingBySport = {};
-  log.filter(e => e.status === "pending" && Date.parse(e.commence) < cutoff).forEach(e => { (pendingBySport[e.sportKey] = pendingBySport[e.sportKey] || []).push(e); });
-  let scoresRequests = 0;
-  const fromScores = (e, home, away) => ({ completed: true, home_team: e.home, away_team: e.away, scores: [{ name: e.home, score: home }, { name: e.away, score: away }] });
-  async function settle(e, scoreEv, sgoClose) {
-    const g = grade(e, scoreEv); if (!g) return false;
-    e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.gradedAt = now.toISOString();
-    /* the close, best source first: the nine-book consensus (SportsGameOdds), DraftKings' close (ESPN), our last pre-game check */
-    let c = sgoClose || null;
-    if (!c && sgoOk()) { try { c = await sgo.close(sgoSrc, e, context.movedToward); } catch (err) { c = null; } }
-    if (!c) { try { c = await context.closingOdds(ctxSource, e); } catch (err) { c = null; } }
-    const own = closingLine(e);
-    e.close = c ? Object.assign(c, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
-    if (e.close) delete e.close.score;
-    e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
-    e.lineMove = e.close && e.close.moved ? e.close.moved : null;
-    return true;
-  }
-  for (const sportKey of Object.keys(pendingBySport)) {
-    const left = [];
-    for (const e of pendingBySport[sportKey]) {
-      let scoreEv = null, sgoClose = null;
-      try {
-        const sb = await ctxSource.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
-        const m = context.findEvent(sb, e.home, e.away);
-        if (m && m.comp.status && m.comp.status.type && m.comp.status.type.completed && m.home.score != null && m.away.score != null) scoreEv = fromScores(e, m.home.score, m.away.score);
-      } catch (err) { scoreEv = null; }
-      if (!scoreEv && sgoOk()) {
-        try { sgoClose = await sgo.close(sgoSrc, e, context.movedToward); } catch (err) { sgoClose = null; }
-        if (sgoClose && sgoClose.score) scoreEv = fromScores(e, sgoClose.score.home, sgoClose.score.away);
-      }
-      if (!scoreEv || !(await settle(e, scoreEv, sgoClose))) left.push(e);
-    }
-    if (!left.length) continue;
-    const scores = await source.scores(sportKey); scoresRequests++;
-    const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
-    for (const e of left) {
-      if (await settle(e, byId[e.eventId], null)) continue;
-      if (Date.parse(e.commence) < now.getTime() - RULES.voidAfterDays * 864e5) e.status = "void";
-    }
-  }
-
+  /* 1. grade every pending pick whose game has finished (see gradeStarted: free sources first; The Odds API scores
+     endpoint only for picks past the floor that neither could settle), then the parlays */
+  const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: sportKey => source.scores(sportKey) });
+  const scoresRequests = g.scoresRequests;
   gradeParlays(log, now);
 
   /* 2. fetch odds and find today's edges */
@@ -478,8 +545,10 @@ async function run(opts) {
   }
   fresh.sort((a, b) => b.edge - a.edge).slice(0, RULES.maxPicks).forEach(p => log.push(p));
 
-  /* 3. today's board = every pending pick whose event is still ahead; then the day's play and parlay */
-  const boardEntries = log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge);
+  /* 3. today's board = every pending pick whose event is still ahead; then the day's play and parlay. Everything chosen
+     or refreshed below (context, prices, the play and parlay of the day) works on the board alone; picks.js also keeps
+     the picks that started in the last RULES.cardHours (cardEntries), as they were left when they left the board. */
+  const boardEntries = boardOf(log, now);
   const today = etDate(now);
   /* context (injuries, weather, rest, records) and the written breakdown for every pick on the board */
   let ctxRequests = 0;
@@ -489,11 +558,9 @@ async function run(opts) {
   if (sgoOk() && boardEntries.length) { try { sgoStats = await sgo.refresh(boardEntries, { fixture: opts.fixture, now: now, source: sgoSrc }); boardEntries.forEach(e => { e.breakdown = context.buildBreakdown(e, e.context, RULES); }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
   const potdEntry = choosePlayOfDay(log, boardEntries, today);
   const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
-  const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  const board = boardEntries.map(e => publicPick(e, now));
-  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry, now), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
-  const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
-    legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
+  const card = cardEntries(log, now).map(e => publicPick(e, now));
+  const playOfDay = potdEntry ? publicPick(potdEntry, now) : null;
+  const parlayOfDay = publicParlay(parlayEntry, log, now);
 
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
@@ -505,47 +572,83 @@ async function run(opts) {
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
   if (marketRows.length || !fs.existsSync(path.join(dataDir, "market.js"))) fs.writeFileSync(path.join(dataDir, "market.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.MARKET_DATA = " + JSON.stringify(marketData, null, 1) + ";\n");
-  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: board };
-  fs.writeFileSync(path.join(dataDir, "picks.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
+  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: card };
+  writePicks(dataDir, picksData);
   const perf = summarize(log, now);
-  fs.writeFileSync(path.join(dataDir, "performance.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n");
-  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+  writePerformance(dataDir, perf);
+  return { added: fresh.length, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
 }
-/* the pick as the site sees it */
+const GENERATED = "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\n";
+function writePicks(dataDir, data) { fs.writeFileSync(path.join(dataDir, "picks.js"), GENERATED + "window.PICKS_DATA = " + JSON.stringify(data, null, 2) + ";\n"); }
+function writePerformance(dataDir, perf) { fs.writeFileSync(path.join(dataDir, "performance.js"), GENERATED + "window.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n"); }
+
+/* ---------- what picks.js publishes ---------- */
+/* the board: every pending single whose game is still ahead, best edge first. Only these are priced, refreshed and
+   considered for the play and parlay of the day. */
+function boardOf(log, now) { return log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge); }
+/* the day's card (owner ask, 2026-11-05: picks were "popping and going" at tip-off): the board, then every single whose
+   game started in the last RULES.cardHours whatever its status (pending while it plays, then graded or void), earliest
+   start first, so a pick stays on the page through its game and shows its result */
+function cardEntries(log, now) {
+  const t = now.getTime(), since = t - RULES.cardHours * 36e5;
+  const started = log.filter(e => !e.type && e.commence && Date.parse(e.commence) <= t && Date.parse(e.commence) > since)
+    .sort((a, b) => (Date.parse(a.commence) - Date.parse(b.commence)) || ((b.edge || 0) - (a.edge || 0)));
+  return boardOf(log, now).concat(started);
+}
+/* the pick as the site sees it. The last group is its state through the game: `status` is the log's own (pending,
+   graded, void), `started` whether the game has begun, `result` "Win" | "Loss" | "Push" once graded, `units` the profit
+   at one unit risked once graded, `score` the final { home, away } from the grading source, `loggedAt` when it was
+   posted, and `valueTo` the worst price that still clears the bar on our probability. */
 function publicPick(e, now) {
+  const graded = e.status === "graded";
   return { id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, pricesAt: e.pricesAt || e.loggedAt || null, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, basis: e.basis || "price", model: e.model || null, marketFair: e.marketFair == null ? null : e.marketFair, marketEdge: e.marketEdge == null ? null : e.marketEdge, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [], mkt: e.mkt || null,
-    sgo: e.sgo ? { at: e.sgo.at, n: e.sgo.n, best: e.sgo.best, fair: e.sgo.fair, vendorFair: e.sgo.vendor ? e.sgo.vendor.fair : null, open: e.sgo.open, now: e.sgo.now } : null, sgoHistory: e.sgoHistory || [] };
+    sgo: e.sgo ? { at: e.sgo.at, n: e.sgo.n, best: e.sgo.best, fair: e.sgo.fair, vendorFair: e.sgo.vendor ? e.sgo.vendor.fair : null, open: e.sgo.open, now: e.sgo.now } : null, sgoHistory: e.sgoHistory || [],
+    status: e.status || "pending", started: Date.parse(e.commence) <= now.getTime(), result: graded && e.result ? e.result : null, units: graded && typeof e.units === "number" ? e.units : null,
+    score: graded ? finalOf(e) : null, loggedAt: e.loggedAt || null, valueTo: valueTo(e.modelProb) };
+}
+/* the parlay of the day as the site sees it; `units` is its profit once graded */
+function publicParlay(p, log, now) {
+  if (!p) return null;
+  const byId = {}; log.forEach(e => { byId[e.id] = e; });
+  return { id: p.id, date: p.date, book: p.book, odds: p.odds, decimal: p.decimal, fairProb: p.fairProb, ev: p.ev, status: p.status, result: p.result || null, units: p.status === "graded" && typeof p.units === "number" ? p.units : null,
+    legs: p.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: p.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) };
 }
 
-/* ---------- track mode: free ESPN refresh of the board between odds runs ---------- */
+/* ---------- track mode: the hourly run between odds runs (no Odds API requests, ever) ----------
+   1. grades every started game the free sources report finished (gradeStarted with no Odds API scores), then the
+      parlays, and rewrites performance.js only when that settled something, so results land within the hour;
+   2. refreshes DraftKings' numbers (ESPN) on the board and, close to tip-off, every book's price (SportsGameOdds);
+   3. rebuilds the board's breakdowns and rewrites picks.js (the day's card), keeping generatedAt and adding trackedAt. */
 async function trackRun(opts, now, dataDir, logPath, log) {
-  const boardEntries = log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) > now.getTime()).sort((a, b) => b.edge - a.edge);
-  const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now });
+  const ctxSource = context.source({ fixture: opts.fixture });
   const sgoSrc = sgo.source({ fixture: opts.fixture });
-  let sgoStats = { changed: 0, entities: 0 };
-  /* hourly runs: spend entities only on games close to tip-off, when the numbers actually move */
+  const boardEntries = boardOf(log, now);
+  /* hourly runs spend SportsGameOdds entities only on games close to tip-off, when the numbers actually move, and on
+     finished games (their result and close) */
   const soon = boardEntries.filter(e => Date.parse(e.commence) - now.getTime() <= RULES.sgoTrackWindowHours * 36e5);
-  if (sgoSrc.enabled && soon.length) {
-    const u = await sgoSrc.usage();
-    if (!u || u.max - u.used > RULES.sgoReserve) { try { sgoStats = await sgo.refresh(soon, { fixture: opts.fixture, now: now, source: sgoSrc }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
-  }
+  const started = log.some(e => !e.type && e.status === "pending" && Date.parse(e.commence) <= now.getTime());
+  const sgoBudget = sgoSrc.enabled && (soon.length || started) ? await sgoSrc.usage() : null;
+  const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > RULES.sgoReserve);
+  const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: null, track: true });
+  const parlaysGraded = gradeParlays(log, now);
+  const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now, source: ctxSource });
+  let sgoStats = { changed: 0, entities: 0 };
+  if (soon.length && sgoOk()) { try { sgoStats = await sgo.refresh(soon, { fixture: opts.fixture, now: now, source: sgoSrc }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
   boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
   const today = etDate(now);
   const potdEntry = log.find(e => !e.type && e.potd === today) || null;
   const parlayEntry = log.find(e => e.type === "parlay" && e.date === today) || null;
-  const byId = {}; log.forEach(e => { byId[e.id] = e; });
   /* keep the odds run's timestamp as generatedAt; trackedAt says when the book numbers were last refreshed */
   let generatedAt = now.toISOString();
   const picksPath = path.join(dataDir, "picks.js");
   if (fs.existsSync(picksPath)) { const m = fs.readFileSync(picksPath, "utf8").match(/"generatedAt":\s*"([^"]+)"/); if (m) generatedAt = m[1]; }
-  const playOfDay = potdEntry ? Object.assign(publicPick(potdEntry, now), { started: Date.parse(potdEntry.commence) <= now.getTime(), status: potdEntry.status, result: potdEntry.result || null }) : null;
-  const parlayOfDay = parlayEntry ? { id: parlayEntry.id, date: parlayEntry.date, book: parlayEntry.book, odds: parlayEntry.odds, decimal: parlayEntry.decimal, fairProb: parlayEntry.fairProb, ev: parlayEntry.ev, status: parlayEntry.status, result: parlayEntry.result || null,
-    legs: parlayEntry.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: parlayEntry.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) } : null;
+  const card = cardEntries(log, now).map(e => publicPick(e, now));
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
-  const picksData = { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: boardEntries.map(e => publicPick(e, now)) };
-  fs.writeFileSync(picksPath, "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
-  return { track: true, board: boardEntries.length, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoStats.entities, contextRequests: t.requests };
+  writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: potdEntry ? publicPick(potdEntry, now) : null, parlayOfDay: publicParlay(parlayEntry, log, now), picks: card });
+  /* a run that graded nothing leaves performance.js as the last run wrote it */
+  if (g.graded || parlaysGraded) writePerformance(dataDir, summarize(log, now));
+  return { track: true, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests };
 }
 
 function liveSource(key, usage) {
@@ -579,8 +682,8 @@ function parseArgs(argv) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
-    if (r.track) { console.log("Track: " + r.board + " on the board, DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), ESPN requests: " + r.contextRequests); return; }
-    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
+    if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), ESPN requests: " + r.contextRequests); return; }
+    console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS, LINE_VALUE };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE };

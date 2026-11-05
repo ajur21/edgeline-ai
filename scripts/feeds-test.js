@@ -29,6 +29,53 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   check("pick night: feed escapes markup in descriptions", /&lt;ul&gt;&lt;li&gt;/.test(a.rss) && !/<ul>/.test(a.rss));
   check("pick night: feed declares itself", /<atom:link href="https:\/\/example\.test\/site\/feed\.xml" rel="self"/.test(a.rss) && /<lastBuildDate>/.test(a.rss));
 
+  /* an hour after the NBA tip: picks.js keeps the started picks on the card (status pending, started), so the feeds must
+     write them in play under the same UID and guid, once each, while the soccer picks are still ahead */
+  const uids = ics => (ics.replace(/\r\n /g, "").match(/^UID:.*$/gm) || []);
+  const guids = rss => (rss.match(/<guid isPermaLink="false">[^<]*<\/guid>/g) || []);
+  const unique = list => new Set(list).size === list.length;
+  const vevents = ics => ics.replace(/\r\n /g, "").split("BEGIN:VEVENT").slice(1);
+  const itemOf = (rss, guid) => (rss.split("<item>").find(s => s.indexOf('<guid isPermaLink="false">' + guid + "</guid>") !== -1) || "");
+  await P.run({ fixture: true, out: tmp, now: "2026-11-06T01:00:00Z", track: true });
+  const c = F.build({ data: tmp, base: "https://example.test/site" });
+  const cflat = c.ics.replace(/\r\n /g, "");
+  const nbaIds = ["nba-fix-1-h2h-Boston-Celtics", "nba-fix-1-spreads-Boston-Celtics", "nba-fix-1-totals-Under"];
+  check("in play: the started NBA picks keep their UID and read in play, with no alarm; the soccer picks are still upcoming", c.events === 6 && nbaIds.every(id => vevents(c.ics).some(v => v.indexOf("UID:" + id + "@edgeline") !== -1 && / · in play\r?\n/.test(v) && v.indexOf("VALARM") === -1)) && /SUMMARY:Boston Celtics ML -145 at Caesars · in play/.test(cflat) && vevents(c.ics).filter(v => /UID:epl-fix-1/.test(v)).every(v => v.indexOf("TRIGGER:-PT30M") !== -1 && v.indexOf("in play") === -1), JSON.stringify(uids(c.ics)));
+  check("in play: one event per pick and one item per pick, no duplicates (calendar UIDs and feed guids unique)", unique(uids(c.ics)) && uids(c.ics).length === 6 && unique(guids(c.rss)) && c.items === 7, JSON.stringify(guids(c.rss)));
+  check("in play: the feed keeps each pick's item under the same guid and date, marked in play", nbaIds.every(id => / · in play<\/title>/.test(itemOf(c.rss, id))) && itemOf(c.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] === itemOf(a.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] && !/ · in play/.test(itemOf(c.rss, "epl-fix-1-h2h-Arsenal")));
+  check("in play: the slate still counts the night's five picks (a pick night never reads no play at tip-off)", !c.noPlay && /5 picks tonight from 11 priced sides/.test(c.rss) && !/VALUE=DATE/.test(c.ics));
+
+  /* later that night, hand-written: picks.js holds one pick ahead, one in play, two graded (one also in the log, which
+     carries its close and CLV; one only in picks.js, with its score as { home, away }) and a void one; the log also holds
+     an older graded pick that has left the card */
+  const night = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-night-"));
+  const card = (id, extra) => Object.assign({ id: id, sport: "NBA", event: "Away " + id + " @ Home " + id, market: "Moneyline", pick: "Home " + id + " ML", odds: 140, book: "Caesars", modelProb: 0.48, confidence: "Medium", loggedAt: "2026-11-05T21:30:00.000Z", prices: { Caesars: 140, FanDuel: 130 } }, extra);
+  fs.writeFileSync(path.join(night, "picks.js"), "window.PICKS_DATA = " + JSON.stringify({ sample: false, generatedAt: "2026-11-05T21:30:00.000Z", trackedAt: "2026-11-06T03:00:00.000Z", playOfDay: null, parlayOfDay: null, picks: [
+    card("up1", { commence: "2026-11-06T03:30:00Z", status: "pending", started: false, result: null, units: null, score: null }),
+    card("play1", { commence: "2026-11-06T02:00:00Z", status: "pending", started: true, result: null, units: null, score: null }),
+    card("won1", { commence: "2026-11-06T00:00:00Z", status: "graded", started: true, result: "Win", units: 1.4, score: { home: 110, away: 104 } }),
+    card("lost1", { commence: "2026-11-06T00:30:00Z", status: "graded", started: true, result: "Loss", units: -1, score: { home: 104, away: 98 } }),
+    card("void1", { commence: "2026-11-06T01:00:00Z", status: "void", started: true, result: null, units: null, score: null })
+  ] }) + ";");
+  fs.writeFileSync(path.join(night, "market.js"), "window.MARKET_DATA = " + JSON.stringify({ sample: false, generatedAt: "2026-11-05T21:30:00.000Z", threshold: 0.03, games: 2, rows: [
+    { eventId: "e1", sport: "NBA", event: "A @ B", marketKey: "h2h", market: "Moneyline", pick: "B ML", odds: 140, book: "Caesars", edge: 0.05, status: "pick", prices: { Caesars: 140 } },
+    { eventId: "e2", sport: "NBA", event: "C @ D", marketKey: "totals", market: "Total", pick: "Under 220.5", odds: -105, book: "DraftKings", edge: 0.01, status: "none", prices: { DraftKings: -105 } }
+  ] }) + ";");
+  fs.writeFileSync(path.join(night, "picks-log.json"), JSON.stringify([
+    card("won1", { commence: "2026-11-06T00:00:00Z", status: "graded", result: "Win", units: 1.4, score: "104-110", gradedAt: "2026-11-06T02:45:00.000Z", clv: 0.021, close: { odds: 120, source: "DraftKings close (ESPN)" } }),
+    card("play1", { commence: "2026-11-06T02:00:00Z", status: "pending", units: 0 }),
+    card("void1", { commence: "2026-11-06T01:00:00Z", status: "void", units: 0 }),
+    card("up1", { commence: "2026-11-06T03:30:00Z", status: "pending", units: 0 }),
+    card("older", { commence: "2026-11-04T00:00:00Z", status: "graded", result: "Loss", units: -1, score: "99-101", gradedAt: "2026-11-04T03:10:00.000Z" })
+  ]));
+  const n = F.build({ data: night, base: "https://example.test/" });
+  const nflat = n.ics.replace(/\r\n /g, "");
+  check("graded night: one calendar event per pick under its own UID: ahead with its alarm, in play, won, lost; the void pick left out", unique(uids(n.ics)) && uids(n.ics).length === 5 && /SUMMARY:Home up1 ML \+140 at Caesars · Medium/.test(nflat) && /SUMMARY:Home play1 ML \+140 at Caesars · in play/.test(nflat) && /SUMMARY:Home won1 ML \+140 at Caesars · Won \+1\.40u/.test(nflat) && /SUMMARY:Home lost1 ML \+140 at Caesars · Lost -1\.00u/.test(nflat) && /SUMMARY:Home older ML \+140 at Caesars · Lost -1\.00u/.test(nflat) && !/void1/.test(nflat) && (nflat.match(/BEGIN:VALARM/g) || []).length === 1, JSON.stringify(uids(n.ics)));
+  check("graded night: the grade reads from the log when it has the pick (CLV and close), and from picks.js' { home, away } when it does not", /Closing line value: \+2\.1 pts \(closed \+120\\, DraftKings close \(ESPN\)\)/.test(vevents(n.ics).find(v => /UID:won1@/.test(v)) || "") && /Final: 104-110/.test(vevents(n.ics).find(v => /UID:won1@/.test(v)) || "") && /Final: 98-104/.test(vevents(n.ics).find(v => /UID:lost1@/.test(v)) || ""));
+  check("graded night: the feed has the pick ahead and the one in play under their own guids, a new #graded item for each grade in place of the pick's item, and no duplicates", unique(guids(n.rss)) && n.items === 6 && /<guid isPermaLink="false">up1<\/guid>/.test(n.rss) && / · in play<\/title>/.test(itemOf(n.rss, "play1")) && /Graded: Home won1 ML \+140 · Won \+1\.40u/.test(n.rss) && /Graded: Home lost1 ML \+140 · Lost -1\.00u/.test(n.rss) && /<guid isPermaLink="false">older#graded<\/guid>/.test(n.rss) && !/<guid isPermaLink="false">(won1|lost1)<\/guid>/.test(n.rss) && !/void1/.test(n.rss), JSON.stringify(guids(n.rss)));
+  check("graded night: the slate counts the night's four live picks, not the void one, and never reads no play", !n.noPlay && /4 picks tonight from 2 priced sides/.test(n.rss));
+  check("graded night: output is deterministic", F.build({ data: night, base: "https://example.test/" }).ics === n.ics && F.build({ data: night, base: "https://example.test/" }).rss === n.rss);
+
   /* a no-play night with a graded history: hand-written data files */
   const empty = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-empty-"));
   fs.writeFileSync(path.join(empty, "picks.js"), "window.PICKS_DATA = " + JSON.stringify({ sample: false, generatedAt: "2026-11-04T18:46:21Z", playOfDay: null, parlayOfDay: null, picks: [] }) + ";");
