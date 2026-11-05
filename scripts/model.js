@@ -22,18 +22,39 @@ const NHL_SHAPE = {
   margin: [[1, 0.40739], [2, 0.19703], [3, 0.22866], [4, 0.11128], [5, 0.03849], [6, 0.00991], [7, 0.00534], [8, 0.00191]],
   total: [[1, 0.01372], [2, 0.01524], [3, 0.10633], [4, 0.08346], [5, 0.22599], [6, 0.10938], [7, 0.19779], [8, 0.07508], [9, 0.10061], [10, 0.02782], [11, 0.02934], [12, 0.00838], [13, 0.00534], [14, 0.00038], [15, 0.00114]]
 };
-/* per-sport numbers: home edge and adjustments in the sport's points; sd = spread of the final margin and total.
-   k: games of evidence before a team's margin counts half (shrinkage toward even); form: the weight on the last five.
-   NHL (calibrated 2026-11-04 on final scores only, never prices; fitted on one full season and tested on the other):
-   k 35 and form 0.1 (a 16-game goal differential is mostly noise; k 8 / form 0.4 predicted worse than no rating at all),
-   home edge 0.24, kTotal 80 (each team's scoring pulled toward the league's goals per game this season, from the ESPN
-   standings, leagueGoals as the fallback), and shape for the probabilities. */
+/* The other leagues’ own final scores (ESPN regular seasons; calibrated 2026-11-04 on results only, never prices).
+   NFL 2023-2025 (816 games): finals pile up on 3 (14% of games, against 6% on a normal curve) and on 7, so the
+   margin table carries those key numbers (a quarter smoothed toward the curve, the sample being thin); totals stay on
+   the curve. MLB 2024-2026 (7288 games): one-run finals are 28% (17% on a curve). The home side’s own margins
+   are kept as they are, not mirrored: the home team does not bat in the ninth when ahead and a walk-off ends at one
+   run, so home teams win 53.1% while out-scoring visitors by 0.034 runs a game, which a mirrored shape
+   cannot hold (held out, the mirrored table put home teams at 50%). EPL 2023-24 to 2025-26 (1102 matches): 24.7%
+   draws; margins and totals half smoothed toward the curve. */
+const NFL_SHAPE = { margin: [[0,0.0084],[1,0.05444],[2,0.05707],[3,0.12121],[4,0.05198],[5,0.05255],[6,0.06315],[7,0.07554],[8,0.04283],[9,0.0211],[10,0.04255],[11,0.01892],[12,0.02285],[13,0.02493],[14,0.04172],[15,0.01714],[16,0.02016],[17,0.04341],[18,0.02257],[19,0.01554],[20,0.01865],[21,0.02088],[22,0.01303],[23,0.01809],[24,0.01951],[25,0.01362],[26,0.00776],[27,0.00745],[28,0.01268],[29,0.00417],[30,0.00395],[31,0.01112],[32,0.00544],[33,0.00254],[34,0.00886],[35,0.00232],[36,0.00039],[37,0.00308],[38,0.00394],[39,0.00021],[40,0.00109],[41,0.00013],[42,0.00102],[43,0.00008],[44,0.00007],[45,0.00189]] };
+const MLB_SHAPE = { marginHome: [[-14,0.0037],[-13,0.00206],[-12,0.00384],[-11,0.00398],[-10,0.00782],[-9,0.00878],[-8,0.01756],[-7,0.02264],[-6,0.03321],[-5,0.04281],[-4,0.05488],[-3,0.06998],[-2,0.0896],[-1,0.10812],[1,0.17412],[2,0.09125],[3,0.06655],[4,0.0579],[5,0.04212],[6,0.0306],[7,0.02415],[8,0.01372],[9,0.01029],[10,0.00714],[11,0.00439],[12,0.00261],[13,0.00192],[14,0.00425]], total: [[1,0.0188],[2,0.0199],[3,0.06216],[4,0.04871],[5,0.09879],[6,0.07451],[7,0.11389],[8,0.07519],[9,0.09769],[10,0.06627],[11,0.07519],[12,0.04748],[13,0.05351],[14,0.0354],[15,0.0306],[16,0.02319],[17,0.0166],[18,0.01194],[19,0.0081],[20,0.00686],[21,0.00494],[22,0.00274],[23,0.00247],[24,0.00137],[25,0.00137],[26,0.00082],[27,0.00041],[28,0.00027],[29,0.00041],[30,0.00014],[32,0.00027]] };
+const EPL_SHAPE = { margin: [[0,0.23844],[1,0.37178],[2,0.23222],[3,0.10871],[4,0.03333],[5,0.01222],[6,0.0033]], total: [[0,0.04855],[1,0.12589],[2,0.21879],[3,0.23765],[4,0.19406],[5,0.10925],[6,0.04424],[7,0.0165],[8,0.00398],[9,0.00108],[10,0.00002],[11,0]] };
+/* per-sport numbers: home edge and adjustments in the sport's points; sd = spread of the final margin and total (the
+   normal curve, where a league's own shape is not used, and the reasons' thresholds).
+   k: games of evidence before a team's margin counts half (shrinkage toward even); form: the weight on the last five;
+   kTotal: games of evidence before a team's scoring average counts half against the league's (ESPN standings, with
+   leagueGoals per team-game as the fallback); shape: the league's own final scores, per market.
+   Every league calibrated 2026-11-04 on ESPN final scores only, never prices: fitted on one full season, tested on the
+   others. Recent form earned a weight of 0 to 0.1 everywhere (it was 0.4). NBA (3 seasons, 3,693 games): form 0.1,
+   home edge 1.9, the curve's spread 14.3 points (12.5 was overconfident), totals on raw averages. NFL (3 seasons): k 6,
+   form 0.1, home 2.3, totals pulled toward the league by 5 games, margins from NFL_SHAPE. NHL: k 35 (a 16-game goal
+   differential is mostly noise). MLB (3 seasons): k 60 and no form (the old k 10 / form 0.4 predicted margins worse
+   than no rating at all), totals pulled by 20 games, both markets from MLB_SHAPE. EPL (3 seasons): k 8, form 0.1, home
+   0.24, totals pulled by 30 games, both markets from EPL_SHAPE (draws a quarter of matches).
+   scoringOut: injuries take nothing off a total, except an NFL quarterback out (2 points). A league’s scoring average
+   already carries its usual injury load, and the per-player deductions pulled every total under: on 2026-11-05’s slates
+   the NFL’s projected totals averaged 35.4 against a league 46.1, the NBA’s 5 points low, the NHL’s 0.4 goals low.
+   Injury costs on the margin stay (both sides carry injuries, so they do not tilt one way). */
 const SPORT = {
-  basketball_nba:        { homeEdge: 2.5, sd: 12.5, sdTotal: 19, k: 6,  b2b: -1.5, rest3: 0.5,  out: (i, ppg) => ppg != null ? 0.12 * ppg : 1.2, soft: 0.5, scoringOut: ppg => ppg != null ? 0.15 * ppg : 1.5 },
-  americanfootball_nfl:  { homeEdge: 2.0, sd: 13.5, sdTotal: 14, k: 3,  b2b: 0,    rest3: 0,    out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: () => 1, single: /QB/ },
-  icehockey_nhl:         { homeEdge: 0.24, sd: 2.4, sdTotal: 2.3, k: 35, form: 0.1, kTotal: 80, leagueGoals: 3.1, shape: NHL_SHAPE, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0.1, single: /^G$/ },
-  baseball_mlb:          { homeEdge: 0.2, sd: 4.2,  sdTotal: 4.6, k: 10, b2b: 0,   rest3: 0,    out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0.15 },
-  soccer_epl:            { homeEdge: 0.3, sd: 1.7,  sdTotal: 1.8, k: 4,  b2b: 0,   rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0.1, threeWay: true, drawBand: 0.5 }
+  basketball_nba:        { homeEdge: 1.9, sd: 14.3, sdTotal: 19, k: 6, form: 0.1, b2b: -1.5, rest3: 0.5,  out: (i, ppg) => ppg != null ? 0.12 * ppg : 1.2, soft: 0.5, scoringOut: () => 0 },
+  americanfootball_nfl:  { homeEdge: 2.3, sd: 13.3, sdTotal: 13.4, k: 6, form: 0.1, kTotal: 5, leagueGoals: 22.6, shape: NFL_SHAPE, b2b: 0, rest3: 0, out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: (ppg, i) => /QB/.test((i && i.pos) || "") ? 2 : 0, single: /QB/ },
+  icehockey_nhl:         { homeEdge: 0.24, sd: 2.4, sdTotal: 2.3, k: 35, form: 0.1, kTotal: 80, leagueGoals: 3.1, shape: NHL_SHAPE, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0, single: /^G$/ },
+  baseball_mlb:          { homeEdge: 0.03, sd: 4.5, sdTotal: 4.5, k: 60, form: 0, kTotal: 20, leagueGoals: 4.44, shape: MLB_SHAPE, b2b: 0, rest3: 0, out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0 },
+  soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
 };
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 
@@ -50,7 +71,9 @@ function teamForm(sched, teamId, beforeMs) {
   for (const e of (sched && sched.events) || []) {
     const c = e.competitions && e.competitions[0]; if (!c || !c.competitors) continue;
     if (!(c.status && c.status.type && c.status.type.completed)) continue;
-    const st = (e.seasonType && e.seasonType.type) || (e.season && e.season.type); if (st != null && Number(st) !== 2) continue; /* regular season only */
+    /* regular season only: type 2 in the US leagues; soccer marks league matches with the season's own id (11864, 13481...),
+       which the old "!== 2" test threw away, so no Premier League game ever had a model */
+    const st = Number((e.seasonType && e.seasonType.type) || (e.season && e.season.type)); if (Number.isFinite(st) && st !== 2 && st < 10) continue;
     const t = Date.parse(e.date); if (beforeMs && Number.isFinite(t) && t >= beforeMs) continue;
     const me = c.competitors.find(x => x.team && String(x.team.id) === String(teamId)), op = c.competitors.find(x => x.team && String(x.team.id) !== String(teamId));
     if (!me || !op) continue;
@@ -77,8 +100,8 @@ function injuryCost(list, cfg, ppgOf, weightOf) {
     const ppg = ppgOf ? ppgOf(i) : null, one = !!(cfg.single && cfg.single.test(i.pos || ""));
     const w = weightOf ? Math.max(0, Math.min(1, weightOf(i))) : 1, label = i.name + (i.pos ? " (" + i.pos + ")" : "");
     let c, s;
-    if (SEVERE.test(i.status || "")) { c = cfg.out(i, ppg) * w; s = cfg.scoringOut(ppg) * w; if (w >= 0.2) out.push(label); }
-    else if (SOFT.test(i.status || "")) { c = cfg.soft * cfg.out(i, ppg) * w; s = 0.5 * cfg.scoringOut(ppg) * w; if (w >= 0.2) soft.push(label); }
+    if (SEVERE.test(i.status || "")) { c = cfg.out(i, ppg) * w; s = cfg.scoringOut(ppg, i) * w; if (w >= 0.2) out.push(label); }
+    else if (SOFT.test(i.status || "")) { c = cfg.soft * cfg.out(i, ppg) * w; s = 0.5 * cfg.scoringOut(ppg, i) * w; if (w >= 0.2) soft.push(label); }
     else return;
     if (one) { oneCost = Math.max(oneCost, c); oneScoring = Math.max(oneScoring, s); } else { cost += c; scoring += s; }
   });
@@ -136,11 +159,12 @@ function pushAware(z, loseZ) { const w = 1 - Phi(z), l = Phi(loseZ); return w + 
 /* a discrete distribution ([[value, p], ...]) moved to a target mean by exponential tilting: the league's shape, this game's centre */
 function tilt(base, target) {
   if (!Number.isFinite(target)) return base;
-  const meanAt = th => { let z = 0, s = 0; for (const [v, p] of base) { const w = p * Math.exp(th * v); z += w; s += w * v; } return s / z; };
+  const c = base.reduce((s, x) => s + x[0] * x[1], 0); /* centred, so totals in the hundreds cannot overflow the exponent */
+  const meanAt = th => { let z = 0, s = 0; for (const [v, p] of base) { const w = p * Math.exp(th * (v - c)); z += w; s += w * v; } return s / z; };
   let lo = -6, hi = 6;
   for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (meanAt(mid) < target) lo = mid; else hi = mid; }
   const th = (lo + hi) / 2; let z = 0;
-  const w = base.map(([v, p]) => { const x = p * Math.exp(th * v); z += x; return [v, x]; });
+  const w = base.map(([v, p]) => { const x = p * Math.exp(th * (v - c)); z += x; return [v, x]; });
   return w.map(([v, x]) => [v, x / z]);
 }
 /* the chance of finishing above (or below) a line; a whole number can land on it, so the push is taken out */
@@ -150,13 +174,19 @@ function beyond(dist, line, above) {
   const win = above ? a : b, lose = above ? b : a;
   return win + lose > 0 ? win / (win + lose) : 0.5;
 }
-const marginBase = shape => shape.margin.reduce((out, [d, p]) => out.concat([[d, p / 2], [-d, p / 2]]), []);
-function shapeProb(gm, shape, marketKey, outcome, home, away) {
-  const isHome = outcome.name === home, isAway = outcome.name === away;
+/* the margin table is folded (|margin|, both ways share it); a 0 row is a tie or a draw and stays whole. marginHome is
+   the home side's own margins, kept as they are (MLB: the home side's ninth and the walk-off make it lopsided) */
+const marginBase = shape => shape.marginHome ? shape.marginHome : shape.margin.reduce((out, [d, p]) => d === 0 ? out.concat([[0, p]]) : out.concat([[d, p / 2], [-d, p / 2]]), []);
+function shapeProb(gm, shape, marketKey, outcome, home, away, threeWay) {
+  const isHome = outcome.name === home, isAway = outcome.name === away, isDraw = /^draw$/i.test(outcome.name || "");
   if (marketKey === "h2h" || marketKey === "spreads") {
-    if (!isHome && !isAway) return null;
+    if (!isHome && !isAway && !(isDraw && marketKey === "h2h" && threeWay)) return null;
     const d = tilt(marginBase(shape), gm.margin); /* home minus away */
-    if (marketKey === "h2h") return r4(beyond(d, 0, isHome));
+    if (marketKey === "h2h" && threeWay) { /* soccer: home, draw and away, summing to one */
+      const p = d.reduce((s, x) => { if (x[0] > 0) s.h += x[1]; else if (x[0] < 0) s.a += x[1]; else s.d += x[1]; return s; }, { h: 0, d: 0, a: 0 });
+      return r4(isHome ? p.h : isAway ? p.a : p.d);
+    }
+    if (marketKey === "h2h") return r4(beyond(d, 0, isHome)); /* a two-way moneyline: a tie is a push */
     const pt = Number(outcome.point); if (!Number.isFinite(pt)) return null;
     /* home covers when margin + point > 0; away covers when margin < point */
     return r4(isHome ? beyond(d, -pt, true) : beyond(d, pt, false));
@@ -169,8 +199,12 @@ function shapeProb(gm, shape, marketKey, outcome, home, away) {
 }
 function sideProb(gm, marketKey, outcome, home, away) {
   if (!gm || !outcome) return null;
-  const cfg = SPORT[gm.sportKey], M = gm.margin, sd = gm.sd;
-  if (cfg && cfg.shape) return shapeProb(gm, cfg.shape, marketKey, outcome, home, away);
+  const cfg = SPORT[gm.sportKey], M = gm.margin, sd = gm.sd || (cfg && cfg.sd);
+  /* a league's own shape where the calibration chose it, per market: the margin table for moneylines and spreads, the
+     total table for totals; the normal curve otherwise */
+  const shape = cfg && cfg.shape;
+  if (shape && (shape.margin || shape.marginHome) && (marketKey === "h2h" || marketKey === "spreads")) return shapeProb(gm, shape, marketKey, outcome, home, away, cfg.threeWay);
+  if (shape && shape.total && marketKey === "totals") return shapeProb(gm, shape, marketKey, outcome, home, away, cfg.threeWay);
   const isHome = outcome.name === home, isAway = outcome.name === away;
   if (marketKey === "h2h") {
     if (cfg.threeWay) {
@@ -189,7 +223,7 @@ function sideProb(gm, marketKey, outcome, home, away) {
   }
   if (marketKey === "totals") {
     const pt = Number(outcome.point); if (!Number.isFinite(pt)) return null;
-    const over = /^over/i.test(outcome.name), T = gm.total, s = gm.sdTotal;
+    const over = /^over/i.test(outcome.name), T = gm.total, s = gm.sdTotal || (cfg && cfg.sdTotal);
     const whole = Math.abs(pt - Math.round(pt)) < 1e-9;
     const pOver = whole ? pushAware((pt + 0.5 - T) / s, (pt - 0.5 - T) / s) : 1 - Phi((pt - T) / s);
     return r4(over ? pOver : 1 - pOver);
@@ -246,7 +280,9 @@ function leagueGoalsFrom(standings) {
   const walk = n => {
     if (n && n.standings && n.standings.entries) n.standings.entries.forEach(en => {
       const stat = name => { const s = (en.stats || []).find(x => x.name === name); return s ? Number(s.value) : NaN; };
-      const f = stat("pointsFor"), g = stat("gamesPlayed"); if (Number.isFinite(f) && Number.isFinite(g) && g > 0) { pf += f; gp += g; }
+      /* the NBA and NFL tables carry no games played: wins, losses and ties add up to it */
+      let g = stat("gamesPlayed"); if (!(g > 0)) g = ["wins", "losses", "ties", "otLosses"].map(stat).filter(Number.isFinite).reduce((s, x) => s + x, 0);
+      const f = stat("pointsFor"); if (Number.isFinite(f) && g > 0) { pf += f; gp += g; }
     });
     ((n && n.children) || []).forEach(walk);
   };
