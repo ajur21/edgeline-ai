@@ -461,7 +461,7 @@
   function startedNote(s) {
     s = s || marketSummary();
     if (!s.started) return "";
-    return s.started + (s.started === 1 ? " side" : " sides") + " from " + s.startedGames + (s.startedGames === 1 ? " game that has started is" : " games that have started are") + " off the board.";
+    return s.started + (s.started === 1 ? " side" : " sides") + " from " + s.startedGames + (s.startedGames === 1 ? " game that has started " : " games that have started ") + (s.started === 1 ? "is" : "are") + " off the board.";
   }
   /* a divider row for the market table: where the sides priced against you begin */
   function marketDivider(text) {
@@ -520,7 +520,7 @@
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
       el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data. " + (s.picks ? s.picks + " clear the " + s.barPts + "-point bar. " : "None clears the " + s.barPts + "-point bar" + (s.watch ? "; " + s.watch + " on watch, " + s.watchPts + " points or more over the price. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", " + signed(s.best.edge * 100, 1) + " points." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
       el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, p.start], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
-      el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
+      el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
   }
 
@@ -562,21 +562,21 @@
   /* ---------- posted against now: the price we logged, the best price now when it moved, and the worst price still worth a bet ---------- */
   function hasMoved(p) { const m = p && p.movement; return !!m && m.currentOdds != null && Number.isFinite(Number(m.currentOdds)) && Number(m.currentOdds) !== 0 && (Number(m.currentOdds) !== Number(p.odds) || (!!m.currentBook && !!p.book && m.currentBook !== p.book)); }
   function valueTo(p) { const v = Number(p && p.valueTo); return p && p.valueTo != null && Number.isFinite(v) && v !== 0 ? v : null; }
-  /* the market-line parts on a card: "Spread | -110 | DraftKings", or "Spread | Posted -110 at DraftKings | now -125 at FanDuel" once the price moved */
+  /* the market-line parts on a card: "Spread | -110 | DraftKings", or "Spread | Posted -110 at DraftKings" once the price moved (the price now goes on the line under it) */
   function priceParts(p) {
     if (!hasMoved(p)) return [el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null];
-    const m = p.movement, vt = valueTo(p), past = vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
-    return [
-      el("span", { class: "price-posted" }, ["Posted ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " at " + p.book : ""]),
-      el("span", { class: "price-now" + (past ? " price-past" : ""), title: m.checkedAt ? "Best price at the last check, " + clockET(Date.parse(m.checkedAt)) : null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""])
-    ];
+    return [el("span", { class: "price-posted" }, ["Posted ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " at " + p.book : ""])];
   }
-  /* "Worth a bet to -118": past that price the pick is no longer worth a bet */
+  /* the line under it: "now -125 at FanDuel | Worth a bet to -118"; a price now past the worth-a-bet price is marked */
   function valueLine(p, cls) {
-    const vt = valueTo(p);
-    if (vt == null || p.isMarket) return null;
-    const m = p.movement, past = hasMoved(p) && decimalOdds(m.currentOdds) < decimalOdds(vt);
-    return el("p", { class: "price-value" + (cls ? " " + cls : ""), title: "The worst price at which this pick is still worth a bet" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) }), past ? el("span", { class: "price-past", text: "; the best price now is past it" }) : null]);
+    if (!p || p.isMarket) return null;
+    const vt = valueTo(p), moved = hasMoved(p), m = p.movement;
+    if (vt == null && !moved) return null;
+    const past = moved && vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
+    return meta([
+      moved ? el("span", { class: "price-now" + (past ? " price-past" : ""), title: (past ? "Past the worst price still worth a bet. " : "") + (m.checkedAt ? "Best price at the check " + clockET(Date.parse(m.checkedAt)) : "") || null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""]) : null,
+      vt != null ? el("span", { class: "price-worth", title: "The worst price at which this pick is still worth a bet" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null
+    ], "price-value" + (cls ? " " + cls : ""));
   }
 
   /* ---------- pick card ---------- */

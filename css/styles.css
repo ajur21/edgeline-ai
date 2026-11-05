@@ -1393,9 +1393,9 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 
 /* update times and posted against now */
 .meta.update-line { display: inline-flex; }
-.price-value { margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
+.meta.price-value { display: flex; margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
 .price-value .mono { color: var(--text); font-weight: 600; }
-.price-past { color: var(--accent-4-text); }
+.price-value .price-past, .price-value .price-past .mono { color: var(--accent-4-text); }
 .bd-state { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 0.85rem; color: var(--text-2); }
 
 /* games: live now, starting soon, later, finished (collapsed) */
