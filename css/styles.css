@@ -12,6 +12,7 @@
 /* Hallmark · waive 7b · the light theme is a daylight sky and its surfaces are white by design; the dark default tints every surface toward navy */
 /* Hallmark · note 67 · the chips that stay condensed uppercase (badges, rank, ticker, stat chips, book and team abbreviations, live clocks, field axis labels) are the locked scoreboard voice; every label, caption, table head and form label moved to the body face. "1-800-GAMBLER" is the helpline's own spelling */
 /* Hallmark · note 54 · one kicker above each page's h1 stays as the locked scoreboard voice; every section eyebrow was folded into its heading */
+/* Hallmark · note 7b · the Lost chip (.badge-lost, 2026-11-05) takes white ink on the solid loss red in light and print and dark ink in dark (--on-bad), the way button faces take --on-accent: 4.8:1 or better in every theme */
 /* ==========================================================================
    EdgeLine AI — site styles
    Layout: left-aligned editorial grid, hairline rules over shadows, cards
@@ -62,6 +63,7 @@
   --good: #0ca30c;
   --good-text: #006300;
   --bad: #d03b3b;
+  --on-bad: #ffffff;             /* text on a solid --bad fill: the Lost chip */
   --grid: #e3e7ec;
   --axis: #c4cad2;
   /* type */
@@ -116,6 +118,7 @@
     --good: #0ca30c;
     --good-text: #0ca30c;
     --bad: #ee6060;
+    --on-bad: #0b1020;
     --grid: rgba(255, 255, 255, 0.08);
     --axis: rgba(255, 255, 255, 0.18);
   }
@@ -161,6 +164,7 @@
   --good: #0ca30c;
   --good-text: #0ca30c;
   --bad: #ee6060;
+  --on-bad: #0b1020;
   --grid: rgba(255, 255, 255, 0.08);
   --axis: rgba(255, 255, 255, 0.18);
 }
@@ -922,7 +926,7 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
     color-scheme: light;
     --bg: #ffffff; --surface: #ffffff; --surface-2: #f3f4f6; --text: #111111; --text-2: #333333; --muted: #555555;
     --border: #d9dde3; --border-strong: #b8bec7; --grid: #e5e7eb; --axis: #c4cad2; --edge: #d0d4da;
-    --accent-3-text: #3f6b00; --accent-4-text: #a84800; --good-text: #006300; --bad: #b32020; --accent-2-text: #b5104f;
+    --accent-3-text: #3f6b00; --accent-4-text: #a84800; --good-text: #006300; --bad: #b32020; --on-bad: #ffffff; --accent-2-text: #b5104f;
   }
   html, body { background: var(--bg) !important; }
   #space, .site-header, .ticker, .slip, .slip-toggle, .slip-link, .add-parlay, .flip-btn, .btn, .theme-toggle, .digest-actions, .badge-sample, .live-dot, dialog { display: none !important; }
@@ -1353,7 +1357,7 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 .badge-awaiting, .badge-final, .badge-push, .badge-upcoming { background: var(--surface-2); color: var(--text-2); }
 .badge-void { background: transparent; border: 1px dashed var(--border-strong); color: var(--muted); }
 .badge-won { background: var(--good); color: var(--ink); }
-.badge-lost { background: var(--bad); color: var(--on-chip-accent); }
+.badge-lost { background: var(--bad); color: var(--on-bad); }
 .badge-soon { background: var(--accent-4-wash); color: var(--accent-4-text); }
 @media (prefers-reduced-motion: reduce) { .badge-live::before { animation: none; } }
 

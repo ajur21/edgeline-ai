@@ -353,7 +353,8 @@
     /* earlier today: the picks whose games have started, counted, with the way to their scores and results */
     var earlier = document.getElementById("board-earlier"), ps = E.playedSummary();
     earlier.textContent = "";
-    if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: "Earlier today" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
+    var today = ps.list.every(function (p) { return E.dayLabel(E.dayKey(p)) === "Today"; });
+    if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: today ? "Earlier today" : "Recent games" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
     var foot = document.getElementById("board-foot");
     foot.textContent = "";
     if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none clears the " + E.barPts() + "-point bar. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
