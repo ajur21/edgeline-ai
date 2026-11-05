@@ -27,15 +27,20 @@ function round(n, d) { const m = Math.pow(10, d == null ? 1 : d); return Math.ro
 /* ---------- sources ---------- */
 function liveSource() {
   const cache = {}; let count = 0;
-  async function get(url) {
+  /* keep = false: the caller keeps what it needs (a game log can run to most of a megabyte; the model keeps its game ids) */
+  async function get(url, keep) {
     if (cache[url]) return cache[url];
     await sleep(80); count++;
     const res = await fetch(url, { headers: { accept: "application/json" } });
     if (!res.ok) throw new Error("HTTP " + res.status + " " + url);
-    return (cache[url] = await res.json());
+    const json = await res.json();
+    if (keep !== false) cache[url] = json;
+    return json;
   }
   const site = sport => "https://site.api.espn.com/apis/site/v2/sports/" + ESPN[sport];
   return {
+    /* a player's game log: his latest season with games (this one if he has played in it), each game with his club's id */
+    gamelog: (sport, athleteId) => get("https://site.web.api.espn.com/apis/common/v3/sports/" + ESPN[sport] + "/athletes/" + athleteId + "/gamelog", false).catch(() => null),
     scoreboard: (sport, yyyymmdd) => get(site(sport) + "/scoreboard?dates=" + yyyymmdd).catch(() => null),
     odds: (sport, eventId) => get("https://sports.core.api.espn.com/v2/sports/" + ESPN_CORE[sport] + "/events/" + eventId + "/competitions/" + eventId + "/odds/" + DK_PROVIDER).catch(() => null),
     injuries: sport => get(site(sport) + "/injuries").catch(() => null),
@@ -58,6 +63,7 @@ function fixtureSource() {
     injuries: async sport => read("ctx-injuries-" + slug(sport)),
     schedule: async (sport, id) => read("ctx-schedule-" + slug(sport) + "-" + id),
     scheduleSeason: async (sport, id, season) => read("ctx-schedule-" + slug(sport) + "-" + id + "-" + season),
+    gamelog: async (sport, id) => read("ctx-gamelog-" + slug(sport) + "-" + id),
     standings: async sport => read("ctx-standings-" + slug(sport)),
     geocode: async city => read("ctx-geocode-" + norm(city)),
     forecast: async () => read("ctx-forecast"),
@@ -78,14 +84,36 @@ function findEvent(sb, home, away) {
   }
   return null;
 }
+/* ESPN's injury report carries no athlete.id (checked 2026-11-05 in all five leagues): the id is in the player-card link
+   (".../player/_/id/3102531/...") and the headshot file name (".../full/3102531.png") */
+function athleteIdOf(a) {
+  if (!a) return null;
+  if (a.id) return String(a.id);
+  for (const l of a.links || []) { const m = /\/id\/(\d+)(\/|$)/.exec(l.href || ""); if (m) return m[1]; }
+  const h = /\/(\d+)\.png(\?|$)/.exec((a.headshot && a.headshot.href) || "");
+  return h ? h[1] : null;
+}
 function teamInjuries(inj, teamName) {
   const t = ((inj && inj.injuries) || []).find(x => teamMatches(teamName, { displayName: x.displayName, name: (x.displayName || "").split(" ").pop(), location: "" }));
   return ((t && t.injuries) || []).map(i => ({
     name: i.athlete && i.athlete.displayName, pos: i.athlete && i.athlete.position && i.athlete.position.abbreviation,
-    athleteId: (i.athlete && i.athlete.id) || null, headshot: (i.athlete && i.athlete.headshot && i.athlete.headshot.href) || null,
+    athleteId: athleteIdOf(i.athlete), headshot: (i.athlete && i.athlete.headshot && i.athlete.headshot.href) || null,
     status: i.status || "", type: i.details && i.details.type || "", detail: i.details && i.details.detail || "", returnDate: i.details && i.details.returnDate || null, date: i.date || null,
     note: (i.shortComment || "").slice(0, 160)
   })).filter(i => i.name && !/^active$/i.test(i.status));
+}
+/* the games a player appeared in this season, from his ESPN game log: [{ id, team }] (the event id and the club he played
+   for), every season type (the model keeps only its own counted games). Without a season asked for, ESPN returns his
+   latest season with games and names it in the season filter: an older season (or none, for a player with no games
+   at all) means he has not played in this one, so []. null when the log cannot be read, so the caller falls back.
+   season: this season as ESPN numbers it (NBA and NHL "2027" for 2026-27; NFL, MLB and the Premier League "2026"). */
+function appearances(log, season) {
+  if (!log || !Array.isArray(log.filters) || season == null) return null;
+  const sf = log.filters.find(f => f && f.name === "season");
+  const events = log.events && typeof log.events === "object" ? Object.values(log.events) : [];
+  if (!sf) return events.length ? null : []; /* no season at all: no games ever (a season's games without a season label cannot be placed) */
+  if (String(sf.value) !== String(season)) return Number(sf.value) < Number(season) ? [] : null;
+  return events.filter(e => e && e.id != null).map(e => ({ id: String(e.id), team: e.team && e.team.id != null ? String(e.team.id) : null }));
 }
 function restFromSchedule(sched, teamId, commenceMs) {
   const dates = [];
@@ -363,4 +391,4 @@ async function enrich(entries, opts) {
   return got.requests;
 }
 function source(opts) { return opts && opts.fixture ? fixtureSource() : liveSource(); }
-module.exports = { enrich, fetchContext, buildBreakdown, findEvent, teamInjuries, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };
+module.exports = { enrich, fetchContext, buildBreakdown, findEvent, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };

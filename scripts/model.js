@@ -113,8 +113,8 @@ function lastSeasonParam(sportKey, commenceMs) {
 /* ---------- injuries in the sport's points ---------- */
 /* cfg.single: a position only one player fills at a time (an NHL goalie, an NFL quarterback). A team loses its starter
    once however many of them are listed, so only the costliest listing at that position counts.
-   weightOf(i): the share of the team's results that still had the player (see unseenShare). A player out since before
-   the season is already in every result, so he costs nothing more; one listed yesterday costs in full. Only players
+   weightOf(i): the share of the team's results that still had the player (see unseenShare). A player who has missed
+   every game is already in every result, so he costs nothing more; one who played them all costs in full. Only players
    who still move the number (a share of a fifth or more) are named in the reasons. */
 function injuryCost(list, cfg, ppgOf, weightOf) {
   let cost = 0, scoring = 0, oneCost = 0, oneScoring = 0; const out = [], soft = [];
@@ -129,14 +129,35 @@ function injuryCost(list, cfg, ppgOf, weightOf) {
   });
   return { cost: cost + oneCost, scoring: scoring + oneScoring, out: out, soft: soft };
 }
-/* how much of a team's season so far was played with a now-listed player: the games before the listing date over all
-   games. The results after it already show the absence. No date (or no games) counts the absence in full. */
+/* how much of a team's season so far was played with a now-listed player. Since 2026-11-05 that is the games he played:
+   i.played (from his game log, see playedIn) over the team's games, so a player who has missed every game costs
+   nothing and one who played them all costs in full. Before, it was the games before the listing date, but ESPN
+   re-dates its entries every few days: on 2026-11-05, 41 of the 91 NBA players it listed had not played a game this
+   season, and the listing date still charged 22 of them half or more (Porzingis, 0 of 8, listed the day before). The
+   listing date stays as the fallback when there is no game log; no date (or no games) counts the absence in full. */
 function unseenShare(form) {
   return function (i) {
+    if (!form || !form.gp || !form.games) return 1;
+    if (i && Number.isFinite(i.played)) return Math.max(0, Math.min(1, i.played / form.gp));
     const t = Date.parse((i && i.date) || "");
-    if (!Number.isFinite(t) || !form || !form.gp || !form.games) return 1;
+    if (!Number.isFinite(t)) return 1;
     return form.games.filter(g => g.date < t).length / form.gp;
   };
+}
+/* the team's games this season that had a listed player: his appearances (ctx.appearances, from his game log) among the
+   games teamForm counts (regular season, completed, before this game), matched by event id and played for this club,
+   so a preseason game, a cup tie or a game for his old club never counts. A pitcher appears by turn (a healthy starter
+   in one game in five), so his count is the stretch of the team's games from his first appearance to his last.
+   null when his appearances are unknown (the caller keeps the listing date). */
+const BY_TURN = { baseball_mlb: /^(SP|RP|P)$/ };
+function playedIn(apps, sched, form, teamId, sportKey, pos) {
+  if (!apps || !form || !form.games) return null;
+  const counted = new Set(form.games.map(g => g.date));
+  const order = ((sched && sched.events) || []).filter(ev => counted.has(Date.parse(ev.date))).sort((a, b) => Date.parse(a.date) - Date.parse(b.date)).map(ev => String(ev.id));
+  const mine = new Set(apps.filter(a => a.team == null || String(a.team) === String(teamId)).map(a => a.id));
+  const at = order.map((id, k) => mine.has(id) ? k : -1).filter(k => k >= 0);
+  if (!at.length) return 0;
+  return BY_TURN[sportKey] && BY_TURN[sportKey].test(pos || "") ? at[at.length - 1] - at[0] + 1 : at.length;
 }
 
 /* ---------- the game: expected margin (home minus away) and total ---------- */
@@ -300,11 +321,29 @@ async function forEvent(src, ctxlib, e, now, cache) {
   cache.league = cache.league || {};
   if (SPORT[e.sportKey].kTotal && !(e.sportKey in cache.league)) cache.league[e.sportKey] = typeof src.standings === "function" ? leagueGoalsFrom(await src.standings(e.sportKey)) : null;
   const ppgOf = cache.ppgOf || null;
+  const hf = teamForm(hs, m.home.team.id, commenceMs), af = teamForm(as, m.away.team.id, commenceMs);
+  /* the games each costed listing played this season, from his game log (free, one request a player a run, cached by
+     player): `played` on the listing, which unseenShare reads. A listing that costs nothing anyway, has no id, or whose
+     log cannot be read is left as it is, and the listing date stands in */
+  const cur = lastSeasonParam(e.sportKey, commenceMs), season = cur == null ? null : String(Number(cur) + 1);
+  cache.gamelogs = cache.gamelogs || {};
+  const withPlayed = async (list, sched, form, teamId) => {
+    const cfg = SPORT[e.sportKey], out = [];
+    for (const i of list) {
+      const costed = (SEVERE.test(i.status || "") || SOFT.test(i.status || "")) && cfg.out(i, ppgOf ? ppgOf(i) : null) > 0;
+      if (!costed || !i.athleteId || !season || typeof src.gamelog !== "function" || typeof ctxlib.appearances !== "function") { out.push(i); continue; }
+      const k = e.sportKey + "|" + i.athleteId;
+      if (!(k in cache.gamelogs)) { let log = null; try { log = await src.gamelog(e.sportKey, i.athleteId); } catch (err) { log = null; } cache.gamelogs[k] = ctxlib.appearances(log, season); }
+      const played = playedIn(cache.gamelogs[k], sched, form, teamId, e.sportKey, i.pos);
+      out.push(played == null ? i : Object.assign({}, i, { played: played }));
+    }
+    return out;
+  };
+  const homeInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.home), hs, hf, m.home.team.id), awayInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.away), as, af, m.away.team.id);
   const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
-    homeForm: teamForm(hs, m.home.team.id, commenceMs), awayForm: teamForm(as, m.away.team.id, commenceMs),
-    homeInjuries: ctxlib.teamInjuries(inj, e.home), awayInjuries: ctxlib.teamInjuries(inj, e.away),
+    homeForm: hf, awayForm: af, homeInjuries: homeInjuries, awayInjuries: awayInjuries,
     rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgOf });
-  if (gm) gm.espnEventId = m.event.id;
+  if (gm) { gm.espnEventId = m.event.id; gm.injuries = { home: homeInjuries, away: awayInjuries }; }
   return gm;
 }
 /* goals (points) per team-game across the league this season, from ESPN's standings; null until 100 team-games exist */
@@ -357,4 +396,4 @@ function noise(gm, marketKey, outcome, home, away) {
   return { p: r4((Math.abs(up - p0) + Math.abs(dn - p0)) / 2), units: Math.round(units * 100) / 100, unit: UNIT[gm.sportKey] || "points", gp: Math.min(gh, ga) };
 }
 
-module.exports = { SPORT, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+module.exports = { SPORT, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
