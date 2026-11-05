@@ -11,22 +11,22 @@ REFRESH-INTERVAL;VALUE=DURATION:PT1H
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:slate-2026-11-04@edgeline
-DTSTAMP:20261105T001536Z
+DTSTAMP:20261105T005924Z
 DTSTART;VALUE=DATE:20261104
 DTEND;VALUE=DATE:20261105
-SUMMARY:No play tonight: 180 sides priced in 30 games\, none clears the 1-p
+SUMMARY:No play tonight: 138 sides priced in 23 games\, none clears the 1-p
  oint bar
 DESCRIPTION:Every main-line market was priced against the sharp fair line. 
  The best of them sits under the 1-point bar\, so there is no bet.\nClosest
-  to the bar:\n- NHL: St Louis Blues +1.5 -150 at FanDuel (+0.9 pts) · St 
- Louis Blues @ New Jersey Devils\n- NHL: Chicago Blackhawks +1.5 +158 at Bo
- vada (+0.9 pts) · Chicago Blackhawks @ Tampa Bay Lightning\n- NHL: Vancou
- ver Canucks +1.5 -124 at FanDuel (+0.9 pts) · Vancouver Canucks @ Winnipe
- g Jets\nThe market board: https://ajur21.github.io/edgeline-ai/picks.html#
- market
+  to the bar:\n- NHL: Chicago Blackhawks +1.5 +158 at Bovada (+0.9 pts) · 
+ Chicago Blackhawks @ Tampa Bay Lightning\n- NHL: Vancouver Canucks +1.5 -1
+ 24 at FanDuel (+0.9 pts) · Vancouver Canucks @ Winnipeg Jets\n- NHL: Los 
+ Angeles Kings -1.5 +161 at BetOnline.ag (+0.8 pts) · San Jose Sharks @ Lo
+ s Angeles Kings\nThe market board: https://ajur21.github.io/edgeline-ai/pi
+ cks.html#market
 URL:https://ajur21.github.io/edgeline-ai/picks.html#market
 CATEGORIES:Slate
-LAST-MODIFIED:20261105T001536Z
+LAST-MODIFIED:20261105T005924Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
