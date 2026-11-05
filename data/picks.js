@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-05T17:43:55.449Z",
+  "trackedAt": "2026-11-05T21:25:04.349Z",
   "playOfDay": {
     "id": "b945b71332-h2h-Philadelphia-Flyers",
     "sport": "NHL",
@@ -27,14 +28,14 @@ window.PICKS_DATA = {
       "BetOnline.ag": 133,
       "BetRivers": 130,
       "BetMGM": 120,
-      "FanDuel": 122,
-      "Bovada": 125,
+      "FanDuel": 118,
+      "Bovada": 127,
       "theScore Bet": 125,
       "Caesars": 120,
       "PointsBet": 125,
       "ESPN BET": 120
     },
-    "pricesAt": "2026-11-05T17:43:55.449Z",
+    "pricesAt": "2026-11-05T21:25:04.349Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.6147,
@@ -100,7 +101,7 @@ window.PICKS_DATA = {
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
         "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
-        "Market: The market (7 books) opened +129, now +134, the consensus moving against this side since the open.",
+        "Market: The market (7 books) opened +129, now +131, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
         "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
@@ -345,27 +346,27 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": 134
+        "odds": 131
       },
       "moved": "away",
-      "label": "The market (7 books) opened +129, now +134"
+      "label": "The market (7 books) opened +129, now +131"
     },
     "sgo": {
-      "at": "2026-11-05T17:43:55.449Z",
+      "at": "2026-11-05T21:25:04.349Z",
       "n": 7,
       "best": {
         "book": "Bovada",
-        "odds": 125
+        "odds": 127
       },
-      "fair": 0.4315,
-      "vendorFair": 0.4274,
+      "fair": 0.432,
+      "vendorFair": 0.4329,
       "open": {
         "line": null,
         "odds": 129
       },
       "now": {
         "line": null,
-        "odds": 134
+        "odds": 131
       }
     },
     "sgoHistory": [
@@ -394,6 +395,15 @@ window.PICKS_DATA = {
         "line": null,
         "odds": 134,
         "best": 125,
+        "n": 7
+      },
+      {
+        "at": "2026-11-05T21:25:04.349Z",
+        "fair": 0.432,
+        "vendorFair": 0.4329,
+        "line": null,
+        "odds": 131,
+        "best": 127,
         "n": 7
       }
     ],
@@ -483,14 +493,14 @@ window.PICKS_DATA = {
         "BetOnline.ag": 133,
         "BetRivers": 130,
         "BetMGM": 120,
-        "FanDuel": 122,
-        "Bovada": 125,
+        "FanDuel": 118,
+        "Bovada": 127,
         "theScore Bet": 125,
         "Caesars": 120,
         "PointsBet": 125,
         "ESPN BET": 120
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6147,
@@ -556,7 +566,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
           "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
-          "Market: The market (7 books) opened +129, now +134, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened +129, now +131, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
           "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
@@ -801,27 +811,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 134
+          "odds": 131
         },
         "moved": "away",
-        "label": "The market (7 books) opened +129, now +134"
+        "label": "The market (7 books) opened +129, now +131"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
+        "at": "2026-11-05T21:25:04.349Z",
         "n": 7,
         "best": {
           "book": "Bovada",
-          "odds": 125
+          "odds": 127
         },
-        "fair": 0.4315,
-        "vendorFair": 0.4274,
+        "fair": 0.432,
+        "vendorFair": 0.4329,
         "open": {
           "line": null,
           "odds": 129
         },
         "now": {
           "line": null,
-          "odds": 134
+          "odds": 131
         }
       },
       "sgoHistory": [
@@ -850,6 +860,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 134,
           "best": 125,
+          "n": 7
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.432,
+          "vendorFair": 0.4329,
+          "line": null,
+          "odds": 131,
+          "best": 127,
           "n": 7
         }
       ],
@@ -893,17 +912,17 @@ window.PICKS_DATA = {
       "odds": -145,
       "book": "BetMGM",
       "prices": {
-        "DraftKings": -155,
+        "DraftKings": -148,
         "BetOnline.ag": -157,
         "BetRivers": -159,
         "BetMGM": -150,
-        "FanDuel": -164,
-        "Bovada": -155,
+        "FanDuel": -168,
+        "Bovada": -150,
         "theScore Bet": -155,
         "Caesars": -154,
         "ESPN BET": -150
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.7606,
@@ -1275,13 +1294,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-137), now +1 (+100)"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
+        "at": "2026-11-05T21:25:04.349Z",
         "n": 6,
         "best": {
-          "book": "BetMGM",
-          "odds": -150
+          "book": "DraftKings",
+          "odds": -148
         },
-        "fair": 0.582,
+        "fair": 0.5798,
         "vendorFair": 0.5,
         "open": {
           "line": 1.5,
@@ -1318,6 +1337,15 @@ window.PICKS_DATA = {
           "line": 1,
           "odds": 100,
           "best": -150,
+          "n": 6
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.5798,
+          "vendorFair": 0.5,
+          "line": 1,
+          "odds": 100,
+          "best": -148,
           "n": 6
         }
       ],
@@ -1366,12 +1394,12 @@ window.PICKS_DATA = {
         "BetRivers": -210,
         "BetMGM": -200,
         "FanDuel": -205,
-        "Bovada": -200,
+        "Bovada": -195,
         "theScore Bet": -215,
-        "Caesars": -197,
+        "Caesars": -205,
         "ESPN BET": -210
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.8203,
@@ -1437,7 +1465,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 64.5% (-1.0 points against the best price). For reference only.",
           "Market: DraftKings opened +1.5 (-185), now +1.5 (-205), moving toward this side since the open.",
-          "Market: The market (6 books) opened +1 (+100), now 0 (+134), the consensus moving toward this side since the open.",
+          "Market: The market (6 books) opened +1 (+100), now 0 (+132), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
           "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
@@ -1682,27 +1710,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 0,
-          "odds": 134
+          "odds": 132
         },
         "moved": "toward",
-        "label": "The market (6 books) opened +1 (+100), now 0 (+134)"
+        "label": "The market (6 books) opened +1 (+100), now 0 (+132)"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
+        "at": "2026-11-05T21:25:04.349Z",
         "n": 6,
         "best": {
-          "book": "Caesars",
-          "odds": -197
+          "book": "Bovada",
+          "odds": -195
         },
-        "fair": 0.6416,
-        "vendorFair": 0.4274,
+        "fair": 0.6418,
+        "vendorFair": 0.431,
         "open": {
           "line": 1,
           "odds": 100
         },
         "now": {
           "line": 0,
-          "odds": 134
+          "odds": 132
         }
       },
       "sgoHistory": [
@@ -1731,6 +1759,15 @@ window.PICKS_DATA = {
           "line": 0,
           "odds": 134,
           "best": -197,
+          "n": 6
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.6418,
+          "vendorFair": 0.431,
+          "line": 0,
+          "odds": 132,
+          "best": -195,
           "n": 6
         }
       ],
@@ -1777,14 +1814,14 @@ window.PICKS_DATA = {
         "DraftKings": -142,
         "BetOnline.ag": -140,
         "BetRivers": -143,
-        "BetMGM": -135,
-        "FanDuel": -144,
-        "Bovada": -137,
+        "BetMGM": -140,
+        "FanDuel": -148,
+        "Bovada": -135,
         "theScore Bet": -145,
         "Caesars": -137,
         "ESPN BET": -135
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.7202,
@@ -2035,13 +2072,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-126), now +1.5 (-128)"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
+        "at": "2026-11-05T21:25:04.349Z",
         "n": 6,
         "best": {
-          "book": "BetMGM",
+          "book": "Bovada",
           "odds": -135
         },
-        "fair": 0.5572,
+        "fair": 0.5586,
         "vendorFair": 0.5614,
         "open": {
           "line": 1.5,
@@ -2065,6 +2102,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-05T17:43:55.449Z",
           "fair": 0.5572,
+          "vendorFair": 0.5614,
+          "line": 1.5,
+          "odds": -128,
+          "best": -135,
+          "n": 6
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.5586,
           "vendorFair": 0.5614,
           "line": 1.5,
           "odds": -128,
@@ -2112,15 +2158,16 @@ window.PICKS_DATA = {
       "odds": -110,
       "book": "FanDuel",
       "prices": {
-        "FanDuel": -110,
-        "DraftKings": -107,
+        "FanDuel": -114,
+        "DraftKings": -114,
         "theScore Bet": -110,
-        "BetMGM": -110,
+        "BetMGM": -118,
         "Bovada": -110,
         "PointsBet": -111,
-        "ESPN BET": -105
+        "ESPN BET": -115,
+        "Caesars": -110
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 5,
       "anchor": "Pinnacle",
       "modelProb": 0.6339,
@@ -2172,8 +2219,7 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 237.7 a game in Phoenix Suns's games, 220.4 in Orlando Magic's.",
           "Projected total 229 against 222.5.",
-          "A better price is now available: -105 at theScore Bet.",
-          "A better price is available now: -105 at ESPN BET."
+          "A better price is now available: -105 at theScore Bet."
         ],
         "risks": [
           "Scorers out: Mark Williams (C), shoulder; Jonathan Isaac (F), knee; Jalen Suggs (G), knee and 3 more. Fewer healthy scorers leans under.",
@@ -2181,8 +2227,8 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.2% (-3.2 points against the best price). For reference only.",
-          "Market: DraftKings opened 224.5 (-110), now 222.5 (-111), moving against this side since the open.",
-          "Market: The market (5 books) opened 219 (+100), now 222.5 (+101), the consensus moving toward this side since the open.",
+          "Market: DraftKings opened 224.5 (-110), now 222.5 (-114), moving against this side since the open.",
+          "Market: The market (7 books) opened 219 (+100), now 222.5 (+100), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Orlando Magic 2-5 · Phoenix Suns 1-5 · Mortgage Matchup Center, Phoenix."
         ],
@@ -2328,17 +2374,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": -104,
-              "away": -116
+              "home": -102,
+              "away": -119
             },
             "total": 222.5,
             "totalOdds": {
-              "over": -111,
-              "under": -109
+              "over": -114,
+              "under": -106
             },
             "ml": {
-              "home": -114,
-              "away": -104
+              "home": -117,
+              "away": -101
             }
           },
           "open": {
@@ -2389,11 +2435,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 222.5,
-          "odds": -111,
-          "fair": 0.5021645958699511
+          "odds": -114,
+          "fair": 0.5086640097036909
         },
         "moved": "away",
-        "label": "DraftKings opened 224.5 (-110), now 222.5 (-111)"
+        "label": "DraftKings opened 224.5 (-110), now 222.5 (-114)"
       },
       "dkHistory": [
         {
@@ -2401,38 +2447,44 @@ window.PICKS_DATA = {
           "line": 222.5,
           "odds": -111,
           "fair": 0.5022
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "line": 222.5,
+          "odds": -114,
+          "fair": 0.5087
         }
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 7,
         "open": {
           "line": 219,
           "odds": 100
         },
         "now": {
           "line": 222.5,
-          "odds": 101
+          "odds": 100
         },
         "moved": "toward",
-        "label": "The market (5 books) opened 219 (+100), now 222.5 (+101)"
+        "label": "The market (7 books) opened 219 (+100), now 222.5 (+100)"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
-        "n": 5,
+        "at": "2026-11-05T21:25:04.349Z",
+        "n": 7,
         "best": {
-          "book": "ESPN BET",
-          "odds": -105
+          "book": "Caesars",
+          "odds": -110
         },
-        "fair": 0.4965,
-        "vendorFair": 0.4975,
+        "fair": 0.5052,
+        "vendorFair": 0.5,
         "open": {
           "line": 219,
           "odds": 100
         },
         "now": {
           "line": 222.5,
-          "odds": 101
+          "odds": 100
         }
       },
       "sgoHistory": [
@@ -2453,6 +2505,15 @@ window.PICKS_DATA = {
           "odds": 101,
           "best": -105,
           "n": 5
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.5052,
+          "vendorFair": 0.5,
+          "line": 222.5,
+          "odds": 100,
+          "best": -110,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -2505,13 +2566,13 @@ window.PICKS_DATA = {
         "BetOnline.ag": -138,
         "BetRivers": -141,
         "BetMGM": -135,
-        "FanDuel": -152,
-        "Bovada": -145,
+        "FanDuel": -150,
+        "Bovada": -140,
         "theScore Bet": -135,
         "Caesars": -141,
         "ESPN BET": -135
       },
-      "pricesAt": "2026-11-05T17:43:55.449Z",
+      "pricesAt": "2026-11-05T21:25:04.349Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6618,
@@ -2581,7 +2642,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 57.4% (+0.9 points against the best price). For reference only.",
           "Market: DraftKings opened +1.5 (-130), now +1.5 (-142), moving toward this side since the open.",
-          "Market: The market (6 books) opened +1.5 (-135), now +1.5 (-128), the consensus moving against this side since the open.",
+          "Market: The market (6 books) opened +1.5 (-135), now +1.5 (-127), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Jets Stuart Skinner · Canucks Leevi Merilainen.",
           "Records: Vancouver Canucks 3-13-1 · Winnipeg Jets 5-8-3 · Canada Life Centre, Winnipeg."
@@ -2815,27 +2876,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -128
+          "odds": -127
         },
         "moved": "away",
-        "label": "The market (6 books) opened +1.5 (-135), now +1.5 (-128)"
+        "label": "The market (6 books) opened +1.5 (-135), now +1.5 (-127)"
       },
       "sgo": {
-        "at": "2026-11-05T17:43:55.449Z",
+        "at": "2026-11-05T21:25:04.349Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
           "odds": -135
         },
-        "fair": 0.5613,
-        "vendorFair": 0.5614,
+        "fair": 0.5606,
+        "vendorFair": 0.5595,
         "open": {
           "line": 1.5,
           "odds": -135
         },
         "now": {
           "line": 1.5,
-          "odds": -128
+          "odds": -127
         }
       },
       "sgoHistory": [
@@ -2854,6 +2915,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.5614,
           "line": 1.5,
           "odds": -128,
+          "best": -135,
+          "n": 6
+        },
+        {
+          "at": "2026-11-05T21:25:04.349Z",
+          "fair": 0.5606,
+          "vendorFair": 0.5595,
+          "line": 1.5,
+          "odds": -127,
           "best": -135,
           "n": 6
         }
