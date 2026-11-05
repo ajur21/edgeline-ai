@@ -150,14 +150,26 @@ function unseenShare(form) {
    in one game in five), so his count is the stretch of the team's games from his first appearance to his last.
    null when his appearances are unknown (the caller keeps the listing date). */
 const BY_TURN = { baseball_mlb: /^(SP|RP|P)$/ };
-function playedIn(apps, sched, form, teamId, sportKey, pos) {
-  if (!apps || !form || !form.games) return null;
+/* his appearances for this club among the team's counted games, oldest first, as [index in the team's games, appearance] */
+function countedApps(apps, sched, form, teamId) {
   const counted = new Set(form.games.map(g => g.date));
   const order = ((sched && sched.events) || []).filter(ev => counted.has(Date.parse(ev.date))).sort((a, b) => Date.parse(a.date) - Date.parse(b.date)).map(ev => String(ev.id));
-  const mine = new Set(apps.filter(a => a.team == null || String(a.team) === String(teamId)).map(a => a.id));
-  const at = order.map((id, k) => mine.has(id) ? k : -1).filter(k => k >= 0);
+  const mine = {}; apps.filter(a => a.team == null || String(a.team) === String(teamId)).forEach(a => { mine[a.id] = a; });
+  return order.map((id, k) => mine[id] ? [k, mine[id]] : null).filter(Boolean);
+}
+function playedIn(apps, sched, form, teamId, sportKey, pos) {
+  if (!apps || !form || !form.games) return null;
+  const at = countedApps(apps, sched, form, teamId).map(x => x[0]);
   if (!at.length) return 0;
   return BY_TURN[sportKey] && BY_TURN[sportKey].test(pos || "") ? at[at.length - 1] - at[0] + 1 : at.length;
+}
+/* his points a game this season, from the same game log: the mean over the games he played that the team's rating counts
+   (regular season, for this club). null without a points column or without a game (a player who has not played costs
+   nothing anyway, through the played share). The NBA cost reads it when data/faces.js has no points for him */
+function ppgIn(apps, sched, form, teamId) {
+  if (!apps || !form || !form.games) return null;
+  const pts = countedApps(apps, sched, form, teamId).map(x => x[1].pts).filter(v => typeof v === "number" && Number.isFinite(v));
+  return pts.length ? pts.reduce((s, x) => s + x, 0) / pts.length : null;
 }
 
 /* ---------- the game: expected margin (home minus away) and total ---------- */
@@ -193,7 +205,9 @@ function gameModel(input) {
   if (ia.soft.length) reasons.push({ side: "home", label: input.away + " have " + ia.soft.slice(0, 3).join(", ") + " listed day-to-day or questionable" });
   const pace = hf.pf + hf.pa + af.pf + af.pa;
   reasons.push({ side: "total", label: "Combined scoring " + r1(hf.pf + hf.pa) + " a game in " + input.home + "'s games, " + r1(af.pf + af.pa) + " in " + input.away + "'s" + (L != null ? " (league average " + r1(2 * L) + ")" : "") + (ih.scoring + ia.scoring >= cfg.sdTotal / 10 ? "; scorers out take " + r1(ih.scoring + ia.scoring) + " off" : "") });
-  return { sportKey: input.sportKey, home: input.home, away: input.away, margin: r1(margin), total: r1(total), sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp), gpHome: hf.gp, gpAway: af.gp,
+  /* margin and total at full precision: sideProb and noise price on them (rounded to 0.1 first, an NHL moneyline moved in
+     steps of about 1.7 points). Only what is shown is rounded: the reasons, publicModel, the rationale */
+  return { sportKey: input.sportKey, home: input.home, away: input.away, margin: margin, total: total, sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp), gpHome: hf.gp, gpAway: af.gp,
     parts: { ratingHome: r1(rh), ratingAway: r1(ra), lastHome: Number.isFinite(lastH) ? r1(lastH) : null, lastAway: Number.isFinite(lastA) ? r1(lastA) : null, homeEdge: cfg.homeEdge, rest: r1(restAdj), injuriesHome: r1(-ih.cost), injuriesAway: r1(ia.cost), scoringOut: r1(ih.scoring + ia.scoring), pace: r1(pace / 2) },
     reasons: reasons, thin: Math.min(hf.gp, af.gp) < 4 };
 }
@@ -287,8 +301,11 @@ function sideReasons(gm, marketKey, outcome, home, away) {
     if (mine === "draw") { out.against.push(r.label); return; }
     (r.side === mine ? out.for : out.against).push(r.label);
   });
-  if (isTotal) { const lineTxt = outcome.point != null ? " against " + outcome.point : ""; out[(over ? gm.total > Number(outcome.point) : gm.total < Number(outcome.point)) ? "for" : "against"].push("Projected total " + gm.total + lineTxt); }
-  else if (mine !== "draw") { const m = mine === "home" ? gm.margin : -gm.margin; out[m > 0 ? "for" : "against"].push("Projected margin " + (m > 0 ? "+" : "") + r1(m) + " for " + outcome.name + (marketKey === "spreads" && outcome.point != null ? " against " + (outcome.point > 0 ? "+" : "") + outcome.point : "")); }
+  /* shown to one decimal; to two where one decimal would land on the number it is judged against (222.46 against 222.5
+     reads "222.46", not "222.5 against 222.5"; a margin of 0.04 reads "+0.04") */
+  const shown = (x, at) => r1(x) === at ? Math.round(x * 100) / 100 : r1(x);
+  if (isTotal) { const lineTxt = outcome.point != null ? " against " + outcome.point : ""; out[(over ? gm.total > Number(outcome.point) : gm.total < Number(outcome.point)) ? "for" : "against"].push("Projected total " + shown(gm.total, Number(outcome.point)) + lineTxt); }
+  else if (mine !== "draw") { const m = mine === "home" ? gm.margin : -gm.margin; out[m > 0 ? "for" : "against"].push("Projected margin " + (m > 0 ? "+" : "") + shown(m, 0) + " for " + outcome.name + (marketKey === "spreads" && outcome.point != null ? " against " + (outcome.point > 0 ? "+" : "") + outcome.point : "")); }
   if (gm.thin) out.against.push("Thin sample: only " + gm.gp + " game" + (gm.gp === 1 ? "" : "s") + " behind one of these teams");
   return out;
 }
@@ -334,15 +351,18 @@ async function forEvent(src, ctxlib, e, now, cache) {
       if (!costed || !i.athleteId || !season || typeof src.gamelog !== "function" || typeof ctxlib.appearances !== "function") { out.push(i); continue; }
       const k = e.sportKey + "|" + i.athleteId;
       if (!(k in cache.gamelogs)) { let log = null; try { log = await src.gamelog(e.sportKey, i.athleteId); } catch (err) { log = null; } cache.gamelogs[k] = ctxlib.appearances(log, season); }
-      const played = playedIn(cache.gamelogs[k], sched, form, teamId, e.sportKey, i.pos);
-      out.push(played == null ? i : Object.assign({}, i, { played: played }));
+      const played = playedIn(cache.gamelogs[k], sched, form, teamId, e.sportKey, i.pos), logPpg = ppgIn(cache.gamelogs[k], sched, form, teamId);
+      out.push(played == null ? i : Object.assign({}, i, { played: played }, logPpg != null ? { logPpg: logPpg } : {}));
     }
     return out;
   };
   const homeInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.home), hs, hf, m.home.team.id), awayInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.away), as, af, m.away.team.id);
+  /* a scorer's points a game: data/faces.js first, then his own game log this season (faces.js has none for a player listed
+     Out and covers only the props run's clubs), then nothing, which the sport's cost reads as its default (NBA 1.2) */
+  const ppgFor = i => { const f = ppgOf ? ppgOf(i) : null; return f != null ? f : i && Number.isFinite(i.logPpg) ? i.logPpg : null; };
   const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
     homeForm: hf, awayForm: af, homeInjuries: homeInjuries, awayInjuries: awayInjuries,
-    rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgOf });
+    rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgFor });
   if (gm) { gm.espnEventId = m.event.id; gm.injuries = { home: homeInjuries, away: awayInjuries }; }
   return gm;
 }
@@ -366,7 +386,7 @@ function leagueGoalsFrom(standings) {
 function ppgFromFaces(facesPath) {
   try { const fs = require("fs"), vm = require("vm"); const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(facesPath, "utf8"), sb); const map = {}; (sb.window.FACES_DATA.players || []).forEach(p => { if (p.pts != null) map[String(p.name).toLowerCase()] = p.pts; }); return i => map[String(i.name || "").toLowerCase()] != null ? map[String(i.name || "").toLowerCase()] : null; } catch (e) { return null; }
 }
-function publicModel(gm) { return gm ? { margin: gm.margin, total: gm.total, sd: gm.sd, sdTotal: gm.sdTotal, gp: gm.gp, gpHome: gm.gpHome, gpAway: gm.gpAway, thin: gm.thin, parts: gm.parts } : null; }
+function publicModel(gm) { return gm ? { margin: r1(gm.margin), total: r1(gm.total), sd: gm.sd, sdTotal: gm.sdTotal, gp: gm.gp, gpHome: gm.gpHome, gpAway: gm.gpAway, thin: gm.thin, parts: gm.parts } : null; }
 
 /* ---------- the model's own error on a side (Phase 2, 2026-11-05: the bar a pick must clear) ----------
    How far our probability could sit from what these two teams really are, from the size of the sample alone: the

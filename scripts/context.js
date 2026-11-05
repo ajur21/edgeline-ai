@@ -102,8 +102,9 @@ function teamInjuries(inj, teamName) {
     note: (i.shortComment || "").slice(0, 160)
   })).filter(i => i.name && !/^active$/i.test(i.status));
 }
-/* the games a player appeared in this season, from his ESPN game log: [{ id, team }] (the event id and the club he played
-   for), every season type (the model keeps only its own counted games). Without a season asked for, ESPN returns his
+/* the games a player appeared in this season, from his ESPN game log: [{ id, team, pts }] (the event id, the club he
+   played for, and his points that game when the log has a points column: the NBA's scoring, an NHL skater's goals plus
+   assists; null otherwise), every season type (the model keeps only its own counted games). Without a season asked for, ESPN returns his
    latest season with games and names it in the season filter: an older season (or none, for a player with no games
    at all) means he has not played in this one, so []. null when the log cannot be read, so the caller falls back.
    season: this season as ESPN numbers it (NBA and NHL "2027" for 2026-27; NFL, MLB and the Premier League "2026"). */
@@ -113,7 +114,13 @@ function appearances(log, season) {
   const events = log.events && typeof log.events === "object" ? Object.values(log.events) : [];
   if (!sf) return events.length ? null : []; /* no season at all: no games ever (a season's games without a season label cannot be placed) */
   if (String(sf.value) !== String(season)) return Number(sf.value) < Number(season) ? [] : null;
-  return events.filter(e => e && e.id != null).map(e => ({ id: String(e.id), team: e.team && e.team.id != null ? String(e.team.id) : null }));
+  /* each game's row of stats sits under seasonTypes[].categories[].events[] by eventId, in the order of `names` */
+  const col = Array.isArray(log.names) ? log.names.indexOf("points") : -1, pts = {};
+  if (col >= 0) (log.seasonTypes || []).forEach(st => ((st && st.categories) || []).forEach(c => ((c && c.events) || []).forEach(r => {
+    const v = r && Array.isArray(r.stats) ? Number(r.stats[col]) : NaN;
+    if (r && r.eventId != null && r.stats[col] !== "" && Number.isFinite(v)) pts[String(r.eventId)] = v;
+  })));
+  return events.filter(e => e && e.id != null).map(e => ({ id: String(e.id), team: e.team && e.team.id != null ? String(e.team.id) : null, pts: String(e.id) in pts ? pts[String(e.id)] : null }));
 }
 function restFromSchedule(sched, teamId, commenceMs) {
   const dates = [];

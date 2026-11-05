@@ -19,16 +19,17 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
 
   /* a pick night: the fixture pipeline output */
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-"));
-  /* the fixture's five picks (two games) come from the pre-2026-11-05 selection: every bar at the 3-point floor and one
-     pick per market; data-test.js checks the Phase 2 selection (each side's own bar, one pick a game) */
+  /* the fixture's four picks (two games) come from the pre-2026-11-05 selection: every bar at the 3-point floor and one
+     pick per market; data-test.js checks the Phase 2 selection (each side's own bar, one pick a game). Five until the model
+     priced on the unrounded total: the Over 2.5 goals cleared the floor only on a total rounded up to 2.9 */
   P.RULES.barZ = 0; P.RULES.onePerGame = false;
   await P.run({ fixture: true, out: tmp, now: "2026-11-05T15:00:00Z" });
   const a = F.build({ data: tmp, base: "https://example.test/site" });
-  check("pick night: one event per board pick plus the parlay of the day (six on the fixture), no all-day slate", a.events === 6 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
+  check("pick night: one event per board pick plus the parlay of the day (five on the fixture), no all-day slate", a.events === 5 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
   check("pick night: calendar is well-formed", /^BEGIN:VCALENDAR\r\n/.test(a.ics) && /\r\nEND:VCALENDAR\r\n$/.test(a.ics) && longest(a.ics) <= 75);
   check("pick night: event carries uid, start, alarm and the play-of-the-day label", /UID:nba-fix-1-h2h-Boston-Celtics@edgeline/.test(a.ics) && /DTSTART:20261106T000000Z/.test(a.ics) && /TRIGGER:-PT30M/.test(a.ics) && /SUMMARY:Boston Celtics ML -145 at Caesars · High/.test(a.ics) && /SUMMARY:Play of the day: Under 226\.5 -110 at DraftKings/.test(a.ics) && /Our probability 74\.9% from game data/.test(a.ics.replace(/\r\n /g, "")));
   check("pick night: base url is normalised with a trailing slash", /URL:https:\/\/example\.test\/site\/picks\.html#nba-fix-1/.test(a.ics.replace(/\r\n /g, "")));
-  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 7 && /<guid isPermaLink="false">nba-fix-1-h2h-Boston-Celtics<\/guid>/.test(a.rss) && /5 picks tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
+  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 6 && /<guid isPermaLink="false">nba-fix-1-h2h-Boston-Celtics<\/guid>/.test(a.rss) && /4 picks tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
   check("pick night: feed escapes markup in descriptions", /&lt;ul&gt;&lt;li&gt;/.test(a.rss) && !/<ul>/.test(a.rss));
   check("pick night: feed declares itself", /<atom:link href="https:\/\/example\.test\/site\/feed\.xml" rel="self"/.test(a.rss) && /<lastBuildDate>/.test(a.rss));
 
@@ -43,10 +44,10 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   const c = F.build({ data: tmp, base: "https://example.test/site" });
   const cflat = c.ics.replace(/\r\n /g, "");
   const nbaIds = ["nba-fix-1-h2h-Boston-Celtics", "nba-fix-1-spreads-Boston-Celtics", "nba-fix-1-totals-Under"];
-  check("in play: the started NBA picks keep their UID and read in play, with no alarm; the soccer picks are still upcoming", c.events === 6 && nbaIds.every(id => vevents(c.ics).some(v => v.indexOf("UID:" + id + "@edgeline") !== -1 && / · in play\r?\n/.test(v) && v.indexOf("VALARM") === -1)) && /SUMMARY:Boston Celtics ML -145 at Caesars · in play/.test(cflat) && vevents(c.ics).filter(v => /UID:epl-fix-1/.test(v)).every(v => v.indexOf("TRIGGER:-PT30M") !== -1 && v.indexOf("in play") === -1), JSON.stringify(uids(c.ics)));
-  check("in play: one event per pick and one item per pick, no duplicates (calendar UIDs and feed guids unique)", unique(uids(c.ics)) && uids(c.ics).length === 6 && unique(guids(c.rss)) && c.items === 7, JSON.stringify(guids(c.rss)));
+  check("in play: the started NBA picks keep their UID and read in play, with no alarm; the soccer pick is still upcoming", c.events === 5 && nbaIds.every(id => vevents(c.ics).some(v => v.indexOf("UID:" + id + "@edgeline") !== -1 && / · in play\r?\n/.test(v) && v.indexOf("VALARM") === -1)) && /SUMMARY:Boston Celtics ML -145 at Caesars · in play/.test(cflat) && vevents(c.ics).filter(v => /UID:epl-fix-1/.test(v)).every(v => v.indexOf("TRIGGER:-PT30M") !== -1 && v.indexOf("in play") === -1), JSON.stringify(uids(c.ics)));
+  check("in play: one event per pick and one item per pick, no duplicates (calendar UIDs and feed guids unique)", unique(uids(c.ics)) && uids(c.ics).length === 5 && unique(guids(c.rss)) && c.items === 6, JSON.stringify(guids(c.rss)));
   check("in play: the feed keeps each pick's item under the same guid and date, marked in play", nbaIds.every(id => / · in play<\/title>/.test(itemOf(c.rss, id))) && itemOf(c.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] === itemOf(a.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] && !/ · in play/.test(itemOf(c.rss, "epl-fix-1-h2h-Arsenal")));
-  check("in play: the slate still counts the night's five picks (a pick night never reads no play at tip-off)", !c.noPlay && /5 picks tonight from 11 priced sides/.test(c.rss) && !/VALUE=DATE/.test(c.ics));
+  check("in play: the slate still counts the night's four picks (a pick night never reads no play at tip-off)", !c.noPlay && /4 picks tonight from 11 priced sides/.test(c.rss) && !/VALUE=DATE/.test(c.ics));
 
   /* later that night, hand-written: picks.js holds one pick ahead, one in play, two graded (one also in the log, which
      carries its close and CLV; one only in picks.js, with its score as { home, away }) and a void one; the log also holds
