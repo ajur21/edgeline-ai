@@ -21,8 +21,11 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-"));
   /* the fixture's four picks (two games) come from the pre-2026-11-05 selection: every bar at the 3-point floor and one
      pick per market; data-test.js checks the Phase 2 selection (each side's own bar, one pick a game). Five until the model
-     priced on the unrounded total: the Over 2.5 goals cleared the floor only on a total rounded up to 2.9 */
+     priced on the unrounded total: the Over 2.5 goals cleared the floor only on a total rounded up to 2.9. They are the
+     model's own numbers, before the per-league calibration (model.CALIB, 2026-11-05), which pulls the fixture's NBA total
+     to about even; data-test.js checks the calibration */
   P.RULES.barZ = 0; P.RULES.onePerGame = false;
+  const MC = require("./model.js"); Object.keys(MC.CALIB).forEach(k => { delete MC.CALIB[k]; });
   await P.run({ fixture: true, out: tmp, now: "2026-11-05T15:00:00Z" });
   const a = F.build({ data: tmp, base: "https://example.test/site" });
   check("pick night: one event per board pick plus the parlay of the day (five on the fixture), no all-day slate", a.events === 5 && !a.noPlay && !/VALUE=DATE/.test(a.ics));

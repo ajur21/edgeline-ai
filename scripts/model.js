@@ -61,6 +61,29 @@ const SPORT = {
   baseball_mlb:          { homeEdge: 0.03, sd: 4.5, sdTotal: 4.5, k: 60, form: 0, carry: { k: 80, c: 0.5 }, kTotal: 20, leagueGoals: 4.44, shape: MLB_SHAPE, b2b: 0, rest3: 0, out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0 },
   soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, carry: { k: 15, c: 0.75 }, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
 };
+/* Calibration per league and market (2026-11-05, owner: the board is "just one sport or heavily favorited"). Fitted on
+   held-out seasons from results only: the model was replayed game by game on ESPN's final scores (NHL 2024-25 to
+   2026-27, 2,811 games; NBA 2023-24 to 2026-27, 3,751; NFL 2023-2026, 873; EPL 359 with lines), using only what was
+   known before each game, and each side's probability was read at the line the game was played at (the books'
+   opening and closing numbers: the line only says where the probability is read; no price takes any part). Then
+   y ~ a + b logit(p) on the home side (moneyline, spread) or the over, fit on the other seasons and scored on the one
+   left out. p' = 1 / (1 + e^-(a + b logit p)); the other side is its complement.
+   - NBA spreads and totals, NFL spreads and totals: at the books' lines our probabilities did worse than a coin flip
+     on every held-out season (log-loss 0.711 / 0.722 NBA, 0.714 / 0.720 NFL, against 0.693 for 50%): the model's
+     margin sits 3.7 points from the NBA's closing spread on average (sd) and its total 6.1 from the closing total, and
+     the result moved 0.0 points per point of that gap. b is near zero (NBA 0.05 ± 0.06 and 0.04 ± 0.05, NFL 0.08 ±
+     0.14 and 0), so these sides read about even and cannot clear a bar. In the replay they had made 1,965 of the NBA's
+     2,494 picks (1,728 totals at 65.5% to hit by our number; 48.2% won) and 189 of the NFL's 253; mid-season, when the
+     NBA's bars fall toward the floor, they would have filled the board.
+   - NBA moneyline: too flat (b 1.17 ± 0.05: favourites won more often than we said); held-out log-loss fell on all four
+     seasons (0.6034 to 0.6021).
+   - NHL (all three markets), the NFL and EPL moneylines, EPL spreads and totals: left as they are. A map did not beat
+     the raw numbers on held-out seasons (NHL moneyline log-loss 0.6747 raw, 0.6772 mapped; puck line 0.6478 against
+     0.6529; totals 0.6921 against 0.6927). MLB was not tested (no lines replayed). */
+const CALIB = {
+  basketball_nba: { h2h: [-0.03, 1.17], spreads: [0, 0.05], totals: [0, 0.04] },
+  americanfootball_nfl: { spreads: [0, 0.08], totals: [0, 0] }
+};
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 
 function erf(x) { const s = x < 0 ? -1 : 1; x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; }
@@ -256,7 +279,21 @@ function shapeProb(gm, shape, marketKey, outcome, home, away, threeWay) {
   }
   return null;
 }
+/* the model's probability for a side, then the league's calibration for that market (see CALIB) */
 function sideProb(gm, marketKey, outcome, home, away) {
+  return calibrated(gm, marketKey, outcome, home, rawSideProb(gm, marketKey, outcome, home, away));
+}
+function calibrated(gm, marketKey, outcome, home, p) {
+  if (p == null || !gm) return p;
+  const cfg = SPORT[gm.sportKey], c = CALIB[gm.sportKey] && CALIB[gm.sportKey][marketKey];
+  if (!c || (cfg && cfg.threeWay && marketKey === "h2h")) return p;
+  const first = marketKey === "totals" ? /^over/i.test(outcome.name || "") : outcome.name === home;
+  const q = Math.min(1 - 1e-4, Math.max(1e-4, first ? p : 1 - p));
+  const out = 1 / (1 + Math.exp(-(c[0] + c[1] * Math.log(q / (1 - q)))));
+  return r4(first ? out : 1 - out);
+}
+/* the model's own probability, before calibration: the league's shape or the normal curve at the projected margin and total */
+function rawSideProb(gm, marketKey, outcome, home, away) {
   if (!gm || !outcome) return null;
   const cfg = SPORT[gm.sportKey], M = gm.margin, sd = gm.sd || (cfg && cfg.sd);
   /* a league's own shape where the calibration chose it, per market: the margin table for moneylines and spreads, the
@@ -307,6 +344,12 @@ function sideReasons(gm, marketKey, outcome, home, away) {
   if (isTotal) { const lineTxt = outcome.point != null ? " against " + outcome.point : ""; out[(over ? gm.total > Number(outcome.point) : gm.total < Number(outcome.point)) ? "for" : "against"].push("Projected total " + shown(gm.total, Number(outcome.point)) + lineTxt); }
   else if (mine !== "draw") { const m = mine === "home" ? gm.margin : -gm.margin; out[m > 0 ? "for" : "against"].push("Projected margin " + (m > 0 ? "+" : "") + shown(m, 0) + " for " + outcome.name + (marketKey === "spreads" && outcome.point != null ? " against " + (outcome.point > 0 ? "+" : "") + outcome.point : "")); }
   if (gm.thin) out.against.push("Thin sample: only " + gm.gp + " game" + (gm.gp === 1 ? "" : "s") + " behind one of these teams");
+  /* a market whose calibration pulls the model toward even says so, with the model's own number */
+  const c = CALIB[gm.sportKey] && CALIB[gm.sportKey][marketKey];
+  if (c && c[1] < 0.5 && !(SPORT[gm.sportKey] && SPORT[gm.sportKey].threeWay && marketKey === "h2h")) {
+    const raw = rawSideProb(gm, marketKey, outcome, home, away), cal = sideProb(gm, marketKey, outcome, home, away);
+    if (raw != null && cal != null) out.against.push("Past seasons: our " + (isTotal ? "totals" : marketKey === "spreads" ? "spreads" : "numbers") + " at the books' lines did no better than a coin flip, so this side reads " + r1(cal * 100) + "% (the model alone " + r1(raw * 100) + "%)");
+  }
   return out;
 }
 
@@ -416,4 +459,4 @@ function noise(gm, marketKey, outcome, home, away) {
   return { p: r4((Math.abs(up - p0) + Math.abs(dn - p0)) / 2), units: Math.round(units * 100) / 100, unit: UNIT[gm.sportKey] || "points", gp: Math.min(gh, ga) };
 }
 
-module.exports = { SPORT, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+module.exports = { SPORT, CALIB, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, rawSideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };

@@ -72,6 +72,10 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
      Phase 2 selection (each side's own bar, one pick a game) is checked on its own further down */
   const RULES0 = { barZ: P.RULES.barZ, onePerGame: P.RULES.onePerGame };
   P.RULES.barZ = 0; P.RULES.onePerGame = false;
+  /* and on the model's own numbers: the per-league calibration (2026-11-05, model.CALIB) pulls the fixture's NBA total
+     to about even, so these checks run without it and it is checked on its own further down */
+  const MC = require("./model.js"), CALIB0 = JSON.parse(JSON.stringify(MC.CALIB));
+  Object.keys(MC.CALIB).forEach(k => { delete MC.CALIB[k]; });
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-data-"));
   const NOW = "2026-11-05T15:00:00Z";
   const pending = (id, extra) => Object.assign({ key: id, id: id, date: "2026-11-03", commence: "2026-11-04T00:00:00Z", sport: "NBA", league: "NBA", sportKey: "basketball_nba", eventId: "nba-old-1", event: "Milwaukee Bucks @ Boston Celtics", home: "Boston Celtics", away: "Milwaukee Bucks", edge: 0.03, confidence: "Medium", status: "pending", units: 0 }, extra);
@@ -471,6 +475,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   /* ---------- Phase 2 (2026-11-05; the owner: one sport "favored", picks that "pop and go"; approved fewer, steadier
      picks, locked once posted): each side's own bar, one pick a game, the day's caps, and the standing of a locked pick ---------- */
   P.RULES.barZ = RULES0.barZ; P.RULES.onePerGame = RULES0.onePerGame;
+  Object.assign(MC.CALIB, CALIB0);
   check("bar: the default rule is one model error (barZ 1), one pick a game, at most 10 a day and 5 a sport", P.RULES.barZ === 1 && P.RULES.onePerGame === true && P.RULES.maxPerDay === 10 && P.RULES.maxPerSportDay === 5);
   /* the model's own error: the standard error of the rating difference, from each team's games plus the prior's weight */
   const cOut = { name: "Boston Celtics", point: null };
@@ -483,6 +488,27 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("noise: a soccer draw still gets an error (it falls whichever way the margin moves), and no model means no error", M.noise(gmEpl, "h2h", { name: "Draw", point: null }, "Arsenal", "Liverpool").p > 0 && M.noise(null, "h2h", cOut, "a", "b") === null);
   check("bar: never under the 3-point floor; otherwise barZ model errors", P.barOf({ p: 0.01 }) === 0.03 && near(P.barOf({ p: 0.11 }), 0.11, 1e-9) && P.barOf(null) === 0.03);
 
+  /* ---------- calibration per league and market (2026-11-05; the owner: the board is "just one sport or heavily
+     favorited"): fitted on held-out seasons, results only. At the books' lines the NBA's and NFL's spreads and totals
+     did worse than a coin flip, so they read about even; the NBA moneyline was too flat; the NHL and EPL stay raw ---------- */
+  check("calibration: the map is p' = 1/(1+e^-(a + b logit p)) on the home or over side, the other side its complement; NBA spreads and totals read about even at any line, the NBA moneyline is stretched, the NHL, MLB and EPL are left raw", (() => {
+    const nba = { sportKey: "basketball_nba", margin: 6, total: 236, sd: 14.3, sdTotal: 19 }, H = { name: "H" }, A = { name: "A" };
+    const raw = M.rawSideProb(nba, "h2h", H, "H", "A"), cal = M.sideProb(nba, "h2h", H, "H", "A"), c = M.CALIB.basketball_nba.h2h;
+    const want = 1 / (1 + Math.exp(-(c[0] + c[1] * Math.log(raw / (1 - raw)))));
+    const ml = near(cal, want, 2e-4) && cal > raw && near(cal + M.sideProb(nba, "h2h", A, "H", "A"), 1, 2e-4);
+    const sp = M.rawSideProb(nba, "spreads", { name: "H", point: -1.5 }, "H", "A"), spC = M.sideProb(nba, "spreads", { name: "H", point: -1.5 }, "H", "A");
+    const ov = M.rawSideProb(nba, "totals", { name: "Over", point: 222.5 }, "H", "A"), ovC = M.sideProb(nba, "totals", { name: "Over", point: 222.5 }, "H", "A");
+    const even = sp > 0.6 && Math.abs(spC - 0.5) < 0.02 && ov > 0.7 && Math.abs(ovC - 0.5) < 0.02 && near(ovC + M.sideProb(nba, "totals", { name: "Under", point: 222.5 }, "H", "A"), 1, 2e-4);
+    const nfl = { sportKey: "americanfootball_nfl", margin: 7, total: 52, sd: 13.3, sdTotal: 13.4 };
+    const nflOk = near(M.sideProb(nfl, "totals", { name: "Over", point: 44.5 }, "H", "A"), 0.5, 1e-9) && Math.abs(M.sideProb(nfl, "spreads", { name: "H", point: -1.5 }, "H", "A") - 0.5) < 0.03 && near(M.sideProb(nfl, "h2h", H, "H", "A"), M.rawSideProb(nfl, "h2h", H, "H", "A"), 1e-9);
+    const untouched = [["icehockey_nhl", 0.5, 6.4, 2.4, 2.3], ["baseball_mlb", 0.4, 8.8, 4.5, 4.5], ["soccer_epl", 0.4, 2.8, 1.7, 1.6]].every(([sk, m, t, sd, sdT]) => { const g = { sportKey: sk, margin: m, total: t, sd: sd, sdTotal: sdT }; return ["h2h", "spreads", "totals"].every(mk => { const o = mk === "totals" ? { name: "Over", point: Math.floor(t) + 0.5 } : { name: "H", point: mk === "spreads" ? -1.5 : null }; return M.sideProb(g, mk, o, "H", "A") === M.rawSideProb(g, mk, o, "H", "A"); }); });
+    return ml && even && nflOk && untouched;
+  })());
+  check("calibration: a side the map pulls toward even says so in its reasons, with the model's own number; the bar is read on the calibrated probability (an NBA total's error is a sliver, so its bar is the floor)", (() => {
+    const r = M.sideReasons(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks"), n = M.noise(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks");
+    return r.against.some(t => /^Past seasons: our totals at the books' lines did no better than a coin flip, so this side reads \d+(\.\d)?% \(the model alone \d+(\.\d)?%\)$/.test(t)) && n && n.p < 0.01 && P.barOf(n) === 0.03 && !M.sideReasons(gmFix, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks").against.some(t => /^Past seasons/.test(t));
+  })(), JSON.stringify(M.sideReasons(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks").against));
+
   const tmpB = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-bar-"));
   const rb = await P.run({ fixture: true, out: tmpB, now: NOW });
   const logB = JSON.parse(fs.readFileSync(path.join(tmpB, "picks-log.json"), "utf8")), addedB = logB.filter(e => e.loggedAt);
@@ -494,6 +520,10 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("select: the rationale and factors give the bar in words, still never against other books", addedB.every(e => /Its bar is \d+\.\d points/.test(e.rationale) && /It clears it by \d+\.\d\./.test(e.rationale) && /Not graded against other books' prices/.test(e.rationale) && e.factors.some(f => /past its bar of \d+\.\d/.test(f))), addedB.map(e => e.rationale).join(" || "));
   check("market: every modelled row carries its bar and how far past it; watch is half its own bar (and 1.5 points), the file names the rule and each sport's bars", MKB.rows.filter(r => r.modelled).every(r => r.bar >= 0.03 && near(r.edge - r.bar, r.past, 2e-4) && (r.status === "pick" || (r.status === "watch") === (r.edge >= Math.max(0.015, 0.5 * r.bar) - 1e-9))) && MKB.rows.filter(r => !r.modelled).every(r => r.bar == null && r.status === "none") && MKB.barRule && MKB.barRule.floor === 0.03 && MKB.barRule.z === 1 && MKB.bars.NBA && MKB.bars.NBA.min <= MKB.bars.NBA.median && MKB.bars.NBA.median <= MKB.bars.NBA.max && MKB.threshold === 0.03, JSON.stringify(MKB.bars));
   check("market: a side over 3 points but under its own bar is not a pick (the flat bar would have taken it)", MKB.rows.some(r => r.modelled && r.edge >= 0.03 && r.past < 0 && r.status !== "pick"), JSON.stringify(MKB.rows.filter(r => r.modelled).map(r => [r.pick, r.edge, r.bar]).slice(0, 8)));
+  check("calibration: in a run, the fixture's NBA total (Under 226.5, a pick and the play of the day on the model's own number) reads about even and is no pick; the NBA moneyline still prices from the stretched map", (() => {
+    const u = MKB.rows.find(r => r.pick === "Under 226.5"), o = MKB.rows.find(r => r.pick === "Over 226.5"), cel = MKB.rows.find(r => r.pick === "Boston Celtics ML");
+    return !!u && !!o && Math.abs(u.modelProb - 0.5) < 0.02 && near(u.modelProb + o.modelProb, 1, 2e-4) && u.status !== "pick" && !addedB.some(e => e.pick === "Under 226.5") && !!cel && near(cel.modelProb, M.sideProb(gmFix, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks"), 2e-4) && cel.modelProb > M.rawSideProb(gmFix, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks");
+  })(), JSON.stringify(MKB.rows.filter(r => /226\.5|Celtics ML/.test(r.pick)).map(r => [r.pick, r.modelProb, r.edge, r.status])));
   check("picks.js: a fresh pick carries its bar, how far past, the parts, no later check yet (now and standing null), and the worst price that still clears its own bar", PDB.picks.every(p => p.bar >= 0.03 && p.past >= 0 && p.barParts && p.now === null && p.standing === null && p.valueTo === P.valueTo(p.modelProb, p.bar) && P.implied(p.valueTo) <= p.modelProb - p.bar + 1e-9));
   fs.rmSync(tmpB, { recursive: true, force: true });
 
