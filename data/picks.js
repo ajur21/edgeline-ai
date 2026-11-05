@@ -2,7 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-05T15:47:22.894Z",
+  "generatedAt": "2026-11-05T17:43:55.449Z",
   "playOfDay": {
     "id": "b945b71332-h2h-Philadelphia-Flyers",
     "sport": "NHL",
@@ -26,15 +26,15 @@ window.PICKS_DATA = {
       "DraftKings": 124,
       "BetOnline.ag": 133,
       "BetRivers": 130,
-      "BetMGM": 125,
-      "FanDuel": 125,
-      "Bovada": 122,
+      "BetMGM": 120,
+      "FanDuel": 122,
+      "Bovada": 125,
       "theScore Bet": 125,
       "Caesars": 120,
       "PointsBet": 125,
       "ESPN BET": 120
     },
-    "pricesAt": "2026-11-05T15:47:22.894Z",
+    "pricesAt": "2026-11-05T17:43:55.449Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.6147,
@@ -95,14 +95,14 @@ window.PICKS_DATA = {
         "New York Rangers rate -0.4 a game over 16 (8-8), Philadelphia Flyers -0.7 over 17 (4-13).",
         "Home edge +0.2 for New York Rangers.",
         "Philadelphia Flyers without Rasmus Ristolainen (D), Nikita Grebenkin (RW) (+0.2).",
-        "At current prices our edge is 6.1 points, under its bar of 7.5 points; the pick stays posted and is graded at the price it was posted at."
+        "At current prices our edge is 1.8 points, under its bar of 7.4 points; the pick stays posted and is graded at the price it was posted at."
       ],
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
         "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
         "Market: The market (7 books) opened +129, now +134, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
-        "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
+        "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
         "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
       ],
       "verdict": "The game data lines up behind this side at this price."
@@ -124,27 +124,27 @@ window.PICKS_DATA = {
         }
       },
       "probables": {
-        "New York Rangers": "James Reimer",
-        "Philadelphia Flyers": "Dan Vladar"
+        "New York Rangers": "Dylan Garand",
+        "Philadelphia Flyers": "Joseph Woll"
       },
       "injuries": {
         "New York Rangers": [
           {
             "name": "Sean Durzi",
             "pos": "D",
-            "athleteId": null,
+            "athleteId": "4378683",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378683.png",
-            "status": "Day-To-Day",
+            "status": "Out",
             "type": "Undisclosed",
             "detail": "",
-            "returnDate": "2026-11-05",
-            "date": "2026-11-04T15:21Z",
-            "note": "day-to-day"
+            "returnDate": "2026-11-07",
+            "date": "2026-11-05T17:15Z",
+            "note": "out"
           },
           {
             "name": "Joonas Korpisalo",
             "pos": "G",
-            "athleteId": null,
+            "athleteId": "3069266",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069266.png",
             "status": "Injured Reserve",
             "type": "Foot",
@@ -156,7 +156,7 @@ window.PICKS_DATA = {
           {
             "name": "Igor Shesterkin",
             "pos": "G",
-            "athleteId": null,
+            "athleteId": "3151297",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
             "status": "Injured Reserve",
             "type": "Knee",
@@ -168,7 +168,7 @@ window.PICKS_DATA = {
           {
             "name": "Joe Veleno",
             "pos": "C",
-            "athleteId": null,
+            "athleteId": "4352804",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
             "status": "Injured Reserve",
             "type": "Lower Body",
@@ -180,7 +180,7 @@ window.PICKS_DATA = {
           {
             "name": "Aidan Thompson",
             "pos": "C",
-            "athleteId": null,
+            "athleteId": "5136624",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
             "status": "Injured Reserve",
             "type": "Undisclosed",
@@ -192,7 +192,7 @@ window.PICKS_DATA = {
           {
             "name": "Adam Sykora",
             "pos": "LW",
-            "athleteId": null,
+            "athleteId": "5080232",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
             "status": "Injured Reserve",
             "type": "Lower Body",
@@ -206,7 +206,7 @@ window.PICKS_DATA = {
           {
             "name": "Rasmus Ristolainen",
             "pos": "D",
-            "athleteId": null,
+            "athleteId": "3041999",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041999.png",
             "status": "Injured Reserve",
             "type": "Hand",
@@ -218,7 +218,7 @@ window.PICKS_DATA = {
           {
             "name": "Nikita Grebenkin",
             "pos": "RW",
-            "athleteId": null,
+            "athleteId": "5188490",
             "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188490.png",
             "status": "Injured Reserve",
             "type": "Back",
@@ -286,9 +286,9 @@ window.PICKS_DATA = {
       "loggedFair": 0.6147,
       "currentOdds": 128,
       "currentBook": "BetOnline.ag",
-      "currentFair": 0.4358,
-      "currentEdge": 0.0614,
-      "checkedAt": "2026-11-05T15:47:22.894Z",
+      "currentFair": 0.4277,
+      "currentEdge": 0.018,
+      "checkedAt": "2026-11-05T17:43:55.449Z",
       "history": [
         {
           "at": "2026-11-05T05:10:20.993Z",
@@ -299,6 +299,11 @@ window.PICKS_DATA = {
           "at": "2026-11-05T15:47:22.894Z",
           "odds": 128,
           "fair": 0.4358
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "odds": 128,
+          "fair": 0.4277
         }
       ]
     },
@@ -346,13 +351,13 @@ window.PICKS_DATA = {
       "label": "The market (7 books) opened +129, now +134"
     },
     "sgo": {
-      "at": "2026-11-05T15:47:22.894Z",
+      "at": "2026-11-05T17:43:55.449Z",
       "n": 7,
       "best": {
-        "book": "FanDuel",
+        "book": "Bovada",
         "odds": 125
       },
-      "fair": 0.4302,
+      "fair": 0.4315,
       "vendorFair": 0.4274,
       "open": {
         "line": null,
@@ -381,6 +386,15 @@ window.PICKS_DATA = {
         "odds": 134,
         "best": 125,
         "n": 7
+      },
+      {
+        "at": "2026-11-05T17:43:55.449Z",
+        "fair": 0.4315,
+        "vendorFair": 0.4274,
+        "line": null,
+        "odds": 134,
+        "best": 125,
+        "n": 7
       }
     ],
     "status": "pending",
@@ -394,12 +408,12 @@ window.PICKS_DATA = {
     "past": null,
     "barParts": null,
     "now": {
-      "at": "2026-11-05T15:47:22.894Z",
+      "at": "2026-11-05T17:43:55.449Z",
       "odds": 128,
       "book": "BetOnline.ag",
-      "modelProb": 0.5,
-      "edge": 0.0614,
-      "bar": 0.0747
+      "modelProb": 0.4566,
+      "edge": 0.018,
+      "bar": 0.0744
     },
     "standing": "below"
   },
@@ -468,15 +482,15 @@ window.PICKS_DATA = {
         "DraftKings": 124,
         "BetOnline.ag": 133,
         "BetRivers": 130,
-        "BetMGM": 125,
-        "FanDuel": 125,
-        "Bovada": 122,
+        "BetMGM": 120,
+        "FanDuel": 122,
+        "Bovada": 125,
         "theScore Bet": 125,
         "Caesars": 120,
         "PointsBet": 125,
         "ESPN BET": 120
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6147,
@@ -537,14 +551,14 @@ window.PICKS_DATA = {
           "New York Rangers rate -0.4 a game over 16 (8-8), Philadelphia Flyers -0.7 over 17 (4-13).",
           "Home edge +0.2 for New York Rangers.",
           "Philadelphia Flyers without Rasmus Ristolainen (D), Nikita Grebenkin (RW) (+0.2).",
-          "At current prices our edge is 6.1 points, under its bar of 7.5 points; the pick stays posted and is graded at the price it was posted at."
+          "At current prices our edge is 1.8 points, under its bar of 7.4 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
           "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
           "Market: The market (7 books) opened +129, now +134, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
+          "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
           "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
         ],
         "verdict": "The game data lines up behind this side at this price."
@@ -566,27 +580,27 @@ window.PICKS_DATA = {
           }
         },
         "probables": {
-          "New York Rangers": "James Reimer",
-          "Philadelphia Flyers": "Dan Vladar"
+          "New York Rangers": "Dylan Garand",
+          "Philadelphia Flyers": "Joseph Woll"
         },
         "injuries": {
           "New York Rangers": [
             {
               "name": "Sean Durzi",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "4378683",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378683.png",
-              "status": "Day-To-Day",
+              "status": "Out",
               "type": "Undisclosed",
               "detail": "",
-              "returnDate": "2026-11-05",
-              "date": "2026-11-04T15:21Z",
-              "note": "day-to-day"
+              "returnDate": "2026-11-07",
+              "date": "2026-11-05T17:15Z",
+              "note": "out"
             },
             {
               "name": "Joonas Korpisalo",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "3069266",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069266.png",
               "status": "Injured Reserve",
               "type": "Foot",
@@ -598,7 +612,7 @@ window.PICKS_DATA = {
             {
               "name": "Igor Shesterkin",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "3151297",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
               "status": "Injured Reserve",
               "type": "Knee",
@@ -610,7 +624,7 @@ window.PICKS_DATA = {
             {
               "name": "Joe Veleno",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4352804",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -622,7 +636,7 @@ window.PICKS_DATA = {
             {
               "name": "Aidan Thompson",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "5136624",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -634,7 +648,7 @@ window.PICKS_DATA = {
             {
               "name": "Adam Sykora",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "5080232",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -648,7 +662,7 @@ window.PICKS_DATA = {
             {
               "name": "Rasmus Ristolainen",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "3041999",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041999.png",
               "status": "Injured Reserve",
               "type": "Hand",
@@ -660,7 +674,7 @@ window.PICKS_DATA = {
             {
               "name": "Nikita Grebenkin",
               "pos": "RW",
-              "athleteId": null,
+              "athleteId": "5188490",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188490.png",
               "status": "Injured Reserve",
               "type": "Back",
@@ -728,9 +742,9 @@ window.PICKS_DATA = {
         "loggedFair": 0.6147,
         "currentOdds": 128,
         "currentBook": "BetOnline.ag",
-        "currentFair": 0.4358,
-        "currentEdge": 0.0614,
-        "checkedAt": "2026-11-05T15:47:22.894Z",
+        "currentFair": 0.4277,
+        "currentEdge": 0.018,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
         "history": [
           {
             "at": "2026-11-05T05:10:20.993Z",
@@ -741,6 +755,11 @@ window.PICKS_DATA = {
             "at": "2026-11-05T15:47:22.894Z",
             "odds": 128,
             "fair": 0.4358
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": 128,
+            "fair": 0.4277
           }
         ]
       },
@@ -788,13 +807,13 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened +129, now +134"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "n": 7,
         "best": {
-          "book": "FanDuel",
+          "book": "Bovada",
           "odds": 125
         },
-        "fair": 0.4302,
+        "fair": 0.4315,
         "vendorFair": 0.4274,
         "open": {
           "line": null,
@@ -823,6 +842,15 @@ window.PICKS_DATA = {
           "odds": 134,
           "best": 125,
           "n": 7
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.4315,
+          "vendorFair": 0.4274,
+          "line": null,
+          "odds": 134,
+          "best": 125,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -836,12 +864,12 @@ window.PICKS_DATA = {
       "past": null,
       "barParts": null,
       "now": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "odds": 128,
         "book": "BetOnline.ag",
-        "modelProb": 0.5,
-        "edge": 0.0614,
-        "bar": 0.0747
+        "modelProb": 0.4566,
+        "edge": 0.018,
+        "bar": 0.0744
       },
       "standing": "below"
     },
@@ -865,17 +893,17 @@ window.PICKS_DATA = {
       "odds": -145,
       "book": "BetMGM",
       "prices": {
-        "DraftKings": -162,
+        "DraftKings": -155,
         "BetOnline.ag": -157,
         "BetRivers": -159,
-        "BetMGM": -145,
+        "BetMGM": -150,
         "FanDuel": -164,
-        "Bovada": -163,
+        "Bovada": -155,
         "theScore Bet": -155,
-        "Caesars": -159,
-        "ESPN BET": -155
+        "Caesars": -154,
+        "ESPN BET": -150
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.7606,
@@ -936,14 +964,15 @@ window.PICKS_DATA = {
           "Edmonton Oilers trending: last five +1.8 vs +1.2 on the season.",
           "Home edge +0.2 for Edmonton Oilers.",
           "Anaheim Ducks without A.J. Greer (LW), Troy Terry (RW), Ian Moore (D) and 1 more (+0.5).",
-          "At current prices our edge is 4.1 points, under its bar of 6.7 points; the pick stays posted and is graded at the price it was posted at."
+          "At current prices our edge is 3.7 points, under its bar of 6.7 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 59.1% (-0.1 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (-142), now +1.5 (-162), moving toward this side since the open.",
+          "Market: the sharp line has moved away since it was logged (59.1% → 57.8%).",
+          "Market: DraftKings opened +1.5 (-142), now +1.5 (-155), moving toward this side since the open.",
           "Market: The market (6 books) opened +1.5 (-137), now +1 (+100), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Oilers Tristan Jarry · Ducks Lukas Dostal.",
+          "Probable pitchers: Oilers Matt Tomkins · Ducks Lukas Dostal.",
           "Records: Anaheim Ducks 7-7-1 · Edmonton Oilers 11-2-3 · Rogers Place, Edmonton."
         ],
         "verdict": "More working against this one than for it; size down."
@@ -965,7 +994,7 @@ window.PICKS_DATA = {
           }
         },
         "probables": {
-          "Edmonton Oilers": "Tristan Jarry",
+          "Edmonton Oilers": "Matt Tomkins",
           "Anaheim Ducks": "Lukas Dostal"
         },
         "injuries": {
@@ -973,7 +1002,7 @@ window.PICKS_DATA = {
             {
               "name": "Isaac Howard",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "5080179",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080179.png",
               "status": "Out",
               "type": "Knee",
@@ -985,7 +1014,7 @@ window.PICKS_DATA = {
             {
               "name": "Zach Hyman",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "5509",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5509.png",
               "status": "Injured Reserve",
               "type": "Neck",
@@ -997,7 +1026,7 @@ window.PICKS_DATA = {
             {
               "name": "Devon Levi",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "4894487",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4894487.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -1009,7 +1038,7 @@ window.PICKS_DATA = {
             {
               "name": "Alec Regula",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "4331611",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4331611.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -1021,7 +1050,7 @@ window.PICKS_DATA = {
             {
               "name": "Matt Savoie",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "5080153",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080153.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -1033,7 +1062,7 @@ window.PICKS_DATA = {
             {
               "name": "Frederik Andersen",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "2517899",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2517899.png",
               "status": "Injured Reserve",
               "type": "Knee",
@@ -1045,7 +1074,7 @@ window.PICKS_DATA = {
             {
               "name": "Mattias Janmark",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "3042085",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042085.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -1057,7 +1086,7 @@ window.PICKS_DATA = {
             {
               "name": "Atro Leppanen",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "5278661",
               "headshot": null,
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -1071,7 +1100,7 @@ window.PICKS_DATA = {
             {
               "name": "A.J. Greer",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "3648015",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3648015.png",
               "status": "Injured Reserve",
               "type": "Upper Body",
@@ -1083,7 +1112,7 @@ window.PICKS_DATA = {
             {
               "name": "Troy Terry",
               "pos": "RW",
-              "athleteId": null,
+              "athleteId": "3942905",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3942905.png",
               "status": "Injured Reserve",
               "type": "Hip",
@@ -1095,7 +1124,7 @@ window.PICKS_DATA = {
             {
               "name": "Ian Moore",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "5188523",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188523.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -1107,7 +1136,7 @@ window.PICKS_DATA = {
             {
               "name": "Ryan Poehling",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4233668",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233668.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -1139,17 +1168,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 136,
-              "away": -162
+              "home": 130,
+              "away": -155
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -142,
-              "under": 120
+              "over": -148,
+              "under": 124
             },
             "ml": {
-              "home": -185,
-              "away": 154
+              "home": -192,
+              "away": 160
             }
           },
           "open": {
@@ -1173,11 +1202,11 @@ window.PICKS_DATA = {
       "movement": {
         "loggedOdds": -145,
         "loggedFair": 0.7606,
-        "currentOdds": -145,
-        "currentBook": "BetMGM",
-        "currentFair": 0.5973,
-        "currentEdge": 0.0409,
-        "checkedAt": "2026-11-05T15:47:22.894Z",
+        "currentOdds": -150,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.5778,
+        "currentEdge": 0.0366,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
         "history": [
           {
             "at": "2026-11-05T05:10:20.993Z",
@@ -1188,6 +1217,11 @@ window.PICKS_DATA = {
             "at": "2026-11-05T15:47:22.894Z",
             "odds": -145,
             "fair": 0.5973
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": -150,
+            "fair": 0.5778
           }
         ]
       },
@@ -1200,11 +1234,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -162,
-          "fair": 0.593369754159424
+          "odds": -155,
+          "fair": 0.5829926410466066
         },
         "moved": "toward",
-        "label": "DraftKings opened +1.5 (-142), now +1.5 (-162)"
+        "label": "DraftKings opened +1.5 (-142), now +1.5 (-155)"
       },
       "dkHistory": [
         {
@@ -1218,6 +1252,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -162,
           "fair": 0.5934
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "line": 1.5,
+          "odds": -155,
+          "fair": 0.583
         }
       ],
       "mkt": {
@@ -1235,13 +1275,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-137), now +1 (+100)"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
-          "odds": -145
+          "odds": -150
         },
-        "fair": 0.5867,
+        "fair": 0.582,
         "vendorFair": 0.5,
         "open": {
           "line": 1.5,
@@ -1270,6 +1310,15 @@ window.PICKS_DATA = {
           "odds": 100,
           "best": -145,
           "n": 6
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.582,
+          "vendorFair": 0.5,
+          "line": 1,
+          "odds": 100,
+          "best": -150,
+          "n": 6
         }
       ],
       "status": "pending",
@@ -1283,12 +1332,12 @@ window.PICKS_DATA = {
       "past": null,
       "barParts": null,
       "now": {
-        "at": "2026-11-05T15:47:22.894Z",
-        "odds": -145,
-        "book": "BetMGM",
-        "modelProb": 0.6327,
-        "edge": 0.0409,
-        "bar": 0.0671
+        "at": "2026-11-05T17:43:55.449Z",
+        "odds": -150,
+        "book": "BetOnline.ag",
+        "modelProb": 0.6366,
+        "edge": 0.0366,
+        "bar": 0.0669
       },
       "standing": "below"
     },
@@ -1315,14 +1364,14 @@ window.PICKS_DATA = {
         "DraftKings": -205,
         "BetOnline.ag": -195,
         "BetRivers": -210,
-        "BetMGM": -190,
-        "FanDuel": -196,
-        "Bovada": -210,
+        "BetMGM": -200,
+        "FanDuel": -205,
+        "Bovada": -200,
         "theScore Bet": -215,
         "Caesars": -197,
-        "ESPN BET": -215
+        "ESPN BET": -210
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.8203,
@@ -1383,14 +1432,14 @@ window.PICKS_DATA = {
           "New York Rangers rate -0.4 a game over 16 (8-8), Philadelphia Flyers -0.7 over 17 (4-13).",
           "Home edge +0.2 for New York Rangers.",
           "Philadelphia Flyers without Rasmus Ristolainen (D), Nikita Grebenkin (RW) (+0.2).",
-          "At current prices our edge is 4.9 points, under its bar of 6.1 points; the pick stays posted and is graded at the price it was posted at."
+          "At current prices our edge is 0.6 points, under its bar of 6.4 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 64.5% (-1.0 points against the best price). For reference only.",
           "Market: DraftKings opened +1.5 (-185), now +1.5 (-205), moving toward this side since the open.",
           "Market: The market (6 books) opened +1 (+100), now 0 (+134), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
+          "Probable pitchers: Rangers Dylan Garand · Flyers Joseph Woll.",
           "Records: Philadelphia Flyers 4-9-4 · New York Rangers 8-7-1 · Madison Square Garden, New York."
         ],
         "verdict": "The game data lines up behind this side at this price."
@@ -1412,27 +1461,27 @@ window.PICKS_DATA = {
           }
         },
         "probables": {
-          "New York Rangers": "James Reimer",
-          "Philadelphia Flyers": "Dan Vladar"
+          "New York Rangers": "Dylan Garand",
+          "Philadelphia Flyers": "Joseph Woll"
         },
         "injuries": {
           "New York Rangers": [
             {
               "name": "Sean Durzi",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "4378683",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378683.png",
-              "status": "Day-To-Day",
+              "status": "Out",
               "type": "Undisclosed",
               "detail": "",
-              "returnDate": "2026-11-05",
-              "date": "2026-11-04T15:21Z",
-              "note": "day-to-day"
+              "returnDate": "2026-11-07",
+              "date": "2026-11-05T17:15Z",
+              "note": "out"
             },
             {
               "name": "Joonas Korpisalo",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "3069266",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069266.png",
               "status": "Injured Reserve",
               "type": "Foot",
@@ -1444,7 +1493,7 @@ window.PICKS_DATA = {
             {
               "name": "Igor Shesterkin",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "3151297",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
               "status": "Injured Reserve",
               "type": "Knee",
@@ -1456,7 +1505,7 @@ window.PICKS_DATA = {
             {
               "name": "Joe Veleno",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4352804",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -1468,7 +1517,7 @@ window.PICKS_DATA = {
             {
               "name": "Aidan Thompson",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "5136624",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -1480,7 +1529,7 @@ window.PICKS_DATA = {
             {
               "name": "Adam Sykora",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "5080232",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
               "status": "Injured Reserve",
               "type": "Lower Body",
@@ -1494,7 +1543,7 @@ window.PICKS_DATA = {
             {
               "name": "Rasmus Ristolainen",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "3041999",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041999.png",
               "status": "Injured Reserve",
               "type": "Hand",
@@ -1506,7 +1555,7 @@ window.PICKS_DATA = {
             {
               "name": "Nikita Grebenkin",
               "pos": "RW",
-              "athleteId": null,
+              "athleteId": "5188490",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188490.png",
               "status": "Injured Reserve",
               "type": "Back",
@@ -1572,11 +1621,11 @@ window.PICKS_DATA = {
       "movement": {
         "loggedOdds": -190,
         "loggedFair": 0.8203,
-        "currentOdds": -190,
-        "currentBook": "BetMGM",
-        "currentFair": 0.6502,
-        "currentEdge": 0.0485,
-        "checkedAt": "2026-11-05T15:47:22.894Z",
+        "currentOdds": -195,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.6446,
+        "currentEdge": 0.0063,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
         "history": [
           {
             "at": "2026-11-05T05:10:20.993Z",
@@ -1587,6 +1636,11 @@ window.PICKS_DATA = {
             "at": "2026-11-05T15:47:22.894Z",
             "odds": -190,
             "fair": 0.6502
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": -195,
+            "fair": 0.6446
           }
         ]
       },
@@ -1634,13 +1688,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1 (+100), now 0 (+134)"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "n": 6,
         "best": {
-          "book": "BetMGM",
-          "odds": -190
+          "book": "Caesars",
+          "odds": -197
         },
-        "fair": 0.6396,
+        "fair": 0.6416,
         "vendorFair": 0.4274,
         "open": {
           "line": 1,
@@ -1669,6 +1723,15 @@ window.PICKS_DATA = {
           "odds": 134,
           "best": -190,
           "n": 6
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.6416,
+          "vendorFair": 0.4274,
+          "line": 0,
+          "odds": 134,
+          "best": -197,
+          "n": 6
         }
       ],
       "status": "pending",
@@ -1682,12 +1745,12 @@ window.PICKS_DATA = {
       "past": null,
       "barParts": null,
       "now": {
-        "at": "2026-11-05T15:47:22.894Z",
-        "odds": -190,
-        "book": "BetMGM",
-        "modelProb": 0.7037,
-        "edge": 0.0485,
-        "bar": 0.0612
+        "at": "2026-11-05T17:43:55.449Z",
+        "odds": -195,
+        "book": "BetOnline.ag",
+        "modelProb": 0.6673,
+        "edge": 0.0063,
+        "bar": 0.0641
       },
       "standing": "below"
     },
@@ -1714,14 +1777,14 @@ window.PICKS_DATA = {
         "DraftKings": -142,
         "BetOnline.ag": -140,
         "BetRivers": -143,
-        "BetMGM": -130,
+        "BetMGM": -135,
         "FanDuel": -144,
-        "Bovada": -140,
+        "Bovada": -137,
         "theScore Bet": -145,
         "Caesars": -137,
         "ESPN BET": -135
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.7202,
@@ -1782,7 +1845,7 @@ window.PICKS_DATA = {
           "Home edge +0.2 for Colorado Avalanche.",
           "Nashville Predators have Jonathan Marchessault (RW) listed day-to-day or questionable.",
           "Projected margin -0.1 for Nashville Predators against +1.5.",
-          "At current prices our edge is 5.3 points, under its bar of 6.8 points; the pick stays posted and is graded at the price it was posted at."
+          "At current prices our edge is 3.6 points, under its bar of 6.9 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 56.6% (+0.1 points against the best price). For reference only.",
@@ -1819,7 +1882,7 @@ window.PICKS_DATA = {
             {
               "name": "Josh Manson",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "2590829",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2590829.png",
               "status": "Out",
               "type": "Ankle",
@@ -1831,7 +1894,7 @@ window.PICKS_DATA = {
             {
               "name": "Zachary L'Heureux",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "4874744",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874744.png",
               "status": "Injured Reserve",
               "type": "Upper Body",
@@ -1845,7 +1908,7 @@ window.PICKS_DATA = {
             {
               "name": "Jonathan Marchessault",
               "pos": "RW",
-              "athleteId": null,
+              "athleteId": "2967072",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2967072.png",
               "status": "Day-To-Day",
               "type": "Lower Body",
@@ -1911,11 +1974,11 @@ window.PICKS_DATA = {
       "movement": {
         "loggedOdds": -130,
         "loggedFair": 0.7202,
-        "currentOdds": -130,
+        "currentOdds": -135,
         "currentBook": "BetMGM",
-        "currentFair": 0.5609,
-        "currentEdge": 0.0527,
-        "checkedAt": "2026-11-05T15:47:22.894Z",
+        "currentFair": 0.5571,
+        "currentEdge": 0.036,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
         "history": [
           {
             "at": "2026-11-05T05:10:20.993Z",
@@ -1926,6 +1989,11 @@ window.PICKS_DATA = {
             "at": "2026-11-05T15:47:22.894Z",
             "odds": -130,
             "fair": 0.5609
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": -135,
+            "fair": 0.5571
           }
         ]
       },
@@ -1967,13 +2035,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-126), now +1.5 (-128)"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
-          "odds": -130
+          "odds": -135
         },
-        "fair": 0.5555,
+        "fair": 0.5572,
         "vendorFair": 0.5614,
         "open": {
           "line": 1.5,
@@ -1993,6 +2061,15 @@ window.PICKS_DATA = {
           "odds": -128,
           "best": -130,
           "n": 6
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.5572,
+          "vendorFair": 0.5614,
+          "line": 1.5,
+          "odds": -128,
+          "best": -135,
+          "n": 6
         }
       ],
       "status": "pending",
@@ -2006,12 +2083,12 @@ window.PICKS_DATA = {
       "past": null,
       "barParts": null,
       "now": {
-        "at": "2026-11-05T15:47:22.894Z",
-        "odds": -130,
+        "at": "2026-11-05T17:43:55.449Z",
+        "odds": -135,
         "book": "BetMGM",
-        "modelProb": 0.6179,
-        "edge": 0.0527,
-        "bar": 0.0681
+        "modelProb": 0.6105,
+        "edge": 0.036,
+        "bar": 0.0685
       },
       "standing": "below"
     },
@@ -2036,14 +2113,14 @@ window.PICKS_DATA = {
       "book": "FanDuel",
       "prices": {
         "FanDuel": -110,
-        "DraftKings": -111,
+        "DraftKings": -107,
         "theScore Bet": -110,
         "BetMGM": -110,
         "Bovada": -110,
         "PointsBet": -111,
-        "ESPN BET": -110
+        "ESPN BET": -105
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 5,
       "anchor": "Pinnacle",
       "modelProb": 0.6339,
@@ -2094,7 +2171,9 @@ window.PICKS_DATA = {
         "price": "Our probability at 222.5 is 63.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 229). FanDuel offers -110, which implies only 52.4%. Its bar is 10.3 points: the model's own margin of error on this side, with 6 games behind the thinner team (±5.29 points on the total). It clears it by 0.7. Not graded against other books' prices; for reference the market makes it 49.2%.",
         "support": [
           "Combined scoring 237.7 a game in Phoenix Suns's games, 220.4 in Orlando Magic's.",
-          "Projected total 229 against 222.5."
+          "Projected total 229 against 222.5.",
+          "A better price is now available: -105 at theScore Bet.",
+          "A better price is available now: -105 at ESPN BET."
         ],
         "risks": [
           "Scorers out: Mark Williams (C), shoulder; Jonathan Isaac (F), knee; Jalen Suggs (G), knee and 3 more. Fewer healthy scorers leans under.",
@@ -2103,7 +2182,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.2% (-3.2 points against the best price). For reference only.",
           "Market: DraftKings opened 224.5 (-110), now 222.5 (-111), moving against this side since the open.",
-          "Market: The market (6 books) opened 219 (+100), now 223 (+100), the consensus moving toward this side since the open.",
+          "Market: The market (5 books) opened 219 (+100), now 222.5 (+101), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Orlando Magic 2-5 · Phoenix Suns 1-5 · Mortgage Matchup Center, Phoenix."
         ],
@@ -2131,7 +2210,7 @@ window.PICKS_DATA = {
             {
               "name": "Jordan Goodwin",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "4278402",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4278402.png",
               "status": "Day-To-Day",
               "type": "Calf",
@@ -2143,7 +2222,7 @@ window.PICKS_DATA = {
             {
               "name": "Rasheer Fleming",
               "pos": "F",
-              "athleteId": null,
+              "athleteId": "5105977",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105977.png",
               "status": "Day-To-Day",
               "type": "Ankle",
@@ -2155,7 +2234,7 @@ window.PICKS_DATA = {
             {
               "name": "Mark Williams",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4701232",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701232.png",
               "status": "Out",
               "type": "Shoulder",
@@ -2169,7 +2248,7 @@ window.PICKS_DATA = {
             {
               "name": "Jonathan Isaac",
               "pos": "F",
-              "athleteId": null,
+              "athleteId": "4065654",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4065654.png",
               "status": "Out",
               "type": "Knee",
@@ -2181,7 +2260,7 @@ window.PICKS_DATA = {
             {
               "name": "Jalen Suggs",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "4432165",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432165.png",
               "status": "Out",
               "type": "Knee",
@@ -2193,7 +2272,7 @@ window.PICKS_DATA = {
             {
               "name": "Paolo Banchero",
               "pos": "F",
-              "athleteId": null,
+              "athleteId": "4432573",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432573.png",
               "status": "Out",
               "type": "Ankle",
@@ -2205,7 +2284,7 @@ window.PICKS_DATA = {
             {
               "name": "Noah Penda",
               "pos": "F",
-              "athleteId": null,
+              "athleteId": "5214637",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5214637.png",
               "status": "Out",
               "type": "Hamstring",
@@ -2217,7 +2296,7 @@ window.PICKS_DATA = {
             {
               "name": "Izaiyah Nelson",
               "pos": "F",
-              "athleteId": null,
+              "athleteId": "5107251",
               "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5107251.png",
               "status": "Out",
               "type": "Ankle",
@@ -2249,8 +2328,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": -101,
-              "away": -120
+              "home": -104,
+              "away": -116
             },
             "total": 222.5,
             "totalOdds": {
@@ -2258,8 +2337,8 @@ window.PICKS_DATA = {
               "under": -109
             },
             "ml": {
-              "home": -110,
-              "away": -108
+              "home": -114,
+              "away": -104
             }
           },
           "open": {
@@ -2280,7 +2359,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -110,
+        "loggedFair": 0.6339,
+        "currentOdds": -105,
+        "currentBook": "theScore Bet",
+        "currentFair": 0.4909,
+        "currentEdge": 0.1226,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
+        "history": [
+          {
+            "at": "2026-11-05T15:47:22.894Z",
+            "odds": -110,
+            "fair": 0.4922
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": -105,
+            "fair": 0.4909
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -2306,34 +2405,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 5,
         "open": {
           "line": 219,
           "odds": 100
         },
         "now": {
-          "line": 223,
-          "odds": 100
+          "line": 222.5,
+          "odds": 101
         },
         "moved": "toward",
-        "label": "The market (6 books) opened 219 (+100), now 223 (+100)"
+        "label": "The market (5 books) opened 219 (+100), now 222.5 (+101)"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
-        "n": 6,
+        "at": "2026-11-05T17:43:55.449Z",
+        "n": 5,
         "best": {
-          "book": "FanDuel",
-          "odds": -110
+          "book": "ESPN BET",
+          "odds": -105
         },
-        "fair": 0.5004,
-        "vendorFair": 0.5,
+        "fair": 0.4965,
+        "vendorFair": 0.4975,
         "open": {
           "line": 219,
           "odds": 100
         },
         "now": {
-          "line": 223,
-          "odds": 100
+          "line": 222.5,
+          "odds": 101
         }
       },
       "sgoHistory": [
@@ -2345,6 +2444,15 @@ window.PICKS_DATA = {
           "odds": 100,
           "best": -110,
           "n": 6
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.4965,
+          "vendorFair": 0.4975,
+          "line": 222.5,
+          "odds": 101,
+          "best": -105,
+          "n": 5
         }
       ],
       "status": "pending",
@@ -2363,8 +2471,15 @@ window.PICKS_DATA = {
         "gp": 6,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null
+      "now": {
+        "at": "2026-11-05T17:43:55.449Z",
+        "odds": -105,
+        "book": "theScore Bet",
+        "modelProb": 0.6348,
+        "edge": 0.1226,
+        "bar": 0.1034
+      },
+      "standing": "clears"
     },
     {
       "id": "5d5b6a0f37-spreads-Vancouver-Canucks",
@@ -2389,14 +2504,14 @@ window.PICKS_DATA = {
         "DraftKings": -142,
         "BetOnline.ag": -138,
         "BetRivers": -141,
-        "BetMGM": -130,
+        "BetMGM": -135,
         "FanDuel": -152,
-        "Bovada": -147,
+        "Bovada": -145,
         "theScore Bet": -135,
         "Caesars": -141,
         "ESPN BET": -135
       },
-      "pricesAt": "2026-11-05T15:47:22.894Z",
+      "pricesAt": "2026-11-05T17:43:55.449Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6618,
@@ -2460,12 +2575,13 @@ window.PICKS_DATA = {
           "Home edge +0.2 for Winnipeg Jets.",
           "Vancouver Canucks without Filip Chytil (C) (+0.2).",
           "Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.",
-          "Projected margin -0.3 for Vancouver Canucks against +1.5."
+          "Projected margin -0.3 for Vancouver Canucks against +1.5.",
+          "At current prices our edge is 6.3 points, under its bar of 6.6 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 57.4% (+0.9 points against the best price). For reference only.",
           "Market: DraftKings opened +1.5 (-130), now +1.5 (-142), moving toward this side since the open.",
-          "Market: The market (6 books) opened +1.5 (-135), now +1.5 (-129), the consensus moving against this side since the open.",
+          "Market: The market (6 books) opened +1.5 (-135), now +1.5 (-128), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Jets Stuart Skinner · Canucks Leevi Merilainen.",
           "Records: Vancouver Canucks 3-13-1 · Winnipeg Jets 5-8-3 · Canada Life Centre, Winnipeg."
@@ -2497,7 +2613,7 @@ window.PICKS_DATA = {
             {
               "name": "Josh Morrissey",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "3042016",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042016.png",
               "status": "Injured Reserve",
               "type": "Wrist",
@@ -2509,7 +2625,7 @@ window.PICKS_DATA = {
             {
               "name": "Vladislav Namestnikov",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "2562622",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562622.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -2521,7 +2637,7 @@ window.PICKS_DATA = {
             {
               "name": "Nick Bjugstad",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "5828",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5828.png",
               "status": "Injured Reserve",
               "type": "Pectoral",
@@ -2535,7 +2651,7 @@ window.PICKS_DATA = {
             {
               "name": "Tom Willander",
               "pos": "D",
-              "athleteId": null,
+              "athleteId": "5149180",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149180.png",
               "status": "Day-To-Day",
               "type": "Lower Body",
@@ -2547,7 +2663,7 @@ window.PICKS_DATA = {
             {
               "name": "Filip Chytil",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4233643",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233643.png",
               "status": "Injured Reserve",
               "type": "Upper Body",
@@ -2559,7 +2675,7 @@ window.PICKS_DATA = {
             {
               "name": "Akil Thomas",
               "pos": "C",
-              "athleteId": null,
+              "athleteId": "4378682",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378682.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -2571,7 +2687,7 @@ window.PICKS_DATA = {
             {
               "name": "Mackenzie MacEachern",
               "pos": "LW",
-              "athleteId": null,
+              "athleteId": "3069342",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069342.png",
               "status": "Injured Reserve",
               "type": "Undisclosed",
@@ -2583,7 +2699,7 @@ window.PICKS_DATA = {
             {
               "name": "Thatcher Demko",
               "pos": "G",
-              "athleteId": null,
+              "athleteId": "3096217",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3096217.png",
               "status": "Injured Reserve",
               "type": "Hip",
@@ -2646,7 +2762,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -130,
+        "loggedFair": 0.6618,
+        "currentOdds": -135,
+        "currentBook": "BetMGM",
+        "currentFair": 0.5719,
+        "currentEdge": 0.0625,
+        "checkedAt": "2026-11-05T17:43:55.449Z",
+        "history": [
+          {
+            "at": "2026-11-05T15:47:22.894Z",
+            "odds": -130,
+            "fair": 0.5744
+          },
+          {
+            "at": "2026-11-05T17:43:55.449Z",
+            "odds": -135,
+            "fair": 0.5719
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -2679,27 +2815,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -129
+          "odds": -128
         },
         "moved": "away",
-        "label": "The market (6 books) opened +1.5 (-135), now +1.5 (-129)"
+        "label": "The market (6 books) opened +1.5 (-135), now +1.5 (-128)"
       },
       "sgo": {
-        "at": "2026-11-05T15:47:22.894Z",
+        "at": "2026-11-05T17:43:55.449Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
-          "odds": -130
+          "odds": -135
         },
-        "fair": 0.5603,
-        "vendorFair": 0.5633,
+        "fair": 0.5613,
+        "vendorFair": 0.5614,
         "open": {
           "line": 1.5,
           "odds": -135
         },
         "now": {
           "line": 1.5,
-          "odds": -129
+          "odds": -128
         }
       },
       "sgoHistory": [
@@ -2710,6 +2846,15 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -129,
           "best": -130,
+          "n": 6
+        },
+        {
+          "at": "2026-11-05T17:43:55.449Z",
+          "fair": 0.5613,
+          "vendorFair": 0.5614,
+          "line": 1.5,
+          "odds": -128,
+          "best": -135,
           "n": 6
         }
       ],
@@ -2729,8 +2874,15 @@ window.PICKS_DATA = {
         "gp": 16,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null
+      "now": {
+        "at": "2026-11-05T17:43:55.449Z",
+        "odds": -135,
+        "book": "BetMGM",
+        "modelProb": 0.637,
+        "edge": 0.0625,
+        "bar": 0.0662
+      },
+      "standing": "below"
     }
   ]
 };
