@@ -202,13 +202,62 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const nbaTwo = M.injuryCost([{ name: "A", pos: "G", status: "Out" }, { name: "B", pos: "G", status: "Out" }], nba, () => null);
     return near(one.cost, 0.5, 1e-9) && near(two.cost, 0.5, 1e-9) && two.out.length === 2 && near(mixed.cost, 0.5 + 0.24, 1e-9) && mixed.out.length === 3 && mixed.soft.length === 1 && near(qbs.cost, 4.5, 1e-9) && near(qbs.scoring, 2, 1e-9) && near(nbaTwo.cost, 2.4, 1e-9);
   })());
-  check("model: an absence the results already show costs nothing more; one listed after the team's last game costs in full; no date counts in full", (() => {
+  check("model (fallback, no game log): by the listing date, an absence the results already show costs nothing more; one listed after the team's last game costs in full; no date counts in full", (() => {
     const nhl = M.SPORT.icehockey_nhl, day = d => Date.parse("2026-10-" + String(d).padStart(2, "0") + "T23:00:00Z");
     const form = { gp: 4, games: [day(10), day(14), day(18), day(22)].map(t => ({ date: t })) }, share = M.unseenShare(form);
     const sk = (date) => ({ name: "S", pos: "C", status: "Out", date: date });
     const before = share(sk("2026-10-01T12:00Z")), half = share(sk("2026-10-16T12:00Z")), after = share(sk("2026-10-30T12:00Z")), none = share(sk(null));
     const cost = d => M.injuryCost([sk(d)], nhl, null, share);
     return before === 0 && near(half, 0.5, 1e-9) && after === 1 && none === 1 && cost("2026-10-01T12:00Z").cost === 0 && cost("2026-10-01T12:00Z").out.length === 0 && near(cost("2026-10-16T12:00Z").cost, 0.06, 1e-9) && near(cost("2026-10-30T12:00Z").cost, 0.12, 1e-9) && M.unseenShare(null)(sk("2026-10-30T12:00Z")) === 1;
+  })());
+  /* the games a listed player actually played (2026-11-05): ESPN re-dates its injury entries every few days, so the
+     listing date charged players who had missed every game. scripts/fixtures/espn/ctx-injuries-basketball-nba-gamelogs.json
+     is the report in ESPN's live shape (no athlete.id; the id is in the player-card link), with game logs for three of
+     its four players: George played all 7 Celtics games (plus a preseason game), Brown none (ESPN answers with his
+     2025-26 season), Kuzma 4 of the Bucks' 8 (plus one for Cleveland before a trade), Trent has no log */
+  check("game logs: the injury report's athlete id comes from the player-card link or the headshot (ESPN's report has no athlete.id)", CTX.athleteIdOf({ links: [{ href: "https://www.espn.com/nba/player/_/id/3102531/kristaps-porzingis" }] }) === "3102531" && CTX.athleteIdOf({ headshot: { href: "https://a.espncdn.com/i/headshots/nhl/players/full/3042086.png" } }) === "3042086" && CTX.athleteIdOf({ id: 7, links: [] }) === "7" && CTX.athleteIdOf({}) === null);
+  check("game logs: appearances reads this season only; an older latest season (or no season at all) is no games; a newer season, an error body or nothing is unknown", (() => {
+    const gl = n => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "espn", "ctx-gamelog-basketball-nba-" + n + ".json"), "utf8"));
+    const george = CTX.appearances(gl("4251"), "2027"), brown = CTX.appearances(gl("4066261"), "2027"), kuzma = CTX.appearances(gl("3134907"), "2027");
+    return george.length === 8 && george.every(a => a.team === "2") && Array.isArray(brown) && brown.length === 0 && kuzma.length === 5 && kuzma.filter(a => a.team === "5").length === 1
+      && CTX.appearances({ filters: [{ name: "league", value: "nba" }] }, "2027").length === 0 && CTX.appearances(gl("4251"), "2026") === null
+      && CTX.appearances({ code: 404, message: "Game log not found" }, "2027") === null && CTX.appearances(null, "2027") === null && CTX.appearances(gl("4251"), null) === null;
+  })());
+  await (async () => {
+    const injFile = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "espn", "ctx-injuries-basketball-nba-gamelogs.json"), "utf8"));
+    /* a fifth listing whose cost is zero anyway (no points a game) is never looked up */
+    injFile.injuries[1].injuries.push({ status: "Out", date: "2026-11-05T14:00Z", athlete: { displayName: "Zero Points", links: [{ href: "https://www.espn.com/nba/player/_/id/9999999/zero-points" }], position: { abbreviation: "G" } }, details: {} });
+    const asked = [];
+    const base = CTX.source({ fixture: true });
+    const src = Object.assign({}, base, { injuries: async () => injFile, gamelog: async (sport, id) => { asked.push(id); return base.gamelog(sport, id); } });
+    const ppg = n => n.name === "Paul George" ? 20.7 : n.name === "Zero Points" ? 0 : null;
+    const ev = { sportKey: "basketball_nba", home: "Boston Celtics", away: "Milwaukee Bucks", commence: "2026-11-06T00:00:00Z" };
+    const cache = { ppgOf: ppg };
+    const gm = await M.forEvent(src, CTX, ev, new Date(NOW), cache);
+    const again = await M.forEvent(src, CTX, ev, new Date(NOW), cache);
+    /* the same game with no game logs at all: the listing date, as before */
+    const old = await M.forEvent(Object.assign({}, base, { injuries: async () => injFile, gamelog: undefined }), CTX, ev, new Date(NOW), { ppgOf: ppg });
+    const nba = M.SPORT.basketball_nba, sched = n => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "espn", "ctx-schedule-basketball-nba-" + n + ".json"), "utf8"));
+    const bos = M.teamForm(sched("2"), "2", Date.parse(ev.commence)), mil = M.teamForm(sched("15"), "15", Date.parse(ev.commence));
+    const L = (side, name) => gm.injuries[side].find(i => i.name === name);
+    const one = (side, name, form) => M.injuryCost([L(side, name)], nba, ppg, M.unseenShare(form));
+    const george = one("home", "Paul George", bos), brown = one("home", "Jaylen Brown", bos), kuzma = one("away", "Kyle Kuzma", mil), trent = one("away", "Gary Trent Jr.", mil);
+    const brownByDate = M.injuryCost([Object.assign({}, L("home", "Jaylen Brown"), { played: undefined })], nba, ppg, M.unseenShare(bos));
+    const withoutLine = gm.reasons.find(r => /^Boston Celtics without/.test(r.label));
+    check("game logs: a player who missed every game costs 0 and is not named (Brown: 0 of 7; the listing date, re-dated the day before, charged him in full)", bos.gp === 7 && L("home", "Jaylen Brown").played === 0 && brown.cost === 0 && brown.out.length === 0 && near(brownByDate.cost, 1.2, 1e-9) && withoutLine && !/Brown/.test(withoutLine.label), JSON.stringify([L("home", "Jaylen Brown"), brownByDate.cost]));
+    check("game logs: a player who played every game costs in full (George: 7 of 7, the preseason game left out; 12% of 20.7 points)", L("home", "Paul George").athleteId === "4251" && L("home", "Paul George").played === 7 && near(george.cost, 0.12 * 20.7, 1e-9) && /Paul George/.test(withoutLine.label), JSON.stringify(L("home", "Paul George")));
+    check("game logs: half the games, half the cost (Kuzma: 4 of the Bucks' 8, the game he played for Cleveland left out; day-to-day at half weight)", mil.gp === 8 && L("away", "Kyle Kuzma").played === 4 && near(kuzma.cost, 0.5 * 1.2 * 0.5, 1e-9), JSON.stringify(L("away", "Kyle Kuzma")));
+    check("game logs: no game log falls back to the listing date (Trent, listed Oct 28: 3 of the Bucks' 8 games before it)", L("away", "Gary Trent Jr.").played === undefined && near(trent.cost, 1.2 * 3 / 8, 1e-9));
+    check("game logs: one request per costed listing with an id, cached for the run; a listing that costs nothing is not looked up", asked.length === 4 && asked.indexOf("9999999") === -1 && !!again && near(again.margin, gm.margin, 1e-9), JSON.stringify(asked));
+    const tot = (g, side, form) => M.injuryCost(g.injuries[side], nba, ppg, M.unseenShare(form)).cost;
+    const dHome = tot(old, "home", bos) - tot(gm, "home", bos), dAway = tot(old, "away", mil) - tot(gm, "away", mil);
+    check("game logs: the model moves by what changed (the Celtics' cost falls by Brown's 1.2; the Bucks' by half of Kuzma's 0.6), never by the price", near(dHome, 1.2, 1e-9) && near(dAway, 0.3, 1e-9) && near(gm.parts.injuriesHome, -tot(gm, "home", bos), 0.051) && near(gm.parts.injuriesAway, tot(gm, "away", mil), 0.051) && near(gm.margin - old.margin, dHome - dAway, 0.11), JSON.stringify([old.parts.injuriesHome, gm.parts.injuriesHome, old.parts.injuriesAway, gm.parts.injuriesAway, old.margin, gm.margin]));
+  })();
+  check("game logs: a pitcher appears by turn, so his games are the stretch from his first appearance to his last; everyone else counts the games played", (() => {
+    const games = Array.from({ length: 10 }, (_, k) => ({ id: "m" + k, date: "2026-05-" + String(k + 1).padStart(2, "0") + "T23:00Z", seasonType: { type: 2 }, competitions: [{ status: { type: { completed: true } }, competitors: [{ homeAway: "home", team: { id: "1" }, score: { value: 5 } }, { homeAway: "away", team: { id: "2" }, score: { value: 3 } }] }] }));
+    const sched = { events: games }, form = M.teamForm(sched, "1", Date.parse("2026-06-01T00:00Z"));
+    const apps = [{ id: "m1", team: "1" }, { id: "m6", team: "1" }, { id: "m9", team: "2" }];
+    return form.gp === 10 && M.playedIn(apps, sched, form, "1", "baseball_mlb", "SP") === 6 && M.playedIn(apps, sched, form, "1", "baseball_mlb", "1B") === 2 && M.playedIn(apps, sched, form, "1", "icehockey_nhl", "G") === 2 && M.playedIn([], sched, form, "1", "basketball_nba", "G") === 0 && M.playedIn(null, sched, form, "1", "basketball_nba", "G") === null;
   })());
   check("model: a team starts from part of last season instead of zero (carry-over), each league's last season named as ESPN numbers it; without one, the old shrinkage", (() => {
     const nba = M.SPORT.basketball_nba, f = { gp: 8, margin: 4, last5: 4 };
