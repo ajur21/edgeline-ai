@@ -1409,6 +1409,8 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 /* locked picks: below its bar now (muted) or edge gone (the orange of a price past its worth-a-bet line) */
 .badge-below { background: var(--surface-2); color: var(--muted); }
 .badge-gone { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.meta > .badge-standing::before { content: none; }
+.meta > span + .badge-standing { margin-left: 12px; }
 .bd-standing { margin: 8px 0 0; font-size: 0.85rem; color: var(--text-2); }
 .market-table .mkt-bar { display: block; font-size: 0.72rem; font-weight: 400; color: var(--muted); }
 .field-bars { color: var(--muted); }

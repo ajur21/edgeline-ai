@@ -191,8 +191,10 @@
     const n = p && p.now; if (!n) return "";
     const prob = finiteNum(n.modelProb), odds = finiteNum(n.odds), edge = finiteNum(n.edge), bar = finiteNum(n.bar) > 0 ? Number(n.bar) : barOf(p), at = Date.parse(n.at || "");
     if (!Number.isFinite(prob) || !Number.isFinite(odds) || odds === 0) return "";
+    /* the bar can move between runs (and a pick posted before per-side bars was held to 3): say both when they differ */
+    const moved = Math.abs(bar - barOf(p)) >= 0.0005;
     return "At the last check" + (Number.isFinite(at) ? " (" + clockET(at) + ")" : "") + " we make it " + pct(prob) + " against " + fmtOdds(odds) + (n.book ? " at " + n.book : "") +
-      (p.standing === "gone" ? ": no edge left at that price." : Number.isFinite(edge) ? ": an edge of " + (edge * 100).toFixed(1) + " points, under its bar of " + ptsLabel(bar) + "." : ".");
+      (p.standing === "gone" ? ": no edge left at that price." : Number.isFinite(edge) ? ": an edge of " + (edge * 100).toFixed(1) + " points, under its bar " + (moved ? "now of " + ptsLabel(bar) + " (posted against " + barPts(p) + ")." : "of " + ptsLabel(bar) + ".") : ".");
   }
   function standingChip(p) {
     const s = standingOf(p);
@@ -544,8 +546,6 @@
   }
   /* "NBA 8–10.8, NHL 6.5, MLB 3": each sport's bars in points, for copy; "" without per-side bars */
   function barsText(s) { s = s || marketSummary(); return (s.bars || []).map(function (b) { const lo = ptsLabel(b.min), hi = ptsLabel(b.max); return b.sport + " " + (lo === hi ? lo : lo + "–" + hi); }).join(", "); }
-  /* "None clears its bar" / "2 clear their bar": the board's count against each side's own bar, for copy */
-  function clearsText(n) { return !n ? "none clears its bar" : n === 1 ? "1 clears its bar" : n + " clear their bar"; }
   /* one sentence for a board that left started games out, so nothing vanishes without a word */
   function startedNote(s) {
     s = s || marketSummary();
@@ -607,7 +607,7 @@
     const top = marketRows({ limit: 3, oneSidePerMarket: true, positive: false });
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
-      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? (s.picks === 1 ? "1 pick clears its bar. " : s.picks + " picks clear their bar. ") : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + pastWord(s.best) + (hasOwnBar(s.best) ? " of its bar of " + barPts(s.best) : " of the " + barPts(s.best) + "-point bar") + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
+      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? (s.picks === 1 ? "1 pick on the board. " : s.picks + " picks on the board. ") : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + pastWord(s.best) + (hasOwnBar(s.best) ? " of its bar of " + barPts(s.best) : " of the " + barPts(s.best) + "-point bar") + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
       el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, p.start], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
       el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
@@ -662,12 +662,13 @@
     const vt = valueTo(p), moved = hasMoved(p), m = p.movement, chip = standingChip(p);
     if (vt == null && !moved && !chip) return null;
     const past = moved && vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
-    return meta([
+    const line = meta([
       moved ? el("span", { class: "price-now" + (past ? " price-past" : ""), title: (past ? "Past the worst price still worth a bet. " : "") + (m.checkedAt ? "Best price at the check " + clockET(Date.parse(m.checkedAt)) : "") || null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""]) : null,
-      vt != null ? el("span", { class: "price-worth", title: "The worst price at which our probability still clears this pick’s bar" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null,
-      /* locked: a pick a later check put below its bar, or out of edge, stays on the card and says so */
-      chip
+      vt != null ? el("span", { class: "price-worth", title: "The worst price at which our probability still clears this pick’s bar" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null
     ], "price-value" + (cls ? " " + cls : ""));
+    /* locked: a pick a later check put below its bar, or out of edge, stays on the card and says so (a chip, not a meta part) */
+    if (chip) line.appendChild(chip);
+    return line;
   }
 
   /* ---------- pick card ---------- */
@@ -1100,7 +1101,7 @@
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     hasModel: hasModel, probOf: probOf, edgeNum: edgeNum, rowEdge: rowEdge, probText: probText, edgeText: edgeText, barOf: barOf, watchOf: watchOf, barPts: barPts, watchPts: watchPts, gradeRule: GRADE_RULE,
     hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
-    standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText, clearsText: clearsText,
+    standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,

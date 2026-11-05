@@ -454,7 +454,7 @@
       if (!out) { sec.hidden = true; return; }
       sec.hidden = false;
       title.replaceChildren(E.el("span", { class: "n", text: String(out.sides) }), " sides priced in " + out.games + " games. " +
-        (out.picks ? out.picks + (out.picks === 1 ? " pick clears its own bar." : " picks clear their own bar.") : "None is on the board."));
+        (out.picks ? out.picks + (out.picks === 1 ? " pick on the board." : " picks on the board.") : "None is on the board."));
     } });
   }
   if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);

@@ -309,8 +309,8 @@
   /* the board's counts against each side's own bar, and the bars themselves by sport */
   function barSummary(s) {
     var bars = E.barsText(s);
-    return (s.picks === 1 ? "1 pick" : s.picks + " picks") + " on the board, each past its own bar" +
-      (s.clearOff ? "; " + s.clearOff + (s.clearOff === 1 ? " more side clears its bar but is held off the board" : " more sides clear theirs but are held off the board") + " (one pick a game, ten a day, five a sport)" : "") +
+    return (s.picks === 1 ? "1 pick" : s.picks + " picks") + " on the board" +
+      (s.clearOff ? "; " + s.clearOff + (s.clearOff === 1 ? " more side clears its bar but is held off the board" : " more sides clear their bar but are held off the board") + " (one pick a game, ten a day, five a sport)" : "") +
       "; " + s.watch + " on watch, at least halfway to their bar. " +
       (bars ? "Each side’s bar is the model’s own margin of error there, never under " + E.ptsLabel(E.floorBar()) + " points: " + bars + "." : "Every side is held to the " + E.barPts() + "-point bar.");
   }
