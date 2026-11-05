@@ -160,11 +160,22 @@
   /* the line under a card's numbers: "Bar 10.8 pts | 5.2 past" */
   function barLine(p, cls) {
     if (!hasModel(p) || !Number.isFinite(pastOf(p))) return null;
-    const own = hasOwnBar(p);
-    return el("span", { class: "meta pick-bar" + (cls ? " " + cls : ""), title: own ? "The edge this side has to clear: the model’s own margin of error on it, never under " + ptsLabel(floorBar()) + " points" : "Posted before each side had its own bar: held to the " + barPts(p) + "-point bar" }, [
-      el("span", {}, ["Bar ", el("span", { class: "mono", text: barPts(p) }), " pts"]),
-      el("span", { class: pastOf(p) >= 0 ? "bar-past" : "bar-short", text: pastWord(p) })
+    const own = hasOwnBar(p), slipped = standingOf(p), now = slipped ? nowPast(p) : null;
+    /* a locked pick that slipped says both, one line each: where it was posted, and where it stands at the last check
+       ("Posted: bar 3 pts, 13.5 past" over "Now 1.3 short of 6.1"), so the card never reads as a bet it no longer is */
+    return el("span", { class: "meta pick-bar" + (slipped ? " is-slipped" : "") + (cls ? " " + cls : ""), title: own ? "The edge this side has to clear: the model’s own margin of error on it, never under " + ptsLabel(floorBar()) + " points" : "Posted before each side had its own bar: held to the " + barPts(p) + "-point bar" }, [
+      el("span", {}, [slipped ? "Posted: bar " : "Bar ", el("span", { class: "mono", text: barPts(p) }), " pts", slipped ? ", " : ""].concat(slipped ? [el("span", { class: "bar-past", text: pastWord(p) })] : [])),
+      slipped ? el("span", { class: "bar-short" }, now ? ["Now ", el("span", { class: "mono", text: now.short }), " short of ", el("span", { class: "mono", text: now.bar })] : [slipped === "gone" ? "Now no edge" : "Now under its bar"])
+        : el("span", { class: pastOf(p) >= 0 ? "bar-past" : "bar-short", text: pastWord(p) })
     ]);
+  }
+  /* a slipped pick at the last check: points short of the bar it is held to now. null without the numbers, or when it
+     has no edge left (then it is "Now no edge") */
+  function nowPast(p) {
+    const n = p && p.now; if (!n) return null;
+    const edge = finiteNum(n.edge), bar = finiteNum(n.bar) > 0 ? Number(n.bar) : barOf(p);
+    if (!Number.isFinite(edge) || edge <= 0 || !(edge < bar)) return null;
+    return { short: ((bar - edge) * 100).toFixed(1), bar: ptsLabel(bar) };
   }
   /* the tier, said plainly: how far past which bar, and what the bar is */
   function barSentence(p) {
@@ -659,7 +670,9 @@
   /* the line under it: "now -125 at FanDuel | Worth a bet to -118"; a price now past the worth-a-bet price is marked */
   function valueLine(p, cls) {
     if (!p || p.isMarket) return null;
-    const vt = valueTo(p), moved = hasMoved(p), m = p.movement, chip = standingChip(p);
+    /* a pick that slipped below its bar has no worth-a-bet price: valueTo is from the posted probability, which the
+       last check no longer holds (the chip says so) */
+    const chip = standingChip(p), vt = chip ? null : valueTo(p), moved = hasMoved(p), m = p.movement;
     if (vt == null && !moved && !chip) return null;
     const past = moved && vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
     const line = meta([
@@ -788,7 +801,10 @@
     return (picks || []).filter(isValidPick).sort(function (a, b) { return edgeNum(b) - edgeNum(a); });
   }
   /* the site's order (owner rule): today's games before tomorrow's; within a day, sides with a positive edge first, then everything else; within each tier the likeliest to hit first, by our probability from the game data; edge breaks ties; a side with no model goes last */
-  function worthFirst(a, b) { return dayCmp(a, b) || ((edgeNum(b) > 0) - (edgeNum(a) > 0)) || (probOf(b) - probOf(a)) || (edgeNum(b) - edgeNum(a)); }
+  /* the tiers within a day: worth a bet now (2), a locked pick that has slipped under its bar at the last check (1), the
+     rest (0). A slipped pick stays on the card, graded at its posted price, but never outranks a pick that still clears */
+  function worthTier(p) { return edgeNum(p) > 0 ? (standingOf(p) ? 1 : 2) : 0; }
+  function worthFirst(a, b) { return dayCmp(a, b) || (worthTier(b) - worthTier(a)) || (probOf(b) - probOf(a)) || (edgeNum(b) - edgeNum(a)); }
   function sortByProb(picks) {
     return (picks || []).filter(isValidPick).sort(worthFirst);
   }
@@ -854,8 +870,9 @@
   function bestParlays(picks, opts) {
     opts = opts || {};
     const maxLegs = opts.size || opts.maxLegs || 4, minLegs = opts.size || 2, limit = opts.limit || 5;
-    /* a leg whose game has started can never be on a ticket */
-    const legsAll = (picks || []).filter(p => isOpen(p) && p.prices && Object.keys(p.prices).length && Number.isFinite(Number(p.modelProb)));
+    /* a leg whose game has started can never be on a ticket, nor a locked pick that slipped under its bar at the last
+       check: its posted probability is no longer ours, so a ticket priced on it would overstate the chance to hit */
+    const legsAll = (picks || []).filter(p => isOpen(p) && !standingOf(p) && p.prices && Object.keys(p.prices).length && Number.isFinite(Number(p.modelProb)));
     const books = {}; legsAll.forEach(p => Object.keys(p.prices).forEach(b => { books[b] = true; }));
     const bySet = {};
     Object.keys(books).forEach(function (book) {
@@ -1102,7 +1119,7 @@
     hasModel: hasModel, probOf: probOf, edgeNum: edgeNum, rowEdge: rowEdge, probText: probText, edgeText: edgeText, barOf: barOf, watchOf: watchOf, barPts: barPts, watchPts: watchPts, gradeRule: GRADE_RULE,
     hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
     standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
-    el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
+    el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,

@@ -1404,6 +1404,9 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 .meta.pick-bar { display: flex; margin: 8px 0 0; font-size: 0.8rem; color: var(--text-2); }
 .pick-bar .mono { color: var(--text); font-weight: 600; }
 .pick-bar .bar-short { color: var(--muted); }
+/* a locked pick that slipped: posted and now, one line each, no hairline between */
+.meta.pick-bar.is-slipped { flex-direction: column; align-items: flex-start; gap: 2px; }
+.meta.pick-bar.is-slipped > span + span::before { content: none; }
 .meta.bd-bar { margin-top: 4px; }
 .bd-block .bd-bar-why { margin-bottom: 8px; }
 /* locked picks: below its bar now (muted) or edge gone (the orange of a price past its worth-a-bet line) */
