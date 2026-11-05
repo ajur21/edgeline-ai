@@ -305,7 +305,7 @@
     if (potdAt >= 6) list.push(Object.assign({ _rank: potdAt + 1 }, all[potdAt]));
     if (!list.length) { parlaysHost.appendChild(P.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); E.initTilt(parlaysHost); return; }
     list.forEach(function (par, i) {
-      var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + " · " + E.pct(par.fairProb) + " to hit · " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
+      var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + ": " + E.pct(par.fairProb) + " to hit, " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
       card.querySelector("[data-load-parlay]").addEventListener("click", function () {
         try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
         E.slip.set(par.legs.map(function (l) { return l.id; }));
@@ -343,7 +343,7 @@
     slipBody.appendChild(E.el("ul", { class: "slip-legs" }, legs.map(function (l) {
       var priced = m.legs.find(function (x) { return x.pick.id === l.id; });
       return E.el("li", {}, [
-        E.el("span", { class: "leg-pick" }, [E.el("strong", { text: l.pick }), E.el("span", { class: "leg-event", text: l.event + " · " + l.market })]),
+        E.el("span", { class: "leg-pick" }, [E.el("strong", { text: l.pick }), E.meta([l.event, l.market], "leg-event")]),
         E.el("span", { class: "mono leg-price", text: priced ? E.fmtOdds(priced.price) : "—" }),
         E.el("button", { type: "button", class: "slip-remove", "data-remove": l.id, "aria-label": "Remove " + l.pick, text: "×" })
       ]);

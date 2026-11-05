@@ -356,7 +356,7 @@
             E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: next.confidence }),
             E.el("span", { text: "Fair " + E.pct(next.modelProb) + " · Edge " + E.signed(E.edgeOf(next) * 100, 1) + " pts" })
           ]),
-          E.el("div", { class: "cal-note", text: next.market + " · " + next.event })
+          E.meta([next.market, next.event], "cal-note")
         ])
       ]));
       host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "After the final, the same event reads " }), E.el("strong", { text: "Won +" + (E.decimalOdds(next.odds) - 1).toFixed(2) + "u" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost −1.00u" }), E.el("span", { text: ". Nothing is edited afterwards." })]));
@@ -394,7 +394,7 @@
       E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
       E.el("div", { class: "board-pick" }, [
         E.el("div", { class: "sel", text: p.pick }),
-        E.el("div", { class: "ev", text: p.event + " · " + p.market + (p.isMarket ? " · " + E.statusLabel(p.status) : "") })
+        E.meta([p.event, p.market, p.isMarket ? E.statusLabel(p.status) : null], "ev")
       ]),
       E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
       E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.signed(E.edgeOf(p) * 100, 1) + "%" })

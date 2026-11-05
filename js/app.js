@@ -212,10 +212,12 @@
     const near = label === "Today" || label === "Tomorrow", d = keyDate(key);
     const when = near ? label : d.toLocaleDateString("en-US", { timeZone: "UTC", weekday: "long" });
     const date = shortDate(d, near);
-    return [el("span", { class: "day-when", text: when }), " · ", el("span", { class: "day-date", text: date })];
+    return [el("span", { class: "day-when", text: when }), " ", el("span", { class: "day-date", text: date })];
   }
   /* the day boundary in a card grid or the digest slate */
   function dayDivider(key) { return el("p", { class: "day-divider" }, dayHeading(key)); }
+  /* a meta line: parts as spans separated by a hairline (CSS .meta), never a middle dot */
+  function meta(parts, cls) { return el("span", { class: "meta" + (cls ? " " + cls : "") }, (parts || []).filter(function (x) { return x != null && x !== ""; }).map(function (x) { return typeof x === "string" ? el("span", { text: x }) : el("span", {}, [x]); })); }
 
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: 0.01, watch: 0.005, games: 0, generatedAt: null }; }
@@ -341,7 +343,7 @@
         TM() ? TM().matchup(p) : null,
         el("div", { class: "pick-event", text: p.event }),
         el("h3", { class: "pick-selection", text: p.pick }),
-        el("div", { class: "pick-market" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
+        meta([p.market, el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null], "pick-market"),
         shopChips(p)
       ]),
       /* the probability bar: fill = how often the model expects the side to hit, tick = what the price implies, hairline = a coin flip */
@@ -354,7 +356,7 @@
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })])
       ]),
       el("div", { class: "pick-foot" }, [
-        el("span", {}, [p.league + " · " + p.start, liveSlot(p.id)]),
+        el("span", {}, [meta([p.league, p.start]), liveSlot(p.id)]),
         el("span", { class: "pick-actions" }, [p.isMarket ? null : parlayButton(p.id), flipBtn])
       ])
     ]);
@@ -437,7 +439,7 @@
   /* the rank chip: "#1 · Likeliest" on the top card, "#n" below it */
   function rankChip(n, short) {
     if (!n) return null;
-    return el("span", { class: "rank" + (n === 1 ? " rank-top" : ""), title: n === 1 ? "Likeliest to hit on this board (fair probability)" : "Rank " + n + " by fair probability", text: n === 1 && !short ? "#1 · Likeliest" : "#" + n });
+    return el("span", { class: "rank" + (n === 1 ? " rank-top" : ""), title: n === 1 ? "Likeliest to hit on this board (fair probability)" : "Rank " + n + " by fair probability", text: n === 1 && !short ? "#1 Likeliest" : "#" + n });
   }
 
   /* ---------- play of the day ---------- */
@@ -459,7 +461,7 @@
       TM() ? TM().matchup(p, { size: "lg" }) : null,
       el("div", { class: "potd-event", text: p.event }),
       el("h3", { class: "potd-selection", text: p.pick }),
-      el("div", { class: "potd-line" }, [p.market + " · ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " · " + p.book : ""]),
+      meta([p.market, el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null], "potd-line"),
       el("div", { class: "pick-metrics potd-metrics" }, [
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Fair" }), el("div", { class: "v", text: pct(p.modelProb) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed(edge * 100, 1) + "%" })]),
@@ -585,7 +587,7 @@
         el("div", {}, [
           el("div", { class: "bd-id" }, [TM() ? TM().matchup(p) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
           el("h3", { class: "bd-title", text: p.pick }),
-          el("div", { class: "bd-sub", text: p.event + " · " + p.market + " · " + fmtOdds(p.odds) + (p.book ? " at " + p.book : "") + " · " + p.start })
+          meta([p.event, p.market, fmtOdds(p.odds) + (p.book ? " at " + p.book : ""), p.start], "bd-sub")
         ]),
         el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase() + " bd-tier", text: p.confidence })
       ])
@@ -691,7 +693,7 @@
 
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
-    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
+    el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel

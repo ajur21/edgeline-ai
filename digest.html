@@ -140,7 +140,7 @@
     var d = new Date(t), day = d.toLocaleDateString("en-CA", { timeZone: ET }), today = now.toLocaleDateString("en-CA", { timeZone: ET });
     var tomorrow = new Date(now.getTime() + 864e5).toLocaleDateString("en-CA", { timeZone: ET });
     var time = d.toLocaleTimeString("en-US", { timeZone: ET, hour: "numeric", minute: "2-digit" }) + " ET";
-    return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : d.toLocaleDateString("en-US", { timeZone: ET, weekday: "short", month: "short", day: "numeric" })) + " · " + time;
+    return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : d.toLocaleDateString("en-US", { timeZone: ET, weekday: "short", month: "short", day: "numeric" })) + ", " + time;
   }
   /* owner rule: likeliest first, everywhere; the start time rides on each line */
   var ordered = E.sortByProb(P);
@@ -167,10 +167,10 @@
   }
   var tiles = fallbackMode ? [
     { label: "Picks", value: "0", sub: "Nothing clears the 1-point bar" },
-    { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games · " + MS.sports.join(" · ") },
+    { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games: " + MS.sports.join(", ") },
     { label: "Watch list", value: String(MS.watch), sub: "Within half a point of the bar" }
   ] : [
-    { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(" · ") : "No edges right now" },
+    { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "No edges right now" },
     { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Lean" : "" },
     { label: "Average edge", value: P.length ? E.signed(avgEdge * 100, 1) + "%" : "—", sub: "Points over the fair line" }
   ];
@@ -191,7 +191,7 @@
     var ev = p.ev == null ? p.modelProb * E.decimalOdds(p.odds) - 1 : p.ev;
     top3.appendChild(E.el("li", {}, [
       E.el("span", { class: "leg-id" }, [T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
-      E.el("span", { class: "leg-pick" }, [E.el("strong", { text: p.pick }), E.el("span", { class: "leg-event", text: p.event + " · " + p.market + " · " + slotLabel(p) })]),
+      E.el("span", { class: "leg-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event")]),
       E.el("span", { class: "mono leg-price", text: E.fmtOdds(p.odds) + (p.book ? " " + E.bookAbbr(p.book) : "") }),
       E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.pct(p.modelProb) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev <= 0 ? " neg" : ""), text: E.signed(ev * 100, 1) + "%" })])
     ]));
@@ -212,7 +212,7 @@
       var shop = E.lineShop(p), b = p.breakdown, why = b && b.verdict ? b.verdict : p.rationale;
       sec.appendChild(E.el("article", { class: "digest-row", "data-id": p.id }, [
         E.el("span", { class: "leg-id digest-id" }, [E.rankChip(i + 1, true), T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
-        E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.el("span", { class: "leg-event", text: p.event + " · " + p.market + " · " + slotLabel(p) }), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear the bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
+        E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event"), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear the bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
         E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.signed(E.edgeOf(p) * 100, 1) + "% edge" }), E.el("span", { text: "Fair " + E.pct(p.modelProb) })]),
         E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: "Play of the day" }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),

@@ -1173,6 +1173,7 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 /* meta lines: parts separated by space and a hairline, never a middle dot */
 .meta { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; min-width: 0; }
 .meta > span + span::before { content: ""; display: inline-block; width: 1px; height: 0.75em; background: var(--border-strong); margin: 0 9px; vertical-align: -1px; }
+.meta.pick-market, .meta.potd-line, .meta.bd-sub, .meta.ev, .meta.cal-note, .meta.leg-event { display: flex; }
 /* on this page: a sticky strip of section links under the header */
 .subnav { position: sticky; top: var(--header-h, 0px); z-index: 19; border-bottom: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .subnav-in { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-top: 6px; padding-bottom: 6px; }
@@ -1231,11 +1232,11 @@ html { scroll-padding-top: calc(var(--header-h, 0px) + 60px); }
 .prop-card.is-focus { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .pb-row { animation: none; } }
 /* day boundaries in ranked lists (owner rule, 2026-11-04): today's plays before tomorrow's, each day under its own heading; the .grid-divider / .mkt-divider look in --text-2, the date in the body font */
-.day-divider { grid-column: 1 / -1; margin: 8px 0 0; padding: 6px 0 0; border-top: 1px dashed var(--border-strong); font-family: var(--font-condensed); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); }
-.day-divider .day-date { font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0; text-transform: none; color: var(--text-2); }
+.day-divider { grid-column: 1 / -1; margin: 8px 0 0; padding: 6px 0 0; border-top: 1px dashed var(--border-strong); font-size: 0.95rem; font-weight: 600; color: var(--text-2); }
+.day-divider .day-date { font-weight: 400; color: var(--text-2); }
 .picks-grid > .day-divider:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .slot .day-divider { margin-top: 0; padding-top: 14px; border-top: 0; }
-.market-table tr.day-divider td { padding: 12px 8px 6px; font-family: var(--font-condensed); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
-.market-table tr.day-divider td .day-date { font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0; text-transform: none; }
+.market-table tr.day-divider td { padding: 12px 8px 6px; font-size: 0.92rem; font-weight: 600; color: var(--text); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
+.market-table tr.day-divider td .day-date { font-weight: 400; color: var(--text-2); }
 .market-table tbody tr.day-divider:first-child td { border-top: 0; }
 @media (max-width: 720px) { .market-table tr.day-divider { display: block; } .market-table tr.day-divider td::before { display: none; } }
