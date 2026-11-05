@@ -16,8 +16,8 @@
 /* per-sport numbers: home edge and adjustments in the sport's points; sd = spread of the final margin and total */
 const SPORT = {
   basketball_nba:        { homeEdge: 2.5, sd: 12.5, sdTotal: 19, k: 6,  b2b: -1.5, rest3: 0.5,  out: (i, ppg) => ppg != null ? 0.12 * ppg : 1.2, soft: 0.5, scoringOut: ppg => ppg != null ? 0.15 * ppg : 1.5 },
-  americanfootball_nfl:  { homeEdge: 2.0, sd: 13.5, sdTotal: 14, k: 3,  b2b: 0,    rest3: 0,    out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: () => 1 },
-  icehockey_nhl:         { homeEdge: 0.2, sd: 2.4,  sdTotal: 2.3, k: 8, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0.1 },
+  americanfootball_nfl:  { homeEdge: 2.0, sd: 13.5, sdTotal: 14, k: 3,  b2b: 0,    rest3: 0,    out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: () => 1, single: /QB/ },
+  icehockey_nhl:         { homeEdge: 0.2, sd: 2.4,  sdTotal: 2.3, k: 8, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0.1, single: /^G$/ },
   baseball_mlb:          { homeEdge: 0.2, sd: 4.2,  sdTotal: 4.6, k: 10, b2b: 0,   rest3: 0,    out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0.15 },
   soccer_epl:            { homeEdge: 0.3, sd: 1.7,  sdTotal: 1.8, k: 4,  b2b: 0,   rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0.1, threeWay: true, drawBand: 0.5 }
 };
@@ -52,14 +52,19 @@ function teamForm(sched, teamId, beforeMs) {
 function rating(form, cfg) { if (!form || !form.gp) return 0; const raw = 0.6 * form.margin + 0.4 * form.last5; return raw * (form.gp / (form.gp + cfg.k)); }
 
 /* ---------- injuries in the sport's points ---------- */
+/* cfg.single: a position only one player fills at a time (an NHL goalie, an NFL quarterback). A team loses its starter
+   once however many of them are listed, so only the costliest listing at that position counts; every name is still listed. */
 function injuryCost(list, cfg, ppgOf) {
-  let cost = 0, scoring = 0; const out = [], soft = [];
+  let cost = 0, scoring = 0, oneCost = 0, oneScoring = 0; const out = [], soft = [];
   (list || []).forEach(function (i) {
-    const ppg = ppgOf ? ppgOf(i) : null;
-    if (SEVERE.test(i.status || "")) { cost += cfg.out(i, ppg); scoring += cfg.scoringOut(ppg); out.push(i.name + (i.pos ? " (" + i.pos + ")" : "")); }
-    else if (SOFT.test(i.status || "")) { cost += cfg.soft * cfg.out(i, ppg); scoring += 0.5 * cfg.scoringOut(ppg); soft.push(i.name + (i.pos ? " (" + i.pos + ")" : "")); }
+    const ppg = ppgOf ? ppgOf(i) : null, one = !!(cfg.single && cfg.single.test(i.pos || ""));
+    let c, s;
+    if (SEVERE.test(i.status || "")) { c = cfg.out(i, ppg); s = cfg.scoringOut(ppg); out.push(i.name + (i.pos ? " (" + i.pos + ")" : "")); }
+    else if (SOFT.test(i.status || "")) { c = cfg.soft * cfg.out(i, ppg); s = 0.5 * cfg.scoringOut(ppg); soft.push(i.name + (i.pos ? " (" + i.pos + ")" : "")); }
+    else return;
+    if (one) { oneCost = Math.max(oneCost, c); oneScoring = Math.max(oneScoring, s); } else { cost += c; scoring += s; }
   });
-  return { cost: cost, scoring: scoring, out: out, soft: soft };
+  return { cost: cost + oneCost, scoring: scoring + oneScoring, out: out, soft: soft };
 }
 
 /* ---------- the game: expected margin (home minus away) and total ---------- */
