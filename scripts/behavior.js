@@ -447,13 +447,62 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   const box = await ph.locator('a.visually-hidden').boundingBox();
   check('skip link visible on focus', box && box.width > 40 && box.height > 10, JSON.stringify(box));
 
+  // site search (js/search.js) and the Games page (games.html): find by sport, team, player or game, browse every line
+  const sErr = []; const sctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const sp2 = await sctx.newPage(); sp2.on('pageerror', e => sErr.push(e.message)); sp2.on('console', m => { if (m.type() === 'error') sErr.push(m.text()); });
+  await sp2.goto(url('games.html')); await sp2.waitForTimeout(600);
+  check('header: every page carries the Games link and the search button, and the Games link is current on its page', (await sp2.locator('.nav-links a[href="games.html"][aria-current="page"]').count()) === 1 && (await sp2.locator('.nav-actions [data-search-open]').count()) === 1);
+  check('games: one card per game, game day first, then games with a side worth a bet, likeliest first, each with a rank and a day heading', (await sp2.locator('.game-card').count()) === 8 && (await sp2.locator('#games-host .day-divider').count()) >= 2 && await sp2.evaluate(() => { const E = window.EdgeLine, cards = [...document.querySelectorAll('.game-card')]; const rows = window.MARKET_DATA.rows; const byId = {}; rows.forEach(r => { (byId[r.eventId] = byId[r.eventId] || []).push(r); });
+    const v = cards.map(c => { const rs = byId[c.id.slice(2)], worth = rs.filter(r => E.hasModel(r) && E.rowEdge(r) > 0); const lead = (worth.length ? worth : rs.filter(E.hasModel)).map(E.probOf).sort((a, b) => b - a)[0]; return { d: E.dayKey(rs[0]), w: worth.length > 0, p: lead == null ? -1 : lead }; });
+    return cards.every((c, i) => c.querySelector('.rank').textContent.indexOf('#' + (i + 1)) === 0) && v.every((x, i) => { if (!i) return true; const p = v[i - 1]; if (x.d !== p.d) return x.d > p.d; if (x.w !== p.w) return p.w && !x.w; return x.p <= p.p; }); }));
+  check('games: each game lays out spread, total and moneyline per side with the best price, the book, our probability and edge; a pick links to its card', await sp2.evaluate(() => { const c = document.querySelector('.game-card'); const heads = [...c.querySelectorAll('table.game-lines thead th')].map(t => t.textContent); return heads.join('|') === 'Side|Spread|Total|Moneyline' && c.querySelectorAll('table.game-lines tbody tr').length === 2 && c.querySelectorAll('td.line-cell').length === 6 && /^[+-]\d+$/.test(c.querySelector('.line-price').textContent) && /%$/.test(c.querySelector('.line-hit').textContent); }) && (await sp2.locator('td.st-pick a.line-btn[href^="picks.html#p"]').count()) >= 1 && !/NaN|undefined/.test(await sp2.textContent('#games-host')));
+  check('games: a game with no model says so in every cell and in its tags', (await sp2.locator('.game-card:has(.badge-none) td.no-model').count()) === 6 && /No model/.test(await sp2.locator('.game-card:has(.badge-none) td.no-model').first().textContent()));
+  check('games: every book’s price opens per game, with the best price marked on each side', await sp2.evaluate(() => { const d = document.querySelector('.game-card details.game-books'); d.open = true; const rows = d.querySelectorAll('tbody tr'); return rows.length >= 4 && [...rows].every(tr => tr.querySelectorAll('td.best').length >= 1); }));
+  await sp2.click('#g-sports button[data-sport="NHL"]'); await sp2.waitForTimeout(150);
+  check('games: a sport tab filters, counts and lands in the address', (await sp2.locator('.game-card').count()) === 2 && (await sp2.locator('.game-card[data-sport="NHL"]').count()) === 2 && /sport=NHL/.test(sp2.url()) && /2 games of 8/.test(await sp2.textContent('#g-summary')));
+  await sp2.click('#g-sports button[data-sport=""]'); await sp2.fill('#g-search', 'paul george'); await sp2.waitForTimeout(150);
+  check('games: the search finds a game by team or by a player on either side', (await sp2.locator('.game-card').count()) === 1 && (await sp2.textContent('.game-card .game-title')) === 'Boston @ Milwaukee' && /q=paul/.test(sp2.url()));
+  await sp2.fill('#g-search', 'zzzz'); await sp2.waitForTimeout(150);
+  check('games: no match says so, with a way back to every game', (await sp2.locator('#games-host .empty').count()) === 1 && (await sp2.locator('#games-host .empty button').count()) === 1);
+  await sp2.click('#games-host .empty button'); await sp2.waitForTimeout(150);
+  check('games: show every game clears the filters', (await sp2.locator('.game-card').count()) === 8 && (await sp2.inputValue('#g-search')) === '');
+  await sp2.goto(url('games.html?team=1&league=icehockey_nhl')); await sp2.waitForTimeout(500);
+  check('games: ?team= shows that club’s game and names it', (await sp2.locator('.game-card').count()) === 1 && (await sp2.textContent('.game-card .game-title')) === 'NY Rangers @ Boston' && /Boston Bruins/.test(await sp2.textContent('#g-summary')));
+  await sp2.goto(url('games.html?sport=NHL#g-g1')); await sp2.waitForTimeout(600);
+  check('games: #g-<id> brings that game into view, clearing a filter that hid it', (await sp2.locator('#g-g1.highlight').count()) === 1 && (await sp2.locator('.game-card').count()) === 8);
+  // the search dialog
+  await sp2.goto(url('index.html')); await sp2.waitForTimeout(500);
+  await sp2.click('[data-search-open]'); await sp2.waitForTimeout(300);
+  check('search: the header button opens the dialog with the box focused and the sports and picks suggested', (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && await sp2.evaluate(() => document.activeElement && document.activeElement.classList.contains('search-input')) && /Sports on the board/.test(await sp2.textContent('.search-list')) && /Picks, likeliest first/.test(await sp2.textContent('.search-list')));
+  await sp2.keyboard.type('bos'); await sp2.waitForTimeout(200);
+  check('search: a team query lists games first, then teams and picks, each linked where it can be read or bet', (await sp2.locator('.search-group-title').first().textContent()) === 'Games' && (await sp2.locator('.search-option[href^="games.html#g-"]').count()) >= 2 && (await sp2.locator('.search-option[href*="games.html?team="]').count()) >= 2 && (await sp2.locator('.search-option[href^="picks.html#"]').count()) >= 1, (await sp2.locator('.search-group-title').allTextContents()).join(', '));
+  await sp2.keyboard.press('Escape'); await sp2.waitForTimeout(150);
+  check('search: Esc closes it and focus returns to the button', (await sp2.locator('dialog.search-dialog[open]').count()) === 0 && await sp2.evaluate(() => document.activeElement && document.activeElement.hasAttribute('data-search-open')));
+  await sp2.keyboard.press('Control+k'); await sp2.waitForTimeout(200);
+  await sp2.keyboard.type('nhl'); await sp2.waitForTimeout(150);
+  check('search: Ctrl+K opens it; a sport query leads with the sport, linked to its games', (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && (await sp2.locator('.search-group-title').first().textContent()) === 'Sports' && (await sp2.locator('.search-option').first().getAttribute('href')) === 'games.html?sport=NHL');
+  await sp2.keyboard.press('Escape');
+  await sp2.goto(url('performance.html')); await sp2.waitForTimeout(400);
+  const hadMarket = await sp2.evaluate(() => !!window.MARKET_DATA);
+  await sp2.locator('body').click({ position: { x: 4, y: 400 } }); await sp2.keyboard.press('/'); await sp2.waitForTimeout(900);
+  await sp2.keyboard.type('rangers'); await sp2.waitForTimeout(200);
+  check('search: "/" opens it on a page without the board, which loads on demand', !hadMarket && (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && (await sp2.locator('.search-option[href^="games.html#g-"]').count()) >= 1);
+  await sp2.keyboard.press('ArrowDown'); await sp2.keyboard.press('Enter'); await sp2.waitForTimeout(700);
+  check('search: arrow and Enter open the result, and the game is brought into view', /games\.html#g-/.test(sp2.url()) && (await sp2.locator('.game-card.highlight').count()) === 1, sp2.url());
+  await sp2.click('[data-search-open]'); await sp2.waitForTimeout(300); await sp2.keyboard.type('paul geo'); await sp2.waitForTimeout(200);
+  const playerHref = await sp2.locator('.search-option[href^="props.html?q="]').first().getAttribute('href');
+  await sp2.keyboard.press('Escape'); await sp2.goto(url(playerHref)); await sp2.waitForTimeout(500);
+  check('search: a player opens the props page with the search filled in', playerHref === 'props.html?q=Paul%20George' && (await sp2.inputValue('#p-search')) === 'Paul George');
+  check('search and games: no page errors', sErr.length === 0, sErr.join(' | '));
+  await sctx.close();
+
   check('no page/console errors', errors.length === 0, errors.join(' | '));
 
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;
   const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
-  for (const p of ['index.html', 'picks.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
+  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
   const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
   await rp.goto(url('index.html')); await rp.waitForTimeout(400);
   const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });

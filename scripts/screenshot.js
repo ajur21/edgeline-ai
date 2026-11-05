@@ -10,7 +10,7 @@ const fs = require('fs');
   const out = path.join(root, 'screenshots');
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
-  const pages = ['index.html', 'picks.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'];
+  const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'];
   const problems = [];
   for (const scheme of ['light', 'dark']) {
     for (const [name, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', { width: 400, height: 860 }]]) {

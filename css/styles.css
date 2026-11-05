@@ -1255,3 +1255,85 @@ html { scroll-padding-top: calc(var(--header-h, 0px) + 60px); }
    and sit in the body face; only the page-title kicker keeps it. The two lead cards keep their accent colour. */
 .card .eyebrow, .bd-top .eyebrow, .pick-head .eyebrow { font-family: var(--font-body); font-size: 0.86rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--text-2); margin-bottom: 0; }
 .potd .pick-head .eyebrow, .parlay.potd-parlay .pick-head .eyebrow { color: var(--accent-2); }
+
+/* site search (js/search.js, 2026-11-04, owner: "search by team or sport, how other sportsbooks let you look through"):
+   the header button, then a dialog of results grouped by kind. Tokens only; the look stays locked. */
+.search-toggle { width: 36px; height: 36px; padding: 0; border-radius: var(--radius); border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-2); display: grid; place-items: center; box-shadow: 0 3px 0 var(--edge); transition: transform 0.12s, box-shadow 0.12s, color 0.15s; cursor: pointer; }
+.search-toggle:hover { color: var(--text); background: var(--surface-2); }
+.search-toggle:active { transform: translateY(3px); box-shadow: 0 0 0 var(--edge); }
+.search-toggle svg { width: 16px; height: 16px; flex: none; }
+/* with the Games link and this button the header still holds one row from 1024px: slightly tighter spacing below 1180px */
+@media (min-width: 721px) and (max-width: 1179px) { .nav { gap: 10px; } .nav-links a { padding: 7px; } .nav-actions { gap: 6px; } }
+.search-dialog { width: min(640px, calc(100% - 32px)); max-height: min(78vh, 720px); margin: 10vh auto auto; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: var(--bg); color: var(--text); box-shadow: var(--shadow-pop); }
+.search-dialog[open] { display: flex; flex-direction: column; }
+.search-dialog::backdrop { background: var(--scrim); backdrop-filter: blur(6px); }
+.search-bar { display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.search-input { flex: 1; min-width: 0; font: inherit; font-size: 1.05rem; color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 10px 12px; }
+.search-list { overflow: auto; padding: 4px 8px 8px; }
+.search-group { padding: 4px 0; }
+.search-group + .search-group { border-top: 1px solid var(--border); }
+.search-group-title { margin: 6px 8px 4px; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.search-option { display: flex; gap: 10px; align-items: center; padding: 8px; border-radius: var(--radius); color: var(--text); }
+.search-option:hover, .search-option[aria-selected="true"] { background: var(--surface-2); text-decoration: none; }
+.search-option[aria-selected="true"] { box-shadow: inset 2px 0 0 var(--accent); }
+.search-icon { min-width: 48px; flex: none; display: flex; justify-content: center; align-items: center; }
+.search-pair { display: inline-flex; gap: 2px; }
+.search-text { display: grid; gap: 2px; min-width: 0; }
+.search-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta.search-sub { font-size: 0.8rem; color: var(--text-2); }
+.search-all { margin-top: 4px; border-top: 1px solid var(--border); border-radius: 0; padding: 10px 8px; }
+.search-all .search-title { color: var(--accent); font-weight: 500; }
+.search-empty { margin: 12px 8px; color: var(--text-2); }
+.search-foot { margin: 0; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+.search-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); }
+@media print { .search-toggle, .search-dialog { display: none !important; } }
+
+/* the Games page (games.html): find a game, then every game's lines the way a sportsbook lays them out */
+.games-find { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 20px; margin: 4px 0 24px; }
+.games-find .filter-row { margin: 0; }
+.games-search input { min-width: min(260px, 70vw); }
+.games-sports-wrap { max-width: 100%; overflow-x: auto; padding-bottom: 4px; }
+.seg .seg-count { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; opacity: 0.85; }
+.games-list { display: grid; gap: 16px; }
+.games-list > .day-divider { margin-top: 8px; }
+.game-card { padding: 16px 18px; }
+.game-card.highlight { outline: 3px solid var(--accent-3); outline-offset: 3px; animation: ring 2.4s ease-out both; }
+.game-head { display: grid; gap: 6px; margin-bottom: 12px; justify-items: start; }
+.game-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.game-title { font-size: 1.15rem; margin: 2px 0 0; letter-spacing: -0.01em; }
+.meta.game-meta { font-size: 0.85rem; color: var(--text-2); }
+table.game-lines { width: 100%; min-width: 340px; border-collapse: separate; border-spacing: 6px; margin: -6px; table-layout: fixed; }
+table.game-lines thead th { font-size: 0.8rem; color: var(--muted); font-weight: 600; text-align: left; padding: 0 2px; }
+table.game-lines .line-side { width: 26%; }
+table.game-lines tbody th { text-align: left; font-weight: 600; font-size: 0.9rem; padding: 0 2px; }
+table.game-lines tbody th .team-logo { vertical-align: middle; margin-right: 6px; }
+.line-team { vertical-align: middle; }
+.line-cell { padding: 0; vertical-align: top; }
+.line-btn { display: grid; gap: 2px; height: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); color: var(--text); }
+a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
+.st-pick .line-btn { border-color: var(--accent-3); box-shadow: inset 0 0 0 1px var(--accent-3); }
+.st-watch .line-btn { border-color: var(--accent-4); }
+.line-top { display: flex; justify-content: space-between; gap: 6px; font-family: var(--font-mono); font-size: 0.9rem; }
+.line-point { color: var(--text-2); }
+.line-price { font-weight: 600; }
+.line-book { font-size: 0.75rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.line-prob { display: flex; justify-content: space-between; gap: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-2); }
+.line-hit { color: var(--text); }
+.line-edge { color: var(--muted); }
+.line-btn .badge { justify-self: start; margin-top: 2px; }
+.no-model .line-btn, .no-model .line-hit { color: var(--muted); }
+.line-empty { text-align: center; vertical-align: middle; color: var(--muted); }
+.game-books { margin-top: 12px; }
+.game-books summary { cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+.game-books .table-wrap { margin-top: 8px; }
+.game-books table.data th, .game-books table.data td { padding: 6px 8px; font-size: 0.82rem; }
+.game-books table.data td.best { color: var(--text); font-weight: 600; background: var(--surface-2); }
+@media (max-width: 600px) {
+  .game-card { padding: 14px 12px; }
+  table.game-lines .line-side { width: 22%; }
+  table.game-lines tbody th .team-logo { display: block; margin: 0 0 4px; }
+  .line-btn { padding: 6px; }
+  .line-top, .line-prob { flex-direction: column; gap: 0; }
+  .line-book { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .game-card.highlight { animation: none; } }
