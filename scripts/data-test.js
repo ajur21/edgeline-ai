@@ -576,6 +576,17 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   })(), JSON.stringify(MKM.rows.filter(r => r.marketKey === "h2h").map(r => [r.pick, r.modelProb, r.bar])));
   const rn = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-mls-noon-")), now: "2026-11-06T15:00:00Z", slot: "noon" });
   check("mls: the noon run leaves MLS (and NFL, and the Premier League) to the afternoon run without asking ESPN or The Odds API", rn.added === 0 && ["soccer_usa_mls", "soccer_epl", "americanfootball_nfl"].every(k => { const p = rn.plan.find(x => x.sport === k); return p && !p.fetch && p.why === "fetched on the afternoon run only"; }) && rn.plan.find(x => x.sport === "basketball_nba").fetch, JSON.stringify(rn.plan));
+  /* the next noon run into the same files: MLS is not fetched, but its games are still ahead, so its rows stay on the
+     market board (and the Games page) with the time they were priced, the pick still flagged as one */
+  const firstAt = MKM.generatedAt, rCarry = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: tmpM, now: "2026-11-06T17:00:00Z", slot: "noon" });
+  const sbC = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpM, "market.js"), "utf8"), sbC);
+  const kept = sbC.window.MARKET_DATA.rows.filter(r => r.sportKey === "soccer_usa_mls");
+  check("market: a sport the run did not fetch keeps its rows for games still ahead, each with when it was priced, the pick still a pick (Sunday's noon run never empties the NFL from the Games page)", rCarry.plan.some(p => p.sport === "soccer_usa_mls" && !p.fetch) && kept.length === MKM.rows.filter(r => r.sportKey === "soccer_usa_mls").length && kept.length > 0 && kept.every(r => r.pricedAt === firstAt) && kept.filter(r => r.status === "pick").length === 1 && sbC.window.MARKET_DATA.games === 2, JSON.stringify(kept.map(r => [r.pick, r.status, r.pricedAt])));
+  check("market: a carried row leaves once its game has started, and nothing is carried for a sport the run fetched", (() => {
+    const log = JSON.parse(fs.readFileSync(path.join(tmpM, "picks-log.json"), "utf8"));
+    const skip = [{ sport: "soccer_usa_mls", fetch: false }], fetched = [{ sport: "soccer_usa_mls", fetch: true }];
+    return P.carriedRows(tmpM, skip, new Date("2026-11-06T18:00:00Z"), log).length === kept.length && P.carriedRows(tmpM, skip, new Date("2026-11-08T17:00:00Z"), log).length === 0 && P.carriedRows(tmpM, fetched, new Date("2026-11-06T18:00:00Z"), log).length === 0;
+  })());
   fs.rmSync(tmpM, { recursive: true, force: true });
   check("model: MLS from its own calibration (results only): home edge 0.5 goals, a quarter of last season carried over 20 games, the home side's own margin table; at the league's home edge the home side wins about 48%, the draw 26%; its season is the calendar year", (() => {
     const c = M.SPORT.soccer_usa_mls, gm = { sportKey: "soccer_usa_mls", home: "H", away: "A", margin: 0.5, total: 3, sd: 1.63, sdTotal: 1.71 };

@@ -545,6 +545,22 @@ function fetchDecision(cfg, o) {
   }
   return { fetch: true, why: why };
 }
+/* the last market file's rows for the sports this run did not fetch, games still ahead only, each with `pricedAt` (when
+   its prices were read) and its pick / watch flag re-read from the log now (a pick no longer pending is a plain row) */
+function carriedRows(dataDir, plan, now, log) {
+  const skipped = new Set((plan || []).filter(p => !p.fetch).map(p => p.sport));
+  if (!skipped.size) return [];
+  let prev = null;
+  try { const vm = require("vm"), sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(dataDir, "market.js"), "utf8"), sb); prev = sb.window.MARKET_DATA; } catch (e) { prev = null; }
+  if (!prev || prev.sample || !Array.isArray(prev.rows)) return [];
+  const pending = new Set(log.filter(e => !e.type && e.status === "pending").map(e => e.id));
+  return prev.rows.filter(r => skipped.has(r.sportKey) && Date.parse(r.commence) > now.getTime()).map(function (r) {
+    const c = Object.assign({}, r, { pricedAt: r.pricedAt || prev.generatedAt });
+    c.pickId = r.pickId && pending.has(r.pickId) ? r.pickId : null;
+    c.status = c.pickId ? "pick" : isWatch(c) ? "watch" : "none";
+    return c;
+  });
+}
 /* The Odds API wants whole seconds: 2026-11-05T17:00:00Z */
 function apiTime(ms) { return new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z"); }
 function oddsParams(cfg, now) {
@@ -673,6 +689,10 @@ async function run(opts) {
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
   marketRows.forEach(function (r) { r.pickId = pendingByKey[r.key] || null; r.status = r.pickId ? "pick" : isWatch(r) ? "watch" : "none"; delete r.key; });
+  /* a sport this run did not fetch (its slot, the noon guard, the quota) keeps its rows from the last file for games
+     still ahead, so Sunday's noon run never empties the NFL from the market board and the Games page an hour before
+     kickoff. Each carried row says when it was priced (`pricedAt`) and is re-flagged against the log as it stands now. */
+  carriedRows(dataDir, plan, now, log).forEach(r => marketRows.push(r));
   marketRows.sort((a, b) => edgeNum(b) - edgeNum(a));
   const marketData = { sample: false, source: "The Odds API", basis: "game", generatedAt: now.toISOString(), threshold: RULES.minEdge, watch: RULES.watchEdge,
     barRule: { floor: RULES.minEdge, z: RULES.barZ, watchShare: RULES.watchShare, medium: RULES.medium, high: RULES.high }, bars: barsBySport(marketRows),
@@ -848,4 +868,4 @@ if (require.main === module) {
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
