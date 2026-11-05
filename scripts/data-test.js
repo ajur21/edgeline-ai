@@ -164,6 +164,11 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const cost = d => M.injuryCost([sk(d)], nhl, null, share);
     return before === 0 && near(half, 0.5, 1e-9) && after === 1 && none === 1 && cost("2026-10-01T12:00Z").cost === 0 && cost("2026-10-01T12:00Z").out.length === 0 && near(cost("2026-10-16T12:00Z").cost, 0.06, 1e-9) && near(cost("2026-10-30T12:00Z").cost, 0.12, 1e-9) && M.unseenShare(null)(sk("2026-10-30T12:00Z")) === 1;
   })());
+  check("model: a team starts from part of last season instead of zero (carry-over), each league's last season named as ESPN numbers it; without one, the old shrinkage", (() => {
+    const nba = M.SPORT.basketball_nba, f = { gp: 8, margin: 4, last5: 4 };
+    const seasons = M.lastSeasonParam("basketball_nba", Date.parse("2026-11-05T00:00Z")) === "2026" && M.lastSeasonParam("icehockey_nhl", Date.parse("2027-02-01T00:00Z")) === "2026" && M.lastSeasonParam("americanfootball_nfl", Date.parse("2027-01-03T00:00Z")) === "2025" && M.lastSeasonParam("soccer_epl", Date.parse("2026-11-07T00:00Z")) === "2025" && M.lastSeasonParam("baseball_mlb", Date.parse("2027-06-01T00:00Z")) === "2026";
+    return seasons && near(M.rating(f, nba, 2), (8 * 4 + nba.carry.k * nba.carry.c * 2) / (8 + nba.carry.k), 1e-9) && near(M.rating(f, nba), 4 * 8 / (8 + nba.k), 1e-9) && near(M.rating({ gp: 0 }, nba, 5), nba.carry.c * 5, 1e-9) && M.rating({ gp: 0 }, nba) === 0;
+  })());
   check("model: a team's season counts soccer league matches (their season ids, not type 2) and leaves out US preseason and postseason", (() => {
     const ev = (id, type, date, us, them) => ({ date: date, seasonType: { type: type }, competitions: [{ status: { type: { completed: true } }, competitors: [{ homeAway: "home", team: { id: "1" }, score: { value: us } }, { homeAway: "away", team: { id: "2" }, score: { value: them } }] }] });
     const soccer = M.teamForm({ events: [ev("a", 13481, "2026-10-01T15:00Z", 2, 1), ev("b", 13481, "2026-10-08T15:00Z", 0, 0)] }, "1", Date.parse("2026-11-01T00:00Z"));

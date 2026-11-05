@@ -45,16 +45,21 @@ const EPL_SHAPE = { margin: [[0,0.23844],[1,0.37178],[2,0.23222],[3,0.10871],[4,
    differential is mostly noise). MLB (3 seasons): k 60 and no form (the old k 10 / form 0.4 predicted margins worse
    than no rating at all), totals pulled by 20 games, both markets from MLB_SHAPE. EPL (3 seasons): k 8, form 0.1, home
    0.24, totals pulled by 30 games, both markets from EPL_SHAPE (draws a quarter of matches).
+   carry: a team starts from part of last season's margin per game (c) instead of from zero, weighted as carry.k games,
+   so the first weeks of a season lean on last season rather than on a handful of games (fitted 2026-11-05 on held-out
+   seasons, results only: early-season error fell about 5% in the NBA, 3% in the NFL, 5% in the EPL; NHL kept to a
+   quarter of last season, the fit from its one full held-out season). A team with no last season in the league (a
+   promoted club) keeps the old k and starts from zero.
    scoringOut: injuries take nothing off a total, except an NFL quarterback out (2 points). A league’s scoring average
    already carries its usual injury load, and the per-player deductions pulled every total under: on 2026-11-05’s slates
    the NFL’s projected totals averaged 35.4 against a league 46.1, the NBA’s 5 points low, the NHL’s 0.4 goals low.
    Injury costs on the margin stay (both sides carry injuries, so they do not tilt one way). */
 const SPORT = {
-  basketball_nba:        { homeEdge: 1.9, sd: 14.3, sdTotal: 19, k: 6, form: 0.1, b2b: -1.5, rest3: 0.5,  out: (i, ppg) => ppg != null ? 0.12 * ppg : 1.2, soft: 0.5, scoringOut: () => 0 },
-  americanfootball_nfl:  { homeEdge: 2.3, sd: 13.3, sdTotal: 13.4, k: 6, form: 0.1, kTotal: 5, leagueGoals: 22.6, shape: NFL_SHAPE, b2b: 0, rest3: 0, out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: (ppg, i) => /QB/.test((i && i.pos) || "") ? 2 : 0, single: /QB/ },
-  icehockey_nhl:         { homeEdge: 0.24, sd: 2.4, sdTotal: 2.3, k: 35, form: 0.1, kTotal: 80, leagueGoals: 3.1, shape: NHL_SHAPE, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0, single: /^G$/ },
-  baseball_mlb:          { homeEdge: 0.03, sd: 4.5, sdTotal: 4.5, k: 60, form: 0, kTotal: 20, leagueGoals: 4.44, shape: MLB_SHAPE, b2b: 0, rest3: 0, out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0 },
-  soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
+  basketball_nba:        { homeEdge: 1.9, sd: 14.3, sdTotal: 19, k: 6, form: 0.1, carry: { k: 10, c: 0.6 }, b2b: -1.5, rest3: 0.5,  out: (i, ppg) => ppg != null ? 0.12 * ppg : 1.2, soft: 0.5, scoringOut: () => 0 },
+  americanfootball_nfl:  { homeEdge: 2.3, sd: 13.3, sdTotal: 13.4, k: 6, form: 0.1, carry: { k: 6, c: 0.4 }, kTotal: 5, leagueGoals: 22.6, shape: NFL_SHAPE, b2b: 0, rest3: 0, out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: (ppg, i) => /QB/.test((i && i.pos) || "") ? 2 : 0, single: /QB/ },
+  icehockey_nhl:         { homeEdge: 0.24, sd: 2.4, sdTotal: 2.3, k: 35, form: 0.1, carry: { k: 40, c: 0.25 }, kTotal: 80, leagueGoals: 3.1, shape: NHL_SHAPE, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0, single: /^G$/ },
+  baseball_mlb:          { homeEdge: 0.03, sd: 4.5, sdTotal: 4.5, k: 60, form: 0, carry: { k: 80, c: 0.5 }, kTotal: 20, leagueGoals: 4.44, shape: MLB_SHAPE, b2b: 0, rest3: 0, out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0 },
+  soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, carry: { k: 15, c: 0.75 }, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
 };
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 
@@ -86,7 +91,24 @@ function teamForm(sched, teamId, beforeMs) {
   return { gp: games.length, pf: avg(games.map(g => g.pf)), pa: avg(games.map(g => g.pa)), margin: avg(m), last5: avg(m.slice(0, 5)), wins: games.filter(g => g.margin > 0).length, losses: games.filter(g => g.margin < 0).length, games: games };
 }
 /* the rating: season margin leaning on recent form, pulled toward average when the sample is short */
-function rating(form, cfg) { if (!form || !form.gp) return 0; const w = cfg.form != null ? cfg.form : 0.4; const raw = (1 - w) * form.margin + w * form.last5; return raw * (form.gp / (form.gp + cfg.k)); }
+function rating(form, cfg, prior) {
+  const p = Number.isFinite(prior) && cfg.carry ? cfg.carry : null;
+  if (!form || !form.gp) return p ? p.c * prior : 0;
+  const w = cfg.form != null ? cfg.form : 0.4, raw = (1 - w) * form.margin + w * form.last5;
+  /* with last season's margin, the season so far leans on part of it (c) as carry.k games of evidence; without it, on zero */
+  return p ? (form.gp * raw + p.k * p.c * prior) / (form.gp + p.k) : raw * (form.gp / (form.gp + cfg.k));
+}
+/* the season before a game, as ESPN numbers it in each league's schedule URL: the NBA and NHL by the year a season ends,
+   the NFL and the Premier League by the year it starts, MLB by its calendar year */
+function lastSeasonParam(sportKey, commenceMs) {
+  const d = new Date(commenceMs); if (isNaN(d)) return null;
+  const y = d.getUTCFullYear(), m = d.getUTCMonth() + 1;
+  if (sportKey === "basketball_nba" || sportKey === "icehockey_nhl") return String((m >= 8 ? y + 1 : y) - 1);
+  if (sportKey === "americanfootball_nfl") return String((m >= 3 ? y : y - 1) - 1);
+  if (sportKey === "soccer_epl") return String((m >= 7 ? y : y - 1) - 1);
+  if (sportKey === "baseball_mlb") return String(y - 1);
+  return null;
+}
 
 /* ---------- injuries in the sport's points ---------- */
 /* cfg.single: a position only one player fills at a time (an NHL goalie, an NFL quarterback). A team loses its starter
@@ -122,7 +144,8 @@ function gameModel(input) {
   const cfg = SPORT[input.sportKey]; if (!cfg) return null;
   const hf = input.homeForm, af = input.awayForm;
   if (!hf || !af || !hf.gp || !af.gp) return null;
-  const rh = rating(hf, cfg), ra = rating(af, cfg);
+  const lastH = input.homeLast, lastA = input.awayLast;
+  const rh = rating(hf, cfg, lastH), ra = rating(af, cfg, lastA);
   const rest = t => input.rest && input.rest[t];
   let restAdj = 0; const restNotes = [];
   if (rest("home") && rest("home").b2b) { restAdj += cfg.b2b; if (cfg.b2b) restNotes.push({ side: "away", label: input.home + " are on the second night of a back-to-back" }); }
@@ -137,7 +160,8 @@ function gameModel(input) {
   const total = (sh(hf.pf, hf.gp) + sh(af.pa, af.gp) + sh(af.pf, af.gp) + sh(hf.pa, hf.gp)) / 2 - (ih.scoring + ia.scoring);
   const reasons = [];
   const fmt = n => (n > 0 ? "+" : "") + r1(n);
-  reasons.push({ side: rh >= ra ? "home" : "away", label: input.home + " rate " + fmt(rh) + " a game over " + hf.gp + " (" + hf.wins + "-" + hf.losses + "), " + input.away + " " + fmt(ra) + " over " + af.gp + " (" + af.wins + "-" + af.losses + ")" });
+  const lastTxt = (Number.isFinite(lastH) || Number.isFinite(lastA)) && cfg.carry ? "; last season " + (Number.isFinite(lastH) ? fmt(lastH) : "none") + " and " + (Number.isFinite(lastA) ? fmt(lastA) : "none") + " a game" : "";
+  reasons.push({ side: rh >= ra ? "home" : "away", label: input.home + " rate " + fmt(rh) + " a game over " + hf.gp + " (" + hf.wins + "-" + hf.losses + "), " + input.away + " " + fmt(ra) + " over " + af.gp + " (" + af.wins + "-" + af.losses + ")" + lastTxt });
   if (Math.abs(hf.last5 - hf.margin) >= cfg.sd / 4 && hf.gp >= 5) reasons.push({ side: hf.last5 > hf.margin ? "home" : "away", label: input.home + " trending: last five " + fmt(hf.last5) + " vs " + fmt(hf.margin) + " on the season" });
   if (Math.abs(af.last5 - af.margin) >= cfg.sd / 4 && af.gp >= 5) reasons.push({ side: af.last5 > af.margin ? "away" : "home", label: input.away + " trending: last five " + fmt(af.last5) + " vs " + fmt(af.margin) + " on the season" });
   reasons.push({ side: "home", label: "Home edge " + fmt(cfg.homeEdge) + " for " + input.home });
@@ -149,7 +173,7 @@ function gameModel(input) {
   const pace = hf.pf + hf.pa + af.pf + af.pa;
   reasons.push({ side: "total", label: "Combined scoring " + r1(hf.pf + hf.pa) + " a game in " + input.home + "'s games, " + r1(af.pf + af.pa) + " in " + input.away + "'s" + (L != null ? " (league average " + r1(2 * L) + ")" : "") + (ih.scoring + ia.scoring >= cfg.sdTotal / 10 ? "; scorers out take " + r1(ih.scoring + ia.scoring) + " off" : "") });
   return { sportKey: input.sportKey, home: input.home, away: input.away, margin: r1(margin), total: r1(total), sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp),
-    parts: { ratingHome: r1(rh), ratingAway: r1(ra), homeEdge: cfg.homeEdge, rest: r1(restAdj), injuriesHome: r1(-ih.cost), injuriesAway: r1(ia.cost), scoringOut: r1(ih.scoring + ia.scoring), pace: r1(pace / 2) },
+    parts: { ratingHome: r1(rh), ratingAway: r1(ra), lastHome: Number.isFinite(lastH) ? r1(lastH) : null, lastAway: Number.isFinite(lastA) ? r1(lastA) : null, homeEdge: cfg.homeEdge, rest: r1(restAdj), injuriesHome: r1(-ih.cost), injuriesAway: r1(ia.cost), scoringOut: r1(ih.scoring + ia.scoring), pace: r1(pace / 2) },
     reasons: reasons, thin: Math.min(hf.gp, af.gp) < 4 };
 }
 
@@ -260,13 +284,23 @@ async function forEvent(src, ctxlib, e, now, cache) {
   const m = ctxlib.findEvent(cache.scoreboards[sbKey], e.home, e.away); if (!m) return null;
   const sched = async id => { const k = e.sportKey + "|" + id; if (!(k in cache.schedules)) cache.schedules[k] = await src.schedule(e.sportKey, id); return cache.schedules[k]; };
   const hs = await sched(m.home.team.id), as = await sched(m.away.team.id);
+  /* last season's margin per game for each club (free, one request a club a run; none in the fixtures) */
+  const prevSeason = SPORT[e.sportKey].carry ? lastSeasonParam(e.sportKey, commenceMs) : null;
+  cache.lastSeason = cache.lastSeason || {};
+  const last = async id => {
+    if (!prevSeason || typeof src.scheduleSeason !== "function") return null;
+    const k = e.sportKey + "|" + id + "|" + prevSeason;
+    if (!(k in cache.lastSeason)) { const f = teamForm(await src.scheduleSeason(e.sportKey, id, prevSeason), id, null); cache.lastSeason[k] = f && f.gp >= 10 ? f.margin : null; }
+    return cache.lastSeason[k];
+  };
+  const lastH = await last(m.home.team.id), lastA = await last(m.away.team.id);
   if (!(e.sportKey in cache.injuries)) cache.injuries[e.sportKey] = await src.injuries(e.sportKey);
   const inj = cache.injuries[e.sportKey];
   /* a sport whose totals lean on the league's scoring reads it once a run from the standings (free, one request) */
   cache.league = cache.league || {};
   if (SPORT[e.sportKey].kTotal && !(e.sportKey in cache.league)) cache.league[e.sportKey] = typeof src.standings === "function" ? leagueGoalsFrom(await src.standings(e.sportKey)) : null;
   const ppgOf = cache.ppgOf || null;
-  const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey],
+  const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
     homeForm: teamForm(hs, m.home.team.id, commenceMs), awayForm: teamForm(as, m.away.team.id, commenceMs),
     homeInjuries: ctxlib.teamInjuries(inj, e.home), awayInjuries: ctxlib.teamInjuries(inj, e.away),
     rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgOf });
@@ -295,4 +329,4 @@ function ppgFromFaces(facesPath) {
 }
 function publicModel(gm) { return gm ? { margin: gm.margin, total: gm.total, sd: gm.sd, sdTotal: gm.sdTotal, gp: gm.gp, thin: gm.thin, parts: gm.parts } : null; }
 
-module.exports = { SPORT, NHL_SHAPE, teamForm, rating, injuryCost, unseenShare, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+module.exports = { SPORT, NHL_SHAPE, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };

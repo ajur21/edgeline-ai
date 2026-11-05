@@ -40,6 +40,8 @@ function liveSource() {
     odds: (sport, eventId) => get("https://sports.core.api.espn.com/v2/sports/" + ESPN_CORE[sport] + "/events/" + eventId + "/competitions/" + eventId + "/odds/" + DK_PROVIDER).catch(() => null),
     injuries: sport => get(site(sport) + "/injuries").catch(() => null),
     schedule: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/schedule").catch(() => null),
+    /* a past season's schedule (the model's carry-over); MLB needs the regular-season type spelled out */
+    scheduleSeason: (sport, teamId, season) => get(site(sport) + "/teams/" + teamId + "/schedule?season=" + season + (sport === "baseball_mlb" ? "&seasontype=2" : "")).catch(() => null),
     standings: sport => get("https://site.api.espn.com/apis/v2/sports/" + ESPN[sport] + "/standings").catch(() => null),
     geocode: city => get("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json").catch(() => null),
     forecast: (lat, lon, tz) => get("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,precipitation_probability,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&timezone=" + encodeURIComponent(tz || "auto") + "&forecast_days=7").catch(() => null),
@@ -55,6 +57,7 @@ function fixtureSource() {
     odds: async (sport, id) => read("ctx-odds-" + slug(sport) + "-" + id),
     injuries: async sport => read("ctx-injuries-" + slug(sport)),
     schedule: async (sport, id) => read("ctx-schedule-" + slug(sport) + "-" + id),
+    scheduleSeason: async (sport, id, season) => read("ctx-schedule-" + slug(sport) + "-" + id + "-" + season),
     standings: async sport => read("ctx-standings-" + slug(sport)),
     geocode: async city => read("ctx-geocode-" + norm(city)),
     forecast: async () => read("ctx-forecast"),
