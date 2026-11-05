@@ -69,9 +69,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # --slot: NFL and soccer are fetched on the afternoon run only, and a noon run gives way when the month's credits
+      # run short (scripts/update-data.js, SPORTS); a scheduled run takes its slot from the cron line, a dispatch from the input
       - name: Pull odds, grade results, rewrite data files
         if: ${{ !inputs.props_only }}
-        run: node scripts/update-data.js ${{ inputs.verbose && '--verbose' || '' }}
+        run: node scripts/update-data.js --slot ${{ github.event.schedule == '0 17 * * *' && 'noon' || github.event.schedule == '30 20 * * *' && 'afternoon' || inputs.slot || 'manual' }} ${{ inputs.verbose && '--verbose' || '' }}
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}

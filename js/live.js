@@ -11,8 +11,8 @@
    ========================================================================== */
 (function () {
   "use strict";
-  const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1" };
-  const BY_LEAGUE = { NFL: "football/nfl", NBA: "basketball/nba", MLB: "baseball/mlb", NHL: "hockey/nhl", "Premier League": "soccer/eng.1", "La Liga": "soccer/esp.1" };
+  const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1", soccer_usa_mls: "soccer/usa.1" };
+  const BY_LEAGUE = { NFL: "football/nfl", NBA: "basketball/nba", MLB: "baseball/mlb", NHL: "hockey/nhl", "Premier League": "soccer/eng.1", "La Liga": "soccer/esp.1", MLS: "soccer/usa.1" };
   const ET = "America/New_York";
   const BEFORE_MS = 20 * 60e3, AFTER_MS = 5 * 36e5; /* watch a game from 20 minutes before tip-off to 5 hours after */
   const POLL_LIVE = 60e3, POLL_IDLE = 5 * 60e3;
@@ -22,7 +22,7 @@
   function teamMatches(name, team) {
     if (!name || !team) return false;
     const n = norm(name), d = norm(team.displayName), nick = norm(team.name), loc = norm(team.location), short = norm(team.shortDisplayName), abbr = norm(team.abbreviation);
-    return n === d || n === short || n === abbr || (nick && n.endsWith(nick) && (loc === "" || n.indexOf(loc.slice(0, 4)) !== -1)) || (loc && n === loc);
+    return n === d || n === short || n === abbr || (nick && n.endsWith(nick) && (loc === "" || n.indexOf(loc.slice(0, 4)) !== -1)) || (loc && n === loc) || (window.EdgeLineTeams && window.EdgeLineTeams.clubCore ? window.EdgeLineTeams.clubCore(name) === window.EdgeLineTeams.clubCore(team.displayName) : false);
   }
   /* the side a pick is on, from the pipeline's outcome or, failing that, the pick label */
   function outcomeOf(p) {

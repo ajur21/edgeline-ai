@@ -14,7 +14,8 @@ const LEAGUES = [
   { sportKey: "baseball_mlb", sport: "MLB", path: "baseball/mlb" },
   { sportKey: "icehockey_nhl", sport: "NHL", path: "hockey/nhl" },
   { sportKey: "soccer_epl", sport: "Soccer", path: "soccer/eng.1" },
-  { sportKey: "soccer_spain_la_liga", sport: "Soccer", path: "soccer/esp.1" }
+  { sportKey: "soccer_spain_la_liga", sport: "Soccer", path: "soccer/esp.1" },
+  { sportKey: "soccer_usa_mls", sport: "Soccer", path: "soccer/usa.1" }
 ];
 const BASE = "https://site.api.espn.com/apis/site/v2/sports/";
 

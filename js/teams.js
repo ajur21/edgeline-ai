@@ -7,7 +7,7 @@
 (function () {
   "use strict";
   const CDN = "https://a.espncdn.com";
-  const SPORT_KEYS = { NBA: ["basketball_nba"], NFL: ["americanfootball_nfl"], MLB: ["baseball_mlb"], NHL: ["icehockey_nhl"], Soccer: ["soccer_epl", "soccer_spain_la_liga"] };
+  const SPORT_KEYS = { NBA: ["basketball_nba"], NFL: ["americanfootball_nfl"], MLB: ["baseball_mlb"], NHL: ["icehockey_nhl"], Soccer: ["soccer_epl", "soccer_usa_mls", "soccer_spain_la_liga"] };
   const HEADSHOT_PATH = { basketball_nba: "nba", americanfootball_nfl: "nfl", baseball_mlb: "mlb", icehockey_nhl: "nhl" };
   const el = function (tag, attrs, children) { return window.EdgeLine ? window.EdgeLine.el(tag, attrs, children) : document.createElement(tag); };
 
@@ -58,7 +58,20 @@
       const hits = lg.teams.filter(function (t) { const nick = norm(t.nick), full = norm(t.name); return (nick && (n === nick || n.endsWith(" " + nick))) || full.startsWith(n + " ") || n.startsWith(full + " "); });
       if (hits.length === 1) return hits[0];
     }
+    /* a soccer club under another spelling: "Chicago Fire" / "Chicago Fire FC", "Los Angeles FC" / "LAFC" (clubCore) */
+    const c = clubCore(name);
+    for (let i = 0; i < keys.length; i++) {
+      if (!/^soccer/.test(keys[i])) continue;
+      const hits = league(keys[i]).teams.filter(function (t) { return clubCore(t.name) === c || clubCore(t.short) === c; });
+      if (hits.length === 1) return hits[0];
+    }
     return null;
+  }
+  /* the club suffix dropped and the two MLS clubs ESPN names differently mapped (as scripts/context.js clubCore) */
+  const CLUB_ALIAS = { losangeles: "lafc", newyorkredbulls: "redbullnewyork", nyredbulls: "redbullnewyork" };
+  function clubCore(s) {
+    const c = norm(s).split(" ").filter(function (w) { return w && !/^(fc|sc|cf|afc)$/.test(w); }).join("");
+    return CLUB_ALIAS[c] || c;
   }
   /* home and away from the record, or parsed from "Away @ Home" / "Home vs. Away" (soccer) when a leg only carries the event label */
   function sides(p) {
@@ -182,5 +195,5 @@
     if (s === "home" || s === "away") { const t = teamFor(p, s), node = el("span", { class: "mu-team is-pick mu-solo", title: p[s] }, [logo(t, p[s], px || 28)]); if (t && t.color) node.style.setProperty("--team", t.color); return node; }
     return matchup(p, { size: "sm", abbr: false });
   }
-  window.EdgeLineTeams = { sides: sides, sideLogo: sideLogo, find: find, teamFor: teamFor, logo: logo, side: side, matchup: matchup, tint: tint, headshot: headshot, face: face, faces: faces, facesFor: facesFor, initials: initials, resized: resized };
+  window.EdgeLineTeams = { sides: sides, sideLogo: sideLogo, find: find, clubCore: clubCore, teamFor: teamFor, logo: logo, side: side, matchup: matchup, tint: tint, headshot: headshot, face: face, faces: faces, facesFor: facesFor, initials: initials, resized: resized };
 })();

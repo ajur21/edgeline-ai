@@ -12,6 +12,8 @@
    Flags: --out <dir>   write data files elsewhere (tests)
           --now <iso>   pretend it is this moment (tests)
           --verbose     print every candidate edge per sport, even below the threshold
+          --slot <name> the daily run this is (noon | afternoon | manual, the default): sports with `slots` are fetched
+                        only on theirs, and a noon run gives way when the month's credits run short (see SPORTS)
           --track       no Odds API calls: grade finished games from the free sources (ESPN, SportsGameOdds), refresh
                         DraftKings numbers (ESPN, free) on the board, rebuild breakdowns, rewrite picks.js (and
                         performance.js when anything was graded)
@@ -22,17 +24,30 @@ const path = require("path");
 const context = require("./context.js");
 const sgo = require("./sgo.js");
 const model = require("./model.js");
+const SLOT_TIMES = require("./slot-due.js").SLOTS; /* the daily runs' UTC times: noon [17, 0], afternoon [20, 30] */
 
 const API = "https://api.the-odds-api.com/v4";
 let VERBOSE = false;
-/* days: Eastern weekdays (0 = Sunday) on which to fetch; omitted = every day. With the run at 4:30 PM ET and a
-   36-hour window, Wednesday covers Thursday night football, Saturday covers the Sunday slate, Friday covers weekend soccer. */
+/* Which sports a full run fetches (2026-11-05; the owner: "we still need to do nfl and mlb and mls"), cheapest first:
+   - The Odds API marks a sport out of season inactive on /sports (free), and a request that returns no events costs
+     nothing (its docs: "If no events are returned, the request will not count against the usage quota"); the odds
+     request asks only for games starting inside the pick window (commenceTimeFrom/To), so a sport with no game in the
+     window costs nothing either. A request with events costs markets x regions (ten named bookmakers = one region):
+     3 a sport, 2 for soccer.
+   - ESPN's scoreboard (free) is read first for every Eastern day the window touches; a sport with no game starting
+     inside it is not asked at all (this covers NFL Thursdays, Saturdays and holidays, and the off-season).
+   - days: the fallback when ESPN cannot be read (Eastern weekdays, 0 = Sunday; omitted = every day).
+   - slots: the daily runs that fetch the sport (the workflow passes --slot noon|afternoon; a manual run fetches every
+     sport). The weekly sports go on the afternoon run only: with the 36-hour window it still sees the next day's
+     games (Friday's covers Saturday's soccer, Saturday's covers Sunday's NFL), and two runs a day for every sport is
+     more than the free tier's 500 credits a month (see the request budget in CLAUDE.md). */
 const SPORTS = [
-  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 6, 0, 1] },
+  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 4, 6, 0, 1], slots: ["afternoon"] },
   { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
   { key: "baseball_mlb", sport: "MLB", league: "MLB", markets: ["h2h", "spreads", "totals"], spreadLabel: "Run line" },
   { key: "icehockey_nhl", sport: "NHL", league: "NHL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Puck line" },
-  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0] }
+  { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0], slots: ["afternoon"] },
+  { key: "soccer_usa_mls", sport: "Soccer", league: "MLS", markets: ["h2h", "totals"], goals: true, days: [2, 3, 5, 6, 0], slots: ["afternoon"] }
   /* La Liga (soccer_spain_la_liga) is off to stay inside the free request tier; add it back here when the budget allows. */
 ];
 /* Pinnacle anchors the fair line; the rest are the books a pick can name. Ten bookmakers cost the same as one region. */
@@ -57,6 +72,7 @@ const RULES = {
   voidAfterDays: 7,     // give up on ungraded events after this long
   windowDays: 30,       // performance window
   minRequestsLeft: 25,  // stop fetching odds when the API quota runs this low
+  afternoonReserve: 10, // a noon run keeps this many credits back for every afternoon run left before the quota resets on the 1st (the afternoon run costs about 9 with NBA, NHL, NFL and soccer)
   sgoReserve: 150,      // leave this many SportsGameOdds entities untouched each month (free tier: 2,500)
   sgoTrackWindowHours: 8, // in --track runs, spend SportsGameOdds entities only on games starting within this many hours
   watchEdge: 0.015,     // a point and a half over the price: shown on the market board as "watch", never a pick
@@ -348,7 +364,9 @@ async function gradeStarted(log, now, deps) {
         const m = context.findEvent(sb, e.home, e.away);
         if (m) {
           const type = m.comp.status && m.comp.status.type, flag = type && typeof type.completed === "boolean" ? type.completed : undefined;
-          if (isFinal(flag, e.commence, now) && m.home.score != null && m.away.score != null) scoreEv = fromScores(e, m.home.score, m.away.score);
+          /* soccer settles on the score after 90 minutes: a playoff tie's extra time is taken back out (null: unreadable, wait) */
+          const sc = /^soccer_/.test(e.sportKey || "") ? context.regulationScore(m) : { home: m.home.score, away: m.away.score };
+          if (isFinal(flag, e.commence, now) && sc && sc.home != null && sc.away != null) scoreEv = fromScores(e, sc.home, sc.away);
           else live = flag === false;
         }
       } catch (err) { scoreEv = null; }
@@ -477,14 +495,91 @@ function summarize(log, now) {
   return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recentBasis, byDate: byDate, potd: potd, parlays: parlays, clv: clv, byBasis: byBasis };
 }
 
+/* ---------- which sports a run fetches (see SPORTS) ---------- */
+function oddsCost(cfg) { return cfg.markets.length; } /* markets x regions; ten named bookmakers count as one region */
+/* a sport with `slots` is fetched only on those daily runs; a manual run (or none named) fetches every sport */
+function slotAllows(cfg, slot) { return !cfg.slots || !slot || slot === "manual" || cfg.slots.indexOf(slot) !== -1; }
+/* ESPN's scoreboard (free) for every Eastern day the pick window touches: how many games start inside the window, and
+   whether any day could not be read (null, or no events list). Postponed and cancelled games do not count. */
+async function espnGames(src, cfg, now) {
+  const t0 = now.getTime(), horizon = t0 + RULES.horizonHours * 36e5, days = [];
+  for (let t = t0; t < horizon + 864e5; t += 864e5) { const d = etDate(new Date(Math.min(t, horizon))).replace(/-/g, ""); if (days.indexOf(d) === -1) days.push(d); }
+  let games = 0, failed = 0;
+  for (const d of days) {
+    let sb = null;
+    try { sb = await src.scoreboard(cfg.key, d); } catch (err) { sb = null; }
+    if (!sb || !Array.isArray(sb.events)) { failed++; continue; }
+    sb.events.forEach(function (e) {
+      const t = Date.parse(e.date), c = e.competitions && e.competitions[0], type = (c && c.status && c.status.type) || (e.status && e.status.type) || {};
+      if (t > t0 && t < horizon && !/POSTPONED|CANCELED|CANCELLED|SUSPENDED/i.test(type.name || "")) games++;
+    });
+  }
+  return { games: games, failed: failed, days: days };
+}
+/* the afternoon runs (20:30 UTC, scripts/slot-due.js) still to come before The Odds API resets its credits, on the 1st
+   of every month (its FAQ), counting today's if it has not run yet */
+function afternoonsLeft(now) {
+  const hm = SLOT_TIMES.afternoon, y = now.getUTCFullYear(), m = now.getUTCMonth(), end = Date.UTC(y, m + 1, 1);
+  let n = 0;
+  for (let d = Date.UTC(y, m, now.getUTCDate()); d < end; d += 864e5) if (d + (hm[0] * 60 + hm[1]) * 6e4 > now.getTime()) n++;
+  return n;
+}
+/* fetch this sport's odds this run? { fetch, why }. o: { slot, espn: espnGames(), weekday (Eastern, 0 = Sunday), fixture,
+   remaining (credits left, from the last response), afternoonsLeft }.
+   1. the slot rule (slotAllows); 2. ESPN: a game inside the window fetches, none skips, and only when a day could not be
+   read and no game was found does the sport's `days` rule decide (ignored on fixtures); 3. the noon guard: a noon run
+   spends only what the month can spare after RULES.afternoonReserve credits for every afternoon run left before the
+   reset, so when credits run short the noon runs give way first and the afternoon runs (closer to the evening games)
+   last to the 1st. */
+function fetchDecision(cfg, o) {
+  if (!slotAllows(cfg, o.slot)) return { fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" };
+  const e = o.espn;
+  let why;
+  if (e && e.games > 0) why = e.games + " game" + (e.games === 1 ? "" : "s") + " inside " + RULES.horizonHours + " hours on ESPN";
+  else if (e && !e.failed) return { fetch: false, why: "no game inside " + RULES.horizonHours + " hours on ESPN" };
+  else if (!o.fixture && cfg.days && cfg.days.indexOf(o.weekday) === -1) return { fetch: false, why: "ESPN unreadable; not one of its days" };
+  else why = "ESPN unreadable; " + (cfg.days ? "one of its days" : "every day");
+  if (o.slot === "noon" && o.remaining != null && o.afternoonsLeft != null) {
+    const keep = RULES.minRequestsLeft + o.afternoonsLeft * RULES.afternoonReserve;
+    if (o.remaining - oddsCost(cfg) < keep) return { fetch: false, why: "noon run gives way: " + o.remaining + " credits left, " + keep + " kept for the " + o.afternoonsLeft + " afternoon runs to the reset" };
+  }
+  return { fetch: true, why: why };
+}
+/* the last market file's rows for the sports this run did not fetch, games still ahead only, each with `pricedAt` (when
+   its prices were read) and its pick / watch flag re-read from the log now (a pick no longer pending is a plain row) */
+function carriedRows(dataDir, plan, now, log) {
+  const skipped = new Set((plan || []).filter(p => !p.fetch).map(p => p.sport));
+  if (!skipped.size) return [];
+  let prev = null;
+  try { const vm = require("vm"), sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(dataDir, "market.js"), "utf8"), sb); prev = sb.window.MARKET_DATA; } catch (e) { prev = null; }
+  if (!prev || prev.sample || !Array.isArray(prev.rows)) return [];
+  const pending = new Set(log.filter(e => !e.type && e.status === "pending").map(e => e.id));
+  return prev.rows.filter(r => skipped.has(r.sportKey) && Date.parse(r.commence) > now.getTime()).map(function (r) {
+    const c = Object.assign({}, r, { pricedAt: r.pricedAt || prev.generatedAt });
+    c.pickId = r.pickId && pending.has(r.pickId) ? r.pickId : null;
+    c.status = c.pickId ? "pick" : isWatch(c) ? "watch" : "none";
+    return c;
+  });
+}
+/* The Odds API wants whole seconds: 2026-11-05T17:00:00Z */
+function apiTime(ms) { return new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z"); }
+function oddsParams(cfg, now) {
+  const p = { bookmakers: BOOKS.join(","), markets: cfg.markets.join(","), oddsFormat: "american" };
+  if (now) { p.commenceTimeFrom = apiTime(now.getTime()); p.commenceTimeTo = apiTime(now.getTime() + RULES.horizonHours * 36e5); }
+  return p;
+}
+
 /* ---------- API ---------- */
 async function apiGet(pathname, params, key, usage) {
   const url = new URL(API + pathname);
   Object.keys(params).forEach(k => url.searchParams.set(k, params[k]));
   url.searchParams.set("apiKey", key);
   const res = await fetch(url);
-  const left = Number(res.headers.get("x-requests-remaining"));
+  /* x-requests-remaining / -used: the month's credits; x-requests-last: what this call cost (0 for an empty answer) */
+  const left = Number(res.headers.get("x-requests-remaining")), used = Number(res.headers.get("x-requests-used")), last = res.headers.get("x-requests-last");
   if (Number.isFinite(left)) usage.remaining = left;
+  if (Number.isFinite(used)) usage.used = used;
+  usage.last = last != null && Number.isFinite(Number(last)) ? Number(last) : null;
   if (!res.ok) throw new Error("Odds API " + res.status + " for " + pathname + ": " + (await res.text()).slice(0, 200));
   return res.json();
 }
@@ -495,9 +590,9 @@ async function run(opts) {
   const dataDir = opts.out || path.join(__dirname, "..", "data");
   const logPath = path.join(dataDir, "picks-log.json");
   const log = fs.existsSync(logPath) ? JSON.parse(fs.readFileSync(logPath, "utf8")) : [];
-  const usage = { remaining: null };
+  const usage = { remaining: null, used: null, last: null };
   if (opts.track) return trackRun(opts, now, dataDir, logPath, log);
-  const source = opts.fixture ? fixtureSource() : liveSource(opts.key, usage);
+  const source = opts.fixture ? fixtureSource(opts.oddsFixture) : liveSource(opts.key, usage);
   const ctxSource = context.source({ fixture: opts.fixture });
   const sgoSrc = sgo.source({ fixture: opts.fixture });
   const sgoBudget = sgoSrc.enabled ? await sgoSrc.usage() : null;
@@ -517,11 +612,17 @@ async function run(opts) {
   const modelCache = { ppgOf: model.ppgFromFaces(opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js")) };
   let modelled = 0, unmodelled = 0;
   const marketRows = []; /* every main-line market priced this run, pick or not: the market board */
+  const plan = []; /* per sport: fetched or not, why, and what it cost (x-requests-last) */
   for (const cfg of SPORTS) {
-    if (active && !active.has(cfg.key)) continue;
-    if (!opts.fixture && cfg.days && cfg.days.indexOf(etWeekday(now)) === -1) continue;
-    if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); continue; }
-    const events = await source.odds(cfg);
+    if (active && !active.has(cfg.key)) { plan.push({ sport: cfg.key, fetch: false, why: "out of season (The Odds API lists it inactive)" }); continue; }
+    if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); plan.push({ sport: cfg.key, fetch: false, why: "quota low" }); continue; }
+    /* the slot rule first (no ESPN call for a sport this run never fetches), then ESPN's schedule, then the noon guard */
+    if (!slotAllows(cfg, opts.slot)) { plan.push({ sport: cfg.key, fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" }); continue; }
+    const espn = await espnGames(ctxSource, cfg, now);
+    const d = fetchDecision(cfg, { slot: opts.slot, espn: espn, weekday: etWeekday(now), fixture: opts.fixture, remaining: usage.remaining, afternoonsLeft: afternoonsLeft(now) });
+    if (!d.fetch) { plan.push({ sport: cfg.key, fetch: false, why: d.why }); continue; }
+    const events = await source.odds(cfg, now);
+    plan.push({ sport: cfg.key, fetch: true, why: d.why, cost: usage.last, events: (events || []).length });
     const horizon = now.getTime() + RULES.horizonHours * 36e5;
     if (VERBOSE) console.log(cfg.key + ": " + (events || []).length + " events, " + (events || []).filter(ev => { const t = Date.parse(ev.commence_time); return t > now.getTime() && t < horizon; }).length + " within " + RULES.horizonHours + "h");
     for (const ev of events || []) {
@@ -588,6 +689,10 @@ async function run(opts) {
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
   marketRows.forEach(function (r) { r.pickId = pendingByKey[r.key] || null; r.status = r.pickId ? "pick" : isWatch(r) ? "watch" : "none"; delete r.key; });
+  /* a sport this run did not fetch (its slot, the noon guard, the quota) keeps its rows from the last file for games
+     still ahead, so Sunday's noon run never empties the NFL from the market board and the Games page an hour before
+     kickoff. Each carried row says when it was priced (`pricedAt`) and is re-flagged against the log as it stands now. */
+  carriedRows(dataDir, plan, now, log).forEach(r => marketRows.push(r));
   marketRows.sort((a, b) => edgeNum(b) - edgeNum(a));
   const marketData = { sample: false, source: "The Odds API", basis: "game", generatedAt: now.toISOString(), threshold: RULES.minEdge, watch: RULES.watchEdge,
     barRule: { floor: RULES.minEdge, z: RULES.barZ, watchShare: RULES.watchShare, medium: RULES.medium, high: RULES.high }, bars: barsBySport(marketRows),
@@ -601,7 +706,7 @@ async function run(opts) {
   writePicks(dataDir, picksData);
   const perf = summarize(log, now);
   writePerformance(dataDir, perf);
-  return { added: fresh.length, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+  return { added: fresh.length, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, used: usage.used, plan: plan, slot: opts.slot || "manual", playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
 }
 const GENERATED = "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\n";
 function writePicks(dataDir, data) { fs.writeFileSync(path.join(dataDir, "picks.js"), GENERATED + "window.PICKS_DATA = " + JSON.stringify(data, null, 2) + ";\n"); }
@@ -718,15 +823,20 @@ function liveSource(key, usage) {
   if (!key) throw new Error("ODDS_API_KEY is not set");
   return {
     activeSports: async function () { const list = await apiGet("/sports", {}, key, usage); return new Set(list.filter(s => s.active).map(s => s.key)); },
-    odds: function (cfg) { return apiGet("/sports/" + cfg.key + "/odds", { bookmakers: BOOKS.join(","), markets: cfg.markets.join(","), oddsFormat: "american" }, key, usage); },
+    /* only the games inside the pick window: an answer with none costs nothing. Should the API ever refuse the window
+       (a 4xx names it), ask once more without it, as before 2026-11-05 */
+    odds: async function (cfg, now) {
+      try { return await apiGet("/sports/" + cfg.key + "/odds", oddsParams(cfg, now), key, usage); }
+      catch (err) { if (!now || !/ 4\d\d /.test(err.message) || !/commenceTime/i.test(err.message)) throw err; console.warn("Odds API refused the time window for " + cfg.key + "; asking without it"); return apiGet("/sports/" + cfg.key + "/odds", oddsParams(cfg, null), key, usage); }
+    },
     scores: function (sportKey) { return apiGet("/sports/" + sportKey + "/scores", { daysFrom: 3 }, key, usage); }
   };
 }
-function fixtureSource() {
+function fixtureSource(oddsFile) {
   const read = f => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", f), "utf8"));
   return {
     activeSports: async function () { return null; },
-    odds: async function (cfg) { return read("odds.json").filter(e => e.sport_key === cfg.key); },
+    odds: async function (cfg) { return read(oddsFile || "odds.json").filter(e => e.sport_key === cfg.key); },
     scores: async function (sportKey) { return read("scores.json").filter(e => e.sport_key === sportKey); }
   };
 }
@@ -738,15 +848,24 @@ function parseArgs(argv) {
     else if (argv[i] === "--track") o.track = true;
     else if (argv[i] === "--out") o.out = argv[++i];
     else if (argv[i] === "--now") o.now = argv[++i];
+    else if (argv[i] === "--slot") o.slot = argv[++i]; /* noon | afternoon | manual (the workflow passes it; see SPORTS) */
     else if (argv[i] === "--verbose") VERBOSE = true;
   }
   return o;
+}
+/* the run's Odds API spend, one line for the Actions log: "Odds API (afternoon run): NBA 3, NHL 3 | skipped: NFL (no game inside 36 hours on ESPN)" */
+function planLine(r) {
+  const name = k => (SPORTS.find(s => s.key === k) || {}).league || k;
+  const got = (r.plan || []).filter(p => p.fetch).map(p => name(p.sport) + " " + (p.cost != null ? p.cost : "?") + " (" + p.events + " events)");
+  const skipped = (r.plan || []).filter(p => !p.fetch).map(p => name(p.sport) + " (" + p.why + ")");
+  return "Odds API (" + r.slot + " run): " + (got.length ? got.join(", ") : "nothing fetched") + (skipped.length ? " | skipped: " + skipped.join("; ") : "") + (r.remaining != null ? " | credits left " + r.remaining + (r.used != null ? ", used " + r.used : "") : "");
 }
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
     if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), ESPN requests: " + r.contextRequests); return; }
+    console.log(planLine(r));
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };

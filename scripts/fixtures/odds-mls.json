@@ -1,0 +1,49 @@
+[
+ {
+  "id": "mls-fix-1",
+  "sport_key": "soccer_usa_mls",
+  "sport_title": "MLS",
+  "commence_time": "2026-11-07T21:00:00Z",
+  "home_team": "New York Red Bulls",
+  "away_team": "Atlanta United FC",
+  "bookmakers": [
+   { "key": "pinnacle", "title": "Pinnacle", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "New York Red Bulls", "price": 108 }, { "name": "Atlanta United FC", "price": 240 }, { "name": "Draw", "price": 265 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -160, "point": 2.5 }, { "name": "Under", "price": 140, "point": 2.5 } ] } ] },
+   { "key": "draftkings", "title": "DraftKings", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "New York Red Bulls", "price": 105 }, { "name": "Atlanta United FC", "price": 230 }, { "name": "Draw", "price": 260 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -165, "point": 2.5 }, { "name": "Under", "price": 135, "point": 2.5 } ] } ] },
+   { "key": "fanduel", "title": "FanDuel", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "New York Red Bulls", "price": 110 }, { "name": "Atlanta United FC", "price": 225 }, { "name": "Draw", "price": 270 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -125, "point": 2.5 }, { "name": "Under", "price": 100, "point": 2.5 } ] } ] },
+   { "key": "betmgm", "title": "BetMGM", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "New York Red Bulls", "price": 100 }, { "name": "Atlanta United FC", "price": 235 }, { "name": "Draw", "price": 255 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -170, "point": 2.5 }, { "name": "Under", "price": 135, "point": 2.5 } ] } ] },
+   { "key": "williamhill_us", "title": "Caesars", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "New York Red Bulls", "price": 105 }, { "name": "Atlanta United FC", "price": 230 }, { "name": "Draw", "price": 260 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -160, "point": 2.5 }, { "name": "Under", "price": 130, "point": 2.5 } ] } ] }
+  ]
+ },
+ {
+  "id": "mls-fix-2",
+  "sport_key": "soccer_usa_mls",
+  "sport_title": "MLS",
+  "commence_time": "2026-11-08T00:00:00Z",
+  "home_team": "Seattle Sounders FC",
+  "away_team": "Los Angeles FC",
+  "bookmakers": [
+   { "key": "pinnacle", "title": "Pinnacle", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "Seattle Sounders FC", "price": 145 }, { "name": "Los Angeles FC", "price": 175 }, { "name": "Draw", "price": 255 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -135, "point": 2.5 }, { "name": "Under", "price": 115, "point": 2.5 } ] } ] },
+   { "key": "draftkings", "title": "DraftKings", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "Seattle Sounders FC", "price": 140 }, { "name": "Los Angeles FC", "price": 170 }, { "name": "Draw", "price": 250 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -140, "point": 2.5 }, { "name": "Under", "price": 110, "point": 2.5 } ] } ] },
+   { "key": "fanduel", "title": "FanDuel", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "Seattle Sounders FC", "price": 140 }, { "name": "Los Angeles FC", "price": 180 }, { "name": "Draw", "price": 260 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -130, "point": 2.5 }, { "name": "Under", "price": 105, "point": 2.5 } ] } ] },
+   { "key": "betmgm", "title": "BetMGM", "markets": [
+     { "key": "h2h", "outcomes": [ { "name": "Seattle Sounders FC", "price": 135 }, { "name": "Los Angeles FC", "price": 175 }, { "name": "Draw", "price": 250 } ] },
+     { "key": "totals", "outcomes": [ { "name": "Over", "price": -140, "point": 2.5 }, { "name": "Under", "price": 110, "point": 2.5 } ] } ] }
+  ]
+ }
+]
