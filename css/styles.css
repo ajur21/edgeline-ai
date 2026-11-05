@@ -8,6 +8,10 @@
 /* Hallmark · dismissed F4 · each hero pairs one filled primary with an outlined secondary; the picks pair is a segmented control */
 /* Hallmark · dismissed 64 · the mono chart labels are figures (units, totals), not words */
 /* Hallmark · dismissed F6 · .stat-value already sets tabular-nums; the hero figure inherits it */
+/* Hallmark · dismissed 56 · .subnav sits at top: var(--header-h) under the sticky header, measured by js/subnav.js; only the header is at 0 */
+/* Hallmark · waive 7b · the light theme is a daylight sky and its surfaces are white by design; the dark default tints every surface toward navy */
+/* Hallmark · note 67 · the chips that stay condensed uppercase (badges, rank, ticker, stat chips, book and team abbreviations, live clocks, field axis labels) are the locked scoreboard voice; every label, caption, table head and form label moved to the body face. "1-800-GAMBLER" is the helpline's own spelling */
+/* Hallmark · note 54 · one kicker above each page's h1 stays as the locked scoreboard voice; every section eyebrow was folded into its heading */
 /* ==========================================================================
    EdgeLine AI — site styles
    Layout: left-aligned editorial grid, hairline rules over shadows, cards
