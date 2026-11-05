@@ -91,7 +91,9 @@ function restFromSchedule(sched, teamId, commenceMs) {
   }
   if (!dates.length) return null;
   dates.sort((a, b) => b - a);
-  const restDays = Math.floor((commenceMs - dates[0]) / DAY);
+  /* calendar days apart in Eastern time: a game the night before is a back-to-back whatever the tip-off hours say */
+  const dayMs = s => Date.parse(etDate(new Date(s)) + "T12:00:00Z");
+  const restDays = Math.round((dayMs(commenceMs) - dayMs(dates[0])) / DAY);
   return { restDays: restDays, b2b: restDays <= 1, lastGame: new Date(dates[0]).toISOString().slice(0, 10), gamesLast7: dates.filter(t => commenceMs - t <= 7 * DAY).length };
 }
 /* ---------- DraftKings numbers from ESPN ---------- */
@@ -198,7 +200,7 @@ async function closingOdds(src, e) {
 }
 /* track mode: refresh only the DraftKings numbers on every board entry (one scoreboard call per sport and day) */
 async function trackOdds(entries, opts) {
-  const src = opts && opts.fixture ? fixtureSource() : liveSource();
+  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource() : liveSource());
   let changed = 0;
   for (const e of entries) {
     if (!ESPN[e.sportKey]) continue;
@@ -238,7 +240,7 @@ async function weatherFor(src, venue, commenceMs) {
 
 /* ---------- gather context for every board entry ---------- */
 async function fetchContext(entries, opts) {
-  const src = opts && opts.fixture ? fixtureSource() : liveSource();
+  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource() : liveSource());
   const out = {}, injCache = {};
   for (const e of entries) {
     if (!ESPN[e.sportKey]) continue;
@@ -268,42 +270,46 @@ async function fetchContext(entries, opts) {
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 function pickTeam(e) { return e.marketKey === "totals" ? null : (e.outcome && e.outcome.name === "Draw" ? null : e.outcome && e.outcome.name); }
 function buildBreakdown(e, ctx, rules) {
-  rules = rules || { minEdge: 0.01, medium: 0.02, high: 0.035 };
+  rules = rules || { minEdge: 0.03, medium: 0.05, high: 0.08 };
   const pts = n => (n * 100).toFixed(1) + " points";
+  const pc = n => (n * 100).toFixed(1) + "%";
   const tier = e.confidence;
-  const tierWhy = "Edge of " + pts(e.edge) + " over the fair line. Lean starts at " + pts(rules.minEdge) + ", Medium at " + pts(rules.medium) + ", High at " + pts(rules.high) + ". Confidence is the size of the price edge only; the context below is what could move the result, not the number.";
+  const tierWhy = "Our probability for this side is " + pc(e.modelProb) + ", from the game data: results and margins this season, recent form, rest, the injury report and home edge. " + (e.book ? "The price at " + e.book : "The best price") + " implies " + pc(impliedP(e.odds)) + ", so the edge is " + pts(e.edge) + ". Lean starts at " + pts(rules.minEdge) + ", Medium at " + pts(rules.medium) + ", High at " + pts(rules.high) + ". Nothing here is graded against other books' prices; the market lines below are shown only for reference.";
   const support = [], risks = [], notes = [];
-  if (e.anchor && e.anchorShift) notes.push("Fair line comes from " + e.anchor + ", carried across a line gap: " + e.anchorNote + " A carried price is a fair estimate, not a quote.");
-  else if (e.anchor) support.push("Fair line comes from " + e.anchor + "'s de-vigged price, the sharpest public market."); else risks.push("No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.");
-  if (e.books >= 6) support.push(e.books + " books price this exact line, so the fair number is well established."); else if (e.books <= 4) risks.push("Only " + e.books + " books price this exact line; thin markets move fast.");
+  if (e.model && e.model.reasons) { (e.model.reasons.for || []).forEach(t => support.push(t + ".")); (e.model.reasons.against || []).forEach(t => risks.push(t + ".")); }
+  if (typeof e.marketFair === "number") notes.push("Where the market sits: " + (e.anchor ? e.anchor + "'s de-vigged price" : "the de-vigged consensus of " + e.books + " books") + " makes this side " + pc(e.marketFair) + (e.marketEdge != null ? " (" + (e.marketEdge >= 0 ? "+" : "") + (e.marketEdge * 100).toFixed(1) + " points against the best price)" : "") + ". For reference only.");
   /* movement since logged */
   if (e.current && e.current.at !== e.loggedAt) {
-    const dFair = e.current.fair - e.modelProb, dOdds = e.current.odds - e.odds;
+    const dOdds = e.current.odds - e.odds;
     const mv = { loggedOdds: e.odds, loggedFair: e.modelProb, currentOdds: e.current.odds, currentBook: e.current.book, currentFair: e.current.fair, currentEdge: e.current.edge, checkedAt: e.current.at, history: (e.history || []).slice(-10) };
-    if (dFair >= 0.01) support.push("The sharp line has moved toward this side since it was logged (fair " + (e.modelProb * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
-    else if (dFair <= -0.01) risks.push("The sharp line has moved away since it was logged (fair " + (e.modelProb * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
-    if (e.current.edge < rules.minEdge) risks.push("At current prices the edge is " + pts(e.current.edge) + ", under the threshold; the logged price may be gone.");
+    const baseFair = typeof e.marketFair === "number" ? e.marketFair : e.modelProb;
+    if (typeof e.current.fair === "number" && e.current.fair - baseFair >= 0.01) notes.push("Market: the sharp line has moved toward this side since it was logged (" + (baseFair * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
+    else if (typeof e.current.fair === "number" && e.current.fair - baseFair <= -0.01) notes.push("Market: the sharp line has moved away since it was logged (" + (baseFair * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
+    if (typeof e.current.edge === "number" && e.current.edge < rules.minEdge) risks.push("At current prices our edge is " + pts(e.current.edge) + ", under the bar; the logged price may be gone.");
     else if (dOdds > 0) support.push("A better price is now available: " + (e.current.odds > 0 ? "+" : "") + e.current.odds + " at " + e.current.book + ".");
     e.movement = mv;
   }
   /* DraftKings open -> now from ESPN (free, every run): the public market's own drift on this pick */
   const dk = dkSummary(e, ctx && ctx.odds);
   e.dk = dk;
-  if (dk && dk.moved === "toward") support.push(dk.label + ": the market has moved toward this side since the open.");
-  else if (dk && dk.moved === "away") risks.push(dk.label + ": the market has moved against this side since the open.");
+  if (dk && dk.moved === "toward") notes.push("Market: " + dk.label + ", moving toward this side since the open.");
+  else if (dk && dk.moved === "away") notes.push("Market: " + dk.label + ", moving against this side since the open.");
   /* the whole market (SportsGameOdds' nine-book fair) since the open, and a better price if one of its books has it */
   const s = e.sgo;
   const mk = s && s.now && (s.now.odds != null || s.now.line != null) ? { book: "Market consensus", n: s.n, open: s.open, now: s.now, moved: movedToward(e, s.open, s.now), label: "The market (" + (s.n || 0) + " books) " + (s.open ? "opened " + fmtLine(e, s.open) + ", now " : "now ") + fmtLine(e, s.now) } : null;
   e.mkt = mk;
-  if (mk && mk.moved === "toward") support.push(mk.label + ": the consensus has moved toward this side since the open.");
-  else if (mk && mk.moved === "away") risks.push(mk.label + ": the consensus has moved against this side since the open.");
+  if (mk && mk.moved === "toward") notes.push("Market: " + mk.label + ", the consensus moving toward this side since the open.");
+  else if (mk && mk.moved === "away") notes.push("Market: " + mk.label + ", the consensus moving against this side since the open.");
   if (s && s.best && impliedP(s.best.odds) < impliedP(e.odds) - 1e-9) support.push("A better price is available now: " + (s.best.odds > 0 ? "+" : "") + s.best.odds + " at " + s.best.book + ".");
   const team = pickTeam(e), opp = team ? (team === e.home ? e.away : e.home) : null, isTotal = e.marketKey === "totals", over = isTotal && /^over/i.test(e.pick);
+  /* with a game model, injuries and rest are already in its reasons, priced in points; the context then adds only what
+     the model does not carry (weather, venue, records, pitchers). Without one, the old rules of thumb still apply. */
+  const modelled = !!(e.model && e.model.reasons);
   if (ctx) {
     const injList = (t) => (ctx.injuries && ctx.injuries[t]) || [];
     const severe = t => injList(t).filter(i => SEVERE.test(i.status)), soft = t => injList(t).filter(i => SOFT.test(i.status));
     const names = arr => arr.slice(0, 3).map(i => i.name + (i.pos ? " (" + i.pos + ")" : "") + (i.type ? ", " + i.type.toLowerCase() : "")).join("; ") + (arr.length > 3 ? " and " + (arr.length - 3) + " more" : "");
-    if (team) {
+    if (team && !modelled) {
       if (severe(team).length) risks.push(team + " without " + names(severe(team)) + ".");
       if (soft(team).length) risks.push(team + " listed " + names(soft(team)) + " as " + soft(team)[0].status.toLowerCase() + ".");
       if (severe(opp).length) support.push(opp + " missing " + names(severe(opp)) + ".");
@@ -313,7 +319,7 @@ function buildBreakdown(e, ctx, rules) {
       if (outs.length) (over ? risks : support).push("Scorers out: " + names(outs) + ". Fewer healthy scorers leans under.");
     }
     const rest = t => ctx.rest && ctx.rest[t];
-    if (team) {
+    if (team && !modelled) {
       if (rest(team) && rest(team).b2b) risks.push(team + " are on the second night of a back-to-back.");
       else if (rest(team) && rest(team).gamesLast7 >= 4) risks.push(team + " have played " + rest(team).gamesLast7 + " games in the last 7 days.");
       else if (rest(team) && rest(team).restDays >= 3) support.push(team + " are rested: " + rest(team).restDays + " days since their last game.");
@@ -334,7 +340,7 @@ function buildBreakdown(e, ctx, rules) {
     if (rec(e.home) || rec(e.away)) notes.push("Records: " + e.away + " " + (rec(e.away) || "—") + " · " + e.home + " " + (rec(e.home) || "—") + (ctx.venue ? " · " + ctx.venue : "") + ".");
     if (!ctx.espnEventId) notes.push("No schedule match found for this game, so rest, venue and weather are unknown.");
   }
-  return { tier: tier, tierWhy: tierWhy, price: e.rationale, support: support, risks: risks, notes: notes, verdict: risks.length > support.length ? "More working against this one than for it beyond the price; size down." : support.length >= 2 ? "The context lines up with the price." : "Context is neutral; the price edge carries the pick." };
+  return { tier: tier, tierWhy: tierWhy, price: e.rationale, support: support, risks: risks, notes: notes, verdict: risks.length > support.length ? "More working against this one than for it; size down." : support.length >= 2 ? "The game data lines up behind this side at this price." : "Little either way beyond the model's number; the probability carries the pick." };
 }
 
 async function enrich(entries, opts) {

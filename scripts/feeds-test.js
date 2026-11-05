@@ -21,11 +21,11 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-"));
   await P.run({ fixture: true, out: tmp, now: "2026-11-05T15:00:00Z" });
   const a = F.build({ data: tmp, base: "https://example.test/site" });
-  check("pick night: one event per board pick (two on the fixture), no all-day slate", a.events === 2 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
+  check("pick night: one event per board pick plus the parlay of the day (five on the fixture), no all-day slate", a.events === 5 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
   check("pick night: calendar is well-formed", /^BEGIN:VCALENDAR\r\n/.test(a.ics) && /\r\nEND:VCALENDAR\r\n$/.test(a.ics) && longest(a.ics) <= 75);
-  check("pick night: event carries uid, start, alarm and the play-of-the-day label", /UID:nba-fix-1-h2h-Milwaukee-Bucks@edgeline/.test(a.ics) && /DTSTART:20261106T000000Z/.test(a.ics) && /TRIGGER:-PT30M/.test(a.ics) && /SUMMARY:Milwaukee Bucks ML \+160 at Caesars · Medium/.test(a.ics) && /SUMMARY:Play of the day: Draw \+330 at BetMGM/.test(a.ics));
+  check("pick night: event carries uid, start, alarm and the play-of-the-day label", /UID:nba-fix-1-h2h-Boston-Celtics@edgeline/.test(a.ics) && /DTSTART:20261106T000000Z/.test(a.ics) && /TRIGGER:-PT30M/.test(a.ics) && /SUMMARY:Boston Celtics ML -145 at Caesars · High/.test(a.ics) && /SUMMARY:Play of the day: Boston Celtics -3\.5 -105 at FanDuel/.test(a.ics) && /Our probability 80\.\d% from game data/.test(a.ics.replace(/\r\n /g, "")));
   check("pick night: base url is normalised with a trailing slash", /URL:https:\/\/example\.test\/site\/picks\.html#nba-fix-1/.test(a.ics.replace(/\r\n /g, "")));
-  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 3 && /<guid isPermaLink="false">nba-fix-1-h2h-Milwaukee-Bucks<\/guid>/.test(a.rss) && /2 picks tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
+  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 6 && /<guid isPermaLink="false">nba-fix-1-h2h-Boston-Celtics<\/guid>/.test(a.rss) && /4 picks tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
   check("pick night: feed escapes markup in descriptions", /&lt;ul&gt;&lt;li&gt;/.test(a.rss) && !/<ul>/.test(a.rss));
   check("pick night: feed declares itself", /<atom:link href="https:\/\/example\.test\/site\/feed\.xml" rel="self"/.test(a.rss) && /<lastBuildDate>/.test(a.rss));
 

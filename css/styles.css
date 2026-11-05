@@ -684,6 +684,10 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .cal-summary { margin: 12px 0 0; font-size: 0.9rem; color: var(--text-2); }
 @media (max-width: 600px) { .cal td { height: 52px; padding: 4px; } .cal-units { font-size: 0.72rem; } .cal-rec { display: none; } }
 .feature-tiles { margin-top: 16px; }
+/* performance: the record by grade (game data apart from the earlier price edge), and the mark on old price-grade rows */
+.grade-split { margin-top: 28px; }
+.grade-tiles { margin-top: 12px; }
+.basis-mark { display: block; margin-top: 2px; font-size: 0.78rem; font-weight: 400; color: var(--muted); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
 
@@ -815,6 +819,12 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .inj-status.inj-q { background: var(--accent-wash); color: var(--accent-strong); }
 .inj-note { display: block; font-size: 0.8rem; color: var(--muted); margin: 1px 0 0 2px; }
 .bd-btn { margin-right: auto; }
+/* the grade rule at the top of the dialog, and the game model's one-line summary under a pick's title */
+.bd-rule { margin: 10px 0 0; font-size: 0.85rem; color: var(--text-2); }
+.meta.bd-model { display: flex; margin-top: 4px; font-size: 0.82rem; color: var(--muted); }
+/* a market row with no model yet: priced, not graded */
+.market-table tr.mkt-nomodel td { color: var(--muted); }
+.field-nomodel { color: var(--muted); }
 @media (max-width: 600px) { .bd-grid { grid-template-columns: 1fr; } .bd-title { font-size: 1.25rem; } }
 
 /* ---------- line shopping: book chips on the card, the ladder in the breakdown ---------- */

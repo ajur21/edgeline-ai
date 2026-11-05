@@ -19,6 +19,7 @@ const fs = require("fs");
 const path = require("path");
 const context = require("./context.js");
 const sgo = require("./sgo.js");
+const model = require("./model.js");
 
 const API = "https://api.the-odds-api.com/v4";
 let VERBOSE = false;
@@ -37,8 +38,8 @@ const ANCHOR = "pinnacle";
 const BOOKS = [ANCHOR, "draftkings", "fanduel", "betmgm", "williamhill_us", "betrivers", "fanatics", "espnbet", "bovada", "betonlineag"];
 const RULES = {
   minBooks: 3,          // the line needs at least this many books (anchor included) to be analysed
-  minEdge: 0.01,        // 1 point over the fair line becomes a pick (about +2% EV at even odds)
-  medium: 0.02, high: 0.035,
+  minEdge: 0.03,        // our probability (the game model) must beat what the best price implies by 3 points to be a pick
+  medium: 0.05, high: 0.08,
   maxPerSport: 4, maxPicks: 12,
   horizonHours: 36,     // only events starting within this window
   gradeAfterHours: 3,   // grade events that started at least this long ago
@@ -47,7 +48,7 @@ const RULES = {
   minRequestsLeft: 25,  // stop fetching odds when the API quota runs this low
   sgoReserve: 150,      // leave this many SportsGameOdds entities untouched each month (free tier: 2,500)
   sgoTrackWindowHours: 8, // in --track runs, spend SportsGameOdds entities only on games starting within this many hours
-  watchEdge: 0.005,     // half a point over fair: shown on the market board as "watch", never a pick
+  watchEdge: 0.015,     // a point and a half over the price: shown on the market board as "watch", never a pick
   maxAnchorShift: 1     // adjust Pinnacle's price across at most this many points of line difference
 };
 /* How much win probability one point of line is worth, per sport and market, for carrying Pinnacle's price across a
@@ -64,6 +65,8 @@ function americanFromDecimal(dec) { return dec >= 2 ? Math.round((dec - 1) * 100
 function fmtOdds(o) { return (o > 0 ? "+" : "") + o; }
 function pct(p) { return (p * 100).toFixed(1) + "%"; }
 function round(n, d) { return Math.round(n * Math.pow(10, d)) / Math.pow(10, d); }
+function num(n, d) { return n == null || !Number.isFinite(Number(n)) ? null : round(n, d); }
+function edgeNum(c) { return c.edge == null ? -1 : c.edge; } /* a side with no model sorts last and never clears a bar */
 
 /* ---------- time (everything user-facing is Eastern) ---------- */
 const ET = "America/New_York";
@@ -132,8 +135,21 @@ function priceGroup(group, market, shifted) {
     bettable.forEach(function (b) { const o = b.outcomes.find(o => o.name + "|" + (o.point == null ? "" : o.point) === n); if (!o) return; prices[b.book] = o.price; if (o.price > bestPrice) { bestPrice = o.price; bestBook = b.book; } });
     if (!bestBook) return null;
     const o = group[0].outcomes[i];
-    return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, prices: prices, fair: fair[i], edge: fair[i] - implied(bestPrice), books: group.length, anchor: anchorName, anchorNote: !anchorBook && shifted ? shifted.note : null, anchorShift: !anchorBook && shifted ? shifted.shift : 0, market: market };
+    return { outcome: { name: o.name, point: o.point == null ? null : o.point }, odds: bestPrice, book: bestBook, prices: prices, fair: fair[i], edge: fair[i] - implied(bestPrice), marketFair: fair[i], marketEdge: fair[i] - implied(bestPrice), books: group.length, anchor: anchorName, anchorNote: !anchorBook && shifted ? shifted.note : null, anchorShift: !anchorBook && shifted ? shifted.shift : 0, market: market };
   }).filter(Boolean).sort((a, b) => b.edge - a.edge);
+}
+/* The owner's rule (2026-11-04): a side's probability comes from the game model (scripts/model.js: this season's results
+   and margins, form, rest, injuries, home edge), never from another book's price. This re-prices every candidate: `fair`
+   and `edge` become the model's probability and its gap over the best price; the books' de-vigged number survives only
+   as `marketFair` / `marketEdge`, for the closing line and the breakdown's "where the market sits" reference. A game
+   the model cannot build (no ESPN record for it) has no probability on any side and can never be a pick. */
+function priceWithModel(gm, ev, priced) {
+  priced.forEach(function (c) {
+    const p = gm ? model.sideProb(gm, c.market, c.outcome, ev.home_team, ev.away_team) : null;
+    c.fair = p; c.edge = p == null ? null : p - implied(c.odds);
+    c.model = gm && p != null ? Object.assign(model.publicModel(gm), { reasons: model.sideReasons(gm, c.market, c.outcome, ev.home_team, ev.away_team) }) : null;
+  });
+  return priced.sort((a, b) => edgeNum(b) - edgeNum(a));
 }
 /* every priced outcome of an event, across every line any two books agree on. `qualifies` marks the outcomes on the
    market's main line (the largest group, at least minBooks deep), the only ones that can become a pick; the rest exist so
@@ -167,7 +183,7 @@ function analyzeEvent(cfg, ev, priced) {
   const out = [];
   const all = priced || priceOutcomes(cfg, ev);
   cfg.markets.forEach(function (market) {
-    const candidates = all.filter(c => c.market === market && c.qualifies);
+    const candidates = all.filter(c => c.market === market && c.qualifies && c.edge != null).sort((a, b) => b.edge - a.edge);
     if (!candidates.length) return;
     if (VERBOSE) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + candidates[0].books + " books" + (candidates[0].anchor ? (candidates[0].anchorShift ? " (anchored, carried " + candidates[0].anchorShift + ")" : " (anchored)") : " (consensus)") + " | best edge " + (candidates[0].edge * 100).toFixed(2) + " pts on " + candidates[0].outcome.name + " " + (candidates[0].outcome.point == null ? "" : candidates[0].outcome.point) + " at " + fmtOdds(candidates[0].odds) + " (" + candidates[0].book + ")");
     if (candidates[0].edge >= RULES.minEdge) out.push(candidates[0]);
@@ -175,14 +191,17 @@ function analyzeEvent(cfg, ev, priced) {
   return out;
 }
 
-function confidence(edge) { return edge >= RULES.high ? "High" : edge >= RULES.medium ? "Medium" : "Lean"; }
+/* the tier is our edge over the price; a thin sample (under four games behind either team) never rates above Lean */
+function confidence(edge, thin) { const t = edge >= RULES.high ? "High" : edge >= RULES.medium ? "Medium" : "Lean"; return thin ? "Lean" : t; }
 function rationale(c, cfg) {
   const line = c.outcome.point == null ? "" : " at " + (c.market === "spreads" && c.outcome.point > 0 ? "+" : "") + c.outcome.point;
-  const basis = c.anchor ? c.anchor + "'s de-vigged price" : "the de-vigged consensus of " + c.books + " books";
-  return "Fair probability" + line + " is " + pct(c.fair) + " by " + basis + ". " + c.book + " offers " + fmtOdds(c.odds) + ", which implies only " + pct(implied(c.odds)) + "." + (c.anchorNote ? " " + c.anchorNote : "");
+  if (c.fair == null) return "No game model for this game yet (no record of either team's season), so no probability and no pick. " + c.book + " offers " + fmtOdds(c.odds) + ".";
+  const m = c.model || {};
+  return "Our probability" + line + " is " + pct(c.fair) + ", from the game data: this season's results and margins, recent form, rest, the injury report and home edge" + (m.margin != null && c.market !== "totals" ? " (projected margin " + (m.margin > 0 ? "+" : "") + m.margin + " for the home side" : m.total != null ? " (projected total " + m.total : "") + (m.margin != null || m.total != null ? ")" : "") + ". " + c.book + " offers " + fmtOdds(c.odds) + ", which implies only " + pct(implied(c.odds)) + ". Not graded against other books' prices" + (c.marketFair != null ? "; for reference the market makes it " + pct(c.marketFair) : "") + ".";
 }
 function factors(c) {
-  return ["Best price " + fmtOdds(c.odds) + " at " + c.book, c.anchor ? "Fair line from " + c.anchor : "Fair line from " + c.books + "-book consensus", "Edge " + (c.edge * 100).toFixed(1) + " points over fair"];
+  if (c.fair == null) return ["Best price " + fmtOdds(c.odds) + " at " + c.book, "No game model for this game"];
+  return ["Best price " + fmtOdds(c.odds) + " at " + c.book, "Probability " + pct(c.fair) + " from game data, not other books", "Edge " + (c.edge * 100).toFixed(1) + " points over the price", c.marketFair != null ? "Market reference " + pct(c.marketFair) : null].filter(Boolean);
 }
 function slug(s) { return String(s).replace(/[^\w-]+/g, "-").replace(/^-+|-+$/g, ""); }
 
@@ -272,10 +291,13 @@ function gradeParlays(log, now) {
   });
 }
 function record(entries) {
-  const r = { wins: 0, losses: 0, pushes: 0, units: 0 };
+  const r = { wins: 0, losses: 0, pushes: 0, units: 0, n: entries.length };
   entries.forEach(e => { r[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++; r.units = round(r.units + e.units, 2); });
   return r;
 }
+/* which grade a pick was made on: "game" (the game model, owner rule 2026-11-04) or "price" (the earlier price edge
+   against the sharp line). The two records are kept apart so the old grade never flatters or drags the new one. */
+function basisOf(e) { return e.basis === "game" ? "game" : "price"; }
 
 /* ---------- performance aggregation ---------- */
 function summarize(log, now) {
@@ -315,7 +337,14 @@ function summarize(log, now) {
   const byDate = Object.values(byDateMap).sort((a, b) => a.date < b.date ? -1 : 1);
   const potd = record(singles.filter(e => e.potd && e.status === "graded" && e.date >= since));
   const parlays = record(log.filter(e => e.type === "parlay" && e.status === "graded" && e.date >= since));
-  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recent, byDate: byDate, potd: potd, parlays: parlays, clv: clv };
+  /* the record by grade: game-data picks apart from the earlier price-edge picks, each with its ROI and first date */
+  const byBasis = {};
+  ["game", "price"].forEach(function (b) {
+    const all = singles.filter(e => basisOf(e) === b), g = graded.filter(e => basisOf(e) === b), r = record(g);
+    byBasis[b] = Object.assign(r, { roi: g.length ? round(r.units / g.length * 100, 1) : 0, pending: all.filter(e => e.status === "pending").length, since: all.map(e => e.date).filter(Boolean).sort()[0] || null });
+  });
+  const recentBasis = recent.map(function (r) { const e = graded.find(x => x.pick === r.pick && x.date === r.date && x.event === r.event); return Object.assign(r, { basis: e ? basisOf(e) : "price" }); });
+  return { sample: false, source: "The Odds API", asOf: etDate(now), windowDays: RULES.windowDays, record: rec, units: units, roi: risked ? round(units / risked * 100, 1) : 0, avgEdge: avgEdge, graded: risked, daily: daily, bySport: bySport, recent: recentBasis, byDate: byDate, potd: potd, parlays: parlays, clv: clv, byBasis: byBasis };
 }
 
 /* ---------- API ---------- */
@@ -394,6 +423,10 @@ async function run(opts) {
   /* 2. fetch odds and find today's edges */
   const active = await source.activeSports();
   const fresh = [];
+  /* the game model's per-run caches (scoreboards, schedules, injuries, shared with the context step through ctxSource) and
+     NBA scoring by name, so an injured scorer costs what he scores */
+  const modelCache = { ppgOf: model.ppgFromFaces(opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js")) };
+  let modelled = 0, unmodelled = 0;
   const marketRows = []; /* every main-line market priced this run, pick or not: the market board */
   for (const cfg of SPORTS) {
     if (active && !active.has(cfg.key)) continue;
@@ -403,21 +436,27 @@ async function run(opts) {
     const horizon = now.getTime() + RULES.horizonHours * 36e5;
     if (VERBOSE) console.log(cfg.key + ": " + (events || []).length + " events, " + (events || []).filter(ev => { const t = Date.parse(ev.commence_time); return t > now.getTime() && t < horizon; }).length + " within " + RULES.horizonHours + "h");
     const picks = [];
-    (events || []).forEach(function (ev) {
+    for (const ev of events || []) {
       const t = Date.parse(ev.commence_time);
-      if (!(t > now.getTime() && t < horizon)) return;
-      const priced = priceOutcomes(cfg, ev);
+      if (!(t > now.getTime() && t < horizon)) continue;
+      /* the game model first (ESPN: both teams' seasons, rest, injuries); without one no side gets a probability */
+      let gm = null;
+      try { gm = await model.forEvent(ctxSource, context, { sportKey: cfg.key, home: ev.home_team, away: ev.away_team, commence: ev.commence_time }, now, modelCache); } catch (err) { if (VERBOSE) console.warn("  model failed for " + eventName(cfg, ev) + ": " + err.message); }
+      if (gm) modelled++; else unmodelled++;
+      if (VERBOSE && gm) console.log("  " + eventName(cfg, ev) + " | model: margin " + (gm.margin > 0 ? "+" : "") + gm.margin + " (home), total " + gm.total + (gm.thin ? ", thin sample" : ""));
+      const priced = priceWithModel(gm, ev, priceOutcomes(cfg, ev));
       priced.filter(c => c.qualifies).forEach(function (c) {
         marketRows.push({ key: candidateKey(ev.id, c), eventId: ev.id, sport: cfg.sport, league: cfg.league, sportKey: cfg.key, event: eventName(cfg, ev), home: ev.home_team, away: ev.away_team, commence: ev.commence_time, start: startLabel(new Date(t), now),
           marketKey: c.market, market: marketLabel(cfg, c.market), outcome: c.outcome, pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, prices: c.prices, books: c.books, anchor: c.anchor, anchorShift: c.anchorShift || 0,
-          modelProb: round(c.fair, 4), edge: round(c.edge, 4), ev: round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4) });
+          modelProb: num(c.fair, 4), edge: num(c.edge, 4), ev: c.fair == null ? null : round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), marketFair: num(c.marketFair, 4), marketEdge: num(c.marketEdge, 4),
+          modelled: !!gm, model: c.model ? { margin: c.model.margin, total: c.model.total, gp: c.model.gp, thin: c.model.thin } : null });
       });
-      /* picks already on the board: track the price and fair line until tip-off, edge or no edge, so the close is real */
+      /* picks already on the board: track the price (and the market's fair, for the close) until tip-off, edge or no edge */
       priced.forEach(function (c) {
         const seen = log.find(e => e.key === candidateKey(ev.id, c) && e.status === "pending");
         if (!seen) return;
-        seen.current = { at: now.toISOString(), odds: c.odds, book: c.book, fair: round(c.fair, 4), edge: round(c.edge, 4) };
-        seen.history = (seen.history || []).concat([{ at: now.toISOString(), odds: c.odds, fair: round(c.fair, 4) }]).slice(-12);
+        seen.current = { at: now.toISOString(), odds: c.odds, book: c.book, fair: num(c.marketFair, 4), edge: num(c.edge, 4), modelProb: num(c.fair, 4) };
+        seen.history = (seen.history || []).concat([{ at: now.toISOString(), odds: c.odds, fair: num(c.marketFair, 4) }]).slice(-12);
       });
       analyzeEvent(cfg, ev, priced).forEach(function (c) {
         const key = candidateKey(ev.id, c);
@@ -427,12 +466,13 @@ async function run(opts) {
           sport: cfg.sport, league: cfg.league, sportKey: cfg.key, eventId: ev.id, home: ev.home_team, away: ev.away_team,
           event: eventName(cfg, ev), market: marketLabel(cfg, c.market), marketKey: c.market, outcome: c.outcome, threeWay: !!cfg.goals && c.market === "h2h",
           pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, prices: c.prices, books: c.books, anchor: c.anchor, anchorNote: c.anchorNote || null, anchorShift: c.anchorShift || 0,
-          modelProb: round(c.fair, 4), edge: round(c.edge, 4), ev: round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), confidence: confidence(c.edge),
+          modelProb: round(c.fair, 4), edge: round(c.edge, 4), ev: round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), confidence: confidence(c.edge, !!(c.model && c.model.thin)),
+          basis: "game", model: c.model, marketFair: num(c.marketFair, 4), marketEdge: num(c.marketEdge, 4),
           rationale: rationale(c, cfg), factors: factors(c), status: "pending", units: 0, loggedAt: now.toISOString(),
-          current: { at: now.toISOString(), odds: c.odds, book: c.book, fair: round(c.fair, 4), edge: round(c.edge, 4) }, history: [{ at: now.toISOString(), odds: c.odds, fair: round(c.fair, 4) }]
+          current: { at: now.toISOString(), odds: c.odds, book: c.book, fair: num(c.marketFair, 4), edge: round(c.edge, 4), modelProb: round(c.fair, 4) }, history: [{ at: now.toISOString(), odds: c.odds, fair: num(c.marketFair, 4) }]
         });
       });
-    });
+    }
     if (VERBOSE) console.log("  requests remaining: " + usage.remaining);
     picks.sort((a, b) => b.edge - a.edge).slice(0, RULES.maxPerSport).forEach(p => fresh.push(p));
   }
@@ -443,7 +483,7 @@ async function run(opts) {
   const today = etDate(now);
   /* context (injuries, weather, rest, records) and the written breakdown for every pick on the board */
   let ctxRequests = 0;
-  try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES, now: now }); } catch (err) { console.warn("context step failed: " + err.message); }
+  try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES, now: now, source: ctxSource }); } catch (err) { console.warn("context step failed: " + err.message); }
   /* second price source: every book's price on each pick's line and the market's drift since the open, then the breakdowns again */
   let sgoStats = { changed: 0, entities: 0 };
   if (sgoOk() && boardEntries.length) { try { sgoStats = await sgo.refresh(boardEntries, { fixture: opts.fixture, now: now, source: sgoSrc }); boardEntries.forEach(e => { e.breakdown = context.buildBreakdown(e, e.context, RULES); }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
@@ -457,9 +497,9 @@ async function run(opts) {
 
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
-  marketRows.forEach(function (r) { r.pickId = pendingByKey[r.key] || null; r.status = r.pickId ? "pick" : r.edge >= RULES.watchEdge ? "watch" : "none"; delete r.key; });
-  marketRows.sort((a, b) => b.edge - a.edge);
-  const marketData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), threshold: RULES.minEdge, watch: RULES.watchEdge, games: new Set(marketRows.map(r => r.eventId)).size, sports: Array.from(new Set(marketRows.map(r => r.sport))), rows: marketRows };
+  marketRows.forEach(function (r) { r.pickId = pendingByKey[r.key] || null; r.status = r.pickId ? "pick" : r.edge != null && r.edge >= RULES.watchEdge ? "watch" : "none"; delete r.key; });
+  marketRows.sort((a, b) => edgeNum(b) - edgeNum(a));
+  const marketData = { sample: false, source: "The Odds API", basis: "game", generatedAt: now.toISOString(), threshold: RULES.minEdge, watch: RULES.watchEdge, games: new Set(marketRows.map(r => r.eventId)).size, modelled: new Set(marketRows.filter(r => r.modelled).map(r => r.eventId)).size, sports: Array.from(new Set(marketRows.map(r => r.sport))), rows: marketRows };
 
   /* 4. write */
   fs.mkdirSync(dataDir, { recursive: true });
@@ -469,11 +509,11 @@ async function run(opts) {
   fs.writeFileSync(path.join(dataDir, "picks.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PICKS_DATA = " + JSON.stringify(picksData, null, 2) + ";\n");
   const perf = summarize(log, now);
   fs.writeFileSync(path.join(dataDir, "performance.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.PERF_DATA = " + JSON.stringify(perf, null, 2) + ";\n");
-  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+  return { added: fresh.length, board: board.length, graded: perf.graded, remaining: usage.remaining, playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
 }
 /* the pick as the site sees it */
 function publicPick(e, now) {
-  return { id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, pricesAt: e.pricesAt || e.loggedAt || null, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [], mkt: e.mkt || null,
+  return { id: e.id, sport: e.sport, league: e.league, sportKey: e.sportKey, event: e.event, home: e.home, away: e.away, marketKey: e.marketKey, outcome: e.outcome, commence: e.commence, start: startLabel(new Date(e.commence), now), market: e.market, pick: e.pick, odds: e.odds, book: e.book, prices: e.prices || {}, pricesAt: e.pricesAt || e.loggedAt || null, books: e.books || null, anchor: e.anchor || null, modelProb: e.modelProb, ev: e.ev, confidence: e.confidence, basis: e.basis || "price", model: e.model || null, marketFair: e.marketFair == null ? null : e.marketFair, marketEdge: e.marketEdge == null ? null : e.marketEdge, rationale: e.rationale, factors: e.factors, breakdown: e.breakdown || null, context: e.context || null, movement: e.movement || null, dk: e.dk || null, dkHistory: e.dkHistory || [], mkt: e.mkt || null,
     sgo: e.sgo ? { at: e.sgo.at, n: e.sgo.n, best: e.sgo.best, fair: e.sgo.fair, vendorFair: e.sgo.vendor ? e.sgo.vendor.fair : null, open: e.sgo.open, now: e.sgo.now } : null, sgoHistory: e.sgoHistory || [] };
 }
 
@@ -543,4 +583,4 @@ if (require.main === module) {
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, shiftedAnchor, closingLine, clvOf, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS, LINE_VALUE };
+module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, RULES, SPORTS, LINE_VALUE };

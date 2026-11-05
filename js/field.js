@@ -1,9 +1,12 @@
 /* ==========================================================================
    EdgeLine AI — the edge field
    Every side of every main-line market the pipeline priced, plotted as a
-   star: price across (long shots left, favourites right), edge up. Three
-   horizons: fair (0), watch (+0.5) and the bar (+1.0). Anything above the
-   bar is a pick. Dependency-free SVG; colours come from the CSS tokens.
+   star: price across (long shots left, favourites right), our edge over the
+   price up (our probability from the game data minus what the price implies).
+   Three horizons: even with the price (0), watch and the bar, both read from
+   data/market.js. Anything above the bar is a pick. A side with no model yet
+   has no edge and is counted, not plotted. Dependency-free SVG; colours come
+   from the CSS tokens.
    Exposes window.EdgeLineField.render(host, opts)
    ========================================================================== */
 (function () {
@@ -27,20 +30,22 @@
     const onBoard = {};
     ((window.PICKS_DATA || {}).picks || []).forEach(function (p) { onBoard[p.id] = true; });
     return (m.rows || []).map(function (r) {
-      const isPick = !!(r.pickId && onBoard[r.pickId]);
-      const status = isPick ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
-      return { r: r, x: E.impliedProb(r.odds), y: r.edge * 100, status: status, pickId: isPick ? r.pickId : null };
+      const isPick = !!(r.pickId && onBoard[r.pickId]), modelled = E.hasModel(r) && r.edge != null && Number.isFinite(Number(r.edge));
+      const status = isPick ? "pick" : modelled && Number(r.edge) >= E.watchOf() ? "watch" : "none";
+      return { r: r, x: E.impliedProb(r.odds), y: modelled ? Number(r.edge) * 100 : NaN, status: status, pickId: isPick ? r.pickId : null };
     }).filter(function (d) { return Number.isFinite(d.x) && Number.isFinite(d.y); });
   }
+  /* sides priced but not yet modelled: they have a price and no edge, so they are counted beside the field, never plotted */
+  function unmodelled() { const E = window.EdgeLine; return (E.marketData().rows || []).filter(function (r) { return !E.hasModel(r); }).length; }
 
   function render(host, opts) {
     opts = opts || {};
     const E = window.EdgeLine, m = E.marketData();
-    const data = rows();
+    const data = rows(), noModel = unmodelled();
     host.replaceChildren();
     if (!data.length) { host.hidden = true; return null; }
     host.hidden = false;
-    const bar = (m.threshold || 0.01) * 100, watch = (m.watch || 0.005) * 100;
+    const bar = E.barOf() * 100, watch = E.watchOf() * 100;
     const narrow = host.clientWidth > 0 && host.clientWidth < 560;
     const W = narrow ? 520 : 960, H = narrow ? 340 : 380;
     const padL = narrow ? 40 : 56, padR = narrow ? 14 : 24, padT = 26, padB = narrow ? 40 : 44;
@@ -55,7 +60,7 @@
     const best = sorted[0];
     const label = picks ? picks + (picks === 1 ? " side clears the bar" : " sides clear the bar") : "none clears the bar";
     const svg = s("svg", { viewBox: "0 0 " + W + " " + H, role: "img", class: "field-svg" + (narrow ? " narrow" : ""),
-      "aria-label": data.length + " sides priced across " + (m.games || 0) + " games, " + label + ". " + watching + " within half a point. Listed in full on the market board." });
+      "aria-label": data.length + " sides priced across " + (m.games || 0) + " games and given our probability from the game data, " + label + ". " + watching + " on watch, " + E.watchPts() + " points or more over the price." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
 
     /* the pick zone and its horizons */
     svg.appendChild(s("rect", { x: padL, y: padT - 6, width: W - padL - padR, height: Math.max(0, sy(bar) - padT + 6), class: "field-zone" }));
@@ -66,7 +71,7 @@
     }
     svg.appendChild(s("line", { x1: padL, x2: W - padR, y1: sy(0), y2: sy(0), class: "field-fair" }));
     svg.appendChild(text(padL - 8, sy(0) + 4, "0", "tick", "end"));
-    svg.appendChild(text(W - padR, sy(0) - 6, "FAIR PRICE", "field-horizon-label", "end"));
+    svg.appendChild(text(W - padR, sy(0) - 6, "EVEN WITH THE PRICE", "field-horizon-label", "end"));
     svg.appendChild(s("line", { x1: padL, x2: W - padR, y1: sy(watch), y2: sy(watch), class: "field-watch" }));
     svg.appendChild(text(W - padR, sy(watch) - 6, "WATCH " + E.signed(watch, 1), "field-horizon-label field-horizon-watch", "end"));
     svg.appendChild(s("line", { x1: padL, x2: W - padR, y1: sy(bar), y2: sy(bar), class: "field-bar" }));
@@ -82,7 +87,7 @@
     svg.appendChild(s("line", { x1: padL, x2: W - padR, y1: H - padB, y2: H - padB, class: "axis" }));
     svg.appendChild(text(padL, H - 6, "LONG SHOTS", "field-axis-label", "start"));
     svg.appendChild(text(W - padR, H - 6, "FAVOURITES", "field-axis-label", "end"));
-    svg.appendChild(text(padL - 8, padT - 10, "EDGE, PTS", "field-axis-label", "end"));
+    svg.appendChild(text(padL - 8, padT - 10, "OUR EDGE, PTS", "field-axis-label", "end"));
 
     /* the stars: drawn dimmest first so the hot ones sit on top */
     const tt = tooltip(host);
@@ -103,7 +108,7 @@
         const px = rect.left - hostRect.left + (sx(d.x) / W) * rect.width, py = rect.top - hostRect.top + (sy(d.y) / H) * rect.height;
         tt.date.textContent = d.r.event + " · " + (d.r.start || "");
         tt.val.textContent = d.r.pick + "  " + E.fmtOdds(d.r.odds);
-        tt.name.textContent = d.r.book + " · fair " + E.pct(d.r.modelProb) + " vs " + E.pct(d.x) + " · " + E.signed(d.y, 1) + " pts · " + E.statusLabel(d.status);
+        tt.name.textContent = d.r.book + " · to hit " + E.pct(d.r.modelProb) + " (ours) vs " + E.pct(d.x) + " implied · " + E.signed(d.y, 1) + " pts · " + E.statusLabel(d.status);
         tt.key.setAttribute("data-sport", d.r.sport);
         tt.el.style.left = px + "px"; tt.el.style.top = py + "px"; tt.el.hidden = false;
         g.classList.add("lit");
@@ -141,8 +146,9 @@
       const gap = bar - best.y;
       note.appendChild(E.el("span", { text: (picks ? "Top of the field: " : "Closest to the bar: ") }));
       note.appendChild(E.el("strong", { text: best.r.pick + " " + E.fmtOdds(best.r.odds) }));
-      note.appendChild(E.el("span", { text: " at " + best.r.book + ", " + E.signed(best.y, 1) + " pts" + (picks ? "." : gap > 0 ? ", " + gap.toFixed(1) + " short." : ".") }));
+      note.appendChild(E.el("span", { text: " at " + best.r.book + ", " + E.signed(best.y, 1) + " pts over the price" + (picks ? "." : gap > 0 ? ", " + gap.toFixed(1) + " short." : ".") }));
     }
+    if (noModel) note.appendChild(E.el("span", { class: "field-nomodel", text: " " + noModel + (noModel === 1 ? " side has" : " sides have") + " no model yet and no edge." }));
     const foot = E.el("div", { class: "field-foot" }, [legend, note]);
     host.appendChild(foot);
 
@@ -153,7 +159,7 @@
       }, { threshold: 0.2 });
       io.observe(host);
     }
-    return { sides: data.length, games: m.games || 0, picks: picks, watch: watching, best: best ? best.r : null, bar: bar };
+    return { sides: data.length, games: m.games || 0, picks: picks, watch: watching, unmodelled: noModel, best: best ? best.r : null, bar: bar };
   }
 
   function tooltip(host) {

@@ -1,0 +1,364 @@
+{
+ "events": [
+  {
+   "id": "fx-364-0",
+   "date": "2026-09-14T15:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "379",
+        "abbreviation": "BUR",
+        "displayName": "BUR"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-1",
+   "date": "2026-09-20T11:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "368",
+        "abbreviation": "EVE",
+        "displayName": "EVE"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-2",
+   "date": "2026-09-27T16:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "384",
+        "abbreviation": "CRY",
+        "displayName": "CRY"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-3",
+   "date": "2026-10-04T14:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "363",
+        "abbreviation": "CHE",
+        "displayName": "CHE"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-4",
+   "date": "2026-10-19T15:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 3,
+        "displayValue": "3"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "360",
+        "abbreviation": "MUN",
+        "displayName": "MUN"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-5",
+   "date": "2026-10-25T14:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "337",
+        "abbreviation": "BRE",
+        "displayName": "BRE"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 3,
+        "displayValue": "3"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-6",
+   "date": "2026-11-01T15:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "362",
+        "abbreviation": "AVL",
+        "displayName": "AVL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-364-7",
+   "date": "2026-11-02T20:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "364",
+        "abbreviation": "LIV",
+        "displayName": "LIV"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "382",
+        "abbreviation": "MCI",
+        "displayName": "MCI"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

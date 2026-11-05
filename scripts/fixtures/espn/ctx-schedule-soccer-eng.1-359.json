@@ -1,0 +1,364 @@
+{
+ "events": [
+  {
+   "id": "fx-359-0",
+   "date": "2026-09-13T14:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 3,
+        "displayValue": "3"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "393",
+        "abbreviation": "NFO",
+        "displayName": "NFO"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-1",
+   "date": "2026-09-21T15:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "382",
+        "abbreviation": "MCI",
+        "displayName": "MCI"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-2",
+   "date": "2026-09-28T13:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "371",
+        "abbreviation": "WHU",
+        "displayName": "WHU"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-3",
+   "date": "2026-10-04T16:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "361",
+        "abbreviation": "NEW",
+        "displayName": "NEW"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-4",
+   "date": "2026-10-18T16:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "370",
+        "abbreviation": "FUL",
+        "displayName": "FUL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-5",
+   "date": "2026-10-26T14:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 3,
+        "displayValue": "3"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "384",
+        "abbreviation": "CRY",
+        "displayName": "CRY"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-6",
+   "date": "2026-11-01T17:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "379",
+        "abbreviation": "BUR",
+        "displayName": "BUR"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 1,
+        "displayValue": "1"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-359-7",
+   "date": "2026-11-03T20:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "359",
+        "abbreviation": "ARS",
+        "displayName": "ARS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 2,
+        "displayValue": "2"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "367",
+        "abbreviation": "TOT",
+        "displayName": "TOT"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

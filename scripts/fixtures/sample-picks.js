@@ -12,13 +12,46 @@ window.PICKS_DATA = {
       "market": "Spread",
       "pick": "Buffalo -2.5",
       "odds": -110,
-      "modelProb": 0.585,
+      "modelProb": 0.612,
       "confidence": "High",
-      "rationale": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+      "basis": "game",
+      "model": {
+        "margin": 6,
+        "total": 47.5,
+        "sd": 13.5,
+        "sdTotal": 14,
+        "gp": 7,
+        "thin": false,
+        "parts": {
+          "ratingHome": 3.1,
+          "ratingAway": -0.9,
+          "homeEdge": 2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 47.5
+        },
+        "reasons": {
+          "for": [
+            "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3)",
+            "Home edge +2 for Buffalo",
+            "Projected margin +6 for Buffalo against -2.5",
+            "Kansas City without Key Forward (F), knee"
+          ],
+          "against": [
+            "Buffalo are on the second night of a back-to-back"
+          ]
+        }
+      },
+      "marketFair": 0.585,
+      "marketEdge": 0.0612,
+      "rationale": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
       "factors": [
-        "Home side on 10 days' rest",
-        "Pass-rush vs. weak right tackle",
-        "Line moved 1.5 toward Buffalo"
+        "Best price -110 at DraftKings",
+        "Probability 61.2% from game data, not other books",
+        "Edge 8.8 points over the price",
+        "Market reference 58.5%"
       ],
       "book": "DraftKings",
       "prices": {
@@ -30,7 +63,7 @@ window.PICKS_DATA = {
         "PointsBet": -105,
         "Unibet": -112
       },
-      "ev": 0.1168,
+      "ev": 0.1684,
       "away": "Kansas City",
       "home": "Buffalo",
       "marketKey": "spreads",
@@ -91,20 +124,23 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Edge of 6.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+        "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
         "support": [
-          "Kansas City missing Key Forward (F), knee."
+          "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3).",
+          "Home edge +2 for Buffalo.",
+          "Projected margin +6 for Buffalo against -2.5.",
+          "Kansas City without Key Forward (F), knee."
         ],
         "risks": [
-          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
           "Buffalo are on the second night of a back-to-back."
         ],
         "notes": [
+          "Where the market sits: the de-vigged consensus of 7 books makes this side 58.5% (+6.1 points against the best price). For reference only.",
           "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
           "Records: Kansas City 4-3 · Buffalo 5-2 · Highmark Stadium, Orchard Park."
         ],
-        "verdict": "More working against this one than for it beyond the price; size down."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null,
       "dk": {
@@ -204,13 +240,42 @@ window.PICKS_DATA = {
       "market": "Total",
       "pick": "Over 226.5",
       "odds": -108,
-      "modelProb": 0.567,
+      "modelProb": 0.601,
       "confidence": "High",
-      "rationale": "Both teams rank top-six in pace over the last ten games; projected total sits 4 points above the market.",
+      "basis": "game",
+      "model": {
+        "margin": -1.5,
+        "total": 231,
+        "sd": 12.5,
+        "sdTotal": 19,
+        "gp": 8,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.9,
+          "ratingAway": 3.1,
+          "homeEdge": 2.5,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 231
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's",
+            "Projected total 231 against 226.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.567,
+      "marketEdge": 0.0478,
+      "rationale": "Our probability at 226.5 is 60.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 231). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
       "factors": [
-        "Both top-6 in pace, last 10",
-        "Projected total 230.5",
-        "No key rotation players out"
+        "Best price -108 at FanDuel",
+        "Probability 60.1% from game data, not other books",
+        "Edge 8.2 points over the price",
+        "Market reference 56.7%"
       ],
       "book": "FanDuel",
       "prices": {
@@ -220,7 +285,7 @@ window.PICKS_DATA = {
         "Caesars": -118,
         "BetRivers": -123
       },
-      "ev": 0.092,
+      "ev": 0.1575,
       "away": "Boston",
       "home": "Milwaukee",
       "marketKey": "totals",
@@ -275,28 +340,29 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Edge of 4.8 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Both teams rank top-six in pace over the last ten games; projected total sits 4 points above the market.",
+        "tierWhy": "Our probability for this side is 60.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.9%, so the edge is 8.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 226.5 is 60.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 231). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "6 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 56.7% → 57.9%).",
+          "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's.",
+          "Projected total 231 against 226.5.",
           "A better price is now available: -103 at FanDuel."
         ],
         "risks": [],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 56.7% (+4.8 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (56.7% → 57.9%).",
           "Indoor venue; weather is not a factor.",
           "Records: Boston 4-3 · Milwaukee 5-2 · Arena."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": -108,
-        "loggedFair": 0.567,
+        "loggedFair": 0.601,
         "currentOdds": -103,
         "currentBook": "FanDuel",
         "currentFair": 0.579,
-        "currentEdge": 0.059769230769230686,
+        "currentEdge": 0.0936,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -316,13 +382,44 @@ window.PICKS_DATA = {
       "market": "Moneyline",
       "pick": "Colorado ML",
       "odds": -135,
-      "modelProb": 0.615,
+      "modelProb": 0.63,
       "confidence": "Medium",
-      "rationale": "Goalie confirmation tilts the expected goals model; altitude and back-to-back effects included.",
+      "basis": "game",
+      "model": {
+        "margin": 0.6,
+        "total": 6.1,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 13,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.3,
+          "ratingAway": 0.9,
+          "homeEdge": 0.2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 6.1
+        },
+        "reasons": {
+          "for": [
+            "Colorado rate +1.3 a game over 13 (5-2), Toronto +0.9 over 13 (4-3)",
+            "Home edge +0.2 for Colorado",
+            "Projected margin +0.6 for Colorado",
+            "Colorado are rested: 3 days since their last game"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.615,
+      "marketEdge": 0.0405,
+      "rationale": "Our probability is 63.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). BetMGM offers -135, which implies only 57.4%. Not graded against other books' prices; for reference the market makes it 61.5%.",
       "factors": [
-        "Starting goalie confirmed",
-        "Altitude edge at home",
-        "Opponent on a back-to-back"
+        "Best price -135 at BetMGM",
+        "Probability 63.0% from game data, not other books",
+        "Edge 5.5 points over the price",
+        "Market reference 61.5%"
       ],
       "book": "BetMGM",
       "prices": {
@@ -332,7 +429,7 @@ window.PICKS_DATA = {
         "Caesars": -150,
         "BetRivers": -140
       },
-      "ev": 0.0706,
+      "ev": 0.0967,
       "away": "Toronto",
       "home": "Colorado",
       "marketKey": "h2h",
@@ -376,19 +473,21 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Edge of 4.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Goalie confirmation tilts the expected goals model; altitude and back-to-back effects included.",
+        "tierWhy": "Our probability for this side is 63.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 57.4%, so the edge is 5.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 63.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). BetMGM offers -135, which implies only 57.4%. Not graded against other books' prices; for reference the market makes it 61.5%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "7 books price this exact line, so the fair number is well established.",
+          "Colorado rate +1.3 a game over 13 (5-2), Toronto +0.9 over 13 (4-3).",
+          "Home edge +0.2 for Colorado.",
+          "Projected margin +0.6 for Colorado.",
           "Colorado are rested: 3 days since their last game."
         ],
         "risks": [],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 61.5% (+4.0 points against the best price). For reference only.",
           "Indoor venue; weather is not a factor.",
           "Records: Toronto 4-3 · Colorado 5-2 · Arena."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null
     },
@@ -401,13 +500,47 @@ window.PICKS_DATA = {
       "market": "Moneyline",
       "pick": "Atlanta ML",
       "odds": 120,
-      "modelProb": 0.495,
+      "modelProb": 0.516,
       "confidence": "Medium",
-      "rationale": "Market overweights the road starter's season ERA; the model's pitch-level projection is closer to even.",
+      "basis": "game",
+      "model": {
+        "margin": 0.4,
+        "total": 8.6,
+        "sd": 4.2,
+        "sdTotal": 4.6,
+        "gp": 30,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.2,
+          "ratingAway": 1,
+          "homeEdge": 0.2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 8.6
+        },
+        "reasons": {
+          "for": [
+            "Atlanta rate +1.2 a game over 30 (5-2), LA Dodgers +1 over 30 (4-3)",
+            "Home edge +0.2 for Atlanta",
+            "Projected margin +0.4 for Atlanta",
+            "LA Dodgers without Key Forward (F), knee",
+            "Atlanta are rested: 3 days since their last game"
+          ],
+          "against": [
+            "Atlanta listed Starting Guard (G), ankle as questionable"
+          ]
+        }
+      },
+      "marketFair": 0.495,
+      "marketEdge": 0.0405,
+      "rationale": "Our probability is 51.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Caesars offers +120, which implies only 45.5%. Not graded against other books' prices; for reference the market makes it 49.5%.",
       "factors": [
-        "Road starter's ERA overstated",
-        "Pitch-level model near even",
-        "Plus money on a coin flip"
+        "Best price +120 at Caesars",
+        "Probability 51.6% from game data, not other books",
+        "Edge 6.2 points over the price",
+        "Market reference 49.5%"
       ],
       "book": "Caesars",
       "prices": {
@@ -417,7 +550,7 @@ window.PICKS_DATA = {
         "Caesars": 120,
         "BetRivers": 110
       },
-      "ev": 0.089,
+      "ev": 0.1352,
       "away": "LA Dodgers",
       "home": "Atlanta",
       "marketKey": "h2h",
@@ -491,33 +624,35 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Edge of 4.0 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Market overweights the road starter's season ERA; the model's pitch-level projection is closer to even.",
+        "tierWhy": "Our probability for this side is 51.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 45.5%, so the edge is 6.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 51.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Caesars offers +120, which implies only 45.5%. Not graded against other books' prices; for reference the market makes it 49.5%.",
         "support": [
-          "8 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 49.5% → 50.7%).",
-          "A better price is now available: +125 at Caesars.",
-          "LA Dodgers missing Key Forward (F), knee.",
-          "Atlanta are rested: 3 days since their last game."
+          "Atlanta rate +1.2 a game over 30 (5-2), LA Dodgers +1 over 30 (4-3).",
+          "Home edge +0.2 for Atlanta.",
+          "Projected margin +0.4 for Atlanta.",
+          "LA Dodgers without Key Forward (F), knee.",
+          "Atlanta are rested: 3 days since their last game.",
+          "A better price is now available: +125 at Caesars."
         ],
         "risks": [
-          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
           "Atlanta listed Starting Guard (G), ankle as questionable.",
           "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
         ],
         "notes": [
+          "Where the market sits: the de-vigged consensus of 5 books makes this side 49.5% (+4.0 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (49.5% → 50.7%).",
           "Probable pitchers: Atlanta Spencer Strider (ERA 2.91) · Dodgers Yoshinobu Yamamoto (ERA 2.40).",
           "Records: LA Dodgers 4-3 · Atlanta 5-2 · Highmark Stadium, Orchard Park."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": 120,
-        "loggedFair": 0.495,
+        "loggedFair": 0.516,
         "currentOdds": 125,
         "currentBook": "Caesars",
         "currentFair": 0.507,
-        "currentEdge": 0.052454545454545476,
+        "currentEdge": 0.0716,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -537,13 +672,42 @@ window.PICKS_DATA = {
       "market": "Total",
       "pick": "Over 2.5 goals",
       "odds": -115,
-      "modelProb": 0.578,
+      "modelProb": 0.606,
       "confidence": "Medium",
-      "rationale": "Expected-goals simulation produces 2.5+ in 58% of runs; both sides pressing high in recent fixtures.",
+      "basis": "game",
+      "model": {
+        "margin": 0.2,
+        "total": 3.1,
+        "sd": 1.7,
+        "sdTotal": 1.8,
+        "gp": 10,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.1,
+          "ratingAway": 1.2,
+          "homeEdge": 0.3,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 3.1
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 3.9 a game in Arsenal's games, 2.5 in Liverpool's",
+            "Projected total 3.1 against 2.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.578,
+      "marketEdge": 0.0431,
+      "rationale": "Our probability at 2.5 is 60.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 3.1). BetRivers offers -115, which implies only 53.5%. Not graded against other books' prices; for reference the market makes it 57.8%.",
       "factors": [
-        "2.5+ goals in 58% of sims",
-        "Both sides pressing high",
-        "Four straight overs for Arsenal"
+        "Best price -115 at BetRivers",
+        "Probability 60.6% from game data, not other books",
+        "Edge 7.1 points over the price",
+        "Market reference 57.8%"
       ],
       "book": "BetRivers",
       "prices": {
@@ -553,7 +717,7 @@ window.PICKS_DATA = {
         "Caesars": -125,
         "BetRivers": -115
       },
-      "ev": 0.0806,
+      "ev": 0.133,
       "home": "Arsenal",
       "away": "Liverpool",
       "marketKey": "totals",
@@ -604,19 +768,21 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Edge of 4.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Expected-goals simulation produces 2.5+ in 58% of runs; both sides pressing high in recent fixtures.",
+        "tierWhy": "Our probability for this side is 60.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 53.5%, so the edge is 7.1 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 2.5 is 60.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 3.1). BetRivers offers -115, which implies only 53.5%. Not graded against other books' prices; for reference the market makes it 57.8%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market."
+          "Combined scoring 3.9 a game in Arsenal's games, 2.5 in Liverpool's.",
+          "Projected total 3.1 against 2.5."
         ],
         "risks": [
           "Arsenal on a back-to-back; tired legs lean under."
         ],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 57.8% (+4.3 points against the best price). For reference only.",
           "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
           "Records: Liverpool 4-3 · Arsenal 5-2 · Truist Park, Atlanta."
         ],
-        "verdict": "Context is neutral; the price edge carries the pick."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null
     },
@@ -629,13 +795,44 @@ window.PICKS_DATA = {
       "market": "Spread",
       "pick": "Denver +3.5",
       "odds": -110,
-      "modelProb": 0.552,
+      "modelProb": 0.566,
       "confidence": "Lean",
-      "rationale": "Injury report updated this morning; the model's lineup-adjusted rating moves the fair line to +1.5.",
+      "basis": "game",
+      "model": {
+        "margin": -0.5,
+        "total": 229,
+        "sd": 12.5,
+        "sdTotal": 19,
+        "gp": 8,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.4,
+          "ratingAway": 2.6,
+          "homeEdge": 2.5,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 229
+        },
+        "reasons": {
+          "for": [
+            "Phoenix rate -0.4 a game over 8 (5-2), Denver +2.6 over 8 (4-3)",
+            "Projected margin +0.5 for Denver against +3.5"
+          ],
+          "against": [
+            "Home edge +2.5 for Phoenix"
+          ]
+        }
+      },
+      "marketFair": 0.552,
+      "marketEdge": 0.0282,
+      "rationale": "Our probability at +3.5 is 56.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.5 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 55.2%.",
       "factors": [
-        "Fresh injury report this morning",
-        "Lineup-adjusted fair line +1.5",
-        "Market slow to move"
+        "Best price -110 at DraftKings",
+        "Probability 56.6% from game data, not other books",
+        "Edge 4.2 points over the price",
+        "Market reference 55.2%"
       ],
       "book": "DraftKings",
       "prices": {
@@ -645,7 +842,7 @@ window.PICKS_DATA = {
         "Caesars": -125,
         "BetRivers": -115
       },
-      "ev": 0.0538,
+      "ev": 0.0805,
       "away": "Denver",
       "home": "Phoenix",
       "marketKey": "spreads",
@@ -699,29 +896,32 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Edge of 2.8 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Injury report updated this morning; the model's lineup-adjusted rating moves the fair line to +1.5.",
+        "tierWhy": "Our probability for this side is 56.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 4.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at +3.5 is 56.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.5 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 55.2%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "6 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 55.2% → 56.4%).",
+          "Phoenix rate -0.4 a game over 8 (5-2), Denver +2.6 over 8 (4-3).",
+          "Projected margin +0.5 for Denver against +3.5.",
           "A better price is now available: -105 at DraftKings."
         ],
-        "risks": [],
+        "risks": [
+          "Home edge +2.5 for Phoenix."
+        ],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 55.2% (+2.8 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (55.2% → 56.4%).",
           "Phoenix have Starting Guard (G), ankle questionable.",
           "Indoor venue; weather is not a factor.",
           "Records: Denver 4-3 · Phoenix 5-2 · Arena."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": -110,
-        "loggedFair": 0.552,
+        "loggedFair": 0.566,
         "currentOdds": -105,
         "currentBook": "DraftKings",
         "currentFair": 0.5640000000000001,
-        "currentEdge": 0.04019047619047622,
+        "currentEdge": 0.0538,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -741,13 +941,42 @@ window.PICKS_DATA = {
       "market": "Total",
       "pick": "Under 48.5",
       "odds": -112,
-      "modelProb": 0.561,
+      "modelProb": 0.596,
       "confidence": "Medium",
-      "rationale": "Wind forecast above 15 mph suppresses deep passing; historical totals in similar conditions skew under.",
+      "basis": "game",
+      "model": {
+        "margin": 2.5,
+        "total": 44.5,
+        "sd": 13.5,
+        "sdTotal": 14,
+        "gp": 8,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.4,
+          "ratingAway": 0.9,
+          "homeEdge": 2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 44.5
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 45.3 a game in Philadelphia's games, 43.9 in Dallas's",
+            "Projected total 44.5 against 48.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.561,
+      "marketEdge": 0.0327,
+      "rationale": "Our probability at 48.5 is 59.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 44.5). FanDuel offers -112, which implies only 52.8%. Not graded against other books' prices; for reference the market makes it 56.1%.",
       "factors": [
-        "Wind forecast 15+ mph",
-        "Deep passing suppressed",
-        "Similar conditions skew under"
+        "Best price -112 at FanDuel",
+        "Probability 59.6% from game data, not other books",
+        "Edge 6.8 points over the price",
+        "Market reference 56.1%"
       ],
       "book": "FanDuel",
       "prices": {
@@ -757,7 +986,7 @@ window.PICKS_DATA = {
         "Caesars": -117,
         "BetRivers": -122
       },
-      "ev": 0.0619,
+      "ev": 0.1281,
       "away": "Dallas",
       "home": "Philadelphia",
       "marketKey": "totals",
@@ -818,20 +1047,20 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Edge of 3.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Wind forecast above 15 mph suppresses deep passing; historical totals in similar conditions skew under.",
+        "tierWhy": "Our probability for this side is 59.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 52.8%, so the edge is 6.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 48.5 is 59.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 44.5). FanDuel offers -112, which implies only 52.8%. Not graded against other books' prices; for reference the market makes it 56.1%.",
         "support": [
-          "7 books price this exact line, so the fair number is well established.",
+          "Combined scoring 45.3 a game in Philadelphia's games, 43.9 in Dallas's.",
+          "Projected total 44.5 against 48.5.",
           "Scorers out: Key Forward (F), knee. Fewer healthy scorers leans under."
         ],
-        "risks": [
-          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer."
-        ],
+        "risks": [],
         "notes": [
+          "Where the market sits: the de-vigged consensus of 5 books makes this side 56.1% (+3.3 points against the best price). For reference only.",
           "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
           "Records: Dallas 4-3 · Philadelphia 5-2 · Highmark Stadium, Orchard Park."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null
     },
@@ -844,13 +1073,42 @@ window.PICKS_DATA = {
       "market": "Total",
       "pick": "Under 5.5",
       "odds": -120,
-      "modelProb": 0.588,
+      "modelProb": 0.615,
       "confidence": "Medium",
-      "rationale": "Both starting goalies rank top-ten in goals saved above expected over the last 30 days.",
+      "basis": "game",
+      "model": {
+        "margin": 0.3,
+        "total": 5.2,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 13,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.2,
+          "ratingAway": 1.1,
+          "homeEdge": 0.2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 5.2
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 6 a game in Boston's games, 4.6 in NY Rangers's",
+            "Projected total 5.2 against 5.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.588,
+      "marketEdge": 0.0425,
+      "rationale": "Our probability at 5.5 is 61.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 5.2). BetMGM offers -120, which implies only 54.5%. Not graded against other books' prices; for reference the market makes it 58.8%.",
       "factors": [
-        "Both goalies top-10 in GSAx",
-        "Low-event matchup history",
-        "Totals market a touch high"
+        "Best price -120 at BetMGM",
+        "Probability 61.5% from game data, not other books",
+        "Edge 7.0 points over the price",
+        "Market reference 58.8%"
       ],
       "book": "BetMGM",
       "prices": {
@@ -860,7 +1118,7 @@ window.PICKS_DATA = {
         "Caesars": -130,
         "BetRivers": -135
       },
-      "ev": 0.078,
+      "ev": 0.1275,
       "away": "NY Rangers",
       "home": "Boston",
       "marketKey": "totals",
@@ -914,28 +1172,29 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Edge of 4.3 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Both starting goalies rank top-ten in goals saved above expected over the last 30 days.",
+        "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 54.5%, so the edge is 7.0 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 5.5 is 61.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 5.2). BetMGM offers -120, which implies only 54.5%. Not graded against other books' prices; for reference the market makes it 58.8%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "8 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 58.8% → 60.0%).",
+          "Combined scoring 6 a game in Boston's games, 4.6 in NY Rangers's.",
+          "Projected total 5.2 against 5.5.",
           "A better price is now available: -115 at BetMGM."
         ],
         "risks": [],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 58.8% (+4.3 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (58.8% → 60.0%).",
           "Indoor venue; weather is not a factor.",
           "Records: NY Rangers 4-3 · Boston 5-2 · Arena."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": -120,
-        "loggedFair": 0.588,
+        "loggedFair": 0.615,
         "currentOdds": -115,
         "currentBook": "BetMGM",
         "currentFair": 0.6,
-        "currentEdge": 0.054545454545454564,
+        "currentEdge": 0.0801,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -955,13 +1214,45 @@ window.PICKS_DATA = {
       "market": "Run line",
       "pick": "Yankees -1.5",
       "odds": 145,
-      "modelProb": 0.455,
+      "modelProb": 0.449,
       "confidence": "Lean",
-      "rationale": "Plus-money run line with a favorable bullpen matchup; model edge is thin, so sized as a lean.",
+      "basis": "game",
+      "model": {
+        "margin": -1.9,
+        "total": 9.1,
+        "sd": 4.2,
+        "sdTotal": 4.6,
+        "gp": 30,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0.1,
+          "ratingAway": 2.2,
+          "homeEdge": 0.2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 9.1
+        },
+        "reasons": {
+          "for": [
+            "Houston rate +0.1 a game over 30 (5-2), NY Yankees +2.2 over 30 (4-3)",
+            "Projected margin +1.9 for NY Yankees against -1.5",
+            "Houston are on a back-to-back"
+          ],
+          "against": [
+            "Home edge +0.2 for Houston"
+          ]
+        }
+      },
+      "marketFair": 0.455,
+      "marketEdge": 0.0468,
+      "rationale": "Our probability at -1.5 is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -1.9 for the home side). Caesars offers +145, which implies only 40.8%. Not graded against other books' prices; for reference the market makes it 45.5%.",
       "factors": [
-        "Bullpen matchup favors Yankees",
-        "Plus money on the run line",
-        "Sized as a lean: thin edge"
+        "Best price +145 at Caesars",
+        "Probability 44.9% from game data, not other books",
+        "Edge 4.1 points over the price",
+        "Market reference 45.5%"
       ],
       "book": "Caesars",
       "prices": {
@@ -971,7 +1262,7 @@ window.PICKS_DATA = {
         "Caesars": 145,
         "BetRivers": 140
       },
-      "ev": 0.1148,
+      "ev": 0.1001,
       "away": "NY Yankees",
       "home": "Houston",
       "marketKey": "spreads",
@@ -1025,19 +1316,23 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Edge of 4.7 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Plus-money run line with a favorable bullpen matchup; model edge is thin, so sized as a lean.",
+        "tierWhy": "Our probability for this side is 44.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 40.8%, so the edge is 4.1 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at -1.5 is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -1.9 for the home side). Caesars offers +145, which implies only 40.8%. Not graded against other books' prices; for reference the market makes it 45.5%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
+          "Houston rate +0.1 a game over 30 (5-2), NY Yankees +2.2 over 30 (4-3).",
+          "Projected margin +1.9 for NY Yankees against -1.5.",
           "Houston are on a back-to-back."
         ],
-        "risks": [],
+        "risks": [
+          "Home edge +0.2 for Houston."
+        ],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 45.5% (+4.7 points against the best price). For reference only.",
           "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
           "Probable pitchers: Houston Spencer Strider (ERA 2.91) · Yankees Yoshinobu Yamamoto (ERA 2.40).",
           "Records: NY Yankees 4-3 · Houston 5-2 · Emirates Stadium, London."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null
     },
@@ -1050,13 +1345,47 @@ window.PICKS_DATA = {
       "market": "Moneyline",
       "pick": "Real Madrid ML",
       "odds": -190,
-      "modelProb": 0.695,
+      "modelProb": 0.745,
       "confidence": "High",
-      "rationale": "Simulation gives the home side a 69.5% win probability versus 65.5% implied by the price.",
+      "basis": "game",
+      "model": {
+        "margin": 1.3,
+        "total": 2.9,
+        "sd": 1.7,
+        "sdTotal": 1.8,
+        "gp": 10,
+        "thin": false,
+        "parts": {
+          "ratingHome": 1.6,
+          "ratingAway": 0.6,
+          "homeEdge": 0.3,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 2.9
+        },
+        "reasons": {
+          "for": [
+            "Real Madrid rate +1.6 a game over 10 (5-2), Sevilla +0.6 over 10 (4-3)",
+            "Home edge +0.3 for Real Madrid",
+            "Projected margin +1.3 for Real Madrid",
+            "Sevilla without Key Forward (F), knee",
+            "Real Madrid are rested: 3 days since their last game"
+          ],
+          "against": [
+            "Real Madrid listed Starting Guard (G), ankle as questionable"
+          ]
+        }
+      },
+      "marketFair": 0.695,
+      "marketEdge": 0.0398,
+      "rationale": "Our probability is 74.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.3 for the home side). BetRivers offers -190, which implies only 65.5%. Not graded against other books' prices; for reference the market makes it 69.5%.",
       "factors": [
-        "69.5% in simulation",
-        "Home form: 7 wins in 8",
-        "Sevilla missing two starters"
+        "Best price -190 at BetRivers",
+        "Probability 74.5% from game data, not other books",
+        "Edge 9.0 points over the price",
+        "Market reference 69.5%"
       ],
       "book": "BetRivers",
       "prices": {
@@ -1066,7 +1395,7 @@ window.PICKS_DATA = {
         "Caesars": -195,
         "BetRivers": -190
       },
-      "ev": 0.0608,
+      "ev": 0.1371,
       "home": "Real Madrid",
       "away": "Sevilla",
       "marketKey": "h2h",
@@ -1137,32 +1466,34 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Edge of 4.0 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Simulation gives the home side a 69.5% win probability versus 65.5% implied by the price.",
+        "tierWhy": "Our probability for this side is 74.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 65.5%, so the edge is 9.0 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 74.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.3 for the home side). BetRivers offers -190, which implies only 65.5%. Not graded against other books' prices; for reference the market makes it 69.5%.",
         "support": [
-          "6 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 69.5% → 70.7%).",
-          "A better price is now available: -185 at BetRivers.",
-          "Sevilla missing Key Forward (F), knee.",
-          "Real Madrid are rested: 3 days since their last game."
+          "Real Madrid rate +1.6 a game over 10 (5-2), Sevilla +0.6 over 10 (4-3).",
+          "Home edge +0.3 for Real Madrid.",
+          "Projected margin +1.3 for Real Madrid.",
+          "Sevilla without Key Forward (F), knee.",
+          "Real Madrid are rested: 3 days since their last game.",
+          "A better price is now available: -185 at BetRivers."
         ],
         "risks": [
-          "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
           "Real Madrid listed Starting Guard (G), ankle as questionable.",
           "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
         ],
         "notes": [
+          "Where the market sits: the de-vigged consensus of 5 books makes this side 69.5% (+4.0 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (69.5% → 70.7%).",
           "Records: Sevilla 4-3 · Real Madrid 5-2 · Highmark Stadium, Orchard Park."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": -190,
-        "loggedFair": 0.695,
+        "loggedFair": 0.745,
         "currentOdds": -185,
         "currentBook": "BetRivers",
         "currentFair": 0.707,
-        "currentEdge": 0.051827586206896537,
+        "currentEdge": 0.0959,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -1182,13 +1513,46 @@ window.PICKS_DATA = {
       "market": "Moneyline",
       "pick": "Sacramento ML",
       "odds": 105,
-      "modelProb": 0.515,
+      "modelProb": 0.527,
       "confidence": "Lean",
-      "rationale": "Home underdog with a positive net rating in the last ten; the model marks the fair price near even.",
+      "basis": "game",
+      "model": {
+        "margin": 1.4,
+        "total": 233.5,
+        "sd": 12.5,
+        "sdTotal": 19,
+        "gp": 3,
+        "thin": true,
+        "parts": {
+          "ratingHome": 0.6,
+          "ratingAway": 1.7,
+          "homeEdge": 2.5,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 233.5
+        },
+        "reasons": {
+          "for": [
+            "Sacramento rate +0.6 a game over 3 (5-2), Golden State +1.7 over 3 (4-3)",
+            "Home edge +2.5 for Sacramento",
+            "Projected margin +1.4 for Sacramento",
+            "Sacramento are rested: 3 days since their last game"
+          ],
+          "against": [
+            "Thin sample: only 3 games behind one of these teams"
+          ]
+        }
+      },
+      "marketFair": 0.515,
+      "marketEdge": 0.0272,
+      "rationale": "Our probability is 52.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.4 for the home side). DraftKings offers +105, which implies only 48.8%. Not graded against other books' prices; for reference the market makes it 51.5%.",
       "factors": [
-        "Positive net rating, last 10",
-        "Home dog near even",
-        "Fair price around -105"
+        "Best price +105 at DraftKings",
+        "Probability 52.7% from game data, not other books",
+        "Edge 3.9 points over the price",
+        "Market reference 51.5%"
       ],
       "book": "DraftKings",
       "prices": {
@@ -1198,7 +1562,7 @@ window.PICKS_DATA = {
         "Caesars": 95,
         "BetRivers": 90
       },
-      "ev": 0.0557,
+      "ev": 0.0803,
       "away": "Golden State",
       "home": "Sacramento",
       "marketKey": "h2h",
@@ -1242,19 +1606,23 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Edge of 2.7 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Home underdog with a positive net rating in the last ten; the model marks the fair price near even.",
+        "tierWhy": "Our probability for this side is 52.7%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 48.8%, so the edge is 3.9 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 52.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.4 for the home side). DraftKings offers +105, which implies only 48.8%. Not graded against other books' prices; for reference the market makes it 51.5%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "7 books price this exact line, so the fair number is well established.",
+          "Sacramento rate +0.6 a game over 3 (5-2), Golden State +1.7 over 3 (4-3).",
+          "Home edge +2.5 for Sacramento.",
+          "Projected margin +1.4 for Sacramento.",
           "Sacramento are rested: 3 days since their last game."
         ],
-        "risks": [],
+        "risks": [
+          "Thin sample: only 3 games behind one of these teams."
+        ],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 51.5% (+2.7 points against the best price). For reference only.",
           "Indoor venue; weather is not a factor.",
           "Records: Golden State 4-3 · Sacramento 5-2 · Arena."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": null
     },
@@ -1267,13 +1635,44 @@ window.PICKS_DATA = {
       "market": "Spread",
       "pick": "San Francisco -3",
       "odds": -105,
-      "modelProb": 0.548,
+      "modelProb": 0.556,
       "confidence": "Lean",
-      "rationale": "Key number at 3 with a reduced price; the model's fair line is -4, giving modest value at -105.",
+      "basis": "game",
+      "model": {
+        "margin": -5.5,
+        "total": 43,
+        "sd": 13.5,
+        "sdTotal": 14,
+        "gp": 8,
+        "thin": false,
+        "parts": {
+          "ratingHome": -2.6,
+          "ratingAway": 4.9,
+          "homeEdge": 2,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 43
+        },
+        "reasons": {
+          "for": [
+            "Seattle rate -2.6 a game over 8 (5-2), San Francisco +4.9 over 8 (4-3)",
+            "Projected margin +5.5 for San Francisco against -3"
+          ],
+          "against": [
+            "Home edge +2 for Seattle"
+          ]
+        }
+      },
+      "marketFair": 0.548,
+      "marketEdge": 0.0358,
+      "rationale": "Our probability at -3 is 55.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -5.5 for the home side). FanDuel offers -105, which implies only 51.2%. Not graded against other books' prices; for reference the market makes it 54.8%.",
       "factors": [
-        "Key number 3 at a cheap price",
-        "Model fair line -4",
-        "Seattle thin at corner"
+        "Best price -105 at FanDuel",
+        "Probability 55.6% from game data, not other books",
+        "Edge 4.4 points over the price",
+        "Market reference 54.8%"
       ],
       "book": "FanDuel",
       "prices": {
@@ -1283,7 +1682,7 @@ window.PICKS_DATA = {
         "Caesars": -120,
         "BetRivers": -110
       },
-      "ev": 0.0699,
+      "ev": 0.0855,
       "away": "San Francisco",
       "home": "Seattle",
       "marketKey": "spreads",
@@ -1344,30 +1743,32 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Edge of 3.6 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-        "price": "Key number at 3 with a reduced price; the model's fair line is -4, giving modest value at -105.",
+        "tierWhy": "Our probability for this side is 55.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.2%, so the edge is 4.4 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at -3 is 55.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -5.5 for the home side). FanDuel offers -105, which implies only 51.2%. Not graded against other books' prices; for reference the market makes it 54.8%.",
         "support": [
-          "Fair line comes from Pinnacle's de-vigged price, the sharpest public market.",
-          "8 books price this exact line, so the fair number is well established.",
-          "The sharp line has moved toward this side since it was logged (fair 54.8% → 56.0%).",
+          "Seattle rate -2.6 a game over 8 (5-2), San Francisco +4.9 over 8 (4-3).",
+          "Projected margin +5.5 for San Francisco against -3.",
           "A better price is now available: -100 at FanDuel."
         ],
         "risks": [
+          "Home edge +2 for Seattle.",
           "Weather at kickoff: Rain, 48°F, wind 18 mph, 70% rain. Rough conditions add variance."
         ],
         "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 54.8% (+3.6 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (54.8% → 56.0%).",
           "Seattle have Starting Guard (G), ankle questionable.",
           "Records: San Francisco 4-3 · Seattle 5-2 · Emirates Stadium, London."
         ],
-        "verdict": "The context lines up with the price."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "movement": {
         "loggedOdds": -105,
-        "loggedFair": 0.548,
+        "loggedFair": 0.556,
         "currentOdds": -100,
         "currentBook": "FanDuel",
         "currentFair": 0.56,
-        "currentEdge": 0.04780487804878053,
+        "currentEdge": 0.056,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -1388,13 +1789,46 @@ window.PICKS_DATA = {
     "market": "Spread",
     "pick": "Buffalo -2.5",
     "odds": -110,
-    "modelProb": 0.585,
+    "modelProb": 0.612,
     "confidence": "High",
-    "rationale": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+    "basis": "game",
+    "model": {
+      "margin": 6,
+      "total": 47.5,
+      "sd": 13.5,
+      "sdTotal": 14,
+      "gp": 7,
+      "thin": false,
+      "parts": {
+        "ratingHome": 3.1,
+        "ratingAway": -0.9,
+        "homeEdge": 2,
+        "rest": 0,
+        "injuriesHome": 0,
+        "injuriesAway": 0,
+        "scoringOut": 0,
+        "pace": 47.5
+      },
+      "reasons": {
+        "for": [
+          "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3)",
+          "Home edge +2 for Buffalo",
+          "Projected margin +6 for Buffalo against -2.5",
+          "Kansas City without Key Forward (F), knee"
+        ],
+        "against": [
+          "Buffalo are on the second night of a back-to-back"
+        ]
+      }
+    },
+    "marketFair": 0.585,
+    "marketEdge": 0.0612,
+    "rationale": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
     "factors": [
-      "Home side on 10 days' rest",
-      "Pass-rush vs. weak right tackle",
-      "Line moved 1.5 toward Buffalo"
+      "Best price -110 at DraftKings",
+      "Probability 61.2% from game data, not other books",
+      "Edge 8.8 points over the price",
+      "Market reference 58.5%"
     ],
     "book": "DraftKings",
     "prices": {
@@ -1404,7 +1838,7 @@ window.PICKS_DATA = {
       "Caesars": -115,
       "BetRivers": -120
     },
-    "ev": 0.1168,
+    "ev": 0.1684,
     "started": false,
     "status": "pending",
     "result": null,
@@ -1468,20 +1902,23 @@ window.PICKS_DATA = {
     },
     "breakdown": {
       "tier": "High",
-      "tierWhy": "Edge of 6.1 points over the fair line. Lean starts at 1.0 points, Medium at 2.0 points, High at 3.5 points. Confidence is the size of the price edge only; the context below is what could move the result, not the number.",
-      "price": "Model favors the home team's rest advantage and pass-rush matchup; line has moved toward Buffalo since open.",
+      "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+      "price": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
       "support": [
-        "Kansas City missing Key Forward (F), knee."
+        "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3).",
+        "Home edge +2 for Buffalo.",
+        "Projected margin +6 for Buffalo against -2.5.",
+        "Kansas City without Key Forward (F), knee."
       ],
       "risks": [
-        "No sharp anchor on this line: fair is the de-vigged average of the books, which is softer.",
         "Buffalo are on the second night of a back-to-back."
       ],
       "notes": [
+        "Where the market sits: the de-vigged consensus of 7 books makes this side 58.5% (+6.1 points against the best price). For reference only.",
         "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
         "Records: Kansas City 4-3 · Buffalo 5-2 · Highmark Stadium, Orchard Park."
       ],
-      "verdict": "More working against this one than for it beyond the price; size down."
+      "verdict": "The game data lines up behind this side at this price."
     },
     "movement": null
   },
@@ -1491,8 +1928,8 @@ window.PICKS_DATA = {
     "book": "Caesars",
     "odds": 908,
     "decimal": 10.077,
-    "fairProb": 0.1318,
-    "ev": 0.3277,
+    "fairProb": 0.1418,
+    "ev": 0.4289,
     "status": "pending",
     "result": null,
     "legs": [

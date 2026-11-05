@@ -55,7 +55,7 @@
     <div>
       <span class="eyebrow">Model picks for NFL, NBA, MLB, NHL and soccer</span>
       <h1>Only bet when the model <span class="hl">beats the price.</span></h1>
-      <p class="lead">EdgeLine AI benchmarks every major sportsbook’s price against the sharpest book’s de-vigged line and surfaces the bets where a book is behind the market. Every pick ships with the number behind it.</p>
+      <p class="lead">EdgeLine AI prices every side from the game data: results, form, rest, injuries and home edge, never other books’ prices. A pick is where our probability beats the price, with the number behind it.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="picks.html">See today’s picks</a>
         <a class="btn btn-secondary" href="performance.html">View track record</a>
@@ -75,7 +75,7 @@
     <div class="section-head row field-head">
       <div>
         <h2 id="field-title">Every side we priced, against the bar</h2>
-        <p class="muted" id="field-sub">Each star is one side of one market: its price across, its edge against the sharp fair price up. Cross the bar and it becomes a pick. Nothing is hidden, including the nights we pass.</p>
+        <p class="muted" id="field-sub">Each star is one side of one market: its price across, our edge over that price up, from our probability for the side out of the game data. Cross the bar and it becomes a pick. Nothing is hidden, including the nights we pass.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="market">Sample data</span>
     </div>
@@ -145,30 +145,30 @@
   <div class="container">
     <div class="section-head">
       <h2>Three steps from data to a pick</h2>
-      <p class="muted">A pick only happens when a book’s price implies a lower probability than the fair line.</p>
+      <p class="muted">A pick only happens when our probability from the game data beats what a book’s price implies. Other books’ prices never set the grade.</p>
     </div>
     <div class="steps">
       <div class="step">
+        <span class="step-term">Game data</span>
+        <h3>Build the game model</h3>
+        <p>Each team’s results and margins this season, recent form, rest and back-to-backs, the injury report weighted by scoring, and home edge become a projected margin and total for every game, and from those our probability for every side.</p>
+      </div>
+      <div class="step">
         <span class="step-term">Prices</span>
-        <h3>Ingest the market</h3>
-        <p>Moneyline, spread and total prices from the major U.S. sportsbooks are pulled in every day before the slate.</p>
+        <h3>Shop the price</h3>
+        <p>Moneyline, spread and total prices from the major U.S. sportsbooks are pulled in every day before the slate. They are the number to beat and where to bet it; the market’s own probability is shown beside ours for reference only.</p>
       </div>
       <div class="step">
-        <span class="step-term">Fair line</span>
-        <h3>Strip the vig</h3>
-        <p>The sharpest book’s prices are de-vigged into a fair probability for each line. When it doesn’t price a line, the de-vigged average of the other books stands in.</p>
-      </div>
-      <div class="step">
-        <span class="step-term">Edge = fair % − implied %</span>
+        <span class="step-term">Edge = our % − implied %</span>
         <h3>Find the edge</h3>
-        <p>When a book’s price implies a lower probability than the fair line, that gap is the edge. Clear 1 point and it becomes a pick; 2 is Medium, 3.5 is High.</p>
+        <p>When a book’s price implies a lower probability than ours, that gap is the edge. Clear 3 points and it becomes a pick; 5 is Medium, 8 is High. A thin sample stays a Lean.</p>
       </div>
     </div>
 
     <div class="calc card" id="calc" data-tilt>
       <div class="calc-head">
         <h3>Find the edge yourself</h3>
-        <p class="muted">Drag the odds and the fair win probability. A pick only happens when the edge is positive.</p>
+        <p class="muted">Drag the odds and our win probability. A pick only happens when the edge is positive.</p>
       </div>
       <div class="calc-grid">
         <label class="calc-field">
@@ -176,7 +176,7 @@
           <input type="range" id="calc-odds" min="0" max="81" step="1" value="38">
         </label>
         <label class="calc-field">
-          <span class="calc-label">Fair win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
+          <span class="calc-label">Our win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
           <input type="range" id="calc-prob" min="30" max="80" step="0.5" value="55">
         </label>
       </div>
@@ -195,7 +195,7 @@
     <div class="section-head row">
       <div>
         <h2>The likeliest picks right now</h2>
-        <p class="muted how-to">Sides worth a bet first, likeliest to hit on top; the rest follow. The bar on each card is the fair probability; the tick is what the price implies.</p>
+        <p class="muted how-to">Sides worth a bet first, likeliest to hit on top; the rest follow. The bar on each card is our probability from the game data; the tick is what the price implies.</p>
       </div>
       <a class="btn btn-secondary btn-sm" href="picks.html">All picks</a>
     </div>
@@ -234,7 +234,7 @@
         <div class="plan-price"><span data-monthly="$29" data-yearly="$23">$29</span><small> /month</small></div>
         <ul>
           <li>Every pick across all sports</li>
-          <li>Fair probability and edge on each pick</li>
+          <li>Our probability and edge on each pick</li>
           <li>Line-move alerts</li>
           <li>Full historical database</li>
         </ul>
@@ -263,7 +263,7 @@
     <div class="faq">
       <details open>
         <summary>What does “edge” mean?</summary>
-        <p>Edge is the difference between the fair probability (the sharpest book’s de-vigged price for that line, or the market consensus when it doesn’t price it) and the probability implied by the best available price. A +2% edge means the fair line has the bet winning 2 percentage points more often than that one price suggests, which is roughly +4% expected value at even odds.</p>
+        <p>Edge is the difference between our probability for the side, from the game data (this season’s results and margins, form, rest, injuries, home edge), and the probability implied by the best available price. A +3% edge means we have the bet winning 3 percentage points more often than that price suggests, which is roughly +6% expected value at even odds. Nothing is graded against other books’ prices; the market’s own number appears on each breakdown for reference only.</p>
       </details>
       <details>
         <summary>Does the model guarantee winners?</summary>
@@ -275,7 +275,7 @@
       </details>
       <details>
         <summary>Which sportsbooks do you use for odds?</summary>
-        <p>Prices come from The Odds API: Pinnacle sets the fair line, and picks are priced at DraftKings, FanDuel, BetMGM, Caesars, BetRivers, Fanatics, ESPN Bet, Bovada or BetOnline. Each pick names the book offering the best price, and that is the price it is graded against.</p>
+        <p>Prices come from The Odds API (DraftKings, FanDuel, BetMGM, Caesars, BetRivers, Fanatics, ESPN Bet, Bovada, BetOnline), with SportsGameOdds adding more books on each pick’s line. They are where to bet it, nothing more: the grade comes from the game data, not from any book. Each pick names the book offering the best price, and its result is scored at that price. The market’s de-vigged number is shown for reference only.</p>
       </details>
       <details>
         <summary>Is this legal where I live?</summary>
@@ -312,7 +312,7 @@
         T ? T.sideLogo(p, 20) : null,
         E.el("span", { class: "t-pick", text: p.pick }),
         E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
-        E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + " " + E.signed(E.edgeOf(p) * 100, 1) + "%" : E.signed(E.edgeOf(p) * 100, 1) + "%" })
+        E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + (E.hasModel(p) ? " " + E.edgeText(p) : "") : E.edgeText(p) })
       ]));
     });
     track.appendChild(group);
@@ -354,7 +354,7 @@
           E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": next.sport, text: next.sport }),
             E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: next.confidence }),
-            E.el("span", { text: "Fair " + E.pct(next.modelProb) + " · Edge " + E.signed(E.edgeOf(next) * 100, 1) + " pts" })
+            E.el("span", { text: "To hit " + E.probText(next) + " · Edge " + E.signed(E.edgeOf(next) * 100, 1) + " pts" })
           ]),
           E.meta([next.market, next.event], "cal-note")
         ])
@@ -371,7 +371,7 @@
           near ? E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
             E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
-            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + E.signed(E.edgeOf(near) * 100, 1) + " pts" })
+            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts" : "no model yet") })
           ]) : E.el("span"),
           E.el("div", { class: "cal-note", text: "One line, so you know we looked and passed." })
         ])
@@ -397,7 +397,7 @@
         E.meta([p.event, p.market, p.isMarket ? E.statusLabel(p.status) : null], "ev")
       ]),
       E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
-      E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.signed(E.edgeOf(p) * 100, 1) + "%" })
+      E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.edgeText(p) })
     ]));
   });
   var foot = document.getElementById("board-foot");

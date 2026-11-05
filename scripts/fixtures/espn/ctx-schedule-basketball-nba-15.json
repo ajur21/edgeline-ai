@@ -1,1 +1,409 @@
-{"events": [{"date": "2026-11-05T00:00Z", "competitions": [{"status": {"type": {"completed": true}}}]}, {"date": "2026-11-03T00:00Z", "competitions": [{"status": {"type": {"completed": true}}}]}, {"date": "2026-11-01T00:00Z", "competitions": [{"status": {"type": {"completed": true}}}]}, {"date": "2026-10-30T00:00Z", "competitions": [{"status": {"type": {"completed": true}}}]}]}
+{
+ "events": [
+  {
+   "id": "fx-15-0",
+   "date": "2026-10-23T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 110,
+        "displayValue": "110"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "8",
+        "abbreviation": "DET",
+        "displayName": "DET"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 102,
+        "displayValue": "102"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-1",
+   "date": "2026-10-25T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 99,
+        "displayValue": "99"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "5",
+        "abbreviation": "CLE",
+        "displayName": "CLE"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 112,
+        "displayValue": "112"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-2",
+   "date": "2026-10-27T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 105,
+        "displayValue": "105"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "11",
+        "abbreviation": "IND",
+        "displayName": "IND"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 108,
+        "displayValue": "108"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-3",
+   "date": "2026-10-29T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 117,
+        "displayValue": "117"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "4",
+        "abbreviation": "CHI",
+        "displayName": "CHI"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 109,
+        "displayValue": "109"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-4",
+   "date": "2026-10-31T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 103,
+        "displayValue": "103"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "18",
+        "abbreviation": "NY",
+        "displayName": "NY"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 106,
+        "displayValue": "106"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-5",
+   "date": "2026-11-02T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 114,
+        "displayValue": "114"
+       },
+       "winner": true
+      },
+      {
+       "team": {
+        "id": "23",
+        "abbreviation": "SAC",
+        "displayName": "SAC"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 108,
+        "displayValue": "108"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-6",
+   "date": "2026-11-04T00:30Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 104,
+        "displayValue": "104"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "2",
+        "abbreviation": "BOS",
+        "displayName": "BOS"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 121,
+        "displayValue": "121"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-b2b",
+   "date": "2026-11-05T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": true
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 101,
+        "displayValue": "101"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "5",
+        "abbreviation": "CLE",
+        "displayName": "CLE"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 110,
+        "displayValue": "110"
+       },
+       "winner": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fx-15-7",
+   "date": "2026-11-07T00:00Z",
+   "seasonType": {
+    "type": 2,
+    "name": "Regular Season"
+   },
+   "competitions": [
+    {
+     "status": {
+      "type": {
+       "completed": false
+      }
+     },
+     "competitors": [
+      {
+       "team": {
+        "id": "15",
+        "abbreviation": "MIL",
+        "displayName": "MIL"
+       },
+       "homeAway": "home",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      },
+      {
+       "team": {
+        "id": "1",
+        "abbreviation": "ATL",
+        "displayName": "ATL"
+       },
+       "homeAway": "away",
+       "score": {
+        "value": 0,
+        "displayValue": "0"
+       },
+       "winner": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

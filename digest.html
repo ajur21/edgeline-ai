@@ -91,12 +91,12 @@
     <div class="section-head row">
       <div>
         <h2>Every pick, likeliest first</h2>
-        <p class="muted">Today's games first, then later days under their own heading; within a day, sides worth a bet first, ranked by fair probability, then the rest. The start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
+        <p class="muted">Today's games first, then later days under their own heading; within a day, sides worth a bet first, ranked by our probability from the game data, then the rest. The start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
       </div>
     </div>
     <div id="slate-host"></div>
     <div class="notice digest-foot">
-      <strong>How to read it.</strong> Fair is the sharpest book’s de-vigged probability for the line. Edge is fair minus the probability implied by the price shown, in points. Confidence follows the edge alone: 1 point is a Lean, 2 Medium, 3.5 High. Once games start, the live line under a pick shows the score and where the pick stands; results are graded officially from final scores the next morning.
+      <strong>How to read it.</strong> To hit is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. Edge is that probability minus the probability implied by the price shown, in points. Confidence follows the edge: 3 points is a Lean, 5 Medium, 8 High. Nothing is graded against other books’ prices. Once games start, the live line under a pick shows the score and where the pick stands; results are graded officially from final scores the next morning.
     </div>
   </div>
 </section>
@@ -156,23 +156,23 @@
   } else if (fallbackMode) {
     var closest = P[0];
     lede.textContent = "";
-    [E.el("strong", { text: "No pick clears the 1-point bar tonight. " }), MS.markets + " markets across " + MS.games + " games were priced against the sharp line and the closest is ", E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.edgeOf(closest) * 100).toFixed(1) + " points over fair. " + (MS.watch ? MS.watch + " markets sit within half a point. " : "") + "Below is the watch list, not a card: first start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    [E.el("strong", { text: "No pick clears the " + E.barPts() + "-point bar tonight. " }), MS.markets + " markets across " + MS.games + " games were priced on our probability from the game data and the closest is ", E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.hasModel(closest) ? (E.edgeOf(closest) * 100).toFixed(1) + " points over the price. " : "with no model yet. ") + (MS.watch ? MS.watch + " markets sit " + E.watchPts() + " points or more over the price. " : "") + "Below is the watch list, not a card: first start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   } else {
     var top = P[0], first = ordered[0];
     lede.textContent = "";
     [E.el("strong", { text: P.length + (P.length === 1 ? " pick" : " picks") }), " across " + sportList.length + (sportList.length === 1 ? " sport" : " sports") + (high ? ", " + high + " of them High" : "") + ". ",
-     "The biggest edge is ", E.el("strong", { text: top.pick }), " at " + E.fmtOdds(top.odds) + (top.book ? " (" + top.book + ")" : "") + ", " + (E.edgeOf(top) * 100).toFixed(1) + " points over fair. ",
+     "The biggest edge is ", E.el("strong", { text: top.pick }), " at " + E.fmtOdds(top.odds) + (top.book ? " (" + top.book + ")" : "") + ", " + (E.edgeOf(top) * 100).toFixed(1) + " points over the price. ",
      sportList.length > 1 ? sportList[0] + " carries the most action with " + sports[sportList[0]] + " picks. " : "",
      "First start: " + slotLabel(first) + "."].forEach(function (c) { if (c) lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   }
   var tiles = fallbackMode ? [
-    { label: "Picks", value: "0", sub: "Nothing clears the 1-point bar" },
+    { label: "Picks", value: "0", sub: "Nothing clears the " + E.barPts() + "-point bar" },
     { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games: " + MS.sports.join(", ") },
-    { label: "Watch list", value: String(MS.watch), sub: "Within half a point of the bar" }
+    { label: "Watch list", value: String(MS.watch), sub: E.watchPts() + " points or more over the price, short of the bar" }
   ] : [
     { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "No edges right now" },
     { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Lean" : "" },
-    { label: "Average edge", value: P.length ? E.signed(avgEdge * 100, 1) + "%" : "—", sub: "Points over the fair line" }
+    { label: "Average edge", value: P.length ? E.signed(avgEdge * 100, 1) + "%" : "—", sub: "Our probability over the price, in points" }
   ];
   var last = S && S.byDate && S.byDate.length ? S.byDate[S.byDate.length - 1] : null;
   tiles.push(last ? { label: "Last results", value: last.wins + "-" + last.losses + (last.pushes ? "-" + last.pushes : ""), sub: E.signed(last.units, 2) + "u on " + new Date(last.date + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) + (S.record ? " · 30 days " + S.record.wins + "-" + S.record.losses + ", " + E.signed(S.units, 1) + "u" : "") }
@@ -188,12 +188,12 @@
   if (!byEv.length) { document.getElementById("top3-head").hidden = true; top3.hidden = true; }
   if (fallbackMode) document.querySelector("#top3-head h2").textContent = "The three likeliest sides";
   byEv.forEach(function (p, i) {
-    var ev = p.ev == null ? p.modelProb * E.decimalOdds(p.odds) - 1 : p.ev;
+    var ev = !E.hasModel(p) ? null : p.ev == null ? p.modelProb * E.decimalOdds(p.odds) - 1 : p.ev;
     top3.appendChild(E.el("li", {}, [
       E.el("span", { class: "leg-id" }, [T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
       E.el("span", { class: "leg-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event")]),
       E.el("span", { class: "mono leg-price", text: E.fmtOdds(p.odds) + (p.book ? " " + E.bookAbbr(p.book) : "") }),
-      E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.pct(p.modelProb) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev <= 0 ? " neg" : ""), text: E.signed(ev * 100, 1) + "%" })])
+      E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.probText(p) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev != null && ev <= 0 ? " neg" : ""), text: ev == null ? "—" : E.signed(ev * 100, 1) + "%" })])
     ]));
   });
   if (fallbackMode) document.querySelector(".digest-slate .section-head h2").textContent = "The watch list, likeliest first";
@@ -214,7 +214,7 @@
         E.el("span", { class: "leg-id digest-id" }, [E.rankChip(i + 1, true), T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
         E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event"), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear the bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
-        E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.signed(E.edgeOf(p) * 100, 1) + "% edge" }), E.el("span", { text: "Fair " + E.pct(p.modelProb) })]),
+        E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "% edge" : "No model yet" }), E.el("span", { text: "To hit " + E.probText(p) })]),
         E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: "Play of the day" }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
         E.el("div", { class: "digest-live" }, [p.isMarket ? null : E.liveSlot(p.id)])
       ]));
@@ -228,17 +228,17 @@
   function asText() {
     var lines = ["EdgeLine AI · " + dayLabel, ""];
     if (!P.length) lines.push("Nothing on the board.");
-    if (fallbackMode) lines.push("No pick clears the 1-point bar. Watch list (closest markets, not plays):", "");
+    if (fallbackMode) lines.push("No pick clears the " + E.barPts() + "-point bar. Watch list (closest markets, not plays):", "");
     if (D.playOfDay) lines.push("Play of the day: " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event);
     if (D.parlayOfDay) lines.push("Parlay of the day (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
       var breaks = dayBreaks(g.picks);
-      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.pct(p.modelProb) + " · " + p.confidence + " · edge " + E.signed(E.edgeOf(p) * 100, 1) + "% · " + p.event + " · " + slotLabel(p)); });
+      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + p.confidence + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%" : "no model yet") + " · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
-    lines.push("Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
+    lines.push(E.gradeRule, "Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
     return lines.join("\n");
   }
   var copyBtn = document.getElementById("digest-copy");

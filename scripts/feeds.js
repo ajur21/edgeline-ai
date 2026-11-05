@@ -123,7 +123,7 @@ function pickLines(p, base) {
   const b = p.breakdown || {}, lad = ladder(p), edge = edgeOf(p);
   const lines = [
     p.sport + " · " + p.event + " · " + etLabel(p.commence),
-    p.market + ": " + p.pick + " at " + fmtOdds(p.odds) + " (" + p.book + "). Fair " + pct(p.modelProb) + ", implied " + pct(implied(p.odds)) + ", edge " + pts(edge) + (p.ev != null ? ", EV " + signed(p.ev * 100, 1) + "% per unit" : "") + "." + (p.confidence ? " Confidence: " + p.confidence + "." : ""),
+    p.market + ": " + p.pick + " at " + fmtOdds(p.odds) + " (" + p.book + "). Our probability " + pct(p.modelProb) + " from game data, the price implies " + pct(implied(p.odds)) + ", edge " + pts(edge) + (p.ev != null ? ", EV " + signed(p.ev * 100, 1) + "% per unit" : "") + "." + (p.confidence ? " Confidence: " + p.confidence + "." : ""),
     p.rationale || null
   ];
   if (b.support && b.support.length) { lines.push("What supports it:"); b.support.forEach(s => lines.push("- " + s)); }
