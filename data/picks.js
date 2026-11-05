@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-05T05:10:20.993Z",
-  "trackedAt": "2026-11-05T14:22:16.949Z",
+  "trackedAt": "2026-11-05T15:34:52.859Z",
   "playOfDay": {
     "id": "b945b71332-h2h-Philadelphia-Flyers",
     "sport": "NHL",
@@ -84,7 +84,7 @@ window.PICKS_DATA = {
     ],
     "breakdown": {
       "tier": "High",
-      "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 42.9%, so the edge is 18.6 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+      "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 42.9%, so the edge is 18.6 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
       "price": "Our probability is 61.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.7 for the home side). BetOnline.ag offers +133, which implies only 42.9%. Not graded against other books' prices; for reference the market makes it 42.6%.",
       "support": [
         "New York Rangers trending: last five -1.6 vs +0.1 on the season.",
@@ -352,7 +352,12 @@ window.PICKS_DATA = {
     "units": null,
     "score": null,
     "loggedAt": "2026-11-05T05:10:20.993Z",
-    "valueTo": -140
+    "valueTo": -140,
+    "bar": null,
+    "past": null,
+    "barParts": null,
+    "now": null,
+    "standing": null
   },
   "parlayOfDay": {
     "id": "parlay-2026-11-05",
@@ -476,7 +481,7 @@ window.PICKS_DATA = {
       ],
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 42.9%, so the edge is 18.6 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 42.9%, so the edge is 18.6 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability is 61.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.7 for the home side). BetOnline.ag offers +133, which implies only 42.9%. Not graded against other books' prices; for reference the market makes it 42.6%.",
         "support": [
           "New York Rangers trending: last five -1.6 vs +0.1 on the season.",
@@ -744,7 +749,12 @@ window.PICKS_DATA = {
       "units": null,
       "score": null,
       "loggedAt": "2026-11-05T05:10:20.993Z",
-      "valueTo": -140
+      "valueTo": -140,
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     },
     {
       "id": "c672f144ec-spreads-Anaheim-Ducks",
@@ -825,7 +835,7 @@ window.PICKS_DATA = {
       ],
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 76.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 59.2%, so the edge is 16.9 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 76.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 59.2%, so the edge is 16.9 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at +1.5 is 76.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.2 for the home side). BetMGM offers -145, which implies only 59.2%. Not graded against other books' prices; for reference the market makes it 59.0%.",
         "support": [
           "Anaheim Ducks trending: last five +0.6 vs -0.2 on the season.",
@@ -1137,7 +1147,12 @@ window.PICKS_DATA = {
       "units": null,
       "score": null,
       "loggedAt": "2026-11-05T05:10:20.993Z",
-      "valueTo": -271
+      "valueTo": -271,
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     },
     {
       "id": "b945b71332-spreads-Philadelphia-Flyers",
@@ -1218,7 +1233,7 @@ window.PICKS_DATA = {
       ],
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 82.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 65.5%, so the edge is 16.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 82.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 65.5%, so the edge is 16.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at +1.5 is 82.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.7 for the home side). BetMGM offers -190, which implies only 65.5%. Not graded against other books' prices; for reference the market makes it 64.5%.",
         "support": [
           "New York Rangers trending: last five -1.6 vs +0.1 on the season.",
@@ -1480,7 +1495,12 @@ window.PICKS_DATA = {
       "units": null,
       "score": null,
       "loggedAt": "2026-11-05T05:10:20.993Z",
-      "valueTo": -376
+      "valueTo": -376,
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     },
     {
       "id": "446de9651d-spreads-Nashville-Predators",
@@ -1559,7 +1579,7 @@ window.PICKS_DATA = {
       ],
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 72.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 56.5%, so the edge is 15.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 72.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 56.5%, so the edge is 15.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at +1.5 is 72.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). BetMGM offers -130, which implies only 56.5%. Not graded against other books' prices; for reference the market makes it 56.6%.",
         "support": [
           "Colorado Avalanche trending: last five 0 vs +0.8 on the season.",
@@ -1725,7 +1745,12 @@ window.PICKS_DATA = {
       "units": null,
       "score": null,
       "loggedAt": "2026-11-05T05:10:20.993Z",
-      "valueTo": -222
+      "valueTo": -222,
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     }
   ]
 };
