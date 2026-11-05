@@ -20,6 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
+  <script src="js/subnav.js" defer></script>
   <script src="js/live.js" defer></script>
   <script src="js/field.js" defer></script>
 </head>
@@ -52,7 +53,7 @@
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow">Market-driven picks · NFL · NBA · MLB · NHL · Soccer</span>
+      <span class="eyebrow">Model picks for NFL, NBA, MLB, NHL and soccer</span>
       <h1>Only bet when the model <span class="hl">beats the price.</span></h1>
       <p class="lead">EdgeLine AI benchmarks every major sportsbook’s price against the sharpest book’s de-vigged line and surfaces the bets where a book is behind the market. Every pick ships with the number behind it.</p>
       <div class="hero-actions">
@@ -62,18 +63,17 @@
       <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
     </div>
     <section class="board" id="board" aria-labelledby="board-title" data-tilt>
-      <div class="board-head"><span class="live" id="board-title">Today’s board</span><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
+      <div class="board-head"><h2 class="live board-h" id="board-title">Today’s board</h2><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
       <div id="board-rows"></div>
       <div class="board-foot" id="board-foot"></div>
     </section>
   </div>
 </section>
-
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#board">Board</a><a href="#field">Every side</a><a href="#plays">Plays</a><a href="#subscribe">Subscribe</a><a href="#how">How it works</a><a href="#ranked">Top picks</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
 <section class="section section-flush edge-field" id="field" aria-labelledby="field-title">
   <div class="container">
     <div class="section-head row field-head">
       <div>
-        <span class="eyebrow">Tonight’s market, every side</span>
         <h2 id="field-title">Every side we priced, against the bar</h2>
         <p class="muted" id="field-sub">Each star is one side of one market: its price across, its edge against the sharp fair price up. Cross the bar and it becomes a pick. Nothing is hidden, including the nights we pass.</p>
       </div>
@@ -91,7 +91,6 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Today’s plays</span>
         <h2>Play of the day. Parlay of the day.</h2>
         <p class="muted">Chosen once a day, locked in, and graded in public.</p>
       </div>
@@ -108,7 +107,6 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Subscribe · no account, no inbox</span>
         <h2>Every pick lands in your calendar. Every grade lands in your reader.</h2>
         <p class="muted">Subscribe once. Each pick arrives at tip-off with the price, the book and the number behind it, and its grade is written into the same event when the game ends. On the nights we pass, you get one line saying so.</p>
       </div>
@@ -116,13 +114,12 @@
     </div>
     <div class="subscribe">
       <div class="sub-preview card" data-tilt aria-labelledby="sub-preview-title">
-        <div class="sub-preview-head"><span class="eyebrow" id="sub-preview-title">Next on your calendar</span><span class="badge badge-strong">Rebuilt every run</span></div>
+        <div class="sub-preview-head"><h3 class="sub-preview-h" id="sub-preview-title">Next on your calendar</h3><span class="badge badge-strong">Rebuilt every run</span></div>
         <div id="sub-preview-host"></div>
       </div>
       <div class="sub-channels">
         <div class="sub-channel card" data-tilt>
-          <span class="eyebrow">Calendar</span>
-          <h3>Picks at tip-off</h3>
+          <h3>Calendar: picks at tip-off</h3>
           <p class="muted">Apple Calendar, Outlook and Google. One event per pick, an alert 30 minutes before the start, the result written in after the final.</p>
           <div class="sub-actions">
             <a class="btn btn-primary" id="sub-webcal" href="webcal://ajur21.github.io/edgeline-ai/picks.ics">Add to calendar</a>
@@ -131,8 +128,7 @@
           <p class="sub-hint">Google Calendar: Other calendars, From URL, paste the link.</p>
         </div>
         <div class="sub-channel card" data-tilt>
-          <span class="eyebrow">Reader · Slack · email</span>
-          <h3>Picks and grades as a feed</h3>
+          <h3>Feed: picks and grades in a reader, Slack or email</h3>
           <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per pick, one per grade, one per slate.</p>
           <div class="sub-actions">
             <a class="btn btn-primary" id="sub-rss" href="feed.xml">Open the feed</a>
@@ -148,7 +144,6 @@
 <section class="section" id="how">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">How it works</span>
       <h2>Three steps from data to a pick</h2>
       <p class="muted">A pick only happens when a book’s price implies a lower probability than the fair line.</p>
     </div>
@@ -172,7 +167,6 @@
 
     <div class="calc card" id="calc" data-tilt>
       <div class="calc-head">
-        <span class="eyebrow">Try it</span>
         <h3>Find the edge yourself</h3>
         <p class="muted">Drag the odds and the fair win probability. A pick only happens when the edge is positive.</p>
       </div>
@@ -200,7 +194,6 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Today’s board, ranked</span>
         <h2>The likeliest picks right now</h2>
         <p class="muted how-to">Sides worth a bet first, likeliest to hit on top; the rest follow. The bar on each card is the fair probability; the tick is what the price implies.</p>
       </div>
@@ -214,7 +207,6 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Pricing</span>
         <h2>Simple plans, one model</h2>
         <p class="muted">Start free. Upgrade when you want every pick and the number behind it.</p>
       </div>
@@ -266,12 +258,11 @@
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">FAQ</span>
       <h2>Questions people ask</h2>
     </div>
     <div class="faq">
       <details open>
-        <summary>What does "edge" mean?</summary>
+        <summary>What does “edge” mean?</summary>
         <p>Edge is the difference between the fair probability (the sharpest book’s de-vigged price for that line, or the market consensus when it doesn’t price it) and the probability implied by the best available price. A +2% edge means the fair line has the bet winning 2 percentage points more often than that one price suggests, which is roughly +4% expected value at even odds.</p>
       </details>
       <details>

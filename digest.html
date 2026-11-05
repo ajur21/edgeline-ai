@@ -20,6 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
+  <script src="js/subnav.js" defer></script>
   <script src="js/live.js" defer></script>
 </head>
 <body>
@@ -45,6 +46,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#potd-host">Start here</a><a href="#top3">Likeliest three</a><a href="#slate-host">The slate</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -70,7 +72,6 @@
   <div class="container digest-top">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">Lead plays</span>
         <h2>Start here</h2>
       </div>
     </div>
@@ -79,7 +80,7 @@
       <div id="parlay-host"></div>
     </div>
     <div class="section-head row digest-top" id="top3-head">
-      <div><h2>The three likeliest</h2></div>
+      <div><h2 id="top3">The three likeliest</h2></div>
     </div>
     <ol class="digest-top3" id="top3"></ol>
   </div>
@@ -89,7 +90,6 @@
   <div class="container digest-slate">
     <div class="section-head row">
       <div>
-        <span class="eyebrow">The slate</span>
         <h2>Every pick, likeliest first</h2>
         <p class="muted">Sides worth a bet first, ranked by fair probability, then the rest; the start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
       </div>

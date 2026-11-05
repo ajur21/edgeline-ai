@@ -258,7 +258,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('props board: ranked rows with #1 on top, a face, the side and line, a probability bar, a hit pill and a grade', (await rows.count()) >= 4 && (await rows.first().locator('.rank-top').count()) === 1 && (await rows.first().locator('.pb-face, .pb-line, .prob-bar, .hit-pill, .pb-agree .badge').count()) === 5, 'rows ' + await rows.count());
   const probs = await rows.evaluateAll(els => els.map(e => Number(e.getAttribute('data-prob'))));
   check('props board: our probability descending, no book-price tier or divider', probs.every((v, i) => i === 0 || v <= probs[i - 1] + 1e-9) && probs[0] > 0.5 && (await pp.locator('#props-board .grid-divider').count()) === 0, probs.join(','));
-  check('props board: the how-to and the summary say the grade is game data, not other books', /not graded against other books/.test(await pp.textContent('#props-board-how')) && /game data only/.test(await pp.textContent('#pb-summary')) && /Never against other books/.test(await pp.textContent('#props-rule')));
+  check('props board: the how-to and the summary say the grade is game data, not other books', /not graded against other books/.test(await pp.textContent('#props-board-how')) && /[Gg]ame data only/.test(await pp.textContent('#pb-summary')) && /Never against other books/.test(await pp.textContent('#props-rule')));
   const r2 = rows.nth(1), pid2 = await r2.getAttribute('data-player'), stat2 = await r2.getAttribute('data-stat');
   await r2.locator('.pb-open').click(); await pp.waitForTimeout(300);
   const oc = pp.locator('#props-host .prop-card[data-id="' + pid2 + '"]');
@@ -287,7 +287,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await pp.selectOption('#p-lean', '');
   await pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]').click();
   await pp.locator('#props-host .prop-card').first().locator('.line-big').fill('-0.5');
-  check('props: a line below zero is cleared in every game (100%)', /Over (\d+)\/\1 L10 · 100%/.test(await pp.locator('#props-host .prop-card').first().locator('.hits').textContent()), await pp.locator('#props-host .prop-card').first().locator('.hits').textContent());
+  check('props: a line below zero is cleared in every game (100%)', /Over (\d+)\/\1 L10, 100%/.test(await pp.locator('#props-host .prop-card').first().locator('.hits').textContent()), await pp.locator('#props-host .prop-card').first().locator('.hits').textContent());
   await pp.reload(); await pp.waitForTimeout(400);
   await pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]').click();
   check('props: the typed line is remembered over the market line for that stat', (await pp.locator('#props-host .prop-card').first().locator('.line-big').inputValue()) === '-0.5');

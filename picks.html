@@ -20,6 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
+  <script src="js/subnav.js" defer></script>
   <script src="js/live.js" defer></script>
   <script src="js/field.js" defer></script>
 </head>
@@ -46,6 +47,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks">All picks</a><a href="#market">Market board</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -60,7 +62,6 @@
 
     <div class="section-head row parlays-head" id="parlays">
       <div>
-        <span class="eyebrow">Best parlays</span>
         <h2>The best tickets on today’s board</h2>
         <p class="muted">Every combination of picks from different games that is worth a bet at one book, likeliest ticket first, then by expected value.</p>
       </div>
@@ -75,7 +76,7 @@
     <p class="small muted parlays-note">Fair probability treats legs as independent, so expected value is an estimate. Longer parlays pay more and hit less; pick the length that suits your bankroll.</p>
 
     <div class="section-head row picks-head">
-      <div><h2>All picks, likeliest first</h2><p class="muted how-to">Sides with a positive edge come first, ranked by fair probability: #1 is the side worth a bet that the model expects to hit most often. Sides priced against you follow, likeliest first. On each card the bar is that probability and the tick is what the price implies.</p></div>
+      <div><h2 id="all-picks">All picks, likeliest first</h2><p class="muted how-to">Sides with a positive edge come first, ranked by fair probability: #1 is the side worth a bet that the model expects to hit most often. Sides priced against you follow, likeliest first. On each card the bar is that probability and the tick is what the price implies.</p></div>
     </div>
     <div class="filter-row" role="group" aria-label="Filters">
       <label class="filter">Sport
@@ -124,7 +125,6 @@
 
     <div class="section-head row market-head" id="market">
       <div>
-        <span class="eyebrow">Market board</span>
         <h2>Every market we priced</h2>
         <p class="market-sub" id="market-sub"></p>
       </div>
@@ -146,7 +146,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a pick.</strong> "Fair" is the sharpest book’s de-vigged probability for the line (or the market consensus when it doesn’t price it). "Implied" is the probability baked into the best available price. "Edge" is the difference; the higher it is, the further that book sits behind the market. Confidence follows the edge: 1 point is a Lean, 2 Medium, 3.5 High.
+      <strong>Reading a pick.</strong> “Fair” is the sharpest book’s de-vigged probability for the line (or the market consensus when it doesn’t price it). “Implied” is the probability baked into the best available price. “Edge” is the difference; the higher it is, the further that book sits behind the market. Confidence follows the edge: 1 point is a Lean, 2 Medium, 3.5 High.
     </div>
   </div>
 </section>

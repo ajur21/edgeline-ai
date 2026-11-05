@@ -16,6 +16,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 | `digest.html` | The daily digest: one page with the whole slate by tip-off time, the play and parlay of the day, the top three by expected value, and live scores once games start. Print it, save it as a PDF, or copy it as text |
 | `performance.html` | Track record: stat tiles, play and parlay records, closing line value, profit calendar, cumulative units chart, units by sport, recent graded picks |
 | `props.html` | NBA props, likeliest first: a ranked props board graded on game data only (hit rate against tonight's number, a projection from form, minutes, matchup, rest and injuries; never against other books' prices, the best price shown only for shopping), then every rotation player as a research card with faces, the line typed in, the reasons listed, confluence signals and game logs (stats from ESPN's public API, lines from SportsGameOdds) |
+| `js/subnav.js` | The "On this page" strip under the header on every page: section links that stick and mark the section in view |
 | `journal.html` | Your own bet log with screenshots and a profit calendar, stored on your device |
 
 ## Structure

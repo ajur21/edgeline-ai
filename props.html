@@ -20,6 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
   <script src="js/app.js"></script>
   <script src="js/space.js" defer></script>
+  <script src="js/subnav.js" defer></script>
 </head>
 <body>
 
@@ -45,6 +46,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#props-board-head">The board</a><a href="#players">Every player</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -84,7 +86,7 @@
     <p class="filter-summary" id="pb-summary" role="status"></p>
     <div class="props-board" id="props-board" aria-label="Props board, likeliest first"></div>
 
-    <div class="section-head sub-head">
+    <div class="section-head sub-head" id="players">
       <div>
         <h2>Every player</h2>
         <p class="how-to muted" id="p-how">Each card opens on the prop the board ranked, with tonight’s line typed in and the reasons listed. Change the stat, the line or the span and the grade and bars recompute from the game data.</p>
@@ -114,12 +116,12 @@
   var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA" };
   var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); });
   var L = D.lines || {};
-  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight · " : "") + P.length + " rotation players · Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
+  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight, " : "") + P.length + " rotation players. Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }) + "."; }
   var linesNote = document.getElementById("props-lines");
   if (HAS_LINES) { var at = L.at ? new Date(L.at) : null, priced = P.filter(function (p) { return p.lines; }).length; linesNote.textContent = "Lines: " + priced + " players priced" + (L.games ? " in " + L.games + (L.of ? " of " + L.of : "") + " games" : "") + ((L.books || []).length ? " at " + L.books.length + " books" : "") + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + "."; }
   else { linesNote.textContent = P.length ? "No lines posted yet tonight: the board fills at the afternoon refresh. Type a line on any card to grade it now." : ""; }
   document.getElementById("props-credit").textContent = D.attribution || "";
-  (D.games || []).forEach(function (g) { fGame.appendChild(E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + " · " + g.startLabel })); });
+  (D.games || []).forEach(function (g) { fGame.appendChild(E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + ", " + g.startLabel })); });
   if (!HAS_LINES) { fSort.value = "heat"; fSort.querySelector('[value="prob"]').disabled = true; fSort.querySelector('[value="form"]').disabled = true; document.getElementById("props-board-head").hidden = true; board.hidden = true; boardSummary.hidden = true; }
 
   /* ---------- the maths: one side per player per stat ---------- */
@@ -184,7 +186,7 @@
     var pOver = 0.5 * pModelOver + 0.5 * emp.p;
     var side = pOver >= 0.5 ? "over" : "under", prob = side === "over" ? pOver : 1 - pOver;
     var h = hitsFor(p, k, line, side), g = gradeOf(prob);
-    var reasons = [{ lean: side, label: (side === "over" ? "Cleared " : "Stayed under ") + line + " in " + h.l10[0] + " of the last " + h.l10[1] }, { lean: pr.proj > line ? "over" : "under", label: "Projects " + pr.proj + " (L5 " + p.stats[k].l5 + " · L10 " + p.stats[k].l10 + " · season " + p.stats[k].season + ")" }].concat(pr.reasons);
+    var reasons = [{ lean: side, label: (side === "over" ? "Cleared " : "Stayed under ") + line + " in " + h.l10[0] + " of the last " + h.l10[1] }, { lean: pr.proj > line ? "over" : "under", label: "Projects " + pr.proj + " (last 5: " + p.stats[k].l5 + ", last 10: " + p.stats[k].l10 + ", season: " + p.stats[k].season + ")" }].concat(pr.reasons);
     if (p.log.length < MIN_GAMES) reasons.push({ lean: "neutral", label: "Small sample: " + p.log.length + " game" + (p.log.length === 1 ? "" : "s") + " logged, so the grade is pulled toward even" });
     var trend = p.signals.filter(function (x) { return x.key === k || (k === "pra" && (x.key === "pts" || x.key === "reb" || x.key === "ast")) || x.key === "steady"; }).map(function (x) { return { lean: x.lean, label: x.label }; });
     reasons = reasons.concat(trend);
@@ -221,6 +223,8 @@
   }
 
   /* ---------- faces and small pieces ---------- */
+  /* a meta line: parts as spans, separated by a hairline in CSS, never a middle dot */
+  function meta(parts, cls) { return E.el("span", { class: "meta" + (cls ? " " + cls : "") }, parts.filter(Boolean).map(function (t) { return typeof t === "string" ? E.el("span", { text: t }) : t; })); }
   function face(p, px, cls) {
     var img = E.el("img", { class: cls || "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/nba/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: String(px), height: String(px) });
     img.addEventListener("error", function () { img.replaceWith(E.el("span", { class: (cls || "headshot") + " headshot-fallback", text: p.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
@@ -236,7 +240,7 @@
   function gradeBadge(s) { return E.el("span", { class: "badge " + s.grade.cls, text: s.grade.label }); }
   function hitPill(s) {
     var shown = s.hit.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
-    return E.el("span", { class: "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : ""), text: sideWord(s.side) + " hit " + shown[0] + " of " + shown[1] + " · " + r + "%" });
+    return E.el("span", { class: "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : ""), text: sideWord(s.side) + " hit " + shown[0] + " of " + shown[1] + ", " + r + "%" });
   }
   function ordinalText(n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
 
@@ -248,18 +252,18 @@
     row.appendChild(face(p, 40, "headshot pb-face"));
     row.appendChild(E.el("div", { class: "pb-who" }, [
       E.el("strong", { class: "pb-name", text: p.name }),
-      E.el("span", { class: "pb-meta", text: p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start + (p.injury ? " · " + p.injury.split(":")[0] : "") })
+      meta([p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr, p.start, p.injury ? p.injury.split(":")[0] : null], "pb-meta")
     ]));
     row.appendChild(E.el("div", { class: "pb-prop" }, [
       E.el("strong", { class: "pb-line pb-side-" + s.side, text: sideWord(s.side) + " " + s.line + " " + STAT_SHORT[s.k] }),
-      E.el("span", { class: "pb-sub mono", title: "Where the number is best; prices are not part of the grade", text: "projects " + s.proj + (s.odds != null ? " · best " + E.fmtOdds(s.odds) + (s.book ? " " + E.bookAbbr(s.book) : "") : "") })
+      meta(["projects " + s.proj, s.odds != null ? "best " + E.fmtOdds(s.odds) + (s.book ? " " + E.bookAbbr(s.book) : "") : null], "pb-sub mono")
     ]));
     row.appendChild(E.el("div", { class: "pb-prob" }, [
       E.el("span", { class: "pb-fair" }, [E.el("span", { class: "k", text: "Our probability" }), " ", E.el("strong", { class: "mono", text: E.pct(s.prob) })]),
       probBar(s.prob, s.l10)
     ]));
     row.appendChild(E.el("div", { class: "pb-hit" }, [hitPill(s)]));
-    row.appendChild(E.el("div", { class: "pb-agree small" }, [gradeBadge(s), E.el("span", { class: "pb-why", text: s.reasons.length + " for · " + s.against.length + " against" })]));
+    row.appendChild(E.el("div", { class: "pb-agree small" }, [gradeBadge(s), E.el("span", { class: "pb-why", text: s.reasons.length + " for, " + s.against.length + " against" })]));
     var open = E.el("button", { type: "button", class: "btn btn-secondary btn-sm pb-open", text: "Open card" });
     open.addEventListener("click", function () { openCard(p, s.k); });
     row.appendChild(open);
@@ -280,7 +284,7 @@
     var old = document.getElementById("pb-more"); if (old) old.remove();
     if (!HAS_LINES) return;
     var graded = sides.filter(function (s) { return s.prob >= GRADES[2][0]; }).length;
-    boardSummary.textContent = sides.length ? sides.length + " props ranked" + (fStat.value ? " · " + STAT_LABEL[fStat.value] : " · best stat per player") + " · " + graded + " graded Lean or better · game data only, not other books' prices" : "No priced props match these filters.";
+    boardSummary.textContent = sides.length ? sides.length + " props ranked, " + (fStat.value ? STAT_LABEL[fStat.value] : "best stat per player") + ", " + graded + " graded Lean or better. Game data only, not other books' prices." : "No priced props match these filters.";
     if (!sides.length) { board.appendChild(E.el("div", { class: "card empty", text: "Nothing priced here yet." })); return; }
     var shown = 0;
     function more(all) {
@@ -355,14 +359,14 @@
       spans.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.textContent === "L" + span)); });
       input.placeholder = m != null ? String(m) : s.l10 ? String(Math.round(s.l10 * 2) / 2) : "line";
       reset.hidden = !(m != null && lineVal !== m);
-      avg.textContent = STAT_LABEL[statKey] + " · avg " + s.season + " · L5 " + s.l5 + " · L10 " + s.l10 + " · " + (p.home ? "home " + (s.home || "—") : "road " + (s.away || "—"));
+      avg.textContent = STAT_LABEL[statKey] + ": season " + s.season + ", last 5 " + s.l5 + ", last 10 " + s.l10 + ", " + (p.home ? "home " + (s.home || "—") : "road " + (s.away || "—"));
       market.textContent = ""; why.textContent = "";
       if (side) {
         ["over", "under"].forEach(function (sd) {
           var mine = sd === side.side, pr = mine ? side.prob : 1 - side.prob, odds = mine ? side.odds : side.otherOdds, book = mine ? side.book : side.otherBook;
           market.appendChild(E.el("span", { class: "side-pill" + (mine ? " lead" : ""), title: mine ? "The side we favour, from game data" : "" }, [
             E.el("strong", { text: sideWord(sd) + " " + side.line }), " ",
-            E.el("span", { class: "mono", text: E.pct(pr, 0) + (odds != null ? " · " + E.fmtOdds(odds) + (book ? " " + E.bookAbbr(book) : "") : "") })
+            E.el("span", { class: "mono", text: E.pct(pr, 0) + (odds != null ? "  " + E.fmtOdds(odds) + (book ? " " + E.bookAbbr(book) : "") : "") })
           ]));
         });
         market.appendChild(gradeBadge(side));
@@ -376,11 +380,11 @@
       if (lineVal == null) { pill.textContent = "Type a line to grade each game"; pill.className = "hit-pill"; return; }
       var gradeSide = lean;
       var h = hitsFor(p, statKey, lineVal, gradeSide), shown = span === 5 ? h.l5 : h.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
-      pill.textContent = sideWord(gradeSide) + " hit " + shown[0] + " of " + shown[1] + " · " + r + "%";
+      pill.textContent = sideWord(gradeSide) + " hit " + shown[0] + " of " + shown[1] + ", " + r + "%";
       pill.className = "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : "");
       [["L5", h.l5], ["L10", h.l10], ["Season", h.season]].forEach(function (pair) {
         var o = pair[1][0], n = pair[1][1], rr = n ? Math.round(o / n * 100) : 0;
-        hits.appendChild(E.el("span", { class: "hit" + (rr >= 60 ? " hit-over" : rr <= 40 ? " hit-under" : "") }, [E.el("strong", { text: sideWord(gradeSide) + " " + o + "/" + n }), " " + pair[0] + " · " + rr + "%"]));
+        hits.appendChild(E.el("span", { class: "hit" + (rr >= 60 ? " hit-over" : rr <= 40 ? " hit-under" : "") }, [E.el("strong", { text: sideWord(gradeSide) + " " + o + "/" + n }), " " + pair[0] + ", " + rr + "%"]));
       });
       rememberLine(p, statKey, input.value);
     }
@@ -414,7 +418,7 @@
         face(p, 64),
         E.el("div", { class: "prop-who" }, [
           E.el("div", { class: "prop-name-row" }, [RANK[p.id] ? E.rankChip(RANK[p.id], true) : null, E.el("h3", { class: "prop-name", text: p.name })]),
-          E.el("div", { class: "prop-meta", text: (p.pos || "") + (p.jersey ? " · #" + p.jersey : "") + " · " + p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr + " · " + p.start + " · " + p.minutes.l5 + " min L5" })
+          meta([(p.pos || "") + (p.jersey ? " #" + p.jersey : ""), p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr, p.start, p.minutes.l5 + " min last 5"], "prop-meta")
         ]),
         E.el("div", { class: "prop-chips" }, [
           p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null),
@@ -425,7 +429,7 @@
       ]),
       statBlock(p, startKey),
       E.el("div", { class: "signals" }, [
-        E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over · " + under + " under" })]),
+        E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over, " + under + " under" })]),
         p.signals.length ? E.el("ul", { class: "signal-list" }, p.signals.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })) : E.el("p", { class: "small muted", text: "Nothing stands out; form is in line with the season." })
       ]),
       p.opp ? E.el("p", { class: "small muted prop-opp", text: p.oppAbbr + " allows " + p.opp.ptsAllowed + " points per game, " + ordinalText(p.opp.rank) + " most in the league." }) : null,
@@ -473,7 +477,7 @@
     LIST = list.sort(function (a, b) { return score(b) - score(a); });
     host.textContent = ""; shownCards = 0;
     var statName = fStat.value ? STAT_LABEL[fStat.value] : "best stat per player";
-    summary.textContent = P.length ? LIST.length + " of " + P.length + " players · " + statName + (fSort.value === "prob" && HAS_LINES ? " · likeliest first" : "") : "No props data yet. It refreshes with the picks, around noon and 4:30 PM ET on game days.";
+    summary.textContent = P.length ? LIST.length + " of " + P.length + " players, " + statName + (fSort.value === "prob" && HAS_LINES ? ", likeliest first" : "") : "No props data yet. It refreshes with the picks, around noon and 4:30 PM ET on game days.";
     if (!LIST.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No players match." : "Nothing to show until the first refresh." })); return; }
     moreCards();
   }
