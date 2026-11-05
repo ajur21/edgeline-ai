@@ -531,7 +531,7 @@ async function run(opts) {
       let gm = null;
       try { gm = await model.forEvent(ctxSource, context, { sportKey: cfg.key, home: ev.home_team, away: ev.away_team, commence: ev.commence_time }, now, modelCache); } catch (err) { if (VERBOSE) console.warn("  model failed for " + eventName(cfg, ev) + ": " + err.message); }
       if (gm) modelled++; else unmodelled++;
-      if (VERBOSE && gm) console.log("  " + eventName(cfg, ev) + " | model: margin " + (gm.margin > 0 ? "+" : "") + gm.margin + " (home), total " + gm.total + (gm.thin ? ", thin sample" : ""));
+      if (VERBOSE && gm) { const pm = model.publicModel(gm); console.log("  " + eventName(cfg, ev) + " | model: margin " + (pm.margin > 0 ? "+" : "") + pm.margin + " (home), total " + pm.total + (gm.thin ? ", thin sample" : "")); }
       const priced = priceWithModel(gm, ev, priceOutcomes(cfg, ev));
       priced.filter(c => c.qualifies).forEach(function (c) {
         marketRows.push({ key: candidateKey(ev.id, c), eventId: ev.id, sport: cfg.sport, league: cfg.league, sportKey: cfg.key, event: eventName(cfg, ev), home: ev.home_team, away: ev.away_team, commence: ev.commence_time, start: startLabel(new Date(t), now),
