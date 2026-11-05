@@ -1240,3 +1240,8 @@ html { scroll-padding-top: calc(var(--header-h, 0px) + 60px); }
 .market-table tr.day-divider td .day-date { font-weight: 400; color: var(--text-2); }
 .market-table tbody tr.day-divider:first-child td { border-top: 0; }
 @media (max-width: 720px) { .market-table tr.day-divider { display: block; } .market-table tr.day-divider td::before { display: none; } }
+
+/* card kickers (2026-11-04, owner: "make the change"): the labels inside cards and the breakdown drop the condensed pink voice
+   and sit in the body face; only the page-title kicker keeps it. The two lead cards keep their accent colour. */
+.card .eyebrow, .bd-top .eyebrow, .pick-head .eyebrow { font-family: var(--font-body); font-size: 0.86rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--text-2); margin-bottom: 0; }
+.potd .pick-head .eyebrow, .parlay.potd-parlay .pick-head .eyebrow { color: var(--accent-2); }
