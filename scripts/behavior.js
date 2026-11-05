@@ -25,11 +25,16 @@ let base = '';
 const url = p => base + '/' + p;
 const fails = [];
 const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : '')); if (!ok) fails.push(name); };
+/* The site's one clock (EdgeLine.now) is pinned for the sample fixtures through window.EDGELINE_NOW, set before any page script runs.
+   The fixtures were written Wed 2026-11-04 9:00 AM ET (the market priced at 4:30 PM, prices checked at 4:00 PM); at 4:45 PM ET every
+   fixture game is still to start except two Wednesday soccer picks: p13 kicked off at 3:00 PM (live) and p14 at 1:00 PM (graded, a win). */
+const FIXTURE_NOW = Date.parse('2026-11-04T16:45:00-05:00');
+const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; }, at == null ? FIXTURE_NOW : at);
 (async () => {
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   base = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
-  const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(page);
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 
   // index: nav current, board, hero cards
@@ -245,7 +250,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // journal: local-only bet log
   const jctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const jp = await jctx.newPage(); const jerr = []; jp.on('pageerror', e => jerr.push(e.message));
+  const jp = await jctx.newPage(); await pinClock(jp); const jerr = []; jp.on('pageerror', e => jerr.push(e.message));
   jp.on('dialog', d => d.accept());
   await jp.goto(url('journal.html')); await jp.waitForTimeout(400);
   check('journal: empty state and calendar on first visit', (await jp.textContent('#j-list')).includes('first bet') && await jp.locator('#j-cal table.cal').count() === 1);
@@ -264,7 +269,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await jctx.close();
 
   // props research page (sample ESPN-shaped data with fixture lines from SportsGameOdds)
-  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const perr = []; pp.on('pageerror', e => perr.push(e.message));
+  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(pp); const perr = []; pp.on('pageerror', e => perr.push(e.message));
   await pp.goto(url('props.html')); await pp.waitForTimeout(500);
   const nProps = await pp.locator('#props-host .prop-card').count();
   check('props: player cards render with headshot, stat chips, history bars and signals', nProps >= 4 && (await pp.locator('#props-host .prop-card').first().locator('.headshot, .stat-chips [data-stat], svg.hist rect.hist-bar, .signals').count()) > 8, 'cards ' + nProps);
@@ -349,7 +354,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // never empty: with no picks at all, home, picks and digest fall back to the closest markets
   const ectx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const ep = await ectx.newPage(); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
+  const ep = await ectx.newPage(); await pinClock(ep); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
   await ep.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };' }));
   await ep.goto(url('index.html')); await ep.waitForTimeout(500);
   check('empty: home board shows the four closest markets with a status, retitled', (await ep.locator('#board-rows .board-row.board-market').count()) === 4 && (await ep.textContent('#board-title')) === 'Worth a look tonight' && (await ep.locator('#board-rows .board-row .rank').count()) === 4 && await ep.evaluate(() => { const v = [...document.querySelectorAll('#board-rows .board-row')].map(r => r.textContent); return true; }) && /Watch|No bet/.test(await ep.textContent('#board-rows')) && /markets priced in 8 games/.test(await ep.textContent('#board-foot')));
@@ -367,7 +372,8 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // live in-game status: ESPN scoreboard mocked, sample flag cleared so the poller runs
   const lctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const lp = await lctx.newPage(); const lerr = []; lp.on('pageerror', e => lerr.push(e.message)); lp.on('console', m => { if (m.type() === 'error') lerr.push(m.text()); });
+  /* the clock sits an hour into p1's game (Sun Nov 8, 4:25 PM ET kickoff), so the poller watches it; p1 is live and listed under In progress and results */
+  const lp = await lctx.newPage(); await pinClock(lp, Date.parse('2026-11-08T17:30:00-05:00')); const lerr = []; lp.on('pageerror', e => lerr.push(e.message)); lp.on('console', m => { if (m.type() === 'error') lerr.push(m.text()); });
   let espnHits = 0;
   await lp.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(path.join(root, 'scripts/fixtures/sample-picks.js'), 'utf8').replace('"sample": true', '"sample": false') }));
   await lp.route('**/site.api.espn.com/**', route => { espnHits++; route.fulfill({ contentType: 'application/json', body: JSON.stringify({ events: [{ id: 'x0', competitions: [{ status: { displayClock: '7:32', period: 3, type: { state: 'in', completed: false, shortDetail: '7:32 - 3rd' } }, competitors: [
@@ -384,7 +390,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await lctx.close();
 
   // daily digest: the slate grouped by start time, lead plays, copy text
-  const dp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const derr = []; dp.on('pageerror', e => derr.push(e.message)); dp.on('console', m => { if (m.type() === 'error') derr.push(m.text()); });
+  const dp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(dp); const derr = []; dp.on('pageerror', e => derr.push(e.message)); dp.on('console', m => { if (m.type() === 'error') derr.push(m.text()); });
   await dp.goto(url('digest.html')); await dp.waitForTimeout(500);
   check('digest: nav current is Digest', (await dp.locator('.nav-links a[aria-current="page"]').textContent()) === 'Digest');
   check('digest: title names the day and the lede counts the board', (await dp.textContent('#digest-title')).startsWith('The slate for ') && /12 picks across \d sports/.test(await dp.textContent('#digest-lede')) && /biggest edge is/.test(await dp.textContent('#digest-lede')), await dp.textContent('#digest-lede'));
@@ -399,7 +405,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await dp.context().close();
 
   // subscribe section: the preview event renders from the data, the links point at the feeds
-  const sp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const sp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(sp);
   await sp.goto(url('index.html')); await sp.waitForTimeout(300);
   check('subscribe: preview event rendered with a title and sport badge', await sp.locator('#sub-preview-host .cal-title').count() === 1 && await sp.locator('#sub-preview-host .badge-sport').count() === 1);
   check('subscribe: calendar link is a webcal URL ending in picks.ics', /^webcal:\/\/.+\/picks\.ics$/.test(await sp.getAttribute('#sub-webcal', 'href') || ''));
@@ -409,7 +415,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await sp.context().close();
 
   // team identity: logos, matchups, tint and faces (js/teams.js + data/teams.js + data/faces.js)
-  const ip = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const ip = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(ip);
   await ip.goto(url('index.html')); await ip.waitForTimeout(500);
   check('teams: every top pick card carries a matchup with two logos', await ip.locator('#top-picks-grid article .pick-front .matchup').count() === 3 && await ip.locator('#top-picks-grid article .pick-front .matchup .team-logo').count() === 6);
   check('teams: logos come from ESPN, resized', (await ip.getAttribute('#top-picks-grid article .pick-front .matchup img.team-logo', 'src') || '').startsWith('https://a.espncdn.com/combiner/i?img='));
@@ -438,7 +444,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('teams: digest rows carry the matchup', await ip.locator('#slate-host .digest-row .leg-id .matchup-sm').count() >= 10);
   check('teams: no page errors', errors.length === 0, errors.join(' | '));
   // phone board odds visible
-  const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
+  const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage(); await pinClock(ph);
   await ph.goto(url('index.html'));
   check('phone: board odds visible', await ph.locator('.board-odds').first().isVisible());
   check('phone: no overflow', await ph.evaluate(() => document.documentElement.scrollWidth) <= 400);
@@ -449,7 +455,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // site search (js/search.js) and the Games page (games.html): find by sport, team, player or game, browse every line
   const sErr = []; const sctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const sp2 = await sctx.newPage(); sp2.on('pageerror', e => sErr.push(e.message)); sp2.on('console', m => { if (m.type() === 'error') sErr.push(m.text()); });
+  const sp2 = await sctx.newPage(); await pinClock(sp2); sp2.on('pageerror', e => sErr.push(e.message)); sp2.on('console', m => { if (m.type() === 'error') sErr.push(m.text()); });
   await sp2.goto(url('games.html')); await sp2.waitForTimeout(600);
   check('header: every page carries the Games link and the search button, and the Games link is current on its page', (await sp2.locator('.nav-links a[href="games.html"][aria-current="page"]').count()) === 1 && (await sp2.locator('.nav-actions [data-search-open]').count()) === 1);
   check('games: one card per game, game day first, then games with a side worth a bet, likeliest first, each with a rank and a day heading', (await sp2.locator('.game-card').count()) === 8 && (await sp2.locator('#games-host .day-divider').count()) >= 2 && await sp2.evaluate(() => { const E = window.EdgeLine, cards = [...document.querySelectorAll('.game-card')]; const rows = window.MARKET_DATA.rows; const byId = {}; rows.forEach(r => { (byId[r.eventId] = byId[r.eventId] || []).push(r); });
@@ -497,6 +503,66 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await sctx.close();
 
   check('no page/console errors', errors.length === 0, errors.join(' | '));
+
+  // the clock (owner ask, 2026-11-05: picks "pop and go or stay past tip off"): nothing looks bettable after its start, nothing silently vanishes
+  const cp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(cp);
+  const cerr = []; cp.on('pageerror', e => cerr.push(e.message)); cp.on('console', m => { if (m.type() === 'error') cerr.push(m.text()); });
+  await cp.goto(url('index.html')); await cp.waitForTimeout(500);
+  check('clock: EdgeLine.now reads EDGELINE_NOW; the fixture\'s 3:00 PM soccer pick is live, the 1:00 PM one graded, every other game upcoming; soon, live and awaiting follow the sport\'s length', await cp.evaluate(() => { const E = window.EdgeLine, s = {}; window.PICKS_DATA.picks.forEach(p => { s[p.id] = E.gameState(p); }); return E.now() === Date.parse('2026-11-04T16:45:00-05:00') && s.p13 === 'live' && s.p14 === 'final' && Object.keys(s).every(k => k === 'p13' || k === 'p14' || s[k] === 'upcoming') && !E.isOpen(window.PICKS_DATA.picks.find(p => p.id === 'p13')) && E.gameState({ sport: 'NBA', commence: '2026-11-04T23:00:00Z' }) === 'soon' && E.isOpen({ sport: 'NBA', commence: '2026-11-04T23:00:00Z' }) && E.gameState({ sport: 'NBA', commence: '2026-11-04T18:00:00Z' }) === 'awaiting' && E.gameState({ sport: 'NFL', commence: '2026-11-04T19:00:00Z' }) === 'live' && E.gameState({ start: 'Tonight 7:00 PM ET' }) === 'upcoming' && E.gameState({ sport: 'Soccer', start: 'Today 3:00 PM ET' }) === 'live' && E.gameState({ status: 'void' }) === 'final'; }), await cp.evaluate(() => window.PICKS_DATA.picks.map(p => p.id + ':' + window.EdgeLine.gameState(p)).join(' ')));
+  check('clock: a started or graded pick is in none of the hero board, the ticker or the top three, which keep their counts', await cp.evaluate(() => !document.querySelector('#board-rows [href$="#p13"], #board-rows [href$="#p14"], #ticker-track [href$="#p13"], #ticker-track [href$="#p14"], #top-picks-grid [data-id="p13"], #top-picks-grid [data-id="p14"]')) && (await cp.locator('#ticker-track .ticker-item').count()) === 24 && (await cp.locator('#board-rows .board-row').count()) === 4 && (await cp.locator('#top-picks-grid article').count()) === 3);
+  check('clock: the home page counts them under the board as Earlier today, linked to In progress and results', /Earlier today/.test(await cp.textContent('#board-earlier')) && /1 live/.test(await cp.textContent('#board-earlier')) && /1 won \(\+0\.87u\)/.test(await cp.textContent('#board-earlier')) && (await cp.getAttribute('#board-earlier a', 'href')) === 'picks.html#played', await cp.textContent('#board-earlier'));
+  check('updates: the home board says when the picks were published, when the numbers last moved and when the next check is due', /^Picks published 9:00 AM ETUpdated 4:30 PM ET \(15 min ago\)Next check about 5:00 PM ET$/.test((await cp.textContent('#board-updated')).trim()) && (await cp.locator('#board-updated .meta > span').count()) === 3, await cp.textContent('#board-updated'));
+
+  await cp.goto(url('picks.html')); await cp.waitForTimeout(500);
+  const live13 = cp.locator('#played-host article.played[data-id="p13"]'), won14 = cp.locator('#played-host article.played[data-id="p14"]');
+  check('clock: a pick past its start leaves the open list and shows Live under In progress and results, with its live slot and no parlay button', (await cp.locator('#picks-host [data-id="p13"]').count()) === 0 && (await cp.locator('.picks-grid article').count()) === 12 && (await live13.locator('.badge-live').textContent()) === 'Live' && (await live13.locator('[data-live="p13"]').count()) === 1 && (await live13.locator('.add-parlay').count()) === 0 && (await cp.locator('.subnav a[href="#played"]').count()) === 1 && (await cp.locator('#played h2').textContent()) === 'In progress and results');
+  check('clock: a graded pick shows Won with its final score and units, and no live slot', (await won14.locator('.badge-won').textContent()) === 'Won' && /Final GET 0–2 VIL/.test(await won14.locator('.played-score').textContent()) && (await won14.locator('.played-units').textContent()) === '+0.87u' && (await won14.locator('[data-live]').count()) === 0, await won14.textContent());
+  check('clock: In progress and results runs live first, then graded, each with a rank chip', (await cp.locator('#played-host article.played').evaluateAll(a => a.map(n => n.getAttribute('data-id') + n.querySelector('.rank').textContent).join())) === 'p13#1,p14#2');
+  check('clock: the started and graded picks are in no best parlay', await cp.evaluate(() => window.EdgeLine.bestParlays(window.PICKS_DATA.picks, { limit: 100000 }).every(t => t.legs.every(l => l.id !== 'p13' && l.id !== 'p14'))) && !/Chelsea|Villarreal/.test(await cp.textContent('#parlays-host')) && (await cp.locator('#parlays-host .parlay').count()) >= 3);
+  check('clock: summary counts the open picks and points at the started ones', /^12 of 12 picks shown, .* 2 picks have started: see In progress and results\.$/.test(await cp.textContent('#summary')), await cp.textContent('#summary'));
+  await cp.evaluate(() => window.EdgeLine.slip.set(['p13', 'p2', 'p8']));
+  await cp.click('#slip-toggle'); await cp.waitForTimeout(200);
+  check('clock: the parlay slip drops a leg whose game has started, and says so', (await cp.locator('#slip .slip-legs li').count()) === 2 && /^Removed 1 leg whose game has started: Over 2\.5 goals \(Chelsea vs\. Newcastle\)\./.test(await cp.textContent('#slip .slip-dropped')) && (await cp.evaluate(() => window.EdgeLine.slip.get().join())) === 'p2,p8' && (await cp.textContent('#slip-count')) === '2', await cp.textContent('#slip .slip-dropped'));
+  check('clock: a started pick cannot be added to the slip', await cp.evaluate(() => { const E = window.EdgeLine; E.slip.toggle('p13'); return E.slip.get().indexOf('p13') === -1; }));
+  await cp.click('#slip-clear'); await cp.click('#slip-close');
+  const c2 = cp.locator('.picks-grid article[data-id="p2"]');
+  check('price: a card whose price moved shows posted against now, every pick card the worst price still worth a bet, and an unmoved card neither posted nor now', /Posted -108 at FanDuel/.test(await c2.locator('.pick-market').textContent()) && /^now -103 at FanDuelWorth a bet to -133$/.test((await c2.locator('.price-value').textContent()).trim()) && (await cp.locator('.picks-grid article .price-value').count()) === 12 && (await cp.locator('.picks-grid article[data-id="p3"] .price-posted, .picks-grid article[data-id="p3"] .price-now').count()) === 0 && (await cp.locator('.picks-grid article[data-id="p3"] .pick-market .mono').textContent()) === '-135', await c2.locator('.pick-market').textContent() + ' / ' + await c2.locator('.price-value').textContent());
+  await c2.locator('.pick-front .flip-btn').click(); await cp.waitForTimeout(700);
+  await c2.locator('.pick-back [data-breakdown]').click(); await cp.waitForTimeout(300);
+  check('price: the breakdown shows posted against now and the worth-a-bet price', /Posted -108 at FanDuel/.test(await cp.textContent('#bd .bd-sub')) && /now -103 at FanDuel/.test(await cp.textContent('#bd .bd-value')) && /Worth a bet to -133/.test(await cp.textContent('#bd .bd-value')) && (await cp.locator('#bd .bd-state').count()) === 0);
+  await cp.keyboard.press('Escape'); await cp.waitForTimeout(200);
+  await c2.locator('.pick-back .flip-btn:not([data-breakdown])').click(); await cp.waitForTimeout(500);
+  await live13.locator('[data-breakdown]').click(); await cp.waitForTimeout(300);
+  check('clock: a started pick\'s breakdown says where it stands', (await cp.locator('#bd[open] .bd-state .badge-live').count()) === 1 && /Started 3:00 PM ET/.test(await cp.textContent('#bd .bd-state')));
+  await cp.keyboard.press('Escape'); await cp.waitForTimeout(200);
+  check('updates: the picks page line says when the picks were published, when the numbers last moved and when the next check is due', /^Picks published 9:00 AM ETUpdated 4:30 PM ET \(15 min ago\)Next check about 5:00 PM ET$/.test((await cp.textContent('#generated-at')).trim()), await cp.textContent('#generated-at'));
+  /* the minute timer: move the clock past p8's 7:00 PM start and let the check run */
+  const changed = await cp.evaluate(() => { window.EDGELINE_NOW = Date.parse('2026-11-04T19:05:00-05:00'); return window.EdgeLine.checkStates(); });
+  await cp.waitForTimeout(200);
+  check('timer: at the next check a game that started moves its pick from the list to In progress and results, the market board drops its sides and says so, and the update line moves on', changed === true && (await cp.locator('.picks-grid article').count()) === 11 && (await cp.locator('.picks-grid article[data-id="p8"]').count()) === 0 && (await cp.locator('#played-host article.played[data-id="p8"] .badge-live').count()) === 1 && /6 sides from 1 game that has started are off the board/.test(await cp.textContent('#market-sub')) && (await cp.locator('#market-host tbody tr:not(.mkt-divider):not(.day-divider)').count()) === 40 && /Next check about 8:00 PM ET$/.test((await cp.textContent('#generated-at')).trim()), await cp.textContent('#market-sub'));
+  check('timer: a check with nothing new changes nothing', await cp.evaluate(() => window.EdgeLine.checkStates() === false));
+
+  await cp.goto(url('digest.html')); await cp.waitForTimeout(500);
+  check('clock: the digest keeps started and graded picks out of the slate and the likeliest three, and marks them under In progress and results', (await cp.locator('.digest-row').count()) === 12 && (await cp.locator('.digest-row[data-id="p13"], .digest-row[data-id="p14"]').count()) === 0 && !/Chelsea|Villarreal/.test(await cp.textContent('#top3')) && (await cp.locator('#played-host article.played[data-id="p13"] .badge-live').count()) === 1 && (await cp.locator('#played-host article.played[data-id="p14"] .badge-won').count()) === 1 && /2 picks have already started/.test(await cp.textContent('#digest-lede')) && (await cp.locator('.subnav a[href="#played"]').count()) === 1, await cp.textContent('#digest-lede'));
+  check('clock: the digest\'s copy text marks them too, without a rank', await cp.evaluate(() => { const t = window.EdgeLineDigest.asText(); return /\nIn progress and results\n  Live · Soccer · Over 2\.5 goals -105 @ FanDuel · Chelsea vs\. Newcastle\n  Won · Soccer · Villarreal ML -115 @ BetRivers · final GET 0–2 VIL · \+0\.87u · Villarreal vs\. Getafe\n/.test(t); }), await cp.evaluate(() => window.EdgeLineDigest.asText().split('\n').filter(l => /Live|Won/.test(l)).join(' / ')));
+  check('updates: the digest carries the update line', /^Picks published 9:00 AM ETUpdated 4:30 PM ET \(15 min ago\)Next check about 5:00 PM ET$/.test((await cp.textContent('#generated-at')).trim()), await cp.textContent('#generated-at'));
+  await cp.goto(url('games.html')); await cp.waitForTimeout(500);
+  check('updates: the Games page says when its lines were priced and when the next pricing run is due', /^Lines priced 4:30 PM ET \(15 min ago\)Next pricing tomorrow about 12:00 PM ET$/.test((await cp.textContent('#g-generated')).trim()) && (await cp.locator('#g-live, #g-soon, #g-finished').count()) === 0, await cp.textContent('#g-generated'));
+  check('clock: no page errors', cerr.length === 0, cerr.join(' | '));
+  await cp.context().close();
+
+  /* the Games page at 7:30 PM ET: the 7:00 PM hockey game has started, three more start within 90 minutes */
+  const gp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(gp, Date.parse('2026-11-04T19:30:00-05:00'));
+  const gerr = []; gp.on('pageerror', e => gerr.push(e.message)); gp.on('console', m => { if (m.type() === 'error') gerr.push(m.text()); });
+  await gp.goto(url('games.html')); await gp.waitForTimeout(500);
+  check('games: a started game sits under Live now, closed: a Live chip, the start, our pick on it with its live slot, and no line to bet', await gp.evaluate(() => { const kids = [...document.getElementById('games-host').children], g3 = document.getElementById('g-g3'); const li = kids.findIndex(n => n.id === 'g-live'), si = kids.findIndex(n => n.id === 'g-soon'), la = kids.findIndex(n => n.id === 'g-later'); return li === 0 && kids[1] === g3 && si === 2 && la > si && g3.querySelector('.badge-live').textContent === 'Live' && !g3.querySelector('.line-btn, td.line-cell, .add-parlay, .rank, details') && !!g3.querySelector('[data-live="p8"]') && /Started 7:00 PM ET/.test(g3.textContent) && /Lines closed at the start/.test(g3.textContent) && /Our pick: Under 5\.5/.test(g3.textContent); }), await gp.evaluate(() => [...document.getElementById('games-host').children].map(n => n.id || n.className).join(' ')));
+  check('games: Starting soon lists the games within 90 minutes before the rest, and the rank chips number only the games that can still be bet', await gp.evaluate(() => { const kids = [...document.getElementById('games-host').children]; const si = kids.findIndex(n => n.id === 'g-soon'), la = kids.findIndex(n => n.id === 'g-later'); const soon = kids.slice(si + 1, la).filter(n => n.classList.contains('game-card')); const ranks = [...document.querySelectorAll('#games-host .game-card .rank')].map(r => parseInt(r.textContent.slice(1), 10)); return soon.map(n => n.id).sort().join() === 'g-g0,g-g4,g-g7' && ranks.join() === '1,2,3,4,5,6,7' && soon[0].querySelector('.rank').textContent === '#1 Likeliest'; }) && /^7 games on the board, 2 picks among them\. 1 live now\.$/.test((await gp.textContent('#g-summary')).trim()), await gp.textContent('#g-summary'));
+  const later = await gp.evaluate(() => { window.EDGELINE_NOW = Date.parse('2026-11-04T22:30:00-05:00'); window.EdgeLine.checkStates(); const f = document.getElementById('g-finished'); return { open: f && f.open, ids: f ? [...f.querySelectorAll('.game-card')].map(n => n.id).sort().join() : '', live: [...document.querySelectorAll('#games-host > .game-started')].map(n => n.id).sort().join(), head: f ? f.querySelector('summary').textContent : '' }; });
+  check('games: past their usual length the games move to Finished, collapsed, and the live ones stay on top', later.open === false && later.ids === 'g-g0,g-g3' && later.live === 'g-g1,g-g2,g-g4,g-g7' && /^Finished 2/.test(later.head), JSON.stringify(later));
+  await gp.evaluate(() => { location.hash = '#g-g3'; }); await gp.waitForTimeout(300);
+  check('games: a link to a finished game opens the group and lands on it', (await gp.locator('#g-finished[open] #g-g3.highlight').count()) === 1);
+  check('games: no page errors with games under way', gerr.length === 0, gerr.join(' | '));
+  await gp.context().close();
 
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;

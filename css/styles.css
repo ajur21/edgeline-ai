@@ -12,6 +12,7 @@
 /* Hallmark · waive 7b · the light theme is a daylight sky and its surfaces are white by design; the dark default tints every surface toward navy */
 /* Hallmark · note 67 · the chips that stay condensed uppercase (badges, rank, ticker, stat chips, book and team abbreviations, live clocks, field axis labels) are the locked scoreboard voice; every label, caption, table head and form label moved to the body face. "1-800-GAMBLER" is the helpline's own spelling */
 /* Hallmark · note 54 · one kicker above each page's h1 stays as the locked scoreboard voice; every section eyebrow was folded into its heading */
+/* Hallmark · note 7b · the Lost chip (.badge-lost, 2026-11-05) takes white ink on the solid loss red in light and print and dark ink in dark (--on-bad), the way button faces take --on-accent: 4.8:1 or better in every theme */
 /* ==========================================================================
    EdgeLine AI — site styles
    Layout: left-aligned editorial grid, hairline rules over shadows, cards
@@ -45,6 +46,7 @@
   --ticker-watch: #ff8a3d;       /* orange that reads on the inverted ticker strip */
   --accent-2: #ff2d7a;
   --accent-2-wash: rgba(255, 45, 122, 0.12);
+  --accent-2-text: #b5104f;      /* magenta text on its wash: the Live chip */
   --accent-3: #b8f135;
   --accent-3-text: #3f6b00;
   --accent-3-wash: rgba(184, 241, 53, 0.28);
@@ -61,6 +63,7 @@
   --good: #0ca30c;
   --good-text: #006300;
   --bad: #d03b3b;
+  --on-bad: #ffffff;             /* text on a solid --bad fill: the Lost chip */
   --grid: #e3e7ec;
   --axis: #c4cad2;
   /* type */
@@ -98,6 +101,7 @@
     --ticker-watch: #a85014;
     --accent-2: #ff4d8d;
     --accent-2-wash: rgba(255, 77, 141, 0.18);
+    --accent-2-text: #ff7aa8;
     --accent-3: #c9ff4a;
     --accent-3-text: #c9ff4a;
     --accent-3-wash: rgba(201, 255, 74, 0.16);
@@ -114,6 +118,7 @@
     --good: #0ca30c;
     --good-text: #0ca30c;
     --bad: #ee6060;
+    --on-bad: #0b1020;
     --grid: rgba(255, 255, 255, 0.08);
     --axis: rgba(255, 255, 255, 0.18);
   }
@@ -142,6 +147,7 @@
   --ticker-watch: #a85014;
   --accent-2: #ff4d8d;
   --accent-2-wash: rgba(255, 77, 141, 0.18);
+  --accent-2-text: #ff7aa8;
   --accent-3: #c9ff4a;
   --accent-3-text: #c9ff4a;
   --accent-3-wash: rgba(201, 255, 74, 0.16);
@@ -158,6 +164,7 @@
   --good: #0ca30c;
   --good-text: #0ca30c;
   --bad: #ee6060;
+  --on-bad: #0b1020;
   --grid: rgba(255, 255, 255, 0.08);
   --axis: rgba(255, 255, 255, 0.18);
 }
@@ -919,7 +926,7 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
     color-scheme: light;
     --bg: #ffffff; --surface: #ffffff; --surface-2: #f3f4f6; --text: #111111; --text-2: #333333; --muted: #555555;
     --border: #d9dde3; --border-strong: #b8bec7; --grid: #e5e7eb; --axis: #c4cad2; --edge: #d0d4da;
-    --accent-3-text: #3f6b00; --accent-4-text: #a84800; --good-text: #006300; --bad: #b32020;
+    --accent-3-text: #3f6b00; --accent-4-text: #a84800; --good-text: #006300; --bad: #b32020; --on-bad: #ffffff; --accent-2-text: #b5104f;
   }
   html, body { background: var(--bg) !important; }
   #space, .site-header, .ticker, .slip, .slip-toggle, .slip-link, .add-parlay, .flip-btn, .btn, .theme-toggle, .digest-actions, .badge-sample, .live-dot, dialog { display: none !important; }
@@ -1337,3 +1344,73 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
   .line-book { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .game-card.highlight { animation: none; } }
+
+/* ==========================================================================
+   The clock (owner ask, 2026-11-05: picks "pop and go or stay past tip off").
+   A game that has started is never offered; it moves, with a state chip, to
+   In progress and results (picks page, digest), Earlier today (home) and
+   Live now / Finished (Games). Chips reuse the badge face; colours are tokens.
+   ========================================================================== */
+.badge-state { font-weight: 600; }
+.badge-live { background: var(--accent-2-wash); color: var(--accent-2-text); }
+.badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); animation: live-blink 1.4s ease-in-out infinite; }
+.badge-awaiting, .badge-final, .badge-push, .badge-upcoming { background: var(--surface-2); color: var(--text-2); }
+.badge-void { background: transparent; border: 1px dashed var(--border-strong); color: var(--muted); }
+.badge-won { background: var(--good); color: var(--ink); }
+.badge-lost { background: var(--bad); color: var(--on-bad); }
+.badge-soon { background: var(--accent-4-wash); color: var(--accent-4-text); }
+@media (prefers-reduced-motion: reduce) { .badge-live::before { animation: none; } }
+
+/* in progress and results: one row per started pick, inside one glass panel */
+.played-head { margin-top: 40px; margin-bottom: 16px; }
+.digest-played-head { margin-top: 32px; margin-bottom: 12px; }
+.played-list { display: grid; padding: 4px 16px; }
+.played-list > .day-divider { margin-top: 4px; }
+.played-list > .day-divider:first-child { margin-top: 0; border-top: 0; }
+.played { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.played:last-child { border-bottom: 0; }
+.played-id { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.played-id .rank { padding: 1px 6px; font-size: 0.72rem; }
+.played-pick { display: grid; gap: 4px; min-width: 0; justify-items: start; }
+.played-pick strong { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; }
+.played-pick .leg-event { white-space: normal; }
+.played-result { display: grid; gap: 4px; justify-items: end; text-align: right; font-size: 0.85rem; color: var(--text-2); }
+.played-score { color: var(--text); font-weight: 600; }
+.played-units { font-weight: 600; color: var(--text); }
+.played-units.pos { color: var(--good-text); }
+.played-units.neg { color: var(--bad); }
+.played-note { font-size: 0.8rem; color: var(--muted); }
+.played .live-pill { margin-left: 0; }
+.played-empty { margin: 0; font-size: 0.92rem; color: var(--text-2); max-width: 72ch; }
+@media (max-width: 720px) {
+  .played { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; }
+  .played-id { grid-column: 1 / -1; }
+  .played-result { justify-items: start; text-align: left; }
+}
+
+/* home: the picks that have started, counted, under the board */
+.board-earlier { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text-2); }
+.board-earlier:hover { background: var(--surface-2); text-decoration: none; }
+.board-earlier-k { font-weight: 600; color: var(--text); }
+.board-earlier-go { margin-left: auto; font-weight: 600; color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
+.board-updated { margin: 0; padding: 8px 16px 12px; font-size: 0.75rem; color: var(--muted); background: var(--surface-2); }
+
+/* update times and posted against now */
+.meta.update-line { display: inline-flex; }
+.meta.price-value { display: flex; margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
+.price-value .mono { color: var(--text); font-weight: 600; }
+.price-value .price-past, .price-value .price-past .mono { color: var(--accent-4-text); }
+.bd-state { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 0.85rem; color: var(--text-2); }
+
+/* games: live now, starting soon, later, finished (collapsed) */
+.games-group { margin-top: 8px; }
+.games-group-title { margin: 0; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.games-group-how { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-2); }
+.games-finished > summary { cursor: pointer; padding: 8px 0; }
+.games-finished > summary .games-group-how { margin-left: 8px; }
+.games-finished-list { display: grid; gap: 16px; margin-top: 12px; }
+.game-picks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.game-picks li { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding-top: 8px; border-top: 1px solid var(--border); font-size: 0.9rem; }
+.game-picks .live-pill { margin-left: 0; }
+.game-pick-text .mono { font-weight: 600; }
+.game-closed-note { margin: 0; font-size: 0.85rem; color: var(--muted); }

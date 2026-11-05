@@ -2,6 +2,7 @@
 window.PICKS_DATA = {
   "sample": true,
   "generatedAt": "2026-11-04T09:00:00-05:00",
+  "trackedAt": "2026-11-04T16:00:00-05:00",
   "picks": [
     {
       "id": "p1",
@@ -9,6 +10,7 @@ window.PICKS_DATA = {
       "league": "NFL",
       "event": "Kansas City @ Buffalo",
       "start": "Sun 4:25 PM ET",
+      "commence": "2026-11-08T21:25:00Z",
       "market": "Spread",
       "pick": "Buffalo -2.5",
       "odds": -110,
@@ -54,6 +56,12 @@ window.PICKS_DATA = {
         "Market reference 58.5%"
       ],
       "book": "DraftKings",
+      "valueTo": -139,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -110,
         "FanDuel": -120,
@@ -237,6 +245,7 @@ window.PICKS_DATA = {
       "league": "NBA",
       "event": "Boston @ Milwaukee",
       "start": "Tonight 8:00 PM ET",
+      "commence": "2026-11-05T01:00:00Z",
       "market": "Total",
       "pick": "Over 226.5",
       "odds": -108,
@@ -278,6 +287,12 @@ window.PICKS_DATA = {
         "Market reference 56.7%"
       ],
       "book": "FanDuel",
+      "valueTo": -133,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -108,
         "FanDuel": -108,
@@ -379,6 +394,7 @@ window.PICKS_DATA = {
       "league": "NHL",
       "event": "Toronto @ Colorado",
       "start": "Tonight 9:00 PM ET",
+      "commence": "2026-11-05T02:00:00Z",
       "market": "Moneyline",
       "pick": "Colorado ML",
       "odds": -135,
@@ -422,6 +438,12 @@ window.PICKS_DATA = {
         "Market reference 61.5%"
       ],
       "book": "BetMGM",
+      "valueTo": -150,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -135,
         "FanDuel": -140,
@@ -497,6 +519,7 @@ window.PICKS_DATA = {
       "league": "MLB",
       "event": "LA Dodgers @ Atlanta",
       "start": "Tonight 7:20 PM ET",
+      "commence": "2026-11-05T00:20:00Z",
       "market": "Moneyline",
       "pick": "Atlanta ML",
       "odds": 120,
@@ -543,6 +566,12 @@ window.PICKS_DATA = {
         "Market reference 49.5%"
       ],
       "book": "Caesars",
+      "valueTo": 106,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": 115,
         "FanDuel": 110,
@@ -669,6 +698,7 @@ window.PICKS_DATA = {
       "league": "Premier League",
       "event": "Arsenal vs. Liverpool",
       "start": "Sat 12:30 PM ET",
+      "commence": "2026-11-07T17:30:00Z",
       "market": "Total",
       "pick": "Over 2.5 goals",
       "odds": -115,
@@ -710,6 +740,12 @@ window.PICKS_DATA = {
         "Market reference 57.8%"
       ],
       "book": "BetRivers",
+      "valueTo": -135,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -125,
         "FanDuel": -130,
@@ -792,6 +828,7 @@ window.PICKS_DATA = {
       "league": "NBA",
       "event": "Denver @ Phoenix",
       "start": "Tonight 10:00 PM ET",
+      "commence": "2026-11-05T03:00:00Z",
       "market": "Spread",
       "pick": "Denver +3.5",
       "odds": -110,
@@ -835,6 +872,12 @@ window.PICKS_DATA = {
         "Market reference 55.2%"
       ],
       "book": "DraftKings",
+      "valueTo": -115,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -110,
         "FanDuel": -115,
@@ -938,6 +981,7 @@ window.PICKS_DATA = {
       "league": "NFL",
       "event": "Dallas @ Philadelphia",
       "start": "Sun 1:00 PM ET",
+      "commence": "2026-11-08T18:00:00Z",
       "market": "Total",
       "pick": "Under 48.5",
       "odds": -112,
@@ -979,6 +1023,12 @@ window.PICKS_DATA = {
         "Market reference 56.1%"
       ],
       "book": "FanDuel",
+      "valueTo": -130,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -117,
         "FanDuel": -112,
@@ -1070,6 +1120,7 @@ window.PICKS_DATA = {
       "league": "NHL",
       "event": "NY Rangers @ Boston",
       "start": "Tonight 7:00 PM ET",
+      "commence": "2026-11-05T00:00:00Z",
       "market": "Total",
       "pick": "Under 5.5",
       "odds": -120,
@@ -1111,6 +1162,12 @@ window.PICKS_DATA = {
         "Market reference 58.8%"
       ],
       "book": "BetMGM",
+      "valueTo": -140,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -130,
         "FanDuel": -135,
@@ -1211,6 +1268,7 @@ window.PICKS_DATA = {
       "league": "MLB",
       "event": "NY Yankees @ Houston",
       "start": "Tonight 8:10 PM ET",
+      "commence": "2026-11-05T01:10:00Z",
       "market": "Run line",
       "pick": "Yankees -1.5",
       "odds": 145,
@@ -1255,6 +1313,12 @@ window.PICKS_DATA = {
         "Market reference 45.5%"
       ],
       "book": "Caesars",
+      "valueTo": 139,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": 130,
         "FanDuel": 140,
@@ -1342,6 +1406,7 @@ window.PICKS_DATA = {
       "league": "La Liga",
       "event": "Real Madrid vs. Sevilla",
       "start": "Sun 3:00 PM ET",
+      "commence": "2026-11-08T20:00:00Z",
       "market": "Moneyline",
       "pick": "Real Madrid ML",
       "odds": -190,
@@ -1388,6 +1453,12 @@ window.PICKS_DATA = {
         "Market reference 69.5%"
       ],
       "book": "BetRivers",
+      "valueTo": -250,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -195,
         "FanDuel": -200,
@@ -1510,6 +1581,7 @@ window.PICKS_DATA = {
       "league": "NBA",
       "event": "Golden State @ Sacramento",
       "start": "Tonight 10:00 PM ET",
+      "commence": "2026-11-05T03:00:00Z",
       "market": "Moneyline",
       "pick": "Sacramento ML",
       "odds": 105,
@@ -1555,6 +1627,12 @@ window.PICKS_DATA = {
         "Market reference 51.5%"
       ],
       "book": "DraftKings",
+      "valueTo": 102,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": 105,
         "FanDuel": 90,
@@ -1632,6 +1710,7 @@ window.PICKS_DATA = {
       "league": "NFL",
       "event": "San Francisco @ Seattle",
       "start": "Sun 4:05 PM ET",
+      "commence": "2026-11-08T21:05:00Z",
       "market": "Spread",
       "pick": "San Francisco -3",
       "odds": -105,
@@ -1675,6 +1754,12 @@ window.PICKS_DATA = {
         "Market reference 54.8%"
       ],
       "book": "FanDuel",
+      "valueTo": -110,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
       "prices": {
         "DraftKings": -120,
         "FanDuel": -105,
@@ -1778,6 +1863,193 @@ window.PICKS_DATA = {
           }
         ]
       }
+    },
+    {
+      "id": "p13",
+      "sport": "Soccer",
+      "league": "Premier League",
+      "event": "Chelsea vs. Newcastle",
+      "start": "Today 3:00 PM ET",
+      "commence": "2026-11-04T20:00:00Z",
+      "market": "Total",
+      "pick": "Over 2.5 goals",
+      "odds": -105,
+      "modelProb": 0.583,
+      "confidence": "Medium",
+      "basis": "game",
+      "model": {
+        "margin": 0.4,
+        "total": 3.1,
+        "sd": 1.7,
+        "sdTotal": 1.6,
+        "gp": 10,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0.6,
+          "ratingAway": 0.1,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 3.1
+        },
+        "reasons": {
+          "for": [
+            "Projected total 3.1 against 2.5",
+            "Chelsea score 2.1 a game at home over 5"
+          ],
+          "against": [
+            "Newcastle concede 1.0 a game away"
+          ]
+        }
+      },
+      "marketFair": 0.548,
+      "marketEdge": 0.0358,
+      "rationale": "Our probability for Over 2.5 goals is 58.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge. FanDuel offers -105, which implies 51.2%: an edge of 7.1 points, Medium. Not graded against other books' prices. For reference the market makes it 54.8%.",
+      "factors": [
+        "Projected total 3.1 against 2.5",
+        "Best price -105 at FanDuel",
+        "Edge +7.1 points over the price"
+      ],
+      "book": "FanDuel",
+      "valueTo": -123,
+      "status": "pending",
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-04T09:00:00-05:00",
+      "prices": {
+        "FanDuel": -105,
+        "DraftKings": -110,
+        "BetMGM": -115,
+        "Caesars": -112,
+        "BetRivers": -110
+      },
+      "ev": 0.1382,
+      "home": "Chelsea",
+      "away": "Newcastle",
+      "marketKey": "totals",
+      "context": {
+        "espnEventId": "x12"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Our probability 58.3% against the 51.2% the price implies: an edge of 7.1 points, over the 5-point Medium bar and under the 8-point High bar. Nothing is graded against other books’ prices.",
+        "price": "Best price -105 at FanDuel.",
+        "support": [
+          "Projected total 3.1 against 2.5"
+        ],
+        "risks": [
+          "Newcastle concede 1.0 a game away"
+        ],
+        "notes": [
+          "Market: where the market sits, 54.8%"
+        ],
+        "verdict": "Medium: the projection clears the number by six tenths of a goal."
+      },
+      "movement": {
+        "loggedOdds": -105,
+        "loggedFair": 0.583,
+        "currentOdds": -120,
+        "currentBook": "DraftKings",
+        "currentFair": 0.567,
+        "currentEdge": 0.0375,
+        "checkedAt": "2026-11-04T19:00:00Z",
+        "history": [
+          {
+            "at": "2026-11-04T14:00:00Z",
+            "odds": -105,
+            "fair": 0.548
+          }
+        ]
+      }
+    },
+    {
+      "id": "p14",
+      "sport": "Soccer",
+      "league": "La Liga",
+      "event": "Villarreal vs. Getafe",
+      "start": "Today 1:00 PM ET",
+      "commence": "2026-11-04T18:00:00Z",
+      "market": "Moneyline",
+      "pick": "Villarreal ML",
+      "odds": -115,
+      "modelProb": 0.6,
+      "confidence": "Medium",
+      "basis": "game",
+      "model": {
+        "margin": 0.9,
+        "total": 2.4,
+        "sd": 1.7,
+        "sdTotal": 1.6,
+        "gp": 11,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0.7,
+          "ratingAway": -0.3,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 2.4
+        },
+        "reasons": {
+          "for": [
+            "Villarreal rate +0.7 a game over 11, Getafe -0.3 over 11",
+            "Home edge +0.24 for Villarreal"
+          ],
+          "against": [
+            "Getafe have drawn 4 of their last 6"
+          ]
+        }
+      },
+      "marketFair": 0.571,
+      "marketEdge": 0.036,
+      "rationale": "Our probability for Villarreal to win is 60.0%, from the game data. BetRivers offers -115, which implies 53.5%: an edge of 6.5 points, Medium. Not graded against other books' prices.",
+      "factors": [
+        "Villarreal +0.7 a game over 11",
+        "Best price -115 at BetRivers",
+        "Edge +6.5 points over the price"
+      ],
+      "book": "BetRivers",
+      "valueTo": -132,
+      "status": "graded",
+      "result": "Win",
+      "units": 0.87,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "loggedAt": "2026-11-04T09:00:00-05:00",
+      "prices": {
+        "BetRivers": -115,
+        "DraftKings": -120,
+        "FanDuel": -125,
+        "BetMGM": -120
+      },
+      "ev": 0.1217,
+      "home": "Villarreal",
+      "away": "Getafe",
+      "marketKey": "h2h",
+      "context": {
+        "espnEventId": "x13"
+      },
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Our probability 60.0% against the 53.5% the price implies: an edge of 6.5 points. Nothing is graded against other books’ prices.",
+        "price": "Best price -115 at BetRivers.",
+        "support": [
+          "Villarreal +0.7 a game over 11"
+        ],
+        "risks": [
+          "Getafe have drawn 4 of their last 6"
+        ],
+        "notes": [],
+        "verdict": "Medium: the home side rates a goal better."
+      },
+      "movement": null
     }
   ],
   "playOfDay": {
@@ -1786,6 +2058,7 @@ window.PICKS_DATA = {
     "league": "NFL",
     "event": "Kansas City @ Buffalo",
     "start": "Sun 4:25 PM ET",
+    "commence": "2026-11-08T21:25:00Z",
     "market": "Spread",
     "pick": "Buffalo -2.5",
     "odds": -110,
@@ -1831,6 +2104,12 @@ window.PICKS_DATA = {
       "Market reference 58.5%"
     ],
     "book": "DraftKings",
+    "valueTo": -139,
+    "status": "pending",
+    "result": null,
+    "units": null,
+    "score": null,
+    "loggedAt": "2026-11-04T09:00:00-05:00",
     "prices": {
       "DraftKings": -110,
       "FanDuel": -120,
@@ -1840,8 +2119,6 @@ window.PICKS_DATA = {
     },
     "ev": 0.1684,
     "started": false,
-    "status": "pending",
-    "result": null,
     "home": "Buffalo",
     "away": "Kansas City",
     "marketKey": "spreads",

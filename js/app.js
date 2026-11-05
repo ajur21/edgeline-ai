@@ -218,12 +218,13 @@
   /* earlier day first; an unknown day goes last */
   function keyCmp(ka, kb) { ka = ka || "~"; kb = kb || "~"; return ka < kb ? -1 : ka > kb ? 1 : 0; }
   function dayCmp(a, b) { return keyCmp(dayKey(a), dayKey(b)); }
-  /* "Today", "Tomorrow" or "Thu Nov 6", relative to the current Eastern date */
+  /* "Today", "Tomorrow", "Yesterday" or "Thu Nov 6", relative to the current Eastern date (the site's one clock) */
   function dayLabel(key) {
     if (!key) return "Date to be confirmed";
-    const today = etKey(new Date());
+    const today = etKey(new Date(now()));
     if (key === today) return "Today";
     if (key === shiftKey(today, 1)) return "Tomorrow";
+    if (key === shiftKey(today, -1)) return "Yesterday";
     return shortDate(keyDate(key), true);
   }
   /* the day heading in a ranked list, as children: "Tomorrow · Thu Nov 6", "Saturday · Nov 8" */
@@ -239,6 +240,171 @@
   function dayDivider(key) { return el("p", { class: "day-divider" }, dayHeading(key)); }
   /* a meta line: parts as spans separated by a hairline (CSS .meta), never a middle dot */
   function meta(parts, cls) { return el("span", { class: "meta" + (cls ? " " + cls : "") }, (parts || []).filter(function (x) { return x != null && x !== ""; }).map(function (x) { return typeof x === "string" ? el("span", { text: x }) : el("span", {}, [x]); })); }
+
+  /* ---------- one clock (owner ask, 2026-11-05: picks "pop and go or stay past tip off") ----------
+     Every page asks the same clock whether a game has started, so nothing looks bettable after its start.
+     window.EDGELINE_NOW (ms) pins the clock for tests; otherwise it is the visitor's clock. */
+  function now() {
+    const v = window.EDGELINE_NOW;
+    if (v == null || v === "") return Date.now();
+    const t = typeof v === "number" ? v : /^\d+$/.test(String(v)) ? Number(v) : Date.parse(v);
+    return Number.isFinite(t) ? t : Date.now();
+  }
+  /* an Eastern wall-clock time on an Eastern date, as a timestamp (handles the EST/EDT switch) */
+  const etParts = new Intl.DateTimeFormat("en-US", { timeZone: ET_ZONE, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" });
+  function etWallMs(key, h, mi) {
+    const k = String(key).split("-").map(Number), want = Date.UTC(k[0], k[1] - 1, k[2], h, mi);
+    let t = want + 5 * 36e5;
+    for (let i = 0; i < 2; i++) {
+      const o = {}; etParts.formatToParts(new Date(t)).forEach(function (x) { o[x.type] = Number(x.value); });
+      t += want - Date.UTC(o.year, o.month - 1, o.day, o.hour === 24 ? 0 : o.hour, o.minute);
+    }
+    return t;
+  }
+  /* when the game starts: commence, else the start label read the way dayKey reads it ("Tonight 8:00 PM ET", "Sun 4:25 PM ET"); NaN when unknown */
+  function startMs(p) {
+    if (!p) return NaN;
+    const t = Date.parse(p.commence || "");
+    if (Number.isFinite(t)) return t;
+    const key = dayKey(p), m = String(p.start || "").match(/(\d{1,2}):(\d{2})\s*([AP]M)/i);
+    if (!key || !m) return NaN;
+    return etWallMs(key, Number(m[1]) % 12 + (m[3].toUpperCase() === "PM" ? 12 : 0), Number(m[2]));
+  }
+  /* a game's usual length, start to final: past it with no result a pick is "awaiting" rather than "live" */
+  const GAME_HOURS = { NBA: 2.5, NFL: 3.5, NHL: 3, MLB: 3.5, Soccer: 2 };
+  const KEY_SPORT = { basketball_nba: "NBA", americanfootball_nfl: "NFL", icehockey_nhl: "NHL", baseball_mlb: "MLB" };
+  function gameHours(p) {
+    const s = GAME_HOURS[p.sport] ? p.sport : KEY_SPORT[p.sportKey] || (/^soccer/.test(p.sportKey || "") || /premier league|la liga|soccer/i.test(p.league || "") ? "Soccer" : null);
+    return s ? GAME_HOURS[s] : 3;
+  }
+  const SOON_MS = 90 * 60e3;
+  function hasResult(p) { return !!p && ((p.result != null && p.result !== "") || p.status === "graded" || p.status === "void"); }
+  /* upcoming | soon (starts within 90 minutes) | live (started, no result, inside the sport's usual length) | awaiting (past it, no result yet) | final (has a result) */
+  function gameState(p) {
+    if (!p) return "upcoming";
+    if (hasResult(p)) return "final";
+    const t = startMs(p), n = now();
+    let s;
+    if (!Number.isFinite(t)) { const k = dayKey(p); s = k && k < etKey(new Date(n)) ? "awaiting" : "upcoming"; }
+    else if (n < t) s = t - n <= SOON_MS ? "soon" : "upcoming";
+    else s = n - t < gameHours(p) * 36e5 ? "live" : "awaiting";
+    /* the pipeline's own word wins over a slow clock: a pick it calls started is never bettable */
+    return p.started === true && (s === "upcoming" || s === "soon") ? "live" : s;
+  }
+  /* bettable: not started and no result */
+  function isOpen(p) { const s = gameState(p); return s === "upcoming" || s === "soon"; }
+  function openOnly(list) { return (list || []).filter(isOpen); }
+  /* the result as a word: Won, Lost, Push, Void, or Final when graded without one */
+  function resultWord(p) {
+    const r = String((p && p.result) || "").toLowerCase();
+    if (r === "win" || r === "won") return "Won";
+    if (r === "loss" || r === "lost") return "Lost";
+    if (r === "push") return "Push";
+    if (p && (p.status === "void" || r === "void")) return "Void";
+    return "Final";
+  }
+  /* the state chip: Live, Awaiting result, Won, Lost, Push, Void (and Starts soon for an open game when asked) */
+  const STATE_RANK = { live: 0, awaiting: 1, final: 2, soon: 3, upcoming: 4 };
+  function stateKey(p) { const s = gameState(p); return s === "final" ? resultWord(p).toLowerCase() : s; }
+  function stateText(p) { const s = gameState(p); return s === "live" ? "Live" : s === "awaiting" ? "Awaiting result" : s === "final" ? resultWord(p) : s === "soon" ? "Starts soon" : "Upcoming"; }
+  function stateChip(p, opts) {
+    const s = gameState(p);
+    if ((s === "upcoming" || s === "soon") && !(opts && opts.open)) return null;
+    return el("span", { class: "badge badge-state badge-" + stateKey(p), title: s === "live" ? "Started, no result yet" : s === "awaiting" ? "Past the usual length of the game; the grade comes from the final score" : null, text: stateText(p) });
+  }
+  /* "8:00 PM ET", with the day when it is not today ("yesterday 4:31 PM ET", "Thu Nov 6, 1:00 PM ET") */
+  const etClock = new Intl.DateTimeFormat("en-US", { timeZone: ET_ZONE, hour: "numeric", minute: "2-digit" });
+  function whenParts(ms) {
+    const d = new Date(ms), key = etKey(d), today = etKey(new Date(now()));
+    const day = key === today ? "" : key === shiftKey(today, -1) ? "yesterday" : key === shiftKey(today, 1) ? "tomorrow" : shortDate(keyDate(key), true) + ",";
+    return { day: day, time: etClock.format(d) + " ET" };
+  }
+  function clockET(ms) { if (!Number.isFinite(ms)) return ""; const w = whenParts(ms); return (w.day ? w.day + " " : "") + w.time; }
+  /* "about 5:00 PM ET", "tomorrow about 10:00 AM ET": runs are scheduled, and GitHub can start them late */
+  function aboutET(ms) { if (!Number.isFinite(ms)) return ""; const w = whenParts(ms); return (w.day ? w.day + " " : "") + "about " + w.time; }
+
+  /* ---------- update times: when the picks were published, when the numbers last moved, when the next run is due ----------
+     Track runs check prices hourly at :00 from 10 AM to 1 AM ET (and commit only when a number moved); full runs, which
+     publish picks and reprice every market, run about 12:00 PM and 4:30 PM ET. */
+  const TRACK_HOURS = [0, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], FULL_RUNS = [[12, 0], [16, 30]];
+  function nextRun(fullOnly) {
+    const n = now(), today = etKey(new Date(n)), slots = fullOnly ? FULL_RUNS : TRACK_HOURS.map(function (h) { return [h, 0]; }).concat(FULL_RUNS);
+    let best = Infinity;
+    [0, 1, 2].forEach(function (off) { const key = shiftKey(today, off); slots.forEach(function (s) { const t = etWallMs(key, s[0], s[1]); if (t > n && t < best) best = t; }); });
+    return best;
+  }
+  /* the parts of the line; opts.lines is the Games page, whose prices come only from the full runs */
+  function updateParts(opts) {
+    opts = opts || {};
+    const d = window.PICKS_DATA || {}, m = window.MARKET_DATA || {};
+    const pub = Date.parse(d.generatedAt || ""), tracked = Date.parse(d.trackedAt || ""), priced = Date.parse(m.generatedAt || "");
+    if (opts.lines) return [
+      Number.isFinite(priced) ? "Lines priced " + clockET(priced) + " (" + ago(priced) + ")" : "Lines not priced yet",
+      "Next pricing " + aboutET(nextRun(true)),
+      Number.isFinite(tracked) && tracked > priced ? "Picks rechecked " + clockET(tracked) : null
+    ];
+    const times = [pub, tracked, priced].filter(Number.isFinite), latest = times.length ? Math.max.apply(null, times) : NaN;
+    const fresher = Number.isFinite(latest) && (!Number.isFinite(pub) || latest - pub > 60e3);
+    return [
+      Number.isFinite(pub) ? "Picks published " + clockET(pub) + (fresher ? "" : " (" + ago(pub) + ")") : null,
+      fresher ? "Updated " + clockET(latest) + " (" + ago(latest) + ")" : null,
+      "Next check " + aboutET(nextRun(false))
+    ];
+  }
+  function renderLine(h) { h.host.replaceChildren(meta(updateParts(h.opts), "update-line")); }
+  /* fills host with the line and keeps it current once a minute */
+  function updateLine(host, opts) { if (!host) return; const h = { host: host, opts: opts || {} }; lineHosts.push(h); renderLine(h); startClock(); }
+  function refreshLines() { lineHosts.forEach(function (h) { if (h.host.isConnected) renderLine(h); }); }
+  /* "12 min ago", "2 hr ago" */
+  function ago(ms) {
+    const m = Math.round((now() - ms) / 60e3);
+    if (!(m >= 1)) return "just now";
+    if (m < 60) return m + " min ago";
+    const h = Math.round(m / 60);
+    return h < 48 ? h + " hr ago" : Math.round(h / 24) + " days ago";
+  }
+  /* the final score as the live pill writes it: away first ("NEW 0–2 CHE") */
+  function teamAbbr(p, which) { const name = p[which]; const t = TM() && name ? TM().find(p.sportKey || p.sport, name) : null; return t && t.abbr ? t.abbr : name || (which === "home" ? "Home" : "Away"); }
+  function scoreText(p) {
+    const s = p && p.score;
+    if (!s || s.home == null || s.away == null) return "";
+    return teamAbbr(p, "away") + " " + s.away + "–" + s.home + " " + teamAbbr(p, "home");
+  }
+  function unitsText(p) { const u = Number(p && p.units); return p && p.units != null && Number.isFinite(u) ? signed(u, 2) + "u" : ""; }
+
+  /* ---------- the timer: once a minute, re-render whatever changed state (a game started, a result landed) ---------- */
+  const stateWatchers = [], lineHosts = [];
+  let stateSig = null, stateTimer = null;
+  function trackedItems() {
+    const d = window.PICKS_DATA || {}, m = window.MARKET_DATA || {};
+    return (d.picks || []).concat(d.playOfDay ? [d.playOfDay] : [], m.rows || []);
+  }
+  /* one letter per item (u, s, l, a, f), so any change of state changes the string */
+  function stateSignature() { return trackedItems().map(function (p) { return gameState(p).charAt(0); }).join(""); }
+  function checkStates(force) {
+    const sig = stateSignature(), changed = force === true || (stateSig !== null && sig !== stateSig);
+    stateSig = sig;
+    if (changed) {
+      stateWatchers.slice().forEach(function (fn) { fn(); });
+      syncButtons();
+      /* new live slots are empty until js/live.js looks again; ask it now (real data only, it polls ESPN) */
+      if (window.EdgeLineLive && !isSample()) { try { const r = window.EdgeLineLive.refresh(); if (r && r.catch) r.catch(function () {}); } catch (e) { /* the page works without live status */ } }
+    }
+    refreshLines();
+    return changed;
+  }
+  /* a page registers its re-render; the first registration starts the minute timer */
+  function onStateChange(fn) {
+    if (stateSig === null) stateSig = stateSignature();
+    if (typeof fn === "function") stateWatchers.push(fn);
+    startClock();
+  }
+  function startClock() {
+    if (stateTimer) return;
+    if (stateSig === null) stateSig = stateSignature();
+    stateTimer = setInterval(checkStates, 60e3);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) checkStates(); });
+  }
 
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: DEFAULT_BAR, watch: DEFAULT_WATCH, games: 0, generatedAt: null }; }
@@ -265,11 +431,11 @@
       rationale: rationale,
       factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, modelled ? "Probability " + pct(r.modelProb) + " from game data, not other books" : "No model yet: no probability from game data", modelled ? "Edge " + signed(edge * 100, 1) + " points over the price" : "No edge until the game has a model", typeof r.marketFair === "number" ? "Market reference " + pct(r.marketFair) : null].filter(Boolean), breakdown: null, context: null, movement: null };
   }
-  /* the closest markets to the bar, best first, skipping the ones that are already picks on the board */
+  /* the closest markets to the bar, best first, skipping the ones that are already picks on the board; a game that has started is never offered (opts.includeStarted keeps it) */
   function marketRows(opts) {
     opts = opts || {};
     const picksOnBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { picksOnBoard[p.id] = true; });
-    let rows = marketData().rows.filter(r => !(r.pickId && picksOnBoard[r.pickId]) || opts.includePicks);
+    let rows = marketData().rows.filter(r => (!(r.pickId && picksOnBoard[r.pickId]) || opts.includePicks) && (opts.includeStarted || isOpen(r)));
     if (opts.sport) rows = rows.filter(r => r.sport === opts.sport);
     if (opts.positive) rows = rows.filter(r => rowEdge(r) > 0);
     /* today first, then likeliest; a side with no model goes last (the file is by edge; byEdge keeps that for the nearest-miss slot) */
@@ -279,13 +445,23 @@
     if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
     return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
   }
+  /* the board's counts, open games only: a game that has started is counted apart (started, startedGames) and never as a market to bet */
   function marketSummary() {
-    const m = marketData(), rows = m.rows || [];
+    const m = marketData(), all = m.rows || [], rows = all.filter(isOpen), gone = all.filter(r => !isOpen(r));
     const watch = rows.filter(r => r.status === "watch").length, picks = rows.filter(r => r.status === "pick").length;
     const unmodelled = rows.filter(r => !hasModel(r)).length;
     const best = rows.filter(hasModel).sort((a, b) => rowEdge(b) - rowEdge(a))[0] || null;
     const when = m.generatedAt ? new Date(m.generatedAt) : null;
-    return { games: m.games || 0, markets: rows.length, picks: picks, watch: watch, best: best, sports: m.sports || [], generatedAt: when && !isNaN(when) ? when : null, threshold: barOf(), watchEdge: watchOf(), barPts: barPts(), watchPts: watchPts(), modelled: Number.isFinite(Number(m.modelled)) ? Number(m.modelled) : null, unmodelled: unmodelled };
+    const ids = list => new Set(list.map(r => r.eventId != null ? r.eventId : r.event)).size;
+    const games = gone.length && all.every(r => r.eventId != null || r.event) ? ids(rows) : (m.games || 0);
+    const sports = (m.sports || []).filter(s => !gone.length || rows.some(r => r.sport === s));
+    return { games: games, markets: rows.length, picks: picks, watch: watch, best: best, sports: sports, generatedAt: when && !isNaN(when) ? when : null, threshold: barOf(), watchEdge: watchOf(), barPts: barPts(), watchPts: watchPts(), modelled: Number.isFinite(Number(m.modelled)) ? Number(m.modelled) : null, unmodelled: unmodelled, started: gone.length, startedGames: gone.length ? ids(gone) : 0 };
+  }
+  /* one sentence for a board that left started games out, so nothing vanishes without a word */
+  function startedNote(s) {
+    s = s || marketSummary();
+    if (!s.started) return "";
+    return s.started + (s.started === 1 ? " side" : " sides") + " from " + s.startedGames + (s.startedGames === 1 ? " game that has started " : " games that have started ") + (s.started === 1 ? "is" : "are") + " off the board.";
   }
   /* a divider row for the market table: where the sides priced against you begin */
   function marketDivider(text) {
@@ -343,13 +519,65 @@
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
       el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data. " + (s.picks ? s.picks + " clear the " + s.barPts + "-point bar. " : "None clears the " + s.barPts + "-point bar" + (s.watch ? "; " + s.watch + " on watch, " + s.watchPts + " points or more over the price. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", " + signed(s.best.edge * 100, 1) + " points." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
-      el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), el("span", { class: "leg-event", text: p.event + " · " + p.start })]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
-      el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
+      el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, p.start], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
+      el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
   }
 
   /* ---------- live status slot: js/live.js fills these once games start ---------- */
   function liveSlot(id) { return el("span", { class: "live-slot", "data-live": id }); }
+
+  /* ---------- in progress and results: a pick whose game has started moves here instead of vanishing ---------- */
+  /* game day first, then live, awaiting a result, graded; within each, worth a bet first, then likeliest */
+  function playedCmp(a, b) { return dayCmp(a, b) || (STATE_RANK[gameState(a)] - STATE_RANK[gameState(b)]) || ((edgeNum(b) > 0) - (edgeNum(a) > 0)) || (probOf(b) - probOf(a)) || (edgeNum(b) - edgeNum(a)); }
+  function playedPicks() { return (((window.PICKS_DATA || {}).picks) || []).filter(function (p) { return p && p.id && !isOpen(p); }).sort(playedCmp); }
+  function playedRow(p, rank) {
+    const st = gameState(p), graded = st === "final", t = startMs(p), u = Number(p.units);
+    const posted = el("span", {}, [el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " at " + p.book : ""]);
+    const result = graded
+      ? [scoreText(p) ? el("span", { class: "played-score", text: "Final " + scoreText(p) }) : null,
+         unitsText(p) ? el("span", { class: "mono played-units" + (u > 0 ? " pos" : u < 0 ? " neg" : ""), text: unitsText(p) }) : resultWord(p) === "Void" ? el("span", { class: "played-note", text: "No action, stake back" }) : null]
+      : [st === "awaiting" ? el("span", { class: "played-note", text: "Graded from the final score at the next run" }) : null, liveSlot(p.id)];
+    return el("article", { class: "played", "data-id": p.id, "data-sport": p.sport, "data-state": st }, [
+      el("div", { class: "played-id" }, [rankChip(rank, true), stateChip(p), el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
+      el("div", { class: "played-pick" }, [
+        TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null,
+        el("strong", { text: p.pick }),
+        meta([p.event, p.market, posted, Number.isFinite(t) ? "Started " + clockET(t) : p.start], "leg-event")
+      ]),
+      el("div", { class: "played-result" }, result),
+      el("div", { class: "played-actions" }, [el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })])
+    ]);
+  }
+  /* counts for the home page's "Earlier today" strip: 1 live, 1 awaiting a result, 2 won, 1 lost (+0.74u) */
+  function playedSummary() {
+    const list = playedPicks(), c = {};
+    let units = 0, graded = 0;
+    list.forEach(function (p) { const k = stateKey(p); c[k] = (c[k] || 0) + 1; if (gameState(p) === "final" && p.units != null && Number.isFinite(Number(p.units))) { units += Number(p.units); graded++; } });
+    const rec = [c.won ? c.won + " won" : null, c.lost ? c.lost + " lost" : null, c.push ? c.push + (c.push === 1 ? " push" : " pushes") : null, c.void ? c.void + " void" : null, c.final ? c.final + " final" : null].filter(Boolean);
+    const parts = [c.live ? c.live + " live" : null, c.awaiting ? c.awaiting + " awaiting a result" : null, rec.length ? rec.join(", ") + (graded ? " (" + signed(Math.round(units * 100) / 100, 2) + "u)" : "") : null].filter(Boolean);
+    return { list: list, counts: c, units: units, graded: graded, parts: parts };
+  }
+
+  /* ---------- posted against now: the price we logged, the best price now when it moved, and the worst price still worth a bet ---------- */
+  function hasMoved(p) { const m = p && p.movement; return !!m && m.currentOdds != null && Number.isFinite(Number(m.currentOdds)) && Number(m.currentOdds) !== 0 && (Number(m.currentOdds) !== Number(p.odds) || (!!m.currentBook && !!p.book && m.currentBook !== p.book)); }
+  function valueTo(p) { const v = Number(p && p.valueTo); return p && p.valueTo != null && Number.isFinite(v) && v !== 0 ? v : null; }
+  /* the market-line parts on a card: "Spread | -110 | DraftKings", or "Spread | Posted -110 at DraftKings" once the price moved (the price now goes on the line under it) */
+  function priceParts(p) {
+    if (!hasMoved(p)) return [el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null];
+    return [el("span", { class: "price-posted" }, ["Posted ", el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book ? " at " + p.book : ""])];
+  }
+  /* the line under it: "now -125 at FanDuel | Worth a bet to -118"; a price now past the worth-a-bet price is marked */
+  function valueLine(p, cls) {
+    if (!p || p.isMarket) return null;
+    const vt = valueTo(p), moved = hasMoved(p), m = p.movement;
+    if (vt == null && !moved) return null;
+    const past = moved && vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
+    return meta([
+      moved ? el("span", { class: "price-now" + (past ? " price-past" : ""), title: (past ? "Past the worst price still worth a bet. " : "") + (m.checkedAt ? "Best price at the check " + clockET(Date.parse(m.checkedAt)) : "") || null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""]) : null,
+      vt != null ? el("span", { class: "price-worth", title: "The worst price at which this pick is still worth a bet" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null
+    ], "price-value" + (cls ? " " + cls : ""));
+  }
 
   /* ---------- pick card ---------- */
   /* sample data files set sample:true; real data from scripts/update-data.js sets it false */
@@ -376,7 +604,8 @@
         TM() ? TM().matchup(p) : null,
         el("div", { class: "pick-event", text: p.event }),
         el("h3", { class: "pick-selection", text: p.pick }),
-        meta([p.market, el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null], "pick-market"),
+        meta([p.market].concat(priceParts(p)), "pick-market"),
+        valueLine(p),
         shopChips(p)
       ]),
       /* the probability bar: fill = our probability from the game data, tick = what the price implies, hairline = a coin flip */
@@ -390,7 +619,8 @@
       ]),
       el("div", { class: "pick-foot" }, [
         el("span", {}, [meta([p.league, p.start]), liveSlot(p.id)]),
-        el("span", { class: "pick-actions" }, [p.isMarket ? null : parlayButton(p.id), flipBtn])
+        /* a game that has started is never offered: its state chip stands where the parlay button was */
+        el("span", { class: "pick-actions" }, [p.isMarket ? null : isOpen(p) ? parlayButton(p.id) : stateChip(p), flipBtn])
       ])
     ]);
     const back = el("div", { class: "pick-face pick-back", "aria-hidden": "true" }, [
@@ -450,7 +680,7 @@
       el("td", { class: "num", text: edgeText(p) }),
       el("td", {}, [el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence })]),
       el("td", { class: "num" }, [(function () { const s = lineShop(p); return s.books ? el("span", { class: "mono" + (s.sole ? " shop-sole" : ""), title: shopSummary(p), text: s.clears + "/" + s.books }) : el("span", { text: "—" }); })()]),
-      el("td", {}, [parlayButton(p.id)])
+      el("td", {}, [isOpen(p) ? parlayButton(p.id) : stateChip(p)])
     ]);
   }
 
@@ -484,9 +714,10 @@
       if (alt) { const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: "No pick clears the " + barPts() + "-point bar yet, so this is the nearest miss on our numbers, not a play. It becomes the play of the day at the first refresh that finds an edge." })); c.classList.add("potd-market"); return c; }
       return el("div", { class: "card empty", text: "No play of the day yet. It is chosen at the first refresh with picks, around noon ET." });
     }
-    const modelled = hasModel(p);
-    const status = p.result ? "Result: " + p.result : p.started ? "Started" : p.start;
-    const card = el("article", { class: "card potd", "data-sport": p.sport, "data-tilt": "" }, [
+    const modelled = hasModel(p), st = gameState(p), open = st === "upcoming" || st === "soon";
+    /* chosen once a day and kept: once its game starts it shows where it stands, never an add button */
+    const status = open ? [p.start || ""] : [stateChip(p), st === "final" ? meta([scoreText(p) ? "Final " + scoreText(p) : null, unitsText(p) || null], "potd-result") : meta([Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : "Started"], "potd-result")];
+    const card = el("article", { class: "card potd", "data-sport": p.sport, "data-state": st, "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: p._eyebrow || "Play of the day" }),
         el("span", { class: "pick-head-right" }, [p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
@@ -494,7 +725,8 @@
       TM() ? TM().matchup(p, { size: "lg" }) : null,
       el("div", { class: "potd-event", text: p.event }),
       el("h3", { class: "potd-selection", text: p.pick }),
-      meta([p.market, el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null], "potd-line"),
+      meta([p.market].concat(priceParts(p)), "potd-line"),
+      valueLine(p),
       el("div", { class: "pick-metrics potd-metrics" }, [
         el("div", { class: "pick-metric", title: "Our probability for this side, from the game data; not other books' prices" }, [el("div", { class: "k", text: "To hit" }), el("div", { class: "v", text: probText(p) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: modelled ? "v edge" : "v muted", text: edgeText(p) })]),
@@ -502,8 +734,8 @@
       ]),
       el("p", { class: "pick-rationale", text: p._note || p.rationale }),
       el("div", { class: "pick-foot" }, [
-        el("span", { class: p.result ? "result result-" + p.result.toLowerCase() : "" }, [status, p.result || p.isMarket ? null : liveSlot(p.id)]),
-        el("span", { class: "pick-actions" }, [p.started || p.isMarket ? null : parlayButton(p.id), p.isMarket ? el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
+        el("span", { class: "potd-state" }, status.concat([st === "final" || p.isMarket ? null : liveSlot(p.id)])),
+        el("span", { class: "pick-actions" }, [!open || p.isMarket ? null : parlayButton(p.id), p.isMarket ? el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
       ])
     ]);
     if (TM()) TM().tint(card, p);
@@ -525,7 +757,8 @@
   function bestParlays(picks, opts) {
     opts = opts || {};
     const maxLegs = opts.size || opts.maxLegs || 4, minLegs = opts.size || 2, limit = opts.limit || 5;
-    const legsAll = (picks || []).filter(p => p.prices && Object.keys(p.prices).length && Number.isFinite(Number(p.modelProb)));
+    /* a leg whose game has started can never be on a ticket */
+    const legsAll = (picks || []).filter(p => isOpen(p) && p.prices && Object.keys(p.prices).length && Number.isFinite(Number(p.modelProb)));
     const books = {}; legsAll.forEach(p => Object.keys(p.prices).forEach(b => { books[b] = true; }));
     const bySet = {};
     Object.keys(books).forEach(function (book) {
@@ -551,22 +784,29 @@
 
   /* the slip: pick ids kept in localStorage; buttons everywhere reflect it */
   const SLIP_KEY = "parlay-slip";
+  /* a leg the slip can price: its pick is on the board and its game has not started */
+  function slipLeg(id) { const p = findPick(id); return p && isOpen(p) ? p : null; }
   const slip = {
     get: function () { try { return JSON.parse(localStorage.getItem(SLIP_KEY) || "[]"); } catch (e) { return []; } },
     set: function (ids) { try { localStorage.setItem(SLIP_KEY, JSON.stringify(ids)); } catch (e) { /* ignore */ } syncButtons(); document.dispatchEvent(new CustomEvent("slipchange", { detail: ids })); },
     has: function (id) { return slip.get().indexOf(id) !== -1; },
-    toggle: function (id) { const ids = slip.get(); const i = ids.indexOf(id); if (i === -1) ids.push(id); else ids.splice(i, 1); slip.set(ids); },
-    clear: function () { slip.set([]); }
+    /* removing always works; adding a pick whose game has started does not */
+    toggle: function (id) { const ids = slip.get(); const i = ids.indexOf(id); if (i === -1) { if (findPick(id) && !slipLeg(id)) { checkStates(true); return; } ids.push(id); } else ids.splice(i, 1); slip.set(ids); },
+    clear: function () { slip.set([]); },
+    /* the legs that can still be bet, and the ones that cannot (started, or gone from the board) */
+    open: function () { return slip.get().filter(id => !!slipLeg(id)); },
+    closed: function () { return slip.get().filter(id => !slipLeg(id)); }
   };
   function parlayButton(id) {
     const on = slip.has(id);
     return el("button", { type: "button", class: "add-parlay", "data-id": id, "aria-pressed": String(on), text: on ? "In parlay" : "Add to parlay" });
   }
   function syncButtons() {
-    const ids = slip.get();
+    const ids = slip.get(), live = slip.open();
     document.querySelectorAll(".add-parlay[data-id]").forEach(function (b) { const on = ids.indexOf(b.getAttribute("data-id")) !== -1; b.setAttribute("aria-pressed", String(on)); b.textContent = on ? "In parlay" : "Add to parlay"; });
+    /* the floating link counts only legs that can still be bet */
     const link = document.querySelector(".slip-link");
-    if (link) { link.hidden = !ids.length; const n = link.querySelector("strong"); if (n) n.textContent = String(ids.length); }
+    if (link) { link.hidden = !live.length; const n = link.querySelector("strong"); if (n) n.textContent = String(live.length); }
   }
   document.addEventListener("click", function (e) {
     const b = e.target.closest && e.target.closest(".add-parlay[data-id]");
@@ -577,18 +817,21 @@
   function parlayCard(par, opts) {
     opts = opts || {};
     if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No parlay of the day yet. It needs two or more picks from different games that are all worth a bet at the same book." });
-    const status = par.result ? "Result: " + par.result : par.legs.some(l => l.started) ? "In progress" : "All legs ahead";
-    return el("article", { class: "card parlay", "data-tilt": "" }, [
+    /* each leg read from its pick on the board, so a leg whose game has started says so */
+    const legPick = par.legs.map(legAsPick), begun = legPick.filter(p => !isOpen(p)).length;
+    const status = par.result ? "Result: " + par.result : begun ? (begun === par.legs.length ? "Every leg has started" : begun + " of " + par.legs.length + " legs started") : "All legs ahead";
+    return el("article", { class: "card parlay" + (begun ? " parlay-begun" : ""), "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: opts.title || "Parlay of the day" }),
         el("span", { class: "pick-head-right" }, [opts.tag ? el("span", { class: "badge badge-potd", text: opts.tag }) : null, el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })])
       ]),
-      el("ul", { class: "parlay-legs" }, par.legs.map(function (l) {
-        return el("li", {}, [
+      el("ul", { class: "parlay-legs" }, par.legs.map(function (l, i) {
+        const lp = legPick[i], lst = gameState(lp);
+        return el("li", { "data-state": lst }, [
           el("span", { class: "leg-id" }, [TM() ? TM().matchup(l, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport })]),
-          el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event }), l.result ? null : liveSlot(l.id)]),
+          el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event }), lst === "final" ? null : liveSlot(l.id)]),
           el("span", { class: "mono leg-price", text: fmtOdds(l.price) }),
-          l.result ? el("span", { class: "result result-" + l.result.toLowerCase(), text: l.result }) : null
+          stateChip(lp)
         ]);
       })),
       el("div", { class: "pick-metrics potd-metrics" }, [
@@ -601,10 +844,15 @@
         el("span", { class: par.result ? "result result-" + par.result.toLowerCase() : "", text: status }),
         el("span", { class: "pick-actions" }, [
           el("button", { type: "button", class: "flip-btn", "data-breakdown": par.legs.map(l => l.id).join(","), text: "Leg breakdowns" }),
-          opts.loadButton ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
+          opts.loadButton && !begun ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : begun ? el("a", { class: "flip-btn", href: "picks.html#played", text: "In progress and results" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
         ])
       ])
     ]);
+  }
+  /* a parlay leg as its pick on the board (commence, sport, result), the leg's own result and started flag on top */
+  function legAsPick(l) {
+    const p = findPick(l.id) || {};
+    return Object.assign({}, p, { id: l.id, sport: p.sport || l.sport, event: p.event || l.event, pick: p.pick || l.pick }, l.result ? { result: l.result } : {}, l.started === true ? { started: true } : {});
   }
 
   /* ---------- full breakdown dialog ---------- */
@@ -639,7 +887,9 @@
         el("div", {}, [
           el("div", { class: "bd-id" }, [TM() ? TM().matchup(p) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
           el("h3", { class: "bd-title", text: p.pick }),
-          meta([p.event, p.market, fmtOdds(p.odds) + (p.book ? " at " + p.book : ""), p.start], "bd-sub"),
+          meta([p.event, p.market].concat(hasMoved(p) ? priceParts(p) : [fmtOdds(p.odds) + (p.book ? " at " + p.book : "")], [p.start]), "bd-sub"),
+          valueLine(p, "bd-value"),
+          isOpen(p) ? null : el("p", { class: "bd-state" }, [stateChip(p), meta([gameState(p) === "final" && scoreText(p) ? "Final " + scoreText(p) : Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : null, unitsText(p) || null], "bd-state-meta")]),
           modelLine(p)
         ]),
         el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase() + " bd-tier", text: p.confidence })
@@ -751,6 +1001,10 @@
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
-    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel
+    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
+    now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, ago: ago, scoreText: scoreText, unitsText: unitsText,
+    onStateChange: onStateChange, checkStates: checkStates, updateLine: updateLine, updateParts: updateParts, nextRun: nextRun,
+    playedPicks: playedPicks, playedRow: playedRow, playedSummary: playedSummary, startedNote: startedNote, findPick: findPick, legAsPick: legAsPick,
+    hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine
   };
 })();

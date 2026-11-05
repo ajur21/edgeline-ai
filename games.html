@@ -89,6 +89,7 @@
 (function () {
   var E = window.EdgeLine, TM = function () { return window.EdgeLineTeams || null; };
   var M = E.marketData(), P = window.PICKS_DATA || { picks: [] }, FACES = (window.FACES_DATA && window.FACES_DATA.players) || [];
+  /* every pick the pipeline sent, started or not: an open game's pick is a link to bet, a started game's pick shows where it stands */
   var onBoard = {}; (P.picks || []).forEach(function (p) { onBoard[p.id] = p; });
   var host = document.getElementById("games-host"), summary = document.getElementById("g-summary"), fq = document.getElementById("g-search"), fsort = document.getElementById("g-sort"), seg = document.getElementById("g-sports"), heading = document.getElementById("games"), gen = document.getElementById("g-generated");
   var params = new URLSearchParams(location.search);
@@ -103,6 +104,9 @@
     var r = g.r, tm = TM(), key = r.sportKey || r.sport;
     g.home = tm ? tm.find(key, r.home) : null; g.away = tm ? tm.find(key, r.away) : null;
     g.picks = g.rows.filter(function (x) { return x.pickId && onBoard[x.pickId]; });
+    /* the picks on this game, by id or by the same event on the same day */
+    g.allPicks = g.picks.map(function (x) { return onBoard[x.pickId]; });
+    (P.picks || []).forEach(function (p) { if (p.event === r.event && E.dayKey(p) === E.dayKey(r) && g.allPicks.indexOf(p) < 0) g.allPicks.push(p); });
     g.modelled = g.rows.some(E.hasModel);
     var worth = g.rows.filter(function (x) { return E.hasModel(x) && E.rowEdge(x) > 0; });
     g.worth = worth.length > 0;
@@ -116,6 +120,14 @@
      that side, then the rest by their likeliest side; a game with no model last. Start time is opt-in. */
   function byModel(a, b) { return E.dayCmp(a.r, b.r) || ((b.worth ? 1 : 0) - (a.worth ? 1 : 0)) || (E.probOf(b.lead) - E.probOf(a.lead)) || (startMs(a) - startMs(b)); }
   function byStart(a, b) { return E.dayCmp(a.r, b.r) || (startMs(a) - startMs(b)) || byModel(a, b); }
+  /* where a game stands on the one clock: a graded pick makes it final; a pick the pipeline calls started makes it live */
+  function gameState(g) {
+    if (g.allPicks.some(function (p) { return E.gameState(p) === "final"; })) return "final";
+    var s = E.gameState(g.r);
+    if ((s === "upcoming" || s === "soon") && g.allPicks.some(function (p) { return !E.isOpen(p); })) return "live";
+    return s;
+  }
+  function isOpenGame(g) { return g.state === "upcoming" || g.state === "soon"; }
 
   function isTeam(t) { return !!t && String(t.id) === state.team; }
   function teamLabel() {
@@ -196,6 +208,31 @@
       E.el("div", { class: "table-wrap", role: "region", tabindex: "0", "aria-label": "Every book’s price for " + g.r.event }, [E.el("table", { class: "data" }, [E.el("thead", {}, [head]), E.el("tbody", {}, body)])])
     ]);
   }
+  /* a game that has started: its lines are closed, so no cell to bet; the chip, the start, and our pick on it with the live pill or the result */
+  function startedCard(g) {
+    var r = g.r, t = E.startMs(r), st = g.state;
+    var chip = st === "live" ? (g.allPicks.length ? "Live" : "Started") : st === "final" ? "Final" : g.allPicks.length ? "Awaiting result" : "Finished";
+    var key = st === "live" ? "live" : st === "final" ? "final" : "awaiting";
+    return E.el("article", { class: "card game-card game-started", id: "g-" + g.id, "data-sport": r.sport, "data-state": st }, [
+      E.el("div", { class: "game-head" }, [
+        E.el("div", { class: "game-tags" }, [E.el("span", { class: "badge badge-state badge-" + key, text: chip }), E.el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
+        E.el("h3", { class: "game-title", text: r.event }),
+        E.meta([Number.isFinite(t) ? "Started " + E.clockET(t) : r.start, "Lines closed at the start"], "game-meta")
+      ]),
+      g.allPicks.length ? E.el("ul", { class: "game-picks" }, g.allPicks.map(function (p) {
+        var graded = E.gameState(p) === "final";
+        return E.el("li", {}, [
+          E.stateChip(p, { open: true }),
+          E.el("span", { class: "game-pick-text" }, [E.el("strong", { text: "Our pick: " + p.pick }), " ", E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), p.book ? " at " + p.book : ""]),
+          graded ? E.meta([E.scoreText(p) ? "Final " + E.scoreText(p) : null, E.unitsText(p) || null], "game-pick-result") : E.liveSlot(p.id),
+          E.el("a", { class: "flip-btn", href: "picks.html#" + encodeURIComponent(p.id), text: "In progress and results" })
+        ]);
+      })) : E.el("p", { class: "game-closed-note", text: "We had no pick on this game." })
+    ]);
+  }
+  function groupHead(title, n, id, how) {
+    return E.el("div", { class: "games-group", id: id }, [E.el("h3", { class: "games-group-title" }, [title + " ", E.el("span", { class: "seg-count", text: String(n) })]), how ? E.el("p", { class: "games-group-how", text: how }) : null]);
+  }
   function card(g, rank) {
     var r = g.r, lt = linesTable(g);
     return E.el("article", { class: "card game-card" + (g.picks.length ? " has-pick" : ""), id: "g-" + g.id, "data-sport": r.sport }, [
@@ -227,9 +264,12 @@
   }
   function summarize(list) {
     summary.textContent = "";
-    var filtered = !!(state.sport || state.team || state.q), picks = list.reduce(function (s, g) { return s + g.picks.length; }, 0);
-    var bits = [E.el("strong", { text: list.length + (list.length === 1 ? " game" : " games") }),
-      (filtered ? " of " + games.length : " on the board") + (picks ? ", " + picks + (picks === 1 ? " pick" : " picks") + " among them" : "") + "." +
+    /* the board counts games that can still be bet; live and finished ones are counted apart */
+    var open = list.filter(isOpenGame), allOpen = games.filter(isOpenGame), live = list.filter(function (g) { return g.state === "live"; }).length, done = list.length - open.length - live;
+    var filtered = !!(state.sport || state.team || state.q), picks = open.reduce(function (s, g) { return s + g.picks.length; }, 0);
+    var bits = [E.el("strong", { text: open.length + (open.length === 1 ? " game" : " games") }),
+      (filtered ? " of " + allOpen.length : " on the board") + (picks ? ", " + picks + (picks === 1 ? " pick" : " picks") + " among them" : "") + "." +
+      (live ? " " + live + " live now." : "") + (done ? " " + done + " finished." : "") +
       (state.team ? " Showing " + teamLabel() + "." : "") + (state.sport ? " Sport: " + state.sport + "." : "") + (state.q ? " Matching “" + state.q + "”." : "")];
     if (filtered) { var clear = E.el("button", { type: "button", class: "flip-btn", text: "Show every game" }); clear.addEventListener("click", reset); bits.push(" ", clear); }
     bits.forEach(function (b) { summary.appendChild(typeof b === "string" ? document.createTextNode(b) : b); });
@@ -237,6 +277,7 @@
   function render() {
     host.textContent = "";
     heading.textContent = state.sort === "start" ? "Games by start time" : "Games, likeliest first";
+    games.forEach(function (g) { g.state = gameState(g); });
     var list = games.filter(matches).sort(state.sort === "start" ? byStart : byModel);
     summarize(list);
     if (!games.length) { host.appendChild(E.el("div", { class: "card empty", text: "The board fills at the next price refresh: every game priced then is listed here with its lines." })); return; }
@@ -245,8 +286,22 @@
       host.appendChild(E.el("div", { class: "card empty" }, [state.team ? teamLabel() + " has no game on the board right now. " : "No game matches those filters. ", clear]));
       return;
     }
-    var spans = new Set(list.map(function (g) { return E.dayKey(g.r); })).size > 1, prev = null;
-    list.forEach(function (g, i) { var k = E.dayKey(g.r); if (spans && k !== prev) host.appendChild(E.dayDivider(k)); prev = k; host.appendChild(card(g, i + 1)); });
+    /* live now, starting soon, then the rest in the site order, then finished (collapsed); the order holds inside each group and the rank chips number the games that can still be bet */
+    var live = list.filter(function (g) { return g.state === "live"; }), soon = list.filter(function (g) { return g.state === "soon"; }),
+        later = list.filter(function (g) { return g.state === "upcoming"; }), done = list.filter(function (g) { return g.state === "awaiting" || g.state === "final"; });
+    var grouped = live.length || soon.length || done.length, rank = 0;
+    if (live.length) { host.appendChild(groupHead("Live now", live.length, "g-live", "Started and inside the game’s usual length. The lines closed at the start, so nothing here can be bet; our pick on a game shows where it stands.")); live.forEach(function (g) { host.appendChild(startedCard(g)); }); }
+    if (soon.length) { host.appendChild(groupHead("Starting soon", soon.length, "g-soon", "Within 90 minutes of the start: the last chance at these prices.")); soon.forEach(function (g) { host.appendChild(card(g, ++rank)); }); }
+    if (later.length) {
+      if (grouped) host.appendChild(groupHead("Later", later.length, "g-later"));
+      var spans = new Set(later.map(function (g) { return E.dayKey(g.r); })).size > 1, prev = null;
+      later.forEach(function (g) { var k = E.dayKey(g.r); if (spans && k !== prev) host.appendChild(E.dayDivider(k)); prev = k; host.appendChild(card(g, ++rank)); });
+    }
+    if (done.length) {
+      var finList = E.el("div", { class: "games-finished-list" });
+      done.forEach(function (g) { finList.appendChild(startedCard(g)); });
+      host.appendChild(E.el("details", { class: "games-finished", id: "g-finished" }, [E.el("summary", {}, [E.el("span", { class: "games-group-title", text: "Finished " }), E.el("span", { class: "seg-count", text: String(done.length) }), E.el("span", { class: "games-group-how", text: "Past the usual length or graded; open to see each result." })]), finList]));
+    }
   }
   /* games.html#g-<id> (from the search box): bring the game into view, clearing filters that hide it */
   function focusHash() {
@@ -254,17 +309,22 @@
     var target = document.getElementById(id);
     if (!target && (state.sport || state.team || state.q)) { reset(); target = document.getElementById(id); }
     if (!target) return;
+    /* a finished game sits in the collapsed group: open it so the link lands */
+    var fold = target.closest("details"); if (fold) fold.open = true;
     host.querySelectorAll(".game-card.highlight").forEach(function (x) { x.classList.remove("highlight"); });
     target.classList.add("highlight"); target.scrollIntoView({ block: "center" });
   }
 
-  var s = E.marketSummary();
-  gen.textContent = (s.generatedAt ? "Prices from the run at " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) + ". " : "") + "Every side of every main line, with our probability from the game data.";
+  /* when the lines were priced (the full runs) and when the next pricing run is due, kept current once a minute */
+  E.updateLine(gen, { lines: true });
   fq.value = state.q; fsort.value = state.sort;
   fq.addEventListener("input", function () { state.q = fq.value.trim(); sync(); render(); });
   fsort.addEventListener("change", function () { state.sort = fsort.value; sync(); render(); });
   window.addEventListener("hashchange", focusHash);
+  games.forEach(function (g) { g.state = gameState(g); });
   renderSports(); render(); focusHash();
+  /* once a minute: a game that starts moves to Live now, then to Finished */
+  E.onStateChange(function () { var open = (host.querySelector("#g-finished") || {}).open; render(); var f = host.querySelector("#g-finished"); if (f && open) f.open = true; });
 })();
 </script>
 

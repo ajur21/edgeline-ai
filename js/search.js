@@ -64,16 +64,18 @@
     order.forEach(function (id) {
       const g = games[id], r = g.r, key = r.sportKey || r.sport;
       const home = tm ? tm.find(key, r.home) : null, away = tm ? tm.find(key, r.away) : null;
-      const picks = g.rows.filter(function (x) { return x.pickId && onBoard[x.pickId]; }).length;
+      /* a game that has started is still found, marked by where it stands; only an open game counts toward the board */
+      const st = Ed.gameState(r), open = st === "upcoming" || st === "soon";
+      const picks = open ? g.rows.filter(function (x) { return x.pickId && onBoard[x.pickId]; }).length : 0;
       [home, away].forEach(function (t, i) { if (t) teamGame[(r.sportKey || "") + "|" + t.id] = { g: g, opp: i === 0 ? r.away : r.home }; });
-      const s = sports[r.sport] || (sports[r.sport] = { games: 0, picks: 0 }); s.games++; s.picks += picks;
-      out.push(entry("game", r.event, [r.sport, r.start, picks ? (picks === 1 ? "a pick on the board" : picks + " picks on the board") : null], "games.html#g-" + encodeURIComponent(id),
+      const s = sports[r.sport] || (sports[r.sport] = { games: 0, picks: 0 }); if (open) s.games++; s.picks += picks;
+      out.push(entry("game", r.event, [r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a pick on the board" : picks + " picks on the board") : null], "games.html#g-" + encodeURIComponent(id),
         [r.event, r.home, r.away, r.sport, alias(home), alias(away)].join(" "), picks ? 0.65 : 0.6, { row: r, home: home, away: away }));
     });
     (P.picks || []).forEach(function (p) {
       if (!sports[p.sport]) sports[p.sport] = { games: 0, picks: 0 };
       const key = p.sportKey || p.sport, home = tm ? tm.find(key, p.home) : null, away = tm ? tm.find(key, p.away) : null;
-      out.push(entry("pick", p.pick + " " + Ed.fmtOdds(p.odds), [p.sport, p.event, p.confidence ? p.confidence + " confidence" : null], "picks.html#" + encodeURIComponent(p.id),
+      out.push(entry("pick", p.pick + " " + Ed.fmtOdds(p.odds), [p.sport, p.event, !Ed.isOpen(p) ? Ed.stateText(p) : p.confidence ? p.confidence + " confidence" : null], "picks.html#" + encodeURIComponent(p.id),
         [p.pick, p.event, p.home, p.away, p.sport, p.market, alias(home), alias(away)].join(" "), 0.3, { pick: p }));
     });
     if (T && T.leagues) Object.keys(T.leagues).forEach(function (key) {
@@ -113,7 +115,8 @@
     const Ed = E(), out = [];
     const sports = index.filter(function (e) { return e.kind === "sport"; }).sort(function (a, b) { return b.count - a.count; });
     if (sports.length) out.push({ kind: "sport", title: "Sports on the board", items: sports });
-    const picks = Ed.sortByProb((window.PICKS_DATA && window.PICKS_DATA.picks) || []).slice(0, 4);
+    /* suggestions are bets: open games only */
+    const picks = Ed.sortByProb(Ed.openOnly((window.PICKS_DATA && window.PICKS_DATA.picks) || [])).slice(0, 4);
     const byId = {}; index.forEach(function (e) { if (e.kind === "pick") byId[e.pick.id] = e; });
     const items = picks.map(function (p) { return byId[p.id]; }).filter(Boolean);
     if (items.length) out.push({ kind: "pick", title: "Picks, likeliest first", items: items });
@@ -185,6 +188,8 @@
   }
   function open(q) {
     opener = document.activeElement;
+    /* rebuilt on every open: a game that started since the last one is marked, not offered */
+    index = null;
     if (!dlg) make();
     if (typeof q === "string") input.value = q;
     if (!dlg.open) { if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", ""); }
