@@ -54,6 +54,18 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
   const r2 = await P.run({ fixture: true, out: tmp2, now: "2026-11-04T18:00:00Z", lines: false });
   check("run: --no-lines skips the odds call and writes no lines", r2.lines.skipped === "off" && (() => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp2, "props.js"), "utf8"), sb); return !sb.window.PROPS_DATA.players.some(p => p.lines); })());
   fs.rmSync(tmp2, { recursive: true, force: true });
+  /* the slate is the Eastern date, asked for by date (ESPN's undated scoreboard kept last night's finals until late
+     morning on 2026-11-05 and emptied the page and faces.js); a finished slate rolls to tomorrow's */
+  const fxs = P.fixtureSource(), allFinal = sb => Object.assign({}, sb, { events: (sb.events || []).map(e => Object.assign({}, e, { status: { type: { name: "STATUS_FINAL", completed: true } }, competitions: (e.competitions || []).map(c => Object.assign({}, c, { status: { type: { name: "STATUS_FINAL", completed: true } } })) })) });
+  const asked = [], rolled = Object.assign({}, fxs, { scoreboard: async day => { asked.push(day); const sb = await fxs.scoreboard(day); return asked.length === 1 ? allFinal(sb) : sb; } });
+  const tmp3 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-props-"));
+  const r3 = await P.run({ source: rolled, out: tmp3, now: "2026-11-05T04:30:00Z", lines: false }); /* 11:30 PM ET on Nov 4 */
+  check("slate: asked by Eastern date (11:30 PM ET on Nov 4 is 20261104), and a slate that is all final rolls to tomorrow's", asked[0] === "20261104" && asked[1] === "20261105" && r3.players > 0, JSON.stringify([asked, r3.players]));
+  const before = fs.readFileSync(path.join(tmp3, "faces.js"), "utf8");
+  const none = Object.assign({}, fxs, { scoreboard: async day => allFinal(await fxs.scoreboard(day)) });
+  const r4 = await P.run({ source: none, out: tmp3, now: "2026-11-05T15:47:00Z", lines: false });
+  check("slate: a night with no games left keeps the last data/faces.js (the model reads injured scorers' points from it)", r4.players === 0 && fs.readFileSync(path.join(tmp3, "faces.js"), "utf8") === before && /Players|players/.test(before), String(r4.players));
+  fs.rmSync(tmp3, { recursive: true, force: true });
   fs.rmSync(tmp, { recursive: true, force: true });
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
