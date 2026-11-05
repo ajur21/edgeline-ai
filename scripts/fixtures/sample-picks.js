@@ -56,7 +56,7 @@ window.PICKS_DATA = {
         "Market reference 58.5%"
       ],
       "book": "DraftKings",
-      "valueTo": -139,
+      "valueTo": -136,
       "status": "pending",
       "result": null,
       "units": null,
@@ -132,7 +132,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Its bar is 3.5 points: the model's own margin of error on this side, with 7 games behind the thinner team (±3.4 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
         "support": [
           "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3).",
@@ -237,7 +237,25 @@ window.PICKS_DATA = {
           "best": -105,
           "n": 7
         }
-      ]
+      ],
+      "bar": 0.035,
+      "past": 0.0532,
+      "barParts": {
+        "error": 0.035,
+        "units": 3.4,
+        "unit": "points",
+        "gp": 7,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-04T16:30:00-05:00",
+        "odds": -110,
+        "book": "DraftKings",
+        "modelProb": 0.606,
+        "edge": 0.0822,
+        "bar": 0.035
+      },
+      "standing": "clears"
     },
     {
       "id": "p2",
@@ -249,12 +267,12 @@ window.PICKS_DATA = {
       "market": "Total",
       "pick": "Over 226.5",
       "odds": -108,
-      "modelProb": 0.601,
+      "modelProb": 0.681,
       "confidence": "High",
       "basis": "game",
       "model": {
         "margin": -1.5,
-        "total": 231,
+        "total": 236,
         "sd": 12.5,
         "sdTotal": 19,
         "gp": 8,
@@ -272,18 +290,18 @@ window.PICKS_DATA = {
         "reasons": {
           "for": [
             "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's",
-            "Projected total 231 against 226.5"
+            "Projected total 236 against 226.5"
           ],
           "against": []
         }
       },
       "marketFair": 0.567,
       "marketEdge": 0.0478,
-      "rationale": "Our probability at 226.5 is 60.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 231). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
+      "rationale": "Our probability at 226.5 is 68.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 236). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
       "factors": [
         "Best price -108 at FanDuel",
-        "Probability 60.1% from game data, not other books",
-        "Edge 8.2 points over the price",
+        "Probability 68.1% from game data, not other books",
+        "Edge 16.2 points over the price",
         "Market reference 56.7%"
       ],
       "book": "FanDuel",
@@ -300,7 +318,7 @@ window.PICKS_DATA = {
         "Caesars": -118,
         "BetRivers": -123
       },
-      "ev": 0.1575,
+      "ev": 0.3116,
       "away": "Boston",
       "home": "Milwaukee",
       "marketKey": "totals",
@@ -355,11 +373,11 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 60.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.9%, so the edge is 8.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 226.5 is 60.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 231). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
+        "tierWhy": "Our probability for this side is 68.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.9%, so the edge is 16.2 points. Its bar is 11.0 points: the model's own margin of error on this side, with 8 games behind the thinner team (±6.2 points on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.2 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 226.5 is 68.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 236). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
         "support": [
           "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's.",
-          "Projected total 231 against 226.5.",
+          "Projected total 236 against 226.5.",
           "A better price is now available: -103 at FanDuel."
         ],
         "risks": [],
@@ -373,11 +391,11 @@ window.PICKS_DATA = {
       },
       "movement": {
         "loggedOdds": -108,
-        "loggedFair": 0.601,
+        "loggedFair": 0.681,
         "currentOdds": -103,
         "currentBook": "FanDuel",
         "currentFair": 0.579,
-        "currentEdge": 0.0936,
+        "currentEdge": 0.1736,
         "checkedAt": "2026-11-04T16:00:00Z",
         "history": [
           {
@@ -386,7 +404,25 @@ window.PICKS_DATA = {
             "fair": 0.567
           }
         ]
-      }
+      },
+      "bar": 0.11,
+      "past": 0.0518,
+      "barParts": {
+        "error": 0.11,
+        "units": 6.2,
+        "unit": "points",
+        "gp": 8,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-04T16:30:00-05:00",
+        "odds": -103,
+        "book": "FanDuel",
+        "modelProb": 0.672,
+        "edge": 0.1646,
+        "bar": 0.108
+      },
+      "standing": "clears"
     },
     {
       "id": "p3",
@@ -438,7 +474,7 @@ window.PICKS_DATA = {
         "Market reference 61.5%"
       ],
       "book": "BetMGM",
-      "valueTo": -150,
+      "valueTo": -146,
       "status": "pending",
       "result": null,
       "units": null,
@@ -495,7 +531,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Our probability for this side is 63.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 57.4%, so the edge is 5.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 63.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 57.4%, so the edge is 5.5 points. Its bar is 3.5 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.62 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 2.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability is 63.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). BetMGM offers -135, which implies only 57.4%. Not graded against other books' prices; for reference the market makes it 61.5%.",
         "support": [
           "Colorado rate +1.3 a game over 13 (5-2), Toronto +0.9 over 13 (4-3).",
@@ -511,7 +547,18 @@ window.PICKS_DATA = {
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
-      "movement": null
+      "movement": null,
+      "bar": 0.035,
+      "past": 0.0205,
+      "barParts": {
+        "error": 0.035,
+        "units": 0.62,
+        "unit": "goals",
+        "gp": 13,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p4",
@@ -653,7 +700,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Our probability for this side is 51.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 45.5%, so the edge is 6.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 51.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 45.5%, so the edge is 6.2 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 3.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability is 51.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Caesars offers +120, which implies only 45.5%. Not graded against other books' prices; for reference the market makes it 49.5%.",
         "support": [
           "Atlanta rate +1.2 a game over 30 (5-2), LA Dodgers +1 over 30 (4-3).",
@@ -690,7 +737,18 @@ window.PICKS_DATA = {
             "fair": 0.495
           }
         ]
-      }
+      },
+      "bar": 0.03,
+      "past": 0.0315,
+      "barParts": {
+        "error": 0.024,
+        "units": 1.1,
+        "unit": "runs",
+        "gp": 30,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p5",
@@ -740,7 +798,7 @@ window.PICKS_DATA = {
         "Market reference 57.8%"
       ],
       "book": "BetRivers",
-      "valueTo": -135,
+      "valueTo": -130,
       "status": "pending",
       "result": null,
       "units": null,
@@ -804,14 +862,15 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Our probability for this side is 60.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 53.5%, so the edge is 7.1 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 60.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 53.5%, so the edge is 7.1 points. Its bar is 4.0 points: the model's own margin of error on this side, with 10 games behind the thinner team (±0.35 goals on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at 2.5 is 60.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 3.1). BetRivers offers -115, which implies only 53.5%. Not graded against other books' prices; for reference the market makes it 57.8%.",
         "support": [
           "Combined scoring 3.9 a game in Arsenal's games, 2.5 in Liverpool's.",
           "Projected total 3.1 against 2.5."
         ],
         "risks": [
-          "Arsenal on a back-to-back; tired legs lean under."
+          "Arsenal on a back-to-back; tired legs lean under.",
+          "At current prices our edge is 4.5 points, under its bar of 5.0 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 57.8% (+4.3 points against the best price). For reference only.",
@@ -820,7 +879,25 @@ window.PICKS_DATA = {
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
-      "movement": null
+      "movement": null,
+      "bar": 0.04,
+      "past": 0.0311,
+      "barParts": {
+        "error": 0.04,
+        "units": 0.35,
+        "unit": "goals",
+        "gp": 10,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-04T16:30:00-05:00",
+        "odds": -125,
+        "book": "BetRivers",
+        "modelProb": 0.601,
+        "edge": 0.0454,
+        "bar": 0.05
+      },
+      "standing": "below"
     },
     {
       "id": "p6",
@@ -877,7 +954,7 @@ window.PICKS_DATA = {
       "result": null,
       "units": null,
       "score": null,
-      "loggedAt": "2026-11-04T09:00:00-05:00",
+      "loggedAt": "2026-11-03T16:30:00-05:00",
       "prices": {
         "DraftKings": -110,
         "FanDuel": -115,
@@ -939,7 +1016,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Our probability for this side is 56.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 4.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 56.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 4.2 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at +3.5 is 56.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.5 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 55.2%.",
         "support": [
           "Phoenix rate -0.4 a game over 8 (5-2), Denver +2.6 over 8 (4-3).",
@@ -973,7 +1050,12 @@ window.PICKS_DATA = {
             "fair": 0.552
           }
         ]
-      }
+      },
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     },
     {
       "id": "p7",
@@ -1023,7 +1105,7 @@ window.PICKS_DATA = {
         "Market reference 56.1%"
       ],
       "book": "FanDuel",
-      "valueTo": -130,
+      "valueTo": -122,
       "status": "pending",
       "result": null,
       "units": null,
@@ -1097,14 +1179,16 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Our probability for this side is 59.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 52.8%, so the edge is 6.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 59.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 52.8%, so the edge is 6.8 points. Its bar is 4.5 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.1 points on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 2.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at 48.5 is 59.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 44.5). FanDuel offers -112, which implies only 52.8%. Not graded against other books' prices; for reference the market makes it 56.1%.",
         "support": [
           "Combined scoring 45.3 a game in Philadelphia's games, 43.9 in Dallas's.",
           "Projected total 44.5 against 48.5.",
           "Scorers out: Key Forward (F), knee. Fewer healthy scorers leans under."
         ],
-        "risks": [],
+        "risks": [
+          "At current prices our edge is -0.8 points, under its bar of 4.5 points; the pick stays posted and is graded at the price it was posted at."
+        ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 56.1% (+3.3 points against the best price). For reference only.",
           "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
@@ -1112,7 +1196,25 @@ window.PICKS_DATA = {
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
-      "movement": null
+      "movement": null,
+      "bar": 0.045,
+      "past": 0.0227,
+      "barParts": {
+        "error": 0.045,
+        "units": 4.1,
+        "unit": "points",
+        "gp": 8,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-04T16:30:00-05:00",
+        "odds": -125,
+        "book": "FanDuel",
+        "modelProb": 0.548,
+        "edge": -0.0076,
+        "bar": 0.045
+      },
+      "standing": "gone"
     },
     {
       "id": "p8",
@@ -1162,7 +1264,7 @@ window.PICKS_DATA = {
         "Market reference 58.8%"
       ],
       "book": "BetMGM",
-      "valueTo": -140,
+      "valueTo": -138,
       "status": "pending",
       "result": null,
       "units": null,
@@ -1229,7 +1331,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Medium",
-        "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 54.5%, so the edge is 7.0 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 61.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 54.5%, so the edge is 7.0 points. Its bar is 3.5 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.5 goals on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.5 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at 5.5 is 61.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 5.2). BetMGM offers -120, which implies only 54.5%. Not graded against other books' prices; for reference the market makes it 58.8%.",
         "support": [
           "Combined scoring 6 a game in Boston's games, 4.6 in NY Rangers's.",
@@ -1260,7 +1362,18 @@ window.PICKS_DATA = {
             "fair": 0.588
           }
         ]
-      }
+      },
+      "bar": 0.035,
+      "past": 0.0345,
+      "barParts": {
+        "error": 0.035,
+        "units": 0.5,
+        "unit": "goals",
+        "gp": 13,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p9",
@@ -1380,7 +1493,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Our probability for this side is 44.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 40.8%, so the edge is 4.1 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 44.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Caesars implies 40.8%, so the edge is 4.1 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 1.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at -1.5 is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -1.9 for the home side). Caesars offers +145, which implies only 40.8%. Not graded against other books' prices; for reference the market makes it 45.5%.",
         "support": [
           "Houston rate +0.1 a game over 30 (5-2), NY Yankees +2.2 over 30 (4-3).",
@@ -1398,7 +1511,18 @@ window.PICKS_DATA = {
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
-      "movement": null
+      "movement": null,
+      "bar": 0.03,
+      "past": 0.0108,
+      "barParts": {
+        "error": 0.026,
+        "units": 1.2,
+        "unit": "runs",
+        "gp": 30,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p10",
@@ -1453,7 +1577,7 @@ window.PICKS_DATA = {
         "Market reference 69.5%"
       ],
       "book": "BetRivers",
-      "valueTo": -250,
+      "valueTo": -241,
       "status": "pending",
       "result": null,
       "units": null,
@@ -1537,7 +1661,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "High",
-        "tierWhy": "Our probability for this side is 74.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 65.5%, so the edge is 9.0 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 74.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 65.5%, so the edge is 9.0 points. Its bar is 3.8 points: the model's own margin of error on this side, with 10 games behind the thinner team (±0.31 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.2 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability is 74.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.3 for the home side). BetRivers offers -190, which implies only 65.5%. Not graded against other books' prices; for reference the market makes it 69.5%.",
         "support": [
           "Real Madrid rate +1.6 a game over 10 (5-2), Sevilla +0.6 over 10 (4-3).",
@@ -1573,7 +1697,18 @@ window.PICKS_DATA = {
             "fair": 0.695
           }
         ]
-      }
+      },
+      "bar": 0.038,
+      "past": 0.0518,
+      "barParts": {
+        "error": 0.038,
+        "units": 0.31,
+        "unit": "goals",
+        "gp": 10,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p11",
@@ -1632,7 +1767,7 @@ window.PICKS_DATA = {
       "result": null,
       "units": null,
       "score": null,
-      "loggedAt": "2026-11-04T09:00:00-05:00",
+      "loggedAt": "2026-11-03T16:30:00-05:00",
       "prices": {
         "DraftKings": 105,
         "FanDuel": 90,
@@ -1684,7 +1819,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Our probability for this side is 52.7%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 48.8%, so the edge is 3.9 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 52.7%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 48.8%, so the edge is 3.9 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability is 52.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.4 for the home side). DraftKings offers +105, which implies only 48.8%. Not graded against other books' prices; for reference the market makes it 51.5%.",
         "support": [
           "Sacramento rate +0.6 a game over 3 (5-2), Golden State +1.7 over 3 (4-3).",
@@ -1702,7 +1837,12 @@ window.PICKS_DATA = {
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
-      "movement": null
+      "movement": null,
+      "bar": null,
+      "past": null,
+      "barParts": null,
+      "now": null,
+      "standing": null
     },
     {
       "id": "p12",
@@ -1754,7 +1894,7 @@ window.PICKS_DATA = {
         "Market reference 54.8%"
       ],
       "book": "FanDuel",
-      "valueTo": -110,
+      "valueTo": -106,
       "status": "pending",
       "result": null,
       "units": null,
@@ -1828,7 +1968,7 @@ window.PICKS_DATA = {
       },
       "breakdown": {
         "tier": "Lean",
-        "tierWhy": "Our probability for this side is 55.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.2%, so the edge is 4.4 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "tierWhy": "Our probability for this side is 55.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.2%, so the edge is 4.4 points. Its bar is 4.0 points: the model's own margin of error on this side, with 8 games behind the thinner team (±3.8 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
         "price": "Our probability at -3 is 55.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -5.5 for the home side). FanDuel offers -105, which implies only 51.2%. Not graded against other books' prices; for reference the market makes it 54.8%.",
         "support": [
           "Seattle rate -2.6 a game over 8 (5-2), San Francisco +4.9 over 8 (4-3).",
@@ -1862,7 +2002,18 @@ window.PICKS_DATA = {
             "fair": 0.548
           }
         ]
-      }
+      },
+      "bar": 0.04,
+      "past": 0.0038,
+      "barParts": {
+        "error": 0.04,
+        "units": 3.8,
+        "unit": "points",
+        "gp": 8,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p13",
@@ -1913,7 +2064,7 @@ window.PICKS_DATA = {
         "Edge +7.1 points over the price"
       ],
       "book": "FanDuel",
-      "valueTo": -123,
+      "valueTo": -116,
       "status": "pending",
       "result": null,
       "units": null,
@@ -1963,7 +2114,18 @@ window.PICKS_DATA = {
             "fair": 0.548
           }
         ]
-      }
+      },
+      "bar": 0.045,
+      "past": 0.0258,
+      "barParts": {
+        "error": 0.045,
+        "units": 0.4,
+        "unit": "goals",
+        "gp": 10,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     },
     {
       "id": "p14",
@@ -2014,7 +2176,7 @@ window.PICKS_DATA = {
         "Edge +6.5 points over the price"
       ],
       "book": "BetRivers",
-      "valueTo": -132,
+      "valueTo": -127,
       "status": "graded",
       "result": "Win",
       "units": 0.87,
@@ -2049,7 +2211,18 @@ window.PICKS_DATA = {
         "notes": [],
         "verdict": "Medium: the home side rates a goal better."
       },
-      "movement": null
+      "movement": null,
+      "bar": 0.04,
+      "past": 0.0251,
+      "barParts": {
+        "error": 0.04,
+        "units": 0.36,
+        "unit": "goals",
+        "gp": 11,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null
     }
   ],
   "playOfDay": {
@@ -2104,7 +2277,7 @@ window.PICKS_DATA = {
       "Market reference 58.5%"
     ],
     "book": "DraftKings",
-    "valueTo": -139,
+    "valueTo": -136,
     "status": "pending",
     "result": null,
     "units": null,
@@ -2115,12 +2288,13 @@ window.PICKS_DATA = {
       "FanDuel": -120,
       "BetMGM": -125,
       "Caesars": -115,
-      "BetRivers": -120
+      "BetRivers": -120,
+      "PointsBet": -105,
+      "Unibet": -112
     },
     "ev": 0.1684,
-    "started": false,
-    "home": "Buffalo",
     "away": "Kansas City",
+    "home": "Buffalo",
     "marketKey": "spreads",
     "context": {
       "espnEventId": "x0",
@@ -2179,7 +2353,7 @@ window.PICKS_DATA = {
     },
     "breakdown": {
       "tier": "High",
-      "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+      "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Its bar is 3.5 points: the model's own margin of error on this side, with 7 games behind the thinner team (±3.4 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
       "price": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
       "support": [
         "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3).",
@@ -2197,7 +2371,112 @@ window.PICKS_DATA = {
       ],
       "verdict": "The game data lines up behind this side at this price."
     },
-    "movement": null
+    "movement": null,
+    "dk": {
+      "book": "DraftKings",
+      "open": {
+        "line": -1.5,
+        "odds": -110,
+        "fair": 0.5
+      },
+      "now": {
+        "line": -2.5,
+        "odds": -110,
+        "fair": 0.5
+      },
+      "moved": "toward",
+      "label": "DraftKings opened -1.5 (-110), now -2.5 (-110)"
+    },
+    "dkHistory": [
+      {
+        "at": "2026-11-04T17:00:00Z",
+        "line": -1.5,
+        "odds": -110,
+        "fair": 0.5
+      },
+      {
+        "at": "2026-11-04T21:00:00Z",
+        "line": -2.5,
+        "odds": -110,
+        "fair": 0.5
+      }
+    ],
+    "mkt": {
+      "book": "Market consensus",
+      "n": 7,
+      "open": {
+        "line": -1.5,
+        "odds": -104
+      },
+      "now": {
+        "line": -2.5,
+        "odds": 102
+      },
+      "moved": "toward",
+      "label": "The market (7 books) opened -1.5 (-104), now -2.5 (+102)"
+    },
+    "sgo": {
+      "at": "2026-11-04T21:00:00Z",
+      "n": 7,
+      "best": {
+        "book": "PointsBet",
+        "odds": -105
+      },
+      "fair": 0.49,
+      "vendorFair": 0.495,
+      "open": {
+        "line": -1.5,
+        "odds": -104
+      },
+      "now": {
+        "line": -2.5,
+        "odds": 102
+      }
+    },
+    "sgoHistory": [
+      {
+        "at": "2026-11-04T17:00:00Z",
+        "fair": 0.5,
+        "line": -1.5,
+        "odds": -104,
+        "best": -110,
+        "n": 7
+      },
+      {
+        "at": "2026-11-04T19:00:00Z",
+        "fair": 0.495,
+        "line": -2.5,
+        "odds": 100,
+        "best": -108,
+        "n": 7
+      },
+      {
+        "at": "2026-11-04T21:00:00Z",
+        "fair": 0.49,
+        "line": -2.5,
+        "odds": 102,
+        "best": -105,
+        "n": 7
+      }
+    ],
+    "bar": 0.035,
+    "past": 0.0532,
+    "barParts": {
+      "error": 0.035,
+      "units": 3.4,
+      "unit": "points",
+      "gp": 7,
+      "floor": 0.03
+    },
+    "now": {
+      "at": "2026-11-04T16:30:00-05:00",
+      "odds": -110,
+      "book": "DraftKings",
+      "modelProb": 0.606,
+      "edge": 0.0822,
+      "bar": 0.035
+    },
+    "standing": "clears"
   },
   "parlayOfDay": {
     "id": "parlay-sample",

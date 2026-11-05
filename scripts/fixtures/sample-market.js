@@ -56,7 +56,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": "p3",
-   "status": "pick"
+   "status": "pick",
+   "bar": 0.108,
+   "past": 0.036
   },
   {
    "eventId": "g1",
@@ -99,7 +101,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": "p11",
-   "status": "pick"
+   "status": "pick",
+   "bar": 0.08,
+   "past": 0.004
   },
   {
    "eventId": "g4",
@@ -142,7 +146,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "watch",
+   "bar": 0.065,
+   "past": -0.0137
   },
   {
    "eventId": "g7",
@@ -185,7 +191,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "watch",
+   "bar": 0.03,
+   "past": 0.0084
   },
   {
    "eventId": "g2",
@@ -228,7 +236,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.0908
   },
   {
    "eventId": "g4",
@@ -271,7 +281,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "bar": 0.065,
+   "past": -0.0329
   },
   {
    "eventId": "g4",
@@ -314,7 +326,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "bar": 0.065,
+   "past": -0.0344
   },
   {
    "eventId": "g1",
@@ -357,7 +371,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "bar": 0.08,
+   "past": -0.0503
   },
   {
    "eventId": "g5",
@@ -400,7 +416,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "watch",
+   "bar": 0.045,
+   "past": -0.0159
   },
   {
    "eventId": "g7",
@@ -443,7 +461,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "watch",
+   "bar": 0.03,
+   "past": -0.0069
   },
   {
    "eventId": "g6",
@@ -486,7 +506,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0285
   },
   {
    "eventId": "g0",
@@ -529,7 +551,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.108,
+   "past": -0.0936
   },
   {
    "eventId": "g5",
@@ -572,7 +596,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0315
   },
   {
    "eventId": "g5",
@@ -615,7 +641,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0339
   },
   {
    "eventId": "g2",
@@ -658,7 +686,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.1154
   },
   {
    "eventId": "g3",
@@ -696,7 +726,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g3",
@@ -734,7 +766,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g6",
@@ -777,7 +811,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0453
   },
   {
    "eventId": "g1",
@@ -820,7 +856,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.08,
+   "past": -0.0809
   },
   {
    "eventId": "g3",
@@ -858,7 +896,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g0",
@@ -901,7 +941,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.108,
+   "past": -0.1113
   },
   {
    "eventId": "g7",
@@ -944,7 +986,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.03,
+   "past": -0.0345
   },
   {
    "eventId": "g4",
@@ -987,7 +1031,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.065,
+   "past": -0.0701
   },
   {
    "eventId": "g1",
@@ -1030,7 +1076,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.08,
+   "past": -0.0854
   },
   {
    "eventId": "g1",
@@ -1073,7 +1121,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.08,
+   "past": -0.0884
   },
   {
    "eventId": "g2",
@@ -1116,7 +1166,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.134
   },
   {
    "eventId": "g0",
@@ -1159,7 +1211,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.108,
+   "past": -0.1179
   },
   {
    "eventId": "g6",
@@ -1202,7 +1256,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0588
   },
   {
    "eventId": "g6",
@@ -1245,7 +1301,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.06
   },
   {
    "eventId": "g6",
@@ -1288,7 +1346,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0603
   },
   {
    "eventId": "g2",
@@ -1331,7 +1391,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.1409
   },
   {
    "eventId": "g5",
@@ -1374,7 +1436,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0612
   },
   {
    "eventId": "g4",
@@ -1417,7 +1481,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.065,
+   "past": -0.0836
   },
   {
    "eventId": "g5",
@@ -1460,7 +1526,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0648
   },
   {
    "eventId": "g3",
@@ -1498,7 +1566,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g7",
@@ -1541,7 +1611,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.03,
+   "past": -0.0522
   },
   {
    "eventId": "g0",
@@ -1584,7 +1656,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.108,
+   "past": -0.1311
   },
   {
    "eventId": "g3",
@@ -1622,7 +1696,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g2",
@@ -1665,7 +1741,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.1535
   },
   {
    "eventId": "g1",
@@ -1708,7 +1786,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.08,
+   "past": -0.1088
   },
   {
    "eventId": "g7",
@@ -1751,7 +1831,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.03,
+   "past": -0.0624
   },
   {
    "eventId": "g2",
@@ -1794,7 +1876,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.125,
+   "past": -0.1631
   },
   {
    "eventId": "g3",
@@ -1832,7 +1916,9 @@ window.MARKET_DATA = {
    "modelled": false,
    "model": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": null,
+   "past": null
   },
   {
    "eventId": "g4",
@@ -1875,7 +1961,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.065,
+   "past": -0.1037
   },
   {
    "eventId": "g5",
@@ -1918,7 +2006,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0837
   },
   {
    "eventId": "g0",
@@ -1961,7 +2051,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.108,
+   "past": -0.147
   },
   {
    "eventId": "g6",
@@ -2004,7 +2096,9 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.045,
+   "past": -0.0852
   },
   {
    "eventId": "g7",
@@ -2047,7 +2141,38 @@ window.MARKET_DATA = {
     "thin": false
    },
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "bar": 0.03,
+   "past": -0.0723
   }
- ]
+ ],
+ "bars": {
+  "NBA": {
+   "min": 0.08,
+   "median": 0.108,
+   "max": 0.125
+  },
+  "NHL": {
+   "min": 0.065,
+   "median": 0.065,
+   "max": 0.065
+  },
+  "MLB": {
+   "min": 0.03,
+   "median": 0.03,
+   "max": 0.03
+  },
+  "NFL": {
+   "min": 0.045,
+   "median": 0.045,
+   "max": 0.045
+  }
+ },
+ "barRule": {
+  "floor": 0.03,
+  "z": 1,
+  "watchShare": 0.5,
+  "medium": 0.02,
+  "high": 0.05
+ }
 };
