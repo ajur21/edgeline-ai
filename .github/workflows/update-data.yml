@@ -34,6 +34,8 @@ jobs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # the data group queues this behind the hourly run; start from its commit, not the one queued, or the push is rejected
       - uses: actions/setup-node@v4
         with:
           node-version: 22
