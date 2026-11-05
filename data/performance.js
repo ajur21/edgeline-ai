@@ -2,7 +2,7 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-04",
+  "asOf": "2026-11-05",
   "windowDays": 30,
   "record": {
     "wins": 0,
@@ -21,13 +21,15 @@ window.PERF_DATA = {
     "wins": 0,
     "losses": 0,
     "pushes": 0,
-    "units": 0
+    "units": 0,
+    "n": 0
   },
   "parlays": {
     "wins": 0,
     "losses": 0,
     "pushes": 0,
-    "units": 0
+    "units": 0,
+    "n": 0
   },
   "clv": {
     "n": 0,
@@ -39,5 +41,27 @@ window.PERF_DATA = {
     "lineAway": 0,
     "espnCloses": 0,
     "sgoCloses": 0
+  },
+  "byBasis": {
+    "game": {
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "units": 0,
+      "n": 0,
+      "roi": 0,
+      "pending": 4,
+      "since": "2026-11-05"
+    },
+    "price": {
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "units": 0,
+      "n": 0,
+      "roi": 0,
+      "pending": 0,
+      "since": null
+    }
   }
 };
