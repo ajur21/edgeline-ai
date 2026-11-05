@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 /* Pick feeds. Reads the data files and writes two subscription files at the site root:
-     picks.ics  a calendar subscription: one event per pick at tip-off (alert 30 minutes before), the grade written into
-                the same event after the game, and an all-day "no play" event on the nights nothing clears the bar
-     feed.xml   an RSS feed: one item per pick, one per grade, one per slate (run), newest first
+     picks.ics  a calendar subscription: one event per pick at tip-off (alert 30 minutes before), "in play" once the game
+                starts, the grade written into the same event after the game, and an all-day "no play" event on the
+                nights nothing clears the bar
+     feed.xml   an RSS feed: one item per pick (marked "in play" once the game starts), a new item per grade in its
+                place, one per slate (run), newest first
+   picks.js keeps started and graded picks on the day's card, so a pick can be in picks.js and the log at once; each is
+   written once, under the same UID and guid it had before the game.
    No network. Deterministic for a given set of data files, so the workflow only commits when the data moved.
    Run: node scripts/feeds.js [--data <dir>] [--out <dir>] [--base <site url>] */
 "use strict";
@@ -47,6 +51,14 @@ function resultLabel(e) {
   if (e.result === "Loss") return "Lost " + signed(e.units) + "u";
   if (e.result === "Push") return "Push";
   return null;
+}
+/* still to be settled: picks.js written before 2026-11-05 carries no status, which meant pending */
+function isPending(p) { return p.status == null || p.status === "pending"; }
+/* the final as "away-home", from the log's string or picks.js' { home, away } */
+function scoreText(s) {
+  if (s == null || s === "") return null;
+  if (typeof s === "object") return s.home != null && s.away != null ? s.away + "-" + s.home : null;
+  return String(s);
 }
 function ladder(p) {
   const prices = p.prices || {};
@@ -119,6 +131,7 @@ function rss(channel, items) {
 
 /* ---------- content ---------- */
 function pickTitle(p) { return p.pick + " " + fmtOdds(p.odds) + " at " + p.book; }
+function pickItemTitle(p, potd) { return (potd ? "Play of the day: " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence || "Pick") + ", " + pts(edgeOf(p)) + ")"; }
 function pickLines(p, base) {
   const b = p.breakdown || {}, lad = ladder(p), edge = edgeOf(p);
   const lines = [
@@ -135,7 +148,8 @@ function pickLines(p, base) {
 }
 function gradedLines(e, base) {
   const lines = [e.sport + " · " + e.event + " · " + etLabel(e.commence), e.market + ": " + e.pick + " at " + fmtOdds(e.odds) + " (" + e.book + "). " + resultLabel(e) + "."];
-  if (e.score) lines.push("Final: " + (typeof e.score === "string" ? e.score : JSON.stringify(e.score)));
+  const final = scoreText(e.score);
+  if (final) lines.push("Final: " + final);
   if (typeof e.clv === "number") lines.push("Closing line value: " + pts(e.clv) + (e.close && e.close.odds != null ? " (closed " + fmtOdds(e.close.odds) + (e.close.source ? ", " + e.close.source : "") + ")" : "") + ".");
   else if (e.lineMove) lines.push("The line moved " + e.lineMove + " the pick before close.");
   lines.push("Record and every graded pick: " + base + "performance.html");
@@ -163,29 +177,32 @@ function build(opts) {
   const updated = picks.trackedAt || picks.generatedAt || market.generatedAt || new Date(0).toISOString();
   const now = opts.now ? new Date(opts.now) : new Date(updated);
   const since = now.getTime() - HISTORY_DAYS * 864e5;
-  const board = (picks.picks || []).filter(p => p && p.id && p.commence);
-  const onBoard = {}; board.forEach(p => { onBoard[p.id] = true; });
+  /* picks.js is the day's card: the board plus every pick whose game started in the last 18 hours, with its status,
+     result and score. A pick is upcoming only while it is pending and its game is ahead. */
+  const card = (picks.picks || []).filter(p => p && p.id && p.commence);
+  const upcoming = card.filter(p => isPending(p) && Date.parse(p.commence) > now.getTime());
+  const logSingles = (Array.isArray(log) ? log : []).filter(e => e && !e.type && e.id && e.commence);
   const potdId = picks.playOfDay && picks.playOfDay.id;
   const bar = ((market.threshold || 0.01) * 100).toFixed(0);
   const slateDay = etDate(picks.generatedAt || updated);
   const name = "EdgeLine AI picks" + (sample ? " (sample data)" : "");
   const events = [], items = [];
 
-  /* board picks: one event and one item each */
-  board.forEach(function (p) {
+  /* upcoming picks: one event (with the alarm) and one item each */
+  upcoming.forEach(function (p) {
     const potd = p.id === potdId;
     const summary = (potd ? "Play of the day: " : "") + pickTitle(p) + (p.confidence ? " · " + p.confidence : "");
     const start = Date.parse(p.commence);
     events.push({ uid: p.id + "@edgeline", stamp: p.pricesAt || updated, start: start, end: start + GAME_HOURS * 36e5, summary: summary,
       description: pickLines(p, base).join("\n"), location: p.context && p.context.venue, url: base + "picks.html#" + p.id, categories: [p.sport], alarmMinutes: ALARM_MINUTES });
     items.push({ guid: p.id, date: p.loggedAt || picks.generatedAt || updated, link: base + "picks.html#" + p.id, category: p.sport,
-      title: (potd ? "Play of the day: " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence || "Pick") + ", " + pts(edgeOf(p)) + ")", lines: pickLines(p, base) });
+      title: pickItemTitle(p, potd), lines: pickLines(p, base) });
   });
 
-  /* parlay of the day */
+  /* parlay of the day: its legs are found on the card or in the log, so the event keeps its times once they start */
   const parlay = picks.parlayOfDay;
   if (parlay && parlay.legs && parlay.legs.length) {
-    const byId = {}; board.forEach(p => { byId[p.id] = p; });
+    const byId = {}; logSingles.forEach(e => { byId[e.id] = e; }); card.forEach(p => { byId[p.id] = p; });
     const starts = parlay.legs.map(l => byId[l.id] && Date.parse(byId[l.id].commence)).filter(Boolean);
     const title = "Parlay of the day: " + parlay.legs.length + " legs " + fmtOdds(parlay.odds) + " at " + parlay.book;
     const lines = ["All legs priced at " + parlay.book + ". Fair " + pct(parlay.fairProb) + ", implied " + pct(implied(parlay.odds)) + (parlay.ev != null ? ", EV " + signed(parlay.ev * 100, 1) + "% per unit" : "") + "."]
@@ -198,26 +215,39 @@ function build(opts) {
     items.push({ guid: parlay.id, date: picks.generatedAt || updated, link: base + "picks.html#parlays", category: "Parlay", title: title, lines: lines });
   }
 
-  /* the log: picks that started but are not graded yet stay on the calendar; graded ones get their result written in */
-  (Array.isArray(log) ? log : []).filter(e => e && !e.type && e.id && e.commence && !onBoard[e.id] && e.status !== "void" && Date.parse(e.commence) >= since).forEach(function (e) {
+  /* every pick that has started, once each whether it is on the card, in the log or both (the log's entry wins: it
+     carries the grade's time, close and CLV). It keeps its UID and guid: in play until graded (the calendar event and
+     the pick's own item say "· in play"), then the result is written into the event and the item gives way to a new
+     "#graded" item, so readers are told. Void picks are left out; the log reaches back HISTORY_DAYS. */
+  const logById = {}; logSingles.forEach(e => { logById[e.id] = e; });
+  const seen = {}; upcoming.forEach(p => { seen[p.id] = true; });
+  const started = [];
+  card.forEach(p => { if (!seen[p.id]) { seen[p.id] = true; started.push(logById[p.id] || p); } });
+  logSingles.forEach(e => { if (!seen[e.id] && Date.parse(e.commence) >= since) { seen[e.id] = true; started.push(e); } });
+  started.forEach(function (e) {
+    if (e.status === "void") return;
     const start = Date.parse(e.commence), res = resultLabel(e);
     if (!res && start > now.getTime()) return; /* pending future picks live in picks.js */
     events.push({ uid: e.id + "@edgeline", stamp: e.gradedAt || e.pricesAt || updated, start: start, end: start + GAME_HOURS * 36e5,
       summary: pickTitle(e) + (res ? " · " + res : " · in play"), description: (res ? gradedLines(e, base) : pickLines(e, base)).join("\n"),
       location: e.context && e.context.venue, url: base + (res ? "performance.html" : "picks.html#" + e.id), categories: [e.sport] });
     if (res) items.push({ guid: e.id + "#graded", date: e.gradedAt || updated, link: base + "performance.html", category: e.sport, title: "Graded: " + e.pick + " " + fmtOdds(e.odds) + " · " + res, lines: gradedLines(e, base) });
+    else items.push({ guid: e.id, date: e.loggedAt || picks.generatedAt || updated, link: base + "picks.html#" + e.id, category: e.sport, title: pickItemTitle(e, e.id === potdId) + " · in play", lines: pickLines(e, base) });
   });
 
-  /* the slate: an all-day event on a no-play night, and an item for every run */
+  /* the slate: an all-day event on a no-play night, and an item for every run. Its picks are the ones still ahead when
+     the run priced them; one that has started since stays counted, so a pick night never reads "no play" at tip-off. */
   const near = closest(market, 3);
   const sides = (market.rows || []).length, games = market.games || 0;
-  const noPlay = !board.length;
+  const pricedAt = Date.parse(picks.generatedAt || updated);
+  const slate = card.filter(p => p.status !== "void" && Date.parse(p.commence) > pricedAt);
+  const noPlay = !slate.length;
   const slateTitle = noPlay
     ? (sides ? "No play tonight: " + sides + " sides priced in " + games + " games, none clears the " + bar + "-point bar" : "No play tonight: nothing priced yet")
-    : board.length + (board.length === 1 ? " pick" : " picks") + " tonight from " + sides + " priced sides";
+    : slate.length + (slate.length === 1 ? " pick" : " picks") + " tonight from " + sides + " priced sides";
   const slateLines = [noPlay
-    ? (sides ? "Every main-line market was priced against the sharp fair line. The best of them sits under the " + bar + "-point bar, so there is no bet." : "The next run prices the slate before the evening games.")
-    : "Picks are the sides that clear the " + bar + "-point bar against the sharp fair line. Each one is above, with its price, book and breakdown."]
+    ? (sides ? "Every main-line side was given our probability from the game data. None beats its best price by the " + bar + "-point bar, so there is no bet." : "The next run prices the slate before the evening games.")
+    : "Picks are the sides where our probability from the game data beats the best price by the " + bar + "-point bar or more; the price is only the number to beat. Each one is above, with its price, book and breakdown."]
     .concat(near.length ? ["Closest to the bar:"].concat(near.map(r => "- " + r.sport + ": " + marketRowTitle(r) + " · " + r.event)) : [], ["The market board: " + base + "picks.html#market"]);
   if (noPlay && sides) {
     events.push({ uid: "slate-" + slateDay + "@edgeline", stamp: updated, allDay: true, day: slateDay, summary: slateTitle, description: slateLines.join("\n"), url: base + "picks.html#market", categories: ["Slate"] });
@@ -228,7 +258,7 @@ function build(opts) {
   items.sort((a, b) => (Date.parse(b.date) - Date.parse(a.date)) || ((b.category === "Slate") - (a.category === "Slate")));
   const ics = vcalendar(name, "Every EdgeLine AI pick at tip-off with its price, book and edge; the grade follows when the game ends. Informational only; 21+.", events);
   const feed = rss({ title: name, link: base, self: base + "feed.xml", updated: updated,
-    description: "Market-driven sports betting picks: every pick with the fair probability and edge behind it, every grade, every slate. Informational only; 21+." }, items.slice(0, MAX_ITEMS));
+    description: "Sports betting picks graded on game data: every pick with our probability and its edge over the price, every grade, every slate. Informational only; 21+." }, items.slice(0, MAX_ITEMS));
   return { ics: ics, rss: feed, events: events.length, items: Math.min(items.length, MAX_ITEMS), sample: sample, noPlay: noPlay };
 }
 

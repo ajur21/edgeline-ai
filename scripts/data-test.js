@@ -22,6 +22,48 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("grade: total push on the number", P.grade({ market: "totals", outcome: { name: "Over", point: 214 }, odds: -110 }, ev).result === "Push");
   check("grade: under wins", P.grade({ market: "totals", outcome: { name: "Under", point: 220.5 }, odds: -105 }, ev).result === "Win");
   check("grade: incomplete event -> null", P.grade({ market: "h2h", outcome: { name: "H" }, odds: -150 }, { completed: false, scores: null }) === null);
+  /* the pipeline logs the label in `market` and the key in `marketKey`; grading on the label sent moneylines and spreads
+     down the totals branch (the away side's moneyline read as a win, an away +7.5 as a loss) */
+  check("grade: reads the market key, not the label the log carries (Moneyline, Puck line, Total), and keeps the final home and away", (() => {
+    const none = { result: null, units: null, final: {} };
+    const ml = P.grade({ market: "Moneyline", marketKey: "h2h", outcome: { name: "A", point: null }, odds: 140 }, ev) || none;
+    const sp = P.grade({ market: "Puck line", marketKey: "spreads", outcome: { name: "A", point: 7.5 }, odds: -110 }, ev) || none;
+    const tot = P.grade({ market: "Total", marketKey: "totals", outcome: { name: "Under", point: 220.5 }, odds: -105 }, ev) || none;
+    const labelOnly = P.grade({ market: "Run line", outcome: { name: "H", point: -1.5 }, odds: 120 }, ev) || none;
+    return ml.result === "Loss" && ml.units === -1 && sp.result === "Win" && tot.result === "Win" && labelOnly.result === "Win" && near(labelOnly.units, 1.2, 1e-9) && ml.final.home === 110 && ml.final.away === 104 && ml.score === "104-110" && P.grade({ market: "Player props", outcome: { name: "H" }, odds: 100 }, ev) === null;
+  })());
+  check("isFinal: a completed flag settles a game at once, a false flag never; a source with no flag waits out RULES.gradeAfterHours", (() => {
+    const at = iso => new Date(iso), start = "2026-11-04T00:00:00Z";
+    return P.RULES.gradeAfterHours === 3 && P.isFinal(true, start, at("2026-11-04T00:30:00Z")) && !P.isFinal(false, start, at("2026-11-05T00:00:00Z")) && !P.isFinal(undefined, start, at("2026-11-04T02:59:00Z")) && P.isFinal(undefined, start, at("2026-11-04T03:01:00Z"));
+  })());
+  check("grading: ESPN's completed flag grades a game an hour and a half in; with no flag the score waits for the 3-hour floor; a game ESPN calls still on waits", await (async () => {
+    const sb = flag => ({ events: [{ id: "1", competitions: [{ status: { type: flag === undefined ? { state: "post" } : { completed: flag } }, competitors: [{ homeAway: "home", score: "3", team: { displayName: "Boston Bruins", name: "Bruins", location: "Boston" } }, { homeAway: "away", score: "2", team: { displayName: "New York Rangers", name: "Rangers", location: "New York" } }] }] }] });
+    const go = async (flag, nowIso) => {
+      const l = [{ id: "x", key: "x", sportKey: "icehockey_nhl", sport: "NHL", home: "Boston Bruins", away: "New York Rangers", commence: "2026-11-04T00:00:00Z", market: "Moneyline", marketKey: "h2h", outcome: { name: "Boston Bruins", point: null }, odds: -120, status: "pending", units: 0 }];
+      const r = await P.gradeStarted(l, new Date(nowIso), { ctx: { scoreboard: async () => sb(flag), odds: async () => null }, sgoSrc: { enabled: false }, sgoOk: () => false, scores: null });
+      return l[0].status + ":" + r.graded + ":" + (l[0].result || "") + ":" + JSON.stringify(l[0].finalScore || null);
+    };
+    return (await go(true, "2026-11-04T01:30:00Z")) === 'graded:1:Win:{"home":3,"away":2}' && (await go(undefined, "2026-11-04T01:30:00Z")) === "pending:0::null" && (await go(undefined, "2026-11-04T03:30:00Z")).indexOf("graded:1:Win") === 0 && (await go(false, "2026-11-04T05:00:00Z")) === "pending:0::null";
+  })());
+
+  check("grading: a game ESPN still calls on five hours in (a postponement) is not looked up on SportsGameOdds by the hourly run, which would cost an entity an hour; the full runs still ask", await (async () => {
+    const lookups = { n: 0 };
+    const sgoStub = { enabled: true, usage: async () => ({ used: 0, max: 2500 }), events: async () => { lookups.n++; return []; }, stats: () => ({ requests: 0, entities: 0 }) };
+    const sb = { events: [{ id: "1", competitions: [{ status: { type: { completed: false, state: "post", name: "STATUS_POSTPONED" } }, competitors: [{ homeAway: "home", score: "0", team: { displayName: "Boston Bruins", name: "Bruins", location: "Boston" } }, { homeAway: "away", score: "0", team: { displayName: "New York Rangers", name: "Rangers", location: "New York" } }] }] }] };
+    const go = async track => {
+      lookups.n = 0;
+      const l = [{ id: "x", key: "x", sportKey: "icehockey_nhl", sport: "NHL", home: "Boston Bruins", away: "New York Rangers", commence: "2026-11-04T00:00:00Z", market: "Moneyline", marketKey: "h2h", outcome: { name: "Boston Bruins", point: null }, odds: -120, status: "pending", units: 0 }];
+      await P.gradeStarted(l, new Date("2026-11-04T05:00:00Z"), { ctx: { scoreboard: async () => sb, odds: async () => null }, sgoSrc: sgoStub, sgoOk: () => true, scores: null, track: track });
+      return l[0].status + ":" + lookups.n;
+    };
+    return (await go(true)) === "pending:0" && (await go(false)) === "pending:1";
+  })());
+
+  /* valueTo: the worst whole American price at which our probability still clears the bar (modelProb − minEdge) */
+  const worse = v => v === 100 ? -101 : v - 1; /* one step worse: -255 -> -256, +139 -> +138, +100 -> -101 */
+  const clears = (prob, v) => P.implied(v) <= prob - P.RULES.minEdge + 1e-12;
+  check("valueTo: a favourite (74.9% -> -255: -256 would no longer clear 3 points) and an underdog (45% -> +139: +138 would not)", P.valueTo(0.749) === -255 && clears(0.749, -255) && !clears(0.749, worse(-255)) && P.valueTo(0.45) === 139 && clears(0.45, 139) && !clears(0.45, worse(139)), JSON.stringify([P.valueTo(0.749), P.valueTo(0.45)]));
+  check("valueTo: even money is +100, an exact whole price is kept (63% -> -150), and nothing outside 0-1 after the bar", P.valueTo(0.53) === 100 && P.valueTo(0.63) === -150 && P.valueTo(0.03) === null && P.valueTo(0.01) === null && P.valueTo(1.04) === null && P.valueTo(null) === null && P.valueTo(undefined) === null, JSON.stringify([P.valueTo(0.53), P.valueTo(0.63), P.valueTo(0.03)]));
 
   /* full run on fixtures, with a pre-existing log to grade */
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-data-"));
@@ -33,9 +75,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     pending("old-total", { market: "Total", marketKey: "totals", outcome: { name: "Over", point: 214 }, pick: "Over 214", odds: -110 }),
     pending("stale", { sport: "NFL", sportKey: "americanfootball_nfl", eventId: "nfl-gone", commence: "2026-10-25T17:00:00Z", date: "2026-10-25", market: "Moneyline", marketKey: "h2h", outcome: { name: "X", point: null }, pick: "X ML", odds: 100 })
   ]));
-  /* the log entries above use the market label; the pipeline grades on the market key */
-  const fixLog = JSON.parse(fs.readFileSync(path.join(tmp, "picks-log.json"), "utf8")).map(e => Object.assign(e, { market: e.marketKey }));
-  fs.writeFileSync(path.join(tmp, "picks-log.json"), JSON.stringify(fixLog));
+  /* the log entries above carry the market label in `market`, as the pipeline writes them; grading reads `marketKey` */
 
   const r1 = await P.run({ fixture: true, out: tmp, now: NOW });
   const log = JSON.parse(fs.readFileSync(path.join(tmp, "picks-log.json"), "utf8"));
@@ -51,7 +91,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("clv: moneyline close is the market consensus from SportsGameOdds (took +140, market closed +150 -> negative CLV)", byId["old-ml"].close && /SportsGameOdds, 3 books/.test(byId["old-ml"].close.source) && byId["old-ml"].close.odds === 150 && byId["old-ml"].close.samples === 2 && near(byId["old-ml"].clv, mlClv, 0.001) && byId["old-ml"].clv < 0, JSON.stringify([byId["old-ml"].close, byId["old-ml"].clv, mlClv]));
   check("clv: a total that closed on our number gets price CLV from the vendor fair", near(byId["old-total"].clv, totClv, 0.001) && byId["old-total"].close.line === 214 && byId["old-total"].close.books.FanDuel === -105, JSON.stringify([byId["old-total"].close, byId["old-total"].clv]));
   check("clv: ESPN's DraftKings close is the fallback when SportsGameOdds has no game (unit: soccer is not covered)", (await require("./sgo.js").close(require("./sgo.js").source({ fixture: true }), { sportKey: "soccer_epl", home: "Arsenal", away: "Liverpool", commence: "2026-11-06T20:00:00Z", marketKey: "h2h", outcome: { name: "Draw" }, odds: 330 })) === null && near(dkFair(150, -170) - P.implied(140), -0.0282, 0.001));
-  check("grading: free scores settled the NBA picks; The Odds API scores endpoint was called once, for the stale NFL pick only", r1.scoresRequests === 1 && byId["old-ml"].score === "104-110", "scores calls " + r1.scoresRequests);
+  check("grading: free scores settled the NBA picks; The Odds API scores endpoint was called once, for the stale NFL pick only", r1.scoresRequests === 1 && byId["old-ml"].score === "104-110" && byId["old-ml"].finalScore.home === 110 && byId["old-ml"].finalScore.away === 104 && r1.settled === 3, "scores calls " + r1.scoresRequests);
   check("clv: a spread that closed on a different number has no price CLV but a direction (-3 -> -3.5 is toward us)", byId["old-spread"].clv == null && byId["old-spread"].lineMove === "toward" && byId["old-spread"].close.line === -3.5 && byId["old-spread"].close.fair == null, JSON.stringify(byId["old-spread"].close));
   check("clv: ESPN open is kept alongside the close", byId["old-ml"].close.open && byId["old-ml"].close.open.odds === 130);
   /* the game model (owner rule, 2026-11-04): every side's probability comes from scripts/model.js, never from a book's price */
@@ -76,7 +116,8 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   vm.runInNewContext(fs.readFileSync(path.join(tmp, "picks.js"), "utf8") + fs.readFileSync(path.join(tmp, "performance.js"), "utf8"), sandbox);
   const PD = sandbox.window.PICKS_DATA, PF = sandbox.window.PERF_DATA;
   check("picks.js: sample=false, 5 picks on the board with start labels, every one on the game grade with the model's reasons and the market reference", PD.sample === false && PD.picks.length === 5 && /ET$/.test(PD.picks[0].start) && PD.picks.every(p => p.basis === "game" && p.model && p.model.reasons && typeof p.marketFair === "number"), PD.picks.map(p => p.start).join(", "));
-  check("picks.js: pick fields match the site shape", PD.picks.every(p => ["id", "sport", "league", "event", "start", "market", "pick", "odds", "modelProb", "confidence", "rationale", "factors", "book", "basis", "model", "marketFair"].every(k => k in p)));
+  check("picks.js: pick fields match the site shape, with the pick's state through the game (status, started, result, units, score, loggedAt, valueTo)", PD.picks.every(p => ["id", "sport", "league", "event", "start", "market", "pick", "odds", "modelProb", "confidence", "rationale", "factors", "book", "basis", "model", "marketFair", "status", "started", "result", "units", "score", "loggedAt", "valueTo"].every(k => k in p)));
+  check("picks.js: an upcoming pick reads pending, not started, no result, units or score yet, posted at its run, with the worst price that still clears the bar", PD.picks.every(p => p.status === "pending" && p.started === false && p.result === null && p.units === null && p.score === null && p.loggedAt === "2026-11-05T15:00:00.000Z" && p.valueTo === P.valueTo(p.modelProb) && P.implied(p.odds) <= P.implied(p.valueTo) + 1e-9) && PD.picks.find(p => p.pick === "Boston Celtics ML").valueTo === -255 && PD.parlayOfDay.units === null, JSON.stringify(PD.picks.map(p => [p.pick, p.odds, p.valueTo])));
   check("performance.js: 1-1-1 record, -0.09u, roi -3.0%", PF.record.wins === 1 && PF.record.losses === 1 && PF.record.pushes === 1 && near(PF.units, -0.09, 0.001) && near(PF.roi, -3.0, 0.01), JSON.stringify([PF.record, PF.units, PF.roi]));
   check("performance.js: one daily point, bySport NBA 1-1, 3 recent, void excluded", PF.daily.length === 1 && PF.bySport[0].record === "1-1" && PF.recent.length === 3);
   check("performance.js: clv summary: 2 of 3 with price CLV, both negative, one line moved toward us, all three closes from SportsGameOdds", PF.clv && PF.clv.n === 2 && PF.clv.graded === 3 && near(PF.clv.avg, (mlClv + totClv) / 2 * 100, 0.02) && PF.clv.beat === 0 && PF.clv.beatPct === 0 && PF.clv.lineToward === 1 && PF.clv.lineAway === 0 && PF.clv.sgoCloses === 3 && PF.clv.espnCloses === 0, JSON.stringify(PF.clv));
@@ -242,14 +283,100 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("rerun: DraftKings history does not grow when the number is unchanged", celticsPub2.dkHistory.length === 1);
 
   /* track mode: ESPN only, no Odds API; refreshes DraftKings numbers and breakdowns, keeps generatedAt, adds trackedAt */
+  const perfBefore = "/* written by the last full run */\nwindow.PERF_DATA = { sample: false, asOf: \"2026-11-05\" };\n";
+  fs.writeFileSync(path.join(tmp, "performance.js"), perfBefore);
   const rt2 = await P.run({ fixture: true, out: tmp, now: "2026-11-05T18:00:00Z", track: true });
   const sb3 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp, "picks.js"), "utf8"), sb3);
   const log3b = JSON.parse(fs.readFileSync(path.join(tmp, "picks-log.json"), "utf8"));
   check("track: runs on the five board picks without touching the log size or generatedAt, and stamps trackedAt", rt2.track === true && rt2.board === 5 && log3b.length === log2.length && sb3.window.PICKS_DATA.generatedAt === sb2.window.PICKS_DATA.generatedAt && sb3.window.PICKS_DATA.trackedAt === "2026-11-05T18:00:00.000Z" && sb3.window.PICKS_DATA.picks.length === 5, JSON.stringify(rt2));
   check("track: picks keep their breakdown, model and DraftKings block", sb3.window.PICKS_DATA.picks.every(p => p.breakdown && p.breakdown.verdict && p.model && p.basis === "game") && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML").dk.moved === "toward");
   check("track: SportsGameOdds refreshed by event id with no new history point when nothing moved", rt2.sgoEntities === 1 && rt2.sgoMoved === 0 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML").sgoHistory.length === 1 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML").mkt.moved === "toward", JSON.stringify(rt2));
-  check("track: performance.js is left alone", fs.readFileSync(path.join(tmp, "performance.js"), "utf8").indexOf("2026-11-05") !== -1);
+  check("track: a run that grades nothing does not touch performance.js", rt2.graded === 0 && rt2.parlaysGraded === 0 && fs.readFileSync(path.join(tmp, "performance.js"), "utf8") === perfBefore);
   check("track: market.js is left alone (no odds in a track run)", fs.readFileSync(path.join(tmp, "market.js"), "utf8").indexOf("2026-11-05T16:00:00") !== -1);
+
+  /* track mode grades (owner ask, 2026-11-05: picks "pop and go" at tip-off and results waited for the next day's run).
+     The Bucks @ Celtics game of Nov 3 tipped at 7 PM ET; ESPN's scoreboard fixture calls it final, 110-104. At 9:40 PM,
+     two hours forty in and under the 3-hour floor, the hourly run grades it, writes the close and CLV as a full run does,
+     settles the parlay of the day and rewrites performance.js. An NHL game still on and a week-old NFL pick no free
+     source can settle stay pending: a track run never asks The Odds API and never voids. */
+  const tmpT = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-trackgrade-"));
+  const posted = { basis: "game", loggedAt: "2026-11-03T17:00:00Z" };
+  fs.writeFileSync(path.join(tmpT, "picks-log.json"), JSON.stringify([
+    pending("old-ml", Object.assign({ market: "Moneyline", marketKey: "h2h", outcome: { name: "Milwaukee Bucks", point: null }, pick: "Milwaukee Bucks ML", odds: 140, modelProb: 0.45, history: [{ at: "2026-11-03T17:00:00Z", odds: 140, fair: 0.42 }, { at: "2026-11-03T20:30:00Z", odds: 130, fair: 0.45 }] }, posted)),
+    pending("old-spread", Object.assign({ market: "Spread", marketKey: "spreads", outcome: { name: "Boston Celtics", point: -3 }, pick: "Boston Celtics -3", odds: -110, modelProb: 0.58, potd: "2026-11-03" }, posted)),
+    pending("old-total", Object.assign({ market: "Total", marketKey: "totals", outcome: { name: "Over", point: 214 }, pick: "Over 214", odds: -110, modelProb: 0.56 }, posted)),
+    pending("live-nhl", Object.assign({ sport: "NHL", league: "NHL", sportKey: "icehockey_nhl", eventId: "nhl-live", event: "New York Rangers @ Boston Bruins", home: "Boston Bruins", away: "New York Rangers", commence: "2026-11-04T01:00:00Z", market: "Moneyline", marketKey: "h2h", outcome: { name: "Boston Bruins", point: null }, pick: "Boston Bruins ML", odds: -120, modelProb: 0.6 }, posted)),
+    pending("stale", { sport: "NFL", sportKey: "americanfootball_nfl", eventId: "nfl-gone", commence: "2026-10-25T17:00:00Z", date: "2026-10-25", market: "Moneyline", marketKey: "h2h", outcome: { name: "X", point: null }, pick: "X ML", odds: 100 }),
+    { type: "parlay", id: "parlay-2026-11-03", date: "2026-11-03", status: "pending", units: 0, loggedAt: "2026-11-03T17:00:00Z", book: "DraftKings", legs: ["old-spread", "old-total"], legPrices: [-110, -110], decimal: 3.6446, odds: 264, fairProb: 0.3248, ev: 0.1838 }
+  ]));
+  fs.writeFileSync(path.join(tmpT, "performance.js"), "/* the last full run's file */\nwindow.PERF_DATA = { sample: false, asOf: \"2026-11-03\" };\n");
+  const rtg = await P.run({ fixture: true, out: tmpT, now: "2026-11-04T02:40:00Z", track: true });
+  const logT = JSON.parse(fs.readFileSync(path.join(tmpT, "picks-log.json"), "utf8")), tById = {}; logT.forEach(e => { tById[e.id] = e; });
+  check("track: grades the finished game as soon as ESPN calls it final (2h40m after tip, under the 3-hour floor): Bucks ML lost, Celtics -3 won +0.91u, Over 214 pushed, final kept home and away", rtg.graded === 3 && tById["old-ml"].status === "graded" && tById["old-ml"].result === "Loss" && tById["old-ml"].units === -1 && tById["old-spread"].result === "Win" && near(tById["old-spread"].units, 0.91, 0.001) && tById["old-total"].result === "Push" && tById["old-ml"].score === "104-110" && tById["old-ml"].finalScore.home === 110 && tById["old-ml"].finalScore.away === 104 && tById["old-ml"].gradedAt === "2026-11-04T02:40:00.000Z", JSON.stringify(rtg));
+  check("track: the close and CLV are written as a full run writes them (the SportsGameOdds consensus close; a spread that closed on another number gets a direction)", /SportsGameOdds, 3 books/.test(tById["old-ml"].close.source) && tById["old-ml"].close.odds === 150 && tById["old-ml"].close.samples === 2 && near(tById["old-ml"].clv, mlClv, 0.001) && tById["old-spread"].clv == null && tById["old-spread"].lineMove === "toward" && near(tById["old-total"].clv, totClv, 0.001) && rtg.sgoEntities === 1, JSON.stringify([tById["old-ml"].close, rtg.sgoEntities]));
+  check("track: the parlay of the day settles with its legs (a win and a push pay the win, +0.91u)", tById["parlay-2026-11-03"].status === "graded" && tById["parlay-2026-11-03"].result === "Win" && near(tById["parlay-2026-11-03"].units, 0.91, 0.001) && rtg.parlaysGraded === 1);
+  check("track: no Odds API and no voiding in a track run: the NHL game still on and the week-old NFL pick stay pending", rtg.scoresRequests === 0 && tById["live-nhl"].status === "pending" && tById["stale"].status === "pending" && !tById["stale"].gradedAt);
+  const pfT = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpT, "performance.js"), "utf8"), pfT);
+  const PFT = pfT.window.PERF_DATA;
+  check("track: performance.js is rewritten with the grades within the hour: 1-1-1, -0.09u, play of the day 1-0, parlays 1-0 +0.91u, CLV on two picks", PFT.asOf === "2026-11-03" && PFT.graded === 3 && PFT.record.wins === 1 && PFT.record.losses === 1 && PFT.record.pushes === 1 && near(PFT.units, -0.09, 0.001) && PFT.potd.wins === 1 && PFT.potd.n === 1 && PFT.parlays.wins === 1 && near(PFT.parlays.units, 0.91, 0.001) && PFT.clv.n === 2 && PFT.clv.sgoCloses === 3 && PFT.byBasis.game.n === 3 && PFT.byBasis.game.pending === 1, JSON.stringify([PFT.asOf, PFT.record, PFT.units, PFT.potd, PFT.parlays, PFT.byBasis && PFT.byBasis.game]));
+  const pkT = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpT, "picks.js"), "utf8"), pkT);
+  const DT = pkT.window.PICKS_DATA, cardT = {}; DT.picks.forEach(p => { cardT[p.id] = p; });
+  check("card: a started pick stays on picks.js with its status, result, units and score (Bucks ML: graded, Loss, -1, 110-104 home and away)", DT.picks.length === 4 && rtg.card === 4 && rtg.board === 0 && cardT["old-ml"].status === "graded" && cardT["old-ml"].started === true && cardT["old-ml"].result === "Loss" && cardT["old-ml"].units === -1 && cardT["old-ml"].score.home === 110 && cardT["old-ml"].score.away === 104 && cardT["old-spread"].result === "Win" && near(cardT["old-spread"].units, 0.91, 0.001) && cardT["old-total"].result === "Push" && cardT["old-total"].units === 0 && cardT["old-ml"].loggedAt === "2026-11-03T17:00:00Z" && cardT["old-ml"].valueTo === 139 && cardT["old-ml"].start === "Today 7:00 PM ET", JSON.stringify(DT.picks.map(p => [p.id, p.status, p.result, p.units, p.score, p.start])));
+  check("card: the game still on reads pending and started, with no result, units or score; the week-old pick is not on the card", cardT["live-nhl"].status === "pending" && cardT["live-nhl"].started === true && cardT["live-nhl"].result === null && cardT["live-nhl"].units === null && cardT["live-nhl"].score === null && !cardT["stale"] && DT.picks.map(p => p.id).join() === "old-ml,old-spread,old-total,live-nhl");
+  const perfT = fs.readFileSync(path.join(tmpT, "performance.js"), "utf8");
+  const rtg2 = await P.run({ fixture: true, out: tmpT, now: "2026-11-04T05:30:00Z", track: true }); /* 12:30 AM ET: a rewrite would move asOf to Nov 4 */
+  check("track: the last run of the night grades nothing new and leaves performance.js as it is (asOf stays Nov 3)", rtg2.graded === 0 && rtg2.parlaysGraded === 0 && fs.readFileSync(path.join(tmpT, "performance.js"), "utf8") === perfT && rtg2.card === 4);
+  const rtg3 = await P.run({ fixture: true, out: tmpT, now: "2026-11-04T18:30:00Z", track: true });
+  const pkT3 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpT, "picks.js"), "utf8"), pkT3);
+  check("card: 18 hours after its start a pick leaves picks.js (the NBA picks at 18h30, the NHL game at 17h30 stays, labelled Yesterday)", rtg3.card === 1 && pkT3.window.PICKS_DATA.picks.length === 1 && pkT3.window.PICKS_DATA.picks[0].id === "live-nhl" && pkT3.window.PICKS_DATA.picks[0].start === "Yesterday 8:00 PM ET" && P.RULES.cardHours === 18, JSON.stringify(pkT3.window.PICKS_DATA.picks.map(p => [p.id, p.start])));
+  fs.rmSync(tmpT, { recursive: true, force: true });
+
+  /* the same on the live code path: ESPN served from the fixtures through fetch, an Odds API key set, no SportsGameOdds
+     key. The track run grades from ESPN alone (DraftKings' close from ESPN's core odds) and never asks The Odds API;
+     a full run on the same footing does, which shows the guard would catch it. */
+  const espnFile = url => {
+    let m = /site\.api\.espn\.com\/apis\/site\/v2\/sports\/([a-z]+)\/([a-z0-9.]+)\/scoreboard\?dates=(\d{8})$/.exec(url); if (m) return "ctx-scoreboard-" + m[1] + "-" + m[2] + "-" + m[3] + ".json";
+    m = /sports\.core\.api\.espn\.com\/v2\/sports\/([a-z]+)\/leagues\/([a-z0-9.]+)\/events\/(\d+)\/competitions\/\d+\/odds\/100$/.exec(url); if (m) return "ctx-odds-" + m[1] + "-" + m[2] + "-" + m[3] + ".json";
+    return null;
+  };
+  const requested = [], realFetch = global.fetch, savedKeys = { odds: process.env.ODDS_API_KEY, sgo: process.env.SGO_API_KEY };
+  global.fetch = async function (url) {
+    url = String(url); requested.push(url);
+    const f = espnFile(url), file = f && path.join(__dirname, "fixtures", "espn", f);
+    const body = file && fs.existsSync(file) ? fs.readFileSync(file, "utf8") : null;
+    return { ok: !!body, status: body ? 200 : 404, headers: { get: () => null }, json: async () => JSON.parse(body || "{}"), text: async () => body || "not found" };
+  };
+  process.env.ODDS_API_KEY = "test-key"; delete process.env.SGO_API_KEY;
+  const tmpL = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-tracklive-")), tmpF = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-fulllive-"));
+  const liveLog = [pending("old-ml", { market: "Moneyline", marketKey: "h2h", outcome: { name: "Milwaukee Bucks", point: null }, pick: "Milwaukee Bucks ML", odds: 140, modelProb: 0.45 }), pending("stale", { sport: "NFL", sportKey: "americanfootball_nfl", eventId: "nfl-gone", commence: "2026-10-25T17:00:00Z", date: "2026-10-25", market: "Moneyline", marketKey: "h2h", outcome: { name: "X", point: null }, pick: "X ML", odds: 100 })];
+  fs.writeFileSync(path.join(tmpL, "picks-log.json"), JSON.stringify(liveLog));
+  fs.writeFileSync(path.join(tmpF, "picks-log.json"), JSON.stringify(liveLog.slice(1)));
+  let rl = null, trackAsked = null, fullAsked = null;
+  try {
+    rl = await P.run({ out: tmpL, now: "2026-11-04T02:40:00Z", track: true });
+    trackAsked = requested.slice();
+    requested.length = 0;
+    try { await P.run({ out: tmpF, now: "2026-11-04T02:40:00Z", key: "test-key" }); } catch (err) { /* the stub answers The Odds API with a 404 */ }
+    fullAsked = requested.slice();
+  } finally {
+    global.fetch = realFetch;
+    if (savedKeys.odds == null) delete process.env.ODDS_API_KEY; else process.env.ODDS_API_KEY = savedKeys.odds;
+    if (savedKeys.sgo != null) process.env.SGO_API_KEY = savedKeys.sgo;
+  }
+  const liveT = JSON.parse(fs.readFileSync(path.join(tmpL, "picks-log.json"), "utf8")), liveMl = liveT.find(e => e.id === "old-ml");
+  check("track (live path): graded from ESPN's scoreboard with DraftKings' close from ESPN, performance.js written, and not one request to The Odds API", rl && rl.graded === 1 && liveMl.result === "Loss" && liveMl.close && liveMl.close.source === "DraftKings close (ESPN)" && near(liveMl.clv, dkFair(150, -170) - P.implied(140), 0.001) && fs.existsSync(path.join(tmpL, "performance.js")) && trackAsked.some(u => /site\.api\.espn\.com\/.*\/scoreboard\?dates=20261103$/.test(u)) && !trackAsked.some(u => /the-odds-api\.com/.test(u)) && liveT.find(e => e.id === "stale").status === "pending", JSON.stringify([rl, trackAsked]));
+  check("track (live path): the guard sees The Odds API when a full run asks it (scores for the week-old NFL pick)", fullAsked.some(u => /api\.the-odds-api\.com\/v4\/sports\/americanfootball_nfl\/scores/.test(u)), JSON.stringify(fullAsked));
+  fs.rmSync(tmpL, { recursive: true, force: true }); fs.rmSync(tmpF, { recursive: true, force: true });
+
+  /* the internal selections stay on the board: a started pick with the best EV on file is on the card, but it is not the
+     play or the parlay of the day, is not re-priced or re-written, and an hour in it costs no Odds API call */
+  const tmpC = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-card-"));
+  fs.writeFileSync(path.join(tmpC, "picks-log.json"), JSON.stringify([pending("hot-started", { sport: "NHL", league: "NHL", sportKey: "icehockey_nhl", eventId: "nhl-hot", event: "Visitors @ Hosts", home: "Hosts", away: "Visitors", commence: "2026-11-05T14:00:00Z", date: "2026-11-05", market: "Moneyline", marketKey: "h2h", outcome: { name: "Hosts", point: null }, pick: "Hosts ML", odds: 150, book: "FanDuel", prices: { FanDuel: 150, DraftKings: 150 }, modelProb: 0.9, edge: 0.5, ev: 1.25, basis: "game", loggedAt: "2026-11-05T12:00:00Z", breakdown: { verdict: "as logged" } })]));
+  const rc = await P.run({ fixture: true, out: tmpC, now: NOW });
+  const pkC = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpC, "picks.js"), "utf8"), pkC);
+  const DC = pkC.window.PICKS_DATA, hot = DC.picks.find(p => p.id === "hot-started");
+  check("card: a started pick is on the card after the board, but never the play or parlay of the day, never re-priced or re-written, and no Odds API call an hour in", rc.board === 5 && rc.card === 6 && DC.picks.length === 6 && DC.picks[5].id === "hot-started" && hot.status === "pending" && hot.started === true && DC.playOfDay.pick === "Under 226.5" && DC.parlayOfDay.legs.every(l => l.id !== "hot-started") && hot.breakdown.verdict === "as logged" && hot.context === null && hot.sgo === null && rc.scoresRequests === 0 && rc.settled === 0, JSON.stringify([rc.board, rc.card, DC.playOfDay && DC.playOfDay.pick, DC.parlayOfDay && DC.parlayOfDay.legs.map(l => l.id), rc.scoresRequests]));
+  fs.rmSync(tmpC, { recursive: true, force: true });
 
   /* after the games: the board empties, grading finds no scores yet for the new events */
   const r3 = await P.run({ fixture: true, out: tmp, now: "2026-11-07T15:00:00Z" });
@@ -257,7 +384,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   const nfl = log3.find(e => e.eventId === "nfl-fix-far");
   const mk4 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp, "market.js"), "utf8"), mk4);
   const nflRows = mk4.window.MARKET_DATA.rows.filter(r => r.eventId === "nfl-fix-far");
-  check("later: started events leave the board; the NFL game now inside the 36h window is priced on the market board but, with no model, has no probability and is never a pick", r3.board === 0 && !nfl && r3.unmodelled === 1 && nflRows.length === 2 && nflRows.every(r => r.modelProb === null && r.edge === null && r.status === "none" && r.modelled === false && typeof r.marketFair === "number") && mk4.window.MARKET_DATA.rows.every((r, i) => i === 0 || r.edge !== null || mk4.window.MARKET_DATA.rows[i - 1].edge === null || true), "board " + r3.board + " " + JSON.stringify(nflRows.map(r => [r.pick, r.modelProb, r.status])));
+  check("later: started events leave the board (and, more than 18 hours after their start, the card); the NFL game now inside the 36h window is priced on the market board but, with no model, has no probability and is never a pick", r3.board === 0 && r3.card === 0 && !nfl && r3.unmodelled === 1 && nflRows.length === 2 && nflRows.every(r => r.modelProb === null && r.edge === null && r.status === "none" && r.modelled === false && typeof r.marketFair === "number") && mk4.window.MARKET_DATA.rows.every((r, i) => i === 0 || r.edge !== null || mk4.window.MARKET_DATA.rows[i - 1].edge === null || true), "board " + r3.board + " " + JSON.stringify(nflRows.map(r => [r.pick, r.modelProb, r.status])));
   check("later: the finished games stay pending until scores arrive (not voided yet)", log3.filter(e => e.eventId === "nba-fix-1" || e.eventId === "epl-fix-1").every(e => e.status === "pending"));
 
   fs.rmSync(tmp, { recursive: true, force: true });
