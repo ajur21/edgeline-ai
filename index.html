@@ -80,7 +80,7 @@
     <div class="section-head row field-head">
       <div>
         <h2 id="field-title">Every side we priced, against the bar</h2>
-        <p class="muted" id="field-sub">Each star is one side of one market: its price across, our edge over that price up, from our probability for the side out of the game data. Cross the bar and it becomes a pick. Nothing is hidden, including the nights we pass.</p>
+        <p class="muted" id="field-sub">Each star is one side of one market: its price across, and up, how far our edge over that price sits past the side’s own bar, the model’s margin of error there. The line at 0 is the bar for every sport; cross it and the side can be a pick. Nothing is hidden, including the nights we pass.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="market">Sample data</span>
     </div>
@@ -150,7 +150,7 @@
   <div class="container">
     <div class="section-head">
       <h2>Three steps from data to a pick</h2>
-      <p class="muted">A pick only happens when our probability from the game data beats what a book’s price implies. Other books’ prices never set the grade.</p>
+      <p class="muted">A pick only happens when our probability from the game data beats what a book’s price implies by more than the model’s own margin of error. Other books’ prices never set the grade.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -166,14 +166,14 @@
       <div class="step">
         <span class="step-term">Edge = our % − implied %</span>
         <h3>Find the edge</h3>
-        <p>When a book’s price implies a lower probability than ours, that gap is the edge. Clear 3 points and it becomes a pick; 5 is Medium, 8 is High. A thin sample stays a Lean.</p>
+        <p>When a book’s price implies a lower probability than ours, that gap is the edge. It must clear the side’s own bar: the model’s margin of error there, from game data alone, never from other books’ prices. The bar rises when the model knows less, early in a season or for a team with few games, and falls to 3 points as the season fills in. Two points past it is Medium, five High; a thin sample stays a Lean. At most one pick a game.</p>
       </div>
     </div>
 
     <div class="calc card" id="calc" data-tilt>
       <div class="calc-head">
         <h3>Find the edge yourself</h3>
-        <p class="muted">Drag the odds and our win probability. A pick only happens when the edge is positive.</p>
+        <p class="muted">Drag the odds, our win probability and the side’s bar. A pick needs the edge to clear the bar; how far past it sets the tier.</p>
       </div>
       <div class="calc-grid">
         <label class="calc-field">
@@ -181,13 +181,17 @@
           <input type="range" id="calc-odds" min="0" max="81" step="1" value="38">
         </label>
         <label class="calc-field">
-          <span class="calc-label">Our win probability <output id="calc-prob-out" class="mono" for="calc-prob">55.0%</output></span>
-          <input type="range" id="calc-prob" min="30" max="80" step="0.5" value="55">
+          <span class="calc-label">Our win probability <output id="calc-prob-out" class="mono" for="calc-prob">57.0%</output></span>
+          <input type="range" id="calc-prob" min="30" max="80" step="0.5" value="57">
+        </label>
+        <label class="calc-field">
+          <span class="calc-label">Its bar (our margin of error) <output id="calc-bar-out" class="mono" for="calc-bar">3.0 pts</output></span>
+          <input type="range" id="calc-bar" min="3" max="14" step="0.5" value="3">
         </label>
       </div>
       <div class="calc-result pick-metrics">
         <div class="pick-metric"><div class="k">Implied</div><div class="v" id="calc-implied">52.4%</div></div>
-        <div class="pick-metric"><div class="k">Edge</div><div class="v edge" id="calc-edge">+2.6%</div></div>
+        <div class="pick-metric"><div class="k">Edge</div><div class="v edge" id="calc-edge">+4.6%</div></div>
         <div class="pick-metric"><div class="k">Verdict</div><div class="v verdict verdict-lean" id="calc-verdict">Lean</div></div>
       </div>
       <div class="meter" aria-hidden="true"><span id="calc-meter"></span></div>
@@ -269,6 +273,14 @@
       <details open>
         <summary>What does “edge” mean?</summary>
         <p>Edge is the difference between our probability for the side, from the game data (this season’s results and margins, form, rest, injuries, home edge), and the probability implied by the best available price. A +3% edge means we have the bet winning 3 percentage points more often than that price suggests, which is roughly +6% expected value at even odds. Nothing is graded against other books’ prices; the market’s own number appears on each breakdown for reference only.</p>
+      </details>
+      <details>
+        <summary>Why does one pick need 3 points of edge and another 10?</summary>
+        <p>Each side’s bar is the model’s own margin of error on it. A side the model knows little about needs a bigger edge before it is posted, so no sport floods the board because its numbers are noisy, and every sport is ranked the same way: points past its own bar.</p>
+      </details>
+      <details>
+        <summary>What happens if the price moves after a pick is posted?</summary>
+        <p>Nothing is taken back. A pick stays on the card and is graded at the price it was posted at. If a later check finds the edge under its bar, the card says “Below its bar now”; if the edge is gone, “Edge gone”.</p>
       </details>
       <details>
         <summary>Does the model guarantee winners?</summary>
@@ -357,7 +369,7 @@
     if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: today ? "Earlier today" : "Recent games" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
     var foot = document.getElementById("board-foot");
     foot.textContent = "";
-    if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none clears the " + E.barPts() + "-point bar. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
+    if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
     else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
     else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
      ["Units", E.signed(S.units, 1) + "u"],
@@ -413,22 +425,22 @@
       ]));
       host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "After the final, the same event reads " }), E.el("strong", { text: "Won +" + (E.decimalOdds(next.odds) - 1).toFixed(2) + "u" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost −1.00u" }), E.el("span", { text: ". Nothing is edited afterwards." })]));
     } else {
-      var near = E.marketRows({ limit: 1, oneSidePerMarket: true, positive: false })[0];
-      var barPts = ((E.marketData().threshold || 0.01) * 100).toFixed(0);
+      /* the side closest to its own bar, the same scale for every sport */
+      var near = E.marketRows({ limit: 1, oneSidePerMarket: true, byPast: true })[0];
       host.appendChild(E.el("div", { class: "cal-event cal-event-off" }, [
         dateBlock(gen),
         E.el("div", { class: "cal-body" }, [
           E.el("div", { class: "cal-time", text: "All day" }),
-          E.el("div", { class: "cal-title", text: summary.markets ? "No play tonight: " + summary.markets + " sides priced in " + summary.games + " games, none clears the " + barPts + "-point bar" : "No play tonight: nothing priced yet" }),
+          E.el("div", { class: "cal-title", text: summary.markets ? "No play tonight: " + summary.markets + " sides priced in " + summary.games + " games, none clears its bar" : "No play tonight: nothing priced yet" }),
           near ? E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
             E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
-            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts" : "no model yet") })
+            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts, " + E.pastWord(near) + " of its bar" : "no model yet") })
           ]) : E.el("span"),
           E.el("div", { class: "cal-note", text: "One line, so you know we looked and passed." })
         ])
       ]));
-      host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "The moment a side clears the bar it lands here at tip-off, with its price and book, and " }), E.el("strong", { text: "Won" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost" }), E.el("span", { text: " written in after the final." })]));
+      host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "The moment a side clears its bar it lands here at tip-off, with its price and book, and " }), E.el("strong", { text: "Won" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost" }), E.el("span", { text: " written in after the final." })]));
     }
     };
   })();
@@ -442,7 +454,7 @@
       if (!out) { sec.hidden = true; return; }
       sec.hidden = false;
       title.replaceChildren(E.el("span", { class: "n", text: String(out.sides) }), " sides priced in " + out.games + " games. " +
-        (out.picks ? out.picks + (out.picks === 1 ? " clears the bar." : " clear the bar.") : "None clears the bar."));
+        (out.picks ? out.picks + (out.picks === 1 ? " pick clears its own bar." : " picks clear their own bar.") : "None is on the board."));
     } });
   }
   if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);
@@ -462,7 +474,7 @@
   function renderTop() {
     grid.textContent = "";
     if (th) th.textContent = !ranked.length && shown.length ? "The likeliest sides right now" : topTitle;
-    if (tp) tp.textContent = !ranked.length && shown.length ? "No market clears the " + E.barPts() + "-point bar yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means " + E.watchPts() + " points or more over the price, short of the bar. They are not plays." : topHow;
+    if (tp) tp.textContent = !ranked.length && shown.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means the edge is at least halfway to its own bar. They are not plays." : topHow;
     if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: emptyText() }));
     shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
     E.initTilt(grid);
@@ -478,24 +490,27 @@
   var ODDS = [];
   for (var o = -300; o <= -100; o += 5) ODDS.push(o);
   for (o = 100; o <= 300; o += 5) ODDS.push(o);
-  var oddsIn = document.getElementById("calc-odds"), probIn = document.getElementById("calc-prob");
+  var oddsIn = document.getElementById("calc-odds"), probIn = document.getElementById("calc-prob"), barIn = document.getElementById("calc-bar");
   oddsIn.max = String(ODDS.length - 1); oddsIn.value = String(ODDS.indexOf(-110));
-  function verdict(edge) { return edge >= 0.05 ? "High" : edge >= 0.03 ? "Medium" : edge > 0 ? "Lean" : "No bet"; }
+  /* the site's tiers: the edge must clear the side's own bar; Medium from 2 points past it, High from 5 */
+  function verdict(edge, bar) { var r = E.barRule(), past = edge - bar; return edge <= 0 || past < 0 ? "No bet" : past >= r.high ? "High" : past >= r.medium ? "Medium" : "Lean"; }
   function calc() {
-    var odds = ODDS[Number(oddsIn.value)], prob = Number(probIn.value) / 100;
-    var implied = E.impliedProb(odds), edge = prob - implied;
+    var odds = ODDS[Number(oddsIn.value)], prob = Number(probIn.value) / 100, bar = Number(barIn.value) / 100;
+    var implied = E.impliedProb(odds), edge = prob - implied, word = verdict(edge, bar);
     document.getElementById("calc-odds-out").textContent = E.fmtOdds(odds);
     document.getElementById("calc-prob-out").textContent = E.pct(prob);
+    document.getElementById("calc-bar-out").textContent = (bar * 100).toFixed(1) + " pts";
     document.getElementById("calc-implied").textContent = E.pct(implied);
     var edgeEl = document.getElementById("calc-edge");
     edgeEl.textContent = E.signed(edge * 100, 1) + "%";
     edgeEl.classList.toggle("neg", edge <= 0);
     var v = document.getElementById("calc-verdict");
-    v.textContent = verdict(edge);
-    v.className = "v verdict verdict-" + verdict(edge).toLowerCase().replace(" ", "-");
-    document.getElementById("calc-meter").style.width = Math.max(0, Math.min(100, edge * 100 * 8)) + "%";
+    v.textContent = word;
+    v.className = "v verdict verdict-" + word.toLowerCase().replace(" ", "-");
+    /* the meter fills as the edge climbs to the High tier for this bar */
+    document.getElementById("calc-meter").style.width = Math.max(0, Math.min(100, edge / (bar + E.barRule().high) * 100)) + "%";
   }
-  oddsIn.addEventListener("input", calc); probIn.addEventListener("input", calc); calc();
+  oddsIn.addEventListener("input", calc); probIn.addEventListener("input", calc); barIn.addEventListener("input", calc); calc();
 
   /* pricing: monthly / yearly */
   document.querySelectorAll("[data-billing]").forEach(function (btn) {

@@ -1400,6 +1400,18 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 .meta.price-value { display: flex; margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
 .price-value .mono { color: var(--text); font-weight: 600; }
 .price-value .price-past, .price-value .price-past .mono { color: var(--accent-4-text); }
+/* the bar a side had to clear (2026-11-05: each side has its own, the model's own margin of error on it, never under 3) */
+.meta.pick-bar { display: flex; margin: 8px 0 0; font-size: 0.8rem; color: var(--text-2); }
+.pick-bar .mono { color: var(--text); font-weight: 600; }
+.pick-bar .bar-short { color: var(--muted); }
+.meta.bd-bar { margin-top: 4px; }
+.bd-block .bd-bar-why { margin-bottom: 8px; }
+/* locked picks: below its bar now (muted) or edge gone (the orange of a price past its worth-a-bet line) */
+.badge-below { background: var(--surface-2); color: var(--muted); }
+.badge-gone { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.bd-standing { margin: 8px 0 0; font-size: 0.85rem; color: var(--text-2); }
+.market-table .mkt-bar { display: block; font-size: 0.72rem; font-weight: 400; color: var(--muted); }
+.field-bars { color: var(--muted); }
 .bd-state { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 0.85rem; color: var(--text-2); }
 
 /* games: live now, starting soon, later, finished (collapsed) */

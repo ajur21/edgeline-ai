@@ -72,7 +72,7 @@
     <div class="section-head games-head">
       <div>
         <h2 id="games">Games, likeliest first</h2>
-        <p class="muted how-to" id="g-how">Today’s games come first, then later days under their own heading. Within a day, games with a side worth a bet lead, ordered by our probability for that side. Each cell is one side: its line, the best price and the book that has it, then our probability from the game data and its edge over that price. A pick links to its card. Prices are where to bet it; nothing is graded against other books’ prices.</p>
+        <p class="muted how-to" id="g-how">Today’s games come first, then later days under their own heading. Within a day, games with a side worth a bet lead, ordered by our probability for that side. Each cell is one side: its line, the best price and the book that has it, then our probability from the game data and its edge over that price. Pick means the side cleared its own bar and is on the board (it links to its card); Watch means the edge is at least halfway to its bar. Prices are where to bet it; nothing is graded against other books’ prices.</p>
       </div>
     </div>
     <p class="filter-summary" id="g-summary" role="status"></p>
@@ -158,13 +158,14 @@
   function cell(x) {
     if (!x) return E.el("td", { class: "line-cell line-empty" }, [E.el("span", { class: "line-none", text: "—" })]);
     var modelled = E.hasModel(x), pick = x.pickId && onBoard[x.pickId] ? onBoard[x.pickId] : null;
-    var st = pick ? "pick" : modelled && E.rowEdge(x) >= E.watchOf() ? "watch" : "none";
+    /* Pick only while it is on the board; Watch from halfway to the side's own bar (each side has its own since 2026-11-05) */
+    var st = pick ? "pick" : E.rowStatus(x);
     var o = x.outcome || {}, point = x.marketKey === "totals" ? (/^over/i.test(o.name) ? "O " : "U ") + o.point : x.marketKey === "spreads" && o.point != null ? (o.point > 0 ? "+" : "") + o.point : "";
     var parts = [
       E.el("span", { class: "line-top" }, [point ? E.el("span", { class: "line-point", text: point }) : null, E.el("span", { class: "line-price", text: E.fmtOdds(x.odds) })]),
       E.el("span", { class: "line-book", text: x.book || "" }),
       E.el("span", { class: "line-prob" }, modelled
-        ? [E.el("span", { class: "line-hit", text: E.pct(x.modelProb) }), E.el("span", { class: "line-edge" + (E.rowEdge(x) > 0 ? " edge-pos" : ""), text: E.signed(Number(x.edge) * 100, 1) })]
+        ? [E.el("span", { class: "line-hit", text: E.pct(x.modelProb) }), E.el("span", { class: "line-edge" + (E.rowEdge(x) > 0 ? " edge-pos" : ""), title: "Edge over the price; its bar is " + E.barPts(x) + " points, " + E.pastWord(x), text: E.signed(Number(x.edge) * 100, 1) })]
         : [E.el("span", { class: "line-hit", text: "No model" })]),
       st !== "none" ? E.el("span", { class: "badge badge-status badge-" + st, text: st === "pick" ? "Pick" : "Watch" }) : null
     ];

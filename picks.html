@@ -79,7 +79,7 @@
     <p class="small muted parlays-note">The chance to hit multiplies each leg’s probability from the game data, treating the legs as independent, so expected value is an estimate. Longer parlays pay more and hit less; pick the length that suits your bankroll.</p>
 
     <div class="section-head row picks-head">
-      <div><h2 id="all-picks">All picks, likeliest first</h2><p class="muted how-to">Today's games come first, then later days, each under its own heading. Within a day, sides with a positive edge come first, ranked by our probability from the game data: #1 is today's side worth a bet that the model expects to hit most often. Sides priced against you follow, likeliest first. On each card the bar is that probability and the tick is what the price implies.</p></div>
+      <div><h2 id="all-picks">All picks, likeliest first</h2><p class="muted how-to">Today's games come first, then later days, each under its own heading. Within a day, sides with a positive edge come first, ranked by our probability from the game data: #1 is today's side worth a bet that the model expects to hit most often. Sides priced against you follow, likeliest first. On each card the coloured bar is that probability and the tick is what the price implies; the line under the numbers is the edge the pick had to clear, its own bar, and how far past it the pick was posted.</p></div>
     </div>
     <div class="filter-row" role="group" aria-label="Filters">
       <label class="filter">Sport
@@ -102,9 +102,9 @@
       <label class="filter">Minimum edge
         <select id="f-edge">
           <option value="0">Any</option>
-          <option value="3">3%+ (Lean)</option>
-          <option value="5">5%+ (Medium)</option>
-          <option value="8">8%+ (High)</option>
+          <option value="3">3%+</option>
+          <option value="5">5%+</option>
+          <option value="8">8%+</option>
         </select>
       </label>
       <label class="filter">Sort by
@@ -157,7 +157,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a pick.</strong> “To hit” is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. “Implied” is the probability baked into the best available price. “Edge” is the difference; the higher it is, the further the price sits behind our read of the game. Confidence follows the edge: 3 points is a Lean, 5 Medium, 8 High, and a thin sample stays a Lean. Nothing is graded against other books’ prices; the market’s own number is in each breakdown for reference only.
+      <strong>Reading a pick.</strong> “To hit” is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. “Implied” is the probability baked into the best available price. “Edge” is the difference; the higher it is, the further the price sits behind our read of the game. Each pick has to clear its own bar, the model’s margin of error on that side (never under 3 points); confidence is how far past it: Medium from 2 points, High from 5, and a thin sample stays a Lean. A pick is locked once posted and graded at the posted price; if a later check finds it below its bar, the card says so. Nothing is graded against other books’ prices; the market’s own number is in each breakdown for reference only.
     </div>
   </div>
 </section>
@@ -221,7 +221,7 @@
       /* nothing clears the bar (or every pick has started): show the closest open markets as cards, clearly labelled, so the page is never bare */
       var near = E.marketRows({ limit: 6, oneSidePerMarket: true });
       var s = E.marketSummary();
-      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: played ? "Every pick on the board has started; they are under In progress and results below. " : "No pick clears the " + E.barPts() + "-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games " + (played ? "that have not started yet " : "") + "were priced on our probability from the game data. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means " + E.watchPts() + " points or more over the price, short of the bar. They are not plays." : played ? "New picks are published around noon ET." : "The market board fills at the next price refresh."]));
+      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: played ? "Every pick on the board has started; they are under In progress and results below. " : "No pick on the board right now. " }), s.markets ? s.markets + " markets across " + s.games + " games " + (played ? "that have not started yet " : "") + "were priced on our probability from the game data, each against its own bar. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means the edge is at least halfway to its bar. They are not plays." : played ? "New picks are published around noon ET." : "The market board fills at the next price refresh."]));
       if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }), spans2 = new Set(near.map(E.dayKey)).size > 1, prev2 = null; near.forEach(function (p, i) { var k = E.dayKey(p), newDay = i === 0 || k !== prev2; prev2 = k; if (newDay && spans2) g2.appendChild(E.dayDivider(k)); if (!newDay && !(E.edgeOf(p) > 0) && E.edgeOf(near[i - 1]) > 0) g2.appendChild(E.el("p", { class: "grid-divider", text: "Priced against you from here: our probability sits below the price" })); var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
       return;
     }
@@ -300,10 +300,19 @@
       if (ms.value && r.sport !== ms.value) return false;
       if (mm.value && r.market !== mm.value) return false;
       if (mst.value === "positive" && !(E.rowEdge(r) > 0)) return false;
-      if (mst.value === "watch" && r.status === "none") return false;
+      /* picks and watch, read the way the table reads them: on the board, or at least halfway to the row's own bar */
+      if (mst.value === "watch" && !E.rowOnBoard(r) && E.rowStatus(r) !== "watch") return false;
       if (q && (r.event + " " + r.pick).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }).sort(mSorters[mso.value] || mSorters.model);
+  }
+  /* the board's counts against each side's own bar, and the bars themselves by sport */
+  function barSummary(s) {
+    var bars = E.barsText(s);
+    return (s.picks === 1 ? "1 pick" : s.picks + " picks") + " on the board, each past its own bar" +
+      (s.clearOff ? "; " + s.clearOff + (s.clearOff === 1 ? " more side clears its bar but is held off the board" : " more sides clear theirs but are held off the board") + " (one pick a game, ten a day, five a sport)" : "") +
+      "; " + s.watch + " on watch, at least halfway to their bar. " +
+      (bars ? "Each side’s bar is the model’s own margin of error there, never under " + E.ptsLabel(E.floorBar()) + " points: " + bars + "." : "Every side is held to the " + E.barPts() + "-point bar.");
   }
   function renderMarket() {
     var rows = marketFiltered(), s = E.marketSummary();
@@ -317,7 +326,7 @@
       return;
     }
     var pricedAt = s.generatedAt ? E.clockET(s.generatedAt.getTime()) : "";
-    [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (pricedAt ? (/^\d/.test(pricedAt) ? " at " : " ") + pricedAt : "") + ". " + s.picks + " clear the " + s.barPts + "-point bar (picks), " + s.watch + " sit " + s.watchPts + " points or more over the price (watch). Best price and our probability from the game data for every side, " + (mSortLabel[mso.value] || mSortLabel.model) + ". The market's own number shows on hover, for reference only; it takes no part in the grade." + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet, so no probability and no edge." : "") + (rows.length !== openN ? " Showing " + rows.length + "." : "") + (gone ? " " + gone + " " : "")].concat(gone ? [E.el("a", { href: "games.html", text: "Where they stand" })] : []).forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (pricedAt ? (/^\d/.test(pricedAt) ? " at " : " ") + pricedAt : "") + ". " + barSummary(s) + " Best price and our probability from the game data for every side, " + (mSortLabel[mso.value] || mSortLabel.model) + ". The market's own number shows on hover, for reference only; it takes no part in the grade." + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet, so no probability and no edge." : "") + (rows.length !== openN ? " Showing " + rows.length + "." : "") + (gone ? " " + gone + " " : "")].concat(gone ? [E.el("a", { href: "games.html", text: "Where they stand" })] : []).forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     if (!rows.length) { mHost.appendChild(E.el("div", { class: "card empty", text: "No markets match these filters." })); return; }
     mHost.appendChild(E.marketTable(rows.slice(0, mShown), { pickHref: "#", divider: mso.value === "model" || !mso.value ? "Priced against you from here: our probability sits below the price" : null, dayDivider: daysShown(mso.value), spansDays: new Set(rows.map(E.dayKey)).size > 1 }));
     if (rows.length > mShown) { var b = E.el("button", { type: "button", class: "btn btn-secondary btn-sm", text: "Show " + Math.min(40, rows.length - mShown) + " more of " + rows.length }); b.addEventListener("click", function () { mShown += 40; renderMarket(); }); mMore.appendChild(b); }
