@@ -1,6 +1,10 @@
 # Refreshes picks and results from The Odds API, commits the data files, and redeploys.
 # Needs the ODDS_API_KEY repository secret. Runs twice daily, 17:00 UTC (noon-1 PM Eastern) and 20:30 UTC
 # (3:30-4:30 PM Eastern, before the evening slates), and on demand.
+# Since 2026-11-05 two Claude routines start the daily runs on time (workflow_dispatch with slot=noon / afternoon):
+# GitHub's schedule fires hours late on this repo (the 11-04 noon run started at 22:15 UTC). The schedule stays as the
+# fallback, and the gate job skips any run for a slot that a full run has already covered (scripts/slot-due.js), so a
+# late duplicate never spends The Odds API's credits twice.
 name: Update data
 
 on:
@@ -17,6 +21,11 @@ on:
         description: "Skip the odds run; refresh only the props research, lines and team identity (no Odds API credits)"
         type: boolean
         default: false
+      slot:
+        description: "The daily slot this run fills (the routines set it): noon skips props lines; a slot already covered by a full run is skipped. manual always runs"
+        type: choice
+        options: [manual, noon, afternoon]
+        default: manual
 
 permissions:
   contents: write
@@ -28,7 +37,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # a run for a daily slot (scheduled, or dispatched with slot) that a full run has already covered does nothing
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.due.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: due
+        name: Is this slot still due?
+        run: node scripts/slot-due.js
+        env:
+          SLOT_CRON: ${{ github.event.schedule }}
+          SLOT: ${{ inputs.slot }}
+
   update:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
@@ -48,7 +78,7 @@ jobs:
       # Lines ride along from SportsGameOdds (one entity per game, about 14 a night); only the afternoon run and
       # manual runs spend them, the noon run passes --no-lines so the month stays inside the free tier.
       - name: Refresh NBA props research data (ESPN, no key) and tonight's lines (SportsGameOdds)
-        run: node scripts/update-props.js ${{ github.event.schedule == '0 17 * * *' && '--no-lines' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
+        run: node scripts/update-props.js ${{ (github.event.schedule == '0 17 * * *' || inputs.slot == 'noon') && '--no-lines' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Refresh team identity (logos and colours from ESPN, no key)
