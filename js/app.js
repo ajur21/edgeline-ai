@@ -403,13 +403,15 @@
   function aboutET(ms) { if (!Number.isFinite(ms)) return ""; const w = whenParts(ms); return (w.day ? w.day + " " : "") + "about " + w.time; }
 
   /* ---------- update times: when the picks were published, when the numbers last moved, when the next run is due ----------
-     Track runs check prices hourly at :00 from 10 AM to 1 AM ET (and commit only when a number moved); full runs, which
-     publish picks and reprice every market, run about 12:00 PM and 4:30 PM ET. */
-  const TRACK_HOURS = [0, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], FULL_RUNS = [[12, 0], [16, 30]];
+     The schedules are in UTC, as the workflows and routines run them (so the Eastern times shift by an hour with daylight
+     saving): track runs hourly at :00 from 15:00 to 06:00 UTC (10 AM to 1 AM EST; they commit only when a number moved);
+     full runs, which publish picks and reprice every market, at 14:00 and 20:30 UTC (9:00 AM and 3:30 PM EST; the
+     morning one moved from noon on 2026-11-05 to catch prices nearer the open). */
+  const TRACK_UTC = [15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6], FULL_UTC = [[14, 0], [20, 30]];
   function nextRun(fullOnly) {
-    const n = now(), today = etKey(new Date(n)), slots = fullOnly ? FULL_RUNS : TRACK_HOURS.map(function (h) { return [h, 0]; }).concat(FULL_RUNS);
+    const n = now(), d = new Date(n), slots = fullOnly ? FULL_UTC : TRACK_UTC.map(function (h) { return [h, 0]; }).concat(FULL_UTC);
     let best = Infinity;
-    [0, 1, 2].forEach(function (off) { const key = shiftKey(today, off); slots.forEach(function (s) { const t = etWallMs(key, s[0], s[1]); if (t > n && t < best) best = t; }); });
+    [0, 1, 2].forEach(function (off) { slots.forEach(function (s) { const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]); if (t > n && t < best) best = t; }); });
     return best;
   }
   /* the parts of the line; opts.lines is the Games page, whose prices come only from the full runs */

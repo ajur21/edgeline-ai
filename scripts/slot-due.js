@@ -1,7 +1,8 @@
 /* Is this full run still due? (2026-11-05)
 
-   The two daily full runs (17:00 and 20:30 UTC) are started on time by two Claude routines that dispatch
-   update-data.yml with slot=noon / slot=afternoon. GitHub's own schedule stays in the workflow as the fallback, but it
+   The two daily full runs (14:00 and 20:30 UTC; the first was 17:00 until 2026-11-05, moved earlier to catch prices
+   nearer the open) are started on time by two Claude routines that dispatch update-data.yml with slot=morning /
+   slot=afternoon. GitHub's own schedule stays in the workflow as the fallback, but it
    fires hours late on this repo (on 2026-11-04 the 17:00 run started at 22:15, the 20:30 one at 00:59), and a late
    duplicate would spend The Odds API's credits twice. So a run that fills a slot (a scheduled run, or a dispatch that
    names its slot) is skipped when a full run has already written data/picks.js since that slot's time today; a manual
@@ -10,7 +11,7 @@
 
    CLI (the workflow's gate job): SLOT_CRON (github.event.schedule) and SLOT (the dispatch input) from the environment;
    prints why, and writes run=true|false to $GITHUB_OUTPUT. */
-const SLOTS = { noon: [17, 0], afternoon: [20, 30] };
+const SLOTS = { morning: [14, 0], afternoon: [20, 30] };
 const EARLY_MS = 30 * 60 * 1000, DAY_MS = 24 * 60 * 60 * 1000;
 
 /* [hour, minute] for a cron line ("30 20 * * *") or a slot name; null for a manual run */

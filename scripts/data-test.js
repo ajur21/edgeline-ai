@@ -568,8 +568,8 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const q = P.oddsParams(nflC, new Date("2026-11-05T20:30:00.456Z"));
     return q.commenceTimeFrom === "2026-11-05T20:30:00Z" && q.commenceTimeTo === "2026-11-07T08:30:00Z" && q.markets === "h2h,spreads,totals" && q.bookmakers.split(",").length === 10 && !("commenceTimeFrom" in P.oddsParams(nflC, null)) && P.oddsCost(nflC) === 3 && P.oddsCost(mlsC) === 2;
   })());
-  check("budget: MLS is wired like the Premier League (Soccer, league MLS, moneyline and totals, three-way), and NFL, EPL and MLS are fetched on the afternoon run only; noon skips them, manual runs fetch everything", mlsC && mlsC.sport === "Soccer" && mlsC.league === "MLS" && mlsC.goals === true && mlsC.markets.join() === "h2h,totals"
-    && [nflC, eplC, mlsC].every(c => !P.slotAllows(c, "noon") && P.slotAllows(c, "afternoon") && P.slotAllows(c, "manual") && P.slotAllows(c, undefined)) && P.slotAllows(nbaC, "noon") && P.slotAllows(SP("icehockey_nhl"), "noon"));
+  check("budget: MLS is wired like the Premier League (Soccer, league MLS, moneyline and totals, three-way), and NFL, EPL and MLS are fetched on the afternoon run only; morning skips them, manual runs fetch everything", mlsC && mlsC.sport === "Soccer" && mlsC.league === "MLS" && mlsC.goals === true && mlsC.markets.join() === "h2h,totals"
+    && [nflC, eplC, mlsC].every(c => !P.slotAllows(c, "morning") && P.slotAllows(c, "afternoon") && P.slotAllows(c, "manual") && P.slotAllows(c, undefined)) && P.slotAllows(nbaC, "morning") && P.slotAllows(SP("icehockey_nhl"), "morning"));
   /* ESPN's scoreboard decides: stub sources keyed by Eastern day */
   const sbSrc = days => ({ scoreboard: async (sport, d) => (d in days ? days[d] : null) });
   const gameAt = (iso, status) => ({ id: iso, date: iso, competitions: [{ status: { type: { name: status || "STATUS_SCHEDULED", state: "pre" } } }] });
@@ -584,21 +584,21 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     /* a 4:30 PM ET run's window ends at 3:30 AM ET two days on, so three Eastern days are read */
     const idle = await P.espnGames(sbSrc({ "20261105": { events: [] }, "20261106": { events: [] }, "20261107": { events: [] } }), SP("baseball_mlb"), now);
     const pp = await P.espnGames(sbSrc({ "20261105": { events: [gameAt("2026-11-06T00:00Z", "STATUS_POSTPONED"), gameAt("2026-11-05T19:00Z")] }, "20261106": { events: [] }, "20261107": { events: [] } }), nbaC, now);
-    return idle.games === 0 && idle.failed === 0 && idle.days.join() === "20261105,20261106,20261107" && !P.fetchDecision(SP("baseball_mlb"), { slot: "noon", espn: idle }).fetch && pp.games === 0 && !P.fetchDecision(nbaC, { slot: "noon", espn: pp }).fetch;
+    return idle.games === 0 && idle.failed === 0 && idle.days.join() === "20261105,20261106,20261107" && !P.fetchDecision(SP("baseball_mlb"), { slot: "morning", espn: idle }).fetch && pp.games === 0 && !P.fetchDecision(nbaC, { slot: "morning", espn: pp }).fetch;
   })());
   check("gate: when ESPN cannot be read the sport's days decide (NFL on a Friday no, a Thursday yes; NBA every day), unless a day that was read already shows a game", await (async () => {
     const down = await P.espnGames(sbSrc({}), nflC, new Date("2026-11-06T20:30:00Z"));
     const half = await P.espnGames(sbSrc({ "20261107": { events: [gameAt("2026-11-07T21:00Z")] } }), mlsC, new Date("2026-11-06T20:30:00Z"));
-    return down.failed === 3 && down.games === 0 && !P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 5 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 4 }).fetch && P.fetchDecision(nbaC, { slot: "noon", espn: down, weekday: 5 }).fetch
+    return down.failed === 3 && down.games === 0 && !P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 5 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 4 }).fetch && P.fetchDecision(nbaC, { slot: "morning", espn: down, weekday: 5 }).fetch
       && half.failed === 2 && half.games === 1 && P.fetchDecision(mlsC, { slot: "afternoon", espn: half, weekday: 2 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: { games: 0, failed: 1 }, weekday: 4, fixture: false }).fetch;
   })());
-  check("budget: the noon run gives way first when credits run short: it keeps 10 for every afternoon run left before the reset on the 1st (plus the 25 floor); afternoon runs never yield", (() => {
+  check("budget: the morning run gives way first when credits run short: it keeps 10 for every afternoon run left before the reset on the 1st (plus the 25 floor); afternoon runs never yield", (() => {
     const left = P.afternoonsLeft(new Date("2026-11-05T17:00:00Z")), leftAfter = P.afternoonsLeft(new Date("2026-11-05T21:00:00Z")), lastDay = P.afternoonsLeft(new Date("2026-11-30T21:00:00Z"));
     const g = { games: 4, failed: 0 };
-    const tight = P.fetchDecision(nbaC, { slot: "noon", espn: g, remaining: 280, afternoonsLeft: 26 }), ok = P.fetchDecision(nbaC, { slot: "noon", espn: g, remaining: 288, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
-    return left === 26 && leftAfter === 25 && lastDay === 0 && P.RULES.afternoonReserve === 10 && !tight.fetch && /noon run gives way: 280 credits left, 285 kept for the 26 afternoon runs/.test(tight.why) && ok.fetch && pm.fetch;
+    const tight = P.fetchDecision(nbaC, { slot: "morning", espn: g, remaining: 280, afternoonsLeft: 26 }), ok = P.fetchDecision(nbaC, { slot: "morning", espn: g, remaining: 288, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
+    return left === 26 && leftAfter === 25 && lastDay === 0 && P.RULES.afternoonReserve === 10 && !tight.fetch && /morning run gives way: 280 credits left, 285 kept for the 26 afternoon runs/.test(tight.why) && ok.fetch && pm.fetch;
   })());
-  check("budget: the run's spend is one line for the Actions log: what was fetched, what it cost, what was skipped and why", P.planLine({ slot: "noon", remaining: 361, used: 139, plan: [{ sport: "basketball_nba", fetch: true, cost: 3, events: 9 }, { sport: "americanfootball_nfl", fetch: false, why: "fetched on the afternoon run only" }] }) === "Odds API (noon run): NBA 3 (9 events) | skipped: NFL (fetched on the afternoon run only) | credits left 361, used 139");
+  check("budget: the run's spend is one line for the Actions log: what was fetched, what it cost, what was skipped and why", P.planLine({ slot: "morning", remaining: 361, used: 139, plan: [{ sport: "basketball_nba", fetch: true, cost: 3, events: 9 }, { sport: "americanfootball_nfl", fetch: false, why: "fetched on the afternoon run only" }] }) === "Odds API (morning run): NBA 3 (9 events) | skipped: NFL (fetched on the afternoon run only) | credits left 361, used 139");
 
   /* MLS end to end: two Decision Day games (ESPN fixtures trimmed from 2026-11-07), the feed's own club names */
   const tmpM = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-mls-"));
@@ -612,14 +612,14 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const g = ["New York Red Bulls vs. Atlanta United FC", "Seattle Sounders FC vs. Los Angeles FC"].map(ev => MKM.rows.filter(r => r.event === ev && r.marketKey === "h2h"));
     return g.every(rows => rows.length === 3 && near(rows.reduce((s, r) => s + r.modelProb, 0), 1, 2e-3) && rows.find(r => r.pick === "Draw").modelProb > 0.24 && rows.find(r => r.pick === "Draw").modelProb < 0.28) && MKM.rows.filter(r => r.marketKey === "h2h" && r.pick !== "Draw").every(r => r.bar > 0.05 && r.bar < 0.09);
   })(), JSON.stringify(MKM.rows.filter(r => r.marketKey === "h2h").map(r => [r.pick, r.modelProb, r.bar])));
-  const rn = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-mls-noon-")), now: "2026-11-06T15:00:00Z", slot: "noon" });
-  check("mls: the noon run leaves MLS (and NFL, and the Premier League) to the afternoon run without asking ESPN or The Odds API", rn.added === 0 && ["soccer_usa_mls", "soccer_epl", "americanfootball_nfl"].every(k => { const p = rn.plan.find(x => x.sport === k); return p && !p.fetch && p.why === "fetched on the afternoon run only"; }) && rn.plan.find(x => x.sport === "basketball_nba").fetch, JSON.stringify(rn.plan));
-  /* the next noon run into the same files: MLS is not fetched, but its games are still ahead, so its rows stay on the
+  const rn = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-mls-morning-")), now: "2026-11-06T15:00:00Z", slot: "morning" });
+  check("mls: the morning run leaves MLS (and NFL, and the Premier League) to the afternoon run without asking ESPN or The Odds API", rn.added === 0 && ["soccer_usa_mls", "soccer_epl", "americanfootball_nfl"].every(k => { const p = rn.plan.find(x => x.sport === k); return p && !p.fetch && p.why === "fetched on the afternoon run only"; }) && rn.plan.find(x => x.sport === "basketball_nba").fetch, JSON.stringify(rn.plan));
+  /* the next morning run into the same files: MLS is not fetched, but its games are still ahead, so its rows stay on the
      market board (and the Games page) with the time they were priced, the pick still flagged as one */
-  const firstAt = MKM.generatedAt, rCarry = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: tmpM, now: "2026-11-06T17:00:00Z", slot: "noon" });
+  const firstAt = MKM.generatedAt, rCarry = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: tmpM, now: "2026-11-06T17:00:00Z", slot: "morning" });
   const sbC = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpM, "market.js"), "utf8"), sbC);
   const kept = sbC.window.MARKET_DATA.rows.filter(r => r.sportKey === "soccer_usa_mls");
-  check("market: a sport the run did not fetch keeps its rows for games still ahead, each with when it was priced, the pick still a pick (Sunday's noon run never empties the NFL from the Games page)", rCarry.plan.some(p => p.sport === "soccer_usa_mls" && !p.fetch) && kept.length === MKM.rows.filter(r => r.sportKey === "soccer_usa_mls").length && kept.length > 0 && kept.every(r => r.pricedAt === firstAt) && kept.filter(r => r.status === "pick").length === 1 && sbC.window.MARKET_DATA.games === 2, JSON.stringify(kept.map(r => [r.pick, r.status, r.pricedAt])));
+  check("market: a sport the run did not fetch keeps its rows for games still ahead, each with when it was priced, the pick still a pick (Sunday's morning run never empties the NFL from the Games page)", rCarry.plan.some(p => p.sport === "soccer_usa_mls" && !p.fetch) && kept.length === MKM.rows.filter(r => r.sportKey === "soccer_usa_mls").length && kept.length > 0 && kept.every(r => r.pricedAt === firstAt) && kept.filter(r => r.status === "pick").length === 1 && sbC.window.MARKET_DATA.games === 2, JSON.stringify(kept.map(r => [r.pick, r.status, r.pricedAt])));
   check("market: a carried row leaves once its game has started, and nothing is carried for a sport the run fetched", (() => {
     const log = JSON.parse(fs.readFileSync(path.join(tmpM, "picks-log.json"), "utf8"));
     const skip = [{ sport: "soccer_usa_mls", fetch: false }], fetched = [{ sport: "soccer_usa_mls", fetch: true }];

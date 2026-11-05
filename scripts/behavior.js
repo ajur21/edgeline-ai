@@ -549,7 +549,7 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   check('clock: the digest\'s copy text marks them too, without a rank', await cp.evaluate(() => { const t = window.EdgeLineDigest.asText(); return /\nIn progress and results\n  Live · Soccer · Over 2\.5 goals -105 @ FanDuel · Chelsea vs\. Newcastle\n  Won · Soccer · Villarreal ML -115 @ BetRivers · final GET 0–2 VIL · \+0\.87u · Villarreal vs\. Getafe\n/.test(t); }), await cp.evaluate(() => window.EdgeLineDigest.asText().split('\n').filter(l => /Live|Won/.test(l)).join(' / ')));
   check('updates: the digest carries the update line', /^Picks published 9:00 AM ETUpdated 4:30 PM ET \(15 min ago\)Next check about 5:00 PM ET$/.test((await cp.textContent('#generated-at')).trim()), await cp.textContent('#generated-at'));
   await cp.goto(url('games.html')); await cp.waitForTimeout(500);
-  check('updates: the Games page says when its lines were priced and when the next pricing run is due', /^Lines priced 4:30 PM ET \(15 min ago\)Next pricing tomorrow about 12:00 PM ET$/.test((await cp.textContent('#g-generated')).trim()) && (await cp.locator('#g-live, #g-soon, #g-finished').count()) === 0, await cp.textContent('#g-generated'));
+  check('updates: the Games page says when its lines were priced and when the next pricing run is due', /^Lines priced 4:30 PM ET \(15 min ago\)Next pricing tomorrow about 9:00 AM ET$/.test((await cp.textContent('#g-generated')).trim()) && (await cp.locator('#g-live, #g-soon, #g-finished').count()) === 0, await cp.textContent('#g-generated'));
   check('clock: no page errors', cerr.length === 0, cerr.join(' | '));
   await cp.context().close();
 

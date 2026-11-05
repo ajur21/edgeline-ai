@@ -12,8 +12,8 @@
    Flags: --out <dir>   write data files elsewhere (tests)
           --now <iso>   pretend it is this moment (tests)
           --verbose     print every candidate edge per sport, even below the threshold
-          --slot <name> the daily run this is (noon | afternoon | manual, the default): sports with `slots` are fetched
-                        only on theirs, and a noon run gives way when the month's credits run short (see SPORTS)
+          --slot <name> the daily run this is (morning | afternoon | manual, the default): sports with `slots` are fetched
+                        only on theirs, and a morning run gives way when the month's credits run short (see SPORTS)
           --track       no Odds API calls: grade finished games from the free sources (ESPN, SportsGameOdds), refresh
                         DraftKings numbers (ESPN, free) on the board, rebuild breakdowns, rewrite picks.js (and
                         performance.js when anything was graded)
@@ -24,7 +24,7 @@ const path = require("path");
 const context = require("./context.js");
 const sgo = require("./sgo.js");
 const model = require("./model.js");
-const SLOT_TIMES = require("./slot-due.js").SLOTS; /* the daily runs' UTC times: noon [17, 0], afternoon [20, 30] */
+const SLOT_TIMES = require("./slot-due.js").SLOTS; /* the daily runs' UTC times: morning [14, 0], afternoon [20, 30] */
 
 const API = "https://api.the-odds-api.com/v4";
 let VERBOSE = false;
@@ -37,7 +37,7 @@ let VERBOSE = false;
    - ESPN's scoreboard (free) is read first for every Eastern day the window touches; a sport with no game starting
      inside it is not asked at all (this covers NFL Thursdays, Saturdays and holidays, and the off-season).
    - days: the fallback when ESPN cannot be read (Eastern weekdays, 0 = Sunday; omitted = every day).
-   - slots: the daily runs that fetch the sport (the workflow passes --slot noon|afternoon; a manual run fetches every
+   - slots: the daily runs that fetch the sport (the workflow passes --slot morning|afternoon; a manual run fetches every
      sport). The weekly sports go on the afternoon run only: with the 36-hour window it still sees the next day's
      games (Friday's covers Saturday's soccer, Saturday's covers Sunday's NFL), and two runs a day for every sport is
      more than the free tier's 500 credits a month (see the request budget in CLAUDE.md). */
@@ -72,7 +72,7 @@ const RULES = {
   voidAfterDays: 7,     // give up on ungraded events after this long
   windowDays: 30,       // performance window
   minRequestsLeft: 25,  // stop fetching odds when the API quota runs this low
-  afternoonReserve: 10, // a noon run keeps this many credits back for every afternoon run left before the quota resets on the 1st (the afternoon run costs about 9 with NBA, NHL, NFL and soccer)
+  afternoonReserve: 10, // a morning run keeps this many credits back for every afternoon run left before the quota resets on the 1st (the afternoon run costs about 9 with NBA, NHL, NFL and soccer)
   sgoReserve: 150,      // leave this many SportsGameOdds entities untouched each month (free tier: 2,500)
   sgoTrackWindowHours: 8, // in --track runs, spend SportsGameOdds entities only on games starting within this many hours
   watchEdge: 0.015,     // a point and a half over the price: shown on the market board as "watch", never a pick
@@ -527,9 +527,9 @@ function afternoonsLeft(now) {
 /* fetch this sport's odds this run? { fetch, why }. o: { slot, espn: espnGames(), weekday (Eastern, 0 = Sunday), fixture,
    remaining (credits left, from the last response), afternoonsLeft }.
    1. the slot rule (slotAllows); 2. ESPN: a game inside the window fetches, none skips, and only when a day could not be
-   read and no game was found does the sport's `days` rule decide (ignored on fixtures); 3. the noon guard: a noon run
+   read and no game was found does the sport's `days` rule decide (ignored on fixtures); 3. the morning guard: a morning run
    spends only what the month can spare after RULES.afternoonReserve credits for every afternoon run left before the
-   reset, so when credits run short the noon runs give way first and the afternoon runs (closer to the evening games)
+   reset, so when credits run short the morning runs give way first and the afternoon runs (closer to the evening games)
    last to the 1st. */
 function fetchDecision(cfg, o) {
   if (!slotAllows(cfg, o.slot)) return { fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" };
@@ -539,9 +539,9 @@ function fetchDecision(cfg, o) {
   else if (e && !e.failed) return { fetch: false, why: "no game inside " + RULES.horizonHours + " hours on ESPN" };
   else if (!o.fixture && cfg.days && cfg.days.indexOf(o.weekday) === -1) return { fetch: false, why: "ESPN unreadable; not one of its days" };
   else why = "ESPN unreadable; " + (cfg.days ? "one of its days" : "every day");
-  if (o.slot === "noon" && o.remaining != null && o.afternoonsLeft != null) {
+  if (o.slot === "morning" && o.remaining != null && o.afternoonsLeft != null) {
     const keep = RULES.minRequestsLeft + o.afternoonsLeft * RULES.afternoonReserve;
-    if (o.remaining - oddsCost(cfg) < keep) return { fetch: false, why: "noon run gives way: " + o.remaining + " credits left, " + keep + " kept for the " + o.afternoonsLeft + " afternoon runs to the reset" };
+    if (o.remaining - oddsCost(cfg) < keep) return { fetch: false, why: "morning run gives way: " + o.remaining + " credits left, " + keep + " kept for the " + o.afternoonsLeft + " afternoon runs to the reset" };
   }
   return { fetch: true, why: why };
 }
@@ -616,7 +616,7 @@ async function run(opts) {
   for (const cfg of SPORTS) {
     if (active && !active.has(cfg.key)) { plan.push({ sport: cfg.key, fetch: false, why: "out of season (The Odds API lists it inactive)" }); continue; }
     if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); plan.push({ sport: cfg.key, fetch: false, why: "quota low" }); continue; }
-    /* the slot rule first (no ESPN call for a sport this run never fetches), then ESPN's schedule, then the noon guard */
+    /* the slot rule first (no ESPN call for a sport this run never fetches), then ESPN's schedule, then the morning guard */
     if (!slotAllows(cfg, opts.slot)) { plan.push({ sport: cfg.key, fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" }); continue; }
     const espn = await espnGames(ctxSource, cfg, now);
     const d = fetchDecision(cfg, { slot: opts.slot, espn: espn, weekday: etWeekday(now), fixture: opts.fixture, remaining: usage.remaining, afternoonsLeft: afternoonsLeft(now) });
@@ -689,8 +689,8 @@ async function run(opts) {
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
   marketRows.forEach(function (r) { r.pickId = pendingByKey[r.key] || null; r.status = r.pickId ? "pick" : isWatch(r) ? "watch" : "none"; delete r.key; });
-  /* a sport this run did not fetch (its slot, the noon guard, the quota) keeps its rows from the last file for games
-     still ahead, so Sunday's noon run never empties the NFL from the market board and the Games page an hour before
+  /* a sport this run did not fetch (its slot, the morning guard, the quota) keeps its rows from the last file for games
+     still ahead, so Sunday's morning run never empties the NFL from the market board and the Games page an hour before
      kickoff. Each carried row says when it was priced (`pricedAt`) and is re-flagged against the log as it stands now. */
   carriedRows(dataDir, plan, now, log).forEach(r => marketRows.push(r));
   marketRows.sort((a, b) => edgeNum(b) - edgeNum(a));
@@ -848,7 +848,7 @@ function parseArgs(argv) {
     else if (argv[i] === "--track") o.track = true;
     else if (argv[i] === "--out") o.out = argv[++i];
     else if (argv[i] === "--now") o.now = argv[++i];
-    else if (argv[i] === "--slot") o.slot = argv[++i]; /* noon | afternoon | manual (the workflow passes it; see SPORTS) */
+    else if (argv[i] === "--slot") o.slot = argv[++i]; /* morning | afternoon | manual (the workflow passes it; see SPORTS) */
     else if (argv[i] === "--verbose") VERBOSE = true;
   }
   return o;
