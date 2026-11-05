@@ -25,11 +25,16 @@ let base = '';
 const url = p => base + '/' + p;
 const fails = [];
 const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : '')); if (!ok) fails.push(name); };
+/* The site's one clock (EdgeLine.now) is pinned for the sample fixtures through window.EDGELINE_NOW, set before any page script runs.
+   The fixtures were written Wed 2026-11-04 9:00 AM ET (the market priced at 4:30 PM, prices checked at 4:00 PM); at 4:45 PM ET every
+   fixture game is still to start except two Wednesday soccer picks: p13 kicked off at 3:00 PM (live) and p14 at 1:00 PM (graded, a win). */
+const FIXTURE_NOW = Date.parse('2026-11-04T16:45:00-05:00');
+const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; }, at == null ? FIXTURE_NOW : at);
 (async () => {
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   base = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
-  const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(page);
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 
   // index: nav current, board, hero cards
@@ -245,7 +250,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // journal: local-only bet log
   const jctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const jp = await jctx.newPage(); const jerr = []; jp.on('pageerror', e => jerr.push(e.message));
+  const jp = await jctx.newPage(); await pinClock(jp); const jerr = []; jp.on('pageerror', e => jerr.push(e.message));
   jp.on('dialog', d => d.accept());
   await jp.goto(url('journal.html')); await jp.waitForTimeout(400);
   check('journal: empty state and calendar on first visit', (await jp.textContent('#j-list')).includes('first bet') && await jp.locator('#j-cal table.cal').count() === 1);
@@ -264,7 +269,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await jctx.close();
 
   // props research page (sample ESPN-shaped data with fixture lines from SportsGameOdds)
-  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const perr = []; pp.on('pageerror', e => perr.push(e.message));
+  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(pp); const perr = []; pp.on('pageerror', e => perr.push(e.message));
   await pp.goto(url('props.html')); await pp.waitForTimeout(500);
   const nProps = await pp.locator('#props-host .prop-card').count();
   check('props: player cards render with headshot, stat chips, history bars and signals', nProps >= 4 && (await pp.locator('#props-host .prop-card').first().locator('.headshot, .stat-chips [data-stat], svg.hist rect.hist-bar, .signals').count()) > 8, 'cards ' + nProps);
@@ -349,7 +354,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // never empty: with no picks at all, home, picks and digest fall back to the closest markets
   const ectx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const ep = await ectx.newPage(); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
+  const ep = await ectx.newPage(); await pinClock(ep); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
   await ep.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };' }));
   await ep.goto(url('index.html')); await ep.waitForTimeout(500);
   check('empty: home board shows the four closest markets with a status, retitled', (await ep.locator('#board-rows .board-row.board-market').count()) === 4 && (await ep.textContent('#board-title')) === 'Worth a look tonight' && (await ep.locator('#board-rows .board-row .rank').count()) === 4 && await ep.evaluate(() => { const v = [...document.querySelectorAll('#board-rows .board-row')].map(r => r.textContent); return true; }) && /Watch|No bet/.test(await ep.textContent('#board-rows')) && /markets priced in 8 games/.test(await ep.textContent('#board-foot')));
@@ -367,7 +372,8 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // live in-game status: ESPN scoreboard mocked, sample flag cleared so the poller runs
   const lctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const lp = await lctx.newPage(); const lerr = []; lp.on('pageerror', e => lerr.push(e.message)); lp.on('console', m => { if (m.type() === 'error') lerr.push(m.text()); });
+  /* the clock sits an hour into p1's game (Sun Nov 8, 4:25 PM ET kickoff), so the poller watches it; p1 is live and listed under In progress and results */
+  const lp = await lctx.newPage(); await pinClock(lp, Date.parse('2026-11-08T17:30:00-05:00')); const lerr = []; lp.on('pageerror', e => lerr.push(e.message)); lp.on('console', m => { if (m.type() === 'error') lerr.push(m.text()); });
   let espnHits = 0;
   await lp.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(path.join(root, 'scripts/fixtures/sample-picks.js'), 'utf8').replace('"sample": true', '"sample": false') }));
   await lp.route('**/site.api.espn.com/**', route => { espnHits++; route.fulfill({ contentType: 'application/json', body: JSON.stringify({ events: [{ id: 'x0', competitions: [{ status: { displayClock: '7:32', period: 3, type: { state: 'in', completed: false, shortDetail: '7:32 - 3rd' } }, competitors: [
@@ -384,7 +390,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await lctx.close();
 
   // daily digest: the slate grouped by start time, lead plays, copy text
-  const dp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); const derr = []; dp.on('pageerror', e => derr.push(e.message)); dp.on('console', m => { if (m.type() === 'error') derr.push(m.text()); });
+  const dp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(dp); const derr = []; dp.on('pageerror', e => derr.push(e.message)); dp.on('console', m => { if (m.type() === 'error') derr.push(m.text()); });
   await dp.goto(url('digest.html')); await dp.waitForTimeout(500);
   check('digest: nav current is Digest', (await dp.locator('.nav-links a[aria-current="page"]').textContent()) === 'Digest');
   check('digest: title names the day and the lede counts the board', (await dp.textContent('#digest-title')).startsWith('The slate for ') && /12 picks across \d sports/.test(await dp.textContent('#digest-lede')) && /biggest edge is/.test(await dp.textContent('#digest-lede')), await dp.textContent('#digest-lede'));
@@ -399,7 +405,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await dp.context().close();
 
   // subscribe section: the preview event renders from the data, the links point at the feeds
-  const sp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const sp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(sp);
   await sp.goto(url('index.html')); await sp.waitForTimeout(300);
   check('subscribe: preview event rendered with a title and sport badge', await sp.locator('#sub-preview-host .cal-title').count() === 1 && await sp.locator('#sub-preview-host .badge-sport').count() === 1);
   check('subscribe: calendar link is a webcal URL ending in picks.ics', /^webcal:\/\/.+\/picks\.ics$/.test(await sp.getAttribute('#sub-webcal', 'href') || ''));
@@ -409,7 +415,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   await sp.context().close();
 
   // team identity: logos, matchups, tint and faces (js/teams.js + data/teams.js + data/faces.js)
-  const ip = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  const ip = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(ip);
   await ip.goto(url('index.html')); await ip.waitForTimeout(500);
   check('teams: every top pick card carries a matchup with two logos', await ip.locator('#top-picks-grid article .pick-front .matchup').count() === 3 && await ip.locator('#top-picks-grid article .pick-front .matchup .team-logo').count() === 6);
   check('teams: logos come from ESPN, resized', (await ip.getAttribute('#top-picks-grid article .pick-front .matchup img.team-logo', 'src') || '').startsWith('https://a.espncdn.com/combiner/i?img='));
@@ -438,7 +444,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
   check('teams: digest rows carry the matchup', await ip.locator('#slate-host .digest-row .leg-id .matchup-sm').count() >= 10);
   check('teams: no page errors', errors.length === 0, errors.join(' | '));
   // phone board odds visible
-  const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage();
+  const ph = await (await browser.newContext({ viewport: { width: 400, height: 860 } })).newPage(); await pinClock(ph);
   await ph.goto(url('index.html'));
   check('phone: board odds visible', await ph.locator('.board-odds').first().isVisible());
   check('phone: no overflow', await ph.evaluate(() => document.documentElement.scrollWidth) <= 400);
@@ -449,7 +455,7 @@ const check = (name, ok, extra) => { console.log((ok ? 'PASS ' : 'FAIL ') + name
 
   // site search (js/search.js) and the Games page (games.html): find by sport, team, player or game, browse every line
   const sErr = []; const sctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-  const sp2 = await sctx.newPage(); sp2.on('pageerror', e => sErr.push(e.message)); sp2.on('console', m => { if (m.type() === 'error') sErr.push(m.text()); });
+  const sp2 = await sctx.newPage(); await pinClock(sp2); sp2.on('pageerror', e => sErr.push(e.message)); sp2.on('console', m => { if (m.type() === 'error') sErr.push(m.text()); });
   await sp2.goto(url('games.html')); await sp2.waitForTimeout(600);
   check('header: every page carries the Games link and the search button, and the Games link is current on its page', (await sp2.locator('.nav-links a[href="games.html"][aria-current="page"]').count()) === 1 && (await sp2.locator('.nav-actions [data-search-open]').count()) === 1);
   check('games: one card per game, game day first, then games with a side worth a bet, likeliest first, each with a rank and a day heading', (await sp2.locator('.game-card').count()) === 8 && (await sp2.locator('#games-host .day-divider').count()) >= 2 && await sp2.evaluate(() => { const E = window.EdgeLine, cards = [...document.querySelectorAll('.game-card')]; const rows = window.MARKET_DATA.rows; const byId = {}; rows.forEach(r => { (byId[r.eventId] = byId[r.eventId] || []).push(r); });

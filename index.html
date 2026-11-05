@@ -68,7 +68,9 @@
     <section class="board" id="board" aria-labelledby="board-title" data-tilt>
       <div class="board-head"><h2 class="live board-h" id="board-title">Today’s board</h2><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
       <div id="board-rows"></div>
+      <div id="board-earlier"></div>
       <div class="board-foot" id="board-foot"></div>
+      <p class="board-updated" id="board-updated"></p>
     </section>
   </div>
 </section>
@@ -296,41 +298,76 @@
 <script src="js/teams.js"></script>
 <script>
 (function () {
-  var T = window.EdgeLineTeams, E = window.EdgeLine, P = window.PICKS_DATA.picks, S = window.PERF_DATA;
-  var ranked = E.sortByProb(P);
-  /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
-  var fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
-  var shown = ranked.length ? ranked : fallback;
-  var summary = E.marketSummary();
+  var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA, S = window.PERF_DATA;
+  /* only games that have not started are offered; started picks move to the picks page's In progress and results (owner ask, 2026-11-05) */
+  var ranked, fallback, shown, summary;
+  function compute() {
+    ranked = E.sortByProb(E.openOnly(D.picks));
+    /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
+    fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
+    shown = ranked.length ? ranked : fallback;
+    summary = E.marketSummary();
+  }
+  function emptyText() {
+    return E.playedPicks().length ? "Every pick on the board has started: the scores and results are under In progress and results. New picks are published around noon ET." : "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET.";
+  }
 
   /* ticker: every pick (or the closest markets), twice, so the loop is seamless */
   var track = document.getElementById("ticker-track");
-  if (!shown.length) document.querySelector(".ticker").hidden = true;
-  [false, true].forEach(function (dup) {
-    var group = E.el("div", { class: "ticker-group" });
-    if (dup) group.setAttribute("aria-hidden", "true");
-    shown.forEach(function (p) {
-      group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
-        E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
-        T ? T.sideLogo(p, 20) : null,
-        E.el("span", { class: "t-pick", text: p.pick }),
-        E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
-        E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + (E.hasModel(p) ? " " + E.edgeText(p) : "") : E.edgeText(p) })
-      ]));
+  function renderTicker() {
+    track.textContent = "";
+    document.querySelector(".ticker").hidden = !shown.length;
+    [false, true].forEach(function (dup) {
+      var group = E.el("div", { class: "ticker-group" });
+      if (dup) group.setAttribute("aria-hidden", "true");
+      shown.forEach(function (p) {
+        group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
+          E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
+          T ? T.sideLogo(p, 20) : null,
+          E.el("span", { class: "t-pick", text: p.pick }),
+          E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
+          E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + (E.hasModel(p) ? " " + E.edgeText(p) : "") : E.edgeText(p) })
+        ]));
+      });
+      track.appendChild(group);
     });
-    track.appendChild(group);
-  });
+  }
 
   /* hero board: four best edges, each a link to its card; or the four closest markets when nothing clears the bar */
   var rows = document.getElementById("board-rows");
-  if (!ranked.length) {
-    document.getElementById("board-title").textContent = summary.markets ? "Worth a look tonight" : "Today's board";
-    if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
+  function renderBoard() {
+    rows.textContent = "";
+    document.getElementById("board-title").textContent = ranked.length || !summary.markets ? "Today’s board" : "Worth a look tonight";
+    if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: emptyText() }));
+    shown.slice(0, 4).forEach(function (p, i) {
+      rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
+        E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
+        E.el("div", { class: "board-pick" }, [
+          E.el("div", { class: "sel", text: p.pick }),
+          E.meta([p.event, p.market, p.isMarket ? E.statusLabel(p.status) : null], "ev")
+        ]),
+        E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
+        E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.edgeText(p) })
+      ]));
+    });
+    /* earlier today: the picks whose games have started, counted, with the way to their scores and results */
+    var earlier = document.getElementById("board-earlier"), ps = E.playedSummary();
+    earlier.textContent = "";
+    if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: "Earlier today" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
+    var foot = document.getElementById("board-foot");
+    foot.textContent = "";
+    if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none clears the " + E.barPts() + "-point bar. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
+    else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
+    else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
+     ["Units", E.signed(S.units, 1) + "u"],
+     ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
+      foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
+    });
   }
   /* subscribe: what the next calendar event looks like, built from the same data the feed is built from */
-  (function () {
+  var renderPreview = (function () {
     var sec = document.getElementById("subscribe"), host = document.getElementById("sub-preview-host");
-    if (!sec || !host) return;
+    if (!sec || !host) return function () {};
     var http = /^https?:$/.test(location.protocol);
     var site = http ? new URL(".", location.href).href : sec.getAttribute("data-site");
     var webcal = document.getElementById("sub-webcal");
@@ -343,6 +380,17 @@
         E.el("span", { class: "cal-mon", text: et(iso, { month: "short" }) })
       ]);
     }
+    Array.prototype.forEach.call(sec.querySelectorAll("[data-copy]"), function (btn) {
+      var label = btn.textContent, link = site + btn.getAttribute("data-copy");
+      btn.addEventListener("click", function () {
+        var done = function (ok) { btn.textContent = ok ? "Copied" : "Copy failed"; setTimeout(function () { btn.textContent = label; }, 1800); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
+        else done(false);
+      });
+    });
+    E.initTilt(sec);
+    return function () {
+    host.textContent = "";
     var next = ranked.slice().sort(function (a, b) { return (a.commence ? Date.parse(a.commence) : Infinity) - (b.commence ? Date.parse(b.commence) : Infinity); })[0];
     var gen = window.PICKS_DATA.generatedAt || new Date().toISOString();
     if (next) {
@@ -381,36 +429,8 @@
       ]));
       host.appendChild(E.el("p", { class: "cal-foot" }, [E.el("span", { text: "The moment a side clears the bar it lands here at tip-off, with its price and book, and " }), E.el("strong", { text: "Won" }), E.el("span", { text: " or " }), E.el("strong", { class: "neg", text: "Lost" }), E.el("span", { text: " written in after the final." })]));
     }
-    Array.prototype.forEach.call(sec.querySelectorAll("[data-copy]"), function (btn) {
-      var label = btn.textContent, link = site + btn.getAttribute("data-copy");
-      btn.addEventListener("click", function () {
-        var done = function (ok) { btn.textContent = ok ? "Copied" : "Copy failed"; setTimeout(function () { btn.textContent = label; }, 1800); };
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(false); });
-        else done(false);
-      });
-    });
-    E.initTilt(sec);
+    };
   })();
-
-  shown.slice(0, 4).forEach(function (p, i) {
-    rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
-      E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
-      E.el("div", { class: "board-pick" }, [
-        E.el("div", { class: "sel", text: p.pick }),
-        E.meta([p.event, p.market, p.isMarket ? E.statusLabel(p.status) : null], "ev")
-      ]),
-      E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
-      E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.edgeText(p) })
-    ]));
-  });
-  var foot = document.getElementById("board-foot");
-  if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none clears the 1-point bar. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
-  else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
-  else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
-   ["Units", E.signed(S.units, 1) + "u"],
-   ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
-    foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
-  });
 
   /* the edge field: every priced side as a star against the bar (deferred script, so wait for it) */
   function mountField() {
@@ -426,15 +446,32 @@
   }
   if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);
 
-  /* play of the day and parlay of the day, as the pipeline chose them */
-  document.getElementById("potd-host").appendChild(E.potdCard(window.PICKS_DATA.playOfDay || null));
-  document.getElementById("parlay-host").appendChild(E.parlayCard(window.PICKS_DATA.parlayOfDay || null));
+  /* play of the day and parlay of the day, as the pipeline chose them; once their games start they show where they stand */
+  function renderPlays() {
+    var ph = document.getElementById("potd-host"), pl = document.getElementById("parlay-host");
+    ph.textContent = ""; pl.textContent = "";
+    ph.appendChild(E.potdCard(D.playOfDay || null));
+    pl.appendChild(E.parlayCard(D.parlayOfDay || null));
+    E.initTilt(ph); E.initTilt(pl);
+  }
 
   /* top three picks by edge, or the three closest markets */
-  var grid = document.getElementById("top-picks-grid");
-  if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET." }));
-  if (!ranked.length && shown.length) { var th = document.querySelector("#top-picks h2"); if (th) th.textContent = "The likeliest sides right now"; var tp = document.querySelector("#top-picks .section-head p"); if (tp) tp.textContent = "No market clears the 1-point bar yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means within half a point of the bar. They are not plays."; }
-  shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
+  var grid = document.getElementById("top-picks-grid"), th = document.querySelector("#top-picks h2"), tp = document.querySelector("#top-picks .section-head p");
+  var topTitle = th ? th.textContent : "", topHow = tp ? tp.textContent : "";
+  function renderTop() {
+    grid.textContent = "";
+    if (th) th.textContent = !ranked.length && shown.length ? "The likeliest sides right now" : topTitle;
+    if (tp) tp.textContent = !ranked.length && shown.length ? "No market clears the " + E.barPts() + "-point bar yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means " + E.watchPts() + " points or more over the price, short of the bar. They are not plays." : topHow;
+    if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: emptyText() }));
+    shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
+    E.initTilt(grid);
+  }
+
+  function renderAll() { compute(); renderTicker(); renderBoard(); renderPreview(); renderPlays(); renderTop(); }
+  renderAll();
+  E.updateLine(document.getElementById("board-updated"));
+  /* once a minute: a game that starts leaves the board, the ticker and the top three, and joins the Earlier today count */
+  E.onStateChange(renderAll);
 
   /* edge calculator: the slider walks a list of valid American odds (no -99..+99 dead zone) */
   var ODDS = [];

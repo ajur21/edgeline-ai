@@ -49,7 +49,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#potd-host">Start here</a><a href="#top3">Likeliest three</a><a href="#slate-host">The slate</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#potd-host">Start here</a><a href="#top3">Likeliest three</a><a href="#slate-host">The slate</a><a href="#played">In progress and results</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -98,6 +98,13 @@
       </div>
     </div>
     <div id="slate-host"></div>
+    <div class="section-head row digest-played-head" id="played">
+      <div>
+        <h2>In progress and results</h2>
+        <p class="muted">A pick leaves the slate when its game starts and is marked here: live first, then awaiting a result, then graded with the final score and units.</p>
+      </div>
+    </div>
+    <div id="played-host"></div>
     <div class="notice digest-foot">
       <strong>How to read it.</strong> To hit is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. Edge is that probability minus the probability implied by the price shown, in points. Confidence follows the edge: 3 points is a Lean, 5 Medium, 8 High. Nothing is graded against other books’ prices. Once games start, the live line under a pick shows the score and where the pick stands; results are graded officially from final scores the next morning.
     </div>
@@ -113,16 +120,23 @@
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA || { picks: [] }, S = window.PERF_DATA || null;
-  var realPicks = E.sortByProb(D.picks || []);
-  var MS = E.marketSummary();
-  /* nothing clears the bar: the digest lists the closest markets instead, labelled Watch / No bet, never empty */
-  var fallbackMode = !realPicks.length && MS.markets > 0;
-  var P = realPicks.length ? realPicks : E.marketRows({ limit: 12, oneSidePerMarket: true });
+  /* the slate lists games that have not started; a started or graded pick is marked under In progress and results (owner ask, 2026-11-05) */
+  var realPicks, MS, fallbackMode, P, ordered, played = [], groups = [];
+  function compute() {
+    realPicks = E.sortByProb(E.openOnly(D.picks || []));
+    MS = E.marketSummary();
+    /* nothing clears the bar: the digest lists the closest markets instead, labelled Watch / No bet, never empty */
+    fallbackMode = !realPicks.length && MS.markets > 0;
+    P = realPicks.length ? realPicks : E.marketRows({ limit: 12, oneSidePerMarket: true });
+    /* owner rule: likeliest first, everywhere; the start time rides on each line */
+    ordered = E.sortByProb(P);
+    played = E.playedPicks();
+  }
   var ET = "America/New_York";
   var gen = new Date(D.generatedAt), now = isNaN(gen) ? new Date() : gen;
   var dayLabel = now.toLocaleDateString("en-US", { timeZone: ET, weekday: "long", month: "long", day: "numeric" });
   document.getElementById("digest-title").textContent = "The slate for " + dayLabel;
-  if (!isNaN(gen)) document.getElementById("generated-at").textContent = "Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }) + ". Prices refresh around noon and 4:30 PM ET.";
+  E.updateLine(document.getElementById("generated-at"));
 
   /* ---------- ordering: by start time; picks without a timestamp are placed from their label ---------- */
   var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -140,22 +154,26 @@
   function slotLabel(p) {
     var t = Date.parse(p.commence);
     if (!Number.isFinite(t)) return p.start || "Start time to be confirmed";
-    var d = new Date(t), day = d.toLocaleDateString("en-CA", { timeZone: ET }), today = now.toLocaleDateString("en-CA", { timeZone: ET });
-    var tomorrow = new Date(now.getTime() + 864e5).toLocaleDateString("en-CA", { timeZone: ET });
+    var ref = new Date(E.now()), d = new Date(t), day = d.toLocaleDateString("en-CA", { timeZone: ET }), today = ref.toLocaleDateString("en-CA", { timeZone: ET });
+    var tomorrow = new Date(ref.getTime() + 864e5).toLocaleDateString("en-CA", { timeZone: ET });
     var time = d.toLocaleTimeString("en-US", { timeZone: ET, hour: "numeric", minute: "2-digit" }) + " ET";
     return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : d.toLocaleDateString("en-US", { timeZone: ET, weekday: "short", month: "short", day: "numeric" })) + ", " + time;
   }
-  /* owner rule: likeliest first, everywhere; the start time rides on each line */
-  var ordered = E.sortByProb(P);
+  /* a day heading where the game day changes (owner rule: a play from tomorrow never sits above one from today) */
+  function dayBreaks(picks) { var spans = new Set(picks.map(E.dayKey)).size > 1, prev = null; return picks.map(function (p, i) { var k = E.dayKey(p), brk = spans && (i === 0 || k !== prev); prev = k; return brk ? k : null; }); }
+  var slateTitle = document.querySelector(".digest-slate .section-head h2").textContent, top3Title = document.querySelector("#top3-head h2").textContent;
 
+  function render() {
+  compute();
   /* ---------- lede + tiles ---------- */
   var sports = {}; P.forEach(function (p) { sports[p.sport] = (sports[p.sport] || 0) + 1; });
   var sportList = Object.keys(sports).sort(function (a, b) { return sports[b] - sports[a]; });
   var high = P.filter(function (p) { return p.confidence === "High"; }).length;
   var avgEdge = P.length ? P.reduce(function (s, p) { return s + E.edgeOf(p); }, 0) / P.length : 0;
   var lede = document.getElementById("digest-lede");
+  lede.textContent = "";
   if (!P.length) {
-    lede.textContent = "Nothing on the board right now. Prices refresh around noon and 4:30 PM ET; when an edge appears it lands here.";
+    lede.textContent = played.length ? "Every pick on today’s board has started; where each stands is under In progress and results below. New picks are published around noon ET." : "Nothing on the board right now. Prices refresh around noon and 4:30 PM ET; when an edge appears it lands here.";
   } else if (fallbackMode) {
     var closest = P[0];
     lede.textContent = "";
@@ -168,6 +186,7 @@
      sportList.length > 1 ? sportList[0] + " carries the most action with " + sports[sportList[0]] + " picks. " : "",
      "First start: " + slotLabel(first) + "."].forEach(function (c) { if (c) lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   }
+  if (P.length && played.length) lede.appendChild(document.createTextNode(" " + played.length + (played.length === 1 ? " pick has" : " picks have") + " already started: see In progress and results."));
   var tiles = fallbackMode ? [
     { label: "Picks", value: "0", sub: "Nothing clears the " + E.barPts() + "-point bar" },
     { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games: " + MS.sports.join(", ") },
@@ -181,15 +200,20 @@
   tiles.push(last ? { label: "Last results", value: last.wins + "-" + last.losses + (last.pushes ? "-" + last.pushes : ""), sub: E.signed(last.units, 2) + "u on " + new Date(last.date + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) + (S.record ? " · 30 days " + S.record.wins + "-" + S.record.losses + ", " + E.signed(S.units, 1) + "u" : "") }
                    : { label: "Last results", value: "—", sub: "Results appear the morning after the first picks settle" });
   var th = document.getElementById("digest-tiles");
+  th.textContent = "";
   tiles.forEach(function (t) { th.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [E.el("div", { class: "stat-label", text: t.label }), E.el("div", { class: "stat-value", text: t.value }), E.el("div", { class: "stat-sub", text: t.sub })])); });
 
   /* ---------- lead plays ---------- */
-  document.getElementById("potd-host").appendChild(E.potdCard(D.playOfDay || null));
-  document.getElementById("parlay-host").appendChild(E.parlayCard(D.parlayOfDay || null));
+  var potdHost = document.getElementById("potd-host"), parlayHost = document.getElementById("parlay-host");
+  potdHost.textContent = ""; parlayHost.textContent = "";
+  potdHost.appendChild(E.potdCard(D.playOfDay || null));
+  parlayHost.appendChild(E.parlayCard(D.parlayOfDay || null));
+  /* the likeliest three are bets: open games only */
   var top3 = document.getElementById("top3");
+  top3.textContent = "";
   var byEv = ordered.slice(0, 3);
-  if (!byEv.length) { document.getElementById("top3-head").hidden = true; top3.hidden = true; }
-  if (fallbackMode) document.querySelector("#top3-head h2").textContent = "The three likeliest sides";
+  document.getElementById("top3-head").hidden = !byEv.length; top3.hidden = !byEv.length;
+  document.querySelector("#top3-head h2").textContent = fallbackMode ? "The three likeliest sides" : top3Title;
   byEv.forEach(function (p, i) {
     var ev = !E.hasModel(p) ? null : p.ev == null ? p.modelProb * E.decimalOdds(p.odds) - 1 : p.ev;
     top3.appendChild(E.el("li", {}, [
@@ -199,14 +223,13 @@
       E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.probText(p) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev != null && ev <= 0 ? " neg" : ""), text: ev == null ? "—" : E.signed(ev * 100, 1) + "%" })])
     ]));
   });
-  if (fallbackMode) document.querySelector(".digest-slate .section-head h2").textContent = "The watch list, likeliest first";
+  document.querySelector(".digest-slate .section-head h2").textContent = fallbackMode ? "The watch list, likeliest first" : slateTitle;
 
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
-  if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: "No picks to list. Check back after the next refresh." }));
-  var groups = ordered.length ? [{ label: "Today first; positive edge, then likeliest", picks: ordered }] : [];
-  /* a day heading where the game day changes (owner rule: a play from tomorrow never sits above one from today) */
-  function dayBreaks(picks) { var spans = new Set(picks.map(E.dayKey)).size > 1, prev = null; return picks.map(function (p, i) { var k = E.dayKey(p), brk = spans && (i === 0 || k !== prev); prev = k; return brk ? k : null; }); }
+  host.textContent = "";
+  if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: played.length ? "Every pick has started; see In progress and results below." : "No picks to list. Check back after the next refresh." }));
+  groups = ordered.length ? [{ label: "Today first; positive edge, then likeliest", picks: ordered }] : [];
   groups.forEach(function (g) {
     var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: g.picks.length + (g.picks.length === 1 ? " pick" : " picks") })])]);
     var breaks = dayBreaks(g.picks);
@@ -224,7 +247,21 @@
     });
     host.appendChild(sec);
   });
+
+  /* ---------- in progress and results: started picks marked, never dropped ---------- */
+  var playedHost = document.getElementById("played-host");
+  playedHost.textContent = "";
+  if (!played.length) playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. A pick moves here when its game starts, with the live score, then the result." }));
+  else {
+    var box = E.el("div", { class: "card played-list" }), pb = dayBreaks(played);
+    played.forEach(function (p, i) { if (pb[i]) box.appendChild(E.dayDivider(pb[i])); box.appendChild(E.playedRow(p, i + 1)); });
+    playedHost.appendChild(box);
+  }
   E.initTilt(document);
+  }
+  render();
+  /* once a minute: a pick whose game starts leaves the slate and the likeliest three and is marked under In progress and results */
+  E.onStateChange(render);
 
   /* ---------- print and copy ---------- */
   document.getElementById("digest-print").addEventListener("click", function () { window.print(); });
@@ -232,7 +269,7 @@
     var lines = ["EdgeLine AI · " + dayLabel, ""];
     if (!P.length) lines.push("Nothing on the board.");
     if (fallbackMode) lines.push("No pick clears the " + E.barPts() + "-point bar. Watch list (closest markets, not plays):", "");
-    if (D.playOfDay) lines.push("Play of the day: " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event);
+    if (D.playOfDay) lines.push("Play of the day: " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event + (E.isOpen(D.playOfDay) ? "" : " · " + E.stateText(D.playOfDay)));
     if (D.parlayOfDay) lines.push("Parlay of the day (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
@@ -241,6 +278,12 @@
       g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + p.confidence + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%" : "no model yet") + " · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
+    /* started and graded picks, marked by state (no rank: they are no longer bets) */
+    if (played.length) {
+      lines.push("In progress and results");
+      played.forEach(function (p) { lines.push("  " + E.stateText(p) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + (E.scoreText(p) ? " · final " + E.scoreText(p) : "") + (E.unitsText(p) ? " · " + E.unitsText(p) : "") + " · " + p.event); });
+      lines.push("");
+    }
     lines.push(E.gradeRule, "Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
     return lines.join("\n");
   }
@@ -250,7 +293,7 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
     else done(false);
   });
-  window.EdgeLineDigest = { asText: asText, groups: groups };
+  window.EdgeLineDigest = { asText: asText, get groups() { return groups; }, get played() { return played; } };
 })();
 </script>
 

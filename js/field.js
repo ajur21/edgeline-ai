@@ -24,23 +24,23 @@
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* the rows to plot: every side, with pick status decided by the current board */
+  /* the rows to plot: every side of a game that has not started, with pick status decided by the current board */
   function rows() {
     const E = window.EdgeLine, m = E.marketData();
     const onBoard = {};
     ((window.PICKS_DATA || {}).picks || []).forEach(function (p) { onBoard[p.id] = true; });
-    return (m.rows || []).map(function (r) {
+    return (m.rows || []).filter(E.isOpen).map(function (r) {
       const isPick = !!(r.pickId && onBoard[r.pickId]), modelled = E.hasModel(r) && r.edge != null && Number.isFinite(Number(r.edge));
       const status = isPick ? "pick" : modelled && Number(r.edge) >= E.watchOf() ? "watch" : "none";
       return { r: r, x: E.impliedProb(r.odds), y: modelled ? Number(r.edge) * 100 : NaN, status: status, pickId: isPick ? r.pickId : null };
     }).filter(function (d) { return Number.isFinite(d.x) && Number.isFinite(d.y); });
   }
   /* sides priced but not yet modelled: they have a price and no edge, so they are counted beside the field, never plotted */
-  function unmodelled() { const E = window.EdgeLine; return (E.marketData().rows || []).filter(function (r) { return !E.hasModel(r); }).length; }
+  function unmodelled() { const E = window.EdgeLine; return (E.marketData().rows || []).filter(function (r) { return E.isOpen(r) && !E.hasModel(r); }).length; }
 
   function render(host, opts) {
     opts = opts || {};
-    const E = window.EdgeLine, m = E.marketData();
+    const E = window.EdgeLine, m = E.marketData(), sum = E.marketSummary();
     const data = rows(), noModel = unmodelled();
     host.replaceChildren();
     if (!data.length) { host.hidden = true; return null; }
@@ -60,7 +60,7 @@
     const best = sorted[0];
     const label = picks ? picks + (picks === 1 ? " side clears the bar" : " sides clear the bar") : "none clears the bar";
     const svg = s("svg", { viewBox: "0 0 " + W + " " + H, role: "img", class: "field-svg" + (narrow ? " narrow" : ""),
-      "aria-label": data.length + " sides priced across " + (m.games || 0) + " games and given our probability from the game data, " + label + ". " + watching + " on watch, " + E.watchPts() + " points or more over the price." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
+      "aria-label": data.length + " sides priced across " + (sum.games || 0) + " games and given our probability from the game data, " + label + ". " + watching + " on watch, " + E.watchPts() + " points or more over the price." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
 
     /* the pick zone and its horizons */
     svg.appendChild(s("rect", { x: padL, y: padT - 6, width: W - padL - padR, height: Math.max(0, sy(bar) - padT + 6), class: "field-zone" }));
@@ -149,6 +149,8 @@
       note.appendChild(E.el("span", { text: " at " + best.r.book + ", " + E.signed(best.y, 1) + " pts over the price" + (picks ? "." : gap > 0 ? ", " + gap.toFixed(1) + " short." : ".") }));
     }
     if (noModel) note.appendChild(E.el("span", { class: "field-nomodel", text: " " + noModel + (noModel === 1 ? " side has" : " sides have") + " no model yet and no edge." }));
+    /* a game that has started leaves the field; say so rather than let its stars vanish */
+    if (sum.started) note.appendChild(E.el("span", { class: "field-nomodel", text: " " + E.startedNote(sum) }));
     const foot = E.el("div", { class: "field-foot" }, [legend, note]);
     host.appendChild(foot);
 
@@ -159,7 +161,7 @@
       }, { threshold: 0.2 });
       io.observe(host);
     }
-    return { sides: data.length, games: m.games || 0, picks: picks, watch: watching, unmodelled: noModel, best: best ? best.r : null, bar: bar };
+    return { sides: data.length, games: sum.games || 0, picks: picks, watch: watching, unmodelled: noModel, started: sum.started, best: best ? best.r : null, bar: bar };
   }
 
   function tooltip(host) {
@@ -173,15 +175,17 @@
   /* re-render when the host crosses the narrow breakpoint (phone vs desktop viewBox) */
   function mount(host, opts) {
     let wasNarrow = null, timer = null;
-    const draw = function () {
+    const draw = function (force) {
       const narrow = host.clientWidth > 0 && host.clientWidth < 560;
-      if (narrow === wasNarrow) return;
+      if (narrow === wasNarrow && force !== true) return;
       wasNarrow = narrow;
       const out = render(host, opts);
       if (opts && typeof opts.onRender === "function") opts.onRender(out);
     };
     draw();
     window.addEventListener("resize", function () { clearTimeout(timer); timer = setTimeout(draw, 150); });
+    /* a game that starts leaves the field at the next minute's check */
+    if (window.EdgeLine.onStateChange) window.EdgeLine.onStateChange(function () { draw(true); });
   }
 
   window.EdgeLineField = { render: render, mount: mount, rows: rows };

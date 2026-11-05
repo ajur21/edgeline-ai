@@ -122,7 +122,8 @@
   }
   let timer = null, anyLive = false;
   async function refresh() {
-    const now = Date.now();
+    /* the site's one clock (EdgeLine.now), so a pinned test clock and the pages agree on which games have started */
+    const now = window.EdgeLine && window.EdgeLine.now ? window.EdgeLine.now() : Date.now();
     const picks = picksOnPage().filter(p => inWindow(p, now));
     anyLive = false;
     for (const p of picks) {

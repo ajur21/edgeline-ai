@@ -50,7 +50,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks">All picks</a><a href="#market">Market board</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks">All picks</a><a href="#played">In progress and results</a><a href="#market">Market board</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -126,6 +126,14 @@
     <h2 class="visually-hidden">Picks</h2>
     <div id="picks-host"></div>
 
+    <div class="section-head row played-head" id="played">
+      <div>
+        <h2>In progress and results</h2>
+        <p class="muted how-to">A pick leaves the list above the moment its game starts and lands here, so it never vanishes. Live games first, then the ones past their usual length and awaiting a result, then the graded ones with the final score and units won or lost. Within each, sides worth a bet first, then likeliest. Grades are official once the pipeline settles them from final scores.</p>
+      </div>
+    </div>
+    <div class="played-wrap" id="played-host"></div>
+
     <div class="section-head row market-head" id="market">
       <div>
         <h2>Every market we priced</h2>
@@ -179,11 +187,8 @@
   var view = "cards";
   var fs = document.getElementById("f-sport"), fm = document.getElementById("f-market"),
       fc = document.getElementById("f-conf"), fe = document.getElementById("f-edge"), fo = document.getElementById("f-sort");
-  var gen = new Date(D.generatedAt);
-  if (!isNaN(gen)) {
-    document.getElementById("generated-at").textContent = "Updated " + gen.toLocaleString(undefined,
-      { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
-  }
+  /* picks published, when the numbers last moved, when the next run is due (kept current once a minute) */
+  E.updateLine(document.getElementById("generated-at"));
   function uniq(key) { return P.map(function (p) { return p[key]; }).filter(function (v, i, a) { return a.indexOf(v) === i; }); }
   uniq("sport").forEach(function (v) { fs.appendChild(E.el("option", { value: v, text: v })); });
   uniq("market").forEach(function (v) { fm.appendChild(E.el("option", { value: v, text: v })); });
@@ -197,9 +202,10 @@
   var sortLabel = { edge: "edge", model: "game day, then our probability with positive edge first", odds: "odds", start: "start time" };
   /* the day headings ride on the orders that keep days together (owner rule: today's plays before tomorrow's) */
   function daysShown(sortValue) { return !sortValue || sortValue === "model" || sortValue === "start"; }
+  /* only games that have not started are listed (and offered); a started pick moves to In progress and results */
   function filtered() {
     var minEdge = Number(fe.value) / 100, conf = fc.value;
-    return E.sortByProb(P).filter(function (p) {
+    return E.sortByProb(E.openOnly(P)).filter(function (p) {
       if (fs.value && p.sport !== fs.value) return false;
       if (fm.value && p.market !== fm.value) return false;
       if (conf && confRank[p.confidence] < confRank[conf]) return false;
@@ -208,14 +214,14 @@
     }).sort(sorters[fo.value] || sorters.model);
   }
   function render() {
-    var list = filtered();
+    var list = filtered(), open = E.openOnly(P), played = E.playedPicks().length;
     host.textContent = "";
-    summary.textContent = P.length ? list.length + " of " + P.length + " picks shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." : "";
-    if (!list.length && !P.length) {
-      /* nothing clears the bar: show the closest markets as cards, clearly labelled, so the page is never bare */
+    summary.textContent = open.length ? list.length + " of " + open.length + " picks shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." + (played ? " " + played + (played === 1 ? " pick has" : " picks have") + " started: see In progress and results." : "") : "";
+    if (!list.length && !open.length) {
+      /* nothing clears the bar (or every pick has started): show the closest open markets as cards, clearly labelled, so the page is never bare */
       var near = E.marketRows({ limit: 6, oneSidePerMarket: true });
       var s = E.marketSummary();
-      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: "No pick clears the " + E.barPts() + "-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games were priced on our probability from the game data. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means " + E.watchPts() + " points or more over the price, short of the bar. They are not plays." : "The market board fills at the next price refresh."]));
+      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: played ? "Every pick on the board has started; they are under In progress and results below. " : "No pick clears the " + E.barPts() + "-point bar right now. " }), s.markets ? s.markets + " markets across " + s.games + " games " + (played ? "that have not started yet " : "") + "were priced on our probability from the game data. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means " + E.watchPts() + " points or more over the price, short of the bar. They are not plays." : played ? "New picks are published around noon ET." : "The market board fills at the next price refresh."]));
       if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }), spans2 = new Set(near.map(E.dayKey)).size > 1, prev2 = null; near.forEach(function (p, i) { var k = E.dayKey(p), newDay = i === 0 || k !== prev2; prev2 = k; if (newDay && spans2) g2.appendChild(E.dayDivider(k)); if (!newDay && !(E.edgeOf(p) > 0) && E.edgeOf(near[i - 1]) > 0) g2.appendChild(E.el("p", { class: "grid-divider", text: "Priced against you from here: our probability sits below the price" })); var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
       return;
     }
@@ -233,8 +239,9 @@
   function highlightFromHash() {
     var id = location.hash.replace("#", "").replace(/[^\w-]/g, "");
     if (!id) return;
-    var card = host.querySelector('[data-id="' + id + '"]');
-    if (!card && P.some(function (p) { return p.id === id; })) {
+    /* a pick whose game has started is under In progress and results */
+    var card = host.querySelector('[data-id="' + id + '"]') || playedHost.querySelector('[data-id="' + id + '"]');
+    if (!card && E.openOnly(P).some(function (p) { return p.id === id; })) {
       /* the pick exists but a filter hides it: clear filters so the link lands */
       fs.value = ""; fm.value = ""; fc.value = ""; fe.value = "0"; setView("cards");
       card = host.querySelector('[data-id="' + id + '"]');
@@ -255,7 +262,23 @@
   }
   vc.addEventListener("click", function () { setView("cards"); });
   vt.addEventListener("click", function () { setView("table"); });
+
+  /* ---------- in progress and results: the picks whose games have started, live first, then awaiting, then graded ---------- */
+  var playedHost = document.getElementById("played-host");
+  function renderPlayed() {
+    var list = E.playedPicks();
+    playedHost.textContent = "";
+    if (!list.length) {
+      var first = E.openOnly(P).map(E.startMs).filter(Number.isFinite).sort(function (a, b) { return a - b; })[0];
+      playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. " + (first ? "The first game on the board starts " + E.clockET(first) + "; its pick moves here at the start, with the live score, then the result." : "When a game on the board starts, its pick moves here with the live score, then the result.") }));
+      return;
+    }
+    var box = E.el("div", { class: "card played-list" }), spans = new Set(list.map(E.dayKey)).size > 1, prev = null;
+    list.forEach(function (p, i) { var k = E.dayKey(p); if (spans && (i === 0 || k !== prev)) box.appendChild(E.dayDivider(k)); prev = k; box.appendChild(E.playedRow(p, i + 1)); });
+    playedHost.appendChild(box);
+  }
   render();
+  renderPlayed();
   highlightFromHash();
 
   /* ---------- market board: every priced market, pick or not ---------- */
@@ -272,6 +295,8 @@
   function marketFiltered() {
     var q = mq.value.trim().toLowerCase();
     return M.rows.filter(function (r) {
+      /* a game that has started is off the board (the Games page lists it under Live now or Finished) */
+      if (!E.isOpen(r)) return false;
       if (ms.value && r.sport !== ms.value) return false;
       if (mm.value && r.market !== mm.value) return false;
       if (mst.value === "positive" && !(E.rowEdge(r) > 0)) return false;
@@ -285,7 +310,13 @@
     mHost.textContent = ""; mMore.textContent = "";
     var sub = document.getElementById("market-sub"); sub.textContent = "";
     if (!M.rows.length) { sub.textContent = "The market board fills at the next price refresh."; mHost.appendChild(E.el("div", { class: "card empty", text: "Nothing priced yet." })); return; }
-    [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (s.generatedAt ? " at " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "") + ". " + s.picks + " clear the " + s.barPts + "-point bar (picks), " + s.watch + " sit " + s.watchPts + " points or more over the price (watch). Best price and our probability from the game data for every side, " + (mSortLabel[mso.value] || mSortLabel.model) + ". The market's own number shows on hover, for reference only; it takes no part in the grade." + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet, so no probability and no edge." : "") + (rows.length !== M.rows.length ? " Showing " + rows.length + "." : "")].forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    var gone = E.startedNote(s), openN = s.markets;
+    if (!openN) {
+      [E.el("strong", { text: "Every game on this board has started. " }), gone + " The next full pricing run is " + E.aboutET(E.nextRun(true)) + "; until then the ", E.el("a", { href: "games.html", text: "Games page" }), " shows where each one stands."].forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+      mHost.appendChild(E.el("div", { class: "card empty", text: "Nothing left to bet from the last pricing run." }));
+      return;
+    }
+    [E.el("strong", { text: s.markets + " markets in " + s.games + " games" }), " priced" + (s.generatedAt ? " at " + s.generatedAt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "") + ". " + s.picks + " clear the " + s.barPts + "-point bar (picks), " + s.watch + " sit " + s.watchPts + " points or more over the price (watch). Best price and our probability from the game data for every side, " + (mSortLabel[mso.value] || mSortLabel.model) + ". The market's own number shows on hover, for reference only; it takes no part in the grade." + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet, so no probability and no edge." : "") + (rows.length !== openN ? " Showing " + rows.length + "." : "") + (gone ? " " + gone + " " : "")].concat(gone ? [E.el("a", { href: "games.html", text: "Where they stand" })] : []).forEach(function (c) { sub.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     if (!rows.length) { mHost.appendChild(E.el("div", { class: "card empty", text: "No markets match these filters." })); return; }
     mHost.appendChild(E.marketTable(rows.slice(0, mShown), { pickHref: "#", divider: mso.value === "model" || !mso.value ? "Priced against you from here: our probability sits below the price" : null, dayDivider: daysShown(mso.value), spansDays: new Set(rows.map(E.dayKey)).size > 1 }));
     if (rows.length > mShown) { var b = E.el("button", { type: "button", class: "btn btn-secondary btn-sm", text: "Show " + Math.min(40, rows.length - mShown) + " more of " + rows.length }); b.addEventListener("click", function () { mShown += 40; renderMarket(); }); mMore.appendChild(b); }
@@ -302,11 +333,13 @@
   function sameLegs(a, b) { return a && b && a.legs.map(function (l) { return l.id; }).sort().join() === b.legs.map(function (l) { return l.id; }).sort().join(); }
   function renderParlays() {
     parlaysHost.textContent = "";
-    /* likeliest first; the parlay of the day (highest EV) is always shown, at its real rank or appended with it */
-    var all = E.bestParlays(P, { size: parlaySize || null, limit: 100000 }), list = all.slice(0, 6);
+    /* likeliest first, open games only; the parlay of the day (highest EV) is always shown, at its real rank or appended with it */
+    var open = E.openOnly(P), all = E.bestParlays(open, { size: parlaySize || null, limit: 100000 }), list = all.slice(0, 6);
     var potdAt = all.findIndex(function (par) { return sameLegs(par, D.parlayOfDay); });
     if (potdAt >= 6) list.push(Object.assign({ _rank: potdAt + 1 }, all[potdAt]));
-    if (!list.length) { parlaysHost.appendChild(P.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); E.initTilt(parlaysHost); return; }
+    /* once a leg of the parlay of the day starts it can no longer be ranked or loaded: it is shown as it stands, last */
+    var under = D.parlayOfDay && (D.parlayOfDay.legs || []).some(function (l) { return !E.isOpen(E.legAsPick(l)); }) ? E.parlayCard(D.parlayOfDay, { title: "Parlay of the day, under way", tag: "Parlay of the day" }) : null;
+    if (!list.length) { parlaysHost.appendChild(open.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); if (under) parlaysHost.appendChild(under); E.initTilt(parlaysHost); return; }
     list.forEach(function (par, i) {
       var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + ": " + E.pct(par.fairProb) + " to hit, " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
       card.querySelector("[data-load-parlay]").addEventListener("click", function () {
@@ -316,6 +349,7 @@
       });
       parlaysHost.appendChild(card);
     });
+    if (under) parlaysHost.appendChild(under);
     E.initTilt(parlaysHost);
   }
   document.querySelectorAll("#parlay-size [data-size]").forEach(function (btn) {
@@ -333,11 +367,26 @@
   function openSlip(open) { slipEl.hidden = !open; slipToggle.hidden = open; slipToggle.setAttribute("aria-expanded", String(open)); if (open) renderSlip(); }
   function stakeValue() { var n = Number((document.getElementById("slip-stake") || {}).value); return Number.isFinite(n) && n > 0 ? n : 10; }
   var stake = 10;
+  /* a leg whose game has started (or that left the board) comes out of the slip, and the slip says which */
+  var droppedNote = "", pruning = false;
+  function pruneSlip() {
+    var closed = E.slip.closed();
+    if (!closed.length) return false;
+    var byId = {}; P.forEach(function (p) { byId[p.id] = p; });
+    var started = closed.filter(function (id) { return byId[id]; }), gone = closed.length - started.length;
+    droppedNote = (started.length ? "Removed " + started.length + (started.length === 1 ? " leg whose game has started: " : " legs whose games have started: ") + started.map(function (id) { return byId[id].pick + " (" + byId[id].event + ")"; }).join(", ") + ". A game in progress cannot be bet at these prices." : "") +
+      (gone ? (started.length ? " " : "") + gone + (gone === 1 ? " leg is" : " legs are") + " no longer on the board and came out too." : "");
+    pruning = true;
+    try { E.slip.set(E.slip.open()); } finally { pruning = false; }
+    return true;
+  }
   function renderSlip() {
+    if (pruneSlip()) return; /* the slip changed: slipchange renders it again, with the note */
     var ids = E.slip.get(), byId = {}; P.forEach(function (p) { byId[p.id] = p; });
     var legs = ids.map(function (id) { return byId[id]; }).filter(Boolean);
     document.getElementById("slip-count").textContent = String(legs.length);
     slipBody.textContent = "";
+    if (droppedNote) slipBody.appendChild(E.el("p", { class: "slip-warn slip-dropped", role: "status", text: droppedNote }));
     if (!legs.length) { slipBody.appendChild(E.el("p", { class: "slip-empty", text: "Add picks from the board to build a parlay. Legs must come from different games." })); return; }
     /* one leg per game: later duplicates are kept on the list but left out of the maths */
     var seen = {}, used = [], dupes = [];
@@ -373,7 +422,7 @@
     sel.addEventListener("change", function () { try { localStorage.setItem(BOOK_KEY, sel.value); } catch (e) {} renderSlip(); });
   }
   slipBody.addEventListener("click", function (e) { var b = e.target.closest("[data-remove]"); if (b) E.slip.toggle(b.getAttribute("data-remove")); });
-  document.addEventListener("slipchange", function () { document.getElementById("slip-count").textContent = String(E.slip.get().length); if (!slipEl.hidden) renderSlip(); });
+  document.addEventListener("slipchange", function () { if (!pruning) droppedNote = ""; document.getElementById("slip-count").textContent = String(E.slip.open().length); if (!slipEl.hidden) renderSlip(); });
   slipToggle.addEventListener("click", function () { openSlip(true); });
   document.getElementById("slip-close").addEventListener("click", function () { openSlip(false); slipToggle.focus(); });
   document.getElementById("slip-clear").addEventListener("click", function () { E.slip.clear(); });
@@ -384,10 +433,13 @@
     E.slip.set(par.legs.map(function (l) { return l.id; }));
     openSlip(true);
   });
-  document.getElementById("slip-count").textContent = String(E.slip.get().length);
+  pruneSlip();
+  document.getElementById("slip-count").textContent = String(E.slip.open().length);
   renderParlays();
   if (location.hash === "#parlay") openSlip(true);
   window.addEventListener("hashchange", function () { if (location.hash === "#parlay") openSlip(true); });
+  /* once a minute: a pick whose game starts leaves the list, the parlays, the market board and the slip, and joins In progress and results */
+  E.onStateChange(function () { render(); renderPlayed(); renderParlays(); renderMarket(); pruneSlip(); document.getElementById("slip-count").textContent = String(E.slip.open().length); });
 })();
 </script>
 
