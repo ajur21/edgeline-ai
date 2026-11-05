@@ -11,7 +11,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT1H
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:b945b71332-h2h-Philadelphia-Flyers@edgeline
-DTSTAMP:20261105T051020Z
+DTSTAMP:20261105T154722Z
 DTSTART:20261106T001000Z
 DTEND:20261106T031000Z
 SUMMARY:Play of the day: Philadelphia Flyers ML +133 at BetOnline.ag · Hig
@@ -31,16 +31,17 @@ DESCRIPTION:NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5\, 7:
  Flyers.\nWhat could go wrong:\n- New York Rangers rate -0.4 a game over 16
   (8-8)\, Philadelphia Flyers -0.7 over 17 (4-13).\n- Home edge +0.2 for Ne
  w York Rangers.\n- Philadelphia Flyers without Rasmus Ristolainen (D)\, Ni
- kita Grebenkin (RW) (+0.2).\nVerdict: The game data lines up behind this s
- ide at this price.\nPrices: BetOnline.ag +133\, DraftKings +130\, BetRiver
- s +130\, PointsBet +130\, Bovada +127 and 5 more.\nFull breakdown: https:/
- /ajur21.github.io/edgeline-ai/picks.html#b945b71332-h2h-Philadelphia-Flyer
- s
+ kita Grebenkin (RW) (+0.2).\n- At current prices our edge is 6.1 points\, 
+ under its bar of 7.5 points\; the pick stays posted and is graded at the p
+ rice it was posted at.\nVerdict: The game data lines up behind this side a
+ t this price.\nPrices: BetOnline.ag +133\, BetRivers +130\, BetMGM +125\, 
+ FanDuel +125\, theScore Bet +125 and 5 more.\nFull breakdown: https://ajur
+ 21.github.io/edgeline-ai/picks.html#b945b71332-h2h-Philadelphia-Flyers
 LOCATION:Madison Square Garden\, New York
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b945b71332-h2h-Philadel
  phia-Flyers
 CATEGORIES:NHL
-LAST-MODIFIED:20261105T051020Z
+LAST-MODIFIED:20261105T154722Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -52,7 +53,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b945b71332-spreads-Philadelphia-Flyers@edgeline
-DTSTAMP:20261105T051020Z
+DTSTAMP:20261105T154722Z
 DTSTART:20261106T001000Z
 DTEND:20261106T031000Z
 SUMMARY:Philadelphia Flyers +1.5 -190 at BetMGM · High
@@ -71,16 +72,18 @@ DESCRIPTION:NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5\, 7:
  yers against +1.5.\nWhat could go wrong:\n- New York Rangers rate -0.4 a g
  ame over 16 (8-8)\, Philadelphia Flyers -0.7 over 17 (4-13).\n- Home edge 
  +0.2 for New York Rangers.\n- Philadelphia Flyers without Rasmus Ristolain
- en (D)\, Nikita Grebenkin (RW) (+0.2).\nVerdict: The game data lines up be
- hind this side at this price.\nPrices: BetMGM -190\, BetOnline.ag -195\, C
- aesars -197\, DraftKings -198\, FanDuel -200 and 4 more.\nFull breakdown: 
- https://ajur21.github.io/edgeline-ai/picks.html#b945b71332-spreads-Philade
- lphia-Flyers
+ en (D)\, Nikita Grebenkin (RW) (+0.2).\n- At current prices our edge is 4.
+ 9 points\, under its bar of 6.1 points\; the pick stays posted and is grad
+ ed at the price it was posted at.\nVerdict: The game data lines up behind 
+ this side at this price.\nPrices: BetMGM -190\, BetOnline.ag -195\, FanDue
+ l -196\, Caesars -197\, DraftKings -205 and 4 more.\nFull breakdown: https
+ ://ajur21.github.io/edgeline-ai/picks.html#b945b71332-spreads-Philadelphia
+ -Flyers
 LOCATION:Madison Square Garden\, New York
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b945b71332-spreads-Phil
  adelphia-Flyers
 CATEGORIES:NHL
-LAST-MODIFIED:20261105T051020Z
+LAST-MODIFIED:20261105T154722Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -90,8 +93,49 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:5d5b6a0f37-spreads-Vancouver-Canucks@edgeline
+DTSTAMP:20261105T154722Z
+DTSTART:20261106T001000Z
+DTEND:20261106T031000Z
+SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Medium
+DESCRIPTION:NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5\, 7:10 PM
+  ET\nPuck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probability 6
+ 6.2% from game data\, the price implies 56.5%\, edge +9.7 pts\, EV +17.1% 
+ per unit. Confidence: Medium.\nOur probability at +1.5 is 66.2%\, from the
+  game data: this season's results and margins\, recent form\, rest\, the i
+ njury report and home edge (projected margin +0.3 for the home side). BetM
+ GM offers -130\, which implies only 56.5%. Its bar is 6.5 points: the mode
+ l's own margin of error on this side\, with 16 games behind the thinner te
+ am (±0.45 goals on the margin). It clears it by 3.2. Not graded against o
+ ther books' prices\; for reference the market makes it 57.4%.\nWhat suppor
+ ts it:\n- Winnipeg Jets trending: last five -3 vs -1.2 on the season.\n- W
+ innipeg Jets without Josh Morrissey (D)\, Vladislav Namestnikov (C)\, Nick
+  Bjugstad (C) (-0.3).\nWhat could go wrong:\n- Winnipeg Jets rate -0.5 a g
+ ame over 16 (5-11)\, Vancouver Canucks -0.7 over 17 (3-14)\; last season -
+ 0.4 and -1.2 a game.\n- Home edge +0.2 for Winnipeg Jets.\n- Vancouver Can
+ ucks without Filip Chytil (C) (+0.2).\n- Vancouver Canucks have Tom Willan
+ der (D) listed day-to-day or questionable.\n- Projected margin -0.3 for Va
+ ncouver Canucks against +1.5.\nVerdict: More working against this one than
+  for it\; size down.\nPrices: BetMGM -130\, theScore Bet -135\, ESPN BET -
+ 135\, BetOnline.ag -138\, BetRivers -141 and 4 more.\nFull breakdown: http
+ s://ajur21.github.io/edgeline-ai/picks.html#5d5b6a0f37-spreads-Vancouver-C
+ anucks
+LOCATION:Canada Life Centre\, Winnipeg
+URL:https://ajur21.github.io/edgeline-ai/picks.html#5d5b6a0f37-spreads-Vanc
+ ouver-Canucks
+CATEGORIES:NHL
+LAST-MODIFIED:20261105T154722Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vancouver Canucks +1.5 -130 at BetMGM · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:parlay-2026-11-05@edgeline
-DTSTAMP:20261105T153452Z
+DTSTAMP:20261105T154722Z
 DTSTART:20261106T001000Z
 DTEND:20261106T054000Z
 SUMMARY:Parlay of the day: 3 legs +573 at BetMGM
@@ -103,7 +147,7 @@ DESCRIPTION:All legs priced at BetMGM. Fair 33.7%\, implied 14.9%\, EV +126
  icks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261105T153452Z
+LAST-MODIFIED:20261105T154722Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -114,7 +158,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:c672f144ec-spreads-Anaheim-Ducks@edgeline
-DTSTAMP:20261105T051020Z
+DTSTAMP:20261105T154722Z
 DTSTART:20261106T011000Z
 DTEND:20261106T041000Z
 SUMMARY:Anaheim Ducks +1.5 -145 at BetMGM · High
@@ -133,15 +177,17 @@ DESCRIPTION:NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5\, 8:10 PM E
   +0.1 over 15 (7-8).\n- Edmonton Oilers trending: last five +1.8 vs +1.2 o
  n the season.\n- Home edge +0.2 for Edmonton Oilers.\n- Anaheim Ducks with
  out A.J. Greer (LW)\, Troy Terry (RW)\, Ian Moore (D) and 1 more (+0.5).\n
- Verdict: More working against this one than for it\; size down.\nPrices: B
- etMGM -145\, Caesars -152\, FanDuel -154\, DraftKings -155\, theScore Bet 
- -155 and 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pic
+ - At current prices our edge is 4.1 points\, under its bar of 6.7 points\;
+  the pick stays posted and is graded at the price it was posted at.\nVerdi
+ ct: More working against this one than for it\; size down.\nPrices: BetMGM
+  -145\, theScore Bet -155\, ESPN BET -155\, BetOnline.ag -157\, BetRivers 
+ -159 and 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pic
  ks.html#c672f144ec-spreads-Anaheim-Ducks
 LOCATION:Rogers Place\, Edmonton
 URL:https://ajur21.github.io/edgeline-ai/picks.html#c672f144ec-spreads-Anah
  eim-Ducks
 CATEGORIES:NHL
-LAST-MODIFIED:20261105T051020Z
+LAST-MODIFIED:20261105T154722Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -151,8 +197,44 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:2a76b31e02-totals-Over@edgeline
+DTSTAMP:20261105T154722Z
+DTSTART:20261106T021000Z
+DTEND:20261106T051000Z
+SUMMARY:Over 222.5 -110 at FanDuel · Lean
+DESCRIPTION:NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5\, 9:10 PM ET\n
+ Total: Over 222.5 at -110 (FanDuel). Our probability 63.4% from game data\
+ , the price implies 52.4%\, edge +11.0 pts\, EV +21.0% per unit. Confidenc
+ e: Lean.\nOur probability at 222.5 is 63.4%\, from the game data: this sea
+ son's results and margins\, recent form\, rest\, the injury report and hom
+ e edge (projected total 229). FanDuel offers -110\, which implies only 52.
+ 4%. Its bar is 10.3 points: the model's own margin of error on this side\,
+  with 6 games behind the thinner team (±5.29 points on the total). It cle
+ ars it by 0.7. Not graded against other books' prices\; for reference the 
+ market makes it 49.2%.\nWhat supports it:\n- Combined scoring 237.7 a game
+  in Phoenix Suns's games\, 220.4 in Orlando Magic's.\n- Projected total 22
+ 9 against 222.5.\nWhat could go wrong:\n- Scorers out: Mark Williams (C)\,
+  shoulder\; Jonathan Isaac (F)\, knee\; Jalen Suggs (G)\, knee and 3 more.
+  Fewer healthy scorers leans under.\n- Phoenix Suns on a back-to-back\; ti
+ red legs lean under.\nVerdict: The game data lines up behind this side at 
+ this price.\nPrices: FanDuel -110\, theScore Bet -110\, BetMGM -110\, Bova
+ da -110\, ESPN BET -110 and 2 more.\nFull breakdown: https://ajur21.github
+ .io/edgeline-ai/picks.html#2a76b31e02-totals-Over
+LOCATION:Mortgage Matchup Center\, Phoenix
+URL:https://ajur21.github.io/edgeline-ai/picks.html#2a76b31e02-totals-Over
+CATEGORIES:NBA
+LAST-MODIFIED:20261105T154722Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 222.5 -110 at FanDuel · Lean
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:446de9651d-spreads-Nashville-Predators@edgeline
-DTSTAMP:20261105T051020Z
+DTSTAMP:20261105T154722Z
 DTSTART:20261106T024000Z
 DTEND:20261106T054000Z
 SUMMARY:Nashville Predators +1.5 -130 at BetMGM · High
@@ -171,15 +253,17 @@ DESCRIPTION:NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5\,
  , Nashville Predators +0.3 over 15 (6-9).\n- Home edge +0.2 for Colorado A
  valanche.\n- Nashville Predators have Jonathan Marchessault (RW) listed da
  y-to-day or questionable.\n- Projected margin -0.1 for Nashville Predators
-  against +1.5.\nVerdict: More working against this one than for it\; size 
- down.\nPrices: BetMGM -130\, BetOnline.ag -140\, FanDuel -140\, DraftKings
-  -142\, Bovada -142 and 2 more.\nFull breakdown: https://ajur21.github.io/
- edgeline-ai/picks.html#446de9651d-spreads-Nashville-Predators
+  against +1.5.\n- At current prices our edge is 5.3 points\, under its bar
+  of 6.8 points\; the pick stays posted and is graded at the price it was p
+ osted at.\nVerdict: More working against this one than for it\; size down.
+ \nPrices: BetMGM -130\, ESPN BET -135\, Caesars -137\, BetOnline.ag -140\,
+  Bovada -140 and 4 more.\nFull breakdown: https://ajur21.github.io/edgelin
+ e-ai/picks.html#446de9651d-spreads-Nashville-Predators
 LOCATION:Ball Arena\, Denver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#446de9651d-spreads-Nash
  ville-Predators
 CATEGORIES:NHL
-LAST-MODIFIED:20261105T051020Z
+LAST-MODIFIED:20261105T154722Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
