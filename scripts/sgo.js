@@ -15,8 +15,17 @@
 const fs = require("fs");
 const path = require("path");
 const API = "https://api.sportsgameodds.com/v2";
-const LEAGUE = { americanfootball_nfl: "NFL", basketball_nba: "NBA", baseball_mlb: "MLB", icehockey_nhl: "NHL" };
+const { clubCore } = require("./context.js");
+const LEAGUE = { americanfootball_nfl: "NFL", basketball_nba: "NBA", baseball_mlb: "MLB", icehockey_nhl: "NHL", soccer_usa_mls: "MLS" };
 const ODD_IDS = ["points-home-game-ml-home", "points-away-game-ml-away", "points-home-game-sp-home", "points-away-game-sp-away", "points-all-game-ou-over", "points-all-game-ou-under"];
+/* soccer (MLS, since 2026-11-05; the free tier has no EPL): the 1X2 and the goals total settle on 90 minutes, which the
+   API carries on the `reg` period, the 1X2 as a three-way moneyline (ml3way: home, away and the draw, whose entity is
+   "all"); `game` would include a playoff shootout's winner. The ids follow the vendor's pattern
+   ({stat}-{entity}-{period}-{betType}-{side}) and its MLS page (points-all-reg-ou-over); the three-way ones are unconfirmed
+   until a live response shows them, and a wrong id only means no odds, so the pick goes without the second source. */
+const SOCCER_ODD_IDS = { home: "points-home-reg-ml3way-home", away: "points-away-reg-ml3way-away", draw: "points-all-reg-ml3way-draw", over: "points-all-reg-ou-over", under: "points-all-reg-ou-under" };
+const SOCCER_LEAGUES = { MLS: true };
+function oddIdsFor(league) { return SOCCER_LEAGUES[league] ? Object.keys(SOCCER_ODD_IDS).map(k => SOCCER_ODD_IDS[k]) : ODD_IDS; }
 /* vendor book ids -> the titles The Odds API uses, so `prices` stays one map */
 const BOOKS = { draftkings: "DraftKings", fanduel: "FanDuel", betmgm: "BetMGM", caesars: "Caesars", espnbet: "ESPN BET", bovada: "Bovada", pointsbet: "PointsBet", unibet: "Unibet", betrivers: "BetRivers", fanatics: "Fanatics", pinnacle: "Pinnacle", bet365: "Bet365", hardrock: "Hard Rock Bet", betonline: "BetOnline.ag", williamhill: "Caesars" };
 const SOURCE = "SportsGameOdds";
@@ -46,7 +55,7 @@ function liveSource(key) {
     enabled: !!key,
     usage: async function () { try { const u = (await get("/account/usage", {})).data.rateLimits["per-month"]; return { used: Number(u["current-entities"]) || 0, max: Number(u["max-entities"]) || 0 }; } catch (e) { return null; } },
     events: async function (p) {
-      const params = { leagueID: p.league, startsAfter: p.startsAfter, startsBefore: p.startsBefore, eventIDs: p.eventIDs && p.eventIDs.join(","), oddIDs: p.allOdds ? null : ODD_IDS.join(","), oddsAvailable: p.allOdds ? "true" : null, limit: 50 };
+      const params = { leagueID: p.league, startsAfter: p.startsAfter, startsBefore: p.startsBefore, eventIDs: p.eventIDs && p.eventIDs.join(","), oddIDs: p.allOdds ? null : oddIdsFor(p.league).join(","), oddsAvailable: p.allOdds ? "true" : null, limit: 50 };
       try { const body = await get("/events", params); const list = body.data || []; entities += list.length; return list; } catch (e) { return null; }
     },
     stats: () => ({ requests: requests, entities: entities })
@@ -75,13 +84,20 @@ function source(opts) { return opts && opts.fixture ? fixtureSource(opts.fixture
 function teamMatches(name, team) {
   if (!name || !team || !team.names) return false;
   const n = norm(name), long = norm(team.names.long), med = norm(team.names.medium), loc = norm(team.names.location), short = norm(team.names.short);
-  return n === long || n === short || (med && n.endsWith(med) && (loc === "" || n.indexOf(loc.slice(0, 4)) !== -1)) || (loc && n === loc);
+  return n === long || n === short || (med && n.endsWith(med) && (loc === "" || n.indexOf(loc.slice(0, 4)) !== -1)) || (loc && n === loc) || (!!clubCore(name) && clubCore(name) === clubCore(team.names.long));
 }
 function matches(ev, e) { return ev && ev.teams && teamMatches(e.home, ev.teams.home) && teamMatches(e.away, ev.teams.away); }
 
 /* ---------- reading one event for one pick ---------- */
+/* the pick's own odd id first, then the other side(s) of its market (two, for a soccer three-way moneyline) */
 function sideIds(e) {
   const home = e.outcome && e.outcome.name === e.home, away = e.outcome && e.outcome.name === e.away;
+  if (/^soccer_/.test(e.sportKey || "")) {
+    const S = SOCCER_ODD_IDS, draw = /^draw$/i.test((e.outcome && e.outcome.name) || "");
+    if (e.marketKey === "h2h") return home ? [S.home, S.away, S.draw] : away ? [S.away, S.home, S.draw] : draw ? [S.draw, S.home, S.away] : null;
+    if (e.marketKey === "totals") return /^over$/i.test(e.outcome && e.outcome.name) ? [S.over, S.under] : [S.under, S.over];
+    return null;
+  }
   if (e.marketKey === "h2h") return home ? ["points-home-game-ml-home", "points-away-game-ml-away"] : away ? ["points-away-game-ml-away", "points-home-game-ml-home"] : null;
   if (e.marketKey === "spreads") return home ? ["points-home-game-sp-home", "points-away-game-sp-away"] : away ? ["points-away-game-sp-away", "points-home-game-sp-home"] : null;
   if (e.marketKey === "totals") return /^over$/i.test(e.outcome && e.outcome.name) ? ["points-all-game-ou-over", "points-all-game-ou-under"] : ["points-all-game-ou-under", "points-all-game-ou-over"];
@@ -92,7 +108,7 @@ function sameLine(a, b) { return a == null && b == null ? true : a != null && b 
 /* the pick's side on one event: every book's price on our exact line, the consensus fair there, the vendor fair and opener */
 function snapshot(ev, e, nowIso) {
   const ids = sideIds(e); if (!ids || !ev || !ev.odds) return null;
-  const mine = ev.odds[ids[0]], theirs = ev.odds[ids[1]]; if (!mine) return null;
+  const mine = ev.odds[ids[0]], others = ids.slice(1).map(id => ev.odds[id]); if (!mine) return null;
   const point = e.outcome && e.outcome.point != null ? Number(e.outcome.point) : null;
   const oppPoint = point == null ? null : e.marketKey === "spreads" ? -point : point;
   const books = {}, fairs = [];
@@ -103,9 +119,9 @@ function snapshot(ev, e, nowIso) {
     const price = american(m.odds); if (price == null) return;
     if (!sameLine(bookLine(m, e.marketKey), point)) return;
     seen[title] = true; books[title] = price;
-    const o = theirs && theirs.byBookmaker && theirs.byBookmaker[b];
-    const op = o && o.available !== false ? american(o.odds) : null;
-    if (op != null && sameLine(bookLine(o, e.marketKey), oppPoint)) fairs.push(implied(price) / (implied(price) + implied(op)));
+    /* this book's other side(s) on the same line; the fair is our side's share of the book's whole market (de-vigged) */
+    const ops = others.map(function (t) { const o = t && t.byBookmaker && t.byBookmaker[b]; const op = o && o.available !== false ? american(o.odds) : null; return op != null && sameLine(bookLine(o, e.marketKey), oppPoint) ? op : null; });
+    if (ops.length && ops.every(op => op != null)) fairs.push(implied(price) / ops.reduce((s, op) => s + implied(op), implied(price)));
   });
   const vendorLine = e.marketKey === "spreads" ? num(mine.fairSpread) : e.marketKey === "totals" ? num(mine.fairOverUnder) : null;
   const vendorOpenLine = e.marketKey === "spreads" ? num(mine.openFairSpread) : e.marketKey === "totals" ? num(mine.openFairOverUnder) : null;
@@ -119,11 +135,12 @@ function snapshot(ev, e, nowIso) {
     vendor: { line: vendorLine, odds: vendorFair, fair: vendorFair == null ? null : round(implied(vendorFair), 4), sameLine: e.marketKey === "h2h" || sameLine(vendorLine, point) },
     open: vendorOpen == null && vendorOpenLine == null ? null : { line: vendorOpenLine, odds: vendorOpen },
     now: { line: vendorLine, odds: vendorFair },
-    finished: !!(ev.status && (ev.status.completed || ev.status.ended)), score: results(ev)
+    finished: !!(ev.status && (ev.status.completed || ev.status.ended)), score: results(ev, e.sportKey)
   };
 }
-function results(ev) {
-  const g = ev && ev.results && ev.results.game; if (!g || !g.home || !g.away) return null;
+/* the final score; soccer's after 90 minutes (the `reg` period: a playoff tie's extra time and shootout are not in it) */
+function results(ev, sportKey) {
+  const g = ev && ev.results && (/^soccer_/.test(sportKey || "") ? ev.results.reg : ev.results.game); if (!g || !g.home || !g.away) return null;
   const h = Number(g.home.points), a = Number(g.away.points);
   return Number.isFinite(h) && Number.isFinite(a) && ev.status && ev.status.completed ? { home: h, away: a } : null;
 }
@@ -274,4 +291,4 @@ async function nightEvents(src, league, starts) {
 }
 function eventFor(list, home, away) { return (list || []).find(ev => ev.teams && teamMatches(home, ev.teams.home) && teamMatches(away, ev.teams.away)) || null; }
 
-module.exports = { source, refresh, close, snapshot, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOURCE, PROP_STATS, propSnapshot, playerProps, playerIndex, findPlayer, normName, nightEvents, eventFor, teamMatches };
+module.exports = { source, refresh, close, snapshot, sideIds, oddIdsFor, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOCCER_ODD_IDS, SOURCE, PROP_STATS, propSnapshot, playerProps, playerIndex, findPlayer, normName, nightEvents, eventFor, teamMatches };

@@ -353,7 +353,7 @@
   const GAME_HOURS = { NBA: 2.5, NFL: 3.5, NHL: 3, MLB: 3.5, Soccer: 2 };
   const KEY_SPORT = { basketball_nba: "NBA", americanfootball_nfl: "NFL", icehockey_nhl: "NHL", baseball_mlb: "MLB" };
   function gameHours(p) {
-    const s = GAME_HOURS[p.sport] ? p.sport : KEY_SPORT[p.sportKey] || (/^soccer/.test(p.sportKey || "") || /premier league|la liga|soccer/i.test(p.league || "") ? "Soccer" : null);
+    const s = GAME_HOURS[p.sport] ? p.sport : KEY_SPORT[p.sportKey] || (/^soccer/.test(p.sportKey || "") || /premier league|la liga|mls|soccer/i.test(p.league || "") ? "Soccer" : null);
     return s ? GAME_HOURS[s] : 3;
   }
   const SOON_MS = 90 * 60e3;

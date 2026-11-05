@@ -11,7 +11,7 @@
 (function () {
   "use strict";
   const FILES = [["MARKET_DATA", "data/market.js"], ["PICKS_DATA", "data/picks.js"], ["TEAMS_DATA", "data/teams.js"], ["FACES_DATA", "data/faces.js"]];
-  const SPORT_WORDS = { NBA: "basketball", NHL: "hockey ice hockey", NFL: "football american football", MLB: "baseball", Soccer: "soccer football premier league epl la liga" };
+  const SPORT_WORDS = { NBA: "basketball", NHL: "hockey ice hockey", NFL: "football american football", MLB: "baseball", Soccer: "soccer football premier league epl la liga mls major league soccer" };
   const GROUPS = [["sport", "Sports"], ["game", "Games"], ["pick", "Picks"], ["team", "Teams"], ["player", "Players"]];
   const PER_GROUP = { sport: 4, game: 5, pick: 5, team: 5, player: 5 };
   let dlg = null, input = null, list = null, opener = null, index = null, ready = null, active = -1;

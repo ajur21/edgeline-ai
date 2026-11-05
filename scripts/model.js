@@ -32,6 +32,12 @@ const NHL_SHAPE = {
    draws; margins and totals half smoothed toward the curve. */
 const NFL_SHAPE = { margin: [[0,0.0084],[1,0.05444],[2,0.05707],[3,0.12121],[4,0.05198],[5,0.05255],[6,0.06315],[7,0.07554],[8,0.04283],[9,0.0211],[10,0.04255],[11,0.01892],[12,0.02285],[13,0.02493],[14,0.04172],[15,0.01714],[16,0.02016],[17,0.04341],[18,0.02257],[19,0.01554],[20,0.01865],[21,0.02088],[22,0.01303],[23,0.01809],[24,0.01951],[25,0.01362],[26,0.00776],[27,0.00745],[28,0.01268],[29,0.00417],[30,0.00395],[31,0.01112],[32,0.00544],[33,0.00254],[34,0.00886],[35,0.00232],[36,0.00039],[37,0.00308],[38,0.00394],[39,0.00021],[40,0.00109],[41,0.00013],[42,0.00102],[43,0.00008],[44,0.00007],[45,0.00189]] };
 const MLB_SHAPE = { marginHome: [[-14,0.0037],[-13,0.00206],[-12,0.00384],[-11,0.00398],[-10,0.00782],[-9,0.00878],[-8,0.01756],[-7,0.02264],[-6,0.03321],[-5,0.04281],[-4,0.05488],[-3,0.06998],[-2,0.0896],[-1,0.10812],[1,0.17412],[2,0.09125],[3,0.06655],[4,0.0579],[5,0.04212],[6,0.0306],[7,0.02415],[8,0.01372],[9,0.01029],[10,0.00714],[11,0.00439],[12,0.00261],[13,0.00192],[14,0.00425]], total: [[1,0.0188],[2,0.0199],[3,0.06216],[4,0.04871],[5,0.09879],[6,0.07451],[7,0.11389],[8,0.07519],[9,0.09769],[10,0.06627],[11,0.07519],[12,0.04748],[13,0.05351],[14,0.0354],[15,0.0306],[16,0.02319],[17,0.0166],[18,0.01194],[19,0.0081],[20,0.00686],[21,0.00494],[22,0.00274],[23,0.00247],[24,0.00137],[25,0.00137],[26,0.00082],[27,0.00041],[28,0.00027],[29,0.00041],[30,0.00014],[32,0.00027]] };
+/* MLS (calibrated 2026-11-05 on ESPN finals only, never prices: fitted on the 2023 and 2024 regular seasons, 986 matches,
+   held out on 2025, 510, and on 2026 to date, 495). The home side's own margins, kept as they are like MLB's: MLS's home
+   edge is large (home sides won 45% and drew 26% while out-scoring visitors by 0.47 goals a game in the fit seasons), so a
+   folded table tilted to the game's margin put draws a point low; this one, a quarter smoothed toward the curve, scored
+   best held out (1X2 log loss 1.0448 in 2025 against 1.0469 folded and 1.0760 for the base rates). */
+const MLS_SHAPE = { marginHome: [[-6,0.00004],[-5,0.00107],[-4,0.00709],[-3,0.02766],[-2,0.06587],[-1,0.16973],[0,0.25917],[1,0.21677],[2,0.13431],[3,0.07705],[4,0.03327],[5,0.0077],[6,0.00028]], total: [[0,0.06948],[1,0.12708],[2,0.2072],[3,0.24198],[4,0.17201],[5,0.10914],[6,0.04607],[7,0.01914],[8,0.00697],[9,0.0009],[10,0.00002],[11,0]] };
 const EPL_SHAPE = { margin: [[0,0.23844],[1,0.37178],[2,0.23222],[3,0.10871],[4,0.03333],[5,0.01222],[6,0.0033]], total: [[0,0.04855],[1,0.12589],[2,0.21879],[3,0.23765],[4,0.19406],[5,0.10925],[6,0.04424],[7,0.0165],[8,0.00398],[9,0.00108],[10,0.00002],[11,0]] };
 /* per-sport numbers: home edge and adjustments in the sport's points; sd = spread of the final margin and total (the
    normal curve, where a league's own shape is not used, and the reasons' thresholds).
@@ -59,7 +65,13 @@ const SPORT = {
   americanfootball_nfl:  { homeEdge: 2.3, sd: 13.3, sdTotal: 13.4, k: 6, form: 0.1, carry: { k: 6, c: 0.4 }, kTotal: 5, leagueGoals: 22.6, shape: NFL_SHAPE, b2b: 0, rest3: 0, out: i => /QB/.test(i.pos || "") ? 4 : 0.5, soft: 0.5, scoringOut: (ppg, i) => /QB/.test((i && i.pos) || "") ? 2 : 0, single: /QB/ },
   icehockey_nhl:         { homeEdge: 0.24, sd: 2.4, sdTotal: 2.3, k: 35, form: 0.1, carry: { k: 40, c: 0.25 }, kTotal: 80, leagueGoals: 3.1, shape: NHL_SHAPE, b2b: -0.25, rest3: 0.05, out: i => (i.pos || "") === "G" ? 0.5 : 0.12, soft: 0.5, scoringOut: () => 0, single: /^G$/ },
   baseball_mlb:          { homeEdge: 0.03, sd: 4.5, sdTotal: 4.5, k: 60, form: 0, carry: { k: 80, c: 0.5 }, kTotal: 20, leagueGoals: 4.44, shape: MLB_SHAPE, b2b: 0, rest3: 0, out: i => /^(SP|P|RP)$/.test(i.pos || "") ? 0.3 : 0.12, soft: 0.5, scoringOut: () => 0 },
-  soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, carry: { k: 15, c: 0.75 }, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
+  soccer_epl:            { homeEdge: 0.24, sd: 1.7, sdTotal: 1.6, k: 8, form: 0.1, carry: { k: 15, c: 0.75 }, kTotal: 30, leagueGoals: 1.49, shape: EPL_SHAPE, b2b: 0, rest3: 0.05, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 },
+  /* MLS (see MLS_SHAPE; results only): a parity league. The fit kept a quarter of last season's margin over 20 games of
+     evidence and shrank this season's by 20 games (k, for an expansion club), with home edge 0.5 goals: held out on 2025
+     the margin's error was 1.700 goals against 1.748 for the home edge alone (2.7% lower; 3.4% on 2026 to date), and the
+     totals barely beat the league average (pulled toward it by 15 games). ESPN's MLS injury report is empty, so the
+     injury cost rarely applies; rest is not used (nearly every match has 3+ days). */
+  soccer_usa_mls:        { homeEdge: 0.5, sd: 1.63, sdTotal: 1.71, k: 20, form: 0.1, carry: { k: 20, c: 0.25 }, kTotal: 15, leagueGoals: 1.48, shape: MLS_SHAPE, b2b: 0, rest3: 0, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
 };
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 
@@ -107,6 +119,7 @@ function lastSeasonParam(sportKey, commenceMs) {
   if (sportKey === "americanfootball_nfl") return String((m >= 3 ? y : y - 1) - 1);
   if (sportKey === "soccer_epl") return String((m >= 7 ? y : y - 1) - 1);
   if (sportKey === "baseball_mlb") return String(y - 1);
+  if (sportKey === "soccer_usa_mls") return String(y - 1); /* MLS runs February to December: its season is the calendar year */
   return null;
 }
 
@@ -398,7 +411,7 @@ function publicModel(gm) { return gm ? { margin: r1(gm.margin), total: r1(gm.tot
    gives NBA 4.9 / NHL 0.50 / MLB 0.68 / EPL 0.51 on the margin against a measured 5.4 / 0.52 / 0.63 / 0.60; the NFL's
    5.2 is above its measured 3.3 (cautious). Mid-season (27 games) NBA 3.3 against a measured 3.3.
    Returns { p (probability points as a fraction), units (on the margin or total), unit, gp (fewest games behind a team) }. */
-const UNIT = { basketball_nba: "points", americanfootball_nfl: "points", icehockey_nhl: "goals", baseball_mlb: "runs", soccer_epl: "goals" };
+const UNIT = { basketball_nba: "points", americanfootball_nfl: "points", icehockey_nhl: "goals", baseball_mlb: "runs", soccer_epl: "goals", soccer_usa_mls: "goals" };
 function noise(gm, marketKey, outcome, home, away) {
   const cfg = gm && SPORT[gm.sportKey]; if (!cfg || !outcome) return null;
   const gh = Number(gm.gpHome != null ? gm.gpHome : gm.gp), ga = Number(gm.gpAway != null ? gm.gpAway : gm.gp);

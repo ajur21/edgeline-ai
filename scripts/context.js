@@ -12,11 +12,11 @@
 const fs = require("fs");
 const path = require("path");
 
-const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1" };
+const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1", soccer_usa_mls: "soccer/usa.1" };
 /* the "core" API uses sport/leagues/league paths; it keeps DraftKings' opening and closing numbers after a game ends */
-const ESPN_CORE = { americanfootball_nfl: "football/leagues/nfl", basketball_nba: "basketball/leagues/nba", baseball_mlb: "baseball/leagues/mlb", icehockey_nhl: "hockey/leagues/nhl", soccer_epl: "soccer/leagues/eng.1", soccer_spain_la_liga: "soccer/leagues/esp.1" };
+const ESPN_CORE = { americanfootball_nfl: "football/leagues/nfl", basketball_nba: "basketball/leagues/nba", baseball_mlb: "baseball/leagues/mlb", icehockey_nhl: "hockey/leagues/nhl", soccer_epl: "soccer/leagues/eng.1", soccer_spain_la_liga: "soccer/leagues/esp.1", soccer_usa_mls: "soccer/leagues/usa.1" };
 const DK_PROVIDER = "100"; /* ESPN's provider id for DraftKings, the only book it publishes */
-const OUTDOOR = { americanfootball_nfl: true, baseball_mlb: true, soccer_epl: true, soccer_spain_la_liga: true };
+const OUTDOOR = { americanfootball_nfl: true, baseball_mlb: true, soccer_epl: true, soccer_spain_la_liga: true, soccer_usa_mls: true };
 const ET = "America/New_York";
 const DAY = 864e5;
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
@@ -72,9 +72,17 @@ function fixtureSource() {
 }
 
 /* ---------- ESPN parsing ---------- */
+/* a soccer club's name without the club suffix, so the feeds' spellings meet ESPN's: "Chicago Fire" / "Chicago Fire FC",
+   "Columbus Crew SC" / "Columbus Crew", "CF Montreal" / "CF Montréal", "DC United" / "D.C. United", "Brighton and Hove
+   Albion" / "Brighton & Hove Albion". Two MLS clubs go by other names (CLUB_ALIAS: ESPN's "LAFC" and "Red Bull New York") */
+const CLUB_ALIAS = { losangeles: "lafc", newyorkredbulls: "redbullnewyork", nyredbulls: "redbullnewyork" };
+function clubCore(s) {
+  const c = String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").split(" ").filter(w => w && !/^(fc|sc|cf|afc)$/.test(w)).join("");
+  return CLUB_ALIAS[c] || c;
+}
 function teamMatches(name, team) {
   const n = norm(name), d = norm(team.displayName), nick = norm(team.name), loc = norm(team.location);
-  return n === d || (nick && n.endsWith(nick) && (n.indexOf(loc.slice(0, 4)) !== -1 || loc === "")) || (nick && n === norm(team.shortDisplayName));
+  return n === d || (nick && n.endsWith(nick) && (n.indexOf(loc.slice(0, 4)) !== -1 || loc === "")) || (nick && n === norm(team.shortDisplayName)) || (!!clubCore(name) && clubCore(name) === clubCore(team.displayName));
 }
 function findEvent(sb, home, away) {
   for (const e of (sb && sb.events) || []) {
@@ -83,6 +91,24 @@ function findEvent(sb, home, away) {
     if (h && a && teamMatches(home, h.team) && teamMatches(away, a.team)) return { event: e, home: h, away: a, comp: c };
   }
   return null;
+}
+/* a soccer match's score after 90 minutes and stoppage time, which is what the 1X2 and the goals total settle on. A league
+   match ends there; an MLS playoff tie can go to extra time (ESPN's score then includes it: STATUS_FINAL_AET, or
+   STATUS_FINAL_PEN after a shootout) or straight to penalties (the score stands at 90). Past 90 minutes the score is
+   rebuilt from the goal list: scoring plays that are not shootout kicks, at or before the 90th minute (clock 5400 s; a
+   stoppage-time goal reads "90'+5'" at 5400), by team. null when the list does not add up to the final, so a game is
+   never graded on a guess (it waits, then voids after RULES.voidAfterDays). m: findEvent's match. */
+function regulationScore(m) {
+  if (!m || !m.comp) return null;
+  const hs = Number(m.home.score), as = Number(m.away.score);
+  if (!Number.isFinite(hs) || !Number.isFinite(as)) return null;
+  const st = m.comp.status || {}, name = (st.type && st.type.name) || "", period = Number(st.period) || 0;
+  if (!/AET|PEN/i.test(name) && period <= 2) return { home: hs, away: as, extraTime: false };
+  const goals = (m.comp.details || []).filter(d => d && d.scoringPlay && !d.shootout);
+  const count = (id, upTo) => goals.filter(d => d.team && String(d.team.id) === String(id) && (upTo == null || Number(d.clock && d.clock.value) <= upTo)).length;
+  const hid = m.home.team && m.home.team.id, aid = m.away.team && m.away.team.id;
+  if (count(hid) !== hs || count(aid) !== as) return null; /* the list must account for every goal */
+  return { home: count(hid, 5400), away: count(aid, 5400), extraTime: count(hid) + count(aid) > count(hid, 5400) + count(aid, 5400) };
 }
 /* ESPN's injury report carries no athlete.id (checked 2026-11-05 in all five leagues): the id is in the player-card link
    (".../player/_/id/3102531/...") and the headshot file name (".../full/3102531.png") */
@@ -398,4 +424,4 @@ async function enrich(entries, opts) {
   return got.requests;
 }
 function source(opts) { return opts && opts.fixture ? fixtureSource() : liveSource(); }
-module.exports = { enrich, fetchContext, buildBreakdown, findEvent, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };
+module.exports = { enrich, fetchContext, buildBreakdown, findEvent, regulationScore, clubCore, teamMatches, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };

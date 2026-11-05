@@ -43,4 +43,4 @@ if (require.main === module) {
   console.log(r.why);
   if (process.env.GITHUB_OUTPUT) require("fs").appendFileSync(process.env.GITHUB_OUTPUT, "run=" + r.run + "\n");
 }
-module.exports = { due, slotTime, generatedAtOf };
+module.exports = { due, slotTime, generatedAtOf, SLOTS };
