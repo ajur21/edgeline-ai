@@ -156,6 +156,29 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const nbaTwo = M.injuryCost([{ name: "A", pos: "G", status: "Out" }, { name: "B", pos: "G", status: "Out" }], nba, () => null);
     return near(one.cost, 0.5, 1e-9) && near(two.cost, 0.5, 1e-9) && two.out.length === 2 && near(mixed.cost, 0.5 + 0.24, 1e-9) && mixed.out.length === 3 && mixed.soft.length === 1 && near(qbs.cost, 4.5, 1e-9) && near(qbs.scoring, 2, 1e-9) && near(nbaTwo.cost, 2.4, 1e-9);
   })());
+  check("model: an absence the results already show costs nothing more; one listed after the team's last game costs in full; no date counts in full", (() => {
+    const nhl = M.SPORT.icehockey_nhl, day = d => Date.parse("2026-10-" + String(d).padStart(2, "0") + "T23:00:00Z");
+    const form = { gp: 4, games: [day(10), day(14), day(18), day(22)].map(t => ({ date: t })) }, share = M.unseenShare(form);
+    const sk = (date) => ({ name: "S", pos: "C", status: "Out", date: date });
+    const before = share(sk("2026-10-01T12:00Z")), half = share(sk("2026-10-16T12:00Z")), after = share(sk("2026-10-30T12:00Z")), none = share(sk(null));
+    const cost = d => M.injuryCost([sk(d)], nhl, null, share);
+    return before === 0 && near(half, 0.5, 1e-9) && after === 1 && none === 1 && cost("2026-10-01T12:00Z").cost === 0 && cost("2026-10-01T12:00Z").out.length === 0 && near(cost("2026-10-16T12:00Z").cost, 0.06, 1e-9) && near(cost("2026-10-30T12:00Z").cost, 0.12, 1e-9) && M.unseenShare(null)(sk("2026-10-30T12:00Z")) === 1;
+  })());
+  check("model: hockey reads the league's own final scores moved to the game's projection; ratings lean on 35 games with a tenth on form; totals lean on the league's scoring; the standings give that scoring", (() => {
+    const nhl = M.SPORT.icehockey_nhl, gm = (margin, total) => ({ sportKey: "icehockey_nhl", margin: margin, total: total });
+    const ml = (g, s) => M.sideProb(g, "h2h", { name: s }, "H", "A"), pl = (g, s, pt) => M.sideProb(g, "spreads", { name: s, point: pt }, "H", "A"), ou = (g, s, pt) => M.sideProb(g, "totals", { name: s, point: pt }, "H", "A");
+    const even = gm(0, 6.1), fav = gm(0.5, 6.1);
+    const byTwo = nhl.shape.margin.filter(([d]) => d >= 2).reduce((s, x) => s + x[1], 0) / 2; /* an even game: the home side wins by two or more */
+    const shape = near(ml(even, "H"), 0.5, 2e-4) && near(ml(fav, "H") + ml(fav, "A"), 1, 2e-4) && ml(fav, "H") > 0.5 &&
+      near(pl(even, "H", -1.5), byTwo, 2e-4) && near(pl(fav, "H", -1.5) + pl(fav, "A", 1.5), 1, 2e-4) && pl(fav, "H", -1.5) > pl(even, "H", -1.5) &&
+      near(ou(even, "Over", 5.5) + ou(even, "Under", 5.5), 1, 2e-4) && near(ou(even, "Over", 6) + ou(even, "Under", 6), 1, 2e-4) && ou(gm(0, 6.6), "Over", 5.5) > ou(even, "Over", 5.5) &&
+      near(M.tilt(nhl.shape.total, 6.4).reduce((s, x) => s + x[0] * x[1], 0), 6.4, 1e-6);
+    const rating = near(M.rating({ gp: 16, margin: 1, last5: 2 }, nhl), (0.9 * 1 + 0.1 * 2) * 16 / 51, 1e-9);
+    const g = M.gameModel({ sportKey: "icehockey_nhl", home: "H", away: "A", leagueGoals: 3.1, homeForm: { gp: 10, pf: 4, pa: 2, margin: 2, last5: 2, wins: 8, losses: 2 }, awayForm: { gp: 10, pf: 3, pa: 3, margin: 0, last5: 0, wins: 5, losses: 5 } });
+    const sh = x => (10 * x + 80 * 3.1) / 90, total = Math.round((sh(4) + sh(3) + sh(3) + sh(2)) / 2 * 10) / 10;
+    const standings = { children: [{ standings: { entries: [{ stats: [{ name: "pointsFor", value: 64 }, { name: "gamesPlayed", value: 17 }] }, { stats: [{ name: "pointsFor", value: 300 }, { name: "gamesPlayed", value: 100 }] }] } }] };
+    return shape && rating && g.total === total && near(M.leagueGoalsFrom(standings), 364 / 117, 1e-9) && M.leagueGoalsFrom({ children: [] }) === null;
+  })());
   check("model: a whole-number spread is push-aware and a half-point is not; the draw band gives soccer three outcomes", (() => { const gm = Object.assign({}, gmFix, { margin: 3, sd: 12.5 }); const whole = M.sideProb(gm, "spreads", { name: "Boston Celtics", point: -3 }, "Boston Celtics", "Milwaukee Bucks"), half = M.sideProb(gm, "spreads", { name: "Boston Celtics", point: -3.5 }, "Boston Celtics", "Milwaukee Bucks"); const d = M.sideProb(gmEpl, "h2h", { name: "Draw", point: null }, "Arsenal", "Liverpool"); return near(whole, 0.5, 1e-3) && half < 0.5 && d > 0.15 && d < 0.3 && M.sideProb(gm, "h2h", { name: "Nobody", point: null }, "Boston Celtics", "Milwaukee Bucks") === null; })());
   const altEv = { id: "alt", bookmakers: [
     { key: "draftkings", title: "DraftKings", markets: [{ key: "spreads", outcomes: [{ name: "H", point: -3.5, price: -110 }, { name: "A", point: 3.5, price: -110 }] }] },

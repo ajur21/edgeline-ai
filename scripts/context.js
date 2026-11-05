@@ -40,6 +40,7 @@ function liveSource() {
     odds: (sport, eventId) => get("https://sports.core.api.espn.com/v2/sports/" + ESPN_CORE[sport] + "/events/" + eventId + "/competitions/" + eventId + "/odds/" + DK_PROVIDER).catch(() => null),
     injuries: sport => get(site(sport) + "/injuries").catch(() => null),
     schedule: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/schedule").catch(() => null),
+    standings: sport => get("https://site.api.espn.com/apis/v2/sports/" + ESPN[sport] + "/standings").catch(() => null),
     geocode: city => get("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json").catch(() => null),
     forecast: (lat, lon, tz) => get("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,precipitation_probability,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&timezone=" + encodeURIComponent(tz || "auto") + "&forecast_days=7").catch(() => null),
     count: () => count
@@ -54,6 +55,7 @@ function fixtureSource() {
     odds: async (sport, id) => read("ctx-odds-" + slug(sport) + "-" + id),
     injuries: async sport => read("ctx-injuries-" + slug(sport)),
     schedule: async (sport, id) => read("ctx-schedule-" + slug(sport) + "-" + id),
+    standings: async sport => read("ctx-standings-" + slug(sport)),
     geocode: async city => read("ctx-geocode-" + norm(city)),
     forecast: async () => read("ctx-forecast"),
     count: () => 0
@@ -78,7 +80,7 @@ function teamInjuries(inj, teamName) {
   return ((t && t.injuries) || []).map(i => ({
     name: i.athlete && i.athlete.displayName, pos: i.athlete && i.athlete.position && i.athlete.position.abbreviation,
     athleteId: (i.athlete && i.athlete.id) || null, headshot: (i.athlete && i.athlete.headshot && i.athlete.headshot.href) || null,
-    status: i.status || "", type: i.details && i.details.type || "", detail: i.details && i.details.detail || "", returnDate: i.details && i.details.returnDate || null,
+    status: i.status || "", type: i.details && i.details.type || "", detail: i.details && i.details.detail || "", returnDate: i.details && i.details.returnDate || null, date: i.date || null,
     note: (i.shortComment || "").slice(0, 160)
   })).filter(i => i.name && !/^active$/i.test(i.status));
 }
