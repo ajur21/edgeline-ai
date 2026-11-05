@@ -509,6 +509,14 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     return r.against.some(t => /^Past seasons: our totals at the books' lines did no better than a coin flip, so this side reads \d+(\.\d)?% \(the model alone \d+(\.\d)?%\)$/.test(t)) && n && n.p < 0.01 && P.barOf(n) === 0.03 && !M.sideReasons(gmFix, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks").against.some(t => /^Past seasons/.test(t));
   })(), JSON.stringify(M.sideReasons(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks").against));
 
+  check("calibration: a market with no signal (NBA and NFL spreads and totals) is never a pick or a watch, even at a plus price that would put its even number past the 3-point floor; every other market keeps its signal", (() => {
+    const noSig = !M.hasSignal("basketball_nba", "totals") && !M.hasSignal("basketball_nba", "spreads") && !M.hasSignal("americanfootball_nfl", "totals") && !M.hasSignal("americanfootball_nfl", "spreads");
+    const sig = M.hasSignal("basketball_nba", "h2h") && M.hasSignal("americanfootball_nfl", "h2h") && ["h2h", "spreads", "totals"].every(m => M.hasSignal("icehockey_nhl", m) && M.hasSignal("baseball_mlb", m)) && M.hasSignal("soccer_epl", "totals") && M.hasSignal("soccer_usa_mls", "h2h");
+    const g = { sportKey: "basketball_nba", margin: 3, total: 236, sd: 14.3, sdTotal: 19, gp: 20, gpHome: 20, gpAway: 20, reasons: [] };
+    const ev = { id: "x", home_team: "H", away_team: "A" }, over = { market: "totals", outcome: { name: "Over", point: 222.5 }, odds: 115, qualifies: true };
+    const priced = P.priceWithModel(g, ev, [Object.assign({}, over)]), c = priced[0];
+    return noSig && sig && c.edge > 0.03 && c.past > 0 && P.analyzeEvent({ key: "basketball_nba", markets: ["totals"] }, ev, priced).length === 0;
+  })());
   const tmpB = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-bar-"));
   const rb = await P.run({ fixture: true, out: tmpB, now: NOW });
   const logB = JSON.parse(fs.readFileSync(path.join(tmpB, "picks-log.json"), "utf8")), addedB = logB.filter(e => e.loggedAt);

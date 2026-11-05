@@ -217,7 +217,7 @@ function analyzeEvent(cfg, ev, priced) {
     const top = all.filter(c => c.market === market && c.qualifies && c.edge != null).sort((a, b) => b.past - a.past)[0];
     if (top) console.log("  " + eventName(cfg, ev) + " | " + market + " | " + top.books + " books" + (top.anchor ? (top.anchorShift ? " (anchored, carried " + top.anchorShift + ")" : " (anchored)") : " (consensus)") + " | best " + top.outcome.name + " " + (top.outcome.point == null ? "" : top.outcome.point) + " at " + fmtOdds(top.odds) + " (" + top.book + "): edge " + (top.edge * 100).toFixed(2) + " pts, bar " + (top.bar * 100).toFixed(1) + ", past " + (top.past * 100).toFixed(2));
   });
-  const past = all.filter(c => c.qualifies && c.edge != null && c.past >= 0).sort((a, b) => (b.past - a.past) || (b.edge - a.edge));
+  const past = all.filter(c => c.qualifies && c.edge != null && c.past >= 0 && model.hasSignal(cfg.key, c.market)).sort((a, b) => (b.past - a.past) || (b.edge - a.edge));
   if (!RULES.onePerGame) return cfg.markets.map(m => past.find(c => c.market === m)).filter(Boolean);
   return past.length ? [past[0]] : [];
 }
@@ -626,7 +626,7 @@ function selectPicks(log, candidates) {
   return out;
 }
 /* the market board's watch: a modelled side whose edge reaches half its own bar (and the old point and a half) */
-function isWatch(r) { return r.edge != null && r.bar != null && r.edge >= Math.max(RULES.watchEdge, RULES.watchShare * r.bar); }
+function isWatch(r) { return r.edge != null && r.bar != null && r.edge >= Math.max(RULES.watchEdge, RULES.watchShare * r.bar) && model.hasSignal(r.sportKey, r.marketKey); }
 /* each sport's bars across its modelled sides tonight, for the page's copy ("NBA sides need 9 to 12 points this early") */
 function barsBySport(rows) {
   const by = {};

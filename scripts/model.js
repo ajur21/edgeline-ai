@@ -279,6 +279,10 @@ function shapeProb(gm, shape, marketKey, outcome, home, away, threeWay) {
   }
   return null;
 }
+/* a market where past seasons showed no signal at the books' lines (its calibration slope is under 0.5: NBA and NFL
+   spreads and totals): its sides read about even, so a plus-money price could put one past the 3-point floor on a coin
+   flip. Such a side is never a pick or a watch, whatever the price; it stays on the market board as information */
+function hasSignal(sportKey, marketKey) { const c = CALIB[sportKey] && CALIB[sportKey][marketKey]; return !(c && c[1] < 0.5); }
 /* the model's probability for a side, then the league's calibration for that market (see CALIB) */
 function sideProb(gm, marketKey, outcome, home, away) {
   return calibrated(gm, marketKey, outcome, home, rawSideProb(gm, marketKey, outcome, home, away));
@@ -459,4 +463,4 @@ function noise(gm, marketKey, outcome, home, away) {
   return { p: r4((Math.abs(up - p0) + Math.abs(dn - p0)) / 2), units: Math.round(units * 100) / 100, unit: UNIT[gm.sportKey] || "points", gp: Math.min(gh, ga) };
 }
 
-module.exports = { SPORT, CALIB, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, rawSideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+module.exports = { SPORT, CALIB, hasSignal, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, rawSideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
