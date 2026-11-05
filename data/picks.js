@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-05T05:10:20.993Z",
-  "trackedAt": "2026-11-05T05:52:58.945Z",
+  "trackedAt": "2026-11-05T14:14:25.160Z",
   "playOfDay": {
     "id": "b945b71332-h2h-Philadelphia-Flyers",
     "sport": "NHL",
@@ -99,7 +99,7 @@ window.PICKS_DATA = {
       ],
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
-        "Market: DraftKings opened +140, now +130, moving toward this side since the open.",
+        "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
         "Market: The market (7 books) opened +129, now +136, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
@@ -247,12 +247,12 @@ window.PICKS_DATA = {
           },
           "total": 5.5,
           "totalOdds": {
-            "over": -122,
-            "under": 102
+            "over": -130,
+            "under": 110
           },
           "ml": {
-            "home": -155,
-            "away": 130
+            "home": -148,
+            "away": 124
           }
         },
         "open": {
@@ -283,11 +283,11 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": 130,
-        "fair": 0.4170073589533933
+        "odds": 124,
+        "fair": 0.42794036443953615
       },
       "moved": "toward",
-      "label": "DraftKings opened +140, now +130"
+      "label": "DraftKings opened +140, now +124"
     },
     "dkHistory": [
       {
@@ -295,6 +295,12 @@ window.PICKS_DATA = {
         "line": null,
         "odds": 130,
         "fair": 0.417
+      },
+      {
+        "at": "2026-11-05T14:14:25.160Z",
+        "line": null,
+        "odds": 124,
+        "fair": 0.4279
       }
     ],
     "mkt": {
@@ -340,9 +346,13 @@ window.PICKS_DATA = {
         "n": 7
       }
     ],
-    "started": false,
     "status": "pending",
-    "result": null
+    "started": false,
+    "result": null,
+    "units": null,
+    "score": null,
+    "loggedAt": "2026-11-05T05:10:20.993Z",
+    "valueTo": -140
   },
   "parlayOfDay": {
     "id": "parlay-2026-11-05",
@@ -354,6 +364,7 @@ window.PICKS_DATA = {
     "ev": 1.2648,
     "status": "pending",
     "result": null,
+    "units": null,
     "legs": [
       {
         "id": "b945b71332-h2h-Philadelphia-Flyers",
@@ -480,7 +491,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
-          "Market: DraftKings opened +140, now +130, moving toward this side since the open.",
+          "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
           "Market: The market (7 books) opened +129, now +136, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
@@ -628,12 +639,12 @@ window.PICKS_DATA = {
             },
             "total": 5.5,
             "totalOdds": {
-              "over": -122,
-              "under": 102
+              "over": -130,
+              "under": 110
             },
             "ml": {
-              "home": -155,
-              "away": 130
+              "home": -148,
+              "away": 124
             }
           },
           "open": {
@@ -664,11 +675,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 130,
-          "fair": 0.4170073589533933
+          "odds": 124,
+          "fair": 0.42794036443953615
         },
         "moved": "toward",
-        "label": "DraftKings opened +140, now +130"
+        "label": "DraftKings opened +140, now +124"
       },
       "dkHistory": [
         {
@@ -676,6 +687,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 130,
           "fair": 0.417
+        },
+        {
+          "at": "2026-11-05T14:14:25.160Z",
+          "line": null,
+          "odds": 124,
+          "fair": 0.4279
         }
       ],
       "mkt": {
@@ -720,7 +737,14 @@ window.PICKS_DATA = {
           "best": 130,
           "n": 7
         }
-      ]
+      ],
+      "status": "pending",
+      "started": false,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-05T05:10:20.993Z",
+      "valueTo": -140
     },
     {
       "id": "c672f144ec-spreads-Anaheim-Ducks",
@@ -816,7 +840,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 59.1% (-0.1 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (-142), now +1.5 (-155), moving toward this side since the open.",
+          "Market: DraftKings opened +1.5 (-142), now +1.5 (-162), moving toward this side since the open.",
           "Market: The market (6 books) opened +1.5 (-137), now +1 (+100), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Oilers Tristan Jarry · Ducks Lukas Dostal.",
@@ -1003,8 +1027,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 130,
-              "away": -155
+              "home": 136,
+              "away": -162
             },
             "total": 6.5,
             "totalOdds": {
@@ -1044,11 +1068,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -155,
-          "fair": 0.5829926410466066
+          "odds": -162,
+          "fair": 0.593369754159424
         },
         "moved": "toward",
-        "label": "DraftKings opened +1.5 (-142), now +1.5 (-155)"
+        "label": "DraftKings opened +1.5 (-142), now +1.5 (-162)"
       },
       "dkHistory": [
         {
@@ -1056,6 +1080,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -155,
           "fair": 0.583
+        },
+        {
+          "at": "2026-11-05T14:14:25.160Z",
+          "line": 1.5,
+          "odds": -162,
+          "fair": 0.5934
         }
       ],
       "mkt": {
@@ -1100,7 +1130,14 @@ window.PICKS_DATA = {
           "best": -145,
           "n": 6
         }
-      ]
+      ],
+      "status": "pending",
+      "started": false,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-05T05:10:20.993Z",
+      "valueTo": -271
     },
     {
       "id": "b945b71332-spreads-Philadelphia-Flyers",
@@ -1344,12 +1381,12 @@ window.PICKS_DATA = {
             },
             "total": 5.5,
             "totalOdds": {
-              "over": -122,
-              "under": 102
+              "over": -130,
+              "under": 110
             },
             "ml": {
-              "home": -155,
-              "away": 130
+              "home": -148,
+              "away": 124
             }
           },
           "open": {
@@ -1436,7 +1473,14 @@ window.PICKS_DATA = {
           "best": -190,
           "n": 6
         }
-      ]
+      ],
+      "status": "pending",
+      "started": false,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-05T05:10:20.993Z",
+      "valueTo": -376
     },
     {
       "id": "446de9651d-spreads-Nashville-Predators",
@@ -1626,8 +1670,8 @@ window.PICKS_DATA = {
               "under": -118
             },
             "ml": {
-              "home": -205,
-              "away": 170
+              "home": -218,
+              "away": 180
             }
           },
           "open": {
@@ -1674,7 +1718,14 @@ window.PICKS_DATA = {
       ],
       "mkt": null,
       "sgo": null,
-      "sgoHistory": []
+      "sgoHistory": [],
+      "status": "pending",
+      "started": false,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-05T05:10:20.993Z",
+      "valueTo": -222
     }
   ]
 };

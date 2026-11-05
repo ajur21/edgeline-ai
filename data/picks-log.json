@@ -240,12 +240,12 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -130,
+      "under": 110
      },
      "ml": {
-      "home": -155,
-      "away": 130
+      "home": -148,
+      "away": 124
      }
     },
     "open": {
@@ -272,6 +272,12 @@
     "line": null,
     "odds": 130,
     "fair": 0.417
+   },
+   {
+    "at": "2026-11-05T14:14:25.160Z",
+    "line": null,
+    "odds": 124,
+    "fair": 0.4279
    }
   ],
   "dk": {
@@ -283,11 +289,11 @@
    },
    "now": {
     "line": null,
-    "odds": 130,
-    "fair": 0.4170073589533933
+    "odds": 124,
+    "fair": 0.42794036443953615
    },
    "moved": "toward",
-   "label": "DraftKings opened +140, now +130"
+   "label": "DraftKings opened +140, now +124"
   },
   "mkt": {
    "book": "Market consensus",
@@ -320,7 +326,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 42.6% (-0.3 points against the best price). For reference only.",
-    "Market: DraftKings opened +140, now +130, moving toward this side since the open.",
+    "Market: DraftKings opened +140, now +124, moving toward this side since the open.",
     "Market: The market (7 books) opened +129, now +136, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Rangers James Reimer · Flyers Dan Vladar.",
@@ -659,8 +665,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 130,
-      "away": -155
+      "home": 136,
+      "away": -162
      },
      "total": 6.5,
      "totalOdds": {
@@ -696,6 +702,12 @@
     "line": 1.5,
     "odds": -155,
     "fair": 0.583
+   },
+   {
+    "at": "2026-11-05T14:14:25.160Z",
+    "line": 1.5,
+    "odds": -162,
+    "fair": 0.5934
    }
   ],
   "dk": {
@@ -707,11 +719,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -155,
-    "fair": 0.5829926410466066
+    "odds": -162,
+    "fair": 0.593369754159424
    },
    "moved": "toward",
-   "label": "DraftKings opened +1.5 (-142), now +1.5 (-155)"
+   "label": "DraftKings opened +1.5 (-142), now +1.5 (-162)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -744,7 +756,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 59.1% (-0.1 points against the best price). For reference only.",
-    "Market: DraftKings opened +1.5 (-142), now +1.5 (-155), moving toward this side since the open.",
+    "Market: DraftKings opened +1.5 (-142), now +1.5 (-162), moving toward this side since the open.",
     "Market: The market (6 books) opened +1.5 (-137), now +1 (+100), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Oilers Tristan Jarry · Ducks Lukas Dostal.",
@@ -1042,12 +1054,12 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -130,
+      "under": 110
      },
      "ml": {
-      "home": -155,
-      "away": 130
+      "home": -148,
+      "away": 124
      }
     },
     "open": {
@@ -1367,8 +1379,8 @@
       "under": -118
      },
      "ml": {
-      "home": -205,
-      "away": 170
+      "home": -218,
+      "away": 180
      }
     },
     "open": {
