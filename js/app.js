@@ -218,12 +218,13 @@
   /* earlier day first; an unknown day goes last */
   function keyCmp(ka, kb) { ka = ka || "~"; kb = kb || "~"; return ka < kb ? -1 : ka > kb ? 1 : 0; }
   function dayCmp(a, b) { return keyCmp(dayKey(a), dayKey(b)); }
-  /* "Today", "Tomorrow" or "Thu Nov 6", relative to the current Eastern date */
+  /* "Today", "Tomorrow", "Yesterday" or "Thu Nov 6", relative to the current Eastern date (the site's one clock) */
   function dayLabel(key) {
     if (!key) return "Date to be confirmed";
-    const today = etKey(new Date());
+    const today = etKey(new Date(now()));
     if (key === today) return "Today";
     if (key === shiftKey(today, 1)) return "Tomorrow";
+    if (key === shiftKey(today, -1)) return "Yesterday";
     return shortDate(keyDate(key), true);
   }
   /* the day heading in a ranked list, as children: "Tomorrow · Thu Nov 6", "Saturday · Nov 8" */
@@ -239,6 +240,104 @@
   function dayDivider(key) { return el("p", { class: "day-divider" }, dayHeading(key)); }
   /* a meta line: parts as spans separated by a hairline (CSS .meta), never a middle dot */
   function meta(parts, cls) { return el("span", { class: "meta" + (cls ? " " + cls : "") }, (parts || []).filter(function (x) { return x != null && x !== ""; }).map(function (x) { return typeof x === "string" ? el("span", { text: x }) : el("span", {}, [x]); })); }
+
+  /* ---------- one clock (owner ask, 2026-11-05: picks "pop and go or stay past tip off") ----------
+     Every page asks the same clock whether a game has started, so nothing looks bettable after its start.
+     window.EDGELINE_NOW (ms) pins the clock for tests; otherwise it is the visitor's clock. */
+  function now() {
+    const v = window.EDGELINE_NOW;
+    if (v == null || v === "") return Date.now();
+    const t = typeof v === "number" ? v : /^\d+$/.test(String(v)) ? Number(v) : Date.parse(v);
+    return Number.isFinite(t) ? t : Date.now();
+  }
+  /* an Eastern wall-clock time on an Eastern date, as a timestamp (handles the EST/EDT switch) */
+  const etParts = new Intl.DateTimeFormat("en-US", { timeZone: ET_ZONE, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" });
+  function etWallMs(key, h, mi) {
+    const k = String(key).split("-").map(Number), want = Date.UTC(k[0], k[1] - 1, k[2], h, mi);
+    let t = want + 5 * 36e5;
+    for (let i = 0; i < 2; i++) {
+      const o = {}; etParts.formatToParts(new Date(t)).forEach(function (x) { o[x.type] = Number(x.value); });
+      t += want - Date.UTC(o.year, o.month - 1, o.day, o.hour === 24 ? 0 : o.hour, o.minute);
+    }
+    return t;
+  }
+  /* when the game starts: commence, else the start label read the way dayKey reads it ("Tonight 8:00 PM ET", "Sun 4:25 PM ET"); NaN when unknown */
+  function startMs(p) {
+    if (!p) return NaN;
+    const t = Date.parse(p.commence || "");
+    if (Number.isFinite(t)) return t;
+    const key = dayKey(p), m = String(p.start || "").match(/(\d{1,2}):(\d{2})\s*([AP]M)/i);
+    if (!key || !m) return NaN;
+    return etWallMs(key, Number(m[1]) % 12 + (m[3].toUpperCase() === "PM" ? 12 : 0), Number(m[2]));
+  }
+  /* a game's usual length, start to final: past it with no result a pick is "awaiting" rather than "live" */
+  const GAME_HOURS = { NBA: 2.5, NFL: 3.5, NHL: 3, MLB: 3.5, Soccer: 2 };
+  const KEY_SPORT = { basketball_nba: "NBA", americanfootball_nfl: "NFL", icehockey_nhl: "NHL", baseball_mlb: "MLB" };
+  function gameHours(p) {
+    const s = GAME_HOURS[p.sport] ? p.sport : KEY_SPORT[p.sportKey] || (/^soccer/.test(p.sportKey || "") || /premier league|la liga|soccer/i.test(p.league || "") ? "Soccer" : null);
+    return s ? GAME_HOURS[s] : 3;
+  }
+  const SOON_MS = 90 * 60e3;
+  function hasResult(p) { return !!p && ((p.result != null && p.result !== "") || p.status === "graded" || p.status === "void"); }
+  /* upcoming | soon (starts within 90 minutes) | live (started, no result, inside the sport's usual length) | awaiting (past it, no result yet) | final (has a result) */
+  function gameState(p) {
+    if (!p) return "upcoming";
+    if (hasResult(p)) return "final";
+    const t = startMs(p), n = now();
+    let s;
+    if (!Number.isFinite(t)) { const k = dayKey(p); s = k && k < etKey(new Date(n)) ? "awaiting" : "upcoming"; }
+    else if (n < t) s = t - n <= SOON_MS ? "soon" : "upcoming";
+    else s = n - t < gameHours(p) * 36e5 ? "live" : "awaiting";
+    /* the pipeline's own word wins over a slow clock: a pick it calls started is never bettable */
+    return p.started === true && (s === "upcoming" || s === "soon") ? "live" : s;
+  }
+  /* bettable: not started and no result */
+  function isOpen(p) { const s = gameState(p); return s === "upcoming" || s === "soon"; }
+  function openOnly(list) { return (list || []).filter(isOpen); }
+  /* the result as a word: Won, Lost, Push, Void, or Final when graded without one */
+  function resultWord(p) {
+    const r = String((p && p.result) || "").toLowerCase();
+    if (r === "win" || r === "won") return "Won";
+    if (r === "loss" || r === "lost") return "Lost";
+    if (r === "push") return "Push";
+    if (p && (p.status === "void" || r === "void")) return "Void";
+    return "Final";
+  }
+  /* the state chip: Live, Awaiting result, Won, Lost, Push, Void (and Starts soon for an open game when asked) */
+  const STATE_RANK = { live: 0, awaiting: 1, final: 2, soon: 3, upcoming: 4 };
+  function stateKey(p) { const s = gameState(p); return s === "final" ? resultWord(p).toLowerCase() : s; }
+  function stateText(p) { const s = gameState(p); return s === "live" ? "Live" : s === "awaiting" ? "Awaiting result" : s === "final" ? resultWord(p) : s === "soon" ? "Starts soon" : "Upcoming"; }
+  function stateChip(p, opts) {
+    const s = gameState(p);
+    if ((s === "upcoming" || s === "soon") && !(opts && opts.open)) return null;
+    return el("span", { class: "badge badge-state badge-" + stateKey(p), title: s === "live" ? "Started, no result yet" : s === "awaiting" ? "Past the usual length of the game; the grade comes from the final score" : null, text: stateText(p) });
+  }
+  /* "8:00 PM ET", with the day when it is not today ("yesterday 4:31 PM ET", "Thu Nov 6, 1:00 PM ET") */
+  const etClock = new Intl.DateTimeFormat("en-US", { timeZone: ET_ZONE, hour: "numeric", minute: "2-digit" });
+  function clockET(ms) {
+    if (!Number.isFinite(ms)) return "";
+    const d = new Date(ms), key = etKey(d), today = etKey(new Date(now())), t = etClock.format(d) + " ET";
+    if (key === today) return t;
+    if (key === shiftKey(today, -1)) return "yesterday " + t;
+    if (key === shiftKey(today, 1)) return "tomorrow " + t;
+    return shortDate(keyDate(key), true) + ", " + t;
+  }
+  /* "12 min ago", "2 hr ago" */
+  function ago(ms) {
+    const m = Math.round((now() - ms) / 60e3);
+    if (!(m >= 1)) return "just now";
+    if (m < 60) return m + " min ago";
+    const h = Math.round(m / 60);
+    return h < 48 ? h + " hr ago" : Math.round(h / 24) + " days ago";
+  }
+  /* the final score as the live pill writes it: away first ("NEW 0–2 CHE") */
+  function teamAbbr(p, which) { const name = p[which]; const t = TM() && name ? TM().find(p.sportKey || p.sport, name) : null; return t && t.abbr ? t.abbr : name || (which === "home" ? "Home" : "Away"); }
+  function scoreText(p) {
+    const s = p && p.score;
+    if (!s || s.home == null || s.away == null) return "";
+    return teamAbbr(p, "away") + " " + s.away + "–" + s.home + " " + teamAbbr(p, "home");
+  }
+  function unitsText(p) { const u = Number(p && p.units); return p && p.units != null && Number.isFinite(u) ? signed(u, 2) + "u" : ""; }
 
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: DEFAULT_BAR, watch: DEFAULT_WATCH, games: 0, generatedAt: null }; }
@@ -751,6 +850,7 @@
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
-    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel
+    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
+    now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, ago: ago, scoreText: scoreText, unitsText: unitsText
   };
 })();
