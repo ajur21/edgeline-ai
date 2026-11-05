@@ -170,6 +170,53 @@
     ])]);
   }
 
+  /* ---------- game day (owner rule, 2026-11-04): a play from tomorrow never sits above a play from today ---------- */
+  const ET_ZONE = "America/New_York", DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const etDay = new Intl.DateTimeFormat("en-CA", { timeZone: ET_ZONE, year: "numeric", month: "2-digit", day: "2-digit" });
+  const etDow = new Intl.DateTimeFormat("en-US", { timeZone: ET_ZONE, weekday: "short" });
+  const dayKeyCache = {};
+  function etKey(d) { return etDay.format(d); }
+  function keyDate(key) { const p = String(key).split("-").map(Number); return new Date(Date.UTC(p[0], p[1] - 1, p[2], 12)); }
+  /* "Nov 6", or "Thu Nov 6" with the weekday (no comma) */
+  function shortDate(d, withDow) { const md = d.toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric" }); return withDow ? d.toLocaleDateString("en-US", { timeZone: "UTC", weekday: "short" }) + " " + md : md; }
+  function shiftKey(key, days) { const d = keyDate(key); d.setUTCDate(d.getUTCDate() + days); return etKey(d); }
+  /* the date the start labels were written against: the data's generatedAt, else now */
+  function labelBase() { const d = window.PICKS_DATA, m = window.MARKET_DATA; const t = Date.parse((d && d.generatedAt) || (m && m.generatedAt) || ""); return Number.isFinite(t) ? new Date(t) : new Date(); }
+  /* the Eastern calendar date (YYYY-MM-DD) a pick or market row is played on, from its timestamp or, failing that, its start label; "" when it cannot be told */
+  function dayKey(p) {
+    if (!p) return "";
+    const t = Date.parse(p.commence || "");
+    if (Number.isFinite(t)) return dayKeyCache[p.commence] || (dayKeyCache[p.commence] = etKey(new Date(t)));
+    const m = String(p.start || "").match(/^(Today|Tonight|Tomorrow|Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b/i);
+    if (!m) return "";
+    const word = m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), base = labelBase(), today = etKey(base);
+    /* the pipeline labels same-day games Today/Tonight, so a bare weekday is always a later day (the same weekday means next week) */
+    const offset = word === "Tomorrow" ? 1 : DOW.indexOf(word) === -1 ? 0 : ((DOW.indexOf(word) - DOW.indexOf(etDow.format(base)) + 7) % 7 || 7);
+    return offset ? shiftKey(today, offset) : today;
+  }
+  /* earlier day first; an unknown day goes last */
+  function keyCmp(ka, kb) { ka = ka || "~"; kb = kb || "~"; return ka < kb ? -1 : ka > kb ? 1 : 0; }
+  function dayCmp(a, b) { return keyCmp(dayKey(a), dayKey(b)); }
+  /* "Today", "Tomorrow" or "Thu Nov 6", relative to the current Eastern date */
+  function dayLabel(key) {
+    if (!key) return "Date to be confirmed";
+    const today = etKey(new Date());
+    if (key === today) return "Today";
+    if (key === shiftKey(today, 1)) return "Tomorrow";
+    return shortDate(keyDate(key), true);
+  }
+  /* the day heading in a ranked list, as children: "Tomorrow · Thu Nov 6", "Saturday · Nov 8" */
+  function dayHeading(key) {
+    const label = dayLabel(key);
+    if (!key) return [el("span", { class: "day-when", text: label })];
+    const near = label === "Today" || label === "Tomorrow", d = keyDate(key);
+    const when = near ? label : d.toLocaleDateString("en-US", { timeZone: "UTC", weekday: "long" });
+    const date = shortDate(d, near);
+    return [el("span", { class: "day-when", text: when }), " · ", el("span", { class: "day-date", text: date })];
+  }
+  /* the day boundary in a card grid or the digest slate */
+  function dayDivider(key) { return el("p", { class: "day-divider" }, dayHeading(key)); }
+
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: 0.01, watch: 0.005, games: 0, generatedAt: null }; }
   function statusLabel(st) { return st === "pick" ? "Pick" : st === "watch" ? "Watch" : "No bet"; }
@@ -192,8 +239,8 @@
     let rows = marketData().rows.filter(r => !(r.pickId && picksOnBoard[r.pickId]) || opts.includePicks);
     if (opts.sport) rows = rows.filter(r => r.sport === opts.sport);
     if (opts.positive) rows = rows.filter(r => r.edge > 0);
-    /* likeliest first (the file is by edge; byEdge keeps that for the nearest-miss slot) */
-    if (!opts.byEdge) rows = rows.slice().sort((a, b) => ((b.edge > 0) - (a.edge > 0)) || (b.modelProb - a.modelProb) || (b.edge - a.edge));
+    /* today first, then likeliest (the file is by edge; byEdge keeps that for the nearest-miss slot) */
+    if (!opts.byEdge) rows = rows.slice().sort((a, b) => dayCmp(a, b) || ((b.edge > 0) - (a.edge > 0)) || (b.modelProb - a.modelProb) || (b.edge - a.edge));
     if (opts.oneSidePerMarket) { const seen = {}; rows = rows.filter(r => { const k = r.eventId + "|" + r.marketKey; if (seen[k]) return false; seen[k] = true; return true; }); }
     if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
     return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
@@ -211,15 +258,25 @@
     tr.firstChild.setAttribute("data-label", "");
     return tr;
   }
-  /* the full board as a table: every side of every main-line market, in the order given */
+  /* a day heading row for the market table: where the next game day begins */
+  function marketDayRow(key) {
+    const tr = el("tr", { class: "day-divider" }, [el("td", { colspan: String(MARKET_COLS.length) }, dayHeading(key))]);
+    tr.firstChild.setAttribute("data-label", "");
+    return tr;
+  }
+  /* the full board as a table: every side of every main-line market, in the order given. opts.divider: the edge-tier label (within each day); opts.dayDivider: a heading row when the day changes; opts.spansDays: the full list spans more than one day even if this slice does not */
   const MARKET_COLS = ["Sport", "Game", "Market", "Side", "Best", "Book", "Fair", "Implied", "Edge", "Status"];
   function marketTable(rows, opts) {
     opts = opts || {};
     const m = marketData(), onBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { onBoard[p.id] = true; });
-    let divided = false;
+    let divided = false, prevDay = null;
+    /* headings only when the list spans more than one day; spansDays says so for a page that shows the list a slice at a time */
+    const spansDays = !!opts.dayDivider && (!!opts.spansDays || new Set(rows.map(dayKey)).size > 1);
     const body = [];
     rows.forEach(function (r, idx) {
-      if (opts.divider && !divided && idx > 0 && !(r.edge > 0) && rows[idx - 1].edge > 0) { divided = true; body.push(marketDivider(opts.divider)); }
+      const day = dayKey(r), newDay = idx === 0 || day !== prevDay;
+      if (newDay) { if (spansDays) body.push(marketDayRow(day)); prevDay = day; divided = false; }
+      if (opts.divider && !divided && !newDay && !(r.edge > 0) && rows[idx - 1].edge > 0) { divided = true; body.push(marketDivider(opts.divider)); }
       const isPick = !!(r.pickId && onBoard[r.pickId]);
       const st = isPick ? "pick" : r.edge >= (m.watch || 0.005) ? "watch" : "none";
       r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
@@ -372,8 +429,8 @@
   function sortByEdge(picks) {
     return (picks || []).filter(isValidPick).sort(function (a, b) { return edgeOf(b) - edgeOf(a); });
   }
-  /* the site's order (owner rule): sides with a positive edge first, then everything else; within each tier the likeliest to hit first, by fair probability; edge breaks ties */
-  function worthFirst(a, b) { return ((edgeOf(b) > 0) - (edgeOf(a) > 0)) || (Number(b.modelProb) - Number(a.modelProb)) || (edgeOf(b) - edgeOf(a)); }
+  /* the site's order (owner rule): today's games before tomorrow's; within a day, sides with a positive edge first, then everything else; within each tier the likeliest to hit first, by fair probability; edge breaks ties */
+  function worthFirst(a, b) { return dayCmp(a, b) || ((edgeOf(b) > 0) - (edgeOf(a) > 0)) || (Number(b.modelProb) - Number(a.modelProb)) || (edgeOf(b) - edgeOf(a)); }
   function sortByProb(picks) {
     return (picks || []).filter(isValidPick).sort(worthFirst);
   }
@@ -429,7 +486,7 @@
     const dec = priced.reduce((d, x) => d * decimalOdds(x.price), 1), fair = legs.reduce((f, l) => f * Number(l.modelProb), 1);
     return { book: mixed ? "Best prices (mixed books)" : chosen, books: common, mixed: mixed, legs: priced, decimal: dec, odds: legs.length ? americanFromDecimal(dec) : 0, fairProb: fair, implied: legs.length ? 1 / dec : 0, edge: legs.length ? fair - 1 / dec : 0, ev: legs.length ? fair * dec - 1 : 0 };
   }
-  /* every +EV parlay on the board, best book per leg set, ranked by EV. opts: size (2|3|4|null), limit, maxLegs */
+  /* every +EV parlay on the board, best book per leg set, earliest game day first then likeliest. opts: size (2|3|4|null), limit, maxLegs */
   function bestParlays(picks, opts) {
     opts = opts || {};
     const maxLegs = opts.size || opts.maxLegs || 4, minLegs = opts.size || 2, limit = opts.limit || 5;
@@ -443,7 +500,7 @@
         const dec = combo.reduce((d, p) => d * decimalOdds(p.prices[book]), 1), fair = combo.reduce((f, p) => f * Number(p.modelProb), 1), ev = fair * dec - 1;
         if (ev <= 0) return;
         const key = combo.map(p => p.id).sort().join("|");
-        if (!bySet[key] || ev > bySet[key].ev) bySet[key] = { book: book, legs: combo.map(p => ({ id: p.id, pick: p.pick, event: p.event, sport: p.sport, price: p.prices[book] })), decimal: dec, odds: americanFromDecimal(dec), fairProb: fair, ev: ev };
+        if (!bySet[key] || ev > bySet[key].ev) bySet[key] = { book: book, day: combo.map(dayKey).sort(keyCmp)[0] || "", legs: combo.map(p => ({ id: p.id, pick: p.pick, event: p.event, sport: p.sport, price: p.prices[book] })), decimal: dec, odds: americanFromDecimal(dec), fairProb: fair, ev: ev };
       }
       const n = legs.length;
       function rec(start, combo) {
@@ -453,8 +510,8 @@
       }
       rec(0, []);
     });
-    /* likeliest ticket first, then expected value */
-    return Object.values(bySet).sort((a, b) => (b.fairProb - a.fairProb) || (b.ev - a.ev)).slice(0, limit);
+    /* the day of the ticket's earliest leg first, then the likeliest ticket, then expected value */
+    return Object.values(bySet).sort((a, b) => keyCmp(a.day, b.day) || (b.fairProb - a.fairProb) || (b.ev - a.ev)).slice(0, limit);
   }
 
   /* the slip: pick ids kept in localStorage; buttons everywhere reflect it */
@@ -634,7 +691,7 @@
 
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
-    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
+    el: el, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel

@@ -91,7 +91,7 @@
       <div>
         <span class="eyebrow">The slate</span>
         <h2>Every pick, likeliest first</h2>
-        <p class="muted">Sides worth a bet first, ranked by fair probability, then the rest; the start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
+        <p class="muted">Today's games first, then later days under their own heading; within a day, sides worth a bet first, ranked by fair probability, then the rest. The start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
       </div>
     </div>
     <div id="slate-host"></div>
@@ -201,10 +201,14 @@
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
   if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: "No picks to list. Check back after the next refresh." }));
-  var groups = ordered.length ? [{ label: "Positive edge first, then likeliest", picks: ordered }] : [];
+  var groups = ordered.length ? [{ label: "Today first; positive edge, then likeliest", picks: ordered }] : [];
+  /* a day heading where the game day changes (owner rule: a play from tomorrow never sits above one from today) */
+  function dayBreaks(picks) { var spans = new Set(picks.map(E.dayKey)).size > 1, prev = null; return picks.map(function (p, i) { var k = E.dayKey(p), brk = spans && (i === 0 || k !== prev); prev = k; return brk ? k : null; }); }
   groups.forEach(function (g) {
     var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: g.picks.length + (g.picks.length === 1 ? " pick" : " picks") })])]);
+    var breaks = dayBreaks(g.picks);
     g.picks.forEach(function (p, i) {
+      if (breaks[i]) sec.appendChild(E.dayDivider(breaks[i]));
       var shop = E.lineShop(p), b = p.breakdown, why = b && b.verdict ? b.verdict : p.rationale;
       sec.appendChild(E.el("article", { class: "digest-row", "data-id": p.id }, [
         E.el("span", { class: "leg-id digest-id" }, [E.rankChip(i + 1, true), T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
@@ -230,7 +234,8 @@
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
-      g.picks.forEach(function (p, i) { lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.pct(p.modelProb) + " · " + p.confidence + " · edge " + E.signed(E.edgeOf(p) * 100, 1) + "% · " + p.event + " · " + slotLabel(p)); });
+      var breaks = dayBreaks(g.picks);
+      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.pct(p.modelProb) + " · " + p.confidence + " · edge " + E.signed(E.edgeOf(p) * 100, 1) + "% · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
     lines.push("Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
