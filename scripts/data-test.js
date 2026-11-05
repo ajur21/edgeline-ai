@@ -65,7 +65,12 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("valueTo: a favourite (74.9% -> -255: -256 would no longer clear 3 points) and an underdog (45% -> +139: +138 would not)", P.valueTo(0.749) === -255 && clears(0.749, -255) && !clears(0.749, worse(-255)) && P.valueTo(0.45) === 139 && clears(0.45, 139) && !clears(0.45, worse(139)), JSON.stringify([P.valueTo(0.749), P.valueTo(0.45)]));
   check("valueTo: even money is +100, an exact whole price is kept (63% -> -150), and nothing outside 0-1 after the bar", P.valueTo(0.53) === 100 && P.valueTo(0.63) === -150 && P.valueTo(0.03) === null && P.valueTo(0.01) === null && P.valueTo(1.04) === null && P.valueTo(null) === null && P.valueTo(undefined) === null, JSON.stringify([P.valueTo(0.53), P.valueTo(0.63), P.valueTo(0.03)]));
 
-  /* full run on fixtures, with a pre-existing log to grade */
+  /* full run on fixtures, with a pre-existing log to grade. The fixture checks below were written for the flat bar and
+     one pick per market (five picks across two games, which exercise the breakdowns of a moneyline, a total and a
+     three-way soccer side); they run on that rule (barZ 0 = every bar at the 3-point floor, onePerGame off), and the
+     Phase 2 selection (each side's own bar, one pick a game) is checked on its own further down */
+  const RULES0 = { barZ: P.RULES.barZ, onePerGame: P.RULES.onePerGame };
+  P.RULES.barZ = 0; P.RULES.onePerGame = false;
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-data-"));
   const NOW = "2026-11-05T15:00:00Z";
   const pending = (id, extra) => Object.assign({ key: id, id: id, date: "2026-11-03", commence: "2026-11-04T00:00:00Z", sport: "NBA", league: "NBA", sportKey: "basketball_nba", eventId: "nba-old-1", event: "Milwaukee Bucks @ Boston Celtics", home: "Boston Celtics", away: "Milwaukee Bucks", edge: 0.03, confidence: "Medium", status: "pending", units: 0 }, extra);
@@ -109,7 +114,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("run: no pick on the NFL games: without an ESPN record there is no model, so no side has a probability", !added.some(e => e.sport === "NFL"));
   check("run: never both sides of one market", !added.some(a => added.some(b => a !== b && a.eventId === b.eventId && a.marketKey === b.marketKey)));
   check("run: rationale states the rule and names the book; the market is a reference only", /^Our probability is 74\.9%, from the game data/.test(celtics.rationale) && /Caesars offers -145/.test(celtics.rationale) && /Not graded against other books' prices/.test(celtics.rationale) && /for reference the market makes it 58\.\d%/.test(celtics.rationale) && celtics.factors.some(f => /from game data, not other books/.test(f)), celtics.rationale);
-  check("run: tiers are 3 / 5 / 8 points over the price and a thin sample never rates above Lean", P.confidence(0.1, true) === "Lean" && P.confidence(0.1, false) === "High" && P.confidence(0.05) === "Medium" && P.confidence(0.03) === "Lean" && P.RULES.minEdge === 0.03);
+  check("run: tiers are how far the edge clears the side's own bar (Lean past it, Medium 2 points past, High 5) and a thin sample never rates above Lean", P.confidence(0.1, true) === "Lean" && P.confidence(0.1, false) === "High" && P.confidence(0.05) === "High" && P.confidence(0.049) === "Medium" && P.confidence(0.02) === "Medium" && P.confidence(0.019) === "Lean" && P.confidence(0) === "Lean" && P.RULES.minEdge === 0.03);
 
   /* generated files load in a browser-like scope and have the site's shape */
   const sandbox = { window: {} };
@@ -127,7 +132,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
 
   /* context + breakdown (fixture ESPN scoreboard, injuries, schedules, weather), written around the model's reasons */
   const celticsPub = PD.picks.find(p => p.pick === "Boston Celtics ML"), arsenalPub = PD.picks.find(p => p.pick === "Arsenal ML"), underPub = PD.picks.find(p => p.pick === "Under 226.5");
-  check("breakdown: every board pick explains its tier from our probability and the price, states the rule, and names the 3 / 5 / 8 bars", PD.picks.every(p => p.breakdown && /^Our probability for this side is \d+\.\d%, from the game data/.test(p.breakdown.tierWhy) && p.breakdown.tierWhy.indexOf("Medium at 5.0 points") !== -1 && /Nothing here is graded against other books' prices/.test(p.breakdown.tierWhy) && p.breakdown.tier === p.confidence), celticsPub && celticsPub.breakdown.tierWhy);
+  check("breakdown: every board pick explains its tier from our probability and the price, states the rule, and names its bar and the Medium and High steps past it", PD.picks.every(p => p.breakdown && /^Our probability for this side is \d+\.\d%, from the game data/.test(p.breakdown.tierWhy) && /Its bar is 3\.0 points: the floor/.test(p.breakdown.tierWhy) && p.breakdown.tierWhy.indexOf("Medium needs 2.0 points past the bar, High 5.0 points") !== -1 && /Nothing here is graded against other books' prices/.test(p.breakdown.tierWhy) && p.breakdown.tier === p.confidence), celticsPub && celticsPub.breakdown.tierWhy);
   check("breakdown: the model's reasons are the support and risks: ratings, form, home edge, the Bucks' back-to-back and Lillard for the Celtics; Tatum out against", celticsPub.breakdown.support.some(t => /rate \+5\.1 a game/.test(t)) && celticsPub.breakdown.support.some(t => /second night of a back-to-back/.test(t)) && celticsPub.breakdown.support.some(t => /Lillard/.test(t)) && celticsPub.breakdown.support.some(t => /Projected margin \+9\.6/.test(t)) && celticsPub.breakdown.risks.some(t => /without Jayson Tatum/.test(t)), JSON.stringify([celticsPub.breakdown.support, celticsPub.breakdown.risks]));
   check("breakdown: no line is listed twice (the context's own injury and rest rules stand down when the model carries them)", (function () { const all = celticsPub.breakdown.support.concat(celticsPub.breakdown.risks); return all.filter(t => /Tatum/.test(t)).length === 1 && all.filter(t => /back-to-back/.test(t)).length === 1; })(), JSON.stringify(celticsPub.breakdown.risks));
   check("breakdown: rest is calendar days in Eastern time (the Bucks played the night before: back-to-back; the Celtics two days ago) and the model prices it", celticsPub.context.rest["Milwaukee Bucks"].b2b === true && celticsPub.context.rest["Milwaukee Bucks"].restDays === 1 && celticsPub.context.rest["Boston Celtics"].restDays === 2 && celticsPub.model.parts.rest === 1.5, JSON.stringify(celticsPub.context.rest));
@@ -393,6 +398,62 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("later: the finished games stay pending until scores arrive (not voided yet)", log3.filter(e => e.eventId === "nba-fix-1" || e.eventId === "epl-fix-1").every(e => e.status === "pending"));
 
   fs.rmSync(tmp, { recursive: true, force: true });
+
+  /* ---------- Phase 2 (2026-11-05; the owner: one sport "favored", picks that "pop and go"; approved fewer, steadier
+     picks, locked once posted): each side's own bar, one pick a game, the day's caps, and the standing of a locked pick ---------- */
+  P.RULES.barZ = RULES0.barZ; P.RULES.onePerGame = RULES0.onePerGame;
+  check("bar: the default rule is one model error (barZ 1), one pick a game, at most 10 a day and 5 a sport", P.RULES.barZ === 1 && P.RULES.onePerGame === true && P.RULES.maxPerDay === 10 && P.RULES.maxPerSportDay === 5);
+  /* the model's own error: the standard error of the rating difference, from each team's games plus the prior's weight */
+  const cOut = { name: "Boston Celtics", point: null };
+  const nz = M.noise(gmFix, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks"), cfgN = M.SPORT.basketball_nba;
+  const kOf = last => last != null ? cfgN.carry.k : cfgN.k;
+  const unitsWant = cfgN.sd * Math.sqrt(1 / (gmFix.gpHome + kOf(gmFix.parts.lastHome)) + 1 / (gmFix.gpAway + kOf(gmFix.parts.lastAway)));
+  check("noise: the Celtics ML's error is the rating difference's standard error (14.3 × √(1/(gp+k) + 1/(gp+k)) points) moved through the side's probability, well over the floor this early", nz && near(nz.units, unitsWant, 0.01) && nz.unit === "points" && nz.gp === Math.min(gmFix.gpHome, gmFix.gpAway) && nz.p > 0.03 && nz.p < 0.25, JSON.stringify([nz, unitsWant]));
+  const later = Object.assign({}, gmFix, { gpHome: 60, gpAway: 60, gp: 60 });
+  check("noise: it falls as the games pile up (60 games each: a fraction of the early error), and a total has its own (the scoring averages)", M.noise(later, "h2h", cOut, "Boston Celtics", "Milwaukee Bucks").p < nz.p / 2 && M.noise(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks").unit === "points" && M.noise(gmFix, "totals", { name: "Under", point: 226.5 }, "Boston Celtics", "Milwaukee Bucks").p > 0);
+  check("noise: a soccer draw still gets an error (it falls whichever way the margin moves), and no model means no error", M.noise(gmEpl, "h2h", { name: "Draw", point: null }, "Arsenal", "Liverpool").p > 0 && M.noise(null, "h2h", cOut, "a", "b") === null);
+  check("bar: never under the 3-point floor; otherwise barZ model errors", P.barOf({ p: 0.01 }) === 0.03 && near(P.barOf({ p: 0.11 }), 0.11, 1e-9) && P.barOf(null) === 0.03);
+
+  const tmpB = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-bar-"));
+  const rb = await P.run({ fixture: true, out: tmpB, now: NOW });
+  const logB = JSON.parse(fs.readFileSync(path.join(tmpB, "picks-log.json"), "utf8")), addedB = logB.filter(e => e.loggedAt);
+  const sbB = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpB, "picks.js"), "utf8") + fs.readFileSync(path.join(tmpB, "market.js"), "utf8"), sbB);
+  const PDB = sbB.window.PICKS_DATA, MKB = sbB.window.MARKET_DATA;
+  check("select: one pick a game at most (the fixture's two modelled games gave five picks on the flat bar), each the side furthest past its own bar", rb.added >= 1 && rb.added <= 2 && new Set(addedB.map(e => e.eventId)).size === addedB.length && addedB.every(e => {
+    const rows = MKB.rows.filter(r => r.eventId === e.eventId && r.past != null); return rows.every(r => r.past <= e.past + 1e-4); }), JSON.stringify(addedB.map(e => [e.pick, e.edge, e.bar, e.past])));
+  check("select: every new pick clears its own bar, records it (bar, past, barParts) and its tier is how far past", addedB.every(e => e.past >= 0 && e.bar >= 0.03 && near(e.edge - e.bar, e.past, 2e-4) && e.barParts && near(e.bar, Math.max(0.03, e.barParts.error), 2e-4) && e.barParts.floor === 0.03 && e.confidence === P.confidence(e.past, !!(e.model && e.model.thin))), JSON.stringify(addedB.map(e => [e.pick, e.bar, e.past, e.barParts, e.confidence])));
+  check("select: the rationale and factors give the bar in words, still never against other books", addedB.every(e => /Its bar is \d+\.\d points/.test(e.rationale) && /It clears it by \d+\.\d\./.test(e.rationale) && /Not graded against other books' prices/.test(e.rationale) && e.factors.some(f => /past its bar of \d+\.\d/.test(f))), addedB.map(e => e.rationale).join(" || "));
+  check("market: every modelled row carries its bar and how far past it; watch is half its own bar (and 1.5 points), the file names the rule and each sport's bars", MKB.rows.filter(r => r.modelled).every(r => r.bar >= 0.03 && near(r.edge - r.bar, r.past, 2e-4) && (r.status === "pick" || (r.status === "watch") === (r.edge >= Math.max(0.015, 0.5 * r.bar) - 1e-9))) && MKB.rows.filter(r => !r.modelled).every(r => r.bar == null && r.status === "none") && MKB.barRule && MKB.barRule.floor === 0.03 && MKB.barRule.z === 1 && MKB.bars.NBA && MKB.bars.NBA.min <= MKB.bars.NBA.median && MKB.bars.NBA.median <= MKB.bars.NBA.max && MKB.threshold === 0.03, JSON.stringify(MKB.bars));
+  check("market: a side over 3 points but under its own bar is not a pick (the flat bar would have taken it)", MKB.rows.some(r => r.modelled && r.edge >= 0.03 && r.past < 0 && r.status !== "pick"), JSON.stringify(MKB.rows.filter(r => r.modelled).map(r => [r.pick, r.edge, r.bar]).slice(0, 8)));
+  check("picks.js: a fresh pick carries its bar, how far past, the parts, no later check yet (now and standing null), and the worst price that still clears its own bar", PDB.picks.every(p => p.bar >= 0.03 && p.past >= 0 && p.barParts && p.now === null && p.standing === null && p.valueTo === P.valueTo(p.modelProb, p.bar) && P.implied(p.valueTo) <= p.modelProb - p.bar + 1e-9));
+  fs.rmSync(tmpB, { recursive: true, force: true });
+
+  /* the day's caps and one pick a game, across runs: candidates furthest past first; what earlier runs posted counts */
+  const cand = (id, ev, sport, date, past) => ({ id: id, key: id, eventId: ev, sport: sport, date: date, past: past, edge: past + 0.05 });
+  const capLog = [{ id: "posted", eventId: "g0", sport: "NBA", date: "2026-11-05", status: "pending" }, { id: "voided", eventId: "g9", sport: "NBA", date: "2026-11-05", status: "void" }];
+  const capC = [cand("a1", "g1", "NBA", "2026-11-05", 0.01), cand("a2", "g1", "NBA", "2026-11-05", 0.04), cand("b", "g0", "NBA", "2026-11-05", 0.09), cand("v", "g9", "NBA", "2026-11-05", 0.5)];
+  for (let i = 0; i < 6; i++) capC.push(cand("n" + i, "gn" + i, "NBA", "2026-11-05", 0.02 + i / 1000));
+  for (let i = 0; i < 6; i++) capC.push(cand("h" + i, "gh" + i, "NHL", "2026-11-05", 0.005 + i / 1000));
+  capC.push(cand("tomorrow", "gt", "NBA", "2026-11-06", 0.001));
+  const chosen = P.selectPicks(capLog, capC).map(c => c.id);
+  check("select: a game with a pick (posted earlier, any status but void) gets no second; of two sides on one game the one further past its bar", chosen.indexOf("b") === -1 && chosen.indexOf("a2") !== -1 && chosen.indexOf("a1") === -1 && chosen.indexOf("v") !== -1, JSON.stringify(chosen));
+  check("select: at most 5 a sport and 10 a day, counting what was posted earlier, furthest past first; another day has its own caps", chosen.filter(id => id !== "tomorrow").length === 9 && ["posted"].concat(chosen).filter(id => /^(posted|a|n|v)/.test(id)).length === 5 && chosen.filter(id => /^h/.test(id)).length === 5 && chosen.indexOf("h0") === -1 && chosen.indexOf("n3") === -1 && chosen.indexOf("tomorrow") !== -1 && capLog.length === 2 + chosen.length && chosen[0] === "v" && chosen[1] === "a2", JSON.stringify(chosen));
+  /* locked picks: whether the edge still holds at the last full run, never a reason to pull the pick */
+  const lockE = (cur, extra) => Object.assign({ loggedAt: "2026-11-05T12:00:00Z", bar: 0.08, current: cur }, extra);
+  check("standing: none until a later run re-prices the pick; then clears / below / gone against the bar now (the pick's own bar, or the floor for a pick posted before bars)", P.nowOf(lockE({ at: "2026-11-05T12:00:00Z", edge: 0.1, bar: 0.08 })) === null
+    && P.standingOf(P.nowOf(lockE({ at: "2026-11-05T17:00:00Z", edge: 0.09, bar: 0.08, odds: -110, book: "FanDuel", modelProb: 0.6 }))) === "clears"
+    && P.standingOf(P.nowOf(lockE({ at: "2026-11-05T17:00:00Z", edge: 0.05, bar: 0.08 }))) === "below"
+    && P.standingOf(P.nowOf(lockE({ at: "2026-11-05T17:00:00Z", edge: -0.01, bar: 0.08 }))) === "gone"
+    && P.nowOf(lockE({ at: "2026-11-05T17:00:00Z", edge: 0.02 }, { bar: undefined })).bar === 0.03 && P.standingOf(P.nowOf(lockE({ at: "2026-11-05T17:00:00Z", edge: 0.02 }, { bar: undefined }))) === "below");
+  const tmpL2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-lock-"));
+  fs.writeFileSync(path.join(tmpL2, "picks-log.json"), JSON.stringify([pending("bucks-ml", { key: "nba-fix-1|h2h|Milwaukee Bucks|null", eventId: "nba-fix-1", commence: "2026-11-06T00:00:00Z", date: "2026-11-05", market: "Moneyline", marketKey: "h2h", outcome: { name: "Milwaukee Bucks", point: null }, pick: "Milwaukee Bucks ML", odds: 150, modelProb: 0.42, edge: 0.02, bar: 0.03, past: -0.01, loggedAt: "2026-11-05T12:00:00Z", current: { at: "2026-11-05T12:00:00Z", odds: 150, edge: 0.02, bar: 0.03 }, history: [{ at: "2026-11-05T12:00:00Z", odds: 150, fair: 0.42 }] })]));
+  const rl2 = await P.run({ fixture: true, out: tmpL2, now: NOW });
+  const sbL2 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpL2, "picks.js"), "utf8"), sbL2);
+  const lockedPub = sbL2.window.PICKS_DATA.picks.find(p => p.id === "bucks-ml"), logL2 = JSON.parse(fs.readFileSync(path.join(tmpL2, "picks-log.json"), "utf8"));
+  check("locked: the model now has the Bucks well under the price, yet the pick stays posted, pending, at its posted price, reads gone, and its game gets no second pick", lockedPub && lockedPub.status === "pending" && lockedPub.odds === 150 && lockedPub.standing === "gone" && lockedPub.now && lockedPub.now.edge < 0 && lockedPub.now.odds === 160 && !logL2.some(e => e.eventId === "nba-fix-1" && e.id !== "bucks-ml") && rl2.added <= 1, JSON.stringify([lockedPub && lockedPub.now, rl2.added]));
+  check("locked: the breakdown says the pick stays posted and is graded at the posted price", lockedPub.breakdown.risks.some(t => /^At current prices our edge is -\d+\.\d points, under its bar of \d+\.\d points; the pick stays posted and is graded at the price it was posted at\.$/.test(t)), JSON.stringify(lockedPub.breakdown.risks));
+  fs.rmSync(tmpL2, { recursive: true, force: true });
+
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });

@@ -157,14 +157,16 @@ function gradedLines(e, base) {
 }
 function closest(market, n) {
   const seen = {}, out = [];
-  (market.rows || []).slice().sort((a, b) => b.edge - a.edge).forEach(function (r) {
+  /* closest to its own bar (rows priced since 2026-11-05 carry `past`, edge minus the side's bar); older files by edge */
+  const gap = r => r.past != null ? Number(r.past) : r.edge != null ? Number(r.edge) - (market.threshold || 0.03) : -9;
+  (market.rows || []).filter(r => r.edge != null).sort((a, b) => gap(b) - gap(a)).forEach(function (r) {
     const key = r.eventId + "|" + r.marketKey;
     if (r.status === "pick" || seen[key] || out.length >= n) return;
     seen[key] = true; out.push(r);
   });
   return out;
 }
-function marketRowTitle(r) { return r.pick + " " + fmtOdds(r.odds) + " at " + r.book + " (" + pts(r.edge) + ")"; }
+function marketRowTitle(r) { return r.pick + " " + fmtOdds(r.odds) + " at " + r.book + " (" + pts(r.edge) + (r.bar != null ? " against a bar of " + pts(r.bar) : "") + ")"; }
 
 function build(opts) {
   opts = opts || {};
@@ -184,6 +186,8 @@ function build(opts) {
   const logSingles = (Array.isArray(log) ? log : []).filter(e => e && !e.type && e.id && e.commence);
   const potdId = picks.playOfDay && picks.playOfDay.id;
   const bar = ((market.threshold || 0.01) * 100).toFixed(0);
+  /* since 2026-11-05 each side has its own bar (the model's own margin of error on it, never under the floor) */
+  const perSide = !!(market.bars && Object.keys(market.bars).length), barName = perSide ? "its bar" : "the " + bar + "-point bar";
   const slateDay = etDate(picks.generatedAt || updated);
   const name = "EdgeLine AI picks" + (sample ? " (sample data)" : "");
   const events = [], items = [];
@@ -243,11 +247,11 @@ function build(opts) {
   const slate = card.filter(p => p.status !== "void" && Date.parse(p.commence) > pricedAt);
   const noPlay = !slate.length;
   const slateTitle = noPlay
-    ? (sides ? "No play tonight: " + sides + " sides priced in " + games + " games, none clears the " + bar + "-point bar" : "No play tonight: nothing priced yet")
+    ? (sides ? "No play tonight: " + sides + " sides priced in " + games + " games, none clears " + (perSide ? "its bar" : "the " + bar + "-point bar") : "No play tonight: nothing priced yet")
     : slate.length + (slate.length === 1 ? " pick" : " picks") + " tonight from " + sides + " priced sides";
   const slateLines = [noPlay
-    ? (sides ? "Every main-line side was given our probability from the game data. None beats its best price by the " + bar + "-point bar, so there is no bet." : "The next run prices the slate before the evening games.")
-    : "Picks are the sides where our probability from the game data beats the best price by the " + bar + "-point bar or more; the price is only the number to beat. Each one is above, with its price, book and breakdown."]
+    ? (sides ? "Every main-line side was given our probability from the game data. None beats its best price by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side)" : barName) + ", so there is no bet." : "The next run prices the slate before the evening games.")
+    : "Picks are the sides where our probability from the game data beats the best price by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side), one pick a game at most" : barName + " or more") + "; the price is only the number to beat. Each one is above, with its price, book and breakdown."]
     .concat(near.length ? ["Closest to the bar:"].concat(near.map(r => "- " + r.sport + ": " + marketRowTitle(r) + " · " + r.event)) : [], ["The market board: " + base + "picks.html#market"]);
   if (noPlay && sides) {
     events.push({ uid: "slate-" + slateDay + "@edgeline", stamp: updated, allDay: true, day: slateDay, summary: slateTitle, description: slateLines.join("\n"), url: base + "picks.html#market", categories: ["Slate"] });

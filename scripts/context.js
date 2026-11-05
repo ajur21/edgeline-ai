@@ -274,12 +274,20 @@ async function fetchContext(entries, opts) {
 /* ---------- the breakdown ---------- */
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 function pickTeam(e) { return e.marketKey === "totals" ? null : (e.outcome && e.outcome.name === "Draw" ? null : e.outcome && e.outcome.name); }
+/* the tier and its bar in words. Since 2026-11-05 every side has its own bar, the model's own margin of error on it
+   (never under the floor), and the tier is how far the edge clears it; a pick logged before then had the flat 3 / 5 / 8 */
+function barWhy(e, rules, pts) {
+  if (typeof e.bar !== "number") return "Lean starts at " + pts(rules.minEdge) + ", Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under).";
+  const b = e.barParts, floor = !b || e.bar <= rules.minEdge + 1e-9;
+  const why = floor ? "the floor, because the model's own margin of error on this side is smaller" : "the model's own margin of error on this side, with " + b.gp + " game" + (b.gp === 1 ? "" : "s") + " behind the thinner team (±" + b.units + " " + b.unit + " on the " + (e.marketKey === "totals" ? "total" : "margin") + "); it falls as the season fills in and never drops under " + pts(rules.minEdge);
+  return "Its bar is " + pts(e.bar) + ": " + why + ". It clears it by " + pts(e.past) + "; Medium needs " + pts(rules.medium) + " past the bar, High " + pts(rules.high) + ".";
+}
 function buildBreakdown(e, ctx, rules) {
-  rules = rules || { minEdge: 0.03, medium: 0.05, high: 0.08 };
+  rules = rules || { minEdge: 0.03, medium: 0.02, high: 0.05 };
   const pts = n => (n * 100).toFixed(1) + " points";
   const pc = n => (n * 100).toFixed(1) + "%";
   const tier = e.confidence;
-  const tierWhy = "Our probability for this side is " + pc(e.modelProb) + ", from the game data: results and margins this season, recent form, rest, the injury report and home edge. " + (e.book ? "The price at " + e.book : "The best price") + " implies " + pc(impliedP(e.odds)) + ", so the edge is " + pts(e.edge) + ". Lean starts at " + pts(rules.minEdge) + ", Medium at " + pts(rules.medium) + ", High at " + pts(rules.high) + ". Nothing here is graded against other books' prices; the market lines below are shown only for reference.";
+  const tierWhy = "Our probability for this side is " + pc(e.modelProb) + ", from the game data: results and margins this season, recent form, rest, the injury report and home edge. " + (e.book ? "The price at " + e.book : "The best price") + " implies " + pc(impliedP(e.odds)) + ", so the edge is " + pts(e.edge) + ". " + barWhy(e, rules, pts) + " Nothing here is graded against other books' prices; the market lines below are shown only for reference.";
   const support = [], risks = [], notes = [];
   if (e.model && e.model.reasons) { (e.model.reasons.for || []).forEach(t => support.push(t + ".")); (e.model.reasons.against || []).forEach(t => risks.push(t + ".")); }
   if (typeof e.marketFair === "number") notes.push("Where the market sits: " + (e.anchor ? e.anchor + "'s de-vigged price" : "the de-vigged consensus of " + e.books + " books") + " makes this side " + pc(e.marketFair) + (e.marketEdge != null ? " (" + (e.marketEdge >= 0 ? "+" : "") + (e.marketEdge * 100).toFixed(1) + " points against the best price)" : "") + ". For reference only.");
@@ -290,7 +298,8 @@ function buildBreakdown(e, ctx, rules) {
     const baseFair = typeof e.marketFair === "number" ? e.marketFair : e.modelProb;
     if (typeof e.current.fair === "number" && e.current.fair - baseFair >= 0.01) notes.push("Market: the sharp line has moved toward this side since it was logged (" + (baseFair * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
     else if (typeof e.current.fair === "number" && e.current.fair - baseFair <= -0.01) notes.push("Market: the sharp line has moved away since it was logged (" + (baseFair * 100).toFixed(1) + "% → " + (e.current.fair * 100).toFixed(1) + "%).");
-    if (typeof e.current.edge === "number" && e.current.edge < rules.minEdge) risks.push("At current prices our edge is " + pts(e.current.edge) + ", under the bar; the logged price may be gone.");
+    const barNow = typeof e.current.bar === "number" ? e.current.bar : typeof e.bar === "number" ? e.bar : rules.minEdge;
+    if (typeof e.current.edge === "number" && e.current.edge < barNow) risks.push("At current prices our edge is " + pts(e.current.edge) + ", under its bar of " + pts(barNow) + "; the pick stays posted and is graded at the price it was posted at.");
     else if (dOdds > 0) support.push("A better price is now available: " + (e.current.odds > 0 ? "+" : "") + e.current.odds + " at " + e.current.book + ".");
     e.movement = mv;
   }

@@ -19,6 +19,9 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
 
   /* a pick night: the fixture pipeline output */
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-"));
+  /* the fixture's five picks (two games) come from the pre-2026-11-05 selection: every bar at the 3-point floor and one
+     pick per market; data-test.js checks the Phase 2 selection (each side's own bar, one pick a game) */
+  P.RULES.barZ = 0; P.RULES.onePerGame = false;
   await P.run({ fixture: true, out: tmp, now: "2026-11-05T15:00:00Z" });
   const a = F.build({ data: tmp, base: "https://example.test/site" });
   check("pick night: one event per board pick plus the parlay of the day (six on the fixture), no all-day slate", a.events === 6 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
@@ -95,6 +98,16 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   check("no-play night: all-day slate event plus the graded pick; void and 30-day-old entries left out", b.noPlay && b.events === 2 && /DTSTART;VALUE=DATE:20261104/.test(flat) && /UID:old-win@edgeline/.test(flat) && !/old-void/.test(flat) && !/ancient/.test(flat));
   check("no-play night: slate names the count, the bar and the closest side", /SUMMARY:No play tonight: 3 sides priced in 2 games\\, none clears the 1-point bar/.test(flat) && /- NHL: B -1\.5 \+140 at BetRivers \(\+0\.5 pts\)/.test(flat));
   check("no-play night: the closest list shows one side per market", (flat.match(/- NHL: /g) || []).length === 1 && /- NBA: Under 220\.5/.test(flat));
+  /* since 2026-11-05 each side has its own bar: the slate says "its bar" and the closest sides are the ones nearest their own */
+  const mk = JSON.parse(fs.readFileSync(path.join(empty, "market.js"), "utf8").replace(/^window\.MARKET_DATA = /, "").replace(/;\s*$/, ""));
+  mk.threshold = 0.03; mk.bars = { NHL: { min: 0.06, median: 0.07, max: 0.08 }, NBA: { min: 0.03, median: 0.03, max: 0.03 } };
+  mk.rows[0].bar = 0.07; mk.rows[0].past = 0.0051 - 0.07; mk.rows[1].bar = 0.07; mk.rows[1].past = -0.1; mk.rows[2].bar = 0.03; mk.rows[2].past = 0.002 - 0.03;
+  const emptyB = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-bars-"));
+  ["picks.js", "picks-log.json"].forEach(f => fs.copyFileSync(path.join(empty, f), path.join(emptyB, f)));
+  fs.writeFileSync(path.join(emptyB, "market.js"), "window.MARKET_DATA = " + JSON.stringify(mk) + ";");
+  const bb = F.build({ data: emptyB, base: "https://example.test/" }), flatB = bb.ics.replace(/\r\n /g, "");
+  fs.rmSync(emptyB, { recursive: true, force: true });
+  check("no-play night, per-side bars: the slate says none clears its bar, names the floor, and lists the side nearest its own bar first", /SUMMARY:No play tonight: 3 sides priced in 2 games\\, none clears its bar/.test(flatB) && /its own bar \(3 points or more: the model's margin of error on that side\)/.test(flatB) && flatB.indexOf("- NBA: Under 220.5") < flatB.indexOf("- NHL: B -1.5") && /against a bar of \+?7\.0 pts/.test(flatB), String(bb.events));
   check("no-play night: the grade is written into the event", /SUMMARY:Y ML \+140 at Caesars · Won \+1\.40u/.test(flat) && /Closing line value: \+2\.1 pts \(closed \+120\\, DraftKings close \(ESPN\)\)/.test(flat));
   check("no-play night: feed has the slate and the grade", /slate: No play tonight/.test(b.rss) && /<guid isPermaLink="false">old-win#graded<\/guid>/.test(b.rss) && /Graded: Y ML \+140 · Won \+1\.40u/.test(b.rss));
   check("no-play night: the slate is the newest item", b.rss.indexOf("slate-2026") < b.rss.indexOf("old-win#graded"));

@@ -172,7 +172,7 @@ function gameModel(input) {
   if (ia.soft.length) reasons.push({ side: "home", label: input.away + " have " + ia.soft.slice(0, 3).join(", ") + " listed day-to-day or questionable" });
   const pace = hf.pf + hf.pa + af.pf + af.pa;
   reasons.push({ side: "total", label: "Combined scoring " + r1(hf.pf + hf.pa) + " a game in " + input.home + "'s games, " + r1(af.pf + af.pa) + " in " + input.away + "'s" + (L != null ? " (league average " + r1(2 * L) + ")" : "") + (ih.scoring + ia.scoring >= cfg.sdTotal / 10 ? "; scorers out take " + r1(ih.scoring + ia.scoring) + " off" : "") });
-  return { sportKey: input.sportKey, home: input.home, away: input.away, margin: r1(margin), total: r1(total), sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp),
+  return { sportKey: input.sportKey, home: input.home, away: input.away, margin: r1(margin), total: r1(total), sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp), gpHome: hf.gp, gpAway: af.gp,
     parts: { ratingHome: r1(rh), ratingAway: r1(ra), lastHome: Number.isFinite(lastH) ? r1(lastH) : null, lastAway: Number.isFinite(lastA) ? r1(lastA) : null, homeEdge: cfg.homeEdge, rest: r1(restAdj), injuriesHome: r1(-ih.cost), injuriesAway: r1(ia.cost), scoringOut: r1(ih.scoring + ia.scoring), pace: r1(pace / 2) },
     reasons: reasons, thin: Math.min(hf.gp, af.gp) < 4 };
 }
@@ -327,6 +327,34 @@ function leagueGoalsFrom(standings) {
 function ppgFromFaces(facesPath) {
   try { const fs = require("fs"), vm = require("vm"); const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(facesPath, "utf8"), sb); const map = {}; (sb.window.FACES_DATA.players || []).forEach(p => { if (p.pts != null) map[String(p.name).toLowerCase()] = p.pts; }); return i => map[String(i.name || "").toLowerCase()] != null ? map[String(i.name || "").toLowerCase()] : null; } catch (e) { return null; }
 }
-function publicModel(gm) { return gm ? { margin: gm.margin, total: gm.total, sd: gm.sd, sdTotal: gm.sdTotal, gp: gm.gp, thin: gm.thin, parts: gm.parts } : null; }
+function publicModel(gm) { return gm ? { margin: gm.margin, total: gm.total, sd: gm.sd, sdTotal: gm.sdTotal, gp: gm.gp, gpHome: gm.gpHome, gpAway: gm.gpAway, thin: gm.thin, parts: gm.parts } : null; }
 
-module.exports = { SPORT, NHL_SHAPE, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+/* ---------- the model's own error on a side (Phase 2, 2026-11-05: the bar a pick must clear) ----------
+   How far our probability could sit from what these two teams really are, from the size of the sample alone: the
+   standard error of the rating difference behind the margin (each team's games this season plus the prior's weight in
+   games: last season's carry-over where the club has one, else the shrinkage k) or of the four scoring averages behind
+   the total (kTotal games toward the league), moved through this side's own probability at its line, one error each
+   way. Injuries, lineups and matchups add error on top, so this is a floor. Checked 2026-11-05 against held-out seasons
+   (results only, each club's season with the game left out as the truth): early in a season (7 games each) the formula
+   gives NBA 4.9 / NHL 0.50 / MLB 0.68 / EPL 0.51 on the margin against a measured 5.4 / 0.52 / 0.63 / 0.60; the NFL's
+   5.2 is above its measured 3.3 (cautious). Mid-season (27 games) NBA 3.3 against a measured 3.3.
+   Returns { p (probability points as a fraction), units (on the margin or total), unit, gp (fewest games behind a team) }. */
+const UNIT = { basketball_nba: "points", americanfootball_nfl: "points", icehockey_nhl: "goals", baseball_mlb: "runs", soccer_epl: "goals" };
+function noise(gm, marketKey, outcome, home, away) {
+  const cfg = gm && SPORT[gm.sportKey]; if (!cfg || !outcome) return null;
+  const gh = Number(gm.gpHome != null ? gm.gpHome : gm.gp), ga = Number(gm.gpAway != null ? gm.gpAway : gm.gp);
+  if (!(gh > 0) || !(ga > 0)) return null;
+  const parts = gm.parts || {};
+  const kOf = last => cfg.carry && last != null && Number.isFinite(Number(last)) ? cfg.carry.k : cfg.k;
+  const isTotal = marketKey === "totals", key = isTotal ? "total" : "margin";
+  const kT = cfg.kTotal || 0;
+  const units = isTotal ? (gm.sdTotal || cfg.sdTotal) / 2 * Math.sqrt(1 / (gh + kT) + 1 / (ga + kT))
+    : (gm.sd || cfg.sd) * Math.sqrt(1 / (gh + kOf(parts.lastHome)) + 1 / (ga + kOf(parts.lastAway)));
+  const at = d => sideProb(Object.assign({}, gm, { [key]: gm[key] + d }), marketKey, outcome, home, away);
+  const p0 = sideProb(gm, marketKey, outcome, home, away), up = at(units), dn = at(-units);
+  if (p0 == null || up == null || dn == null) return null;
+  /* the mean move either way, so a draw (which falls whichever way the margin moves) still gets its error */
+  return { p: r4((Math.abs(up - p0) + Math.abs(dn - p0)) / 2), units: Math.round(units * 100) / 100, unit: UNIT[gm.sportKey] || "points", gp: Math.min(gh, ga) };
+}
+
+module.exports = { SPORT, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, gameModel, sideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
