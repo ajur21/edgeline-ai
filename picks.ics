@@ -11,7 +11,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT1H
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:parlay-2026-11-05@edgeline
-DTSTAMP:20261106T010427Z
+DTSTAMP:20261106T020733Z
 DTSTART:20261106T001000Z
 DTEND:20261106T054000Z
 SUMMARY:Parlay of the day: 3 legs +573 at BetMGM
@@ -23,7 +23,7 @@ DESCRIPTION:All legs priced at BetMGM. Fair 33.7%\, implied 14.9%\, EV +126
  icks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261106T010427Z
+LAST-MODIFIED:20261106T020733Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -145,7 +145,7 @@ UID:c672f144ec-spreads-Anaheim-Ducks@edgeline
 DTSTAMP:20261106T010427Z
 DTSTART:20261106T011000Z
 DTEND:20261106T041000Z
-SUMMARY:Anaheim Ducks +1.5 -145 at BetMGM · High
+SUMMARY:Anaheim Ducks +1.5 -145 at BetMGM · in play
 DESCRIPTION:NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5\, 8:10 PM E
  T\nPuck line: Anaheim Ducks +1.5 at -145 (BetMGM). Our probability 76.1% f
  rom game data\, the price implies 59.2%\, edge +16.9 pts\, EV +28.5% per u
@@ -174,15 +174,10 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261106T010427Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Anaheim Ducks +1.5 -145 at BetMGM · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2a76b31e02-totals-Over@edgeline
-DTSTAMP:20261106T010427Z
+DTSTAMP:20261106T020733Z
 DTSTART:20261106T021000Z
 DTEND:20261106T051000Z
 SUMMARY:Over 222.5 -110 at FanDuel · Lean
@@ -197,20 +192,19 @@ DESCRIPTION:NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5\, 9:10 PM ET\n
  ars it by 0.7. Not graded against other books' prices\; for reference the 
  market makes it 49.2%.\nWhat supports it:\n- Combined scoring 237.7 a game
   in Phoenix Suns's games\, 220.4 in Orlando Magic's.\n- Projected total 22
- 9 against 222.5.\n- A better price is available now: -106 at FanDuel.\nWha
- t could go wrong:\n- At current prices our edge is -0.9 points\, under its
-  bar of 3.0 points\; the pick stays posted and is graded at the price it w
- as posted at.\n- Scorers out: Rasheer Fleming (F)\, ankle\; Jordan Goodwin
-  (G)\, calf\; Mark Williams (C)\, shoulder and 5 more. Fewer healthy score
- rs leans under.\n- Phoenix Suns on a back-to-back\; tired legs lean under.
- \nVerdict: The game data lines up behind this side at this price.\nPrices:
-  FanDuel -106\, theScore Bet -110\, BetMGM -110\, Bovada -110\, Caesars -1
- 10 and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
- .html#2a76b31e02-totals-Over
+ 9 against 222.5.\nWhat could go wrong:\n- At current prices our edge is -0
+ .9 points\, under its bar of 3.0 points\; the pick stays posted and is gra
+ ded at the price it was posted at.\n- Scorers out: Rasheer Fleming (F)\, a
+ nkle\; Jordan Goodwin (G)\, calf\; Mark Williams (C)\, shoulder and 5 more
+ . Fewer healthy scorers leans under.\n- Phoenix Suns on a back-to-back\; t
+ ired legs lean under.\nVerdict: More working against this one than for it\
+ ; size down.\nPrices: DraftKings -110\, theScore Bet -110\, BetMGM -110\, 
+ Bovada -110\, ESPN BET -110 and 3 more.\nFull breakdown: https://ajur21.gi
+ thub.io/edgeline-ai/picks.html#2a76b31e02-totals-Over
 LOCATION:Mortgage Matchup Center\, Phoenix
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2a76b31e02-totals-Over
 CATEGORIES:NBA
-LAST-MODIFIED:20261106T010427Z
+LAST-MODIFIED:20261106T020733Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -221,7 +215,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:446de9651d-spreads-Nashville-Predators@edgeline
-DTSTAMP:20261106T010427Z
+DTSTAMP:20261106T020733Z
 DTSTART:20261106T024000Z
 DTEND:20261106T054000Z
 SUMMARY:Nashville Predators +1.5 -130 at BetMGM · High
@@ -236,21 +230,22 @@ DESCRIPTION:NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5\,
  it:\n- Colorado Avalanche trending: last five 0 vs +0.8 on the season.\n- 
  Nashville Predators trending: last five +1.2 vs -0.1 on the season.\n- Col
  orado Avalanche without Josh Manson (D)\, Zachary L'Heureux (LW) (-0.2).\n
- What could go wrong:\n- Colorado Avalanche rate +0.3 a game over 16 (9-7)\
- , Nashville Predators +0.3 over 15 (6-9).\n- Home edge +0.2 for Colorado A
- valanche.\n- Nashville Predators have Jonathan Marchessault (RW) listed da
- y-to-day or questionable.\n- Projected margin -0.1 for Nashville Predators
-  against +1.5.\n- At current prices our edge is 4.0 points\, under its bar
-  of 6.9 points\; the pick stays posted and is graded at the price it was p
- osted at.\nVerdict: More working against this one than for it\; size down.
- \nPrices: Bovada -133\, DraftKings -135\, Caesars -135\, ESPN BET -135\, B
- etOnline.ag -140 and 4 more.\nFull breakdown: https://ajur21.github.io/edg
- eline-ai/picks.html#446de9651d-spreads-Nashville-Predators
+ - A better price is available now: -127 at Caesars.\nWhat could go wrong:\
+ n- Colorado Avalanche rate +0.3 a game over 16 (9-7)\, Nashville Predators
+  +0.3 over 15 (6-9).\n- Home edge +0.2 for Colorado Avalanche.\n- Nashvill
+ e Predators have Jonathan Marchessault (RW) listed day-to-day or questiona
+ ble.\n- Projected margin -0.1 for Nashville Predators against +1.5.\n- At 
+ current prices our edge is 4.0 points\, under its bar of 6.9 points\; the 
+ pick stays posted and is graded at the price it was posted at.\nVerdict: M
+ ore working against this one than for it\; size down.\nPrices: Caesars -12
+ 7\, BetMGM -130\, FanDuel -134\, DraftKings -135\, Bovada -135 and 4 more.
+ \nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#446de965
+ 1d-spreads-Nashville-Predators
 LOCATION:Ball Arena\, Denver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#446de9651d-spreads-Nash
  ville-Predators
 CATEGORIES:NHL
-LAST-MODIFIED:20261106T010427Z
+LAST-MODIFIED:20261106T020733Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
