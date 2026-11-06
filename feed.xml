@@ -5,9 +5,73 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting picks graded on game data: every pick with our probability and its edge over the price, every grade, every slate. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 06 Nov 2026 13:58:15 GMT</lastBuildDate>
+<lastBuildDate>Fri, 06 Nov 2026 20:17:51 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Fri Nov 6 slate: 6 picks tonight from 149 priced sides</title>
+<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
+<guid isPermaLink="false">slate-2026-11-06T20:17:51.147Z</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>Slate</category>
+<description>&lt;p&gt;Picks are the sides where our probability from the game data beats the best price by its own bar (3 points or more: the model's margin of error on that side), one pick a game at most; the price is only the number to beat. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: San Jose Sharks ML +240 at BetMGM (+9.0 pts against a bar of +7.3 pts) · San Jose Sharks @ Dallas Stars&lt;/li&gt;&lt;li&gt;NHL: Under 6.5 +123 at BetRivers (+3.5 pts against a bar of +3.0 pts) · Vancouver Canucks @ Edmonton Oilers&lt;/li&gt;&lt;li&gt;NHL: Seattle Kraken +1.5 -220 at BetMGM (+6.2 pts against a bar of +5.7 pts) · New York Rangers @ Seattle Kraken&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+</item>
+<item>
+<title>NHL: San Jose Sharks +1.5 +100 at BetMGM (Medium, +10.3 pts)</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-Jose-Sharks</link>
+<guid isPermaLink="false">1f21bf798a-spreads-San-Jose-Sharks</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: San Jose Sharks +1.5 at +100 (BetMGM). Our probability 60.3% from game data, the price implies 50.0%, edge +10.3 pts, EV +20.5% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 60.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.7 for the home side). BetMGM offers +100, which implies only 50.0%. Its bar is 6.8 points: the model's own margin of error on this side, with 16 games behind the thinner team (±0.45 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 49.1%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Dallas Stars trending: last five -1 vs +0.4 on the season.&lt;/li&gt;&lt;li&gt;San Jose Sharks are rested (3 days).&lt;/li&gt;&lt;li&gt;Dallas Stars without Miro Heiskanen (D), Kyle Capobianco (D), Oskar Back (C) (-0.3).&lt;/li&gt;&lt;li&gt;Dallas Stars have Sam Steel (C) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Dallas Stars rate +0.2 a game over 16 (9-7), San Jose Sharks -0.4 over 17 (7-10); last season +0.6 and -0.5 a game.&lt;/li&gt;&lt;li&gt;San Jose Sharks trending: last five -2.2 vs -1 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Dallas Stars.&lt;/li&gt;&lt;li&gt;San Jose Sharks without Igor Chernyshov (LW), Alexander Wennberg (C) (+0.1).&lt;/li&gt;&lt;li&gt;Projected margin -0.7 for San Jose Sharks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetMGM +100, Caesars +100, DraftKings -102, theScore Bet -105, ESPN BET -105 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-Jose-Sharks&lt;/p&gt;</description>
+</item>
+<item>
+<title>NHL: Vancouver Canucks +1.5 +117 at Bovada (Lean, +8.2 pts)</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#8fe46a5692-spreads-Vancouver-Canucks</link>
+<guid isPermaLink="false">8fe46a5692-spreads-Vancouver-Canucks</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at +117 (Bovada). Our probability 54.3% from game data, the price implies 46.1%, edge +8.2 pts, EV +17.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 54.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.1 for the home side). Bovada offers +117, which implies only 46.1%. Its bar is 7.1 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin). It clears it by 1.2. Not graded against other books' prices; for reference the market makes it 45.2%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Edmonton Oilers without Isaac Howard (LW), Zach Hyman (LW), Devon Levi (G) (-0.3).&lt;/li&gt;&lt;li&gt;Edmonton Oilers have Tristan Jarry (G) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Edmonton Oilers rate +0.4 a game over 17 (11-6), Vancouver Canucks -0.7 over 18 (3-15); last season +0.2 and -1.2 a game.&lt;/li&gt;&lt;li&gt;Edmonton Oilers trending: last five +1.8 vs +1.1 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Edmonton Oilers.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Filip Chytil (C) (+0.1).&lt;/li&gt;&lt;li&gt;Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin -1.1 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: Bovada +117, DraftKings +114, Caesars +114, BetRivers +110, FanDuel +104.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8fe46a5692-spreads-Vancouver-Canucks&lt;/p&gt;</description>
+</item>
+<item>
+<title>NHL: Seattle Kraken ML +110 at Bovada (Lean, +8.1 pts)</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#79334eedea-h2h-Seattle-Kraken</link>
+<guid isPermaLink="false">79334eedea-h2h-Seattle-Kraken</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New York Rangers @ Seattle Kraken · Sat Nov 7, 5:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Seattle Kraken ML at +110 (Bovada). Our probability 55.7% from game data, the price implies 47.6%, edge +8.1 pts, EV +17.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 55.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). Bovada offers +110, which implies only 47.6%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.7. Not graded against other books' prices; for reference the market makes it 45.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;New York Rangers trending: last five -1.2 vs +0.1 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Seattle Kraken.&lt;/li&gt;&lt;li&gt;Seattle Kraken are rested (3 days).&lt;/li&gt;&lt;li&gt;New York Rangers without Sean Durzi (D), Igor Shesterkin (G), Joe Veleno (C) (+0.3).&lt;/li&gt;&lt;li&gt;Projected margin +0.3 for Seattle Kraken.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Seattle Kraken rate -0.1 a game over 15 (9-6), New York Rangers 0 over 17 (9-8); last season -0.5 and -0.1 a game.&lt;/li&gt;&lt;li&gt;Seattle Kraken trending: last five -0.8 vs +0.1 on the season.&lt;/li&gt;&lt;li&gt;Seattle Kraken without Curtis Douglas (C), Jared McCann (LW), Ryan Lindgren (D) (-0.2).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada +110, BetOnline.ag +106, FanDuel +106, BetMGM +105, theScore Bet +105 and 4 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#79334eedea-h2h-Seattle-Kraken&lt;/p&gt;</description>
+</item>
+<item>
+<title>NHL: Minnesota Wild +1.5 -210 at BetMGM (Lean, +6.0 pts)</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minnesota-Wild</link>
+<guid isPermaLink="false">b5934d2ce0-spreads-Minnesota-Wild</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Minnesota Wild +1.5 at -210 (BetMGM). Our probability 73.7% from game data, the price implies 67.7%, edge +6.0 pts, EV +8.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 73.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetMGM offers -210, which implies only 67.7%. Its bar is 5.8 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.2. Not graded against other books' prices; for reference the market makes it 66.5%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Wild rate +0.4 a game over 17 (11-6), Tampa Bay Lightning +0.3 over 15 (10-5); last season +0.4 and +0.7 a game.&lt;/li&gt;&lt;li&gt;Minnesota Wild trending: last five +1.8 vs +1.1 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Minnesota Wild.&lt;/li&gt;&lt;li&gt;Minnesota Wild are rested (4 days).&lt;/li&gt;&lt;li&gt;Projected margin +0.3 for Minnesota Wild against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Wild without Marcus Foligno (LW), Jared Spurgeon (D) (-0.1).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetMGM -210, Caesars -218, FanDuel -220, DraftKings -225, theScore Bet -235 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minnesota-Wild&lt;/p&gt;</description>
+</item>
+<item>
+<title>NHL: Over 5.5 -124 at FanDuel (Lean, +3.3 pts)</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over</link>
+<guid isPermaLink="false">6f96012d11-totals-Over</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New Jersey Devils @ New York Islanders · Sat Nov 7, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -124 (FanDuel). Our probability 58.7% from game data, the price implies 55.4%, edge +3.3 pts, EV +6.0% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 58.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). FanDuel offers -124, which implies only 55.4%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 54.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 5.8 a game in New York Islanders's games, 6.5 in New Jersey Devils's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.4 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Scorers out: Mathew Barzal (C), knee; Ryan Pulock (D), upper body; Matias Maccelli (LW), lower body and 3 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: FanDuel -124, BetOnline.ag -128, DraftKings -130, theScore Bet -130, ESPN BET -130 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over&lt;/p&gt;</description>
+</item>
+<item>
+<title>Parlay of the day: 3 legs +1026 at Bovada</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
+<guid isPermaLink="false">parlay-2026-11-06</guid>
+<pubDate>Fri, 06 Nov 2026 20:17:51 GMT</pubDate>
+<category>Parlay</category>
+<description>&lt;p&gt;All legs priced at Bovada. Fair 14.6%, implied 8.9%, EV +64.0% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Columbus Blue Jackets ML +147 · Columbus Blue Jackets @ Buffalo Sabres&lt;/li&gt;&lt;li&gt;NHL: Vancouver Canucks +1.5 +117 · Vancouver Canucks @ Edmonton Oilers&lt;/li&gt;&lt;li&gt;NHL: Seattle Kraken ML +110 · New York Rangers @ Seattle Kraken&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Nashville Predators +1.5 -130 · Won +0.77u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">446de9651d-spreads-Nashville-Predators#graded</guid>
+<pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.77u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
 <item>
 <title>Graded: Philadelphia Flyers ML +133 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
@@ -15,6 +79,14 @@
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Philadelphia Flyers ML at +133 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: -33.9 pts (closed +1010, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Anaheim Ducks +1.5 -145 · Won +0.69u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">c672f144ec-spreads-Anaheim-Ducks#graded</guid>
+<pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Anaheim Ducks +1.5 at -145 (BetMGM). Won +0.69u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Philadelphia Flyers +1.5 -190 · Won +0.53u</title>
@@ -33,14 +105,6 @@
 <description>&lt;p&gt;NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-6&lt;/p&gt;&lt;p&gt;The line moved away the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
-<title>Graded: Anaheim Ducks +1.5 -145 · Won +0.69u</title>
-<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
-<guid isPermaLink="false">c672f144ec-spreads-Anaheim-Ducks#graded</guid>
-<pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Anaheim Ducks +1.5 at -145 (BetMGM). Won +0.69u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
 <title>Graded: Over 222.5 -110 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">2a76b31e02-totals-Over#graded</guid>
@@ -49,28 +113,12 @@
 <description>&lt;p&gt;NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 222.5 at -110 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 104-117&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
-<title>Graded: Nashville Predators +1.5 -130 · Won +0.77u</title>
-<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
-<guid isPermaLink="false">446de9651d-spreads-Nashville-Predators#graded</guid>
-<pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.77u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Thu Nov 5 slate: 4 picks tonight from 98 priced sides</title>
-<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
-<guid isPermaLink="false">slate-2026-11-06T01:04:27.111Z</guid>
-<pubDate>Fri, 06 Nov 2026 01:04:27 GMT</pubDate>
-<category>Slate</category>
-<description>&lt;p&gt;Picks are the sides where our probability from the game data beats the best price by its own bar (3 points or more: the model's margin of error on that side), one pick a game at most; the price is only the number to beat. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Under 7 -115 at BetMGM (+8.4 pts against a bar of +3.3 pts) · Anaheim Ducks @ Edmonton Oilers&lt;/li&gt;&lt;li&gt;NHL: Columbus Blue Jackets +1.5 -160 at BetMGM (+7.3 pts against a bar of +6.4 pts) · Columbus Blue Jackets @ Buffalo Sabres&lt;/li&gt;&lt;li&gt;Soccer: Under 2.5 goals +114 at Bovada (+2.6 pts against a bar of +4.8 pts) · Everton vs. Coventry City&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Columbus Blue Jackets ML +153 at Bovada (Lean, +8.6 pts)</title>
+<title>Play of the day: Columbus Blue Jackets ML +153 at Bovada (Lean, +8.6 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#8094c7dc65-h2h-Columbus-Blue-Jackets</link>
 <guid isPermaLink="false">8094c7dc65-h2h-Columbus-Blue-Jackets</guid>
 <pubDate>Fri, 06 Nov 2026 01:04:27 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +153 (Bovada). Our probability 48.1% from game data, the price implies 39.5%, edge +8.6 pts, EV +21.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 48.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). Bovada offers +153, which implies only 39.5%. Its bar is 7.6 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.46 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 38.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Columbus Blue Jackets trending: last five +0.8 vs -0.4 on the season.&lt;/li&gt;&lt;li&gt;Columbus Blue Jackets are rested (3 days).&lt;/li&gt;&lt;li&gt;Buffalo Sabres without Konsta Helenius (C), Justin Danforth (RW) (-0.1).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Buffalo Sabres rate +0 a game over 15 (7-8), Columbus Blue Jackets -0.1 over 13 (6-7); last season +0.6 and 0 a game.&lt;/li&gt;&lt;li&gt;Buffalo Sabres trending: last five +0.4 vs -0.5 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Buffalo Sabres.&lt;/li&gt;&lt;li&gt;Projected margin -0.1 for Columbus Blue Jackets.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: Bovada +153, BetRivers +150, FanDuel +150, PointsBet +150, BetOnline.ag +149 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8094c7dc65-h2h-Columbus-Blue-Jackets&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +153 (Bovada). Our probability 48.1% from game data, the price implies 39.5%, edge +8.6 pts, EV +21.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 48.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). Bovada offers +153, which implies only 39.5%. Its bar is 7.6 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.46 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 38.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Columbus Blue Jackets trending: last five +0.8 vs -0.4 on the season.&lt;/li&gt;&lt;li&gt;Columbus Blue Jackets are rested (3 days).&lt;/li&gt;&lt;li&gt;Buffalo Sabres without Konsta Helenius (C), Justin Danforth (RW) (-0.1).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Buffalo Sabres rate +0 a game over 15 (7-8), Columbus Blue Jackets -0.1 over 13 (6-7); last season +0.6 and 0 a game.&lt;/li&gt;&lt;li&gt;Buffalo Sabres trending: last five +0.4 vs -0.5 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Buffalo Sabres.&lt;/li&gt;&lt;li&gt;Projected margin -0.1 for Columbus Blue Jackets.&lt;/li&gt;&lt;li&gt;At current prices our edge is 3.3 points, under its bar of 7.5 points; the pick stays posted and is graded at the price it was posted at.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetRivers +150, PointsBet +150, BetOnline.ag +149, Bovada +147, FanDuel +146 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8094c7dc65-h2h-Columbus-Blue-Jackets&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>

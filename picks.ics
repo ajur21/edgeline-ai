@@ -114,10 +114,10 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:8094c7dc65-h2h-Columbus-Blue-Jackets@edgeline
-DTSTAMP:20261106T010427Z
+DTSTAMP:20261106T201751Z
 DTSTART:20261107T001000Z
 DTEND:20261107T031000Z
-SUMMARY:Columbus Blue Jackets ML +153 at Bovada · Lean
+SUMMARY:Play of the day: Columbus Blue Jackets ML +153 at Bovada · Lean
 DESCRIPTION:NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6\, 7:
  10 PM ET\nMoneyline: Columbus Blue Jackets ML at +153 (Bovada). Our probab
  ility 48.1% from game data\, the price implies 39.5%\, edge +8.6 pts\, EV 
@@ -134,21 +134,245 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6\, 7:
  n- Buffalo Sabres rate +0 a game over 15 (7-8)\, Columbus Blue Jackets -0.
  1 over 13 (6-7)\; last season +0.6 and 0 a game.\n- Buffalo Sabres trendin
  g: last five +0.4 vs -0.5 on the season.\n- Home edge +0.2 for Buffalo Sab
- res.\n- Projected margin -0.1 for Columbus Blue Jackets.\nVerdict: More wo
- rking against this one than for it\; size down.\nPrices: Bovada +153\, Bet
- Rivers +150\, FanDuel +150\, PointsBet +150\, BetOnline.ag +149 and 5 more
- .\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8094c7d
- c65-h2h-Columbus-Blue-Jackets
+ res.\n- Projected margin -0.1 for Columbus Blue Jackets.\n- At current pri
+ ces our edge is 3.3 points\, under its bar of 7.5 points\; the pick stays 
+ posted and is graded at the price it was posted at.\nVerdict: More working
+  against this one than for it\; size down.\nPrices: BetRivers +150\, Point
+ sBet +150\, BetOnline.ag +149\, Bovada +147\, FanDuel +146 and 5 more.\nFu
+ ll breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8094c7dc65-h
+ 2h-Columbus-Blue-Jackets
 LOCATION:KeyBank Center\, Buffalo
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8094c7dc65-h2h-Columbus
  -Blue-Jackets
 CATEGORIES:NHL
-LAST-MODIFIED:20261106T010427Z
+LAST-MODIFIED:20261106T201751Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Columbus Blue Jackets ML +153 at Bovada · Lean
+DESCRIPTION:Play of the day: Columbus Blue Jackets ML +153 at Bovada · Lea
+ n
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-06@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261107T001000Z
+DTEND:20261108T061000Z
+SUMMARY:Parlay of the day: 3 legs +1026 at Bovada
+DESCRIPTION:All legs priced at Bovada. Fair 14.6%\, implied 8.9%\, EV +64.0
+ % per unit.\n- NHL: Columbus Blue Jackets ML +147 · Columbus Blue Jackets
+  @ Buffalo Sabres\n- NHL: Vancouver Canucks +1.5 +117 · Vancouver Canucks
+  @ Edmonton Oilers\n- NHL: Seattle Kraken ML +110 · New York Rangers @ Se
+ attle Kraken\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.h
+ tml#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay of the day: 3 legs +1026 at Bovada
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:79334eedea-h2h-Seattle-Kraken@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261107T221000Z
+DTEND:20261108T011000Z
+SUMMARY:Seattle Kraken ML +110 at Bovada · Lean
+DESCRIPTION:NHL · New York Rangers @ Seattle Kraken · Sat Nov 7\, 5:10 PM
+  ET\nMoneyline: Seattle Kraken ML at +110 (Bovada). Our probability 55.7% 
+ from game data\, the price implies 47.6%\, edge +8.1 pts\, EV +17.1% per u
+ nit. Confidence: Lean.\nOur probability is 55.7%\, from the game data: thi
+ s season's results and margins\, recent form\, rest\, the injury report an
+ d home edge (projected margin +0.3 for the home side). Bovada offers +110\
+ , which implies only 47.6%. Its bar is 7.4 points: the model's own margin 
+ of error on this side\, with 15 games behind the thinner team (±0.45 goal
+ s on the margin). It clears it by 0.7. Not graded against other books' pri
+ ces\; for reference the market makes it 45.8%.\nWhat supports it:\n- New Y
+ ork Rangers trending: last five -1.2 vs +0.1 on the season.\n- Home edge +
+ 0.2 for Seattle Kraken.\n- Seattle Kraken are rested (3 days).\n- New York
+  Rangers without Sean Durzi (D)\, Igor Shesterkin (G)\, Joe Veleno (C) (+0
+ .3).\n- Projected margin +0.3 for Seattle Kraken.\nWhat could go wrong:\n-
+  Seattle Kraken rate -0.1 a game over 15 (9-6)\, New York Rangers 0 over 1
+ 7 (9-8)\; last season -0.5 and -0.1 a game.\n- Seattle Kraken trending: la
+ st five -0.8 vs +0.1 on the season.\n- Seattle Kraken without Curtis Dougl
+ as (C)\, Jared McCann (LW)\, Ryan Lindgren (D) (-0.2).\nVerdict: The game 
+ data lines up behind this side at this price.\nPrices: Bovada +110\, BetOn
+ line.ag +106\, FanDuel +106\, BetMGM +105\, theScore Bet +105 and 4 more.\
+ nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#79334eede
+ a-h2h-Seattle-Kraken
+LOCATION:Climate Pledge Arena\, Seattle
+URL:https://ajur21.github.io/edgeline-ai/picks.html#79334eedea-h2h-Seattle-
+ Kraken
+CATEGORIES:NHL
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Seattle Kraken ML +110 at Bovada · Lean
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6f96012d11-totals-Over@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261108T001000Z
+DTEND:20261108T031000Z
+SUMMARY:Over 5.5 -124 at FanDuel · Lean
+DESCRIPTION:NHL · New Jersey Devils @ New York Islanders · Sat Nov 7\, 7:
+ 10 PM ET\nTotal: Over 5.5 at -124 (FanDuel). Our probability 58.7% from ga
+ me data\, the price implies 55.4%\, edge +3.3 pts\, EV +6.0% per unit. Con
+ fidence: Lean.\nOur probability at 5.5 is 58.7%\, from the game data: this
+  season's results and margins\, recent form\, rest\, the injury report and
+  home edge (projected total 6.4). FanDuel offers -124\, which implies only
+  55.4%. Its bar is 3.0 points (the floor: the model's own margin of error 
+ here is smaller). It clears it by 0.3. Not graded against other books' pri
+ ces\; for reference the market makes it 54.0%.\nWhat supports it:\n- Combi
+ ned scoring 5.8 a game in New York Islanders's games\, 6.5 in New Jersey D
+ evils's (league average 6.4).\n- Projected total 6.4 against 5.5.\nWhat co
+ uld go wrong:\n- Scorers out: Mathew Barzal (C)\, knee\; Ryan Pulock (D)\,
+  upper body\; Matias Maccelli (LW)\, lower body and 3 more. Fewer healthy 
+ scorers leans under.\nVerdict: The game data lines up behind this side at 
+ this price.\nPrices: FanDuel -124\, BetOnline.ag -128\, DraftKings -130\, 
+ theScore Bet -130\, ESPN BET -130 and 2 more.\nFull breakdown: https://aju
+ r21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over
+LOCATION:UBS Arena\, Elmont
+URL:https://ajur21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -124 at FanDuel · Lean
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1f21bf798a-spreads-San-Jose-Sharks@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261108T011000Z
+DTEND:20261108T041000Z
+SUMMARY:San Jose Sharks +1.5 +100 at BetMGM · Medium
+DESCRIPTION:NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7\, 8:10 PM ET
+ \nPuck line: San Jose Sharks +1.5 at +100 (BetMGM). Our probability 60.3% 
+ from game data\, the price implies 50.0%\, edge +10.3 pts\, EV +20.5% per 
+ unit. Confidence: Medium.\nOur probability at +1.5 is 60.3%\, from the gam
+ e data: this season's results and margins\, recent form\, rest\, the injur
+ y report and home edge (projected margin +0.7 for the home side). BetMGM o
+ ffers +100\, which implies only 50.0%. Its bar is 6.8 points: the model's 
+ own margin of error on this side\, with 16 games behind the thinner team (
+ ±0.45 goals on the margin). It clears it by 3.4. Not graded against other
+  books' prices\; for reference the market makes it 49.1%.\nWhat supports i
+ t:\n- Dallas Stars trending: last five -1 vs +0.4 on the season.\n- San Jo
+ se Sharks are rested (3 days).\n- Dallas Stars without Miro Heiskanen (D)\
+ , Kyle Capobianco (D)\, Oskar Back (C) (-0.3).\n- Dallas Stars have Sam St
+ eel (C) listed day-to-day or questionable.\nWhat could go wrong:\n- Dallas
+  Stars rate +0.2 a game over 16 (9-7)\, San Jose Sharks -0.4 over 17 (7-10
+ )\; last season +0.6 and -0.5 a game.\n- San Jose Sharks trending: last fi
+ ve -2.2 vs -1 on the season.\n- Home edge +0.2 for Dallas Stars.\n- San Jo
+ se Sharks without Igor Chernyshov (LW)\, Alexander Wennberg (C) (+0.1).\n-
+  Projected margin -0.7 for San Jose Sharks against +1.5.\nVerdict: More wo
+ rking against this one than for it\; size down.\nPrices: BetMGM +100\, Cae
+ sars +100\, DraftKings -102\, theScore Bet -105\, ESPN BET -105 and 2 more
+ .\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#1f21bf7
+ 98a-spreads-San-Jose-Sharks
+LOCATION:American Airlines Center\, Dallas
+URL:https://ajur21.github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-
+ Jose-Sharks
+CATEGORIES:NHL
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:San Jose Sharks +1.5 +100 at BetMGM · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b5934d2ce0-spreads-Minnesota-Wild@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261108T011000Z
+DTEND:20261108T041000Z
+SUMMARY:Minnesota Wild +1.5 -210 at BetMGM · Lean
+DESCRIPTION:NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7\, 8:10
+  PM ET\nPuck line: Minnesota Wild +1.5 at -210 (BetMGM). Our probability 7
+ 3.7% from game data\, the price implies 67.7%\, edge +6.0 pts\, EV +8.8% p
+ er unit. Confidence: Lean.\nOur probability at +1.5 is 73.7%\, from the ga
+ me data: this season's results and margins\, recent form\, rest\, the inju
+ ry report and home edge (projected margin +0.3 for the home side). BetMGM 
+ offers -210\, which implies only 67.7%. Its bar is 5.8 points: the model's
+  own margin of error on this side\, with 15 games behind the thinner team 
+ (±0.45 goals on the margin). It clears it by 0.2. Not graded against othe
+ r books' prices\; for reference the market makes it 66.5%.\nWhat supports 
+ it:\n- Minnesota Wild rate +0.4 a game over 17 (11-6)\, Tampa Bay Lightnin
+ g +0.3 over 15 (10-5)\; last season +0.4 and +0.7 a game.\n- Minnesota Wil
+ d trending: last five +1.8 vs +1.1 on the season.\n- Home edge +0.2 for Mi
+ nnesota Wild.\n- Minnesota Wild are rested (4 days).\n- Projected margin +
+ 0.3 for Minnesota Wild against +1.5.\nWhat could go wrong:\n- Minnesota Wi
+ ld without Marcus Foligno (LW)\, Jared Spurgeon (D) (-0.1).\nVerdict: The 
+ game data lines up behind this side at this price.\nPrices: BetMGM -210\, 
+ Caesars -218\, FanDuel -220\, DraftKings -225\, theScore Bet -235 and 2 mo
+ re.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#b5934
+ d2ce0-spreads-Minnesota-Wild
+LOCATION:Grand Casino Arena\, Saint Paul
+URL:https://ajur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minn
+ esota-Wild
+CATEGORIES:NHL
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Minnesota Wild +1.5 -210 at BetMGM · Lean
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8fe46a5692-spreads-Vancouver-Canucks@edgeline
+DTSTAMP:20261106T201751Z
+DTSTART:20261108T031000Z
+DTEND:20261108T061000Z
+SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · Lean
+DESCRIPTION:NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7\, 10:10
+  PM ET\nPuck line: Vancouver Canucks +1.5 at +117 (Bovada). Our probabilit
+ y 54.3% from game data\, the price implies 46.1%\, edge +8.2 pts\, EV +17.
+ 8% per unit. Confidence: Lean.\nOur probability at +1.5 is 54.3%\, from th
+ e game data: this season's results and margins\, recent form\, rest\, the 
+ injury report and home edge (projected margin +1.1 for the home side). Bov
+ ada offers +117\, which implies only 46.1%. Its bar is 7.1 points: the mod
+ el's own margin of error on this side\, with 17 games behind the thinner t
+ eam (±0.45 goals on the margin). It clears it by 1.2. Not graded against 
+ other books' prices\; for reference the market makes it 45.2%.\nWhat suppo
+ rts it:\n- Edmonton Oilers without Isaac Howard (LW)\, Zach Hyman (LW)\, D
+ evon Levi (G) (-0.3).\n- Edmonton Oilers have Tristan Jarry (G) listed day
+ -to-day or questionable.\nWhat could go wrong:\n- Edmonton Oilers rate +0.
+ 4 a game over 17 (11-6)\, Vancouver Canucks -0.7 over 18 (3-15)\; last sea
+ son +0.2 and -1.2 a game.\n- Edmonton Oilers trending: last five +1.8 vs +
+ 1.1 on the season.\n- Home edge +0.2 for Edmonton Oilers.\n- Vancouver Can
+ ucks without Filip Chytil (C) (+0.1).\n- Vancouver Canucks have Tom Willan
+ der (D) listed day-to-day or questionable.\n- Projected margin -1.1 for Va
+ ncouver Canucks against +1.5.\nVerdict: More working against this one than
+  for it\; size down.\nPrices: Bovada +117\, DraftKings +114\, Caesars +114
+ \, BetRivers +110\, FanDuel +104.\nFull breakdown: https://ajur21.github.i
+ o/edgeline-ai/picks.html#8fe46a5692-spreads-Vancouver-Canucks
+LOCATION:Rogers Place\, Edmonton
+URL:https://ajur21.github.io/edgeline-ai/picks.html#8fe46a5692-spreads-Vanc
+ ouver-Canucks
+CATEGORIES:NHL
+LAST-MODIFIED:20261106T201751Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vancouver Canucks +1.5 +117 at Bovada · Lean
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
