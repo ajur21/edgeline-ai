@@ -50,7 +50,7 @@ window.PERF_DATA = {
       "units": 0,
       "n": 0,
       "roi": 0,
-      "pending": 6,
+      "pending": 7,
       "since": "2026-11-05"
     },
     "price": {
