@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-06T20:17:51.147Z",
+  "trackedAt": "2026-11-06T20:46:25.388Z",
   "playOfDay": {
     "id": "8094c7dc65-h2h-Columbus-Blue-Jackets",
     "sport": "NHL",
@@ -34,7 +35,7 @@ window.PICKS_DATA = {
       "ESPN BET": 145,
       "PointsBet": 150
     },
-    "pricesAt": "2026-11-06T20:17:51.147Z",
+    "pricesAt": "2026-11-06T20:46:25.388Z",
     "books": 7,
     "anchor": null,
     "modelProb": 0.4814,
@@ -301,7 +302,7 @@ window.PICKS_DATA = {
       "label": "The market (7 books) opened +124, now +155"
     },
     "sgo": {
-      "at": "2026-11-06T20:17:51.147Z",
+      "at": "2026-11-06T20:46:25.388Z",
       "n": 7,
       "best": {
         "book": "PointsBet",
@@ -828,7 +829,7 @@ window.PICKS_DATA = {
         "ESPN BET": 145,
         "PointsBet": 150
       },
-      "pricesAt": "2026-11-06T20:17:51.147Z",
+      "pricesAt": "2026-11-06T20:46:25.388Z",
       "books": 7,
       "anchor": null,
       "modelProb": 0.4814,
@@ -1095,7 +1096,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened +124, now +155"
       },
       "sgo": {
-        "at": "2026-11-06T20:17:51.147Z",
+        "at": "2026-11-06T20:46:25.388Z",
         "n": 7,
         "best": {
           "book": "PointsBet",
@@ -2546,8 +2547,8 @@ window.PICKS_DATA = {
               "under": 110
             },
             "ml": {
-              "home": 120,
-              "away": -142
+              "home": 124,
+              "away": -148
             }
           },
           "open": {
@@ -2653,387 +2654,6 @@ window.PICKS_DATA = {
       },
       "now": null,
       "standing": null
-    },
-    {
-      "id": "446de9651d-spreads-Nashville-Predators",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Nashville Predators @ Colorado Avalanche",
-      "home": "Colorado Avalanche",
-      "away": "Nashville Predators",
-      "marketKey": "spreads",
-      "outcome": {
-        "name": "Nashville Predators",
-        "point": 1.5
-      },
-      "commence": "2026-11-06T02:40:00Z",
-      "start": "Yesterday 9:40 PM ET",
-      "market": "Puck line",
-      "pick": "Nashville Predators +1.5",
-      "odds": -130,
-      "book": "BetMGM",
-      "prices": {
-        "DraftKings": -135,
-        "BetOnline.ag": -140,
-        "BetRivers": -143,
-        "BetMGM": -130,
-        "FanDuel": -134,
-        "Bovada": -135,
-        "theScore Bet": -145,
-        "Caesars": -127,
-        "ESPN BET": -135
-      },
-      "pricesAt": "2026-11-06T02:07:33.480Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.7202,
-      "ev": 0.2742,
-      "confidence": "High",
-      "basis": "game",
-      "model": {
-        "margin": 0.1,
-        "total": 6.6,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 15,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0.3,
-          "ratingAway": 0.3,
-          "homeEdge": 0.2,
-          "rest": 0,
-          "injuriesHome": -0.2,
-          "injuriesAway": 0.1,
-          "scoringOut": 0.3,
-          "pace": 6.9
-        },
-        "reasons": {
-          "for": [
-            "Colorado Avalanche trending: last five 0 vs +0.8 on the season",
-            "Nashville Predators trending: last five +1.2 vs -0.1 on the season",
-            "Colorado Avalanche without Josh Manson (D), Zachary L'Heureux (LW) (-0.2)"
-          ],
-          "against": [
-            "Colorado Avalanche rate +0.3 a game over 16 (9-7), Nashville Predators +0.3 over 15 (6-9)",
-            "Home edge +0.2 for Colorado Avalanche",
-            "Nashville Predators have Jonathan Marchessault (RW) listed day-to-day or questionable",
-            "Projected margin -0.1 for Nashville Predators against +1.5"
-          ]
-        }
-      },
-      "marketFair": 0.5661,
-      "marketEdge": 0.0009,
-      "rationale": "Our probability at +1.5 is 72.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). BetMGM offers -130, which implies only 56.5%. Not graded against other books' prices; for reference the market makes it 56.6%.",
-      "factors": [
-        "Best price -130 at BetMGM",
-        "Probability 72.0% from game data, not other books",
-        "Edge 15.5 points over the price",
-        "Market reference 56.6%"
-      ],
-      "breakdown": {
-        "tier": "High",
-        "tierWhy": "Our probability for this side is 72.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 56.5%, so the edge is 15.5 points. Lean starts at 3.0 points, Medium at 5.0 points, High at 8.0 points (the flat bars this pick was posted under). Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at +1.5 is 72.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). BetMGM offers -130, which implies only 56.5%. Not graded against other books' prices; for reference the market makes it 56.6%.",
-        "support": [
-          "Colorado Avalanche trending: last five 0 vs +0.8 on the season.",
-          "Nashville Predators trending: last five +1.2 vs -0.1 on the season.",
-          "Colorado Avalanche without Josh Manson (D), Zachary L'Heureux (LW) (-0.2).",
-          "A better price is available now: -127 at Caesars."
-        ],
-        "risks": [
-          "Colorado Avalanche rate +0.3 a game over 16 (9-7), Nashville Predators +0.3 over 15 (6-9).",
-          "Home edge +0.2 for Colorado Avalanche.",
-          "Nashville Predators have Jonathan Marchessault (RW) listed day-to-day or questionable.",
-          "Projected margin -0.1 for Nashville Predators against +1.5.",
-          "At current prices our edge is 4.0 points, under its bar of 6.9 points; the pick stays posted and is graded at the price it was posted at."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 56.6% (+0.1 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (56.6% → 55.3%).",
-          "Market: DraftKings opened +1.5 (-120), now +1.5 (-135), moving toward this side since the open.",
-          "Market: The market (6 books) opened +1.5 (-126), now +1.5 (-122), the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Avalanche Mackenzie Blackwood · Predators Juuse Saros.",
-          "Records: Nashville Predators 6-4-5 · Colorado Avalanche 9-6-1 · Ball Arena, Denver."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401892658",
-        "venue": "Ball Arena, Denver",
-        "indoor": true,
-        "records": {
-          "Colorado Avalanche": {
-            "overall": "9-6-1",
-            "home": "6-1-1",
-            "away": "3-5-0"
-          },
-          "Nashville Predators": {
-            "overall": "6-4-5",
-            "home": "5-3-2",
-            "away": "1-1-3"
-          }
-        },
-        "probables": {
-          "Colorado Avalanche": "Mackenzie Blackwood",
-          "Nashville Predators": "Juuse Saros"
-        },
-        "injuries": {
-          "Colorado Avalanche": [
-            {
-              "name": "Josh Manson",
-              "pos": "D",
-              "athleteId": "2590829",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2590829.png",
-              "status": "Out",
-              "type": "Ankle",
-              "detail": "",
-              "returnDate": "2026-12-27",
-              "date": "2026-10-30T18:27Z",
-              "note": "Manson (ankle) is expected to miss the next eight weeks, Corey Masisak of The Denver Post reports Friday."
-            },
-            {
-              "name": "Zachary L'Heureux",
-              "pos": "LW",
-              "athleteId": "4874744",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874744.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-07",
-              "date": "2026-10-23T21:39Z",
-              "note": "ir-lt"
-            }
-          ],
-          "Nashville Predators": [
-            {
-              "name": "Jonathan Marchessault",
-              "pos": "RW",
-              "athleteId": "2967072",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2967072.png",
-              "status": "Day-To-Day",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-05",
-              "date": "2026-11-04T15:21Z",
-              "note": "day-to-day"
-            }
-          ]
-        },
-        "rest": {
-          "Colorado Avalanche": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-04",
-            "gamesLast7": 3
-          },
-          "Nashville Predators": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-04",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "Disney+, ESPN+, Hulu",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 114,
-              "away": -135
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -115,
-              "under": -105
-            },
-            "ml": {
-              "home": -218,
-              "away": 180
-            }
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 100,
-              "away": -120
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -102,
-              "under": -118
-            },
-            "ml": {
-              "home": -238,
-              "away": 195
-            }
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": -130,
-        "loggedFair": 0.7202,
-        "currentOdds": -133,
-        "currentBook": "Bovada",
-        "currentFair": 0.5525,
-        "currentEdge": 0.0397,
-        "checkedAt": "2026-11-06T01:04:27.111Z",
-        "history": [
-          {
-            "at": "2026-11-05T05:10:20.993Z",
-            "odds": -130,
-            "fair": 0.5661
-          },
-          {
-            "at": "2026-11-05T15:47:22.894Z",
-            "odds": -130,
-            "fair": 0.5609
-          },
-          {
-            "at": "2026-11-05T17:43:55.449Z",
-            "odds": -135,
-            "fair": 0.5571
-          },
-          {
-            "at": "2026-11-06T01:04:27.111Z",
-            "odds": -133,
-            "fair": 0.5525
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 1.5,
-          "odds": -120,
-          "fair": 0.5217391304347826
-        },
-        "now": {
-          "line": 1.5,
-          "odds": -135,
-          "fair": 0.551441114716549
-        },
-        "moved": "toward",
-        "label": "DraftKings opened +1.5 (-120), now +1.5 (-135)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-05T05:10:20.993Z",
-          "line": 1.5,
-          "odds": -142,
-          "fair": 0.5635
-        },
-        {
-          "at": "2026-11-06T01:04:27.111Z",
-          "line": 1.5,
-          "odds": -135,
-          "fair": 0.5514
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 6,
-        "open": {
-          "line": 1.5,
-          "odds": -126
-        },
-        "now": {
-          "line": 1.5,
-          "odds": -122
-        },
-        "moved": "away",
-        "label": "The market (6 books) opened +1.5 (-126), now +1.5 (-122)"
-      },
-      "sgo": {
-        "at": "2026-11-06T02:07:33.480Z",
-        "n": 6,
-        "best": {
-          "book": "Caesars",
-          "odds": -127
-        },
-        "fair": 0.5476,
-        "vendorFair": 0.5495,
-        "open": {
-          "line": 1.5,
-          "odds": -126
-        },
-        "now": {
-          "line": 1.5,
-          "odds": -122
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-05T15:47:22.894Z",
-          "fair": 0.5555,
-          "vendorFair": 0.5614,
-          "line": 1.5,
-          "odds": -128,
-          "best": -130,
-          "n": 6
-        },
-        {
-          "at": "2026-11-05T17:43:55.449Z",
-          "fair": 0.5572,
-          "vendorFair": 0.5614,
-          "line": 1.5,
-          "odds": -128,
-          "best": -135,
-          "n": 6
-        },
-        {
-          "at": "2026-11-05T21:25:04.349Z",
-          "fair": 0.5586,
-          "vendorFair": 0.5614,
-          "line": 1.5,
-          "odds": -128,
-          "best": -135,
-          "n": 6
-        },
-        {
-          "at": "2026-11-06T01:04:27.111Z",
-          "fair": 0.5541,
-          "vendorFair": 0.5556,
-          "line": 1.5,
-          "odds": -125,
-          "best": -133,
-          "n": 6
-        },
-        {
-          "at": "2026-11-06T02:07:33.480Z",
-          "fair": 0.5476,
-          "vendorFair": 0.5495,
-          "line": 1.5,
-          "odds": -122,
-          "best": -127,
-          "n": 6
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Win",
-      "units": 0.77,
-      "score": {
-        "home": 2,
-        "away": 3
-      },
-      "loggedAt": "2026-11-05T05:10:20.993Z",
-      "valueTo": -222,
-      "bar": null,
-      "past": null,
-      "barParts": null,
-      "now": {
-        "at": "2026-11-06T01:04:27.111Z",
-        "odds": -133,
-        "book": "Bovada",
-        "modelProb": 0.6105,
-        "edge": 0.0397,
-        "bar": 0.0685
-      },
-      "standing": "below"
     }
   ]
 };

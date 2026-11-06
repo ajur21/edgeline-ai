@@ -3286,7 +3286,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "B5lHdyyUN5TrfS8LH1cl",
-   "at": "2026-11-06T20:17:51.147Z",
+   "at": "2026-11-06T20:46:25.388Z",
    "books": {
     "DraftKings": 142,
     "Caesars": 138,
@@ -3320,7 +3320,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-06T20:17:51.147Z",
+  "pricesAt": "2026-11-06T20:46:25.388Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T01:04:27.111Z",
@@ -4916,8 +4916,8 @@
       "under": 110
      },
      "ml": {
-      "home": 120,
-      "away": -142
+      "home": 124,
+      "away": -148
      }
     },
     "open": {
