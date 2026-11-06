@@ -2,55 +2,170 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-05",
+  "asOf": "2026-11-06",
   "windowDays": 30,
   "record": {
-    "wins": 0,
-    "losses": 0,
+    "wins": 3,
+    "losses": 3,
     "pushes": 0
   },
-  "units": 0,
-  "roi": 0,
-  "avgEdge": 0,
-  "graded": 0,
-  "daily": [],
-  "bySport": [],
-  "recent": [],
-  "byDate": [],
+  "units": -1.01,
+  "roi": -16.8,
+  "avgEdge": 14.7,
+  "graded": 6,
+  "daily": [
+    {
+      "date": "2026-11-05",
+      "units": -1.01
+    }
+  ],
+  "bySport": [
+    {
+      "sport": "NHL",
+      "units": -0.01,
+      "record": "3-2"
+    },
+    {
+      "sport": "NBA",
+      "units": -1,
+      "record": "0-1"
+    }
+  ],
+  "recent": [
+    {
+      "date": "2026-11-05",
+      "sport": "NHL",
+      "event": "Nashville Predators @ Colorado Avalanche",
+      "pick": "Nashville Predators +1.5",
+      "odds": -130,
+      "result": "Win",
+      "units": 0.77,
+      "clv": null,
+      "closeOdds": -133,
+      "closeLine": 0,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-05",
+      "sport": "NBA",
+      "event": "Orlando Magic @ Phoenix Suns",
+      "pick": "Over 222.5",
+      "odds": -110,
+      "result": "Loss",
+      "units": -1,
+      "clv": null,
+      "closeOdds": -102,
+      "closeLine": 225.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-05",
+      "sport": "NHL",
+      "event": "Anaheim Ducks @ Edmonton Oilers",
+      "pick": "Anaheim Ducks +1.5",
+      "odds": -145,
+      "result": "Win",
+      "units": 0.69,
+      "clv": null,
+      "closeOdds": 397,
+      "closeLine": -1.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-05",
+      "sport": "NHL",
+      "event": "Vancouver Canucks @ Winnipeg Jets",
+      "pick": "Vancouver Canucks +1.5",
+      "odds": -130,
+      "result": "Loss",
+      "units": -1,
+      "clv": null,
+      "closeOdds": 4991,
+      "closeLine": 3.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "away",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-05",
+      "sport": "NHL",
+      "event": "Philadelphia Flyers @ New York Rangers",
+      "pick": "Philadelphia Flyers +1.5",
+      "odds": -190,
+      "result": "Win",
+      "units": 0.53,
+      "clv": null,
+      "closeOdds": 100,
+      "closeLine": 1,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-05",
+      "sport": "NHL",
+      "event": "Philadelphia Flyers @ New York Rangers",
+      "pick": "Philadelphia Flyers ML",
+      "odds": 133,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.3391,
+      "closeOdds": 1010,
+      "closeLine": null,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    }
+  ],
+  "byDate": [
+    {
+      "date": "2026-11-05",
+      "units": -1.01,
+      "wins": 3,
+      "losses": 3,
+      "pushes": 0
+    }
+  ],
   "potd": {
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "pushes": 0,
-    "units": 0,
-    "n": 0
+    "units": -1,
+    "n": 1
   },
   "parlays": {
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "pushes": 0,
-    "units": 0,
-    "n": 0
+    "units": -1,
+    "n": 1
   },
   "clv": {
-    "n": 0,
-    "avg": null,
+    "n": 1,
+    "avg": -33.91,
     "beat": 0,
-    "beatPct": null,
-    "graded": 0,
-    "lineToward": 0,
-    "lineAway": 0,
+    "beatPct": 0,
+    "graded": 6,
+    "lineToward": 4,
+    "lineAway": 1,
     "espnCloses": 0,
-    "sgoCloses": 0
+    "sgoCloses": 6
   },
   "byBasis": {
     "game": {
-      "wins": 0,
-      "losses": 0,
+      "wins": 3,
+      "losses": 3,
       "pushes": 0,
-      "units": 0,
-      "n": 0,
-      "roi": 0,
-      "pending": 7,
+      "units": -1.01,
+      "n": 6,
+      "roi": -16.8,
+      "pending": 1,
       "since": "2026-11-05"
     },
     "price": {

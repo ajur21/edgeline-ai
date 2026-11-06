@@ -82,8 +82,8 @@
    "Edge 18.6 points over the price",
    "Market reference 42.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-05T05:10:20.993Z",
   "current": {
    "at": "2026-11-05T17:43:55.449Z",
@@ -457,7 +457,31 @@
      "fair": 0.4277
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-3",
+  "finalScore": {
+   "home": 3,
+   "away": 2
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "pIRxpNaP6qtAO02Cxle3",
+   "line": null,
+   "odds": 1010,
+   "bestBook": null,
+   "fair": 0.0901,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 129
+   },
+   "books": {},
+   "samples": 3
+  },
+  "clv": -0.3391,
+  "lineMove": null
  },
  {
   "key": "c672f144ecbb937d3b15b483847129d2|spreads|Anaheim Ducks|1.5",
@@ -541,8 +565,8 @@
    "Edge 16.9 points over the price",
    "Market reference 59.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.69,
   "loggedAt": "2026-11-05T05:10:20.993Z",
   "current": {
    "at": "2026-11-06T01:04:27.111Z",
@@ -1006,7 +1030,31 @@
      "fair": 0.5778
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "5-4",
+  "finalScore": {
+   "home": 4,
+   "away": 5
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "F4nat0NCwvztzSskYbUA",
+   "line": -1.5,
+   "odds": 397,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 1.5,
+    "odds": -137
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "key": "b945b7133224c704b734e04becd109f0|spreads|Philadelphia Flyers|1.5",
@@ -1090,8 +1138,8 @@
    "Edge 16.5 points over the price",
    "Market reference 64.5%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.53,
   "loggedAt": "2026-11-05T05:10:20.993Z",
   "current": {
    "at": "2026-11-05T17:43:55.449Z",
@@ -1463,7 +1511,31 @@
      "fair": 0.6446
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "2-3",
+  "finalScore": {
+   "home": 3,
+   "away": 2
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "pIRxpNaP6qtAO02Cxle3",
+   "line": 1,
+   "odds": 100,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 1,
+    "odds": 100
+   },
+   "books": {},
+   "samples": 3
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "key": "446de9651d2d2948326d970e9f858a33|spreads|Nashville Predators|1.5",
@@ -1547,8 +1619,8 @@
    "Edge 15.5 points over the price",
    "Market reference 56.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.77,
   "loggedAt": "2026-11-05T05:10:20.993Z",
   "current": {
    "at": "2026-11-06T01:04:27.111Z",
@@ -1881,14 +1953,38 @@
     "best": -127,
     "n": 6
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "3-2",
+  "finalScore": {
+   "home": 2,
+   "away": 3
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "ux9rTf8rD57k94U9mcEV",
+   "line": 0,
+   "odds": -133,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 1.5,
+    "odds": -126
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-05",
   "date": "2026-11-05",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-05T05:10:20.993Z",
   "book": "BetMGM",
   "legs": [
@@ -1904,7 +2000,9 @@
   "decimal": 6.7261,
   "odds": 573,
   "fairProb": 0.3367,
-  "ev": 1.2648
+  "ev": 1.2648,
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "result": "Loss"
  },
  {
   "key": "5d5b6a0f376a8d9bd4f5e46891e6c6d8|spreads|Vancouver Canucks|1.5",
@@ -2001,8 +2099,8 @@
    "Edge 9.7 points over the price, 3.2 past its bar of 6.5",
    "Market reference 57.4%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-05T15:47:22.894Z",
   "current": {
    "at": "2026-11-05T17:43:55.449Z",
@@ -2349,7 +2447,31 @@
      "fair": 0.5719
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-6",
+  "finalScore": {
+   "home": 6,
+   "away": 2
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "jD6Jf4uL6e2VFbpPAVlB",
+   "line": 3.5,
+   "odds": 4991,
+   "bestBook": null,
+   "fair": null,
+   "moved": "away",
+   "open": {
+    "line": 1.5,
+    "odds": -135
+   },
+   "books": {},
+   "samples": 2
+  },
+  "clv": null,
+  "lineMove": "away"
  },
  {
   "key": "2a76b31e02d1416de069a995589515fc|totals|Over|222.5",
@@ -2439,8 +2561,8 @@
    "Edge 11.0 points over the price, 0.7 past its bar of 10.3",
    "Market reference 49.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-05T15:47:22.894Z",
   "current": {
    "at": "2026-11-06T01:04:27.111Z",
@@ -2820,7 +2942,31 @@
      "fair": 0.4954
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "104-117",
+  "finalScore": {
+   "home": 117,
+   "away": 104
+  },
+  "gradedAt": "2026-11-06T05:49:42.400Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "ZwreqgOw8hyXBglasOGp",
+   "line": 225.5,
+   "odds": -102,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 219,
+    "odds": 100
+   },
+   "books": {},
+   "samples": 3
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "key": "8094c7dc6557caf1cc19194bf69477bb|h2h|Columbus Blue Jackets|null",
@@ -3043,8 +3189,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 136,
-      "away": -162
+      "home": 142,
+      "away": -170
      },
      "total": 6.5,
      "totalOdds": {
@@ -3052,8 +3198,8 @@
       "under": -118
      },
      "ml": {
-      "home": -175,
-      "away": 145
+      "home": -170,
+      "away": 142
      }
     },
     "open": {
@@ -3080,6 +3226,12 @@
     "line": null,
     "odds": 145,
     "fair": 0.3908
+   },
+   {
+    "at": "2026-11-06T05:49:42.400Z",
+    "line": null,
+    "odds": 142,
+    "fair": 0.3962
    }
   ],
   "dk": {
@@ -3091,11 +3243,11 @@
    },
    "now": {
     "line": null,
-    "odds": 145,
-    "fair": 0.39076376554174075
+    "odds": 142,
+    "fair": 0.3962430290578221
    },
-   "moved": null,
-   "label": "DraftKings opened +145, now +145"
+   "moved": "toward",
+   "label": "DraftKings opened +145, now +142"
   },
   "mkt": {
    "book": "Market consensus",
@@ -3128,6 +3280,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 7 books makes this side 38.7% (-0.8 points against the best price). For reference only.",
+    "Market: DraftKings opened +145, now +142, moving toward this side since the open.",
     "Market: The market (7 books) opened +124, now +156, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Sabres Ukko-Pekka Luukkonen · Jackets Cam Talbot.",
