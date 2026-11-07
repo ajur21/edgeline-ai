@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-07T00:14:27.529Z",
+  "trackedAt": "2026-11-07T00:47:16.011Z",
   "playOfDay": {
     "id": "8094c7dc65-h2h-Columbus-Blue-Jackets",
     "sport": "NHL",
