@@ -2,28 +2,32 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-06",
+  "asOf": "2026-11-07",
   "windowDays": 30,
   "record": {
     "wins": 3,
-    "losses": 3,
+    "losses": 4,
     "pushes": 0
   },
-  "units": -1.01,
-  "roi": -16.8,
-  "avgEdge": 14.7,
-  "graded": 6,
+  "units": -2.01,
+  "roi": -28.7,
+  "avgEdge": 13.8,
+  "graded": 7,
   "daily": [
     {
       "date": "2026-11-05",
       "units": -1.01
+    },
+    {
+      "date": "2026-11-06",
+      "units": -2.01
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -0.01,
-      "record": "3-2"
+      "units": -1.01,
+      "record": "3-3"
     },
     {
       "sport": "NBA",
@@ -32,6 +36,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-06",
+      "sport": "NHL",
+      "event": "Columbus Blue Jackets @ Buffalo Sabres",
+      "pick": "Columbus Blue Jackets ML",
+      "odds": 153,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.3724,
+      "closeOdds": 4264,
+      "closeLine": null,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-05",
       "sport": "NHL",
@@ -130,14 +149,21 @@ window.PERF_DATA = {
       "wins": 3,
       "losses": 3,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-06",
+      "units": -1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 0,
-    "losses": 1,
+    "losses": 2,
     "pushes": 0,
-    "units": -1,
-    "n": 1
+    "units": -2,
+    "n": 2
   },
   "parlays": {
     "wins": 0,
@@ -147,25 +173,25 @@ window.PERF_DATA = {
     "n": 1
   },
   "clv": {
-    "n": 1,
-    "avg": -33.91,
+    "n": 2,
+    "avg": -35.58,
     "beat": 0,
     "beatPct": 0,
-    "graded": 6,
+    "graded": 7,
     "lineToward": 4,
     "lineAway": 1,
     "espnCloses": 0,
-    "sgoCloses": 6
+    "sgoCloses": 7
   },
   "byBasis": {
     "game": {
       "wins": 3,
-      "losses": 3,
+      "losses": 4,
       "pushes": 0,
-      "units": -1.01,
-      "n": 6,
-      "roi": -16.8,
-      "pending": 11,
+      "units": -2.01,
+      "n": 7,
+      "roi": -28.7,
+      "pending": 10,
       "since": "2026-11-05"
     },
     "price": {

@@ -3064,8 +3064,8 @@
    "Edge 8.6 points over the price, 1.0 past its bar of 7.6",
    "Market reference 38.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-06T01:04:27.111Z",
   "current": {
    "at": "2026-11-06T20:17:51.147Z",
@@ -3362,7 +3362,31 @@
     }
    ]
   },
-  "potd": "2026-11-06"
+  "potd": "2026-11-06",
+  "result": "Loss",
+  "score": "2-5",
+  "finalScore": {
+   "home": 5,
+   "away": 2
+  },
+  "gradedAt": "2026-11-07T05:20:48.964Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "B5lHdyyUN5TrfS8LH1cl",
+   "line": null,
+   "odds": 4264,
+   "bestBook": null,
+   "fair": 0.0229,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 124
+   },
+   "books": {},
+   "samples": 2
+  },
+  "clv": -0.3724,
+  "lineMove": null
  },
  {
   "key": "1f21bf798afede04880e7a391f3990ed|spreads|San Jose Sharks|1.5",
@@ -3655,8 +3679,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 105,
-      "under": -125
+      "over": 102,
+      "under": -122
      },
      "ml": {
       "home": -290,
@@ -4145,8 +4169,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": -135,
-      "away": 114
+      "home": -142,
+      "away": 120
      },
      "total": 6.5,
      "totalOdds": {
@@ -4182,6 +4206,12 @@
     "line": 1.5,
     "odds": 114,
     "fair": 0.4486
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": 1.5,
+    "odds": 120,
+    "fair": 0.4365
    }
   ],
   "dk": {
@@ -4193,11 +4223,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 114,
-    "fair": 0.448558885283451
+    "odds": 120,
+    "fair": 0.43650793650793646
    },
    "moved": "away",
-   "label": "DraftKings opened +1.5 (+105), now +1.5 (+114)"
+   "label": "DraftKings opened +1.5 (+105), now +1.5 (+120)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -4231,7 +4261,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.2% (-0.9 points against the best price). For reference only.",
-    "Market: DraftKings opened +1.5 (+105), now +1.5 (+114), moving against this side since the open.",
+    "Market: DraftKings opened +1.5 (+105), now +1.5 (+120), moving against this side since the open.",
     "Market: The market (4 books) opened +3.5 (+100), now +1.5 (+123), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Oilers Tristan Jarry · Canucks Leevi Merilainen.",
@@ -5420,8 +5450,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -225,
-      "away": 185
+      "home": -218,
+      "away": 180
      },
      "total": 6.5,
      "totalOdds": {
@@ -5429,8 +5459,8 @@
       "under": -125
      },
      "ml": {
-      "home": 120,
-      "away": -142
+      "home": 114,
+      "away": -135
      }
     },
     "open": {
@@ -5457,6 +5487,12 @@
     "line": 1.5,
     "odds": -225,
     "fair": 0.6636
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": 1.5,
+    "odds": -218,
+    "fair": 0.6575
    }
   ],
   "dk": {
@@ -5468,11 +5504,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -225,
-    "fair": 0.6636481241914618
+    "odds": -218,
+    "fair": 0.6574752261956054
    },
    "moved": "away",
-   "label": "DraftKings opened +1.5 (-230), now +1.5 (-225)"
+   "label": "DraftKings opened +1.5 (-230), now +1.5 (-218)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -5506,7 +5542,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 66.5% (-1.2 points against the best price). For reference only.",
-    "Market: DraftKings opened +1.5 (-230), now +1.5 (-225), moving against this side since the open.",
+    "Market: DraftKings opened +1.5 (-230), now +1.5 (-218), moving against this side since the open.",
     "Market: The market (5 books) opened 0 (+103), now 0 (+123), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Wild Calvin Pickard · Lightning Andrei Vasilevskiy.",
@@ -5766,17 +5802,17 @@
     "now": {
      "spread": -2.5,
      "spreadOdds": {
-      "home": 130,
-      "away": -180
+      "home": 120,
+      "away": -165
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 135,
-      "under": -170
+      "over": 130,
+      "under": -160
      },
      "ml": {
-      "home": -600,
-      "away": 1600
+      "home": -650,
+      "away": 1700
      }
     },
     "open": {
@@ -5803,6 +5839,12 @@
     "line": 3.5,
     "odds": -170,
     "fair": 0.5967
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": 3.5,
+    "odds": -160,
+    "fair": 0.586
    }
   ],
   "dk": {
@@ -5814,11 +5856,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -170,
-    "fair": 0.5967139656460044
+    "odds": -160,
+    "fair": 0.5859872611464969
    },
    "moved": "away",
-   "label": "DraftKings opened 3.5 (-175), now 3.5 (-170)"
+   "label": "DraftKings opened 3.5 (-175), now 3.5 (-160)"
   },
   "mkt": null,
   "breakdown": {
@@ -5832,7 +5874,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 48.5% (-1.0 points against the best price). For reference only.",
-    "Market: DraftKings opened 3.5 (-175), now 3.5 (-170), moving against this side since the open.",
+    "Market: DraftKings opened 3.5 (-175), now 3.5 (-160), moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 53°F, wind 2 mph, 14% rain.",
     "Records: Hull City 2-5-2 · Arsenal 8-0-1 · Emirates Stadium, London."
    ],
@@ -6002,17 +6044,17 @@
     "now": {
      "spread": 0.5,
      "spreadOdds": {
-      "home": 110,
-      "away": -155
+      "home": 105,
+      "away": -145
      },
      "total": 3.5,
      "totalOdds": {
-      "over": -105,
+      "over": 100,
       "under": -125
      },
      "ml": {
-      "home": 300,
-      "away": -145
+      "home": 295,
+      "away": -140
      }
     },
     "open": {
@@ -6039,6 +6081,12 @@
     "line": null,
     "odds": 300,
     "fair": 0.297
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": null,
+    "odds": 295,
+    "fair": 0.3026
    }
   ],
   "dk": {
@@ -6050,11 +6098,11 @@
    },
    "now": {
     "line": null,
-    "odds": 300,
-    "fair": 0.296969696969697
+    "odds": 295,
+    "fair": 0.3026481715006305
    },
    "moved": "away",
-   "label": "DraftKings opened +215, now +300"
+   "label": "DraftKings opened +215, now +295"
   },
   "mkt": {
    "book": "Market consensus",
@@ -6085,7 +6133,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 22.5% (+0.3 points against the best price). For reference only.",
-    "Market: DraftKings opened +215, now +300, moving against this side since the open.",
+    "Market: DraftKings opened +215, now +295, moving against this side since the open.",
     "Market: The market (8 books) opened -212, now +337, the consensus moving against this side since the open.",
     "Weather at kickoff: Overcast, 65°F, wind 8 mph, 34% rain.",
     "Records: Portland Timbers 12-7-14 · Austin FC 8-10-15 · Q2 Stadium, Austin, Texas."
@@ -6295,17 +6343,17 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 110,
-      "away": -150
+      "home": 125,
+      "away": -170
      },
      "total": 3.5,
      "totalOdds": {
-      "over": -155,
-      "under": 125
+      "over": -145,
+      "under": 115
      },
      "ml": {
-      "home": -215,
-      "away": 400
+      "home": -185,
+      "away": 350
      }
     },
     "open": {
@@ -6332,6 +6380,12 @@
     "line": 3.5,
     "odds": 125,
     "fair": 0.4224
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": 3.5,
+    "odds": 115,
+    "fair": 0.4401
    }
   ],
   "dk": {
@@ -6343,11 +6397,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": 125,
-    "fair": 0.42236024844720504
+    "odds": 115,
+    "fair": 0.4400538841490795
    },
-   "moved": "away",
-   "label": "DraftKings opened 3.5 (+115), now 3.5 (+125)"
+   "moved": null,
+   "label": "DraftKings opened 3.5 (+115), now 3.5 (+115)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -6374,7 +6428,6 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 51.9% (-2.3 points against the best price). For reference only.",
-    "Market: DraftKings opened 3.5 (+115), now 3.5 (+125), moving against this side since the open.",
     "Market: The market (1 books) opened 1.5 (+100), now 4 (-110), the consensus moving against this side since the open.",
     "Weather at kickoff: Clear, 80°F, wind 9 mph, 0% rain.",
     "Records: Sporting Kansas City 6-5-22 · San Diego FC 9-11-13 · Snapdragon Stadium, San Diego, California."
@@ -6866,8 +6919,8 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": -115,
-      "under": -110
+      "over": -125,
+      "under": 100
      },
      "ml": {
       "home": -120,
@@ -6898,6 +6951,12 @@
     "line": 3.5,
     "odds": -110,
     "fair": 0.4948
+   },
+   {
+    "at": "2026-11-07T05:20:48.964Z",
+    "line": 3.5,
+    "odds": 100,
+    "fair": 0.4737
    }
   ],
   "dk": {
@@ -6909,11 +6968,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -110,
-    "fair": 0.4947698744769875
+    "odds": 100,
+    "fair": 0.47368421052631576
    },
    "moved": "away",
-   "label": "DraftKings opened 3.5 (-115), now 3.5 (-110)"
+   "label": "DraftKings opened 3.5 (-115), now 3.5 (+100)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -6940,7 +6999,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.8% (-2.6 points against the best price). For reference only.",
-    "Market: DraftKings opened 3.5 (-115), now 3.5 (-110), moving against this side since the open.",
+    "Market: DraftKings opened 3.5 (-115), now 3.5 (+100), moving against this side since the open.",
     "Market: The market (2 books) opened 0.5 (+102), now 3.5 (+103), the consensus moving against this side since the open.",
     "Weather at kickoff: Clear, 54°F, wind 9 mph, 1% rain.",
     "Records: Atlanta United FC 9-6-18 · New York Red Bulls 11-6-16 · Sports Illustrated Stadium, Harrison, New Jersey."

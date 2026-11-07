@@ -3,409 +3,9 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-07T00:14:27.529Z",
-  "trackedAt": "2026-11-07T00:47:16.011Z",
-  "playOfDay": {
-    "id": "8094c7dc65-h2h-Columbus-Blue-Jackets",
-    "sport": "NHL",
-    "league": "NHL",
-    "sportKey": "icehockey_nhl",
-    "event": "Columbus Blue Jackets @ Buffalo Sabres",
-    "home": "Buffalo Sabres",
-    "away": "Columbus Blue Jackets",
-    "marketKey": "h2h",
-    "outcome": {
-      "name": "Columbus Blue Jackets",
-      "point": null
-    },
-    "commence": "2026-11-07T00:10:00Z",
-    "start": "Today 7:10 PM ET",
-    "market": "Moneyline",
-    "pick": "Columbus Blue Jackets ML",
-    "odds": 153,
-    "book": "Bovada",
-    "prices": {
-      "DraftKings": 142,
-      "BetMGM": 145,
-      "BetRivers": 150,
-      "FanDuel": 146,
-      "Bovada": 147,
-      "theScore Bet": 145,
-      "BetOnline.ag": 149,
-      "Caesars": 138,
-      "ESPN BET": 145,
-      "PointsBet": 150
-    },
-    "pricesAt": "2026-11-06T20:46:25.388Z",
-    "books": 7,
-    "anchor": null,
-    "modelProb": 0.4814,
-    "ev": 0.2179,
-    "confidence": "Lean",
-    "basis": "game",
-    "model": {
-      "margin": 0.1,
-      "total": 6.3,
-      "sd": 2.4,
-      "sdTotal": 2.3,
-      "gp": 13,
-      "gpHome": 15,
-      "gpAway": 13,
-      "thin": false,
-      "parts": {
-        "ratingHome": 0,
-        "ratingAway": -0.1,
-        "lastHome": 0.6,
-        "lastAway": 0,
-        "homeEdge": 0.24,
-        "rest": 0,
-        "injuriesHome": -0.1,
-        "injuriesAway": 0,
-        "scoringOut": 0,
-        "pace": 6.1
-      },
-      "reasons": {
-        "for": [
-          "Columbus Blue Jackets trending: last five +0.8 vs -0.4 on the season",
-          "Columbus Blue Jackets are rested (3 days)",
-          "Buffalo Sabres without Konsta Helenius (C), Justin Danforth (RW) (-0.1)"
-        ],
-        "against": [
-          "Buffalo Sabres rate +0 a game over 15 (7-8), Columbus Blue Jackets -0.1 over 13 (6-7); last season +0.6 and 0 a game",
-          "Buffalo Sabres trending: last five +0.4 vs -0.5 on the season",
-          "Home edge +0.2 for Buffalo Sabres",
-          "Projected margin -0.1 for Columbus Blue Jackets"
-        ]
-      }
-    },
-    "marketFair": 0.387,
-    "marketEdge": -0.0082,
-    "rationale": "Our probability is 48.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). Bovada offers +153, which implies only 39.5%. Its bar is 7.6 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.46 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 38.7%.",
-    "factors": [
-      "Best price +153 at Bovada",
-      "Probability 48.1% from game data, not other books",
-      "Edge 8.6 points over the price, 1.0 past its bar of 7.6",
-      "Market reference 38.7%"
-    ],
-    "breakdown": {
-      "tier": "Lean",
-      "tierWhy": "Our probability for this side is 48.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Bovada implies 39.5%, so the edge is 8.6 points. Its bar is 7.6 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.46 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-      "price": "Our probability is 48.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.1 for the home side). Bovada offers +153, which implies only 39.5%. Its bar is 7.6 points: the model's own margin of error on this side, with 13 games behind the thinner team (±0.46 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 38.7%.",
-      "support": [
-        "Columbus Blue Jackets trending: last five +0.8 vs -0.4 on the season.",
-        "Columbus Blue Jackets are rested (3 days).",
-        "Buffalo Sabres without Konsta Helenius (C), Justin Danforth (RW) (-0.1)."
-      ],
-      "risks": [
-        "Buffalo Sabres rate +0 a game over 15 (7-8), Columbus Blue Jackets -0.1 over 13 (6-7); last season +0.6 and 0 a game.",
-        "Buffalo Sabres trending: last five +0.4 vs -0.5 on the season.",
-        "Home edge +0.2 for Buffalo Sabres.",
-        "Projected margin -0.1 for Columbus Blue Jackets.",
-        "At current prices our edge is 3.3 points, under its bar of 7.5 points; the pick stays posted and is graded at the price it was posted at."
-      ],
-      "notes": [
-        "Where the market sits: the de-vigged consensus of 7 books makes this side 38.7% (-0.8 points against the best price). For reference only.",
-        "Market: DraftKings opened +145, now +142, moving toward this side since the open.",
-        "Market: The market (7 books) opened +124, now +155, the consensus moving against this side since the open.",
-        "Indoor venue; weather is not a factor.",
-        "Probable pitchers: Sabres Ukko-Pekka Luukkonen · Jackets Jet Greaves.",
-        "Records: Columbus Blue Jackets 7-7-0 · Buffalo Sabres 7-5-3 · KeyBank Center, Buffalo."
-      ],
-      "verdict": "More working against this one than for it; size down."
-    },
-    "context": {
-      "espnEventId": "401892659",
-      "venue": "KeyBank Center, Buffalo",
-      "indoor": true,
-      "records": {
-        "Buffalo Sabres": {
-          "overall": "7-5-3",
-          "home": "3-4-0",
-          "away": "4-1-3"
-        },
-        "Columbus Blue Jackets": {
-          "overall": "7-7-0",
-          "home": "6-3-0",
-          "away": "1-4-0"
-        }
-      },
-      "probables": {
-        "Buffalo Sabres": "Ukko-Pekka Luukkonen",
-        "Columbus Blue Jackets": "Jet Greaves"
-      },
-      "injuries": {
-        "Buffalo Sabres": [
-          {
-            "name": "Konsta Helenius",
-            "pos": "C",
-            "athleteId": "5216882",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216882.png",
-            "status": "Out",
-            "type": "Upper Body",
-            "detail": "",
-            "returnDate": "2026-11-17",
-            "date": "2026-11-02T17:29Z",
-            "note": "Helenius (upper body) is week-to-week, according to Matthew Fairburn of The Athletic on Monday."
-          },
-          {
-            "name": "Justin Danforth",
-            "pos": "RW",
-            "athleteId": "4894355",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4894355.png",
-            "status": "Injured Reserve",
-            "type": "Upper Body",
-            "detail": "",
-            "returnDate": "2026-11-08",
-            "date": "2026-10-29T22:06Z",
-            "note": "Danforth (upper body) was placed on injured reserve Thursday, per the NHL media site."
-          },
-          {
-            "name": "Alex Lyon",
-            "pos": "G",
-            "athleteId": "3654006",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3654006.png",
-            "status": "Injured Reserve",
-            "type": "Upper Body",
-            "detail": "",
-            "returnDate": "2026-11-22",
-            "date": "2026-10-15T17:59Z",
-            "note": "Lyon (upper body) had a setback in his recovery and is without a timeline to return, the team announced Thursday."
-          },
-          {
-            "name": "Matt Grzelcyk",
-            "pos": "D",
-            "athleteId": "3069448",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069448.png",
-            "status": "Injured Reserve",
-            "type": "Lower Body",
-            "detail": "",
-            "returnDate": "2026-11-08",
-            "date": "2026-10-13T20:51Z",
-            "note": "Grzelcyk (lower body) suffered a \"flare-up\" and could be out for at least \"a few days,\" head coach Lindy Ruff told Rachel Lenzi of The Buffalo News on Tuesday."
-          }
-        ],
-        "Columbus Blue Jackets": []
-      },
-      "rest": {
-        "Buffalo Sabres": {
-          "restDays": 2,
-          "b2b": false,
-          "lastGame": "2026-11-05",
-          "gamesLast7": 2
-        },
-        "Columbus Blue Jackets": {
-          "restDays": 1,
-          "b2b": true,
-          "lastGame": "2026-11-06",
-          "gamesLast7": 3
-        }
-      },
-      "weather": null,
-      "broadcast": "ESPN+",
-      "odds": {
-        "provider": "DraftKings",
-        "now": {
-          "spread": -1.5,
-          "spreadOdds": {
-            "home": 142,
-            "away": -170
-          },
-          "total": 6.5,
-          "totalOdds": {
-            "over": -102,
-            "under": -118
-          },
-          "ml": {
-            "home": -170,
-            "away": 142
-          }
-        },
-        "open": {
-          "spread": -1.5,
-          "spreadOdds": {
-            "home": 145,
-            "away": -175
-          },
-          "total": 6.5,
-          "totalOdds": {
-            "over": -102,
-            "under": -118
-          },
-          "ml": {
-            "home": -175,
-            "away": 145
-          }
-        }
-      }
-    },
-    "movement": {
-      "loggedOdds": 153,
-      "loggedFair": 0.4814,
-      "currentOdds": 149,
-      "currentBook": "BetOnline.ag",
-      "currentFair": 0.3901,
-      "currentEdge": 0.0334,
-      "checkedAt": "2026-11-06T20:17:51.147Z",
-      "history": [
-        {
-          "at": "2026-11-06T01:04:27.111Z",
-          "odds": 153,
-          "fair": 0.387
-        },
-        {
-          "at": "2026-11-06T20:17:51.147Z",
-          "odds": 149,
-          "fair": 0.3901
-        }
-      ]
-    },
-    "dk": {
-      "book": "DraftKings",
-      "open": {
-        "line": null,
-        "odds": 145,
-        "fair": 0.39076376554174075
-      },
-      "now": {
-        "line": null,
-        "odds": 142,
-        "fair": 0.3962430290578221
-      },
-      "moved": "toward",
-      "label": "DraftKings opened +145, now +142"
-    },
-    "dkHistory": [
-      {
-        "at": "2026-11-06T01:04:27.111Z",
-        "line": null,
-        "odds": 145,
-        "fair": 0.3908
-      },
-      {
-        "at": "2026-11-06T05:49:42.400Z",
-        "line": null,
-        "odds": 142,
-        "fair": 0.3962
-      }
-    ],
-    "mkt": {
-      "book": "Market consensus",
-      "n": 7,
-      "open": {
-        "line": null,
-        "odds": 124
-      },
-      "now": {
-        "line": null,
-        "odds": 155
-      },
-      "moved": "away",
-      "label": "The market (7 books) opened +124, now +155"
-    },
-    "sgo": {
-      "at": "2026-11-06T20:46:25.388Z",
-      "n": 7,
-      "best": {
-        "book": "PointsBet",
-        "odds": 150
-      },
-      "fair": 0.3917,
-      "vendorFair": 0.3922,
-      "open": {
-        "line": null,
-        "odds": 124
-      },
-      "now": {
-        "line": null,
-        "odds": 155
-      }
-    },
-    "sgoHistory": [
-      {
-        "at": "2026-11-06T01:04:27.111Z",
-        "fair": 0.3884,
-        "vendorFair": 0.3906,
-        "line": null,
-        "odds": 156,
-        "best": 153,
-        "n": 7
-      },
-      {
-        "at": "2026-11-06T20:17:51.147Z",
-        "fair": 0.3917,
-        "vendorFair": 0.3922,
-        "line": null,
-        "odds": 155,
-        "best": 150,
-        "n": 7
-      }
-    ],
-    "status": "pending",
-    "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
-    "loggedAt": "2026-11-06T01:04:27.111Z",
-    "valueTo": 147,
-    "bar": 0.0764,
-    "past": 0.0097,
-    "barParts": {
-      "error": 0.0764,
-      "units": 0.46,
-      "unit": "goals",
-      "gp": 13,
-      "floor": 0.03
-    },
-    "now": {
-      "at": "2026-11-06T20:17:51.147Z",
-      "odds": 149,
-      "book": "BetOnline.ag",
-      "modelProb": 0.435,
-      "edge": 0.0334,
-      "bar": 0.0754
-    },
-    "standing": "below"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-06",
-    "date": "2026-11-06",
-    "book": "Bovada",
-    "odds": 1026,
-    "decimal": 11.2558,
-    "fairProb": 0.1457,
-    "ev": 0.6403,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "legs": [
-      {
-        "id": "8094c7dc65-h2h-Columbus-Blue-Jackets",
-        "pick": "Columbus Blue Jackets ML",
-        "event": "Columbus Blue Jackets @ Buffalo Sabres",
-        "sport": "NHL",
-        "price": 147,
-        "started": true,
-        "result": null
-      },
-      {
-        "id": "8fe46a5692-spreads-Vancouver-Canucks",
-        "pick": "Vancouver Canucks +1.5",
-        "event": "Vancouver Canucks @ Edmonton Oilers",
-        "sport": "NHL",
-        "price": 117,
-        "started": false,
-        "result": null
-      },
-      {
-        "id": "79334eedea-h2h-Seattle-Kraken",
-        "pick": "Seattle Kraken ML",
-        "event": "New York Rangers @ Seattle Kraken",
-        "sport": "NHL",
-        "price": 110,
-        "started": false,
-        "result": null
-      }
-    ]
-  },
+  "trackedAt": "2026-11-07T05:20:48.964Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "picks": [
     {
       "id": "842fcc5b9f-totals-Under",
@@ -421,7 +21,7 @@ window.PICKS_DATA = {
         "point": 3
       },
       "commence": "2026-11-07T15:00:00Z",
-      "start": "Tomorrow 10:00 AM ET",
+      "start": "Today 10:00 AM ET",
       "market": "Total",
       "pick": "Under 3 goals",
       "odds": 102,
@@ -486,7 +86,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 48.5% (-1.0 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (-175), now 3.5 (-170), moving against this side since the open.",
+          "Market: DraftKings opened 3.5 (-175), now 3.5 (-160), moving against this side since the open.",
           "Weather at kickoff: Partly cloudy, 53°F, wind 2 mph, 14% rain.",
           "Records: Hull City 2-5-2 · Arsenal 8-0-1 · Emirates Stadium, London."
         ],
@@ -541,17 +141,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -2.5,
             "spreadOdds": {
-              "home": 130,
-              "away": -180
+              "home": 120,
+              "away": -165
             },
             "total": 3.5,
             "totalOdds": {
-              "over": 135,
-              "under": -170
+              "over": 130,
+              "under": -160
             },
             "ml": {
-              "home": -600,
-              "away": 1600
+              "home": -650,
+              "away": 1700
             }
           },
           "open": {
@@ -582,11 +182,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": -170,
-          "fair": 0.5967139656460044
+          "odds": -160,
+          "fair": 0.5859872611464969
         },
         "moved": "away",
-        "label": "DraftKings opened 3.5 (-175), now 3.5 (-170)"
+        "label": "DraftKings opened 3.5 (-175), now 3.5 (-160)"
       },
       "dkHistory": [
         {
@@ -594,6 +194,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": -170,
           "fair": 0.5967
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": 3.5,
+          "odds": -160,
+          "fair": 0.586
         }
       ],
       "mkt": null,
@@ -632,7 +238,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-08T00:00:00Z",
-      "start": "Tomorrow 7:00 PM ET",
+      "start": "Today 7:00 PM ET",
       "market": "Moneyline",
       "pick": "Austin FC ML",
       "odds": 350,
@@ -714,7 +320,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 22.5% (+0.3 points against the best price). For reference only.",
-          "Market: DraftKings opened +215, now +300, moving against this side since the open.",
+          "Market: DraftKings opened +215, now +295, moving against this side since the open.",
           "Market: The market (8 books) opened -212, now +337, the consensus moving against this side since the open.",
           "Weather at kickoff: Overcast, 65°F, wind 8 mph, 34% rain.",
           "Records: Portland Timbers 12-7-14 · Austin FC 8-10-15 · Q2 Stadium, Austin, Texas."
@@ -770,17 +376,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": 0.5,
             "spreadOdds": {
-              "home": 110,
-              "away": -155
+              "home": 105,
+              "away": -145
             },
             "total": 3.5,
             "totalOdds": {
-              "over": -105,
+              "over": 100,
               "under": -125
             },
             "ml": {
-              "home": 300,
-              "away": -145
+              "home": 295,
+              "away": -140
             }
           },
           "open": {
@@ -811,11 +417,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 300,
-          "fair": 0.296969696969697
+          "odds": 295,
+          "fair": 0.3026481715006305
         },
         "moved": "away",
-        "label": "DraftKings opened +215, now +300"
+        "label": "DraftKings opened +215, now +295"
       },
       "dkHistory": [
         {
@@ -823,6 +429,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 300,
           "fair": 0.297
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": null,
+          "odds": 295,
+          "fair": 0.3026
         }
       ],
       "mkt": {
@@ -901,7 +513,7 @@ window.PICKS_DATA = {
         "point": 4
       },
       "commence": "2026-11-08T00:00:00Z",
-      "start": "Tomorrow 7:00 PM ET",
+      "start": "Today 7:00 PM ET",
       "market": "Total",
       "pick": "Under 4 goals",
       "odds": -118,
@@ -967,7 +579,6 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 51.9% (-2.3 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (+115), now 3.5 (+125), moving against this side since the open.",
           "Market: The market (1 books) opened 1.5 (+100), now 4 (-110), the consensus moving against this side since the open.",
           "Weather at kickoff: Clear, 80°F, wind 9 mph, 0% rain.",
           "Records: Sporting Kansas City 6-5-22 · San Diego FC 9-11-13 · Snapdragon Stadium, San Diego, California."
@@ -1023,17 +634,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 110,
-              "away": -150
+              "home": 125,
+              "away": -170
             },
             "total": 3.5,
             "totalOdds": {
-              "over": -155,
-              "under": 125
+              "over": -145,
+              "under": 115
             },
             "ml": {
-              "home": -215,
-              "away": 400
+              "home": -185,
+              "away": 350
             }
           },
           "open": {
@@ -1064,11 +675,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": 125,
-          "fair": 0.42236024844720504
+          "odds": 115,
+          "fair": 0.4400538841490795
         },
-        "moved": "away",
-        "label": "DraftKings opened 3.5 (+115), now 3.5 (+125)"
+        "moved": null,
+        "label": "DraftKings opened 3.5 (+115), now 3.5 (+115)"
       },
       "dkHistory": [
         {
@@ -1076,6 +687,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": 125,
           "fair": 0.4224
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": 3.5,
+          "odds": 115,
+          "fair": 0.4401
         }
       ],
       "mkt": {
@@ -1154,7 +771,7 @@ window.PICKS_DATA = {
         "point": 4
       },
       "commence": "2026-11-07T21:00:00Z",
-      "start": "Tomorrow 4:00 PM ET",
+      "start": "Today 4:00 PM ET",
       "market": "Total",
       "pick": "Under 4 goals",
       "odds": -112,
@@ -1407,7 +1024,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-08T01:10:00Z",
-      "start": "Tomorrow 8:10 PM ET",
+      "start": "Today 8:10 PM ET",
       "market": "Puck line",
       "pick": "San Jose Sharks +1.5",
       "odds": 100,
@@ -1672,8 +1289,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 105,
-              "under": -125
+              "over": 102,
+              "under": -122
             },
             "ml": {
               "home": -290,
@@ -1825,7 +1442,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-08T03:10:00Z",
-      "start": "Tomorrow 10:10 PM ET",
+      "start": "Today 10:10 PM ET",
       "market": "Puck line",
       "pick": "Vancouver Canucks +1.5",
       "odds": 117,
@@ -1907,7 +1524,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 45.2% (-0.9 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (+105), now +1.5 (+114), moving against this side since the open.",
+          "Market: DraftKings opened +1.5 (+105), now +1.5 (+120), moving against this side since the open.",
           "Market: The market (4 books) opened +3.5 (+100), now +1.5 (+123), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Oilers Tristan Jarry · Canucks Leevi Merilainen.",
@@ -2130,8 +1747,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": -135,
-              "away": 114
+              "home": -142,
+              "away": 120
             },
             "total": 6.5,
             "totalOdds": {
@@ -2191,11 +1808,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 120,
+          "fair": 0.43650793650793646
         },
         "moved": "away",
-        "label": "DraftKings opened +1.5 (+105), now +1.5 (+114)"
+        "label": "DraftKings opened +1.5 (+105), now +1.5 (+120)"
       },
       "dkHistory": [
         {
@@ -2203,6 +1820,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": 1.5,
+          "odds": 120,
+          "fair": 0.4365
         }
       ],
       "mkt": {
@@ -2297,7 +1920,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-07T22:10:00Z",
-      "start": "Tomorrow 5:10 PM ET",
+      "start": "Today 5:10 PM ET",
       "market": "Moneyline",
       "pick": "Seattle Kraken ML",
       "odds": 110,
@@ -2733,7 +2356,7 @@ window.PICKS_DATA = {
         "point": 3.5
       },
       "commence": "2026-11-07T21:00:00Z",
-      "start": "Tomorrow 4:00 PM ET",
+      "start": "Today 4:00 PM ET",
       "market": "Total",
       "pick": "Under 3.5 goals",
       "odds": -110,
@@ -2801,7 +2424,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.8% (-2.6 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (-115), now 3.5 (-110), moving against this side since the open.",
+          "Market: DraftKings opened 3.5 (-115), now 3.5 (+100), moving against this side since the open.",
           "Market: The market (2 books) opened 0.5 (+102), now 3.5 (+103), the consensus moving against this side since the open.",
           "Weather at kickoff: Clear, 54°F, wind 9 mph, 1% rain.",
           "Records: Atlanta United FC 9-6-18 · New York Red Bulls 11-6-16 · Sports Illustrated Stadium, Harrison, New Jersey."
@@ -2862,8 +2485,8 @@ window.PICKS_DATA = {
             },
             "total": 3.5,
             "totalOdds": {
-              "over": -115,
-              "under": -110
+              "over": -125,
+              "under": 100
             },
             "ml": {
               "home": -120,
@@ -2898,11 +2521,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": -110,
-          "fair": 0.4947698744769875
+          "odds": 100,
+          "fair": 0.47368421052631576
         },
         "moved": "away",
-        "label": "DraftKings opened 3.5 (-115), now 3.5 (-110)"
+        "label": "DraftKings opened 3.5 (-115), now 3.5 (+100)"
       },
       "dkHistory": [
         {
@@ -2910,6 +2533,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": -110,
           "fair": 0.4948
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": 3.5,
+          "odds": 100,
+          "fair": 0.4737
         }
       ],
       "mkt": {
@@ -2988,7 +2617,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-08T01:10:00Z",
-      "start": "Tomorrow 8:10 PM ET",
+      "start": "Today 8:10 PM ET",
       "market": "Puck line",
       "pick": "Minnesota Wild +1.5",
       "odds": -210,
@@ -3070,7 +2699,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 66.5% (-1.2 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (-230), now +1.5 (-225), moving against this side since the open.",
+          "Market: DraftKings opened +1.5 (-230), now +1.5 (-218), moving against this side since the open.",
           "Market: The market (5 books) opened 0 (+103), now 0 (+123), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Wild Calvin Pickard · Lightning Andrei Vasilevskiy.",
@@ -3197,8 +2826,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -225,
-              "away": 185
+              "home": -218,
+              "away": 180
             },
             "total": 6.5,
             "totalOdds": {
@@ -3206,8 +2835,8 @@ window.PICKS_DATA = {
               "under": -125
             },
             "ml": {
-              "home": 120,
-              "away": -142
+              "home": 114,
+              "away": -135
             }
           },
           "open": {
@@ -3258,11 +2887,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -225,
-          "fair": 0.6636481241914618
+          "odds": -218,
+          "fair": 0.6574752261956054
         },
         "moved": "away",
-        "label": "DraftKings opened +1.5 (-230), now +1.5 (-225)"
+        "label": "DraftKings opened +1.5 (-230), now +1.5 (-218)"
       },
       "dkHistory": [
         {
@@ -3270,6 +2899,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -225,
           "fair": 0.6636
+        },
+        {
+          "at": "2026-11-07T05:20:48.964Z",
+          "line": 1.5,
+          "odds": -218,
+          "fair": 0.6575
         }
       ],
       "mkt": {
@@ -3364,7 +2999,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-08T00:10:00Z",
-      "start": "Tomorrow 7:10 PM ET",
+      "start": "Today 7:10 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -124,
@@ -3731,7 +3366,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-07T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Moneyline",
       "pick": "Columbus Blue Jackets ML",
       "odds": 153,
@@ -4052,11 +3687,14 @@ window.PICKS_DATA = {
           "n": 7
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 5,
+        "away": 2
+      },
       "loggedAt": "2026-11-06T01:04:27.111Z",
       "valueTo": 147,
       "bar": 0.0764,
