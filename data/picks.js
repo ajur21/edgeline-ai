@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-07T00:14:27.529Z",
-  "trackedAt": "2026-11-07T05:20:48.964Z",
+  "trackedAt": "2026-11-07T12:42:07.138Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "picks": [
@@ -150,8 +150,8 @@ window.PICKS_DATA = {
               "under": -160
             },
             "ml": {
-              "home": -650,
-              "away": 1700
+              "home": -700,
+              "away": 1900
             }
           },
           "open": {
@@ -377,12 +377,12 @@ window.PICKS_DATA = {
             "spread": 0.5,
             "spreadOdds": {
               "home": 105,
-              "away": -145
+              "away": -150
             },
             "total": 3.5,
             "totalOdds": {
-              "over": 100,
-              "under": -125
+              "over": -115,
+              "under": -110
             },
             "ml": {
               "home": 295,
@@ -632,10 +632,10 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": -1.5,
+            "spread": -0.5,
             "spreadOdds": {
-              "home": 125,
-              "away": -170
+              "home": -185,
+              "away": 130
             },
             "total": 3.5,
             "totalOdds": {
@@ -643,8 +643,8 @@ window.PICKS_DATA = {
               "under": 115
             },
             "ml": {
-              "home": -185,
-              "away": 350
+              "home": -175,
+              "away": 340
             }
           },
           "open": {
@@ -837,7 +837,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 50.2% (-2.6 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (+120), now 3.5 (+130), moving against this side since the open.",
+          "Market: DraftKings opened 3.5 (+120), now 4.5 (-155), moving against this side since the open.",
           "Market: The market (1 books) opened 0.5 (+102), now 4 (-101), the consensus moving against this side since the open.",
           "Weather at kickoff: Mainly clear, 81°F, wind 6 mph, 1% rain.",
           "Records: Charlotte FC 15-8-10 · Inter Miami CF 16-11-6 · Nu Stadium, Miami, Florida."
@@ -896,10 +896,10 @@ window.PICKS_DATA = {
               "home": -115,
               "away": -120
             },
-            "total": 3.5,
+            "total": 4.5,
             "totalOdds": {
-              "over": -165,
-              "under": 130
+              "over": 125,
+              "under": -155
             },
             "ml": {
               "home": -265,
@@ -933,12 +933,12 @@ window.PICKS_DATA = {
           "fair": 0.4248366013071895
         },
         "now": {
-          "line": 3.5,
-          "odds": 130,
-          "fair": 0.4111714507370054
+          "line": 4.5,
+          "odds": -155,
+          "fair": 0.5776397515527951
         },
         "moved": "away",
-        "label": "DraftKings opened 3.5 (+120), now 3.5 (+130)"
+        "label": "DraftKings opened 3.5 (+120), now 4.5 (-155)"
       },
       "dkHistory": [
         {
@@ -946,6 +946,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": 130,
           "fair": 0.4112
+        },
+        {
+          "at": "2026-11-07T12:42:07.138Z",
+          "line": 4.5,
+          "odds": -155,
+          "fair": 0.5776
         }
       ],
       "mkt": {
@@ -1293,8 +1299,8 @@ window.PICKS_DATA = {
               "under": -122
             },
             "ml": {
-              "home": -290,
-              "away": 235
+              "home": -305,
+              "away": 245
             }
           },
           "open": {
@@ -1756,8 +1762,8 @@ window.PICKS_DATA = {
               "under": 124
             },
             "ml": {
-              "home": -340,
-              "away": 270
+              "home": -355,
+              "away": 280
             }
           },
           "open": {
@@ -2183,13 +2189,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -250,
-              "away": 205
+              "home": -238,
+              "away": 195
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 110,
-              "under": -130
+              "over": 102,
+              "under": -122
             },
             "ml": {
               "home": 110,
@@ -2424,7 +2430,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.8% (-2.6 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (-115), now 3.5 (+100), moving against this side since the open.",
+          "Market: DraftKings opened 3.5 (-115), now 3.5 (+105), moving against this side since the open.",
           "Market: The market (2 books) opened 0.5 (+102), now 3.5 (+103), the consensus moving against this side since the open.",
           "Weather at kickoff: Clear, 54°F, wind 9 mph, 1% rain.",
           "Records: Atlanta United FC 9-6-18 · New York Red Bulls 11-6-16 · Sports Illustrated Stadium, Harrison, New Jersey."
@@ -2485,8 +2491,8 @@ window.PICKS_DATA = {
             },
             "total": 3.5,
             "totalOdds": {
-              "over": -125,
-              "under": 100
+              "over": -135,
+              "under": 105
             },
             "ml": {
               "home": -120,
@@ -2521,11 +2527,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": 100,
-          "fair": 0.47368421052631576
+          "odds": 105,
+          "fair": 0.4592085979482169
         },
         "moved": "away",
-        "label": "DraftKings opened 3.5 (-115), now 3.5 (+100)"
+        "label": "DraftKings opened 3.5 (-115), now 3.5 (+105)"
       },
       "dkHistory": [
         {
@@ -2539,6 +2545,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": 100,
           "fair": 0.4737
+        },
+        {
+          "at": "2026-11-07T12:42:07.138Z",
+          "line": 3.5,
+          "odds": 105,
+          "fair": 0.4592
         }
       ],
       "mkt": {
@@ -2835,8 +2847,8 @@ window.PICKS_DATA = {
               "under": -125
             },
             "ml": {
-              "home": 114,
-              "away": -135
+              "home": 120,
+              "away": -142
             }
           },
           "open": {
@@ -3208,8 +3220,8 @@ window.PICKS_DATA = {
               "under": 110
             },
             "ml": {
-              "home": 124,
-              "away": -148
+              "home": 130,
+              "away": -155
             }
           },
           "open": {
