@@ -3413,7 +3413,7 @@
   "prices": {
    "DraftKings": -102,
    "BetRivers": -114,
-   "BetMGM": 100,
+   "BetMGM": -105,
    "FanDuel": 100,
    "theScore Bet": -105,
    "Caesars": 100,
@@ -3769,11 +3769,11 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "19hFzgLGPOYdoJvAhsHe",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": -102,
     "FanDuel": 100,
-    "BetMGM": 100,
+    "BetMGM": -105,
     "Caesars": 100,
     "ESPN BET": -105,
     "Bovada": 102
@@ -3783,7 +3783,7 @@
     "book": "Bovada",
     "odds": 102
    },
-   "fair": 0.4801,
+   "fair": 0.4819,
    "fairBooks": 6,
    "vendor": {
     "line": 1.5,
@@ -3802,7 +3802,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T20:17:51.147Z",
@@ -3816,6 +3816,15 @@
    {
     "at": "2026-11-07T18:31:30.088Z",
     "fair": 0.4801,
+    "vendorFair": 0.4831,
+    "line": 1.5,
+    "odds": 107,
+    "best": 102,
+    "n": 6
+   },
+   {
+    "at": "2026-11-07T19:18:55.835Z",
+    "fair": 0.4819,
     "vendorFair": 0.4831,
     "line": 1.5,
     "odds": 107,
@@ -3875,9 +3884,9 @@
   "prices": {
    "DraftKings": 130,
    "BetRivers": 110,
-   "FanDuel": 124,
-   "Bovada": 125,
-   "Caesars": 114
+   "FanDuel": 118,
+   "Bovada": 130,
+   "Caesars": 130
   },
   "books": 5,
   "anchor": "Pinnacle",
@@ -4218,17 +4227,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 3,
+   "n": 4,
    "open": {
     "line": 3.5,
     "odds": 100
    },
    "now": {
     "line": 1.5,
-    "odds": 130
+    "odds": 134
    },
    "moved": "toward",
-   "label": "The market (3 books) opened +3.5 (+100), now +1.5 (+130)"
+   "label": "The market (4 books) opened +3.5 (+100), now +1.5 (+134)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -4252,7 +4261,7 @@
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.2% (-0.9 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (45.2% → 42.9%).",
     "Market: DraftKings opened +1.5 (+105), now +1.5 (+130), moving against this side since the open.",
-    "Market: The market (3 books) opened +3.5 (+100), now +1.5 (+130), the consensus moving toward this side since the open.",
+    "Market: The market (4 books) opened +3.5 (+100), now +1.5 (+134), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Oilers Devon Levi · Canucks Leevi Merilainen.",
     "Records: Vancouver Canucks 3-14-1 · Edmonton Oilers 11-3-3 · Rogers Place, Edmonton."
@@ -4263,23 +4272,24 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "DRGAHQu0RZAHbgrjQ66M",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": 130,
-    "FanDuel": 124,
-    "Bovada": 125
+    "FanDuel": 118,
+    "Caesars": 130,
+    "Bovada": 130
    },
-   "n": 3,
+   "n": 4,
    "best": {
     "book": "DraftKings",
     "odds": 130
    },
-   "fair": 0.4237,
-   "fairBooks": 3,
+   "fair": 0.4229,
+   "fairBooks": 4,
    "vendor": {
     "line": 1.5,
-    "odds": 130,
-    "fair": 0.4348,
+    "odds": 134,
+    "fair": 0.4274,
     "sameLine": true
    },
    "open": {
@@ -4288,12 +4298,12 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 130
+    "odds": 134
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T20:17:51.147Z",
@@ -4321,6 +4331,15 @@
     "odds": 130,
     "best": 130,
     "n": 3
+   },
+   {
+    "at": "2026-11-07T19:18:55.835Z",
+    "fair": 0.4229,
+    "vendorFair": 0.4274,
+    "line": 1.5,
+    "odds": 134,
+    "best": 130,
+    "n": 4
    }
   ],
   "movement": {
@@ -4756,7 +4775,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "NcUHuO0KCjYlAddePgCU",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": 114,
     "Caesars": 110,
@@ -4790,7 +4809,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T20:17:51.147Z",
@@ -5183,7 +5202,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "kp8gHxyTRCI7c8ypEtvi",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": -135,
     "FanDuel": -134,
@@ -5215,7 +5234,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T20:17:51.147Z",
@@ -5298,7 +5317,7 @@
    "DraftKings": -218,
    "BetRivers": -278,
    "FanDuel": -220,
-   "BetMGM": -200,
+   "BetMGM": -210,
    "theScore Bet": -235,
    "Caesars": -209,
    "ESPN BET": -200,
@@ -5609,7 +5628,7 @@
     "Home edge +0.2 for Minnesota Wild.",
     "Minnesota Wild are rested (4 days).",
     "Projected margin +0.3 for Minnesota Wild against +1.5.",
-    "A better price is available now: -200 at BetMGM."
+    "A better price is available now: -200 at ESPN BET."
    ],
    "risks": [
     "Minnesota Wild without Marcus Foligno (LW), Jared Spurgeon (D) (-0.1).",
@@ -5629,21 +5648,21 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "l3wkmwhiFrJzlHdyTu50",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": -218,
     "FanDuel": -220,
     "Caesars": -209,
-    "BetMGM": -200,
+    "BetMGM": -210,
     "ESPN BET": -200,
     "Bovada": -215
    },
    "n": 6,
    "best": {
-    "book": "BetMGM",
+    "book": "ESPN BET",
     "odds": -200
    },
-   "fair": 0.6491,
+   "fair": 0.6504,
    "fairBooks": 6,
    "vendor": {
     "line": 0,
@@ -5662,7 +5681,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-06T20:17:51.147Z",
@@ -5685,6 +5704,15 @@
    {
     "at": "2026-11-07T18:31:30.088Z",
     "fair": 0.6491,
+    "vendorFair": 0.4464,
+    "line": 0,
+    "odds": 124,
+    "best": -200,
+    "n": 6
+   },
+   {
+    "at": "2026-11-07T19:18:55.835Z",
+    "fair": 0.6504,
     "vendorFair": 0.4464,
     "line": 0,
     "odds": 124,
@@ -6023,7 +6051,7 @@
    "theScore Bet": 320,
    "BetOnline.ag": 340,
    "DraftKings": 300,
-   "Bovada": 310,
+   "Bovada": 315,
    "Unibet": 330,
    "Caesars": 305,
    "PointsBet": 310,
@@ -6263,7 +6291,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "BclEEkM1pDfYa8lSFXik",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "Unibet": 330,
     "Caesars": 305,
@@ -6272,14 +6300,14 @@
     "PointsBet": 310,
     "ESPN BET": 300,
     "DraftKings": 300,
-    "Bovada": 310
+    "Bovada": 315
    },
    "n": 8,
    "best": {
     "book": "Unibet",
     "odds": 330
    },
-   "fair": 0.2305,
+   "fair": 0.2306,
    "fairBooks": 8,
    "vendor": {
     "line": null,
@@ -6298,7 +6326,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T00:14:27.529Z",
@@ -6312,6 +6340,15 @@
    {
     "at": "2026-11-07T18:31:30.088Z",
     "fair": 0.2305,
+    "vendorFair": 0.2353,
+    "line": null,
+    "odds": 325,
+    "best": 330,
+    "n": 8
+   },
+   {
+    "at": "2026-11-07T19:18:55.835Z",
+    "fair": 0.2306,
     "vendorFair": 0.2353,
     "line": null,
     "odds": 325,
@@ -6574,7 +6611,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "7oIt4PzS8nQ3momLXunc",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": -145
    },
@@ -6602,7 +6639,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T00:14:27.529Z",
@@ -6878,7 +6915,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "m2XnmJK7AEcMzRatOZ1F",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "DraftKings": 100
    },
@@ -6906,7 +6943,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T00:14:27.529Z",
@@ -7190,7 +7227,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "AJmT5V0cNM5H8ENqMclI",
-   "at": "2026-11-07T18:31:30.088Z",
+   "at": "2026-11-07T19:18:55.835Z",
    "books": {
     "BetMGM": 100,
     "DraftKings": 105
@@ -7219,7 +7256,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T18:31:30.088Z",
+  "pricesAt": "2026-11-07T19:18:55.835Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T00:14:27.529Z",

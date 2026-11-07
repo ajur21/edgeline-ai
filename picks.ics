@@ -149,7 +149,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:4e4cd20d20-totals-Under@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261107T210000Z
 DTEND:20261108T000000Z
 SUMMARY:Under 4 goals -112 at Bovada · High
@@ -172,7 +172,7 @@ DESCRIPTION:Soccer · Inter Miami CF vs. Charlotte FC · Sat Nov 7\, 4:00 P
 LOCATION:Nu Stadium\, Miami\, Florida
 URL:https://ajur21.github.io/edgeline-ai/picks.html#4e4cd20d20-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -183,7 +183,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:f5ca1b83c8-totals-Under@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261107T210000Z
 DTEND:20261108T000000Z
 SUMMARY:Under 3.5 goals -110 at BetRivers · Medium
@@ -206,7 +206,7 @@ DESCRIPTION:Soccer · New York Red Bulls vs. Atlanta United FC · Sat Nov 7
 LOCATION:Sports Illustrated Stadium\, Harrison\, New Jersey
 URL:https://ajur21.github.io/edgeline-ai/picks.html#f5ca1b83c8-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -217,7 +217,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-07@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261107T210000Z
 DTEND:20261108T061000Z
 SUMMARY:Parlay of the day: 3 legs +1740 at DraftKings
@@ -228,7 +228,7 @@ DESCRIPTION:All legs priced at DraftKings. Fair 12.8%\, implied 5.4%\, EV +
  nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -239,7 +239,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:79334eedea-h2h-Seattle-Kraken@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261107T221000Z
 DTEND:20261108T011000Z
 SUMMARY:Seattle Kraken ML +110 at Bovada · Lean
@@ -270,7 +270,7 @@ LOCATION:Climate Pledge Arena\, Seattle
 URL:https://ajur21.github.io/edgeline-ai/picks.html#79334eedea-h2h-Seattle-
  Kraken
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -281,7 +281,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:21a304be61-h2h-Austin-FC@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T000000Z
 DTEND:20261108T030000Z
 SUMMARY:Play of the day: Austin FC ML +350 at BetRivers · High
@@ -301,13 +301,13 @@ DESCRIPTION:Soccer · Austin FC vs. Portland Timbers · Sat Nov 7\, 7:00 PM
  ending: last five -1.2 vs -0.6 on the season.\n- Portland Timbers trending
  : last five +0.4 vs 0 on the season.\nVerdict: More working against this o
  ne than for it\; size down.\nPrices: BetRivers +350\, BetOnline.ag +340\, 
- Unibet +330\, theScore Bet +320\, Bovada +310 and 6 more.\nFull breakdown:
+ Unibet +330\, theScore Bet +320\, Bovada +315 and 6 more.\nFull breakdown:
   https://ajur21.github.io/edgeline-ai/picks.html#21a304be61-h2h-Austin-FC
 LOCATION:Q2 Stadium\, Austin\, Texas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#21a304be61-h2h-Austin-F
  C
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -318,7 +318,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0db0938ab6-totals-Under@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T000000Z
 DTEND:20261108T030000Z
 SUMMARY:Under 4 goals -118 at Bovada · High
@@ -340,7 +340,7 @@ DESCRIPTION:Soccer · San Diego FC vs. Sporting Kansas City · Sat Nov 7\,
 LOCATION:Snapdragon Stadium\, San Diego\, California
 URL:https://ajur21.github.io/edgeline-ai/picks.html#0db0938ab6-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -351,7 +351,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6f96012d11-totals-Over@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T001000Z
 DTEND:20261108T031000Z
 SUMMARY:Over 5.5 -124 at FanDuel · Lean
@@ -377,7 +377,7 @@ DESCRIPTION:NHL · New Jersey Devils @ New York Islanders · Sat Nov 7\, 7:
 LOCATION:UBS Arena\, Elmont
 URL:https://ajur21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -388,7 +388,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:1f21bf798a-spreads-San-Jose-Sharks@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T011000Z
 DTEND:20261108T041000Z
 SUMMARY:San Jose Sharks +1.5 +100 at BetMGM · Medium
@@ -414,14 +414,14 @@ DESCRIPTION:NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7\, 8:10 PM ET
   for San Jose Sharks against +1.5.\n- At current prices our edge is 4.7 po
  ints\, under its bar of 7.1 points\; the pick stays posted and is graded a
  t the price it was posted at.\nVerdict: More working against this one than
-  for it\; size down.\nPrices: Bovada +102\, BetMGM +100\, FanDuel +100\, C
- aesars +100\, DraftKings -102 and 3 more.\nFull breakdown: https://ajur21.
+  for it\; size down.\nPrices: Bovada +102\, FanDuel +100\, Caesars +100\, 
+ DraftKings -102\, BetMGM -105 and 3 more.\nFull breakdown: https://ajur21.
  github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-Jose-Sharks
 LOCATION:American Airlines Center\, Dallas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-
  Jose-Sharks
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -432,7 +432,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b5934d2ce0-spreads-Minnesota-Wild@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T011000Z
 DTEND:20261108T041000Z
 SUMMARY:Minnesota Wild +1.5 -210 at BetMGM · Lean
@@ -451,18 +451,18 @@ DESCRIPTION:NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7\, 8:10
  d trending: last five +1.8 vs +1.1 on the season.\n- Home edge +0.2 for Mi
  nnesota Wild.\n- Minnesota Wild are rested (4 days).\n- Projected margin +
  0.3 for Minnesota Wild against +1.5.\n- A better price is available now: -
- 200 at BetMGM.\nWhat could go wrong:\n- Minnesota Wild without Marcus Foli
- gno (LW)\, Jared Spurgeon (D) (-0.1).\n- At current prices our edge is 3.0
-  points\, under its bar of 6.2 points\; the pick stays posted and is grade
- d at the price it was posted at.\nVerdict: The game data lines up behind t
- his side at this price.\nPrices: BetMGM -200\, ESPN BET -200\, Caesars -20
- 9\, Bovada -215\, DraftKings -218 and 3 more.\nFull breakdown: https://aju
- r21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minnesota-Wild
+ 200 at ESPN BET.\nWhat could go wrong:\n- Minnesota Wild without Marcus Fo
+ ligno (LW)\, Jared Spurgeon (D) (-0.1).\n- At current prices our edge is 3
+ .0 points\, under its bar of 6.2 points\; the pick stays posted and is gra
+ ded at the price it was posted at.\nVerdict: The game data lines up behind
+  this side at this price.\nPrices: ESPN BET -200\, Caesars -209\, BetMGM -
+ 210\, Bovada -215\, DraftKings -218 and 3 more.\nFull breakdown: https://a
+ jur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minnesota-Wild
 LOCATION:Grand Casino Arena\, Saint Paul
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minn
  esota-Wild
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -473,7 +473,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8fe46a5692-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261107T183130Z
+DTSTAMP:20261107T191855Z
 DTSTART:20261108T031000Z
 DTEND:20261108T061000Z
 SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · Lean
@@ -499,14 +499,14 @@ DESCRIPTION:NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7\, 10:10
  ainst +1.5.\n- At current prices our edge is 6.9 points\, under its bar of
   7.2 points\; the pick stays posted and is graded at the price it was post
  ed at.\nVerdict: More working against this one than for it\; size down.\nP
- rices: DraftKings +130\, Bovada +125\, FanDuel +124\, Caesars +114\, BetRi
+ rices: DraftKings +130\, Bovada +130\, Caesars +130\, FanDuel +118\, BetRi
  vers +110.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.htm
  l#8fe46a5692-spreads-Vancouver-Canucks
 LOCATION:Rogers Place\, Edmonton
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8fe46a5692-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T183130Z
+LAST-MODIFIED:20261107T191855Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
