@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-07",
   "windowDays": 30,
   "record": {
-    "wins": 4,
-    "losses": 4,
+    "wins": 5,
+    "losses": 5,
     "pushes": 0
   },
-  "units": -0.99,
-  "roi": -12.4,
-  "avgEdge": 14,
-  "graded": 8,
+  "units": -1.08,
+  "roi": -10.8,
+  "avgEdge": 13.1,
+  "graded": 10,
   "daily": [
     {
       "date": "2026-11-05",
@@ -24,7 +24,7 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": -0.99
+      "units": -1.08
     }
   ],
   "bySport": [
@@ -40,11 +40,41 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 1.02,
-      "record": "1-0"
+      "units": 0.93,
+      "record": "2-1"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-07",
+      "sport": "Soccer",
+      "event": "New York Red Bulls vs. Atlanta United FC",
+      "pick": "Under 3.5 goals",
+      "odds": -110,
+      "result": "Win",
+      "units": 0.91,
+      "clv": 0.3776,
+      "closeOdds": -914,
+      "closeLine": 3.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "Soccer",
+      "event": "Inter Miami CF vs. Charlotte FC",
+      "pick": "Under 4 goals",
+      "odds": -112,
+      "result": "Loss",
+      "units": -1,
+      "clv": null,
+      "closeOdds": -124,
+      "closeLine": 4.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "away",
+      "basis": "game"
+    },
     {
       "date": "2026-11-07",
       "sport": "Soccer",
@@ -183,9 +213,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": 1.02,
-      "wins": 1,
-      "losses": 0,
+      "units": 0.93,
+      "wins": 2,
+      "losses": 1,
       "pushes": 0
     }
   ],
@@ -204,25 +234,25 @@ window.PERF_DATA = {
     "n": 1
   },
   "clv": {
-    "n": 2,
-    "avg": -35.58,
-    "beat": 0,
-    "beatPct": 0,
-    "graded": 8,
+    "n": 3,
+    "avg": -11.13,
+    "beat": 1,
+    "beatPct": 33.3,
+    "graded": 10,
     "lineToward": 4,
-    "lineAway": 2,
+    "lineAway": 3,
     "espnCloses": 1,
-    "sgoCloses": 7
+    "sgoCloses": 9
   },
   "byBasis": {
     "game": {
-      "wins": 4,
-      "losses": 4,
+      "wins": 5,
+      "losses": 5,
       "pushes": 0,
-      "units": -0.99,
-      "n": 8,
-      "roi": -12.4,
-      "pending": 10,
+      "units": -1.08,
+      "n": 10,
+      "roi": -10.8,
+      "pending": 8,
       "since": "2026-11-05"
     },
     "price": {
