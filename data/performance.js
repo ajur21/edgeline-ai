@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-07",
   "windowDays": 30,
   "record": {
-    "wins": 3,
+    "wins": 4,
     "losses": 4,
     "pushes": 0
   },
-  "units": -2.01,
-  "roi": -28.7,
-  "avgEdge": 13.8,
-  "graded": 7,
+  "units": -0.99,
+  "roi": -12.4,
+  "avgEdge": 14,
+  "graded": 8,
   "daily": [
     {
       "date": "2026-11-05",
@@ -21,6 +21,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-06",
       "units": -2.01
+    },
+    {
+      "date": "2026-11-07",
+      "units": -0.99
     }
   ],
   "bySport": [
@@ -33,9 +37,29 @@ window.PERF_DATA = {
       "sport": "NBA",
       "units": -1,
       "record": "0-1"
+    },
+    {
+      "sport": "Soccer",
+      "units": 1.02,
+      "record": "1-0"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-07",
+      "sport": "Soccer",
+      "event": "Arsenal vs. Hull City",
+      "pick": "Under 3 goals",
+      "odds": 102,
+      "result": "Win",
+      "units": 1.02,
+      "clv": null,
+      "closeOdds": -135,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "basis": "game"
+    },
     {
       "date": "2026-11-06",
       "sport": "NHL",
@@ -156,6 +180,13 @@ window.PERF_DATA = {
       "wins": 0,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-07",
+      "units": 1.02,
+      "wins": 1,
+      "losses": 0,
+      "pushes": 0
     }
   ],
   "potd": {
@@ -177,20 +208,20 @@ window.PERF_DATA = {
     "avg": -35.58,
     "beat": 0,
     "beatPct": 0,
-    "graded": 7,
+    "graded": 8,
     "lineToward": 4,
-    "lineAway": 1,
-    "espnCloses": 0,
+    "lineAway": 2,
+    "espnCloses": 1,
     "sgoCloses": 7
   },
   "byBasis": {
     "game": {
-      "wins": 3,
+      "wins": 4,
       "losses": 4,
       "pushes": 0,
-      "units": -2.01,
-      "n": 7,
-      "roi": -28.7,
+      "units": -0.99,
+      "n": 8,
+      "roi": -12.4,
       "pending": 10,
       "since": "2026-11-05"
     },
