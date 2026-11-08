@@ -24,6 +24,7 @@ const path = require("path");
 const context = require("./context.js");
 const sgo = require("./sgo.js");
 const model = require("./model.js");
+const availability = require("./availability.js");
 const SLOT_TIMES = require("./slot-due.js").SLOTS; /* the daily runs' UTC times: morning [14, 0], afternoon [20, 30] */
 
 const API = "https://api.the-odds-api.com/v4";
@@ -40,10 +41,13 @@ let VERBOSE = false;
    - slots: the daily runs that fetch the sport (the workflow passes --slot morning|afternoon; a manual run fetches every
      sport). The weekly sports go on the afternoon run only: with the 36-hour window it still sees the next day's
      games (Friday's covers Saturday's soccer, Saturday's covers Sunday's NFL), and two runs a day for every sport is
-     more than the free tier's 500 credits a month (see the request budget in CLAUDE.md). */
+     more than the free tier's 500 credits a month (see the request budget in CLAUDE.md). The NBA too since 2026-11-08:
+     replayed on the league's official injury report, the afternoon read beat the morning one held out and the morning
+     price had already moved most of the way to the close; RULES.availabilityHold keeps a game for its own game day. */
 const SPORTS = [
   { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 4, 6, 0, 1], slots: ["afternoon"] },
-  { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
+  /* NBA on the afternoon run only since 2026-11-08 (the official injury report: availability.js, CLAUDE.md "NBA availability") */
+  { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", slots: ["afternoon"] },
   { key: "baseball_mlb", sport: "MLB", league: "MLB", markets: ["h2h", "spreads", "totals"], spreadLabel: "Run line" },
   { key: "icehockey_nhl", sport: "NHL", league: "NHL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Puck line" },
   { key: "soccer_epl", sport: "Soccer", league: "Premier League", markets: ["h2h", "totals"], goals: true, days: [5, 6, 0], slots: ["afternoon"] },
@@ -76,6 +80,12 @@ const RULES = {
   sgoReserve: 150,      // leave this many SportsGameOdds entities untouched each month (free tier: 2,500)
   sgoTrackWindowHours: 8, // in --track runs, spend SportsGameOdds entities only on games starting within this many hours
   watchEdge: 0.015,     // a point and a half over the price: shown on the market board as "watch", never a pick
+  officialReport: true, // read the NBA's official injury report (scripts/availability.js); false = ESPN's injury report alone
+  /* NBA: per slot, which games post nothing yet (availability.unresolvedOf): "report" holds a game until both clubs are on
+     the official report (its own game day: the afternoon run would otherwise pick tomorrow's games on the day before's
+     news), "open" also holds a costed player still questionable (for a morning run, should the NBA return to it) */
+  availabilityHold: { morning: "open", afternoon: "report", manual: "report" },
+  availabilityFlag: 0.5, // a posted NBA pick is flagged when a player's status moves its game's margin by this many points or more
   maxAnchorShift: 1     // adjust Pinnacle's price across at most this many points of line difference
 };
 /* How much win probability one point of line is worth, per sport and market, for carrying Pinnacle's price across a
@@ -593,7 +603,7 @@ async function run(opts) {
   const usage = { remaining: null, used: null, last: null };
   if (opts.track) return trackRun(opts, now, dataDir, logPath, log);
   const source = opts.fixture ? fixtureSource(opts.oddsFixture) : liveSource(opts.key, usage);
-  const ctxSource = context.source({ fixture: opts.fixture });
+  const ctxSource = context.source({ fixture: opts.fixture, officialReport: opts.officialReportFixture });
   const sgoSrc = sgo.source({ fixture: opts.fixture });
   const sgoBudget = sgoSrc.enabled ? await sgoSrc.usage() : null;
   const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > RULES.sgoReserve);
@@ -609,8 +619,8 @@ async function run(opts) {
   const fresh = [], candidates = []; /* candidates: each game's best side past its bar, every sport, chosen in selectPicks */
   /* the game model's per-run caches (scoreboards, schedules, injuries, shared with the context step through ctxSource) and
      NBA scoring by name, so an injured scorer costs what he scores */
-  const modelCache = { ppgOf: model.ppgFromFaces(opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js")) };
-  let modelled = 0, unmodelled = 0;
+  const modelCache = { ppgOf: model.ppgFromFaces(facesPath(opts, dataDir)), officialReport: RULES.officialReport };
+  let modelled = 0, unmodelled = 0; const waited = []; /* NBA games held until their availability is in (RULES.availabilityHold) */
   const marketRows = []; /* every main-line market priced this run, pick or not: the market board */
   const plan = []; /* per sport: fetched or not, why, and what it cost (x-requests-last) */
   for (const cfg of SPORTS) {
@@ -634,11 +644,15 @@ async function run(opts) {
       if (gm) modelled++; else unmodelled++;
       if (VERBOSE && gm) { const pm = model.publicModel(gm); console.log("  " + eventName(cfg, ev) + " | model: margin " + (pm.margin > 0 ? "+" : "") + pm.margin + " (home), total " + pm.total + (gm.thin ? ", thin sample" : "")); }
       const priced = priceWithModel(gm, ev, priceOutcomes(cfg, ev));
+      /* NBA (2026-11-08): a game whose availability is still open at this slot's level (RULES.availabilityHold: a club
+         not on the official report yet; on a morning run also a costed player questionable) posts nothing this run */
+      const open = gm && gm.availability ? availability.unresolvedOf(gm.availability, RULES.availabilityFlag, RULES.availabilityHold[opts.slot]) : [];
+      if (open.length) waited.push(eventName(cfg, ev) + " (" + open.slice(0, 2).join(", ") + ")");
       priced.filter(c => c.qualifies).forEach(function (c) {
         marketRows.push({ key: candidateKey(ev.id, c), eventId: ev.id, sport: cfg.sport, league: cfg.league, sportKey: cfg.key, event: eventName(cfg, ev), home: ev.home_team, away: ev.away_team, commence: ev.commence_time, start: startLabel(new Date(t), now),
           marketKey: c.market, market: marketLabel(cfg, c.market), outcome: c.outcome, pick: pickName(cfg, c.market, c.outcome), odds: c.odds, book: c.book, prices: c.prices, books: c.books, anchor: c.anchor, anchorShift: c.anchorShift || 0,
           modelProb: num(c.fair, 4), edge: num(c.edge, 4), ev: c.fair == null ? null : round(c.fair * (1 + profitPerUnit(c.odds)) - 1, 4), marketFair: num(c.marketFair, 4), marketEdge: num(c.marketEdge, 4),
-          modelled: !!gm, model: c.model ? { margin: c.model.margin, total: c.model.total, gp: c.model.gp, thin: c.model.thin } : null, bar: num(c.bar, 4), past: num(c.past, 4) });
+          modelled: !!gm, model: c.model ? { margin: c.model.margin, total: c.model.total, gp: c.model.gp, thin: c.model.thin } : null, bar: num(c.bar, 4), past: num(c.past, 4), waiting: open.length ? open : null });
       });
       /* picks already on the board: track the price (and the market's fair, for the close) until tip-off, edge or no
          edge. A posted pick is locked (owner, 2026-11-05): it is never withdrawn and is graded at the posted price;
@@ -648,8 +662,10 @@ async function run(opts) {
         if (!seen) return;
         seen.current = { at: now.toISOString(), odds: c.odds, book: c.book, fair: num(c.marketFair, 4), edge: num(c.edge, 4), modelProb: num(c.fair, 4), bar: num(c.bar, 4) };
         seen.history = (seen.history || []).concat([{ at: now.toISOString(), odds: c.odds, fair: num(c.marketFair, 4) }]).slice(-12);
+        /* who plays: the model's fresh read against what the pick knew when it was posted (the pick stays locked) */
+        if (gm && gm.availability && seen.availability && seen.availability.posted) seen.availability = availabilityUpdate(seen, gm.availability, now, null);
       });
-      analyzeEvent(cfg, ev, priced).forEach(function (c) {
+      (open.length ? [] : analyzeEvent(cfg, ev, priced)).forEach(function (c) {
         const key = candidateKey(ev.id, c);
         if (log.some(e => e.key === key)) return; /* logged once, at the price first seen */
         candidates.push({
@@ -661,6 +677,8 @@ async function run(opts) {
           bar: round(c.bar, 4), past: round(c.past, 4), barParts: barParts(c),
           basis: "game", model: c.model, marketFair: num(c.marketFair, 4), marketEdge: num(c.marketEdge, 4),
           rationale: rationale(c, cfg), factors: factors(c), status: "pending", units: 0, loggedAt: now.toISOString(),
+          /* NBA: who the model knew was out, doubtful, questionable or back, from which source and when (availability.js) */
+          availability: gm && gm.availability ? { posted: gm.availability, changed: false, note: null, swing: null, changes: [], checkedAt: null } : null,
           current: { at: now.toISOString(), odds: c.odds, book: c.book, fair: num(c.marketFair, 4), edge: round(c.edge, 4), modelProb: round(c.fair, 4), bar: round(c.bar, 4) }, history: [{ at: now.toISOString(), odds: c.odds, fair: num(c.marketFair, 4) }]
         });
       });
@@ -706,7 +724,7 @@ async function run(opts) {
   writePicks(dataDir, picksData);
   const perf = summarize(log, now);
   writePerformance(dataDir, perf);
-  return { added: fresh.length, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, used: usage.used, plan: plan, slot: opts.slot || "manual", playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+  return { added: fresh.length, waited: waited, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, used: usage.used, plan: plan, slot: opts.slot || "manual", playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
 }
 const GENERATED = "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\n";
 function writePicks(dataDir, data) { fs.writeFileSync(path.join(dataDir, "picks.js"), GENERATED + "window.PICKS_DATA = " + JSON.stringify(data, null, 2) + ";\n"); }
@@ -772,7 +790,49 @@ function publicPick(e, at) {
     sgo: e.sgo ? { at: e.sgo.at, n: e.sgo.n, best: e.sgo.best, fair: e.sgo.fair, vendorFair: e.sgo.vendor ? e.sgo.vendor.fair : null, open: e.sgo.open, now: e.sgo.now } : null, sgoHistory: e.sgoHistory || [],
     status: e.status || "pending", started: Date.parse(e.commence) <= at.getTime(), result: graded && e.result ? e.result : null, units: graded && typeof e.units === "number" ? e.units : null,
     score: graded ? finalOf(e) : null, loggedAt: e.loggedAt || null, valueTo: valueTo(e.modelProb, e.bar),
-    bar: e.bar != null ? e.bar : null, past: e.past != null ? e.past : null, barParts: e.barParts || null, now: now, standing: standingOf(now) };
+    bar: e.bar != null ? e.bar : null, past: e.past != null ? e.past : null, barParts: e.barParts || null, now: now, standing: standingOf(now), availability: publicAvailability(e.availability) };
+}
+/* ---------- who plays, after a pick is posted (NBA, 2026-11-08) ----------
+   Every pick logs what the model knew about availability when it was posted (`availability.posted`: the official
+   report's time and every listing with its status, source and cost). Each later run (full or hourly) reads it again and
+   flags the pick when a player's status moved its game's margin by RULES.availabilityFlag points or more:
+   availability: { changed, note ("Jokic ruled out at 5:30 PM ET (official report), after this lean was posted at
+   9:04 AM ET; about 3.6 points of margin against this side on our numbers"), swing (points toward the pick; null for a
+   total), changes, checkedAt }. The pick itself is locked: nothing here changes its price, probability or grade. */
+function availabilityUpdate(entry, read, now, fullOf) {
+  const a = entry.availability; if (!a || !a.posted) return a;
+  const ch = availability.changesSince(a.posted, read, { min: RULES.availabilityFlag, fullOf: fullOf });
+  if (ch == null) return a; /* this read cannot be compared (the report could not be read): keep the last flag */
+  return Object.assign({ posted: a.posted }, availability.flagOf(entry, ch, a, now.toISOString()), { read: { at: read.read || now.toISOString(), report: read.report ? { label: read.report.label, at: read.report.at } : null } });
+}
+/* the hourly run's read: the official report (one PDF) and ESPN's NBA injury report (one request), merged per club as the
+   model merges them; a player the posted snapshot did not carry is priced from data/faces.js (12% of his points, all
+   his team's games). Returns how many board picks carry a change. */
+async function trackAvailability(entries, now, ctxSource, opts, dataDir) {
+  const nba = entries.filter(e => e.availability && e.availability.posted && model.OFFICIAL[e.sportKey]);
+  if (!nba.length) return 0;
+  let report = null, inj = null;
+  try { report = await model.availabilityFor(ctxSource, { sportKey: "basketball_nba" }, now, { officialReport: RULES.officialReport }); } catch (err) { report = null; }
+  try { inj = await ctxSource.injuries("basketball_nba"); } catch (err) { inj = null; }
+  if (!inj) return nba.filter(e => e.availability.changed).length; /* ESPN unreadable: every ESPN listing would look cleared */
+  const club = (name, reportTeam) => context.teamMatches(name, { displayName: reportTeam, name: String(reportTeam).split(" ").pop(), location: "" });
+  const ppg = model.ppgFromFaces(facesPath(opts, dataDir)), cfg = model.SPORT.basketball_nba;
+  const fullOf = i => { const p = ppg && i ? ppg(i) : null; return p != null ? cfg.out(i, p) : null; };
+  nba.forEach(function (e) {
+    const gameDate = etDate(new Date(Date.parse(e.commence)));
+    const list = team => availability.mergeTeam(context.teamInjuries(inj, team), report, team, gameDate, club, null);
+    const read = { read: now.toISOString(), report: report ? { source: report.source, label: report.label, at: report.at, url: report.url || null } : null, home: list(e.home), away: list(e.away) };
+    e.availability = availabilityUpdate(e, read, now, fullOf);
+  });
+  return nba.filter(e => e.availability.changed).length;
+}
+function facesPath(opts, dataDir) { return opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js"); }
+/* the flag as picks.js carries it, with who the pick was posted knowing about (listings that cost something then) */
+function publicAvailability(a) {
+  if (!a || !a.posted) return null;
+  const knew = side => (a.posted[side] || []).filter(i => i.cost > 0 || (i.miss != null && i.miss >= model.MIN_MISS)).map(i => ({ side: side, name: i.name, status: i.status, source: i.source, at: i.at }));
+  return { changed: !!a.changed, note: a.note || null, swing: a.swing != null ? a.swing : null, changes: a.changes || [], checkedAt: a.checkedAt || null,
+    posted: { read: a.posted.read || null, report: a.posted.report || null, players: knew("home").concat(knew("away")) } };
 }
 /* the parlay of the day as the site sees it; `units` is its profit once graded */
 function publicParlay(p, log, now) {
@@ -788,7 +848,7 @@ function publicParlay(p, log, now) {
    2. refreshes DraftKings' numbers (ESPN) on the board and, close to tip-off, every book's price (SportsGameOdds);
    3. rebuilds the board's breakdowns and rewrites picks.js (the day's card), keeping generatedAt and adding trackedAt. */
 async function trackRun(opts, now, dataDir, logPath, log) {
-  const ctxSource = context.source({ fixture: opts.fixture });
+  const ctxSource = context.source({ fixture: opts.fixture, officialReport: opts.officialReportFixture });
   const sgoSrc = sgo.source({ fixture: opts.fixture });
   const boardEntries = boardOf(log, now);
   /* hourly runs spend SportsGameOdds entities only on games close to tip-off, when the numbers actually move, and on
@@ -800,6 +860,9 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: null, track: true });
   const parlaysGraded = gradeParlays(log, now);
   const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now, source: ctxSource });
+  /* who plays: the NBA's official report and ESPN's, against what each posted NBA pick knew (flag only; picks stay locked) */
+  let availabilityFlagged = 0;
+  try { availabilityFlagged = await trackAvailability(boardEntries, now, ctxSource, opts, dataDir); } catch (err) { console.warn("availability check failed: " + err.message); }
   let sgoStats = { changed: 0, entities: 0 };
   if (soon.length && sgoOk()) { try { sgoStats = await sgo.refresh(soon, { fixture: opts.fixture, now: now, source: sgoSrc }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
   boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
@@ -816,7 +879,7 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: potdEntry ? publicPick(potdEntry, now) : null, parlayOfDay: publicParlay(parlayEntry, log, now), picks: card });
   /* a run that graded nothing leaves performance.js as the last run wrote it */
   if (g.graded || parlaysGraded) writePerformance(dataDir, summarize(log, now));
-  return { track: true, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests };
+  return { track: true, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
 }
 
 function liveSource(key, usage) {
@@ -863,9 +926,10 @@ function planLine(r) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
-    if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), ESPN requests: " + r.contextRequests); return; }
+    if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), availability changed on " + r.availabilityFlagged + " NBA pick(s), ESPN requests: " + r.contextRequests); return; }
     console.log(planLine(r));
+    if (r.waited && r.waited.length) console.log("NBA games held until who plays is in (the official report): " + r.waited.join("; "));
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
+module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };

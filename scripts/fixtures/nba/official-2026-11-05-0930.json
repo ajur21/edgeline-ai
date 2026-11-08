@@ -1,0 +1,57 @@
+{
+ "_note": "Fixture: the shape availability.parseReport returns, written for the fixtures' Bucks at Celtics game (2026-11-05, 7 PM ET), which the real report of that day does not carry",
+ "at": "2026-11-05T14:30:00.000Z",
+ "label": "9:30 AM ET",
+ "rows": [
+  {
+   "gameDate": "2026-11-05",
+   "gameTime": "07:00 (ET)",
+   "matchup": "MIL@BOS",
+   "away": "MIL",
+   "home": "BOS",
+   "team": "Boston Celtics",
+   "player": "Tatum, Jayson",
+   "name": "Jayson Tatum",
+   "status": "Out",
+   "reason": "Injury/Illness - Right Achilles; Repair"
+  },
+  {
+   "gameDate": "2026-11-05",
+   "gameTime": "07:00 (ET)",
+   "matchup": "MIL@BOS",
+   "away": "MIL",
+   "home": "BOS",
+   "team": "Boston Celtics",
+   "player": "Hauser, Sam",
+   "name": "Sam Hauser",
+   "status": "Questionable",
+   "reason": "Injury/Illness - Left Ankle; Sprain"
+  },
+  {
+   "gameDate": "2026-11-05",
+   "gameTime": "07:00 (ET)",
+   "matchup": "MIL@BOS",
+   "away": "MIL",
+   "home": "BOS",
+   "team": "Milwaukee Bucks",
+   "player": "Lillard, Damian",
+   "name": "Damian Lillard",
+   "status": "Out",
+   "reason": "Injury/Illness - Left Calf; Strain"
+  }
+ ],
+ "teams": [
+  {
+   "team": "Milwaukee Bucks",
+   "gameDate": "2026-11-05",
+   "matchup": "MIL@BOS",
+   "submitted": true
+  },
+  {
+   "team": "Boston Celtics",
+   "gameDate": "2026-11-05",
+   "matchup": "MIL@BOS",
+   "submitted": true
+  }
+ ]
+}

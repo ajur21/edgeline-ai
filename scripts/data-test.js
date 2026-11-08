@@ -261,6 +261,52 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const dHome = tot(old, "home", bos) - tot(gm, "home", bos), dAway = tot(old, "away", mil) - tot(gm, "away", mil);
     check("game logs: the model moves by what changed, never by the price (the Celtics' cost falls by Brown's 1.2; the Bucks' barely, Kuzma at half his games but at his own 19.5 points a game, 0.585, against the 1.2 default in full, 0.6)", near(dHome, 1.2, 1e-9) && near(dAway, 0.6 - 0.585, 1e-9) && near(gm.parts.injuriesHome, -tot(gm, "home", bos), 0.051) && near(gm.parts.injuriesAway, tot(gm, "away", mil), 0.051) && near(gm.margin - old.margin, dHome - dAway, 1e-9), JSON.stringify([old.parts.injuriesHome, gm.parts.injuriesHome, old.parts.injuriesAway, gm.parts.injuriesAway, old.margin, gm.margin]));
   })();
+  /* NBA game-day availability (2026-11-08; the owner: the model should know who actually plays tonight). The league's
+     official injury report (a PDF published every 15 minutes, read with no dependency), merged with ESPN's list newest
+     first, costed by how often each status misses, logged with every NBA pick and checked again by every later run (a
+     flag only: the pick stays locked). The PDF fixture is the real report of 2026-11-05, 5:30 PM ET */
+  const AV = require("./availability.js");
+  const rep = AV.parseReport(fs.readFileSync(path.join(__dirname, "fixtures", "nba", "Injury-Report_2026-11-05_05_30PM.pdf")));
+  check("official report: read with no dependency: its own time (5:30 PM ET is 22:30 UTC) and every row on all five pages (the column heads are on page one only), 15 for tonight and 49 for tomorrow", !!rep && rep.at === "2026-11-05T22:30:00.000Z" && rep.label === "5:30 PM ET" && rep.rows.length === 64 && rep.rows.filter(r => r.gameDate === "2026-11-05").length === 15 && rep.rows.filter(r => r.gameDate === "2026-11-06").length === 49, rep && JSON.stringify([rep.at, rep.rows.length]));
+  check("official report: names turned round (Butler III, Jimmy; Udeh, Jr., Ernest), words spaced from the font's widths, blank cells filled from the row above, clubs that have not submitted marked", (() => {
+    const f = n => rep.rows.find(r => r.name === n), p = f("Payton Pritchard");
+    return !!f("Jimmy Butler III") && !!f("Ernest Udeh Jr.") && !!p && p.status === "Questionable" && p.reason === "Injury/Illness - Right Eye Abrasion" && p.team === "Boston Celtics" && p.away === "BOS" && p.home === "CHA" && p.gameDate === "2026-11-06"
+      && rep.teams.length === 22 && rep.teams.filter(t => !t.submitted).length === 10 && rep.teams.find(t => t.team === "Milwaukee Bucks").submitted === false && rep.teams.find(t => t.team === "Boston Celtics").submitted === true;
+  })());
+  check("official report: the URL for a moment is the 15-minute slot at or before it in Eastern time, then 15 minutes back (EDT and EST; past seasons' hourly names)", AV.reportUrls(Date.parse("2026-11-08T18:44:00Z"), 2).join() === AV.REPORT_BASE + "2026-11-08_01_30PM.pdf," + AV.REPORT_BASE + "2026-11-08_01_15PM.pdf" && AV.reportName(Date.parse("2026-10-25T14:00:00Z")) === "2026-10-25_10_00AM" && AV.reportName(Date.parse("2026-11-09T05:07:00Z")) === "2026-11-09_12_00AM" && AV.reportName(Date.parse("2025-01-15T22:30:00Z"), true) === "2025-01-15_05PM" && AV.etToUtc(2026, 3, 8, 15, 0) === Date.parse("2026-03-08T19:00:00Z"));
+  check("availability: how often each status misses is ordered (Out, Doubtful, Questionable, Probable, Available) and Available is nothing", AV.MISS.out >= AV.MISS.doubtful && AV.MISS.doubtful > AV.MISS.questionable && AV.MISS.questionable > AV.MISS.probable && AV.MISS.probable < M.MIN_MISS && AV.MISS.available === 0, JSON.stringify(AV.MISS));
+  check("availability: report and ESPN merged newest first: ESPN's day-to-day becomes the report's Out (Nic / Nicolas Claxton), a player only the report names gets his id from the roster, one ESPN lists but a newer submitted report leaves off is available, a newer ESPN entry wins, an unsubmitted club or a game the report does not carry keeps ESPN's list", (() => {
+    const club = (n, t) => CTX.teamMatches(n, { displayName: t, name: t.split(" ").pop(), location: "" });
+    const row = (team, name, status) => ({ gameDate: "2026-11-05", team: team, name: name, status: status, reason: "Injury/Illness - Test" });
+    const r = { at: "2026-11-05T22:30:00.000Z", label: "5:30 PM ET", rows: [row("Boston Celtics", "Nicolas Claxton", "Out"), row("Boston Celtics", "Sam Hauser", "Questionable"), row("Boston Celtics", "Payton Pritchard", "Probable")], teams: [{ team: "Boston Celtics", gameDate: "2026-11-05", submitted: true }, { team: "Milwaukee Bucks", gameDate: "2026-11-05", submitted: false }] };
+    const espn = [{ name: "Nic Claxton", status: "Day-To-Day", athleteId: "1", date: "2026-11-05T15:00Z" }, { name: "Jayson Tatum", status: "Out", athleteId: "2", date: "2026-11-01T15:00Z" }, { name: "Payton Pritchard", status: "Out", athleteId: "3", date: "2026-11-05T23:10Z" }];
+    const m = AV.mergeTeam(espn, r, "Boston Celtics", "2026-11-05", club, [{ name: "Sam Hauser", id: "4065804", pos: "F" }]), g = n => m.find(i => i.name === n) || {};
+    const mil = AV.mergeTeam([{ name: "Damian Lillard", status: "Day-To-Day", date: "2026-11-04T15:00Z" }], r, "Milwaukee Bucks", "2026-11-05", club, null);
+    const tomorrow = AV.mergeTeam(espn, r, "Boston Celtics", "2026-11-06", club, null);
+    return g("Nic Claxton").status === "Out" && g("Nic Claxton").source === "official" && g("Nic Claxton").miss === 1 && g("Nic Claxton").espn.status === "Day-To-Day" && g("Nic Claxton").athleteId === "1" && g("Nic Claxton").at === r.at
+      && g("Sam Hauser").athleteId === "4065804" && g("Sam Hauser").pos === "F" && g("Sam Hauser").miss === AV.MISS.questionable && g("Sam Hauser").report === "5:30 PM ET"
+      && g("Jayson Tatum").status === "Available" && g("Jayson Tatum").miss === 0 && g("Payton Pritchard").source === "espn" && g("Payton Pritchard").status === "Out" && g("Payton Pritchard").official.status === "Probable"
+      && mil.length === 1 && mil[0].source === "espn" && mil[0].status === "Day-To-Day" && tomorrow.length === 3 && tomorrow.every(i => i.source === "espn");
+  })());
+  check("availability: the cost reads how often a status misses (Out in full, Questionable at its share, Probable nothing and not named) and names the report; a player ESPN still lists whom the report has available is said so", (() => {
+    const nba = M.SPORT.basketball_nba, o = (name, pos, status, extra) => Object.assign({ name: name, pos: pos, status: status, miss: AV.MISS[status.toLowerCase()], source: "official", report: "5:30 PM ET" }, extra || {});
+    const c = M.injuryCost([o("A", "G", "Out"), o("B", "F", "Questionable"), o("C", "C", "Probable"), o("D", "G", "Available", { espn: { status: "Out" } })], nba, () => 20);
+    return near(c.cost, 2.4 + 2.4 * AV.MISS.questionable, 1e-9) && c.out.join() === "A (G)" && c.soft.join() === "B (F) questionable" && c.cleared.length === 1 && c.cleared[0].label === "D (G)" && c.cleared[0].status === "available" && c.report === "5:30 PM ET" && c.espnToo === false && c.items.length === 4 && near(c.items[2].full, 2.4, 1e-9) && c.items[2].cost === 0;
+  })());
+  await (async () => {
+    const am = path.join(__dirname, "fixtures", "nba", "official-2026-11-05-0930.json");
+    const ev = { sportKey: "basketball_nba", home: "Boston Celtics", away: "Milwaukee Bucks", commence: "2026-11-06T00:00:00Z" };
+    const ppg = M.ppgFromFaces(path.join(__dirname, "fixtures", "sample-faces.js"));
+    const gm = await M.forEvent(CTX.source({ fixture: true, officialReport: am }), CTX, ev, new Date(NOW), { ppgOf: ppg });
+    const base = await M.forEvent(CTX.source({ fixture: true }), CTX, ev, new Date(NOW), { ppgOf: ppg });
+    const off = await M.forEvent(CTX.source({ fixture: true, officialReport: am }), CTX, ev, new Date(NOW), { ppgOf: ppg, officialReport: false });
+    const given = await M.forEvent(CTX.source({ fixture: true }), CTX, Object.assign({}, ev, { availability: JSON.parse(fs.readFileSync(am, "utf8")) }), new Date(NOW), { ppgOf: ppg });
+    const a = gm && gm.availability, H = n => (a.home.find(i => i.name === n) || {}), Aw = n => (a.away.find(i => i.name === n) || {});
+    check("availability: forEvent reads the report as of the run, merges it with ESPN's and logs what it knew, when and from where (Lillard: ESPN's day-to-day, Out per the 9:30 AM ET report; Hauser only on the report, his id from the club's roster)", !!a && a.read === new Date(NOW).toISOString() && a.report.label === "9:30 AM ET" && a.report.at === "2026-11-05T14:30:00.000Z" && a.onReport.home === true && a.onReport.away === true
+      && Aw("Damian Lillard").status === "Out" && Aw("Damian Lillard").source === "official" && Aw("Damian Lillard").miss === 1 && near(Aw("Damian Lillard").cost, 1.2, 1e-9) && H("Sam Hauser").athleteId === "4065804" && H("Sam Hauser").status === "Questionable" && H("Jayson Tatum").source === "official", JSON.stringify(a));
+    check("availability: the margin moves by what the report changed (Lillard from half to full, +0.6 for the Celtics; Hauser at the questionable share of 12% of 7.1 points) and the reasons say which report", near(gm.margin - base.margin, 0.6 - 0.12 * 7.1 * AV.MISS.questionable, 1e-6) && gm.reasons.some(r => r.label === "Milwaukee Bucks without Damian Lillard (G) (+1.2), out per the 9:30 AM ET official report") && gm.reasons.some(r => r.label === "Boston Celtics have Sam Hauser (F) questionable per the 9:30 AM ET official report"), JSON.stringify([gm.margin, base.margin, gm.reasons.map(r => r.label)]));
+    check("availability: with RULES.officialReport off the model reads ESPN's list alone, exactly as before; an explicit availability input stands in for the fetch; no other league reads a report", near(off.margin, base.margin, 1e-12) && off.availability.report === null && near(given.margin, gm.margin, 1e-12) && M.OFFICIAL.basketball_nba === true && Object.keys(M.OFFICIAL).length === 1);
+  })();
   check("model: priced on the unrounded margin and total, shown to one decimal (the fixture's Celtics margin is 9.58, shown +9.6 on the pick, in its reasons and in its rationale; the probability is the whole number's)", (() => {
     const shown = M.publicModel(gmFix), rounded = Object.assign({}, gmFix, { margin: 9.6 }), cel = { name: "Boston Celtics", point: null };
     const full = M.sideProb(gmFix, "h2h", cel, "Boston Celtics", "Milwaukee Bucks"), atShown = M.sideProb(rounded, "h2h", cel, "Boston Celtics", "Milwaukee Bucks");
@@ -376,6 +422,62 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("track: SportsGameOdds refreshed by event id with no new history point when nothing moved", rt2.sgoEntities === 1 && rt2.sgoMoved === 0 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML").sgoHistory.length === 1 && sb3.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML").mkt.moved === "toward", JSON.stringify(rt2));
   check("track: a run that grades nothing does not touch performance.js", rt2.graded === 0 && rt2.parlaysGraded === 0 && fs.readFileSync(path.join(tmp, "performance.js"), "utf8") === perfBefore);
   check("track: market.js is left alone (no odds in a track run)", fs.readFileSync(path.join(tmp, "market.js"), "utf8").indexOf("2026-11-05T16:00:00") !== -1);
+
+  /* who plays, after a pick is posted (2026-11-08): the morning run logs what the 9:30 AM ET report said with each NBA
+     pick; at 6 PM ET the hourly run reads the 5:30 PM report (Paul George ruled out, Hauser cleared) and flags the picks
+     whose game it moves by RULES.availabilityFlag points or more. The picks stay locked */
+  const tmpAv = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-avail-"));
+  const avAm = path.join(__dirname, "fixtures", "nba", "official-2026-11-05-0930.json"), avPm = path.join(__dirname, "fixtures", "nba", "official-2026-11-05-1730.json");
+  await P.run({ fixture: true, out: tmpAv, now: NOW, officialReportFixture: avAm });
+  const avLog0 = JSON.parse(fs.readFileSync(path.join(tmpAv, "picks-log.json"), "utf8")), avCel0 = avLog0.find(e => e.pick === "Boston Celtics ML");
+  check("availability: an NBA pick logs what the model knew about who plays (the 9:30 AM ET report, Lillard out, Hauser questionable), unflagged; other leagues log none", !!avCel0 && avCel0.availability && avCel0.availability.posted.report.label === "9:30 AM ET" && avCel0.availability.posted.away.some(i => i.name === "Damian Lillard" && i.status === "Out" && i.source === "official") && avCel0.availability.posted.home.some(i => i.name === "Sam Hauser" && i.status === "Questionable") && avCel0.availability.changed === false && avLog0.filter(e => e.sportKey !== "basketball_nba" && !e.type).every(e => !e.availability), avCel0 && JSON.stringify(avCel0.availability));
+  const avOdds0 = avLog0.filter(e => e.sportKey === "basketball_nba").map(e => [e.id, e.odds, e.modelProb, e.edge, e.confidence].join());
+  const avT = await P.run({ fixture: true, out: tmpAv, now: "2026-11-05T23:00:00Z", track: true, officialReportFixture: avPm });
+  const avLog1 = JSON.parse(fs.readFileSync(path.join(tmpAv, "picks-log.json"), "utf8")), avCel1 = avLog1.find(e => e.pick === "Boston Celtics ML"), avTot1 = avLog1.find(e => e.sportKey === "basketball_nba" && e.marketKey === "totals");
+  const avSb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpAv, "picks.js"), "utf8"), avSb);
+  const avPub = avSb.window.PICKS_DATA.picks.find(p => p.pick === "Boston Celtics ML");
+  check("availability: the hourly run flags a posted pick when a status moves its game: George ruled out at 5:30 PM ET, after it was posted at 10:00 AM ET, about 2.5 points against the Celtics (12% of his 20.7 points, from data/faces.js); Hauser's clearance (0.4 points) is under the bar", avT.availabilityFlagged >= 2 && avCel1.availability.changed === true && avCel1.availability.changes.length === 1 && avCel1.availability.changes[0].name === "Paul George" && avCel1.availability.changes[0].to === "Out" && avCel1.availability.changes[0].from === "Not listed" && near(avCel1.availability.swing, -2.48, 1e-9)
+    && avCel1.availability.note === "Paul George ruled out at 5:30 PM ET (official report), after this pick was posted at 10:00 AM ET; about 2.5 points of margin against this side on our numbers" && avCel1.availability.checkedAt === "2026-11-05T23:00:00.000Z", JSON.stringify(avCel1.availability));
+  check("availability: a total is flagged with no swing (the model takes nothing off a total for injuries); the picks themselves are untouched (locked)", !!avTot1 && avTot1.availability.changed === true && avTot1.availability.swing === null && /takes nothing off a total/.test(avTot1.availability.note) && JSON.stringify(avLog1.filter(e => e.sportKey === "basketball_nba").map(e => [e.id, e.odds, e.modelProb, e.edge, e.confidence].join())) === JSON.stringify(avOdds0), avTot1 && JSON.stringify(avTot1.availability));
+  check("availability: picks.js carries the flag and who the pick was posted knowing about; the breakdown lists it as a risk with the locked-pick line", !!avPub && avPub.availability.changed === true && avPub.availability.note === avCel1.availability.note && avPub.availability.posted.report.label === "9:30 AM ET" && avPub.availability.posted.players.some(p => p.name === "Damian Lillard" && p.status === "Out") && !avPub.availability.posted.players.some(p => p.name === "Sam Hauser" && p.status === "Available") && avPub.breakdown.risks.some(t => /^Paul George ruled out at 5:30 PM ET .*graded at the price it was posted at\.$/.test(t)), avPub && JSON.stringify([avPub.availability, avPub.breakdown.risks]));
+  await P.run({ fixture: true, out: tmpAv, now: "2026-11-05T23:30:00Z", track: true, officialReportFixture: path.join(tmpAv, "no-report.json") });
+  const avCel2 = JSON.parse(fs.readFileSync(path.join(tmpAv, "picks-log.json"), "utf8")).find(e => e.pick === "Boston Celtics ML");
+  await P.run({ fixture: true, out: tmpAv, now: "2026-11-05T23:45:00Z", track: true, officialReportFixture: avAm });
+  const avCel3 = JSON.parse(fs.readFileSync(path.join(tmpAv, "picks-log.json"), "utf8")).find(e => e.pick === "Boston Celtics ML");
+  check("availability: when the report cannot be read the last flag stands (ESPN alone would read differently, not newer); a read that matches what the pick was posted on clears it", avCel2.availability.changed === true && avCel2.availability.checkedAt === "2026-11-05T23:00:00.000Z" && avCel3.availability.changed === false && avCel3.availability.note === null, JSON.stringify([avCel2.availability.checkedAt, avCel3.availability]));
+  check("availability: what is still open about a game, by level: \"report\" a club not on the official report yet; \"open\" also a costed player questionable (Hauser, 0.85 points were he out; doubtful and out are settled, a small cost does not hold a game); no level or no readable report holds nothing", (() => {
+    const av = avCel0.availability.posted, late = Object.assign({}, av, { onReport: { home: true, away: false } });
+    const doubt = { report: null, home: [{ name: "D", status: "Doubtful", miss: AV.MISS.doubtful, full: 3 }], away: [{ name: "E", status: "Day-To-Day", full: 2 }] };
+    return AV.unresolvedOf(av, 0.5, "open").join() === "Sam Hauser questionable" && AV.unresolvedOf(av, 0.5, "report").length === 0 && AV.unresolvedOf(av, 1, "open").length === 0 && AV.unresolvedOf(late, 1, "report").join() === "report not in for both clubs"
+      && AV.unresolvedOf(doubt, 0.5, "open").join() === "E day-to-day" && AV.unresolvedOf(doubt, 0.5, "report").length === 0 && AV.unresolvedOf(av, 0.5, undefined).length === 0
+      && P.RULES.availabilityHold.afternoon === "report" && P.RULES.availabilityHold.manual === "report" && P.RULES.availabilityHold.morning === "open";
+  })(), JSON.stringify(AV.unresolvedOf(avCel0.availability.posted, 0.5, "open")));
+  /* the afternoon run: a game whose clubs are not on the report yet (here the real 5:30 PM report of 2026-11-05, which
+     carries no Bucks at Celtics that day) posts nothing and its market rows say why; on the report, it posts. A slot at
+     the "open" level (a morning run, should the NBA return to it) also holds the questionable Hauser */
+  const HOLD0 = P.RULES.availabilityHold;
+  const tmpW = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-wait-")), tmpW2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-wait-"));
+  const rw = await P.run({ fixture: true, out: tmpW, now: "2026-11-05T20:30:00Z", slot: "afternoon", officialReportFixture: path.join(__dirname, "fixtures", "nba", "Injury-Report_2026-11-05_05_30PM.pdf") });
+  const logW = JSON.parse(fs.readFileSync(path.join(tmpW, "picks-log.json"), "utf8")), mkW = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(tmpW, "market.js"), "utf8"), mkW);
+  const rwA = await P.run({ fixture: true, out: tmpW, now: "2026-11-05T21:30:00Z", slot: "afternoon", officialReportFixture: avAm });
+  P.RULES.availabilityHold = { manual: "open" };
+  const rwO = await P.run({ fixture: true, out: tmpW2, now: NOW, slot: "manual", officialReportFixture: avAm });
+  P.RULES.availabilityHold = HOLD0;
+  check("availability: the afternoon run holds an NBA game until both clubs are on the official report (its own game day) and its market rows say why; once they are, it posts; at the \"open\" level a costed questionable player holds it too", rw.waited.length === 1 && rw.waited[0] === "Milwaukee Bucks @ Boston Celtics (report not in for both clubs)" && logW.filter(e => e.sportKey === "basketball_nba").length === 0 && mkW.window.MARKET_DATA.rows.filter(r => r.sportKey === "basketball_nba").every(r => r.waiting && r.waiting[0] === "report not in for both clubs")
+    && rwA.waited.length === 0 && JSON.parse(fs.readFileSync(path.join(tmpW, "picks-log.json"), "utf8")).some(e => e.sportKey === "basketball_nba") && rwO.waited.length === 1 && rwO.waited[0] === "Milwaukee Bucks @ Boston Celtics (Sam Hauser questionable)", JSON.stringify([rw.waited, rwA.waited, rwO.waited]));
+  check("availability: a change is weighed at the player's own cost: a star from questionable to out moves 60% of his 3 points; a player who had missed every game (cost 0) coming back moves nothing; a newly listed one is priced by fullOf", (() => {
+    const posted = { report: { label: "9:30 AM ET" }, home: [{ name: "Long Absent", status: "Out", miss: 1, full: 0 }, { name: "Star", status: "Questionable", miss: 0.4, full: 3 }], away: [] };
+    const read = { read: "2026-11-05T23:00:00Z", report: { label: "5:30 PM ET" }, home: [{ name: "Star", status: "Out", miss: 1, source: "official", at: "2026-11-05T22:30:00Z", report: "5:30 PM ET" }], away: [{ name: "New Guy", status: "Out", miss: 1, source: "official", at: "2026-11-05T22:30:00Z" }] };
+    const ch = AV.changesSince(posted, read, { min: 0.5, fullOf: i => i.name === "New Guy" ? 2 : 9 });
+    return ch.length === 2 && ch[0].name === "Star" && near(ch[0].delta, 1.8, 1e-9) && ch[0].from === "Questionable" && ch[1].name === "New Guy" && ch[1].delta === 2 && AV.changesSince(posted, Object.assign({}, read, { report: null }), {}) === null;
+  })());
+  check("availability: a later change keeps the time it was first read (5:30 PM ET), not the newest report's", (() => {
+    const e = { marketKey: "h2h", home: "H", away: "A", outcome: { name: "H" }, loggedAt: "2026-11-05T15:00:00Z", confidence: "Lean" };
+    const ch = t => [{ side: "home", name: "Star", from: "Not listed", to: "Out", fromMiss: 0, toMiss: 1, delta: 3, at: t, source: "official", report: null }];
+    const first = AV.flagOf(e, ch("2026-11-05T22:30:00.000Z"), null, "x"), later = AV.flagOf(e, ch("2026-11-05T23:45:00.000Z"), first, "y");
+    return later.changes[0].at === "2026-11-05T22:30:00.000Z" && later.note === "Star ruled out at 5:30 PM ET (official report), after this lean was posted at 10:00 AM ET; about 3.0 points of margin against this side on our numbers" && later.swing === -3;
+  })());
 
   /* track mode grades (owner ask, 2026-11-05: picks "pop and go" at tip-off and results waited for the next day's run).
      The Bucks @ Celtics game of Nov 3 tipped at 7 PM ET; ESPN's scoreboard fixture calls it final, 110-104. At 9:40 PM,
@@ -568,8 +670,8 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const q = P.oddsParams(nflC, new Date("2026-11-05T20:30:00.456Z"));
     return q.commenceTimeFrom === "2026-11-05T20:30:00Z" && q.commenceTimeTo === "2026-11-07T08:30:00Z" && q.markets === "h2h,spreads,totals" && q.bookmakers.split(",").length === 10 && !("commenceTimeFrom" in P.oddsParams(nflC, null)) && P.oddsCost(nflC) === 3 && P.oddsCost(mlsC) === 2;
   })());
-  check("budget: MLS is wired like the Premier League (Soccer, league MLS, moneyline and totals, three-way), and NFL, EPL and MLS are fetched on the afternoon run only; morning skips them, manual runs fetch everything", mlsC && mlsC.sport === "Soccer" && mlsC.league === "MLS" && mlsC.goals === true && mlsC.markets.join() === "h2h,totals"
-    && [nflC, eplC, mlsC].every(c => !P.slotAllows(c, "morning") && P.slotAllows(c, "afternoon") && P.slotAllows(c, "manual") && P.slotAllows(c, undefined)) && P.slotAllows(nbaC, "morning") && P.slotAllows(SP("icehockey_nhl"), "morning"));
+  check("budget: MLS is wired like the Premier League (Soccer, league MLS, moneyline and totals, three-way), and NFL, EPL, MLS and (since 2026-11-08, on the official injury report) the NBA are fetched on the afternoon run only; morning skips them, manual runs fetch everything; the NHL and MLB on both", mlsC && mlsC.sport === "Soccer" && mlsC.league === "MLS" && mlsC.goals === true && mlsC.markets.join() === "h2h,totals"
+    && [nflC, eplC, mlsC, nbaC].every(c => !P.slotAllows(c, "morning") && P.slotAllows(c, "afternoon") && P.slotAllows(c, "manual") && P.slotAllows(c, undefined)) && P.slotAllows(SP("icehockey_nhl"), "morning") && P.slotAllows(SP("baseball_mlb"), "morning"));
   /* ESPN's scoreboard decides: stub sources keyed by Eastern day */
   const sbSrc = days => ({ scoreboard: async (sport, d) => (d in days ? days[d] : null) });
   const gameAt = (iso, status) => ({ id: iso, date: iso, competitions: [{ status: { type: { name: status || "STATUS_SCHEDULED", state: "pre" } } }] });
@@ -584,18 +686,18 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     /* a 4:30 PM ET run's window ends at 3:30 AM ET two days on, so three Eastern days are read */
     const idle = await P.espnGames(sbSrc({ "20261105": { events: [] }, "20261106": { events: [] }, "20261107": { events: [] } }), SP("baseball_mlb"), now);
     const pp = await P.espnGames(sbSrc({ "20261105": { events: [gameAt("2026-11-06T00:00Z", "STATUS_POSTPONED"), gameAt("2026-11-05T19:00Z")] }, "20261106": { events: [] }, "20261107": { events: [] } }), nbaC, now);
-    return idle.games === 0 && idle.failed === 0 && idle.days.join() === "20261105,20261106,20261107" && !P.fetchDecision(SP("baseball_mlb"), { slot: "morning", espn: idle }).fetch && pp.games === 0 && !P.fetchDecision(nbaC, { slot: "morning", espn: pp }).fetch;
+    return idle.games === 0 && idle.failed === 0 && idle.days.join() === "20261105,20261106,20261107" && !P.fetchDecision(SP("baseball_mlb"), { slot: "morning", espn: idle }).fetch && pp.games === 0 && !P.fetchDecision(nbaC, { slot: "afternoon", espn: pp }).fetch;
   })());
   check("gate: when ESPN cannot be read the sport's days decide (NFL on a Friday no, a Thursday yes; NBA every day), unless a day that was read already shows a game", await (async () => {
     const down = await P.espnGames(sbSrc({}), nflC, new Date("2026-11-06T20:30:00Z"));
     const half = await P.espnGames(sbSrc({ "20261107": { events: [gameAt("2026-11-07T21:00Z")] } }), mlsC, new Date("2026-11-06T20:30:00Z"));
-    return down.failed === 3 && down.games === 0 && !P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 5 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 4 }).fetch && P.fetchDecision(nbaC, { slot: "morning", espn: down, weekday: 5 }).fetch
+    return down.failed === 3 && down.games === 0 && !P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 5 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 4 }).fetch && P.fetchDecision(nbaC, { slot: "afternoon", espn: down, weekday: 5 }).fetch
       && half.failed === 2 && half.games === 1 && P.fetchDecision(mlsC, { slot: "afternoon", espn: half, weekday: 2 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: { games: 0, failed: 1 }, weekday: 4, fixture: false }).fetch;
   })());
   check("budget: the morning run gives way first when credits run short: it keeps 10 for every afternoon run left before the reset on the 1st (plus the 25 floor); afternoon runs never yield", (() => {
     const left = P.afternoonsLeft(new Date("2026-11-05T17:00:00Z")), leftAfter = P.afternoonsLeft(new Date("2026-11-05T21:00:00Z")), lastDay = P.afternoonsLeft(new Date("2026-11-30T21:00:00Z"));
     const g = { games: 4, failed: 0 };
-    const tight = P.fetchDecision(nbaC, { slot: "morning", espn: g, remaining: 280, afternoonsLeft: 26 }), ok = P.fetchDecision(nbaC, { slot: "morning", espn: g, remaining: 288, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
+    const nhlC = SP("icehockey_nhl"), tight = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 280, afternoonsLeft: 26 }), ok = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 288, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
     return left === 26 && leftAfter === 25 && lastDay === 0 && P.RULES.afternoonReserve === 10 && !tight.fetch && /morning run gives way: 280 credits left, 285 kept for the 26 afternoon runs/.test(tight.why) && ok.fetch && pm.fetch;
   })());
   check("budget: the run's spend is one line for the Actions log: what was fetched, what it cost, what was skipped and why", P.planLine({ slot: "morning", remaining: 361, used: 139, plan: [{ sport: "basketball_nba", fetch: true, cost: 3, events: 9 }, { sport: "americanfootball_nfl", fetch: false, why: "fetched on the afternoon run only" }] }) === "Odds API (morning run): NBA 3 (9 events) | skipped: NFL (fetched on the afternoon run only) | credits left 361, used 139");
@@ -613,7 +715,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     return g.every(rows => rows.length === 3 && near(rows.reduce((s, r) => s + r.modelProb, 0), 1, 2e-3) && rows.find(r => r.pick === "Draw").modelProb > 0.24 && rows.find(r => r.pick === "Draw").modelProb < 0.28) && MKM.rows.filter(r => r.marketKey === "h2h" && r.pick !== "Draw").every(r => r.bar > 0.05 && r.bar < 0.09);
   })(), JSON.stringify(MKM.rows.filter(r => r.marketKey === "h2h").map(r => [r.pick, r.modelProb, r.bar])));
   const rn = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-mls-morning-")), now: "2026-11-06T15:00:00Z", slot: "morning" });
-  check("mls: the morning run leaves MLS (and NFL, and the Premier League) to the afternoon run without asking ESPN or The Odds API", rn.added === 0 && ["soccer_usa_mls", "soccer_epl", "americanfootball_nfl"].every(k => { const p = rn.plan.find(x => x.sport === k); return p && !p.fetch && p.why === "fetched on the afternoon run only"; }) && rn.plan.find(x => x.sport === "basketball_nba").fetch, JSON.stringify(rn.plan));
+  check("mls: the morning run leaves MLS (and NFL, the Premier League and the NBA) to the afternoon run without asking ESPN or The Odds API; the NHL is fetched", rn.added === 0 && ["soccer_usa_mls", "soccer_epl", "americanfootball_nfl", "basketball_nba"].every(k => { const p = rn.plan.find(x => x.sport === k); return p && !p.fetch && p.why === "fetched on the afternoon run only"; }) && rn.plan.find(x => x.sport === "icehockey_nhl").fetch, JSON.stringify(rn.plan));
   /* the next morning run into the same files: MLS is not fetched, but its games are still ahead, so its rows stay on the
      market board (and the Games page) with the time they were priced, the pick still flagged as one */
   const firstAt = MKM.generatedAt, rCarry = await P.run({ fixture: true, oddsFixture: "odds-mls.json", out: tmpM, now: "2026-11-06T17:00:00Z", slot: "morning" });

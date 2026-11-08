@@ -1,0 +1,40 @@
+{
+ "_note": "Fixture: ESPN team roster (site.api.espn.com .../teams/2/roster), trimmed to five players",
+ "athletes": [
+  {
+   "id": "4065648",
+   "displayName": "Jayson Tatum",
+   "position": {
+    "abbreviation": "SF"
+   }
+  },
+  {
+   "id": "4066261",
+   "displayName": "Jaylen Brown",
+   "position": {
+    "abbreviation": "SG"
+   }
+  },
+  {
+   "id": "4251",
+   "displayName": "Paul George",
+   "position": {
+    "abbreviation": "F"
+   }
+  },
+  {
+   "id": "4065804",
+   "displayName": "Sam Hauser",
+   "position": {
+    "abbreviation": "F"
+   }
+  },
+  {
+   "id": "4066354",
+   "displayName": "Payton Pritchard",
+   "position": {
+    "abbreviation": "G"
+   }
+  }
+ ]
+}

@@ -22,6 +22,7 @@ const DAY = 864e5;
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
 function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36";
 function round(n, d) { const m = Math.pow(10, d == null ? 1 : d); return Math.round(n * m) / m; }
 
 /* ---------- sources ---------- */
@@ -48,12 +49,30 @@ function liveSource() {
     /* a past season's schedule (the model's carry-over); MLB needs the regular-season type spelled out */
     scheduleSeason: (sport, teamId, season) => get(site(sport) + "/teams/" + teamId + "/schedule?season=" + season + (sport === "baseball_mlb" ? "&seasontype=2" : "")).catch(() => null),
     standings: sport => get("https://site.api.espn.com/apis/v2/sports/" + ESPN[sport] + "/standings").catch(() => null),
+    /* a club's roster: every player's ESPN id and position (the model asks only for a player the NBA's report names and ESPN's does not) */
+    roster: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/roster").catch(() => null),
+    /* the NBA's official injury report as it stood at `ms`: the newest PDF at or before it, 15 minutes back at a time
+       (scripts/availability.js). A normal browser user agent, as the league's CDN expects; one PDF a run (robots.txt: Crawl-Delay 1) */
+    officialReport: async ms => {
+      const urls = require("./availability.js").reportUrls(ms, 4);
+      if (cache["report|" + urls[0]]) return cache["report|" + urls[0]];
+      for (const url of urls) {
+        await sleep(1100); count++;
+        try {
+          const res = await fetch(url, { headers: { "user-agent": BROWSER_UA, accept: "application/pdf" } });
+          if (res.ok) { const got = { url: url, buf: Buffer.from(await res.arrayBuffer()) }; cache["report|" + urls[0]] = got; return got; }
+        } catch (err) { /* the one before */ }
+      }
+      return null;
+    },
     geocode: city => get("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json").catch(() => null),
     forecast: (lat, lon, tz) => get("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,precipitation_probability,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&timezone=" + encodeURIComponent(tz || "auto") + "&forecast_days=7").catch(() => null),
     count: () => count
   };
 }
-function fixtureSource() {
+/* opts.officialReport: a fixture file for the NBA's official report, a real PDF or a parsed report (.json, the shape
+   availability.parseReport returns); without it the fixtures have no report and the model reads ESPN's list alone */
+function fixtureSource(opts) {
   const dir = path.join(__dirname, "fixtures", "espn");
   const read = n => { const f = path.join(dir, n + ".json"); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null; };
   const slug = s => ESPN[s].replace("/", "-");
@@ -65,6 +84,11 @@ function fixtureSource() {
     scheduleSeason: async (sport, id, season) => read("ctx-schedule-" + slug(sport) + "-" + id + "-" + season),
     gamelog: async (sport, id) => read("ctx-gamelog-" + slug(sport) + "-" + id),
     standings: async sport => read("ctx-standings-" + slug(sport)),
+    roster: async (sport, id) => read("ctx-roster-" + slug(sport) + "-" + id),
+    officialReport: async () => {
+      const f = opts && opts.officialReport; if (!f || !fs.existsSync(f)) return null;
+      return /\.json$/i.test(f) ? { url: "fixture:" + path.basename(f), report: JSON.parse(fs.readFileSync(f, "utf8")) } : { url: "fixture:" + path.basename(f), buf: fs.readFileSync(f) };
+    },
     geocode: async city => read("ctx-geocode-" + norm(city)),
     forecast: async () => read("ctx-forecast"),
     count: () => 0
@@ -266,7 +290,7 @@ async function closingOdds(src, e) {
 }
 /* track mode: refresh only the DraftKings numbers on every board entry (one scoreboard call per sport and day) */
 async function trackOdds(entries, opts) {
-  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource() : liveSource());
+  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource(opts) : liveSource());
   let changed = 0;
   for (const e of entries) {
     if (!ESPN[e.sportKey]) continue;
@@ -306,7 +330,7 @@ async function weatherFor(src, venue, commenceMs) {
 
 /* ---------- gather context for every board entry ---------- */
 async function fetchContext(entries, opts) {
-  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource() : liveSource());
+  const src = (opts && opts.source) || (opts && opts.fixture ? fixtureSource(opts) : liveSource());
   const out = {}, injCache = {};
   for (const e of entries) {
     if (!ESPN[e.sportKey]) continue;
@@ -376,6 +400,13 @@ function buildBreakdown(e, ctx, rules) {
   if (mk && mk.moved === "toward") notes.push("Market: " + mk.label + ", the consensus moving toward this side since the open.");
   else if (mk && mk.moved === "away") notes.push("Market: " + mk.label + ", the consensus moving against this side since the open.");
   if (s && s.best && impliedP(s.best.odds) < impliedP(e.odds) - 1e-9) support.push("A better price is available now: " + (s.best.odds > 0 ? "+" : "") + s.best.odds + " at " + s.best.book + ".");
+  /* who plays (NBA, 2026-11-08): a status that moved after the pick was posted (update-data's availability check); for or
+     against by its effect on our margin, a note for a total. The pick stays posted at its price either way */
+  const av = e.availability;
+  if (av && av.changed && av.note) {
+    const line = av.note.charAt(0).toUpperCase() + av.note.slice(1) + ".";
+    if (av.swing == null) notes.push(line); else if (av.swing < 0) risks.push(line + " The pick stays posted and is graded at the price it was posted at."); else support.push(line);
+  }
   const team = pickTeam(e), opp = team ? (team === e.home ? e.away : e.home) : null, isTotal = e.marketKey === "totals", over = isTotal && /^over/i.test(e.pick);
   /* with a game model, injuries and rest are already in its reasons, priced in points; the context then adds only what
      the model does not carry (weather, venue, records, pitchers). Without one, the old rules of thumb still apply. */
@@ -423,5 +454,5 @@ async function enrich(entries, opts) {
   entries.forEach(function (e) { e.context = got.byId[e.id] || null; if (e.context && e.context.odds) recordDk(e, e.context.odds, opts && opts.now); e.breakdown = buildBreakdown(e, e.context, opts && opts.rules); });
   return got.requests;
 }
-function source(opts) { return opts && opts.fixture ? fixtureSource() : liveSource(); }
+function source(opts) { return opts && opts.fixture ? fixtureSource(opts) : liveSource(); }
 module.exports = { enrich, fetchContext, buildBreakdown, findEvent, regulationScore, clubCore, teamMatches, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };

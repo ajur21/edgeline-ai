@@ -12,6 +12,7 @@
    and for closing-line value; it takes no part in the grade.
    ========================================================================== */
 "use strict";
+const availability = require("./availability.js");
 
 /* The NHL's own final scores (ESPN, 2024-25 and 2025-26 regular seasons, 2,624 games): how often a game ends by each
    margin (either way; no ties, overtime and the shootout give the winner one goal) and with each total. A two-goal lead
@@ -152,18 +153,38 @@ function lastSeasonParam(sportKey, commenceMs) {
    weightOf(i): the share of the team's results that still had the player (see unseenShare). A player who has missed
    every game is already in every result, so he costs nothing more; one who played them all costs in full. Only players
    who still move the number (a share of a fifth or more) are named in the reasons. */
+/* i.miss (2026-11-08, the NBA's official injury report: availability.MISS by its status) is how likely he is to miss the
+   game; a listing that carries it is costed at that share, and under MIN_MISS (Probable, Available) it costs nothing and
+   is not named. Without it the status decides as before: Out, doubtful and the like in full, day-to-day or questionable
+   at cfg.soft. Returns the cost, the names for the reasons (out: costed at three quarters or more; soft: the rest, with
+   the report's status where it gave one; cleared: players ESPN still lists whom a newer official report has available)
+   and items: every listing with its cost now and `full`, his cost were he out (the hourly runs measure a change with it). */
+const MIN_MISS = 0.1;
 function injuryCost(list, cfg, ppgOf, weightOf) {
-  let cost = 0, scoring = 0, oneCost = 0, oneScoring = 0; const out = [], soft = [];
+  let cost = 0, scoring = 0, oneCost = 0, oneScoring = 0; const out = [], soft = [], cleared = [], items = [];
   (list || []).forEach(function (i) {
     const ppg = ppgOf ? ppgOf(i) : null, one = !!(cfg.single && cfg.single.test(i.pos || ""));
     const w = weightOf ? Math.max(0, Math.min(1, weightOf(i))) : 1, label = i.name + (i.pos ? " (" + i.pos + ")" : "");
-    let c, s;
-    if (SEVERE.test(i.status || "")) { c = cfg.out(i, ppg) * w; s = cfg.scoringOut(ppg, i) * w; if (w >= 0.2) out.push(label); }
-    else if (SOFT.test(i.status || "")) { c = cfg.soft * cfg.out(i, ppg) * w; s = 0.5 * cfg.scoringOut(ppg, i) * w; if (w >= 0.2) soft.push(label); }
-    else return;
+    const full = cfg.out(i, ppg) * w, miss = Number.isFinite(i.miss) ? i.miss : null;
+    let share;
+    if (miss != null) {
+      if (miss < MIN_MISS) {
+        if (i.espn && (SEVERE.test(i.espn.status || "") || SOFT.test(i.espn.status || "")) && w >= 0.2 && full > 0) cleared.push({ label: label, espn: i.espn.status, status: String(i.status || "available").toLowerCase() });
+        items.push({ i: i, cost: 0, full: full }); return;
+      }
+      share = miss;
+    } else if (SEVERE.test(i.status || "")) share = 1;
+    else if (SOFT.test(i.status || "")) share = cfg.soft;
+    else { items.push({ i: i, cost: 0, full: full }); return; }
+    const c = cfg.out(i, ppg) * share * w, s = cfg.scoringOut(ppg, i) * share * w;
+    if (w >= 0.2) { if (share >= 0.75) out.push(label); else soft.push(miss != null && i.status ? label + " " + String(i.status).toLowerCase() : label); }
+    items.push({ i: i, cost: c, full: full });
     if (one) { oneCost = Math.max(oneCost, c); oneScoring = Math.max(oneScoring, s); } else { cost += c; scoring += s; }
   });
-  return { cost: cost + oneCost, scoring: scoring + oneScoring, out: out, soft: soft };
+  /* the official report behind the named players, if any: "1:30 PM ET" */
+  const named = items.filter(x => x.i.source === "official" && x.cost > 0), viaReport = named.length ? named[0].i.report : null;
+  const viaEspn = items.some(x => x.cost > 0 && x.i.source !== "official");
+  return { cost: cost + oneCost, scoring: scoring + oneScoring, out: out, soft: soft, cleared: cleared, items: items, report: viaReport || (cleared.length ? (items.find(x => x.i.source === "official") || { i: {} }).i.report : null), espnToo: viaEspn };
 }
 /* how much of a team's season so far was played with a now-listed player. Since 2026-11-05 that is the games he played:
    i.played (from his game log, see playedIn) over the team's games, so a player who has missed every game costs
@@ -235,17 +256,22 @@ function gameModel(input) {
   if (Math.abs(af.last5 - af.margin) >= cfg.sd / 4 && af.gp >= 5) reasons.push({ side: af.last5 > af.margin ? "away" : "home", label: input.away + " trending: last five " + fmt(af.last5) + " vs " + fmt(af.margin) + " on the season" });
   reasons.push({ side: "home", label: "Home edge " + fmt(cfg.homeEdge) + " for " + input.home });
   restNotes.forEach(n => reasons.push(n));
-  if (ih.out.length) reasons.push({ side: "away", label: input.home + " without " + ih.out.slice(0, 3).join(", ") + (ih.out.length > 3 ? " and " + (ih.out.length - 3) + " more" : "") + " (" + fmt(-ih.cost) + ")" });
-  if (ih.soft.length) reasons.push({ side: "away", label: input.home + " have " + ih.soft.slice(0, 3).join(", ") + " listed day-to-day or questionable" });
-  if (ia.out.length) reasons.push({ side: "home", label: input.away + " without " + ia.out.slice(0, 3).join(", ") + (ia.out.length > 3 ? " and " + (ia.out.length - 3) + " more" : "") + " (" + fmt(ia.cost) + ")" });
-  if (ia.soft.length) reasons.push({ side: "home", label: input.away + " have " + ia.soft.slice(0, 3).join(", ") + " listed day-to-day or questionable" });
+  /* injuries, each team's in the sport's points; where the NBA's official report gave the status the reason says which
+     one ("out per the 1:30 PM ET official report") */
+  const who = arr => arr.slice(0, 3).join(", ") + (arr.length > 3 ? " and " + (arr.length - 3) + " more" : "");
+  const per = inj => inj.report ? " per the " + inj.report + " official report" + (inj.espnToo ? " and ESPN" : "") : "";
+  [[input.home, ih, "home", "away", -1], [input.away, ia, "away", "home", 1]].forEach(function ([team, inj, mine, theirs, sign]) {
+    if (inj.out.length) reasons.push({ side: theirs, label: team + " without " + who(inj.out) + " (" + fmt(sign * inj.cost) + ")" + (inj.report ? ", out" + per(inj) : "") });
+    if (inj.soft.length) reasons.push({ side: theirs, label: team + " have " + who(inj.soft) + (inj.report ? per(inj) : " listed day-to-day or questionable") });
+    if (inj.cleared.length) reasons.push({ side: mine, label: team + " have " + who(inj.cleared.map(c => c.label + " " + c.status)) + " per the " + inj.report + " official report (ESPN still lists " + (inj.cleared.length === 1 ? "him " + String(inj.cleared[0].espn).toLowerCase() : "them") + ")" });
+  });
   const pace = hf.pf + hf.pa + af.pf + af.pa;
   reasons.push({ side: "total", label: "Combined scoring " + r1(hf.pf + hf.pa) + " a game in " + input.home + "'s games, " + r1(af.pf + af.pa) + " in " + input.away + "'s" + (L != null ? " (league average " + r1(2 * L) + ")" : "") + (ih.scoring + ia.scoring >= cfg.sdTotal / 10 ? "; scorers out take " + r1(ih.scoring + ia.scoring) + " off" : "") });
   /* margin and total at full precision: sideProb and noise price on them (rounded to 0.1 first, an NHL moneyline moved in
      steps of about 1.7 points). Only what is shown is rounded: the reasons, publicModel, the rationale */
   return { sportKey: input.sportKey, home: input.home, away: input.away, margin: margin, total: total, sd: cfg.sd, sdTotal: cfg.sdTotal, gp: Math.min(hf.gp, af.gp), gpHome: hf.gp, gpAway: af.gp,
     parts: { ratingHome: r1(rh), ratingAway: r1(ra), lastHome: Number.isFinite(lastH) ? r1(lastH) : null, lastAway: Number.isFinite(lastA) ? r1(lastA) : null, homeEdge: cfg.homeEdge, rest: r1(restAdj), injuriesHome: r1(-ih.cost), injuriesAway: r1(ia.cost), scoringOut: r1(ih.scoring + ia.scoring), pace: r1(pace / 2) },
-    reasons: reasons, thin: Math.min(hf.gp, af.gp) < 4 };
+    reasons: reasons, thin: Math.min(hf.gp, af.gp) < 4, injuryItems: { home: ih.items, away: ia.items } };
 }
 
 /* ---------- a side's probability ---------- */
@@ -407,7 +433,8 @@ async function forEvent(src, ctxlib, e, now, cache) {
   const withPlayed = async (list, sched, form, teamId) => {
     const cfg = SPORT[e.sportKey], out = [];
     for (const i of list) {
-      const costed = (SEVERE.test(i.status || "") || SOFT.test(i.status || "")) && cfg.out(i, ppgOf ? ppgOf(i) : null) > 0;
+      const listed = Number.isFinite(i.miss) ? i.miss > 0 : (SEVERE.test(i.status || "") || SOFT.test(i.status || ""));
+      const costed = listed && cfg.out(i, ppgOf ? ppgOf(i) : null) > 0;
       if (!costed || !i.athleteId || !season || typeof src.gamelog !== "function" || typeof ctxlib.appearances !== "function") { out.push(i); continue; }
       const k = e.sportKey + "|" + i.athleteId;
       if (!(k in cache.gamelogs)) { let log = null; try { log = await src.gamelog(e.sportKey, i.athleteId); } catch (err) { log = null; } cache.gamelogs[k] = ctxlib.appearances(log, season); }
@@ -416,15 +443,66 @@ async function forEvent(src, ctxlib, e, now, cache) {
     }
     return out;
   };
-  const homeInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.home), hs, hf, m.home.team.id), awayInjuries = await withPlayed(ctxlib.teamInjuries(inj, e.away), as, af, m.away.team.id);
+  /* game-day availability (NBA, 2026-11-08): the league's official injury report merged with ESPN's list, newest first
+     (availability.mergeTeam). A player only the report names gets his ESPN id from the club's roster (one free request a
+     club a run, only when needed); one no roster places cannot be weighed (no game log, no points) and costs nothing */
+  const report = await availabilityFor(src, e, now, cache);
+  const gameDate = day.slice(0, 4) + "-" + day.slice(4, 6) + "-" + day.slice(6, 8);
+  const club = (name, reportTeam) => ctxlib.teamMatches(name, { displayName: reportTeam, name: String(reportTeam).split(" ").pop(), location: "" });
+  cache.rosters = cache.rosters || {};
+  const rosterOf = async id => {
+    const k = e.sportKey + "|" + id;
+    if (!(k in cache.rosters)) { let r = null; try { r = typeof src.roster === "function" ? await src.roster(e.sportKey, id) : null; } catch (err) { r = null; } cache.rosters[k] = r && Array.isArray(r.athletes) ? r.athletes.map(a => ({ id: String(a.id), name: a.displayName || a.fullName, pos: a.position && a.position.abbreviation || null })) : null; }
+    return cache.rosters[k];
+  };
+  const listFor = async (team, teamId) => {
+    const espn = ctxlib.teamInjuries(inj, team);
+    if (!report) return espn;
+    let list = availability.mergeTeam(espn, report, team, gameDate, club, null);
+    if (list.some(i => i.source === "official" && !i.athleteId && i.miss > 0)) { const ros = await rosterOf(teamId); if (ros) list = availability.mergeTeam(espn, report, team, gameDate, club, ros); }
+    return list.map(i => i.source === "official" && !i.athleteId && !i.espn ? Object.assign(i, { played: 0, unmatched: true }) : i);
+  };
+  const homeInjuries = await withPlayed(await listFor(e.home, m.home.team.id), hs, hf, m.home.team.id), awayInjuries = await withPlayed(await listFor(e.away, m.away.team.id), as, af, m.away.team.id);
   /* a scorer's points a game: data/faces.js first, then his own game log this season (faces.js has none for a player listed
      Out and covers only the props run's clubs), then nothing, which the sport's cost reads as its default (NBA 1.2) */
   const ppgFor = i => { const f = ppgOf ? ppgOf(i) : null; return f != null ? f : i && Number.isFinite(i.logPpg) ? i.logPpg : null; };
   const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
     homeForm: hf, awayForm: af, homeInjuries: homeInjuries, awayInjuries: awayInjuries,
     rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgFor });
-  if (gm) { gm.espnEventId = m.event.id; gm.injuries = { home: homeInjuries, away: awayInjuries }; }
+  if (gm) {
+    gm.espnEventId = m.event.id; gm.injuries = { home: homeInjuries, away: awayInjuries };
+    /* what the model knew about who plays, when and from where: logged with every pick so a later run can say whether it moved */
+    if (OFFICIAL[e.sportKey]) gm.availability = { read: new Date(now).toISOString(), report: report ? { source: report.source, label: report.label, at: report.at, url: report.url || null } : null,
+      onReport: report ? availability.gameOnReport(report, e.home, e.away, gameDate, club) : null, home: gm.injuryItems.home.map(availItem), away: gm.injuryItems.away.map(availItem) };
+  }
   return gm;
+}
+/* one listing as the pick logs it: the status, how likely he misses, where and when it was read, his cost now and were he out */
+const r2 = n => Math.round(n * 100) / 100;
+function availItem(x) {
+  const i = x.i;
+  return { name: i.name, pos: i.pos || null, athleteId: i.athleteId || null, status: i.status || null, miss: Number.isFinite(i.miss) ? i.miss : null, source: i.source || "espn", at: i.at || i.date || null,
+    report: i.report || null, reason: i.reason || i.type || null, played: Number.isFinite(i.played) ? i.played : null, cost: r2(x.cost), full: r2(x.full) };
+}
+/* the leagues whose official injury report the model reads (availability.js) */
+const OFFICIAL = { basketball_nba: true };
+/* the game-day availability behind a game: e.availability when the caller passes one (a report-shaped input:
+   { source, at, read, label, rows: [{ gameDate, team, name, status, reason }], teams: [{ team, gameDate, submitted }] }),
+   else the NBA's official report as it stood at `now`, read once a run (src.officialReport); null when the league has
+   none, when cache.officialReport is false (RULES.officialReport) or when it cannot be read */
+async function availabilityFor(src, e, now, cache) {
+  if (!OFFICIAL[e.sportKey] || cache.officialReport === false) return null;
+  if (e.availability !== undefined) return e.availability;
+  if (!("report" in cache)) {
+    cache.report = null;
+    if (typeof src.officialReport === "function") {
+      try {
+        const got = await src.officialReport(new Date(now).getTime()), r = got && (got.report || (got.buf ? availability.parseReport(got.buf) : null));
+        if (r && r.at) cache.report = Object.assign(r, { url: got.url || null, read: new Date(now).toISOString(), source: "NBA official injury report" });
+      } catch (err) { cache.report = null; }
+    }
+  }
+  return cache.report;
 }
 /* goals (points) per team-game across the league this season, from ESPN's standings; null until 100 team-games exist */
 function leagueGoalsFrom(standings) {
@@ -476,4 +554,4 @@ function noise(gm, marketKey, outcome, home, away) {
   return { p: r4((Math.abs(up - p0) + Math.abs(dn - p0)) / 2), units: Math.round(units * 100) / 100, unit: UNIT[gm.sportKey] || "points", gp: Math.min(gh, ga) };
 }
 
-module.exports = { SPORT, CALIB, hasSignal, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, rawSideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
+module.exports = { SPORT, CALIB, MIN_MISS, OFFICIAL, availabilityFor, hasSignal, NHL_SHAPE, noise, teamForm, rating, lastSeasonParam, injuryCost, unseenShare, playedIn, gameModel, sideProb, rawSideProb, sideReasons, forEvent, ppgFromFaces, publicModel, Phi, implied, tilt, leagueGoalsFrom };
