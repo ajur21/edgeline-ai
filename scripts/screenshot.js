@@ -17,6 +17,9 @@ const fs = require('fs');
       const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme, deviceScaleFactor: 1 });
       /* the site defaults to dark; the light run opts in the way a visitor would, via the saved preference */
       await ctx.addInitScript(s => { try { localStorage.setItem('theme', s); } catch (e) {} }, scheme);
+      /* never call ESPN from here: on a game day the pages ask its scoreboard for live scores and ESPN refuses a headless
+         browser (a 403 with no CORS header), which failed this check with console errors (2026-11-08); an empty board instead */
+      await ctx.route(/^https:\/\/site\.api\.espn\.com\//, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"events":[]}' }));
       const page = await ctx.newPage();
       page.on('console', m => { if (m.type() === 'error') problems.push(`${scheme}/${name}: ${m.text()}`); });
       page.on('pageerror', e => problems.push(`${scheme}/${name}: PAGEERROR ${e.message}`));

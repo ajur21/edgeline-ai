@@ -697,10 +697,19 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
 
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;
-  const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  /* the smoke pass never calls ESPN: on a day with games under way the pages ask ESPN's scoreboard for live scores, and
+     ESPN refuses a headless browser (a 403 with no CORS header), which logged console errors here and failed this check
+     on every game day (2026-11-08). Its scoreboard requests get an empty board from this stub instead; live status is
+     not what this pass checks. */
+  const realErrors = []; const rctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  await rctx.route(/^https:\/\/site\.api\.espn\.com\//, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"events":[]}' }));
+  const rp = await rctx.newPage();
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
-  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
-  const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
+  let realPicks = 0;
+  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) {
+    await rp.goto(url(p)); await rp.waitForTimeout(600);
+    if (p === 'picks.html') realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
+  }
   await rp.goto(url('index.html')); await rp.waitForTimeout(400);
   const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });
   const sampleHidden = await rp.evaluate(() => { const d = window.PICKS_DATA; const flag = document.querySelector('[data-sample-flag="picks"]'); return !d || d.sample !== false ? true : (flag.hidden === true && getComputedStyle(flag).display === 'none'); });
