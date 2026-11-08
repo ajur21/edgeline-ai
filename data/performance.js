@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-08",
   "windowDays": 30,
   "record": {
-    "wins": 10,
+    "wins": 11,
     "losses": 11,
     "pushes": 0
   },
-  "units": -3.05,
-  "roi": -14.5,
-  "avgEdge": 11,
-  "graded": 21,
+  "units": -2.28,
+  "roi": -10.4,
+  "avgEdge": 10.9,
+  "graded": 22,
   "daily": [
     {
       "date": "2026-11-05",
@@ -28,14 +28,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-08",
-      "units": -3.05
+      "units": -2.28
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -0.72,
-      "record": "6-5"
+      "units": 0.05,
+      "record": "7-5"
     },
     {
       "sport": "NBA",
@@ -49,6 +49,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-08",
+      "sport": "NHL",
+      "event": "Florida Panthers @ Boston Bruins",
+      "pick": "Boston Bruins ML",
+      "odds": -130,
+      "result": "Win",
+      "units": 0.77,
+      "clv": 0.0178,
+      "closeOdds": -155,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-08",
       "sport": "Soccer",
@@ -213,21 +228,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-07",
-      "sport": "Soccer",
-      "event": "New York Red Bulls vs. Atlanta United FC",
-      "pick": "Under 3.5 goals",
-      "odds": -110,
-      "result": "Win",
-      "units": 0.91,
-      "clv": -0.0744,
-      "closeOdds": 110,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -254,18 +254,18 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-08",
-      "units": -2.11,
-      "wins": 1,
+      "units": -1.34,
+      "wins": 2,
       "losses": 3,
       "pushes": 0
     }
   ],
   "potd": {
-    "wins": 0,
+    "wins": 1,
     "losses": 3,
     "pushes": 0,
-    "units": -3,
-    "n": 3
+    "units": -2.23,
+    "n": 4
   },
   "parlays": {
     "wins": 0,
@@ -275,25 +275,25 @@ window.PERF_DATA = {
     "n": 3
   },
   "clv": {
-    "n": 15,
-    "avg": -1.74,
-    "beat": 2,
-    "beatPct": 13.3,
-    "graded": 21,
+    "n": 16,
+    "avg": -1.52,
+    "beat": 3,
+    "beatPct": 18.8,
+    "graded": 22,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 21,
+    "espnCloses": 22,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 10,
+      "wins": 11,
       "losses": 11,
       "pushes": 0,
-      "units": -3.05,
-      "n": 21,
-      "roi": -14.5,
-      "pending": 4,
+      "units": -2.28,
+      "n": 22,
+      "roi": -10.4,
+      "pending": 3,
       "since": "2026-11-05"
     },
     "price": {

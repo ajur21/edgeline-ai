@@ -7766,11 +7766,11 @@
   "odds": 122,
   "book": "FanDuel",
   "prices": {
-   "DraftKings": 124,
+   "DraftKings": 130,
    "BetRivers": 106,
-   "FanDuel": 122,
+   "FanDuel": 118,
    "Caesars": 125,
-   "Unibet": -109,
+   "Unibet": 100,
    "ESPN BET": 120,
    "Bovada": 125,
    "PointsBet": 130
@@ -8009,13 +8009,13 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 195,
-      "away": -238
+      "home": 190,
+      "away": -230
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -148,
-      "under": 124
+      "over": -155,
+      "under": 130
      },
      "ml": {
       "home": -120,
@@ -8054,6 +8054,12 @@
     "line": 6.5,
     "odds": 124,
     "fair": 0.4279
+   },
+   {
+    "at": "2026-11-08T23:31:41.741Z",
+    "line": 6.5,
+    "odds": 130,
+    "fair": 0.417
    }
   ],
   "dk": {
@@ -8065,11 +8071,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 124,
-    "fair": 0.42794036443953615
+    "odds": 130,
+    "fair": 0.4170073589533933
    },
    "moved": "away",
-   "label": "DraftKings opened 6.5 (+105), now 6.5 (+124)"
+   "label": "DraftKings opened 6.5 (+105), now 6.5 (+130)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -8092,7 +8098,7 @@
    "support": [
     "Combined scoring 7.5 a game in Anaheim Ducks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).",
     "A better price is now available: +124 at DraftKings.",
-    "A better price is available now: +130 at PointsBet.",
+    "A better price is available now: +130 at DraftKings.",
     "Scorers out: A.J. Greer (LW), upper body; Troy Terry (RW), hip; Ian Moore (D), lower body and 5 more. Fewer healthy scorers leans under.",
     "Pittsburgh Penguins on a back-to-back; tired legs lean under."
    ],
@@ -8102,7 +8108,7 @@
    "notes": [
     "Where the market sits: the de-vigged consensus of 3 books makes this side 44.9% (-0.2 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (44.9% → 42.9%).",
-    "Market: DraftKings opened 6.5 (+105), now 6.5 (+124), moving against this side since the open.",
+    "Market: DraftKings opened 6.5 (+105), now 6.5 (+130), moving against this side since the open.",
     "Market: The market (5 books) opened 7.5 (-141), now 7 (-111), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Laurent Brossoit · Penguins Arturs Silovs.",
@@ -8114,20 +8120,20 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "OBNI5li7yW4iDMa3PTxO",
-   "at": "2026-11-08T20:36:00.800Z",
+   "at": "2026-11-08T23:31:41.741Z",
    "books": {
-    "FanDuel": 122,
-    "DraftKings": 124,
-    "Unibet": -109,
+    "FanDuel": 118,
+    "DraftKings": 130,
+    "Unibet": 100,
     "ESPN BET": 120,
     "PointsBet": 130
    },
    "n": 5,
    "best": {
-    "book": "PointsBet",
+    "book": "DraftKings",
     "odds": 130
    },
-   "fair": 0.4413,
+   "fair": 0.437,
    "fairBooks": 5,
    "vendor": {
     "line": 7,
@@ -8146,7 +8152,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-08T20:36:00.800Z",
+  "pricesAt": "2026-11-08T23:31:41.741Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T18:31:30.088Z",
@@ -8196,6 +8202,15 @@
    {
     "at": "2026-11-08T20:36:00.800Z",
     "fair": 0.4413,
+    "vendorFair": 0.5261,
+    "line": 7,
+    "odds": -111,
+    "best": 130,
+    "n": 5
+   },
+   {
+    "at": "2026-11-08T23:31:41.741Z",
+    "fair": 0.437,
     "vendorFair": 0.5261,
     "line": 7,
     "odds": -111,
@@ -8881,8 +8896,8 @@
    "Edge 10.2 points over the price, 3.1 past its bar of 7.0",
    "Market reference 54.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.77,
   "loggedAt": "2026-11-07T23:49:52.382Z",
   "current": {
    "at": "2026-11-08T14:06:54.761Z",
@@ -9245,7 +9260,30 @@
     }
    ]
   },
-  "potd": "2026-11-08"
+  "potd": "2026-11-08",
+  "result": "Win",
+  "score": "1-4",
+  "finalScore": {
+   "home": 4,
+   "away": 1
+  },
+  "gradedAt": "2026-11-08T23:31:41.741Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892674",
+   "line": null,
+   "odds": -155,
+   "fair": 0.583,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -135,
+    "fair": 0.5514
+   },
+   "samples": 2
+  },
+  "clv": 0.0178,
+  "lineMove": null
  },
  {
   "key": "79ed3df594d7b352ef027128b1ba5d0a|h2h|Ipswich Town|null",
@@ -9795,15 +9833,15 @@
   "prices": {
    "FanDuel": -650,
    "BetOnline.ag": -580,
-   "DraftKings": -650,
+   "DraftKings": -700,
    "BetRivers": -500,
-   "BetMGM": -650,
+   "BetMGM": -750,
    "theScore Bet": -650,
-   "Bovada": -625,
+   "Bovada": -675,
    "PointsBet": -625,
-   "Unibet": -667,
-   "Caesars": -650,
-   "ESPN BET": -750
+   "Unibet": -714,
+   "Caesars": -800,
+   "ESPN BET": -800
   },
   "books": 8,
   "anchor": "Pinnacle",
@@ -10005,19 +10043,19 @@
    "odds": {
     "provider": "DraftKings",
     "now": {
-     "spread": -11.5,
+     "spread": -12.5,
      "spreadOdds": {
-      "home": -115,
-      "away": -105
+      "home": -108,
+      "away": -112
      },
      "total": 222.5,
      "totalOdds": {
-      "over": -105,
-      "under": -115
+      "over": -110,
+      "under": -110
      },
      "ml": {
-      "home": -650,
-      "away": 470
+      "home": -700,
+      "away": 504
      },
      "draw": null
     },
@@ -10052,6 +10090,12 @@
     "line": null,
     "odds": -650,
     "fair": 0.8316
+   },
+   {
+    "at": "2026-11-08T23:31:41.741Z",
+    "line": null,
+    "odds": -700,
+    "fair": 0.8409
    }
   ],
   "dk": {
@@ -10063,11 +10107,11 @@
    },
    "now": {
     "line": null,
-    "odds": -650,
-    "fair": 0.8316498316498315
+    "odds": -700,
+    "fair": 0.8408910103420844
    },
    "moved": "toward",
-   "label": "DraftKings opened -486, now -650"
+   "label": "DraftKings opened -486, now -700"
   },
   "mkt": {
    "book": "Market consensus",
@@ -10078,10 +10122,10 @@
    },
    "now": {
     "line": null,
-    "odds": -487
+    "odds": -525
    },
    "moved": "toward",
-   "label": "The market (8 books) opened -160, now -487"
+   "label": "The market (8 books) opened -160, now -525"
   },
   "breakdown": {
    "tier": "Lean",
@@ -10101,8 +10145,8 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 82.0% (-1.3 points against the best price). For reference only.",
-    "Market: DraftKings opened -486, now -650, moving toward this side since the open.",
-    "Market: The market (8 books) opened -160, now -487, the consensus moving toward this side since the open.",
+    "Market: DraftKings opened -486, now -700, moving toward this side since the open.",
+    "Market: The market (8 books) opened -160, now -525, the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Utah Jazz 1-8 · Minnesota Timberwolves 7-3 · Target Center, Minneapolis."
    ],
@@ -10112,28 +10156,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "JJbK5MbHB4iR89PwkQFD",
-   "at": "2026-11-08T20:36:00.800Z",
+   "at": "2026-11-08T23:31:41.741Z",
    "books": {
     "FanDuel": -650,
     "PointsBet": -625,
-    "Unibet": -667,
-    "Caesars": -650,
-    "DraftKings": -650,
-    "BetMGM": -650,
-    "ESPN BET": -750,
-    "Bovada": -625
+    "Unibet": -714,
+    "Caesars": -800,
+    "DraftKings": -700,
+    "BetMGM": -750,
+    "ESPN BET": -800,
+    "Bovada": -675
    },
    "n": 8,
    "best": {
     "book": "PointsBet",
     "odds": -625
    },
-   "fair": 0.8288,
+   "fair": 0.8377,
    "fairBooks": 8,
    "vendor": {
     "line": null,
-    "odds": -487,
-    "fair": 0.8296,
+    "odds": -525,
+    "fair": 0.84,
     "sameLine": true
    },
    "open": {
@@ -10142,12 +10186,12 @@
    },
    "now": {
     "line": null,
-    "odds": -487
+    "odds": -525
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-08T20:36:00.800Z",
+  "pricesAt": "2026-11-08T23:31:41.741Z",
   "sgoHistory": [
    {
     "at": "2026-11-08T14:06:54.761Z",
@@ -10173,6 +10217,15 @@
     "vendorFair": 0.8296,
     "line": null,
     "odds": -487,
+    "best": -625,
+    "n": 8
+   },
+   {
+    "at": "2026-11-08T23:31:41.741Z",
+    "fair": 0.8377,
+    "vendorFair": 0.84,
+    "line": null,
+    "odds": -525,
     "best": -625,
     "n": 8
    }
@@ -10228,11 +10281,11 @@
    "FanDuel": -122,
    "BetMGM": -120,
    "theScore Bet": -120,
-   "Bovada": -117,
+   "Bovada": -120,
    "Caesars": -125,
    "Unibet": -122,
    "ESPN BET": -120,
-   "PointsBet": -125
+   "PointsBet": -120
   },
   "books": 8,
   "anchor": "Pinnacle",
@@ -10510,10 +10563,10 @@
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 115
    },
    "moved": "toward",
-   "label": "The market (8 books) opened 5.5 (+105), now 6 (+114)"
+   "label": "The market (8 books) opened 5.5 (+105), now 6 (+115)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -10522,8 +10575,7 @@
    "support": [
     "Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4).",
     "Projected total 6.3 against 5.5.",
-    "A better price is now available: -117 at Bovada.",
-    "A better price is available now: -117 at Bovada."
+    "A better price is now available: -117 at Bovada."
    ],
    "risks": [
     "Scorers out: Brennan Othmann (LW), upper body; Kevin Bahl (D), achilles; Jonathan Huberdeau (LW), hip and 4 more. Fewer healthy scorers leans under."
@@ -10531,7 +10583,7 @@
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-2.8 points against the best price). For reference only.",
     "Market: DraftKings opened 5.5 (-125), now 5.5 (-122), moving against this side since the open.",
-    "Market: The market (8 books) opened 5.5 (+105), now 6 (+114), the consensus moving toward this side since the open.",
+    "Market: The market (8 books) opened 5.5 (+105), now 6 (+115), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Flames Devin Cooley · Flyers Dan Vladar.",
     "Records: Philadelphia Flyers 4-10-4 · Calgary Flames 7-9-1 · Scotiabank Saddledome, Calgary."
@@ -10542,7 +10594,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "L9ujQnzrGf1L3PV0mO39",
-   "at": "2026-11-08T20:36:00.800Z",
+   "at": "2026-11-08T23:31:41.741Z",
    "books": {
     "FanDuel": -122,
     "DraftKings": -122,
@@ -10550,20 +10602,20 @@
     "Unibet": -122,
     "BetMGM": -120,
     "ESPN BET": -120,
-    "Bovada": -117,
-    "PointsBet": -125
+    "Bovada": -120,
+    "PointsBet": -120
    },
    "n": 8,
    "best": {
-    "book": "Bovada",
-    "odds": -117
+    "book": "BetMGM",
+    "odds": -120
    },
-   "fair": 0.524,
+   "fair": 0.5235,
    "fairBooks": 8,
    "vendor": {
     "line": 6,
-    "odds": 114,
-    "fair": 0.4673,
+    "odds": 115,
+    "fair": 0.4651,
     "sameLine": false
    },
    "open": {
@@ -10572,12 +10624,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 115
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-08T20:36:00.800Z",
+  "pricesAt": "2026-11-08T23:31:41.741Z",
   "sgoHistory": [
    {
     "at": "2026-11-08T14:06:54.761Z",
@@ -10613,6 +10665,15 @@
     "line": 6,
     "odds": 114,
     "best": -117,
+    "n": 8
+   },
+   {
+    "at": "2026-11-08T23:31:41.741Z",
+    "fair": 0.5235,
+    "vendorFair": 0.4651,
+    "line": 6,
+    "odds": 115,
+    "best": -120,
     "n": 8
    }
   ],

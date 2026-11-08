@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-08T20:36:00.800Z",
+  "trackedAt": "2026-11-08T23:31:41.741Z",
   "playOfDay": {
     "id": "7fda7dbcff-h2h-Boston-Bruins",
     "sport": "NHL",
@@ -407,11 +408,14 @@ window.PICKS_DATA = {
         "n": 7
       }
     ],
-    "status": "pending",
+    "status": "graded",
     "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
+    "result": "Win",
+    "units": 0.77,
+    "score": {
+      "home": 4,
+      "away": 1
+    },
     "loggedAt": "2026-11-07T23:49:52.382Z",
     "valueTo": -147,
     "bar": 0.0701,
@@ -453,7 +457,7 @@ window.PICKS_DATA = {
         "sport": "NHL",
         "price": -142,
         "started": true,
-        "result": null
+        "result": "Win"
       },
       {
         "id": "b0a4b5448a-totals-Under",
@@ -498,17 +502,17 @@ window.PICKS_DATA = {
       "prices": {
         "FanDuel": -650,
         "BetOnline.ag": -580,
-        "DraftKings": -650,
+        "DraftKings": -700,
         "BetRivers": -500,
-        "BetMGM": -650,
+        "BetMGM": -750,
         "theScore Bet": -650,
-        "Bovada": -625,
+        "Bovada": -675,
         "PointsBet": -625,
-        "Unibet": -667,
-        "Caesars": -650,
-        "ESPN BET": -750
+        "Unibet": -714,
+        "Caesars": -800,
+        "ESPN BET": -800
       },
-      "pricesAt": "2026-11-08T20:36:00.800Z",
+      "pricesAt": "2026-11-08T23:31:41.741Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.9008,
@@ -577,8 +581,8 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 82.0% (-1.3 points against the best price). For reference only.",
-          "Market: DraftKings opened -486, now -650, moving toward this side since the open.",
-          "Market: The market (8 books) opened -160, now -487, the consensus moving toward this side since the open.",
+          "Market: DraftKings opened -486, now -700, moving toward this side since the open.",
+          "Market: The market (8 books) opened -160, now -525, the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Utah Jazz 1-8 · Minnesota Timberwolves 7-3 · Target Center, Minneapolis."
         ],
@@ -698,19 +702,19 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": -11.5,
+            "spread": -12.5,
             "spreadOdds": {
-              "home": -115,
-              "away": -105
+              "home": -108,
+              "away": -112
             },
             "total": 222.5,
             "totalOdds": {
-              "over": -105,
-              "under": -115
+              "over": -110,
+              "under": -110
             },
             "ml": {
-              "home": -650,
-              "away": 470
+              "home": -700,
+              "away": 504
             },
             "draw": null
           },
@@ -763,11 +767,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -650,
-          "fair": 0.8316498316498315
+          "odds": -700,
+          "fair": 0.8408910103420844
         },
         "moved": "toward",
-        "label": "DraftKings opened -486, now -650"
+        "label": "DraftKings opened -486, now -700"
       },
       "dkHistory": [
         {
@@ -781,6 +785,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": -650,
           "fair": 0.8316
+        },
+        {
+          "at": "2026-11-08T23:31:41.741Z",
+          "line": null,
+          "odds": -700,
+          "fair": 0.8409
         }
       ],
       "mkt": {
@@ -792,27 +802,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -487
+          "odds": -525
         },
         "moved": "toward",
-        "label": "The market (8 books) opened -160, now -487"
+        "label": "The market (8 books) opened -160, now -525"
       },
       "sgo": {
-        "at": "2026-11-08T20:36:00.800Z",
+        "at": "2026-11-08T23:31:41.741Z",
         "n": 8,
         "best": {
           "book": "PointsBet",
           "odds": -625
         },
-        "fair": 0.8288,
-        "vendorFair": 0.8296,
+        "fair": 0.8377,
+        "vendorFair": 0.84,
         "open": {
           "line": null,
           "odds": -160
         },
         "now": {
           "line": null,
-          "odds": -487
+          "odds": -525
         }
       },
       "sgoHistory": [
@@ -840,6 +850,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.8296,
           "line": null,
           "odds": -487,
+          "best": -625,
+          "n": 8
+        },
+        {
+          "at": "2026-11-08T23:31:41.741Z",
+          "fair": 0.8377,
+          "vendorFair": 0.84,
+          "line": null,
+          "odds": -525,
           "best": -625,
           "n": 8
         }
@@ -891,16 +910,16 @@ window.PICKS_DATA = {
       "odds": 122,
       "book": "FanDuel",
       "prices": {
-        "DraftKings": 124,
+        "DraftKings": 130,
         "BetRivers": 106,
-        "FanDuel": 122,
+        "FanDuel": 118,
         "Caesars": 125,
-        "Unibet": -109,
+        "Unibet": 100,
         "ESPN BET": 120,
         "Bovada": 125,
         "PointsBet": 130
       },
-      "pricesAt": "2026-11-08T20:36:00.800Z",
+      "pricesAt": "2026-11-08T23:31:41.741Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.4917,
@@ -953,7 +972,7 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 7.5 a game in Anaheim Ducks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).",
           "A better price is now available: +124 at DraftKings.",
-          "A better price is available now: +130 at PointsBet.",
+          "A better price is available now: +130 at DraftKings.",
           "Scorers out: A.J. Greer (LW), upper body; Troy Terry (RW), hip; Ian Moore (D), lower body and 5 more. Fewer healthy scorers leans under.",
           "Pittsburgh Penguins on a back-to-back; tired legs lean under."
         ],
@@ -963,7 +982,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: the de-vigged consensus of 3 books makes this side 44.9% (-0.2 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (44.9% → 42.9%).",
-          "Market: DraftKings opened 6.5 (+105), now 6.5 (+124), moving against this side since the open.",
+          "Market: DraftKings opened 6.5 (+105), now 6.5 (+130), moving against this side since the open.",
           "Market: The market (5 books) opened 7.5 (-141), now 7 (-111), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Laurent Brossoit · Penguins Arturs Silovs.",
@@ -1114,13 +1133,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 195,
-              "away": -238
+              "home": 190,
+              "away": -230
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -148,
-              "under": 124
+              "over": -155,
+              "under": 130
             },
             "ml": {
               "home": -120,
@@ -1187,11 +1206,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 124,
-          "fair": 0.42794036443953615
+          "odds": 130,
+          "fair": 0.4170073589533933
         },
         "moved": "away",
-        "label": "DraftKings opened 6.5 (+105), now 6.5 (+124)"
+        "label": "DraftKings opened 6.5 (+105), now 6.5 (+130)"
       },
       "dkHistory": [
         {
@@ -1205,6 +1224,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 124,
           "fair": 0.4279
+        },
+        {
+          "at": "2026-11-08T23:31:41.741Z",
+          "line": 6.5,
+          "odds": 130,
+          "fair": 0.417
         }
       ],
       "mkt": {
@@ -1222,13 +1247,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 7.5 (-141), now 7 (-111)"
       },
       "sgo": {
-        "at": "2026-11-08T20:36:00.800Z",
+        "at": "2026-11-08T23:31:41.741Z",
         "n": 5,
         "best": {
-          "book": "PointsBet",
+          "book": "DraftKings",
           "odds": 130
         },
-        "fair": 0.4413,
+        "fair": 0.437,
         "vendorFair": 0.5261,
         "open": {
           "line": 7.5,
@@ -1293,6 +1318,15 @@ window.PICKS_DATA = {
           "odds": -111,
           "best": 130,
           "n": 5
+        },
+        {
+          "at": "2026-11-08T23:31:41.741Z",
+          "fair": 0.437,
+          "vendorFair": 0.5261,
+          "line": 7,
+          "odds": -111,
+          "best": 130,
+          "n": 5
         }
       ],
       "status": "pending",
@@ -1348,13 +1382,13 @@ window.PICKS_DATA = {
         "FanDuel": -122,
         "BetMGM": -120,
         "theScore Bet": -120,
-        "Bovada": -117,
+        "Bovada": -120,
         "Caesars": -125,
         "Unibet": -122,
         "ESPN BET": -120,
-        "PointsBet": -125
+        "PointsBet": -120
       },
-      "pricesAt": "2026-11-08T20:36:00.800Z",
+      "pricesAt": "2026-11-08T23:31:41.741Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.577,
@@ -1406,8 +1440,7 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4).",
           "Projected total 6.3 against 5.5.",
-          "A better price is now available: -117 at Bovada.",
-          "A better price is available now: -117 at Bovada."
+          "A better price is now available: -117 at Bovada."
         ],
         "risks": [
           "Scorers out: Brennan Othmann (LW), upper body; Kevin Bahl (D), achilles; Jonathan Huberdeau (LW), hip and 4 more. Fewer healthy scorers leans under."
@@ -1415,7 +1448,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-2.8 points against the best price). For reference only.",
           "Market: DraftKings opened 5.5 (-125), now 5.5 (-122), moving against this side since the open.",
-          "Market: The market (8 books) opened 5.5 (+105), now 6 (+114), the consensus moving toward this side since the open.",
+          "Market: The market (8 books) opened 5.5 (+105), now 6 (+115), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Flames Devin Cooley · Flyers Dan Vladar.",
           "Records: Philadelphia Flyers 4-10-4 · Calgary Flames 7-9-1 · Scotiabank Saddledome, Calgary."
@@ -1639,27 +1672,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6,
-          "odds": 114
+          "odds": 115
         },
         "moved": "toward",
-        "label": "The market (8 books) opened 5.5 (+105), now 6 (+114)"
+        "label": "The market (8 books) opened 5.5 (+105), now 6 (+115)"
       },
       "sgo": {
-        "at": "2026-11-08T20:36:00.800Z",
+        "at": "2026-11-08T23:31:41.741Z",
         "n": 8,
         "best": {
-          "book": "Bovada",
-          "odds": -117
+          "book": "BetMGM",
+          "odds": -120
         },
-        "fair": 0.524,
-        "vendorFair": 0.4673,
+        "fair": 0.5235,
+        "vendorFair": 0.4651,
         "open": {
           "line": 5.5,
           "odds": 105
         },
         "now": {
           "line": 6,
-          "odds": 114
+          "odds": 115
         }
       },
       "sgoHistory": [
@@ -1698,6 +1731,15 @@ window.PICKS_DATA = {
           "odds": 114,
           "best": -117,
           "n": 8
+        },
+        {
+          "at": "2026-11-08T23:31:41.741Z",
+          "fair": 0.5235,
+          "vendorFair": 0.4651,
+          "line": 6,
+          "odds": 115,
+          "best": -120,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -1725,486 +1767,6 @@ window.PICKS_DATA = {
         "bar": 0.03
       },
       "standing": "clears",
-      "availability": null
-    },
-    {
-      "id": "8fe46a5692-spreads-Vancouver-Canucks",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Vancouver Canucks @ Edmonton Oilers",
-      "home": "Edmonton Oilers",
-      "away": "Vancouver Canucks",
-      "marketKey": "spreads",
-      "outcome": {
-        "name": "Vancouver Canucks",
-        "point": 1.5
-      },
-      "commence": "2026-11-08T03:10:00Z",
-      "start": "Yesterday 10:10 PM ET",
-      "market": "Puck line",
-      "pick": "Vancouver Canucks +1.5",
-      "odds": 117,
-      "book": "Bovada",
-      "prices": {
-        "DraftKings": 130,
-        "BetRivers": 110,
-        "FanDuel": 124,
-        "Bovada": 130,
-        "Caesars": 130
-      },
-      "pricesAt": "2026-11-07T23:49:52.382Z",
-      "books": 5,
-      "anchor": "Pinnacle",
-      "modelProb": 0.5431,
-      "ev": 0.1785,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 1.1,
-        "total": 6.6,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 17,
-        "gpHome": 17,
-        "gpAway": 18,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0.4,
-          "ratingAway": -0.7,
-          "lastHome": 0.2,
-          "lastAway": -1.2,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.3,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 7.4
-        },
-        "reasons": {
-          "for": [
-            "Edmonton Oilers without Isaac Howard (LW), Zach Hyman (LW), Devon Levi (G) (-0.3)",
-            "Edmonton Oilers have Tristan Jarry (G) listed day-to-day or questionable"
-          ],
-          "against": [
-            "Edmonton Oilers rate +0.4 a game over 17 (11-6), Vancouver Canucks -0.7 over 18 (3-15); last season +0.2 and -1.2 a game",
-            "Edmonton Oilers trending: last five +1.8 vs +1.1 on the season",
-            "Home edge +0.2 for Edmonton Oilers",
-            "Vancouver Canucks without Filip Chytil (C) (+0.1)",
-            "Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable",
-            "Projected margin -1.1 for Vancouver Canucks against +1.5"
-          ]
-        }
-      },
-      "marketFair": 0.4518,
-      "marketEdge": -0.0091,
-      "rationale": "Our probability at +1.5 is 54.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.1 for the home side). Bovada offers +117, which implies only 46.1%. Its bar is 7.1 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin). It clears it by 1.2. Not graded against other books' prices; for reference the market makes it 45.2%.",
-      "factors": [
-        "Best price +117 at Bovada",
-        "Probability 54.3% from game data, not other books",
-        "Edge 8.2 points over the price, 1.2 past its bar of 7.1",
-        "Market reference 45.2%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 54.3%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Bovada implies 46.1%, so the edge is 8.2 points. Its bar is 7.1 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.2 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at +1.5 is 54.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1.1 for the home side). Bovada offers +117, which implies only 46.1%. Its bar is 7.1 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin). It clears it by 1.2. Not graded against other books' prices; for reference the market makes it 45.2%.",
-        "support": [
-          "Edmonton Oilers without Isaac Howard (LW), Zach Hyman (LW), Devon Levi (G) (-0.3).",
-          "Edmonton Oilers have Tristan Jarry (G) listed day-to-day or questionable.",
-          "A better price is available now: +130 at DraftKings."
-        ],
-        "risks": [
-          "Edmonton Oilers rate +0.4 a game over 17 (11-6), Vancouver Canucks -0.7 over 18 (3-15); last season +0.2 and -1.2 a game.",
-          "Edmonton Oilers trending: last five +1.8 vs +1.1 on the season.",
-          "Home edge +0.2 for Edmonton Oilers.",
-          "Vancouver Canucks without Filip Chytil (C) (+0.1).",
-          "Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.",
-          "Projected margin -1.1 for Vancouver Canucks against +1.5.",
-          "At current prices our edge is 6.9 points, under its bar of 7.2 points; the pick stays posted and is graded at the price it was posted at."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 45.2% (-0.9 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (45.2% → 42.4%).",
-          "Market: DraftKings opened +1.5 (+105), now +1.5 (+130), moving against this side since the open.",
-          "Market: The market (4 books) opened +3.5 (+100), now +1.5 (+134), the consensus moving toward this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Oilers Devon Levi · Canucks Leevi Merilainen.",
-          "Records: Vancouver Canucks 3-14-1 · Edmonton Oilers 11-3-3 · Rogers Place, Edmonton."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401892673",
-        "venue": "Rogers Place, Edmonton",
-        "indoor": true,
-        "records": {
-          "Edmonton Oilers": {
-            "overall": "11-3-3",
-            "home": "4-3-2",
-            "away": "7-0-1"
-          },
-          "Vancouver Canucks": {
-            "overall": "3-14-1",
-            "home": "1-7-0",
-            "away": "2-7-1"
-          }
-        },
-        "probables": {
-          "Edmonton Oilers": "Devon Levi",
-          "Vancouver Canucks": "Leevi Merilainen"
-        },
-        "injuries": {
-          "Edmonton Oilers": [
-            {
-              "name": "Isaac Howard",
-              "pos": "LW",
-              "athleteId": "5080179",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080179.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2026-11-17",
-              "date": "2026-11-06T00:04Z",
-              "note": "ir"
-            },
-            {
-              "name": "Alec Regula",
-              "pos": "D",
-              "athleteId": "4331611",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4331611.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-21",
-              "date": "2026-10-01T14:11Z",
-              "note": "Regula (undisclosed) was designated for long-term injured reserve Thursday."
-            },
-            {
-              "name": "Matt Savoie",
-              "pos": "C",
-              "athleteId": "5080153",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080153.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-24",
-              "date": "2026-10-01T14:05Z",
-              "note": "Savoie (lower body) was shifted to long-term injured reserve Thursday."
-            },
-            {
-              "name": "Frederik Andersen",
-              "pos": "G",
-              "athleteId": "2517899",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2517899.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2026-12-30",
-              "date": "2026-09-29T17:53Z",
-              "note": "Andersen (knee) isn't expected back until \"maybe\" December, head coach Mike Babcock told NHL.com on Tuesday."
-            },
-            {
-              "name": "Mattias Janmark",
-              "pos": "C",
-              "athleteId": "3042085",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042085.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "Surgery",
-              "returnDate": "2026-11-28",
-              "date": "2026-09-29T17:52Z",
-              "note": "Janmark (undisclosed) does not have a timetable for his return from injury."
-            }
-          ],
-          "Vancouver Canucks": [
-            {
-              "name": "Tom Willander",
-              "pos": "D",
-              "athleteId": "5149180",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149180.png",
-              "status": "Day-To-Day",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-07",
-              "date": "2026-11-06T14:10Z",
-              "note": "day-to-day"
-            },
-            {
-              "name": "Filip Chytil",
-              "pos": "C",
-              "athleteId": "4233643",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233643.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-09",
-              "date": "2026-11-03T18:34Z",
-              "note": "Chytil (upper body) won't travel with the Canucks during their upcoming two-game road trip, per Jeff Paterson of CanucksArmy.com."
-            },
-            {
-              "name": "Akil Thomas",
-              "pos": "C",
-              "athleteId": "4378682",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378682.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-09",
-              "date": "2026-09-29T17:05Z",
-              "note": "ir-nr"
-            },
-            {
-              "name": "Mackenzie MacEachern",
-              "pos": "LW",
-              "athleteId": "3069342",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069342.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-29",
-              "date": "2026-09-29T17:03Z",
-              "note": "ir-nr"
-            },
-            {
-              "name": "Thatcher Demko",
-              "pos": "G",
-              "athleteId": "3096217",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3096217.png",
-              "status": "Injured Reserve",
-              "type": "Hip",
-              "detail": "Surgery",
-              "returnDate": "2026-12-21",
-              "date": "2026-09-28T17:58Z",
-              "note": "Co-president of hockey operations Henrik Sedin said Monday that he hopes Demko (hip) will be ready to return before Christmas, Kevin Woodley of NHL.com reports."
-            }
-          ]
-        },
-        "rest": {
-          "Edmonton Oilers": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-06",
-            "gamesLast7": 3
-          },
-          "Vancouver Canucks": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-06",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": -155,
-              "away": 130
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -148,
-              "under": 124
-            },
-            "ml": {
-              "home": -375,
-              "away": 295
-            }
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": -125,
-              "away": 105
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -120,
-              "under": 100
-            },
-            "ml": {
-              "home": -310,
-              "away": 250
-            }
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 117,
-        "loggedFair": 0.5431,
-        "currentOdds": 130,
-        "currentBook": "DraftKings",
-        "currentFair": 0.4241,
-        "currentEdge": 0.0686,
-        "checkedAt": "2026-11-07T23:49:52.382Z",
-        "history": [
-          {
-            "at": "2026-11-06T20:17:51.147Z",
-            "odds": 117,
-            "fair": 0.4518
-          },
-          {
-            "at": "2026-11-07T00:14:27.529Z",
-            "odds": 117,
-            "fair": 0.4432
-          },
-          {
-            "at": "2026-11-07T18:31:30.088Z",
-            "odds": 130,
-            "fair": 0.4288
-          },
-          {
-            "at": "2026-11-07T23:49:52.382Z",
-            "odds": 130,
-            "fair": 0.4241
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 1.5,
-          "odds": 105,
-          "fair": 0.4675324675324675
-        },
-        "now": {
-          "line": 1.5,
-          "odds": 130,
-          "fair": 0.4170073589533933
-        },
-        "moved": "away",
-        "label": "DraftKings opened +1.5 (+105), now +1.5 (+130)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-06T20:17:51.147Z",
-          "line": 1.5,
-          "odds": 114,
-          "fair": 0.4486
-        },
-        {
-          "at": "2026-11-07T05:20:48.964Z",
-          "line": 1.5,
-          "odds": 120,
-          "fair": 0.4365
-        },
-        {
-          "at": "2026-11-07T18:31:30.088Z",
-          "line": 1.5,
-          "odds": 130,
-          "fair": 0.417
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 4,
-        "open": {
-          "line": 3.5,
-          "odds": 100
-        },
-        "now": {
-          "line": 1.5,
-          "odds": 134
-        },
-        "moved": "toward",
-        "label": "The market (4 books) opened +3.5 (+100), now +1.5 (+134)"
-      },
-      "sgo": {
-        "at": "2026-11-07T23:49:52.382Z",
-        "n": 4,
-        "best": {
-          "book": "DraftKings",
-          "odds": 130
-        },
-        "fair": 0.4199,
-        "vendorFair": 0.4274,
-        "open": {
-          "line": 3.5,
-          "odds": 100
-        },
-        "now": {
-          "line": 1.5,
-          "odds": 134
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-06T20:17:51.147Z",
-          "fair": 0.4515,
-          "vendorFair": 0.4525,
-          "line": 1.5,
-          "odds": 121,
-          "best": 117,
-          "n": 4
-        },
-        {
-          "at": "2026-11-07T00:14:27.529Z",
-          "fair": 0.4515,
-          "vendorFair": 0.4484,
-          "line": 1.5,
-          "odds": 123,
-          "best": 117,
-          "n": 4
-        },
-        {
-          "at": "2026-11-07T18:31:30.088Z",
-          "fair": 0.4237,
-          "vendorFair": 0.4348,
-          "line": 1.5,
-          "odds": 130,
-          "best": 130,
-          "n": 3
-        },
-        {
-          "at": "2026-11-07T19:18:55.835Z",
-          "fair": 0.4229,
-          "vendorFair": 0.4274,
-          "line": 1.5,
-          "odds": 134,
-          "best": 130,
-          "n": 4
-        },
-        {
-          "at": "2026-11-07T23:32:48.799Z",
-          "fair": 0.4199,
-          "vendorFair": 0.4274,
-          "line": 1.5,
-          "odds": 134,
-          "best": 130,
-          "n": 4
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Loss",
-      "units": -1,
-      "score": {
-        "home": 4,
-        "away": 2
-      },
-      "loggedAt": "2026-11-06T20:17:51.147Z",
-      "valueTo": 112,
-      "bar": 0.0706,
-      "past": 0.0117,
-      "barParts": {
-        "error": 0.0706,
-        "units": 0.45,
-        "unit": "goals",
-        "gp": 17,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-07T23:49:52.382Z",
-        "odds": 130,
-        "book": "DraftKings",
-        "modelProb": 0.5034,
-        "edge": 0.0686,
-        "bar": 0.072
-      },
-      "standing": "below",
       "availability": null
     },
     {
@@ -3532,11 +3094,14 @@ window.PICKS_DATA = {
           "n": 7
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.77,
+      "score": {
+        "home": 4,
+        "away": 1
+      },
       "loggedAt": "2026-11-07T23:49:52.382Z",
       "valueTo": -147,
       "bar": 0.0701,
