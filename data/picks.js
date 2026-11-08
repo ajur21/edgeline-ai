@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-08T14:06:54.761Z",
-  "trackedAt": "2026-11-08T19:26:48.209Z",
+  "generatedAt": "2026-11-08T20:36:00.800Z",
   "playOfDay": {
     "id": "7fda7dbcff-h2h-Boston-Bruins",
     "sport": "NHL",
@@ -509,7 +508,7 @@ window.PICKS_DATA = {
         "Caesars": -650,
         "ESPN BET": -750
       },
-      "pricesAt": "2026-11-08T19:26:48.209Z",
+      "pricesAt": "2026-11-08T20:36:00.800Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.9008,
@@ -573,7 +572,8 @@ window.PICKS_DATA = {
         ],
         "risks": [
           "Minnesota Timberwolves without Anthony Edwards (G) (-1.9).",
-          "Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable."
+          "Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable.",
+          "At current prices our edge is 5.5 points, under its bar of 5.6 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 82.0% (-1.3 points against the best price). For reference only.",
@@ -604,18 +604,6 @@ window.PICKS_DATA = {
         "injuries": {
           "Minnesota Timberwolves": [
             {
-              "name": "Joan Beringer",
-              "pos": "F",
-              "athleteId": "5279133",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5279133.png",
-              "status": "Day-To-Day",
-              "type": "Fracture",
-              "detail": "",
-              "returnDate": "2026-11-08",
-              "date": "2026-11-07T23:10Z",
-              "note": "Beringer (nose) is questionable for Sunday's game against the Jazz."
-            },
-            {
               "name": "Anthony Edwards",
               "pos": "G",
               "athleteId": "4594268",
@@ -641,6 +629,18 @@ window.PICKS_DATA = {
             }
           ],
           "Utah Jazz": [
+            {
+              "name": "Keyonte George",
+              "pos": "G",
+              "athleteId": "4433627",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4433627.png",
+              "status": "Day-To-Day",
+              "type": "Illness",
+              "detail": "",
+              "returnDate": "2026-11-08",
+              "date": "2026-11-08T16:20Z",
+              "note": "George (illness) has been downgraded to questionable for Sunday's game against Minnesota."
+            },
             {
               "name": "Lauri Markkanen",
               "pos": "F",
@@ -733,7 +733,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -500,
+        "loggedFair": 0.9008,
+        "currentOdds": -625,
+        "currentBook": "BetRivers",
+        "currentFair": 0.8268,
+        "currentEdge": 0.055,
+        "checkedAt": "2026-11-08T20:36:00.800Z",
+        "history": [
+          {
+            "at": "2026-11-08T14:06:54.761Z",
+            "odds": -500,
+            "fair": 0.8204
+          },
+          {
+            "at": "2026-11-08T20:36:00.800Z",
+            "odds": -625,
+            "fair": 0.8268
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -778,7 +798,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened -160, now -487"
       },
       "sgo": {
-        "at": "2026-11-08T19:26:48.209Z",
+        "at": "2026-11-08T20:36:00.800Z",
         "n": 8,
         "best": {
           "book": "PointsBet",
@@ -840,8 +860,15 @@ window.PICKS_DATA = {
         "gp": 9,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-08T20:36:00.800Z",
+        "odds": -625,
+        "book": "BetRivers",
+        "modelProb": 0.9171,
+        "edge": 0.055,
+        "bar": 0.056
+      },
+      "standing": "below",
       "availability": null
     },
     {
@@ -871,9 +898,9 @@ window.PICKS_DATA = {
         "Unibet": -109,
         "ESPN BET": 120,
         "Bovada": 125,
-        "PointsBet": 120
+        "PointsBet": 130
       },
-      "pricesAt": "2026-11-08T19:26:48.209Z",
+      "pricesAt": "2026-11-08T20:36:00.800Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.4917,
@@ -925,8 +952,8 @@ window.PICKS_DATA = {
         "price": "Our probability at 6.5 is 49.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.5). FanDuel offers +122, which implies only 45.0%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 44.9%.",
         "support": [
           "Combined scoring 7.5 a game in Anaheim Ducks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).",
-          "A better price is now available: +125 at BetOnline.ag.",
-          "A better price is available now: +124 at DraftKings.",
+          "A better price is now available: +124 at DraftKings.",
+          "A better price is available now: +130 at PointsBet.",
           "Scorers out: A.J. Greer (LW), upper body; Troy Terry (RW), hip; Ian Moore (D), lower body and 5 more. Fewer healthy scorers leans under.",
           "Pittsburgh Penguins on a back-to-back; tired legs lean under."
         ],
@@ -986,7 +1013,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Hip",
               "detail": "Surgery",
-              "returnDate": "2026-11-08",
+              "returnDate": "2026-11-14",
               "date": "2026-10-31T19:55Z",
               "note": "Although Terry's (hip) return doesn't appear to be imminent, he is getting close to playing, Derek Lee of The Hockey News reports Saturday."
             },
@@ -998,7 +1025,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Lower Body",
               "detail": "Not Specified",
-              "returnDate": "2026-11-08",
+              "returnDate": "2026-11-15",
               "date": "2026-10-16T18:17Z",
               "note": "Head coach Joel Quenneville said Friday that Moore (lower body) is still \"a ways from skating,\" Patrick Present of The Hockey News reports."
             },
@@ -1123,11 +1150,11 @@ window.PICKS_DATA = {
       "movement": {
         "loggedOdds": 122,
         "loggedFair": 0.4917,
-        "currentOdds": 125,
-        "currentBook": "BetOnline.ag",
-        "currentFair": 0.4293,
-        "currentEdge": 0.0446,
-        "checkedAt": "2026-11-08T14:06:54.761Z",
+        "currentOdds": 124,
+        "currentBook": "DraftKings",
+        "currentFair": 0.4294,
+        "currentEdge": 0.0426,
+        "checkedAt": "2026-11-08T20:36:00.800Z",
         "history": [
           {
             "at": "2026-11-07T18:31:30.088Z",
@@ -1143,6 +1170,11 @@ window.PICKS_DATA = {
             "at": "2026-11-08T14:06:54.761Z",
             "odds": 125,
             "fair": 0.4293
+          },
+          {
+            "at": "2026-11-08T20:36:00.800Z",
+            "odds": 124,
+            "fair": 0.4294
           }
         ]
       },
@@ -1190,13 +1222,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 7.5 (-141), now 7 (-111)"
       },
       "sgo": {
-        "at": "2026-11-08T19:26:48.209Z",
+        "at": "2026-11-08T20:36:00.800Z",
         "n": 5,
         "best": {
-          "book": "DraftKings",
-          "odds": 124
+          "book": "PointsBet",
+          "odds": 130
         },
-        "fair": 0.4446,
+        "fair": 0.4413,
         "vendorFair": 0.5261,
         "open": {
           "line": 7.5,
@@ -1252,6 +1284,15 @@ window.PICKS_DATA = {
           "odds": -111,
           "best": 124,
           "n": 5
+        },
+        {
+          "at": "2026-11-08T20:36:00.800Z",
+          "fair": 0.4413,
+          "vendorFair": 0.5261,
+          "line": 7,
+          "odds": -111,
+          "best": 130,
+          "n": 5
         }
       ],
       "status": "pending",
@@ -1271,11 +1312,11 @@ window.PICKS_DATA = {
         "floor": 0.03
       },
       "now": {
-        "at": "2026-11-08T14:06:54.761Z",
-        "odds": 125,
-        "book": "BetOnline.ag",
+        "at": "2026-11-08T20:36:00.800Z",
+        "odds": 124,
+        "book": "DraftKings",
         "modelProb": 0.489,
-        "edge": 0.0446,
+        "edge": 0.0426,
         "bar": 0.03
       },
       "standing": "clears",
@@ -1304,7 +1345,7 @@ window.PICKS_DATA = {
         "DraftKings": -122,
         "BetOnline.ag": -120,
         "BetRivers": -122,
-        "FanDuel": -124,
+        "FanDuel": -122,
         "BetMGM": -120,
         "theScore Bet": -120,
         "Bovada": -117,
@@ -1313,7 +1354,7 @@ window.PICKS_DATA = {
         "ESPN BET": -120,
         "PointsBet": -125
       },
-      "pricesAt": "2026-11-08T19:26:48.209Z",
+      "pricesAt": "2026-11-08T20:36:00.800Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.577,
@@ -1365,17 +1406,18 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4).",
           "Projected total 6.3 against 5.5.",
+          "A better price is now available: -117 at Bovada.",
           "A better price is available now: -117 at Bovada."
         ],
         "risks": [
-          "Scorers out: Jonathan Huberdeau (LW), hip; Connor Zary (C), knee; Samuel Honzek (LW), lower body and 2 more. Fewer healthy scorers leans under."
+          "Scorers out: Brennan Othmann (LW), upper body; Kevin Bahl (D), achilles; Jonathan Huberdeau (LW), hip and 4 more. Fewer healthy scorers leans under."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-2.8 points against the best price). For reference only.",
           "Market: DraftKings opened 5.5 (-125), now 5.5 (-122), moving against this side since the open.",
-          "Market: The market (8 books) opened 5.5 (+105), now 6 (+115), the consensus moving toward this side since the open.",
+          "Market: The market (8 books) opened 5.5 (+105), now 6 (+114), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Flames Dustin Wolf · Flyers Dan Vladar.",
+          "Probable pitchers: Flames Devin Cooley · Flyers Dan Vladar.",
           "Records: Philadelphia Flyers 4-10-4 · Calgary Flames 7-9-1 · Scotiabank Saddledome, Calgary."
         ],
         "verdict": "The game data lines up behind this side at this price."
@@ -1397,34 +1439,34 @@ window.PICKS_DATA = {
           }
         },
         "probables": {
-          "Calgary Flames": "Dustin Wolf",
+          "Calgary Flames": "Devin Cooley",
           "Philadelphia Flyers": "Dan Vladar"
         },
         "injuries": {
           "Calgary Flames": [
             {
-              "name": "Kevin Bahl",
-              "pos": "D",
-              "athleteId": "4378686",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
-              "status": "Day-To-Day",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-08",
-              "date": "2026-11-07T09:12Z",
-              "note": "day-to-day"
-            },
-            {
               "name": "Brennan Othmann",
               "pos": "LW",
               "athleteId": "4874733",
               "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874733.png",
-              "status": "Day-To-Day",
+              "status": "Out",
               "type": "Upper Body",
               "detail": "",
-              "returnDate": "2026-11-08",
-              "date": "2026-11-07T09:12Z",
-              "note": "day-to-day"
+              "returnDate": "2026-11-11",
+              "date": "2026-11-08T18:04Z",
+              "note": "out"
+            },
+            {
+              "name": "Kevin Bahl",
+              "pos": "D",
+              "athleteId": "4378686",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
+              "status": "Injured Reserve",
+              "type": "Achilles",
+              "detail": "Surgery",
+              "returnDate": "2027-09-15",
+              "date": "2026-11-08T16:17Z",
+              "note": "Bahl will undergo surgery for a ruptured Achilles tendon and won't play again in the 2026-27 season, the Flames announced Sunday."
             },
             {
               "name": "Jonathan Huberdeau",
@@ -1544,7 +1586,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -120,
+        "loggedFair": 0.577,
+        "currentOdds": -117,
+        "currentBook": "Bovada",
+        "currentFair": 0.5125,
+        "currentEdge": 0.0378,
+        "checkedAt": "2026-11-08T20:36:00.800Z",
+        "history": [
+          {
+            "at": "2026-11-08T14:06:54.761Z",
+            "odds": -120,
+            "fair": 0.5171
+          },
+          {
+            "at": "2026-11-08T20:36:00.800Z",
+            "odds": -117,
+            "fair": 0.5125
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -1577,27 +1639,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6,
-          "odds": 115
+          "odds": 114
         },
         "moved": "toward",
-        "label": "The market (8 books) opened 5.5 (+105), now 6 (+115)"
+        "label": "The market (8 books) opened 5.5 (+105), now 6 (+114)"
       },
       "sgo": {
-        "at": "2026-11-08T19:26:48.209Z",
+        "at": "2026-11-08T20:36:00.800Z",
         "n": 8,
         "best": {
           "book": "Bovada",
           "odds": -117
         },
-        "fair": 0.5245,
-        "vendorFair": 0.4651,
+        "fair": 0.524,
+        "vendorFair": 0.4673,
         "open": {
           "line": 5.5,
           "odds": 105
         },
         "now": {
           "line": 6,
-          "odds": 115
+          "odds": 114
         }
       },
       "sgoHistory": [
@@ -1627,6 +1689,15 @@ window.PICKS_DATA = {
           "odds": 115,
           "best": -117,
           "n": 8
+        },
+        {
+          "at": "2026-11-08T20:36:00.800Z",
+          "fair": 0.524,
+          "vendorFair": 0.4673,
+          "line": 6,
+          "odds": 114,
+          "best": -117,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -1645,8 +1716,15 @@ window.PICKS_DATA = {
         "gp": 17,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-08T20:36:00.800Z",
+        "odds": -117,
+        "book": "Bovada",
+        "modelProb": 0.577,
+        "edge": 0.0378,
+        "bar": 0.03
+      },
+      "standing": "clears",
       "availability": null
     },
     {

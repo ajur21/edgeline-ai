@@ -368,7 +368,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-08@edgeline
-DTSTAMP:20261108T192648Z
+DTSTAMP:20261108T203600Z
 DTSTART:20261108T163000Z
 DTEND:20261109T041000Z
 SUMMARY:Parlay lean of the day: 3 legs +617 at Bovada
@@ -379,7 +379,7 @@ DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
  y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261108T192648Z
+LAST-MODIFIED:20261108T203600Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -444,7 +444,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261108T192648Z
+DTSTAMP:20261108T203600Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
 SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Low
@@ -465,15 +465,17 @@ DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
  le.\n- Projected margin +16.2 for Minnesota Timberwolves.\nWhat could go w
  rong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.9).\n- Min
  nesota Timberwolves have Joan Beringer (F) listed day-to-day or questionab
- le.\nVerdict: The game data lines up behind this side at this price.\nPric
- es: BetRivers -500\, BetOnline.ag -580\, Bovada -625\, PointsBet -625\, Fa
- nDuel -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-
- ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
+ le.\n- At current prices our edge is 5.5 points\, under its bar of 5.6 poi
+ nts\; the pick stays posted and is graded at the price it was posted at.\n
+ Verdict: The game data lines up behind this side at this price.\nPrices: B
+ etRivers -500\, BetOnline.ag -580\, Bovada -625\, PointsBet -625\, FanDuel
+  -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pi
+ cks.html#758ca94b2a-h2h-Minnesota-Timberwolves
 LOCATION:Target Center\, Minneapolis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesot
  a-Timberwolves
 CATEGORIES:NBA
-LAST-MODIFIED:20261108T192648Z
+LAST-MODIFIED:20261108T203600Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -484,7 +486,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:26c46faca6-totals-Over@edgeline
-DTSTAMP:20261108T192648Z
+DTSTAMP:20261108T203600Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
 SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
@@ -499,17 +501,18 @@ DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
  oks' prices\; for reference the market makes it 51.7%.\nWhat supports it:\
  n- Combined scoring 6 a game in Calgary Flames's games\, 5.6 in Philadelph
  ia Flyers's (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A
-  better price is available now: -117 at Bovada.\nWhat could go wrong:\n- S
- corers out: Jonathan Huberdeau (LW)\, hip\; Connor Zary (C)\, knee\; Samue
- l Honzek (LW)\, lower body and 2 more. Fewer healthy scorers leans under.\
- nVerdict: The game data lines up behind this side at this price.\nPrices: 
- Bovada -117\, BetOnline.ag -120\, BetMGM -120\, theScore Bet -120\, ESPN B
- ET -120 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
- picks.html#26c46faca6-totals-Over
+  better price is now available: -117 at Bovada.\n- A better price is avail
+ able now: -117 at Bovada.\nWhat could go wrong:\n- Scorers out: Brennan Ot
+ hmann (LW)\, upper body\; Kevin Bahl (D)\, achilles\; Jonathan Huberdeau (
+ LW)\, hip and 4 more. Fewer healthy scorers leans under.\nVerdict: The gam
+ e data lines up behind this side at this price.\nPrices: Bovada -117\, Bet
+ Online.ag -120\, BetMGM -120\, theScore Bet -120\, ESPN BET -120 and 6 mor
+ e.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#26c46f
+ aca6-totals-Over
 LOCATION:Scotiabank Saddledome\, Calgary
 URL:https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T192648Z
+LAST-MODIFIED:20261108T203600Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -520,7 +523,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:41a3f4e922-totals-Under@edgeline
-DTSTAMP:20261108T192648Z
+DTSTAMP:20261108T203600Z
 DTSTART:20261109T011000Z
 DTEND:20261109T041000Z
 SUMMARY:Under 6.5 +122 at FanDuel · Low
@@ -534,19 +537,19 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10
  re is smaller). It clears it by 1.1. Not graded against other books' price
  s\; for reference the market makes it 44.9%.\nWhat supports it:\n- Combine
  d scoring 7.5 a game in Anaheim Ducks's games\, 6.8 in Pittsburgh Penguins
- 's (league average 6.4).\n- A better price is now available: +125 at BetOn
- line.ag.\n- A better price is available now: +124 at DraftKings.\n- Scorer
- s out: A.J. Greer (LW)\, upper body\; Troy Terry (RW)\, hip\; Ian Moore (D
- )\, lower body and 5 more. Fewer healthy scorers leans under.\n- Pittsburg
- h Penguins on a back-to-back\; tired legs lean under.\nWhat could go wrong
- :\n- Projected total 6.53 against 6.5.\nVerdict: The game data lines up be
- hind this side at this price.\nPrices: Caesars +125\, Bovada +125\, DraftK
- ings +124\, FanDuel +122\, ESPN BET +120 and 3 more.\nFull breakdown: http
- s://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
+ 's (league average 6.4).\n- A better price is now available: +124 at Draft
+ Kings.\n- A better price is available now: +130 at PointsBet.\n- Scorers o
+ ut: A.J. Greer (LW)\, upper body\; Troy Terry (RW)\, hip\; Ian Moore (D)\,
+  lower body and 5 more. Fewer healthy scorers leans under.\n- Pittsburgh P
+ enguins on a back-to-back\; tired legs lean under.\nWhat could go wrong:\n
+ - Projected total 6.53 against 6.5.\nVerdict: The game data lines up behin
+ d this side at this price.\nPrices: PointsBet +130\, Caesars +125\, Bovada
+  +125\, DraftKings +124\, FanDuel +122 and 3 more.\nFull breakdown: https:
+ //ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T192648Z
+LAST-MODIFIED:20261108T203600Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
