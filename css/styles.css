@@ -1431,3 +1431,149 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 .game-picks .live-pill { margin-left: 0; }
 .game-pick-text .mono { font-weight: 600; }
 .game-closed-note { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+/* ==========================================================================
+   Browse by sport and game (2026-11-08, owner: "if someone wants a specific
+   team or game's picks they should be able to find it easily", after
+   covers.com/picks). js/browse.js: league tabs on the picks page, a sport's
+   games by start time, and game.html. Tokens only; the look stays locked.
+   ========================================================================== */
+/* the tabs: the segmented control, as links (the tab lives in the address); not sticky, the header and the strip already are */
+.browse-tabs { max-width: 100%; overflow-x: auto; padding-bottom: 8px; margin: 4px 0 20px; }
+.browse-seg { vertical-align: top; }
+.browse-seg a { display: inline-flex; align-items: baseline; gap: 8px; padding: 7px 12px; font-size: 0.85rem; font-weight: 600; color: var(--text-2); white-space: nowrap; }
+.browse-seg a + a { border-left: 1px solid var(--border-strong); }
+.browse-seg a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.browse-seg a[aria-current="true"] { background: var(--accent-fill); color: var(--on-accent); }
+.browse-seg a[aria-current="true"]:hover { background: var(--accent-fill-hover); }
+.browse-seg a:focus-visible { outline-offset: -2px; }
+.browse-next { font-size: 0.75rem; font-weight: 500; opacity: 0.85; }
+/* a sport's panel: its leans, then every game */
+.browse-panel { display: grid; gap: 16px; }
+.browse-panel .browse-lead { margin: 0; }
+.browse-games { margin-top: 24px; display: grid; gap: 12px; }
+.browse-games-title { margin: 0; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.015em; }
+.browse-how { margin: 0; font-size: 0.92rem; max-width: 72ch; }
+.browse-span { color: var(--text); font-weight: 600; }
+.browse-note { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.browse-days { display: grid; gap: 16px; margin-top: 4px; }
+.browse-day { display: grid; gap: 8px; }
+.browse-day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.browse-count { margin-left: 8px; font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+.browse-rows { padding: 4px 8px; }
+.browse-time { margin: 0; padding: 12px 12px 4px; font-size: 0.85rem; font-weight: 600; color: var(--text); border-top: 1px dashed var(--border-strong); font-variant-numeric: tabular-nums; }
+.browse-rows > .browse-time:first-child { border-top: 0; }
+.browse-game { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) minmax(8rem, auto); grid-template-areas: "when teams status"; gap: 8px 16px; align-items: center; padding: 12px; border-radius: var(--radius); color: var(--text); }
+.browse-game + .browse-game { box-shadow: 0 -1px 0 var(--border); }
+a.browse-game:hover { background: var(--surface-2); text-decoration: none; }
+a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.bg-when { grid-area: when; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.bg-score { font-weight: 600; color: var(--text); }
+.bg-teams { grid-area: teams; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-width: 0; }
+.bg-team { display: inline-flex; align-items: center; gap: 8px; min-width: 0; font-weight: 600; }
+.bg-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bg-abbr { display: none; }
+.bg-rank { font-size: 0.75rem; font-weight: 500; color: var(--muted); margin-right: 2px; }
+.bg-at { font-size: 0.8rem; color: var(--muted); }
+.bg-status { grid-area: status; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 8px; font-size: 0.85rem; text-align: right; }
+.bg-pick { color: var(--text); font-weight: 500; }
+.bg-none { color: var(--muted); }
+.bg-status .live-pill { margin-left: 0; }
+@media (max-width: 720px) {
+  .browse-rows { padding: 2px 4px; }
+  .browse-game { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "teams teams" "when status"; padding: 12px 8px; }
+  .bg-name { display: none; }
+  .bg-abbr { display: inline; }
+  .bg-status { justify-content: flex-end; }
+  .bg-pick { display: none; }
+}
+/* college football shares the football hue until it has its own (the NFL's colours, so the chip keeps 4.5:1) */
+.badge-sport[data-sport="NCAAF"] { background: var(--sport-nfl); color: var(--on-sport-nfl); }
+/* a lean card's event line opens the game page */
+.pick-event a.pick-game-link { color: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.pick-event a.pick-game-link:hover { color: var(--accent-strong); text-decoration-color: currentColor; }
+/* the Games page title links to the game page too */
+.game-title a { color: inherit; }
+.game-title a:hover { color: var(--accent-strong); }
+
+/* game.html */
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0 0 12px; padding: 0; font-size: 0.88rem; color: var(--text-2); }
+.crumbs li + li::before { content: "›"; margin-right: 8px; color: var(--muted); }
+.crumbs a { color: var(--accent-strong); }
+.crumbs [aria-current="page"] { color: var(--text); font-weight: 600; }
+.game-top { scroll-margin-top: calc(var(--header-h, 0px) + 56px); }
+.game-head { margin-bottom: 16px; }
+.game-page-title { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
+.meta.game-sub { display: flex; flex-wrap: wrap; align-items: center; row-gap: 4px; font-size: 0.92rem; }
+.game-board { display: grid; gap: 2px; max-width: 640px; padding: 16px 20px; }
+.game-board.is-live { border-color: var(--accent-2); }
+.gb-team { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 8px 0; }
+.gb-team + .gb-team { border-top: 1px solid var(--border); }
+.gb-team.is-lean .team-logo { box-shadow: 0 0 0 2px var(--team, var(--accent)), 0 0 14px color-mix(in srgb, var(--team, var(--accent)) 45%, transparent); }
+.gb-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; min-width: 0; }
+.gb-where { display: block; font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.gb-score { font-size: 1.6rem; font-weight: 600; color: var(--text); }
+.gb-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--text-2); }
+.gb-status .live-pill { margin-left: 0; }
+.gb-lean { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 8px; padding: 8px 12px; border-radius: var(--radius); background: var(--accent-3-wash); color: var(--text); font-size: 0.92rem; }
+.gb-lean:hover { text-decoration: none; box-shadow: inset 0 0 0 1px var(--accent-3); }
+.gb-lean-k { font-size: 0.82rem; font-weight: 600; color: var(--accent-3-text); }
+.gb-lean .mono { font-weight: 600; }
+.gb-updated { margin: 8px 0 0; font-size: 0.78rem; color: var(--muted); }
+.game-sec { margin-top: 40px; display: grid; gap: 12px; scroll-margin-top: calc(var(--header-h, 0px) + 56px); }
+.game-sec > h2 { margin: 0; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
+.game-sec .how-to { margin: 0; font-size: 0.92rem; max-width: 72ch; }
+.game-lean { display: grid; grid-template-columns: minmax(0, 420px); gap: 16px; }
+.game-none { margin: 0; max-width: 72ch; color: var(--text-2); }
+.game-none strong { color: var(--text); }
+.game-result { display: grid; gap: 8px; }
+.game-result-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0; font-size: 1rem; }
+.game-result-line strong { font-family: var(--font-display); font-size: 1.1rem; }
+.meta.game-result-meta { font-size: 0.9rem; color: var(--text-2); }
+.game-result-note { margin: 0; font-size: 0.9rem; color: var(--text-2); max-width: 72ch; }
+/* every side we priced: the market board's table, restacked into cards on a phone */
+.sides-table table.data th, .sides-table table.data td { padding: 8px 12px; font-size: 0.88rem; }
+.sides-table tr.is-lean td { background: color-mix(in srgb, var(--accent-3) 12%, transparent); }
+.sides-table tr.no-model td { color: var(--muted); }
+.sides-lean { margin-left: 8px; vertical-align: 1px; }
+.sides-bar { display: block; font-size: 0.72rem; color: var(--muted); }
+.sides-table .rank { padding: 1px 8px; font-size: 0.72rem; }
+@media (max-width: 720px) {
+  .sides-table { overflow: visible; }
+  .sides-table table.data, .sides-table tbody, .sides-table tr, .sides-table td { display: block; }
+  .sides-table thead { display: none; }
+  .sides-table table.data { background: transparent; border: 0; }
+  .sides-table tr { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; padding: 12px 12px; margin-bottom: 8px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); }
+  .sides-table tr.is-lean { background: color-mix(in srgb, var(--accent-3) 14%, var(--surface-2)); }
+  .sides-table tr.is-lean td { background: transparent; }
+  .sides-table table.data td { padding: 0; border: 0; white-space: normal; text-align: left; }
+  .sides-table td[data-label="#"] { grid-column: 1; grid-row: 1; }
+  .sides-table td[data-label="Market"] { grid-column: 2; grid-row: 1; justify-self: end; color: var(--text-2); }
+  .sides-table td[data-label="Side"] { grid-column: 1 / -1; margin: 4px 0; font-size: 1rem; }
+  .sides-bar { display: inline; margin-left: 8px; }
+  .sides-table td[data-label]:not([data-label="#"]):not([data-label="Market"]):not([data-label="Side"])::before { content: attr(data-label); display: inline-block; min-width: 4.5em; margin-right: 8px; font-family: var(--font-body); font-size: 0.72rem; color: var(--muted); }
+}
+.why-h { margin: 0 0 8px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 0; color: var(--text-2); display: flex; align-items: center; gap: 8px; }
+#why .bd-block { margin-top: 0; max-width: 72ch; }
+#why .bd-grid { margin-top: 4px; }
+.meta.inj-meta { display: inline-flex; margin-left: 8px; font-size: 0.8rem; color: var(--muted); }
+.why-more { margin: 0; }
+.game-props-team { display: grid; gap: 8px; }
+.game-props { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 16px; }
+.game-prop { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "face who" "face stats"; column-gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.game-prop > .face-img { grid-area: face; }
+.game-prop-who { grid-area: who; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; min-width: 0; font-weight: 600; }
+.game-prop-who a { color: var(--text); }
+.game-prop-who a:hover { color: var(--accent-strong); }
+.meta.game-prop-sub { font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+.meta.game-prop-stats { grid-area: stats; display: flex; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-2); }
+.game-missing { display: grid; gap: 12px; justify-items: start; max-width: 640px; }
+.game-missing p { margin: 0; color: var(--text-2); }
+.game-missing-links { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+@media (max-width: 600px) {
+  .game-board { padding: 12px 16px; }
+  .gb-name { font-size: 1.02rem; }
+  .gb-score { font-size: 1.35rem; }
+  .game-lean { grid-template-columns: minmax(0, 1fr); }
+}
+.game-props-more > summary { cursor: pointer; margin-top: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-2); }

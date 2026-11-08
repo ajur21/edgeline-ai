@@ -354,6 +354,8 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
 
   // never empty: with no picks at all, home, picks and digest fall back to the closest markets
   const ectx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  /* the board here is real (sample false), so js/browse.js looks up the weekly sports it lacks; ESPN answers with no games, headless */
+  await ectx.route('**/site.api.espn.com/**', route => route.fulfill({ contentType: 'application/json', body: '{"events":[]}' }));
   const ep = await ectx.newPage(); await pinClock(ep); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
   await ep.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };' }));
   await ep.goto(url('index.html')); await ep.waitForTimeout(500);
@@ -483,7 +485,7 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   await sp2.click('[data-search-open]'); await sp2.waitForTimeout(300);
   check('search: the header button opens the dialog with the box focused and the sports and picks suggested', (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && await sp2.evaluate(() => document.activeElement && document.activeElement.classList.contains('search-input')) && /Sports on the board/.test(await sp2.textContent('.search-list')) && /Picks, likeliest first/.test(await sp2.textContent('.search-list')));
   await sp2.keyboard.type('bos'); await sp2.waitForTimeout(200);
-  check('search: a team query lists games first, then teams and picks, each linked where it can be read or bet', (await sp2.locator('.search-group-title').first().textContent()) === 'Games' && (await sp2.locator('.search-option[href^="games.html#g-"]').count()) >= 2 && (await sp2.locator('.search-option[href*="games.html?team="]').count()) >= 2 && (await sp2.locator('.search-option[href^="picks.html#"]').count()) >= 1, (await sp2.locator('.search-group-title').allTextContents()).join(', '));
+  check('search: a team query lists games first, then teams and picks, each linked where it can be read or bet', (await sp2.locator('.search-group-title').first().textContent()) === 'Games' && (await sp2.locator('.search-option[href^="game.html?id="]').count()) >= 2 && (await sp2.locator('.search-option[href*="games.html?team="]').count()) >= 2 && (await sp2.locator('.search-option[href^="picks.html#"]').count()) >= 1, (await sp2.locator('.search-group-title').allTextContents()).join(', '));
   await sp2.keyboard.press('Escape'); await sp2.waitForTimeout(150);
   check('search: Esc closes it and focus returns to the button', (await sp2.locator('dialog.search-dialog[open]').count()) === 0 && await sp2.evaluate(() => document.activeElement && document.activeElement.hasAttribute('data-search-open')));
   await sp2.keyboard.press('Control+k'); await sp2.waitForTimeout(200);
@@ -494,15 +496,121 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   const hadMarket = await sp2.evaluate(() => !!window.MARKET_DATA);
   await sp2.locator('body').click({ position: { x: 4, y: 400 } }); await sp2.keyboard.press('/'); await sp2.waitForTimeout(900);
   await sp2.keyboard.type('rangers'); await sp2.waitForTimeout(200);
-  check('search: "/" opens it on a page without the board, which loads on demand', !hadMarket && (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && (await sp2.locator('.search-option[href^="games.html#g-"]').count()) >= 1);
+  check('search: "/" opens it on a page without the board, which loads on demand', !hadMarket && (await sp2.locator('dialog.search-dialog[open]').count()) === 1 && (await sp2.locator('.search-option[href^="game.html?id="]').count()) >= 1);
   await sp2.keyboard.press('ArrowDown'); await sp2.keyboard.press('Enter'); await sp2.waitForTimeout(700);
-  check('search: arrow and Enter open the result, and the game is brought into view', /games\.html#g-/.test(sp2.url()) && (await sp2.locator('.game-card.highlight').count()) === 1, sp2.url());
+  check('search: arrow and Enter open the result, a game on its own page (2026-11-08)', /game\.html\?id=g\d/.test(sp2.url()) && (await sp2.locator('#game-page .game-board').count()) === 1 && /Rangers/.test(await sp2.textContent('#game-page h1')), sp2.url());
   await sp2.click('[data-search-open]'); await sp2.waitForTimeout(300); await sp2.keyboard.type('paul geo'); await sp2.waitForTimeout(200);
   const playerHref = await sp2.locator('.search-option[href^="props.html?q="]').first().getAttribute('href');
   await sp2.keyboard.press('Escape'); await sp2.goto(url(playerHref)); await sp2.waitForTimeout(500);
   check('search: a player opens the props page with the search filled in', playerHref === 'props.html?q=Paul%20George' && (await sp2.inputValue('#p-search')) === 'Paul George');
   check('search and games: no page errors', sErr.length === 0, sErr.join(' | '));
   await sctx.close();
+
+  // browse by sport and game (js/browse.js, 2026-11-08, owner: find a team's or a game's leans easily, after covers.com/picks):
+  // league tabs on the picks page in a fixed order, a sport's leans then its games by start time, game.html, and the links in
+  const BF = require('./fixtures/browse-fixtures.js');
+  const sampleSrc = f => fs.readFileSync(path.join(root, 'scripts/fixtures', f), 'utf8');
+  const brErr = []; const brCtx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const br = await brCtx.newPage(); await pinClock(br); br.on('pageerror', e => brErr.push(e.message)); br.on('console', m => { if (m.type() === 'error') brErr.push(m.text()); });
+  await br.goto(url('picks.html')); await br.waitForTimeout(500);
+  const tabOrder = await br.evaluate(() => [...document.querySelectorAll('.browse-tabs a')].map(a => a.getAttribute('data-sport')));
+  const tabCounts = await br.evaluate(() => Object.fromEntries([...document.querySelectorAll('.browse-tabs a')].map(a => [a.getAttribute('data-sport') || 'All', (a.querySelector('.seg-count') || {}).textContent])));
+  check('browse: league tabs sit above the leans list in the fixed order (NFL, NBA, NHL, Soccer, MLB), not by game count, each with its count of games from today on', tabOrder.join(',') === ',NFL,NBA,NHL,Soccer,MLB' && tabCounts.All === '14' && tabCounts.NFL === '3' && tabCounts.NBA === '3' && tabCounts.NHL === '2' && tabCounts.Soccer === '4' && tabCounts.MLB === '2', JSON.stringify(tabCounts));
+  check('browse: "All" is the default and the ranked list is untouched', (await br.getAttribute('.browse-tabs a[data-sport=""]', 'aria-current')) === 'true' && (await br.locator('#browse-panel').isHidden()) && (await br.locator('.picks-grid article').count()) === 12 && !(/sport=/.test(br.url())));
+  check('browse: the tab row is not a second sticky bar', await br.evaluate(() => getComputedStyle(document.querySelector('.browse-tabs')).position === 'static' && getComputedStyle(document.querySelector('.browse-seg')).position === 'static'));
+  check('browse: every lean card’s event line links to its game page', (await br.getAttribute('.picks-grid article[data-id="p2"] a.pick-game-link', 'href')) === 'game.html?id=g0' && (await br.locator('.picks-grid article a.pick-game-link').count()) === 12);
+  await br.click('.browse-tabs a[data-sport="NFL"]'); await br.waitForTimeout(250);
+  const nflPanel = await br.evaluate(() => { const E = window.EdgeLine, ids = [...document.querySelectorAll('#browse-panel .picks-grid article')].map(a => a.getAttribute('data-id')); const want = E.sortByProb(E.openOnly(window.PICKS_DATA.picks)).filter(p => p.sport === 'NFL').map(p => p.id); return { ids: ids, want: want, ranks: [...document.querySelectorAll('#browse-panel .picks-grid article .rank')].map(r => r.textContent) }; });
+  check('browse: a sport tab lands in the address and shows that sport’s leans, likeliest first, with the card renderer and rank chips', /picks\.html\?sport=NFL$/.test(br.url()) && (await br.getAttribute('.browse-tabs a[data-sport="NFL"]', 'aria-current')) === 'true' && nflPanel.ids.length === 3 && nflPanel.ids.join() === nflPanel.want.join() && nflPanel.ranks[0] === '#1 Likeliest' && (await br.locator('#picks-host').isHidden()) && (await br.textContent('#all-picks')) === 'NFL leans, likeliest first', JSON.stringify(nflPanel));
+  const nflRows = await br.evaluate(() => [...document.querySelectorAll('#browse-panel .browse-game')].map(a => ({ href: a.getAttribute('href'), state: a.getAttribute('data-state'), lean: !!a.querySelector('.badge-pick'), text: a.textContent })));
+  check('browse: then every game of the sport, by day and start time, each with logos, the ET start, its lean and a link to its game page, under a line saying the list is a schedule', nflRows.length === 3 && nflRows.map(r => r.href).join() === 'game.html?id=g6,game.html?id=p12,game.html?id=g5' && nflRows.every(r => r.lean && /PM ET/.test(r.text)) && (await br.locator('#browse-panel .browse-game .team-logo').count()) === 6 && /start-time order/.test(await br.textContent('#browse-panel .browse-how')) && /likeliest first/.test(await br.textContent('#browse-panel .browse-how')), JSON.stringify(nflRows.map(r => r.href)));
+  await br.goBack(); await br.waitForTimeout(250);
+  check('browse: the back button returns to All and restores the list and its heading', !(/sport=/.test(br.url())) && (await br.locator('#browse-panel').isHidden()) && (await br.locator('#picks-host').isVisible()) && (await br.textContent('#all-picks')) === 'All picks, likeliest first' && (await br.getAttribute('.browse-tabs a[data-sport=""]', 'aria-current')) === 'true');
+  await br.goForward(); await br.waitForTimeout(250);
+  check('browse: and forward returns to the sport', /sport=NFL/.test(br.url()) && (await br.locator('#browse-panel').isVisible()) && (await br.locator('#browse-panel .browse-game').count()) === 3);
+  await br.goto(url('picks.html?sport=nhl')); await br.waitForTimeout(400);
+  check('browse: a shared ?sport= link opens on that tab (any case)', (await br.getAttribute('.browse-tabs a[data-sport="NHL"]', 'aria-current')) === 'true' && (await br.locator('#browse-panel .picks-grid article[data-sport="NHL"]').count()) === 2 && (await br.locator('#browse-panel .picks-grid article:not([data-sport="NHL"])').count()) === 0);
+  await br.goto(url('picks.html?sport=curling')); await br.waitForTimeout(300);
+  check('browse: an unknown sport falls back to All', (await br.getAttribute('.browse-tabs a[data-sport=""]', 'aria-current')) === 'true' && (await br.locator('#picks-host').isVisible()));
+  // the game page, on the sample board
+  await br.goto(url('game.html?id=g0')); await br.waitForTimeout(700);
+  const gpg = await br.evaluate(() => ({
+    crumbs: [...document.querySelectorAll('.crumbs a')].map(a => a.getAttribute('href')), here: (document.querySelector('.crumbs [aria-current="page"]') || {}).textContent, h1: document.querySelector('#game-page h1').textContent,
+    logos: document.querySelectorAll('.game-board .gb-team .team-logo').length, lean: [...document.querySelectorAll('#lean .card.pick')].map(c => c.getAttribute('data-id')),
+    sides: [...document.querySelectorAll('#sides tbody tr')].map(tr => ({ lean: tr.classList.contains('is-lean'), side: tr.querySelector('td[data-label="Side"] strong').textContent, p: parseFloat(tr.querySelector('td[data-label="To hit"]').textContent), e: parseFloat(tr.querySelector('td[data-label="Edge"]').textContent) })),
+    why: document.querySelectorAll('#why .bd-block').length, faces: document.querySelectorAll('#why .faces .face').length, props: document.querySelectorAll('#props .game-prop').length,
+    strip: [...document.querySelectorAll('.subnav a')].filter(a => !a.hidden).map(a => a.getAttribute('href')).join(' '), title: document.title }));
+  check('game page: a breadcrumb back to the leans and the sport’s tab, then both teams with logos and the ET start', gpg.crumbs.join() === 'picks.html,picks.html?sport=NBA' && gpg.here === 'BOS @ MIL' && gpg.h1 === 'Boston Celtics @ Milwaukee Bucks' && gpg.logos === 2 && /Tonight|Today/.test(await br.textContent('#game-page .game-sub')) && /PM ET/.test(await br.textContent('#game-page .game-sub')), JSON.stringify(gpg));
+  check('game page: our lean with the card renderer, then every side we priced, likeliest first within each edge tier, the lean alone styled as the lean', gpg.lean.join() === 'p2' && gpg.sides.length === 6 && gpg.sides.filter(s => s.lean).length === 1 && gpg.sides.find(s => s.lean).side === 'Over 226.5' && gpg.sides.every((s, i) => i === 0 || (gpg.sides[i - 1].e > 0) > (s.e > 0) || ((gpg.sides[i - 1].e > 0) === (s.e > 0) && gpg.sides[i - 1].p >= s.p)) && (await br.locator('#sides .badge-watch').count()) === 0, JSON.stringify(gpg.sides));
+  check('game page: why (the breakdown, the injury report and the names to know) and this game’s player props, matched by its two teams', gpg.why >= 3 && gpg.faces >= 2 && gpg.props >= 1 && /Paul George/.test(await br.textContent('#props')) && (await br.locator('#why [data-breakdown="p2"]').count()) === 1, JSON.stringify(gpg));
+  check('game page: its own On this page strip lists only the sections it has, and the title names the game', gpg.strip === '#game #lean #sides #why #props' && /^BOS @ MIL/.test(gpg.title), gpg.strip);
+  check('game page: it loads only the data files it needs (props and faces for an NBA game, no performance file before the game)', await br.evaluate(() => !!window.PROPS_DATA && !!window.FACES_DATA && !window.PERF_DATA));
+  await br.goto(url('game.html?id=p14')); await br.waitForTimeout(700);
+  check('game page: after the game ends, the result and grade lead, from the lean on the board', (await br.locator('#result').count()) === 1 && /Won/.test(await br.textContent('#result')) && (await br.locator('#result .badge-won').count()) === 1 && (await br.locator('.subnav a[href="#result"]').isVisible()) && (await br.evaluate(() => !!window.PERF_DATA)));
+  await br.goto(url('game.html?id=nope-123')); await br.waitForTimeout(500);
+  check('game page: an unknown or expired id gets a friendly way back, never an empty page', /not on the board/.test(await br.textContent('#game-page h1')) && (await br.locator('#game-page a[href="picks.html"]').count()) >= 1 && (await br.locator('#game-page a[href="games.html"]').count()) === 1 && (await br.locator('.subnav a:visible').count()) === 1 && (await br.textContent('#game-page')).length > 200);
+  await br.goto(url('game.html')); await br.waitForTimeout(400);
+  check('game page: no id at all is the same friendly page', /not on the board/.test(await br.textContent('#game-page h1')));
+  // the links in: the Games page and the search
+  await br.goto(url('games.html')); await br.waitForTimeout(500);
+  check('games page: every game card’s title links to its game page; the #g- anchors still work', await br.evaluate(() => [...document.querySelectorAll('.game-card')].every(c => { const a = c.querySelector('.game-title a'); return a && a.getAttribute('href') === 'game.html?id=' + c.id.slice(2); })) && (await br.locator('.game-card[id^="g-"]').count()) === 8);
+  await br.click('.game-card .game-title a'); await br.waitForTimeout(600);
+  check('games page: the title opens the game page', /game\.html\?id=g/.test(br.url()) && (await br.locator('#game-page .game-board').count()) === 1);
+  await br.click('[data-search-open]'); await br.waitForTimeout(300); await br.keyboard.type('denver'); await br.waitForTimeout(200);
+  check('search: a game result opens its game page; a team result stays on the Games page filter', (await br.locator('.search-option[href="game.html?id=g1"]').count()) === 1 && (await br.locator('.search-option[href^="games.html?team="]').count()) >= 1);
+  await br.keyboard.press('Escape');
+  check('browse: no page errors', brErr.length === 0, brErr.join(' | '));
+  await brCtx.close();
+
+  // a sport with games but no lean: one plain line, then its games
+  const beCtx = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const be = await beCtx.newPage(); await pinClock(be);
+  await be.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc('sample-picks.js'), 'window.PICKS_DATA.picks = window.PICKS_DATA.picks.filter(function (p) { return p.sport !== "NFL"; });') }));
+  await be.goto(url('picks.html?sport=NFL')); await be.waitForTimeout(500);
+  check('browse: a sport with games and no lean says so in one line, then lists its games', /No NFL leans today: no side cleared its bar\./.test(await be.textContent('#browse-panel .browse-lead')) && (await be.locator('#browse-panel .picks-grid').count()) === 0 && (await be.locator('#browse-panel .browse-game').count()) === 2 && (await be.locator('#browse-panel .bg-none').allTextContents()).every(t => t === 'No lean'));
+  await beCtx.close();
+
+  // ESPN's week (real data: the sample flag cleared, ESPN's scoreboard served from scripts/fixtures/browse-fixtures.js) and college football (a fixture row)
+  const bwErr = []; const bwCtx = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const bw = await bwCtx.newPage(); await pinClock(bw);
+  bw.on('pageerror', e => bwErr.push(e.message)); bw.on('console', m => { if (m.type() === 'error') bwErr.push(m.text()); });
+  let espnCalls = [];
+  await bwCtx.route('**/site.api.espn.com/**', route => { espnCalls.push(route.request().url()); return BF.espnRoute(route); });
+  await bwCtx.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc('sample-picks.js'), 'window.PICKS_DATA.sample = false; window.PICKS_DATA.picks.push(' + JSON.stringify(BF.cfbPick) + ');') }));
+  await bwCtx.route('**/data/market.js', route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc('sample-market.js'), 'window.MARKET_DATA.sample = false; Array.prototype.push.apply(window.MARKET_DATA.rows, ' + JSON.stringify(BF.cfbRows) + '); window.MARKET_DATA.sports.push("NCAAF");') }));
+  await bw.goto(url('picks.html')); await bw.waitForTimeout(500);
+  check('browse: college football takes its place after the NFL in the fixed order, labelled "College football"', (await bw.evaluate(() => [...document.querySelectorAll('.browse-tabs a')].map(a => a.getAttribute('data-sport')).join(','))) === ',NFL,NCAAF,NBA,NHL,Soccer,MLB' && /^College football/.test(await bw.textContent('.browse-tabs a[data-sport="NCAAF"]')));
+  check('browse: the All view reads no schedule from ESPN when the weekly sports are on the board (js/live.js still polls its live games)', !espnCalls.some(u => /football/.test(u)), espnCalls.join(' '));
+  await bw.click('.browse-tabs a[data-sport="NFL"]'); await bw.waitForTimeout(600);
+  const week = await bw.evaluate(() => ({ how: document.querySelector('#browse-panel .browse-how').textContent, days: [...document.querySelectorAll('#browse-panel .browse-day-head .day-when')].map(d => d.textContent), rows: [...document.querySelectorAll('#browse-panel .browse-game')].map(a => ({ href: a.getAttribute('href'), note: (a.querySelector('.bg-none') || {}).textContent || null, lean: !!a.querySelector('.badge-pick') })) }));
+  check('browse: the NFL tab lists the whole NFL week from ESPN, Thursday to Monday, headed by its week number', /Week 9: Thu Nov 5 to Mon Nov 9/.test(week.how) && week.days.join() === 'Tomorrow,Sunday,Monday' && week.rows.length === 5 && /5 games, 3 on our board/.test(week.how), JSON.stringify(week));
+  check('browse: the week’s games the board carries link to their game page with the lean; the rest link to ESPN-backed pages and say when we price them', week.rows.map(r => r.href).join(' ') === 'game.html?espn=401900001&league=americanfootball_nfl&date=20261105 game.html?id=g6 game.html?id=p12 game.html?id=g5 game.html?espn=401900005&league=americanfootball_nfl&date=20261109' && week.rows[0].note === 'Not priced yet' && week.rows[4].note === 'Priced from Sunday afternoon' && week.rows.slice(1, 4).every(r => r.lean), JSON.stringify(week.rows));
+  await bw.click('.browse-tabs a[data-sport="NCAAF"]'); await bw.waitForTimeout(600);
+  const cfb = await bw.evaluate(() => ({ lead: document.querySelector('#browse-panel .browse-lead').textContent, cards: [...document.querySelectorAll('#browse-panel .picks-grid article')].map(a => a.getAttribute('data-id')), days: [...document.querySelectorAll('#browse-panel .browse-day-head .day-when')].map(d => d.textContent), times: [...document.querySelectorAll('#browse-panel .browse-time')].map(t => t.firstChild.textContent), rows: document.querySelectorAll('#browse-panel .browse-game').length, leanRow: (document.querySelector('#browse-panel .browse-game.has-lean') || {}).getAttribute ? document.querySelector('#browse-panel .browse-game.has-lean').getAttribute('href') : null, ranks: [...document.querySelectorAll('#browse-panel .bg-rank')].length }));
+  check('browse: the College football tab shows its lean, then the week from ESPN, a big Saturday grouped by start time with the unset kickoff last', /^1 lean still to start/.test(cfb.lead) && cfb.cards.join() === 'pcfb1' && cfb.days.join() === 'Today,Saturday' && cfb.rows === 13 && cfb.times.join('|') === '12:00 PM ET|3:30 PM ET|7:30 PM ET|10:30 PM ET|Time to be set' && cfb.leanRow === 'game.html?id=cfb1' && cfb.ranks >= 4, JSON.stringify(cfb));
+  await bw.setViewportSize({ width: 400, height: 860 });
+  check('browse: on a phone the rows keep inside the screen and show the teams’ abbreviations', await bw.evaluate(() => document.documentElement.scrollWidth <= 400 && [...document.querySelectorAll('#browse-panel .browse-game')].every(a => a.getBoundingClientRect().right <= 400) && getComputedStyle(document.querySelector('#browse-panel .bg-abbr')).display !== 'none'));
+  await bw.setViewportSize({ width: 1280, height: 900 });
+  await bw.goto(url('game.html?id=cfb1')); await bw.waitForTimeout(600);
+  check('game page: a college football game (fixture row) has its crumb, lean and every side, the lean marked', (await bw.getAttribute('.crumbs li:nth-child(2) a', 'href')) === 'picks.html?sport=NCAAF' && (await bw.textContent('.crumbs li:nth-child(2) a')) === 'College football' && (await bw.locator('#lean .card.pick[data-id="pcfb1"]').count()) === 1 && (await bw.locator('#sides tbody tr').count()) === 6 && (await bw.textContent('#sides tr.is-lean td[data-label="Side"] strong')) === 'LSU Tigers +3.5');
+  check('game page: the lowest tier reads "Low" in its Why (owner, 2026-11-08; the data still says "Lean")', (await bw.textContent('#why .why-h')) === 'Why Low', await bw.textContent('#why .why-h'));
+  await bw.goto(url('game.html?espn=401900005&league=americanfootball_nfl&date=20261109')); await bw.waitForTimeout(800);
+  check('game page: a game outside the pricing window shows its header, kickoff and when we price it, never a broken page', (await bw.textContent('#game-page h1')) === 'Chicago Bears @ Green Bay Packers' && /We price this game from Sunday afternoon\./.test(await bw.textContent('#lean')) && /Mon Nov 9, 8:15 PM ET/.test(await bw.textContent('#game-page .game-sub')) && (await bw.getAttribute('.crumbs li:nth-child(2) a', 'href')) === 'picks.html?sport=NFL' && (await bw.locator('#sides').count()) === 0 && (await bw.locator('.subnav a:visible').allTextContents()).join('|') === 'Game|Our lean');
+  await bw.goto(url('game.html?espn=401900002&league=americanfootball_nfl&date=20261108')); await bw.waitForTimeout(800);
+  check('game page: an ESPN link to a game the board carries opens the full priced page', (await bw.locator('#sides tbody tr').count()) === 6 && (await bw.locator('#lean .card.pick').count()) === 1);
+  await bw.goto(url('game.html?espn=999&league=americanfootball_nfl&date=20261108')); await bw.waitForTimeout(800);
+  check('game page: an ESPN game it cannot find gets the friendly page', /could not load/.test(await bw.textContent('#game-page h1')) && (await bw.locator('#game-page a[href="picks.html"]').count()) >= 1);
+  check('browse: ESPN-backed views raise no page errors', bwErr.length === 0, bwErr.join(' | '));
+  await bwCtx.close();
+
+  // a sport with no game on the board still gets its tab when its week has one: "next game Thu 8:15 PM" (here "tomorrow") instead of a count
+  const bnCtx = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const bn = await bnCtx.newPage(); await pinClock(bn);
+  await bnCtx.route('**/site.api.espn.com/**', BF.espnRoute);
+  await bnCtx.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc('sample-picks.js'), 'window.PICKS_DATA.sample = false; window.PICKS_DATA.picks = window.PICKS_DATA.picks.filter(function (p) { return p.sport !== "NFL"; });') }));
+  await bnCtx.route('**/data/market.js', route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc('sample-market.js'), 'window.MARKET_DATA.rows = window.MARKET_DATA.rows.filter(function (r) { return r.sport !== "NFL"; });') }));
+  await bn.goto(url('picks.html')); await bn.waitForTimeout(800);
+  check('browse: the NFL keeps its first tab with no game on the board, showing its next game from ESPN', (await bn.evaluate(() => [...document.querySelectorAll('.browse-tabs a')].map(a => a.getAttribute('data-sport')).join(','))) === ',NFL,NCAAF,NBA,NHL,Soccer,MLB' && (await bn.textContent('.browse-tabs a[data-sport="NFL"] .browse-next')) === 'next game tomorrow 8:15 PM' && (await bn.locator('.browse-tabs a[data-sport="NFL"] .seg-count').count()) === 0, await bn.textContent('.browse-tabs'));
+  await bn.click('.browse-tabs a[data-sport="NFL"]'); await bn.waitForTimeout(500);
+  check('browse: and its panel says when we price the week, then lists it', /No NFL leans yet: we price these games from/.test(await bn.textContent('#browse-panel .browse-lead')) && (await bn.locator('#browse-panel .browse-game').count()) === 5);
+  await bnCtx.close();
 
   check('no page/console errors', errors.length === 0, errors.join(' | '));
 
@@ -623,8 +731,10 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;
   const realErrors = []; const rp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  /* ESPN refuses the headless browser (403, no CORS header): live status and the sport weeks get an empty scoreboard here */
+  await rp.route('**/site.api.espn.com/**', route => route.fulfill({ contentType: 'application/json', body: '{"events":[]}' }));
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
-  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html']) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
+  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html', 'picks.html?sport=NFL', 'picks.html?sport=NCAAF', 'game.html', 'game.html?id=' + await (async () => { const ctx = { window: {} }; try { require('vm').runInNewContext(fs.readFileSync(path.join(root, 'data/market.js'), 'utf8'), ctx); } catch (e) { /* no market file */ } const r = ((ctx.window.MARKET_DATA || {}).rows || [])[0]; return r ? encodeURIComponent(r.eventId) : 'none'; })()]) { await rp.goto(url(p)); await rp.waitForTimeout(600); }
   const realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
   await rp.goto(url('index.html')); await rp.waitForTimeout(400);
   const boardOk = await rp.evaluate(() => { const rows = document.querySelectorAll('#board-rows .board-row').length, empty = document.querySelectorAll('#board-rows .board-empty').length; return rows > 0 ? empty === 0 : empty === 1; });

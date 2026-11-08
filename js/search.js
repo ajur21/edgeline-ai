@@ -11,7 +11,20 @@
 (function () {
   "use strict";
   const FILES = [["MARKET_DATA", "data/market.js"], ["PICKS_DATA", "data/picks.js"], ["TEAMS_DATA", "data/teams.js"], ["FACES_DATA", "data/faces.js"]];
-  const SPORT_WORDS = { NBA: "basketball", NHL: "hockey ice hockey", NFL: "football american football", MLB: "baseball", Soccer: "soccer football premier league epl la liga mls major league soccer" };
+  const SPORT_WORDS = { NBA: "basketball", NHL: "hockey ice hockey", NFL: "football american football", NCAAF: "college football ncaaf cfb ncaa", MLB: "baseball", Soccer: "soccer football premier league epl la liga mls major league soccer" };
+  const SPORT_LABEL = { NCAAF: "College football" };
+  /* college football (2026-11-08): the short names fans type. Ambiguous ones stay apart: "USC" is Southern California only
+     (South Carolina is "SC"), "Miami" finds both Miami (FL) and Miami (OH), "Miami Ohio" / "Miami OH" only the RedHawks,
+     "MSU" and "OSU" both of their schools */
+  const COLLEGE = [[/^usc\b|southern cal/, "usc southern california socal trojans"], [/^south carolina/, "sc gamecocks"], [/^miami (fl|florida|hurricanes)|^miami hurricanes/, "miami fl canes hurricanes"],
+    [/^miami (oh|ohio)/, "miami ohio oh redhawks"], [/^ole miss|^mississippi rebels/, "ole miss mississippi"], [/^lsu|louisiana state/, "lsu louisiana state"], [/^tcu|texas christian/, "tcu texas christian"],
+    [/^smu|southern methodist/, "smu southern methodist"], [/^byu|brigham young/, "byu brigham young"], [/^ucf|central florida/, "ucf central florida"], [/^uconn|connecticut/, "uconn connecticut"],
+    [/^pittsburgh panthers|^pitt\b/, "pitt pittsburgh"], [/^unlv|nevada las vegas/, "unlv"], [/^texas a ?m|^texas a and m/, "tamu texas a m aggies"], [/^north carolina tar heels|^unc\b/, "unc tar heels"],
+    [/^nc state|north carolina state/, "nc state ncsu wolfpack"], [/^penn state/, "psu penn state"], [/^ohio state/, "osu ohio state buckeyes"], [/^oklahoma state/, "osu okstate cowboys"],
+    [/^michigan state/, "msu michigan state spartans"], [/^mississippi state/, "msu miss state bulldogs"], [/^florida state/, "fsu florida state seminoles"], [/^georgia tech/, "gt georgia tech"],
+    [/^virginia tech/, "vt hokies"], [/^kansas state/, "ksu k state wildcats"], [/^iowa state/, "isu iowa state cyclones"], [/^utsa|texas san antonio/, "utsa"], [/^utep|texas el paso/, "utep"],
+    [/^uab|alabama birmingham/, "uab"], [/^fiu|florida international/, "fiu"], [/^fau|florida atlantic/, "fau"], [/^umass|massachusetts/, "umass"], [/^ul monroe|louisiana monroe/, "ulm"]];
+  function collegeWords(name) { const n = norm(name); return COLLEGE.filter(function (c) { return c[0].test(n); }).map(function (c) { return c[1]; }).join(" "); }
   const GROUPS = [["sport", "Sports"], ["game", "Games"], ["pick", "Picks"], ["team", "Teams"], ["player", "Players"]];
   const PER_GROUP = { sport: 4, game: 5, pick: 5, team: 5, player: 5 };
   let dlg = null, input = null, list = null, opener = null, index = null, ready = null, active = -1;
@@ -59,7 +72,7 @@
   function build() {
     const Ed = E(), tm = TM(), M = window.MARKET_DATA || { rows: [] }, P = window.PICKS_DATA || { picks: [] }, T = window.TEAMS_DATA, F = window.FACES_DATA;
     const onBoard = {}; (P.picks || []).forEach(function (p) { onBoard[p.id] = p; });
-    const out = [], games = {}, order = [], teamGame = {}, sports = {};
+    const out = [], games = {}, order = [], teamGame = {}, sports = {}, collegeSeen = {};
     (M.rows || []).forEach(function (r) { if (!games[r.eventId]) { games[r.eventId] = { r: r, rows: [] }; order.push(r.eventId); } games[r.eventId].rows.push(r); });
     order.forEach(function (id) {
       const g = games[id], r = g.r, key = r.sportKey || r.sport;
@@ -69,8 +82,12 @@
       const picks = open ? g.rows.filter(function (x) { return x.pickId && onBoard[x.pickId]; }).length : 0;
       [home, away].forEach(function (t, i) { if (t) teamGame[(r.sportKey || "") + "|" + t.id] = { g: g, opp: i === 0 ? r.away : r.home }; });
       const s = sports[r.sport] || (sports[r.sport] = { games: 0, picks: 0 }); if (open) s.games++; s.picks += picks;
-      out.push(entry("game", r.event, [r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a pick on the board" : picks + " picks on the board") : null], "games.html#g-" + encodeURIComponent(id),
-        [r.event, r.home, r.away, r.sport, alias(home), alias(away)].join(" "), picks ? 0.65 : 0.6, { row: r, home: home, away: away }));
+      const college = r.sport === "NCAAF" ? [SPORT_WORDS.NCAAF, collegeWords(r.home), collegeWords(r.away)].join(" ") : "";
+      /* a game opens its own page (2026-11-08): its lean, every side we priced, why and its props */
+      out.push(entry("game", r.event, [SPORT_LABEL[r.sport] || r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a pick on the board" : picks + " picks on the board") : null], "game.html?id=" + encodeURIComponent(id),
+        [r.event, r.home, r.away, r.sport, alias(home), alias(away), college].join(" "), picks ? 0.65 : 0.6, { row: r, home: home, away: away }));
+      /* college clubs are not in data/teams.js yet: each side of a college game is its own team result, on the Games page search */
+      if (r.sport === "NCAAF") [[r.home, home, r.away], [r.away, away, r.home]].forEach(function (x) { if (!x[1] && x[0] && !collegeSeen[x[0]]) { collegeSeen[x[0]] = true; out.push(entry("team", x[0], ["College football", "vs " + x[2] + ", " + r.start], "games.html?q=" + encodeURIComponent(x[0]), [x[0], collegeWords(x[0]), "college football"].join(" "), 0.5, { team: null, name: x[0] })); } });
     });
     (P.picks || []).forEach(function (p) {
       if (!sports[p.sport]) sports[p.sport] = { games: 0, picks: 0 };
@@ -92,7 +109,7 @@
     });
     Object.keys(sports).forEach(function (sp) {
       const s = sports[sp];
-      out.push(entry("sport", sp, [s.games + (s.games === 1 ? " game" : " games") + " on the board", s.picks ? s.picks + (s.picks === 1 ? " pick" : " picks") : "no picks yet"], "games.html?sport=" + encodeURIComponent(sp),
+      out.push(entry("sport", SPORT_LABEL[sp] || sp, [s.games + (s.games === 1 ? " game" : " games") + " on the board", s.picks ? s.picks + (s.picks === 1 ? " pick" : " picks") : "no picks yet"], "games.html?sport=" + encodeURIComponent(sp),
         sp + " " + (SPORT_WORDS[sp] || ""), 1, { sport: sp, count: s.games }));
     });
     return out;
@@ -127,7 +144,7 @@
   function icon(e) {
     const Ed = E(), tm = TM();
     if (e.kind === "sport") return Ed.el("span", { class: "badge badge-sport", "data-sport": e.sport, text: e.sport });
-    if (e.kind === "team" && tm) return tm.logo(e.team, e.title, 24);
+    if (e.kind === "team" && tm) return e.team ? tm.logo(e.team, e.title, 24) : tm.logo(null, e.name || e.title, 24);
     if (e.kind === "game" && tm) return Ed.el("span", { class: "search-pair" }, [tm.logo(e.away, e.row.away, 20), tm.logo(e.home, e.row.home, 20)]);
     if (e.kind === "pick" && tm && tm.sideLogo) return tm.sideLogo(e.pick, 24) || Ed.el("span", { class: "badge badge-sport", "data-sport": e.pick.sport, text: e.pick.sport });
     if (e.kind === "player" && tm && tm.face) return tm.face("basketball_nba", e.player, 24);
