@@ -176,6 +176,12 @@
      (barParts.error), never under the floor (the market file's threshold, 3 points). It rises when the model knows less
      (early season, few games) and falls to the floor as the season fills in. Picks logged before then carry none and
      read as the floor. Confidence is how far past its bar a pick was posted: Lean from 0, Medium from 2, High from 5. */
+  /* the lowest tier's name on the page (owner decision, 2026-11-08): the data calls it "Lean", which read badly once the
+     selections themselves became leans (a "Lean" badge on a lean), so every page shows it as "Low". The data, the
+     badge classes (.badge-conf-lean) and the filters' values keep "Lean"; tierLabel names one tier, tierText rewrites
+     the tier's name inside the pipeline's breakdown sentences, written before 2026-11-08 ("Lean starts at 3.0 points"). */
+  function tierLabel(c) { return c === "Lean" ? "Low" : c; }
+  function tierText(s) { return String(s == null ? "" : s).replace(/\bLean\b/g, "Low"); }
   const DEFAULT_BAR = 0.03, DEFAULT_WATCH = 0.015, DEFAULT_RULE = { watchShare: 0.5, medium: 0.02, high: 0.05 };
   function finiteNum(v) { return v != null && v !== "" && Number.isFinite(Number(v)) ? Number(v) : NaN; }
   /* the floor every bar sits on */
@@ -226,7 +232,7 @@
     const past = pastOf(p);
     if (!hasModel(p) || !Number.isFinite(past)) return "";
     const rule = barRule(), bp = p.barParts || null, own = hasOwnBar(p);
-    let s = (p.confidence ? p.confidence + ": " : "") + (past >= 0 ? (past * 100).toFixed(1) + " points past " : (-past * 100).toFixed(1) + " points short of ") + barName(p) + ".";
+    let s = (p.confidence ? tierLabel(p.confidence) + ": " : "") + (past >= 0 ? (past * 100).toFixed(1) + " points past " : (-past * 100).toFixed(1) + " points short of ") + barName(p) + ".";
     if (own && bp && finiteNum(bp.error) > 0) {
       const gp = finiteNum(bp.gp), units = finiteNum(bp.units), floor = finiteNum(bp.floor) > 0 ? Number(bp.floor) : rule.floor;
       const parts = [Number.isFinite(gp) ? "at least " + gp + (gp === 1 ? " game" : " games") + " behind each team" : null, Number.isFinite(units) ? "±" + units.toFixed(1) + " " + (bp.unit || "points") + " on the " + (p.marketKey === "totals" ? "total" : "margin") : null].filter(Boolean).join(", ");
@@ -235,7 +241,7 @@
         : " The bar is the model’s own margin of error on this side" + (parts ? " (" + parts + ")" : "") + "; it never drops under " + ptsLabel(floor) + ".";
     } else if (own) s += " The bar is the model’s own margin of error on this side; it never drops under " + ptsLabel(rule.floor) + ".";
     else s += " It was posted before each side had its own bar, so it is held to the bar it was posted under.";
-    s += " Medium starts " + ptsLabel(rule.medium) + " points past the bar, High " + ptsLabel(rule.high) + "." + (p.model && p.model.thin ? " A thin sample stays a Lean." : "");
+    s += " Medium starts " + ptsLabel(rule.medium) + " points past the bar, High " + ptsLabel(rule.high) + "." + (p.model && p.model.thin ? " A thin sample stays Low." : "");
     return s;
   }
 
@@ -793,7 +799,7 @@
         el("span", { class: "pick-head-right" }, [
           isSample() ? el("span", { class: "badge badge-sample", text: "Sample" }) : null,
           isPlayOfDay(p.id) ? el("span", { class: "badge badge-potd", text: word("ofDay") }) : null,
-          el("span", { class: confClass, text: p.confidence })
+          el("span", { class: confClass, text: tierLabel(p.confidence) })
         ])
       ]),
       el("div", {}, [
@@ -834,7 +840,7 @@
     const back = el("div", { class: "pick-face pick-back", "aria-hidden": "true" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: p.isMarket ? "Where the market sits" : "Why the model likes it" }),
-        el("span", { class: confClass, text: p.confidence })
+        el("span", { class: confClass, text: tierLabel(p.confidence) })
       ]),
       backBody,
       el("div", { class: "pick-foot" }, [
@@ -884,7 +890,7 @@
       el("td", { class: "num", text: probText(p) }),
       el("td", { class: "num", text: pct(impliedProb(p.odds)) }),
       el("td", { class: "num", title: hasModel(p) ? "Bar " + barPts(p) + " points: " + pastWord(p) : null, text: edgeText(p) }),
-      el("td", {}, [el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence })]),
+      el("td", {}, [el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: tierLabel(p.confidence) })]),
       el("td", { class: "num" }, [(function () { const s = lineShop(p); return s.books ? el("span", { class: "mono" + (s.sole ? " shop-sole" : ""), title: shopSummary(p), text: s.clears + "/" + s.books }) : el("span", { text: "—" }); })()]),
       el("td", {}, [isOpen(p) ? parlayButton(p.id) : stateChip(p)])
     ]);
@@ -1110,15 +1116,15 @@
           modelLine(p),
           barLine(p, "bd-bar")
         ]),
-        el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase() + " bd-tier", text: p.confidence })
+        el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase() + " bd-tier", text: tierLabel(p.confidence) })
       ])
     ]);
     /* the tier against this pick's own bar: the pipeline's text says it since 2026-11-05 (and the flat 3 / 5 / 8 for older
        picks); when the text predates that, the bar is said here from the pick's own numbers */
     const tierWhy = b && b.tierWhy ? String(b.tierWhy) : "", saysBar = /\bIts bar is\b|\bLean starts at\b/.test(tierWhy), own = barSentence(p);
-    if (!b) { if (own) sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + p.confidence }), el("p", { class: "bd-bar-why", text: own })])); sec.appendChild(el("p", { class: "muted", text: "No breakdown for this " + word("one") + " yet. It is written at the next data refresh." })); return sec; }
+    if (!b) { if (own) sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + tierLabel(p.confidence) }), el("p", { class: "bd-bar-why", text: own })])); sec.appendChild(el("p", { class: "muted", text: "No breakdown for this " + word("one") + " yet. It is written at the next data refresh." })); return sec; }
     const list = (title, items, cls) => items && items.length ? el("div", { class: "bd-block" }, [el("h4", { text: title }), el("ul", { class: "bd-list " + cls }, items.map(t => el("li", { text: t })))]) : null;
-    sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + b.tier }), !saysBar && own ? el("p", { class: "bd-bar-why", text: own }) : null, el("p", { text: tierWhy })]));
+    sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + tierLabel(b.tier) }), !saysBar && own ? el("p", { class: "bd-bar-why", text: own }) : null, el("p", { text: tierText(tierWhy) })]));
     sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "The number" }), el("p", { text: b.price })]));
     [list("What supports it", b.support, "bd-support"), list("What could go wrong", b.risks, "bd-risk"), list("Also worth knowing", b.notes, "bd-note")].forEach(function (n) { if (n) sec.appendChild(n); });
     sec.appendChild(el("p", { class: "bd-verdict", text: b.verdict }));
@@ -1228,7 +1234,7 @@
     now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, ago: ago, scoreText: scoreText, unitsText: unitsText,
     onStateChange: onStateChange, checkStates: checkStates, updateLine: updateLine, updateParts: updateParts, nextRun: nextRun,
     playedPicks: playedPicks, playedRow: playedRow, playedSummary: playedSummary, startedNote: startedNote, findPick: findPick, legAsPick: legAsPick,
-    hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine, moneylineFor: moneylineFor, moneylineLine: moneylineLine, runClock: runClock,
+    tierLabel: tierLabel, tierText: tierText, hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine, moneylineFor: moneylineFor, moneylineLine: moneylineLine, runClock: runClock,
     call: callName, word: word, nWord: nWord, applyCall: applyCall, replayData: replayData, replayText: replayText, replayFigures: replayFigures, roiText: roiText
   };
 })();

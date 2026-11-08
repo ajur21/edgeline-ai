@@ -168,7 +168,7 @@
       <div class="step">
         <span class="step-term">Edge = our % − implied %</span>
         <h3>Find the edge</h3>
-        <p>When a book’s price implies a lower probability than ours, that gap is the edge. It must clear the side’s own bar: the model’s margin of error there, from game data alone, never from other books’ prices. The bar rises when the model knows less, early in a season or for a team with few games, and falls to 3 points as the season fills in. Two points past it is Medium, five High; a thin sample stays a Lean. At most one <span data-pick="pick">lean</span> a game.</p>
+        <p>When a book’s price implies a lower probability than ours, that gap is the edge. It must clear the side’s own bar: the model’s margin of error there, from game data alone, never from other books’ prices. The bar rises when the model knows less, early in a season or for a team with few games, and falls to 3 points as the season fills in. Two points past it is Medium, five High; a thin sample stays Low. At most one <span data-pick="pick">lean</span> a game.</p>
       </div>
     </div>
 
@@ -194,7 +194,7 @@
       <div class="calc-result pick-metrics">
         <div class="pick-metric"><div class="k">Implied</div><div class="v" id="calc-implied">52.4%</div></div>
         <div class="pick-metric"><div class="k">Edge</div><div class="v edge" id="calc-edge">+4.6%</div></div>
-        <div class="pick-metric"><div class="k">Verdict</div><div class="v verdict verdict-lean" id="calc-verdict">Lean</div></div>
+        <div class="pick-metric"><div class="k">Verdict</div><div class="v verdict verdict-lean" id="calc-verdict">Low</div></div>
       </div>
       <div class="meter" aria-hidden="true"><span id="calc-meter"></span></div>
     </div>
@@ -419,7 +419,7 @@
           E.el("div", { class: "cal-title", text: (potd ? E.word("ofDay") + ": " : "") + next.pick + " " + E.fmtOdds(next.odds) + " at " + next.book }),
           E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": next.sport, text: next.sport }),
-            E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: next.confidence }),
+            E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: E.tierLabel(next.confidence) }),
             E.el("span", { text: "To hit " + E.probText(next) + " · Edge " + E.signed(E.edgeOf(next) * 100, 1) + " pts" })
           ]),
           E.meta([next.market, next.event], "cal-note")
@@ -507,7 +507,7 @@
     edgeEl.textContent = E.signed(edge * 100, 1) + "%";
     edgeEl.classList.toggle("neg", edge <= 0);
     var v = document.getElementById("calc-verdict");
-    v.textContent = word;
+    v.textContent = E.tierLabel ? E.tierLabel(word) : word;
     v.className = "v verdict verdict-" + word.toLowerCase().replace(" ", "-");
     /* the meter fills as the edge climbs to the High tier for this bar */
     document.getElementById("calc-meter").style.width = Math.max(0, Math.min(100, edge / (bar + E.barRule().high) * 100)) + "%";

@@ -198,7 +198,7 @@
     { label: "Watch list", value: String(MS.watch), sub: "At least halfway to their bar" }
   ] : [
     { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "Nothing on the board right now" },
-    { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Lean" : "" },
+    { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Low" : "" },
     { label: "Past the bar", value: P.length ? E.signed(avgPast * 100, 1) : "—", sub: P.length ? "Points past each " + E.word("one") + "’s own bar, on average (edge " + E.signed(avgEdge * 100, 1) + ")" : "Points past each " + E.word("one") + "’s own bar" }
   ];
   var last = S && S.byDate && S.byDate.length ? S.byDate[S.byDate.length - 1] : null;
@@ -246,7 +246,7 @@
         E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event"), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear its bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
         E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "% edge" : "No model yet" }), E.hasModel(p) ? E.el("span", { class: "digest-bar", text: "bar " + E.barPts(p) + ", " + E.pastWord(p) }) : null, E.el("span", { text: "To hit " + E.probText(p) })]),
-        E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), E.standingChip(p), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: E.word("ofDay") }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
+        E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: E.tierLabel(p.confidence) }), E.standingChip(p), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: E.word("ofDay") }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
         E.el("div", { class: "digest-live" }, [p.isMarket ? null : E.liveSlot(p.id)])
       ]));
     });
@@ -280,7 +280,7 @@
     groups.forEach(function (g) {
       lines.push(g.label);
       var breaks = dayBreaks(g.picks);
-      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + p.confidence + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%, bar " + E.barPts(p) + ", " + E.pastWord(p) : "no model yet") + (E.standingOf(p) === "gone" ? " · edge gone now, graded at the posted price" : E.standingOf(p) === "below" ? " · below its bar now, graded at the posted price" : "") + " · " + p.event + " · " + slotLabel(p)); });
+      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + E.tierLabel(p.confidence) + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%, bar " + E.barPts(p) + ", " + E.pastWord(p) : "no model yet") + (E.standingOf(p) === "gone" ? " · edge gone now, graded at the posted price" : E.standingOf(p) === "below" ? " · below its bar now, graded at the posted price" : "") + " · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
     /* started and graded picks, marked by state (no rank: they are no longer bets) */

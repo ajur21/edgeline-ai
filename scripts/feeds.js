@@ -149,8 +149,10 @@ function replayLine() {
 }
 
 /* ---------- content ---------- */
+/* the lowest tier shows as "Low" (owner decision, 2026-11-08; the data keeps "Lean", see tierLabel in js/app.js) */
+function tierLabel(c) { return c === "Lean" ? "Low" : c; }
 function pickTitle(p) { return p.pick + " " + fmtOdds(p.odds) + " at " + p.book; }
-function pickItemTitle(p, potd) { return (potd ? W.ofDay + ": " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence || W.One) + ", " + pts(edgeOf(p)) + ")"; }
+function pickItemTitle(p, potd) { return (potd ? W.ofDay + ": " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence ? tierLabel(p.confidence) : W.One) + ", " + pts(edgeOf(p)) + ")"; }
 function pickLines(p, base) {
   const b = p.breakdown || {}, lad = ladder(p), edge = edgeOf(p);
   const lines = [
@@ -216,7 +218,7 @@ function build(opts) {
   /* upcoming picks: one event (with the alarm) and one item each */
   upcoming.forEach(function (p) {
     const potd = p.id === potdId;
-    const summary = (potd ? W.ofDay + ": " : "") + pickTitle(p) + (p.confidence ? " · " + p.confidence : "");
+    const summary = (potd ? W.ofDay + ": " : "") + pickTitle(p) + (p.confidence ? " · " + tierLabel(p.confidence) : "");
     const start = Date.parse(p.commence);
     events.push({ uid: p.id + "@edgeline", stamp: p.pricesAt || updated, start: start, end: start + GAME_HOURS * 36e5, summary: summary,
       description: pickLines(p, base).join("\n"), location: p.context && p.context.venue, url: base + "picks.html#" + p.id, categories: [p.sport], alarmMinutes: ALARM_MINUTES });

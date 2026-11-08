@@ -77,7 +77,7 @@
     (P.picks || []).forEach(function (p) {
       if (!sports[p.sport]) sports[p.sport] = { games: 0, picks: 0 };
       const key = p.sportKey || p.sport, home = tm ? tm.find(key, p.home) : null, away = tm ? tm.find(key, p.away) : null;
-      out.push(entry("pick", p.pick + " " + Ed.fmtOdds(p.odds), [p.sport, p.event, !Ed.isOpen(p) ? Ed.stateText(p) : p.confidence ? p.confidence + " confidence" : null], "picks.html#" + encodeURIComponent(p.id),
+      out.push(entry("pick", p.pick + " " + Ed.fmtOdds(p.odds), [p.sport, p.event, !Ed.isOpen(p) ? Ed.stateText(p) : p.confidence ? (Ed.tierLabel ? Ed.tierLabel(p.confidence) : p.confidence) + " confidence" : null], "picks.html#" + encodeURIComponent(p.id),
         [p.pick, p.event, p.home, p.away, p.sport, p.market, alias(home), alias(away)].join(" "), 0.3, { pick: p }));
     });
     if (T && T.leagues) Object.keys(T.leagues).forEach(function (key) {
