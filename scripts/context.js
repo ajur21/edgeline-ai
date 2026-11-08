@@ -22,7 +22,9 @@ const DAY = 864e5;
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
 function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36";
+/* how the pipeline names itself to the NBA's CDN: an honest bot name with the site's address, never a browser's (2026-11-08:
+   the CDN serves the report to it, 200 and the whole PDF) */
+const BOT_UA = "EdgeLineAI-data/1.0 (+https://ajur21.github.io/edgeline-ai/)";
 function round(n, d) { const m = Math.pow(10, d == null ? 1 : d); return Math.round(n * m) / m; }
 
 /* ---------- sources ---------- */
@@ -52,14 +54,14 @@ function liveSource() {
     /* a club's roster: every player's ESPN id and position (the model asks only for a player the NBA's report names and ESPN's does not) */
     roster: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/roster").catch(() => null),
     /* the NBA's official injury report as it stood at `ms`: the newest PDF at or before it, 15 minutes back at a time
-       (scripts/availability.js). A normal browser user agent, as the league's CDN expects; one PDF a run (robots.txt: Crawl-Delay 1) */
+       (scripts/availability.js). Asked as EdgeLineAI-data (BOT_UA), an honest name; one PDF a run (robots.txt: Crawl-Delay 1) */
     officialReport: async ms => {
       const urls = require("./availability.js").reportUrls(ms, 4);
       if (cache["report|" + urls[0]]) return cache["report|" + urls[0]];
       for (const url of urls) {
         await sleep(1100); count++;
         try {
-          const res = await fetch(url, { headers: { "user-agent": BROWSER_UA, accept: "application/pdf" } });
+          const res = await fetch(url, { headers: { "user-agent": BOT_UA, accept: "application/pdf" } });
           if (res.ok) { const got = { url: url, buf: Buffer.from(await res.arrayBuffer()) }; cache["report|" + urls[0]] = got; return got; }
         } catch (err) { /* the one before */ }
       }

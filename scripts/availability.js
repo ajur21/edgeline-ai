@@ -333,7 +333,7 @@ function flagOf(entry, changes, prev, nowIso) {
   (changes || []).forEach(c => { const p = prev && (prev.changes || []).find(x => nameKey(x.name) === nameKey(c.name) && x.to === c.to); if (p && p.at && (!c.at || Date.parse(p.at) < Date.parse(c.at))) c.at = p.at; });
   if (!changes || !changes.length) return { changed: false, note: null, swing: null, changes: [], checkedAt: nowIso };
   const swing = side ? r2(changes.reduce((s, c) => s + (c.side === side ? -c.delta : c.delta), 0)) : null;
-  const posted = entry.loggedAt ? ", after this " + (String(entry.confidence || "").toLowerCase() === "lean" ? "lean" : "pick") + " was posted at " + etLabel(Date.parse(entry.loggedAt)) : ", after this pick was posted";
+  const posted = entry.loggedAt ? ", after this lean was posted at " + etLabel(Date.parse(entry.loggedAt)) : ", after this lean was posted";
   const effect = swing == null ? "; the model takes nothing off a total for injuries" : Math.abs(swing) < 0.05 ? "" : "; about " + Math.abs(swing).toFixed(1) + " points of margin " + (swing > 0 ? "for" : "against") + " this side on our numbers";
   return { changed: true, note: changes.map(changeText).join("; ") + posted + effect, swing: swing, changes: changes, checkedAt: nowIso };
 }
