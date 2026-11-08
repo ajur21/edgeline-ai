@@ -420,10 +420,17 @@ async function forEvent(src, ctxlib, e, now, cache) {
   /* a scorer's points a game: data/faces.js first, then his own game log this season (faces.js has none for a player listed
      Out and covers only the props run's clubs), then nothing, which the sport's cost reads as its default (NBA 1.2) */
   const ppgFor = i => { const f = ppgOf ? ppgOf(i) : null; return f != null ? f : i && Number.isFinite(i.logPpg) ? i.logPpg : null; };
-  const gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
+  let gm = gameModel({ sportKey: e.sportKey, home: e.home, away: e.away, leagueGoals: cache.league[e.sportKey], homeLast: lastH, awayLast: lastA,
     homeForm: hf, awayForm: af, homeInjuries: homeInjuries, awayInjuries: awayInjuries,
     rest: { home: ctxlib.restFromSchedule(hs, m.home.team.id, commenceMs), away: ctxlib.restFromSchedule(as, m.away.team.id, commenceMs) }, ppgOf: ppgFor });
   if (gm) { gm.espnEventId = m.event.id; gm.injuries = { home: homeInjuries, away: awayInjuries }; }
+  /* NFL model (2026-11-08): scripts/nfl.js re-centres the game on nflverse's football data (opponent-adjusted results,
+     EPA, the starting quarterback, neutral sites, rest) and gives the margin its own error (marginSd); a quarterback
+     listed out is priced there, the other listings here. Without its data the margin model above stands. */
+  if (gm && e.sportKey === "americanfootball_nfl" && cache.nfl) {
+    const ix = await cache.nfl.get(), cfg = SPORT[e.sportKey], nonQB = (list, form) => injuryCost((list || []).filter(i => !cfg.single.test(i.pos || "")), cfg, ppgFor, unseenShare(form));
+    if (ix) gm = require("./nfl.js").apply(gm, ix, { homeAbbr: m.home.team.abbreviation, awayAbbr: m.away.team.abbreviation, commenceMs: commenceMs, homeInjuries: homeInjuries, awayInjuries: awayInjuries, neutral: !!(m.comp && m.comp.neutralSite), injuries: { home: nonQB(homeInjuries, hf), away: nonQB(awayInjuries, af) } });
+  }
   return gm;
 }
 /* goals (points) per team-game across the league this season, from ESPN's standings; null until 100 team-games exist */
@@ -468,6 +475,7 @@ function noise(gm, marketKey, outcome, home, away) {
   const isTotal = marketKey === "totals", key = isTotal ? "total" : "margin";
   const kT = cfg.kTotal || 0;
   const units = isTotal ? (gm.sdTotal || cfg.sdTotal) / 2 * Math.sqrt(1 / (gh + kT) + 1 / (ga + kT))
+    : Number.isFinite(gm.marginSd) ? gm.marginSd /* a model that knows its own margin error (NFL, scripts/nfl.js, 2026-11-08) */
     : (gm.sd || cfg.sd) * Math.sqrt(1 / (gh + kOf(parts.lastHome)) + 1 / (ga + kOf(parts.lastAway)));
   const at = d => sideProb(Object.assign({}, gm, { [key]: gm[key] + d }), marketKey, outcome, home, away);
   const p0 = sideProb(gm, marketKey, outcome, home, away), up = at(units), dn = at(-units);

@@ -24,6 +24,7 @@ const path = require("path");
 const context = require("./context.js");
 const sgo = require("./sgo.js");
 const model = require("./model.js");
+const nfl = require("./nfl.js"); /* NFL model (2026-11-08): nflverse data, read once a run when an NFL game is modelled */
 const SLOT_TIMES = require("./slot-due.js").SLOTS; /* the daily runs' UTC times: morning [14, 0], afternoon [20, 30] */
 
 const API = "https://api.the-odds-api.com/v4";
@@ -42,7 +43,12 @@ let VERBOSE = false;
      games (Friday's covers Saturday's soccer, Saturday's covers Sunday's NFL), and two runs a day for every sport is
      more than the free tier's 500 credits a month (see the request budget in CLAUDE.md). */
 const SPORTS = [
-  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 4, 6, 0, 1], slots: ["afternoon"] },
+  /* morningDays (2026-11-08, owner: NFL "the same focus as NBA and NHL"): on these Eastern weekdays the morning run also
+     fetches the NFL, but only when one of its games kicks off before that day's afternoon run (ESPN's `early` count):
+     every Sunday (the 1 PM and London slates, priced Saturday afternoon until now), Thanksgiving's early games, a late-
+     season Saturday game that kicks off before 3:30 PM ET; never TNF, SNF or MNF, which the afternoon runs price. ESPN
+     unreadable: Sundays only. About 3 credits an NFL Sunday. */
+  { key: "americanfootball_nfl", sport: "NFL", league: "NFL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [3, 4, 6, 0, 1], slots: ["afternoon"], morningDays: [0, 4, 6] },
   { key: "basketball_nba", sport: "NBA", league: "NBA", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread" },
   { key: "baseball_mlb", sport: "MLB", league: "MLB", markets: ["h2h", "spreads", "totals"], spreadLabel: "Run line" },
   { key: "icehockey_nhl", sport: "NHL", league: "NHL", markets: ["h2h", "spreads", "totals"], spreadLabel: "Puck line" },
@@ -498,23 +504,25 @@ function summarize(log, now) {
 /* ---------- which sports a run fetches (see SPORTS) ---------- */
 function oddsCost(cfg) { return cfg.markets.length; } /* markets x regions; ten named bookmakers count as one region */
 /* a sport with `slots` is fetched only on those daily runs; a manual run (or none named) fetches every sport */
-function slotAllows(cfg, slot) { return !cfg.slots || !slot || slot === "manual" || cfg.slots.indexOf(slot) !== -1; }
+function slotAllows(cfg, slot, weekday) { return !cfg.slots || !slot || slot === "manual" || cfg.slots.indexOf(slot) !== -1 || (slot === "morning" && !!cfg.morningDays && cfg.morningDays.indexOf(weekday) !== -1); }
 /* ESPN's scoreboard (free) for every Eastern day the pick window touches: how many games start inside the window, and
    whether any day could not be read (null, or no events list). Postponed and cancelled games do not count. */
 async function espnGames(src, cfg, now) {
   const t0 = now.getTime(), horizon = t0 + RULES.horizonHours * 36e5, days = [];
   for (let t = t0; t < horizon + 864e5; t += 864e5) { const d = etDate(new Date(Math.min(t, horizon))).replace(/-/g, ""); if (days.indexOf(d) === -1) days.push(d); }
-  let games = 0, failed = 0;
+  let games = 0, failed = 0, early = 0;
+  /* early: games kicking off before today's afternoon run (SLOT_TIMES.afternoon, UTC), the ones only a morning run can price */
+  const aft = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), SLOT_TIMES.afternoon[0], SLOT_TIMES.afternoon[1]);
   for (const d of days) {
     let sb = null;
     try { sb = await src.scoreboard(cfg.key, d); } catch (err) { sb = null; }
     if (!sb || !Array.isArray(sb.events)) { failed++; continue; }
     sb.events.forEach(function (e) {
       const t = Date.parse(e.date), c = e.competitions && e.competitions[0], type = (c && c.status && c.status.type) || (e.status && e.status.type) || {};
-      if (t > t0 && t < horizon && !/POSTPONED|CANCELED|CANCELLED|SUSPENDED/i.test(type.name || "")) games++;
+      if (t > t0 && t < horizon && !/POSTPONED|CANCELED|CANCELLED|SUSPENDED/i.test(type.name || "")) { games++; if (t < aft) early++; }
     });
   }
-  return { games: games, failed: failed, days: days };
+  return { games: games, failed: failed, days: days, early: early };
 }
 /* the afternoon runs (20:30 UTC, scripts/slot-due.js) still to come before The Odds API resets its credits, on the 1st
    of every month (its FAQ), counting today's if it has not run yet */
@@ -532,9 +540,14 @@ function afternoonsLeft(now) {
    reset, so when credits run short the morning runs give way first and the afternoon runs (closer to the evening games)
    last to the 1st. */
 function fetchDecision(cfg, o) {
-  if (!slotAllows(cfg, o.slot)) return { fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" };
+  if (!slotAllows(cfg, o.slot, o.weekday)) return { fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" };
   const e = o.espn;
   let why;
+  /* a sport on the morning run only by its morningDays: a game must kick off before the afternoon run (2026-11-08) */
+  if (o.slot === "morning" && cfg.slots && cfg.slots.indexOf("morning") === -1) {
+    if (e && !e.failed && !(e.early > 0)) return { fetch: false, why: "no game before the afternoon run on ESPN" };
+    if ((!e || e.failed) && !(e && e.early > 0) && o.weekday !== 0) return { fetch: false, why: "ESPN unreadable; mornings only on Sundays" };
+  }
   if (e && e.games > 0) why = e.games + " game" + (e.games === 1 ? "" : "s") + " inside " + RULES.horizonHours + " hours on ESPN";
   else if (e && !e.failed) return { fetch: false, why: "no game inside " + RULES.horizonHours + " hours on ESPN" };
   else if (!o.fixture && cfg.days && cfg.days.indexOf(o.weekday) === -1) return { fetch: false, why: "ESPN unreadable; not one of its days" };
@@ -609,7 +622,9 @@ async function run(opts) {
   const fresh = [], candidates = []; /* candidates: each game's best side past its bar, every sport, chosen in selectPicks */
   /* the game model's per-run caches (scoreboards, schedules, injuries, shared with the context step through ctxSource) and
      NBA scoring by name, so an injured scorer costs what he scores */
-  const modelCache = { ppgOf: model.ppgFromFaces(opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js")) };
+  const modelCache = { ppgOf: model.ppgFromFaces(opts.fixture ? path.join(__dirname, "fixtures", "sample-faces.js") : path.join(dataDir, "faces.js")),
+    /* NFL model (2026-11-08): nflverse's files, cached in data/nflverse.json and downloaded at most once a week */
+    nfl: nfl.lazy({ file: path.join(dataDir, "nflverse.json"), now: now, fetcher: opts.fixture ? nfl.fixtureFetcher(path.join(__dirname, "fixtures", "nflverse")) : null, log: m => console.log(m) }) };
   let modelled = 0, unmodelled = 0;
   const marketRows = []; /* every main-line market priced this run, pick or not: the market board */
   const plan = []; /* per sport: fetched or not, why, and what it cost (x-requests-last) */
@@ -617,7 +632,7 @@ async function run(opts) {
     if (active && !active.has(cfg.key)) { plan.push({ sport: cfg.key, fetch: false, why: "out of season (The Odds API lists it inactive)" }); continue; }
     if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); plan.push({ sport: cfg.key, fetch: false, why: "quota low" }); continue; }
     /* the slot rule first (no ESPN call for a sport this run never fetches), then ESPN's schedule, then the morning guard */
-    if (!slotAllows(cfg, opts.slot)) { plan.push({ sport: cfg.key, fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" }); continue; }
+    if (!slotAllows(cfg, opts.slot, etWeekday(now))) { plan.push({ sport: cfg.key, fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" }); continue; }
     const espn = await espnGames(ctxSource, cfg, now);
     const d = fetchDecision(cfg, { slot: opts.slot, espn: espn, weekday: etWeekday(now), fixture: opts.fixture, remaining: usage.remaining, afternoonsLeft: afternoonsLeft(now) });
     if (!d.fetch) { plan.push({ sport: cfg.key, fetch: false, why: d.why }); continue; }
@@ -716,16 +731,24 @@ function writePerformance(dataDir, perf) { fs.writeFileSync(path.join(dataDir, "
    Every game's best side past its own bar, from every sport, furthest past first; a game that already has a pick
    (from this run or an earlier one, any status but void) gets no second one; at most RULES.maxPerDay picks per Eastern
    game day and RULES.maxPerSportDay per sport that day, counting what earlier runs posted. Each chosen pick is
-   appended to the log and returned. */
+   appended to the log and returned.
+   The day's cap ranks across sports and runs by points past the bar (2026-11-08): only the day's picks at least as far
+   past their own bars as the candidate count against it, so picks an earlier run posted for a sport priced first (NBA,
+   NHL and soccer on the morning run; the NFL comes on the afternoon run) never crowd out a later one that clears its bar
+   by more. On 2026-11-07 NHL 5 + soccer 5 filled the day before any NFL game was priced; on 2026-11-08 eight picks were
+   posted before the NFL. Within a run nothing changes (candidates come furthest past first); a posted pick stays posted
+   (locked), so a day can end above the cap, never with a weaker pick admitted; a pick from before bars counts as
+   ahead of everything. The bar is never lowered. */
 function selectPicks(log, candidates) {
   const posted = log.filter(e => !e.type && e.status !== "void");
-  const onGame = new Set(posted.map(e => e.eventId)), day = {}, sportDay = {};
-  posted.forEach(e => { day[e.date] = (day[e.date] || 0) + 1; sportDay[e.date + "|" + e.sport] = (sportDay[e.date + "|" + e.sport] || 0) + 1; });
+  const onGame = new Set(posted.map(e => e.eventId)), dayPast = {}, sportDay = {};
+  const pastOf = e => Number.isFinite(e.past) ? e.past : Infinity;
+  posted.forEach(e => { (dayPast[e.date] = dayPast[e.date] || []).push(pastOf(e)); sportDay[e.date + "|" + e.sport] = (sportDay[e.date + "|" + e.sport] || 0) + 1; });
   const out = [];
   candidates.slice().sort((a, b) => (b.past - a.past) || (b.edge - a.edge)).forEach(function (c) {
-    const sd = c.date + "|" + c.sport;
-    if ((RULES.onePerGame && onGame.has(c.eventId)) || (day[c.date] || 0) >= RULES.maxPerDay || (sportDay[sd] || 0) >= RULES.maxPerSportDay) return;
-    onGame.add(c.eventId); day[c.date] = (day[c.date] || 0) + 1; sportDay[sd] = (sportDay[sd] || 0) + 1;
+    const sd = c.date + "|" + c.sport, ahead = (dayPast[c.date] || []).filter(p => p >= pastOf(c)).length;
+    if ((RULES.onePerGame && onGame.has(c.eventId)) || ahead >= RULES.maxPerDay || (sportDay[sd] || 0) >= RULES.maxPerSportDay) return;
+    onGame.add(c.eventId); (dayPast[c.date] = dayPast[c.date] || []).push(pastOf(c)); sportDay[sd] = (sportDay[sd] || 0) + 1;
     log.push(c); out.push(c);
   });
   return out;
