@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-07",
+  "asOf": "2026-11-08",
   "windowDays": 30,
   "record": {
-    "wins": 5,
-    "losses": 5,
+    "wins": 9,
+    "losses": 7,
     "pushes": 0
   },
-  "units": -1.08,
-  "roi": -10.8,
-  "avgEdge": 13.1,
-  "graded": 10,
+  "units": 0.06,
+  "roi": 0.4,
+  "avgEdge": 11.5,
+  "graded": 16,
   "daily": [
     {
       "date": "2026-11-05",
@@ -24,14 +24,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": -1.08
+      "units": 0.06
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -1.01,
-      "record": "3-3"
+      "units": 0.28,
+      "record": "6-4"
     },
     {
       "sport": "NBA",
@@ -40,11 +40,101 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 0.93,
-      "record": "2-1"
+      "units": 0.78,
+      "record": "3-2"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-07",
+      "sport": "NHL",
+      "event": "Tampa Bay Lightning @ Minnesota Wild",
+      "pick": "Minnesota Wild +1.5",
+      "odds": -210,
+      "result": "Win",
+      "units": 0.48,
+      "clv": null,
+      "closeOdds": 165,
+      "closeLine": 0,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "NHL",
+      "event": "San Jose Sharks @ Dallas Stars",
+      "pick": "San Jose Sharks +1.5",
+      "odds": 100,
+      "result": "Win",
+      "units": 1,
+      "clv": 0.0074,
+      "closeOdds": -103,
+      "closeLine": 1.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "NHL",
+      "event": "New Jersey Devils @ New York Islanders",
+      "pick": "Over 5.5",
+      "odds": -124,
+      "result": "Win",
+      "units": 0.81,
+      "clv": -0.0102,
+      "closeOdds": -119,
+      "closeLine": 5.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "Soccer",
+      "event": "San Diego FC vs. Sporting Kansas City",
+      "pick": "Under 4 goals",
+      "odds": -118,
+      "result": "Win",
+      "units": 0.85,
+      "clv": null,
+      "closeOdds": 100,
+      "closeLine": 2.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "Soccer",
+      "event": "Austin FC vs. Portland Timbers",
+      "pick": "Austin FC ML",
+      "odds": 350,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.2033,
+      "closeOdds": 5188,
+      "closeLine": null,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-07",
+      "sport": "NHL",
+      "event": "New York Rangers @ Seattle Kraken",
+      "pick": "Seattle Kraken ML",
+      "odds": 110,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.4038,
+      "closeOdds": 1281,
+      "closeLine": null,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-07",
       "sport": "Soccer",
@@ -134,66 +224,6 @@ window.PERF_DATA = {
       "closeSource": "consensus close (SportsGameOdds, 0 books)",
       "lineMove": "toward",
       "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NHL",
-      "event": "Anaheim Ducks @ Edmonton Oilers",
-      "pick": "Anaheim Ducks +1.5",
-      "odds": -145,
-      "result": "Win",
-      "units": 0.69,
-      "clv": null,
-      "closeOdds": 397,
-      "closeLine": -1.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "toward",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NHL",
-      "event": "Vancouver Canucks @ Winnipeg Jets",
-      "pick": "Vancouver Canucks +1.5",
-      "odds": -130,
-      "result": "Loss",
-      "units": -1,
-      "clv": null,
-      "closeOdds": 4991,
-      "closeLine": 3.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "away",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NHL",
-      "event": "Philadelphia Flyers @ New York Rangers",
-      "pick": "Philadelphia Flyers +1.5",
-      "odds": -190,
-      "result": "Win",
-      "units": 0.53,
-      "clv": null,
-      "closeOdds": 100,
-      "closeLine": 1,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "toward",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NHL",
-      "event": "Philadelphia Flyers @ New York Rangers",
-      "pick": "Philadelphia Flyers ML",
-      "odds": 133,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.3391,
-      "closeOdds": 1010,
-      "closeLine": null,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -213,18 +243,18 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": 0.93,
-      "wins": 2,
-      "losses": 1,
+      "units": 2.07,
+      "wins": 6,
+      "losses": 3,
       "pushes": 0
     }
   ],
   "potd": {
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "pushes": 0,
-    "units": -2,
-    "n": 2
+    "units": -3,
+    "n": 3
   },
   "parlays": {
     "wins": 0,
@@ -234,25 +264,25 @@ window.PERF_DATA = {
     "n": 1
   },
   "clv": {
-    "n": 3,
-    "avg": -11.13,
-    "beat": 1,
-    "beatPct": 33.3,
-    "graded": 10,
-    "lineToward": 4,
+    "n": 7,
+    "avg": -13.48,
+    "beat": 2,
+    "beatPct": 28.6,
+    "graded": 16,
+    "lineToward": 6,
     "lineAway": 3,
     "espnCloses": 1,
-    "sgoCloses": 9
+    "sgoCloses": 15
   },
   "byBasis": {
     "game": {
-      "wins": 5,
-      "losses": 5,
+      "wins": 9,
+      "losses": 7,
       "pushes": 0,
-      "units": -1.08,
-      "n": 10,
-      "roi": -10.8,
-      "pending": 13,
+      "units": 0.06,
+      "n": 16,
+      "roi": 0.4,
+      "pending": 7,
       "since": "2026-11-05"
     },
     "price": {

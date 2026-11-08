@@ -3484,8 +3484,8 @@
    "Edge 10.3 points over the price, 3.4 past its bar of 6.8",
    "Market reference 49.1%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "current": {
    "at": "2026-11-07T23:49:52.382Z",
@@ -3885,7 +3885,31 @@
      "fair": 0.4718
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "3-4",
+  "finalScore": {
+   "home": 4,
+   "away": 3
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "19hFzgLGPOYdoJvAhsHe",
+   "line": 1.5,
+   "odds": -103,
+   "bestBook": null,
+   "fair": 0.5074,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": 106
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": 0.0074,
+  "lineMove": null
  },
  {
   "key": "8fe46a5692910faf8de7ac94676f4029|spreads|Vancouver Canucks|1.5",
@@ -4501,8 +4525,8 @@
    "Edge 8.1 points over the price, 0.7 past its bar of 7.4",
    "Market reference 45.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "current": {
    "at": "2026-11-07T18:31:30.088Z",
@@ -4899,7 +4923,31 @@
      "fair": 0.4433
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "4-3",
+  "finalScore": {
+   "home": 3,
+   "away": 4
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "NcUHuO0KCjYlAddePgCU",
+   "line": null,
+   "odds": 1281,
+   "bestBook": null,
+   "fair": 0.0724,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 103
+   },
+   "books": {},
+   "samples": 3
+  },
+  "clv": -0.4038,
+  "lineMove": null
  },
  {
   "key": "6f96012d11d189a02761d58e0c314906|totals|Over|5.5",
@@ -4989,8 +5037,8 @@
    "Edge 3.3 points over the price, 0.3 past its bar of 3.0",
    "Market reference 54.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.81,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "current": {
    "at": "2026-11-07T23:49:52.382Z",
@@ -5351,7 +5399,31 @@
      "fair": 0.5488
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "5-4",
+  "finalScore": {
+   "home": 4,
+   "away": 5
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "kp8gHxyTRCI7c8ypEtvi",
+   "line": 5.5,
+   "odds": -119,
+   "bestBook": null,
+   "fair": 0.5434,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -119
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": -0.0102,
+  "lineMove": null
  },
  {
   "key": "b5934d2ce05af5dac632f1e8b7ce5fb6|spreads|Minnesota Wild|1.5",
@@ -5446,8 +5518,8 @@
    "Edge 6.0 points over the price, 0.2 past its bar of 5.8",
    "Market reference 66.5%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.48,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "current": {
    "at": "2026-11-07T23:49:52.382Z",
@@ -5802,7 +5874,31 @@
      "fair": 0.6598
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "4-3",
+  "finalScore": {
+   "home": 3,
+   "away": 4
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "l3wkmwhiFrJzlHdyTu50",
+   "line": 0,
+   "odds": 165,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 0,
+    "odds": 103
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "type": "parlay",
@@ -6174,8 +6270,8 @@
    "Edge 14.8 points over the price, 7.6 past its bar of 7.2",
    "Market reference 22.5%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-07T00:14:27.529Z",
   "current": {
    "at": "2026-11-07T23:49:52.382Z",
@@ -6457,7 +6553,31 @@
      "fair": 0.2291
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-0",
+  "finalScore": {
+   "home": 0,
+   "away": 2
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "BclEEkM1pDfYa8lSFXik",
+   "line": null,
+   "odds": 5188,
+   "bestBook": null,
+   "fair": 0.0189,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -212
+   },
+   "books": {},
+   "samples": 2
+  },
+  "clv": -0.2033,
+  "lineMove": null
  },
  {
   "key": "0db0938ab636e18037e77f2375ade121|totals|Under|4",
@@ -6542,8 +6662,8 @@
    "Edge 11.1 points over the price, 6.6 past its bar of 4.5",
    "Market reference 51.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.85,
   "loggedAt": "2026-11-07T00:14:27.529Z",
   "current": {
    "at": "2026-11-07T00:14:27.529Z",
@@ -6778,7 +6898,31 @@
     "best": -145,
     "n": 1
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "1-0",
+  "finalScore": {
+   "home": 0,
+   "away": 1
+  },
+  "gradedAt": "2026-11-08T05:18:01.557Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "7oIt4PzS8nQ3momLXunc",
+   "line": 2.5,
+   "odds": 100,
+   "bestBook": null,
+   "fair": null,
+   "moved": "toward",
+   "open": {
+    "line": 1.5,
+    "odds": 100
+   },
+   "books": {},
+   "samples": 1
+  },
+  "clv": null,
+  "lineMove": "toward"
  },
  {
   "key": "4e4cd20d205e8bd0cd8ba54391b62257|totals|Under|4",
@@ -7700,8 +7844,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 190,
-      "away": -230
+      "home": 195,
+      "away": -238
      },
      "total": 6.5,
      "totalOdds": {
@@ -8056,12 +8200,12 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 140,
-      "under": -170
+      "over": 125,
+      "under": -155
      },
      "ml": {
-      "home": 425,
-      "away": -170
+      "home": 450,
+      "away": -175
      }
     },
     "open": {
@@ -8088,6 +8232,12 @@
     "line": 3.5,
     "odds": -170,
     "fair": 0.6018
+   },
+   {
+    "at": "2026-11-08T05:18:01.557Z",
+    "line": 3.5,
+    "odds": -155,
+    "fair": 0.5776
    }
   ],
   "dk": {
@@ -8099,11 +8249,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -170,
-    "fair": 0.6017699115044248
+    "odds": -155,
+    "fair": 0.5776397515527951
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+135), now 3.5 (-170)"
+   "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
   },
   "mkt": null,
   "breakdown": {
@@ -8117,7 +8267,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.3% (-1.9 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+135), now 3.5 (-170), moving against this side since the open.",
+    "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 52°F, wind 3 mph, 0% rain.",
     "Records: Liverpool 4-3-2 · Crystal Palace 2-1-6 · Selhurst Park, London."
    ],
@@ -8279,8 +8429,8 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 140,
-      "under": -170
+      "over": 130,
+      "under": -160
      },
      "ml": {
       "home": 115,
@@ -8311,6 +8461,12 @@
     "line": 3.5,
     "odds": -170,
     "fair": 0.6018
+   },
+   {
+    "at": "2026-11-08T05:18:01.557Z",
+    "line": 3.5,
+    "odds": -160,
+    "fair": 0.586
    }
   ],
   "dk": {
@@ -8322,11 +8478,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -170,
-    "fair": 0.6017699115044248
+    "odds": -160,
+    "fair": 0.5859872611464969
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+135), now 3.5 (-170)"
+   "label": "DraftKings opened 2.5 (+135), now 3.5 (-160)"
   },
   "mkt": null,
   "breakdown": {
@@ -8340,7 +8496,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.0% (-4.5 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+135), now 3.5 (-170), moving against this side since the open.",
+    "Market: DraftKings opened 2.5 (+135), now 3.5 (-160), moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 50°F, wind 1 mph, 2% rain.",
     "Records: Aston Villa 3-3-3 · Manchester United 1-4-4 · Old Trafford, Manchester."
    ],
@@ -8601,8 +8757,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 100,
-      "under": -120
+      "over": 105,
+      "under": -125
      },
      "ml": {
       "home": -135,
@@ -8907,10 +9063,10 @@
      "total": 2.5,
      "totalOdds": {
       "over": -140,
-      "under": 115
+      "under": 110
      },
      "ml": {
-      "home": 285,
+      "home": 300,
       "away": -110
      }
     },
@@ -8938,6 +9094,12 @@
     "line": null,
     "odds": 285,
     "fair": 0.3315
+   },
+   {
+    "at": "2026-11-08T05:18:01.557Z",
+    "line": null,
+    "odds": 300,
+    "fair": 0.3231
    }
   ],
   "dk": {
@@ -8949,11 +9111,11 @@
    },
    "now": {
     "line": null,
-    "odds": 285,
-    "fair": 0.3314917127071823
+    "odds": 300,
+    "fair": 0.32307692307692304
    },
    "moved": "away",
-   "label": "DraftKings opened +240, now +285"
+   "label": "DraftKings opened +240, now +300"
   },
   "mkt": null,
   "breakdown": {
@@ -8971,7 +9133,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 23.7% (-0.8 points against the best price). For reference only.",
-    "Market: DraftKings opened +240, now +285, moving against this side since the open.",
+    "Market: DraftKings opened +240, now +300, moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 51°F, wind 2 mph, 1% rain.",
     "Records: Bournemouth 3-3-3 · Ipswich Town 3-2-4 · Portman Road, Ipswich."
    ],
@@ -9128,17 +9290,17 @@
     "now": {
      "spread": -0.5,
      "spreadOdds": {
-      "home": -125,
-      "away": -110
+      "home": -120,
+      "away": -115
      },
      "total": 2.5,
      "totalOdds": {
-      "over": -170,
+      "over": -175,
       "under": 140
      },
      "ml": {
       "home": -110,
-      "away": 280
+      "away": 270
      }
     },
     "open": {
@@ -9177,7 +9339,7 @@
    "now": {
     "line": 2.5,
     "odds": 140,
-    "fair": 0.39823008849557523
+    "fair": 0.3956834532374101
    },
    "moved": "away",
    "label": "DraftKings opened 2.5 (+115), now 2.5 (+140)"

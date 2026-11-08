@@ -148,28 +148,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-07@edgeline
-DTSTAMP:20261107T234952Z
-DTSTART:20261107T210000Z
-DTEND:20261108T061000Z
-SUMMARY:Parlay of the day: 3 legs +1740 at DraftKings
-DESCRIPTION:All legs priced at DraftKings. Fair 12.8%\, implied 5.4%\, EV +
- 136.5% per unit.\n- Soccer: Austin FC ML +300 · Austin FC vs. Portland Ti
- mbers\n- Soccer: Under 4 goals +100 · Inter Miami CF vs. Charlotte FC\n- 
- NHL: Vancouver Canucks +1.5 +130 · Vancouver Canucks @ Edmonton Oilers\n\
- nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261107T234952Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay of the day: 3 legs +1740 at DraftKings
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:4e4cd20d20-totals-Under@edgeline
 DTSTAMP:20261107T233248Z
 DTSTART:20261107T210000Z
@@ -206,239 +184,116 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:79334eedea-h2h-Seattle-Kraken@edgeline
-DTSTAMP:20261107T191855Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261107T221000Z
 DTEND:20261108T011000Z
-SUMMARY:Seattle Kraken ML +110 at Bovada · in play
+SUMMARY:Seattle Kraken ML +110 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · New York Rangers @ Seattle Kraken · Sat Nov 7\, 5:10 PM
-  ET\nMoneyline: Seattle Kraken ML at +110 (Bovada). Our probability 55.7% 
- from game data\, the price implies 47.6%\, edge +8.1 pts\, EV +17.1% per u
- nit. Confidence: Lean.\nOur probability is 55.7%\, from the game data: thi
- s season's results and margins\, recent form\, rest\, the injury report an
- d home edge (projected margin +0.3 for the home side). Bovada offers +110\
- , which implies only 47.6%. Its bar is 7.4 points: the model's own margin 
- of error on this side\, with 15 games behind the thinner team (±0.45 goal
- s on the margin). It clears it by 0.7. Not graded against other books' pri
- ces\; for reference the market makes it 45.8%.\nWhat supports it:\n- New Y
- ork Rangers trending: last five -1.2 vs +0.1 on the season.\n- Home edge +
- 0.2 for Seattle Kraken.\n- Seattle Kraken are rested (3 days).\n- New York
-  Rangers without Sean Durzi (D)\, Igor Shesterkin (G)\, Joe Veleno (C) (+0
- .3).\n- Projected margin +0.3 for Seattle Kraken.\n- A better price is now
-  available: +115 at BetOnline.ag.\n- A better price is available now: +120
-  at PointsBet.\nWhat could go wrong:\n- Seattle Kraken rate -0.1 a game ov
- er 15 (9-6)\, New York Rangers 0 over 17 (9-8)\; last season -0.5 and -0.1
-  a game.\n- Seattle Kraken trending: last five -0.8 vs +0.1 on the season.
- \n- Seattle Kraken without Curtis Douglas (C)\, Jared McCann (LW)\, Ryan L
- indgren (D) (-0.2).\nVerdict: The game data lines up behind this side at t
- his price.\nPrices: PointsBet +120\, BetMGM +115\, Bovada +115\, DraftKing
- s +114\, FanDuel +112 and 5 more.\nFull breakdown: https://ajur21.github.i
- o/edgeline-ai/picks.html#79334eedea-h2h-Seattle-Kraken
+  ET\nMoneyline: Seattle Kraken ML at +110 (Bovada). Lost -1.00u.\nFinal: 4
+ -3\nClosing line value: -40.4 pts (closed +1281\, consensus close (SportsG
+ ameOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.
+ io/edgeline-ai/performance.html
 LOCATION:Climate Pledge Arena\, Seattle
-URL:https://ajur21.github.io/edgeline-ai/picks.html#79334eedea-h2h-Seattle-
- Kraken
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T191855Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:21a304be61-h2h-Austin-FC@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261108T000000Z
 DTEND:20261108T030000Z
-SUMMARY:Play of the day: Austin FC ML +350 at BetRivers · High
+SUMMARY:Austin FC ML +350 at BetRivers · Lost -1.00u
 DESCRIPTION:Soccer · Austin FC vs. Portland Timbers · Sat Nov 7\, 7:00 PM
-  ET\nMoneyline: Austin FC ML at +350 (BetRivers). Our probability 37.1% fr
- om game data\, the price implies 22.2%\, edge +14.8 pts\, EV +66.8% per un
- it. Confidence: High.\nOur probability is 37.1%\, from the game data: this
-  season's results and margins\, recent form\, rest\, the injury report and
-  home edge (projected margin +0.1 for the home side). BetRivers offers +35
- 0\, which implies only 22.2%. Its bar is 7.2 points: the model's own margi
- n of error on this side\, with 33 games behind the thinner team (±0.32 go
- als on the margin). It clears it by 7.6. Not graded against other books' p
- rices\; for reference the market makes it 22.5%.\nWhat supports it:\n- Hom
- e edge +0.5 for Austin FC.\n- Projected margin +0.1 for Austin FC.\nWhat c
- ould go wrong:\n- Austin FC rate -0.5 a game over 33 (8-15)\, Portland Tim
- bers 0 over 33 (12-14)\; last season -0.3 and -0.3 a game.\n- Austin FC tr
- ending: last five -1.2 vs -0.6 on the season.\n- Portland Timbers trending
- : last five +0.4 vs 0 on the season.\nVerdict: More working against this o
- ne than for it\; size down.\nPrices: BetRivers +350\, BetOnline.ag +340\, 
- Unibet +330\, theScore Bet +320\, FanDuel +310 and 6 more.\nFull breakdown
- : https://ajur21.github.io/edgeline-ai/picks.html#21a304be61-h2h-Austin-FC
+  ET\nMoneyline: Austin FC ML at +350 (BetRivers). Lost -1.00u.\nFinal: 2-0
+ \nClosing line value: -20.3 pts (closed +5188\, consensus close (SportsGam
+ eOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.io
+ /edgeline-ai/performance.html
 LOCATION:Q2 Stadium\, Austin\, Texas
-URL:https://ajur21.github.io/edgeline-ai/picks.html#21a304be61-h2h-Austin-F
- C
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Play of the day: Austin FC ML +350 at BetRivers · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0db0938ab6-totals-Under@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261108T000000Z
 DTEND:20261108T030000Z
-SUMMARY:Under 4 goals -118 at Bovada · High
+SUMMARY:Under 4 goals -118 at Bovada · Won +0.85u
 DESCRIPTION:Soccer · San Diego FC vs. Sporting Kansas City · Sat Nov 7\, 
- 7:00 PM ET\nTotal: Under 4 goals at -118 (Bovada). Our probability 65.2% f
- rom game data\, the price implies 54.1%\, edge +11.1 pts\, EV +20.5% per u
- nit. Confidence: High.\nOur probability at 4 is 65.2%\, from the game data
- : this season's results and margins\, recent form\, rest\, the injury repo
- rt and home edge (projected total 3.5). Bovada offers -118\, which implies
-  only 54.1%. Its bar is 4.5 points: the model's own margin of error on thi
- s side\, with 33 games behind the thinner team (±0.17 goals on the total)
- . It clears it by 6.6. Not graded against other books' prices\; for refere
- nce the market makes it 51.9%.\nWhat supports it:\n- Combined scoring 3.6 
- a game in San Diego FC's games\, 3.6 in Sporting Kansas City's (league ave
- rage 3.3).\n- Projected total 3.5 against 4.\nVerdict: The game data lines
-  up behind this side at this price.\nPrices: Bovada -118\, BetOnline.ag -1
- 23\, DraftKings -145.\nFull breakdown: https://ajur21.github.io/edgeline-a
- i/picks.html#0db0938ab6-totals-Under
+ 7:00 PM ET\nTotal: Under 4 goals at -118 (Bovada). Won +0.85u.\nFinal: 1-0
+ \nThe line moved toward the pick before close.\nRecord and every graded pi
+ ck: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Snapdragon Stadium\, San Diego\, California
-URL:https://ajur21.github.io/edgeline-ai/picks.html#0db0938ab6-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 4 goals -118 at Bovada · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6f96012d11-totals-Over@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261108T001000Z
 DTEND:20261108T031000Z
-SUMMARY:Over 5.5 -124 at FanDuel · Lean
+SUMMARY:Over 5.5 -124 at FanDuel · Won +0.81u
 DESCRIPTION:NHL · New Jersey Devils @ New York Islanders · Sat Nov 7\, 7:
- 10 PM ET\nTotal: Over 5.5 at -124 (FanDuel). Our probability 58.7% from ga
- me data\, the price implies 55.4%\, edge +3.3 pts\, EV +6.0% per unit. Con
- fidence: Lean.\nOur probability at 5.5 is 58.7%\, from the game data: this
-  season's results and margins\, recent form\, rest\, the injury report and
-  home edge (projected total 6.4). FanDuel offers -124\, which implies only
-  55.4%. Its bar is 3.0 points (the floor: the model's own margin of error 
- here is smaller). It clears it by 0.3. Not graded against other books' pri
- ces\; for reference the market makes it 54.0%.\nWhat supports it:\n- Combi
- ned scoring 5.8 a game in New York Islanders's games\, 6.5 in New Jersey D
- evils's (league average 6.4).\n- Projected total 6.4 against 5.5.\nWhat co
- uld go wrong:\n- At current prices our edge is 1.4 points\, under its bar 
- of 3.0 points\; the pick stays posted and is graded at the price it was po
- sted at.\n- Scorers out: Mathew Barzal (C)\, knee\; Ryan Pulock (D)\, uppe
- r body\; Matias Maccelli (LW)\, lower body and 3 more. Fewer healthy score
- rs leans under.\nVerdict: The game data lines up behind this side at this 
- price.\nPrices: BetOnline.ag -128\, theScore Bet -130\, Unibet -133\, BetR
- ivers -134\, FanDuel -134 and 3 more.\nFull breakdown: https://ajur21.gith
- ub.io/edgeline-ai/picks.html#6f96012d11-totals-Over
+ 10 PM ET\nTotal: Over 5.5 at -124 (FanDuel). Won +0.81u.\nFinal: 5-4\nClos
+ ing line value: -1.0 pts (closed -119\, consensus close (SportsGameOdds\, 
+ 0 books)).\nRecord and every graded pick: https://ajur21.github.io/edgelin
+ e-ai/performance.html
 LOCATION:UBS Arena\, Elmont
-URL:https://ajur21.github.io/edgeline-ai/picks.html#6f96012d11-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -124 at FanDuel · Lean
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:1f21bf798a-spreads-San-Jose-Sharks@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261108T011000Z
 DTEND:20261108T041000Z
-SUMMARY:San Jose Sharks +1.5 +100 at BetMGM · Medium
+SUMMARY:San Jose Sharks +1.5 +100 at BetMGM · Won +1.00u
 DESCRIPTION:NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7\, 8:10 PM ET
- \nPuck line: San Jose Sharks +1.5 at +100 (BetMGM). Our probability 60.3% 
- from game data\, the price implies 50.0%\, edge +10.3 pts\, EV +20.5% per 
- unit. Confidence: Medium.\nOur probability at +1.5 is 60.3%\, from the gam
- e data: this season's results and margins\, recent form\, rest\, the injur
- y report and home edge (projected margin +0.7 for the home side). BetMGM o
- ffers +100\, which implies only 50.0%. Its bar is 6.8 points: the model's 
- own margin of error on this side\, with 16 games behind the thinner team (
- ±0.45 goals on the margin). It clears it by 3.4. Not graded against other
-  books' prices\; for reference the market makes it 49.1%.\nWhat supports i
- t:\n- Dallas Stars trending: last five -1 vs +0.4 on the season.\n- San Jo
- se Sharks are rested (3 days).\n- Dallas Stars without Miro Heiskanen (D)\
- , Kyle Capobianco (D)\, Oskar Back (C) (-0.3).\n- Dallas Stars have Sam St
- eel (C) listed day-to-day or questionable.\n- A better price is available 
- now: +105 at ESPN BET.\nWhat could go wrong:\n- Dallas Stars rate +0.2 a g
- ame over 16 (9-7)\, San Jose Sharks -0.4 over 17 (7-10)\; last season +0.6
-  and -0.5 a game.\n- San Jose Sharks trending: last five -2.2 vs -1 on the
-  season.\n- Home edge +0.2 for Dallas Stars.\n- San Jose Sharks without Ig
- or Chernyshov (LW)\, Alexander Wennberg (C) (+0.1).\n- Projected margin -0
- .7 for San Jose Sharks against +1.5.\n- At current prices our edge is 5.4 
- points\, under its bar of 7.1 points\; the pick stays posted and is graded
-  at the price it was posted at.\nVerdict: More working against this one th
- an for it\; size down.\nPrices: ESPN BET +105\, Bovada +105\, BetMGM +100\
- , FanDuel +100\, Caesars +100 and 3 more.\nFull breakdown: https://ajur21.
- github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-Jose-Sharks
+ \nPuck line: San Jose Sharks +1.5 at +100 (BetMGM). Won +1.00u.\nFinal: 3-
+ 4\nClosing line value: +0.7 pts (closed -103\, consensus close (SportsGame
+ Odds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.io/
+ edgeline-ai/performance.html
 LOCATION:American Airlines Center\, Dallas
-URL:https://ajur21.github.io/edgeline-ai/picks.html#1f21bf798a-spreads-San-
- Jose-Sharks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:San Jose Sharks +1.5 +100 at BetMGM · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b5934d2ce0-spreads-Minnesota-Wild@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T051801Z
 DTSTART:20261108T011000Z
 DTEND:20261108T041000Z
-SUMMARY:Minnesota Wild +1.5 -210 at BetMGM · Lean
+SUMMARY:Minnesota Wild +1.5 -210 at BetMGM · Won +0.48u
 DESCRIPTION:NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7\, 8:10
-  PM ET\nPuck line: Minnesota Wild +1.5 at -210 (BetMGM). Our probability 7
- 3.7% from game data\, the price implies 67.7%\, edge +6.0 pts\, EV +8.8% p
- er unit. Confidence: Lean.\nOur probability at +1.5 is 73.7%\, from the ga
- me data: this season's results and margins\, recent form\, rest\, the inju
- ry report and home edge (projected margin +0.3 for the home side). BetMGM 
- offers -210\, which implies only 67.7%. Its bar is 5.8 points: the model's
-  own margin of error on this side\, with 15 games behind the thinner team 
- (±0.45 goals on the margin). It clears it by 0.2. Not graded against othe
- r books' prices\; for reference the market makes it 66.5%.\nWhat supports 
- it:\n- Minnesota Wild rate +0.4 a game over 17 (11-6)\, Tampa Bay Lightnin
- g +0.3 over 15 (10-5)\; last season +0.4 and +0.7 a game.\n- Minnesota Wil
- d trending: last five +1.8 vs +1.1 on the season.\n- Home edge +0.2 for Mi
- nnesota Wild.\n- Minnesota Wild are rested (4 days).\n- Projected margin +
- 0.3 for Minnesota Wild against +1.5.\n- A better price is available now: -
- 205 at Caesars.\nWhat could go wrong:\n- Minnesota Wild without Marcus Fol
- igno (LW)\, Jared Spurgeon (D) (-0.1).\n- At current prices our edge is 3.
- 1 points\, under its bar of 6.1 points\; the pick stays posted and is grad
- ed at the price it was posted at.\nVerdict: The game data lines up behind 
- this side at this price.\nPrices: Caesars -205\, BetMGM -210\, ESPN BET -2
- 10\, FanDuel -215\, DraftKings -218 and 3 more.\nFull breakdown: https://a
- jur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minnesota-Wild
+  PM ET\nPuck line: Minnesota Wild +1.5 at -210 (BetMGM). Won +0.48u.\nFina
+ l: 4-3\nThe line moved toward the pick before close.\nRecord and every gra
+ ded pick: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Grand Casino Arena\, Saint Paul
-URL:https://ajur21.github.io/edgeline-ai/picks.html#b5934d2ce0-spreads-Minn
- esota-Wild
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T051801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Minnesota Wild +1.5 -210 at BetMGM · Lean
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8fe46a5692-spreads-Vancouver-Canucks@edgeline
 DTSTAMP:20261107T234952Z
 DTSTART:20261108T031000Z
 DTEND:20261108T061000Z
-SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · Lean
+SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · in play
 DESCRIPTION:NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7\, 10:10
   PM ET\nPuck line: Vancouver Canucks +1.5 at +117 (Bovada). Our probabilit
  y 54.3% from game data\, the price implies 46.1%\, edge +8.2 pts\, EV +17.
@@ -471,11 +326,6 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261107T234952Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Vancouver Canucks +1.5 +117 at Bovada · Lean
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:79ed3df594-h2h-Ipswich-Town@edgeline
