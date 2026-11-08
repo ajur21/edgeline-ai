@@ -13,6 +13,7 @@
    ========================================================================== */
 "use strict";
 const availability = require("./availability.js");
+const ncaaf = require("./ncaaf.js"); /* college football (2026-11-08): its own ratings, see scripts/ncaaf.js */
 
 /* The NHL's own final scores (ESPN, 2024-25 and 2025-26 regular seasons, 2,624 games): how often a game ends by each
    margin (either way; no ties, overtime and the shootout give the winner one goal) and with each total. A two-goal lead
@@ -74,6 +75,7 @@ const SPORT = {
      injury cost rarely applies; rest is not used (nearly every match has 3+ days). */
   soccer_usa_mls:        { homeEdge: 0.5, sd: 1.63, sdTotal: 1.71, k: 20, form: 0.1, carry: { k: 20, c: 0.25 }, kTotal: 15, leagueGoals: 1.48, shape: MLS_SHAPE, b2b: 0, rest3: 0, out: () => 0.15, soft: 0.5, scoringOut: () => 0, threeWay: true, drawBand: 0.5 }
 };
+SPORT[ncaaf.KEY] = ncaaf.SPORT; /* college football: scripts/ncaaf.js */
 /* Calibration per league and market (2026-11-05, owner: the board is "just one sport or heavily favorited"). Fitted on
    held-out seasons from results only: the model was replayed game by game on ESPN's final scores (NHL 2024-25 to
    2026-27, 2,811 games; NBA 2023-24 to 2026-27, 3,751; NFL 2023-2026, 873; EPL 359 with lines), using only what was
@@ -97,6 +99,12 @@ const CALIB = {
   basketball_nba: { h2h: [-0.03, 1.17], spreads: [0, 0.05], totals: [0, 0.04] },
   americanfootball_nfl: { spreads: [0, 0.08], totals: [0, 0] }
 };
+CALIB[ncaaf.KEY] = ncaaf.CALIB; /* college football: fitted in scripts/ncaaf.js */
+/* HOLD (2026-11-08, college football): a market whose held-out replay could not back it against the price. Its probabilities
+   stay as they are (they are calibrated against results), but no side is a lean or a watch, and its reasons say why.
+   The NCAAF moneyline: the sides it would post won 31.1% of the time where the price implied 30.7% and we said 56.7%
+   (see scripts/ncaaf.js HOLD). Deleting a market's entry lets it post again. */
+const HOLD = {}; HOLD[ncaaf.KEY] = ncaaf.HOLD;
 const SEVERE = /^(out|injured reserve|ir|doubtful|suspended|season)/i, SOFT = /^(questionable|day-to-day|day to day|probable|game time)/i;
 
 function erf(x) { const s = x < 0 ? -1 : 1; x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; }
@@ -321,7 +329,7 @@ function shapeProb(gm, shape, marketKey, outcome, home, away, threeWay) {
 /* a market where past seasons showed no signal at the books' lines (its calibration slope is under 0.5: NBA and NFL
    spreads and totals): its sides read about even, so a plus-money price could put one past the 3-point floor on a coin
    flip. Such a side is never a pick or a watch, whatever the price; it stays on the market board as information */
-function hasSignal(sportKey, marketKey) { const c = CALIB[sportKey] && CALIB[sportKey][marketKey]; return !(c && c[1] < 0.5); }
+function hasSignal(sportKey, marketKey) { const c = CALIB[sportKey] && CALIB[sportKey][marketKey]; return !(c && c[1] < 0.5) && !(HOLD[sportKey] && HOLD[sportKey][marketKey]); }
 /* the model's probability for a side, then the league's calibration for that market (see CALIB) */
 function sideProb(gm, marketKey, outcome, home, away) {
   return calibrated(gm, marketKey, outcome, home, rawSideProb(gm, marketKey, outcome, home, away));
@@ -393,6 +401,7 @@ function sideReasons(gm, marketKey, outcome, home, away) {
     const raw = rawSideProb(gm, marketKey, outcome, home, away), cal = sideProb(gm, marketKey, outcome, home, away);
     if (raw != null && cal != null) out.against.push("Past seasons: our " + (isTotal ? "totals" : marketKey === "spreads" ? "spreads" : "numbers") + " at the books' lines did no better than a coin flip, so this side reads " + r1(cal * 100) + "% (the model alone " + r1(raw * 100) + "%)");
   }
+  if (HOLD[gm.sportKey] && HOLD[gm.sportKey][marketKey]) out.against.push(HOLD[gm.sportKey][marketKey]); /* a market the replay could not back (HOLD) */
   return out;
 }
 
@@ -400,6 +409,7 @@ function sideReasons(gm, marketKey, outcome, home, away) {
 async function forEvent(src, ctxlib, e, now, cache) {
   /* e: { sportKey, home, away, commence } */
   if (!SPORT[e.sportKey] || !ctxlib.ESPN[e.sportKey]) return null;
+  if (e.sportKey === ncaaf.KEY) return ncaaf.forEvent(src, ctxlib, e, now, cache); /* college football: schedule-adjusted ratings */
   cache.scoreboards = cache.scoreboards || {}; cache.schedules = cache.schedules || {}; cache.injuries = cache.injuries || {};
   const commenceMs = Date.parse(e.commence);
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(commenceMs)).replace(/-/g, "");
@@ -544,6 +554,7 @@ function publicModel(gm) { return gm ? { margin: r1(gm.margin), total: r1(gm.tot
    5.2 is above its measured 3.3 (cautious). Mid-season (27 games) NBA 3.3 against a measured 3.3.
    Returns { p (probability points as a fraction), units (on the margin or total), unit, gp (fewest games behind a team) }. */
 const UNIT = { basketball_nba: "points", americanfootball_nfl: "points", icehockey_nhl: "goals", baseball_mlb: "runs", soccer_epl: "goals", soccer_usa_mls: "goals" };
+UNIT[ncaaf.KEY] = "points"; /* college football */
 function noise(gm, marketKey, outcome, home, away) {
   const cfg = gm && SPORT[gm.sportKey]; if (!cfg || !outcome) return null;
   const gh = Number(gm.gpHome != null ? gm.gpHome : gm.gp), ga = Number(gm.gpAway != null ? gm.gpAway : gm.gp);

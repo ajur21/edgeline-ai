@@ -18,6 +18,19 @@ const LEAGUES = [
   { sportKey: "soccer_usa_mls", sport: "Soccer", path: "soccer/usa.1" }
 ];
 const BASE = "https://site.api.espn.com/apis/site/v2/sports/";
+/* College football (2026-11-08, scripts/ncaaf.js): ESPN's teams list holds every division (763 teams), so the FBS (138) and
+   FCS (127) ids come from the core API's groups 80 and 81, two more requests; the odds feed's other spellings ride along
+   as `aka` (js/teams.js matches them: "Appalachian State Mountaineers" is ESPN's "App State Mountaineers") */
+const CFB_CORE = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football";
+async function collegeTeams() {
+  const all = await get(BASE + "football/college-football/teams?limit=1000");
+  const now = new Date(), season = now.getUTCMonth() + 1 >= 3 ? now.getUTCFullYear() : now.getUTCFullYear() - 1, ids = new Set();
+  for (const g of ["80", "81"]) { const j = await get(CFB_CORE + "/seasons/" + season + "/types/2/groups/" + g + "/teams?limit=400"); (j.items || []).forEach(i => { const m = /teams\/(\d+)/.exec(i.$ref || ""); if (m) ids.add(m[1]); }); }
+  if (!ids.size) throw new Error("no FBS or FCS ids");
+  const lg = all.sports[0].leagues[0]; lg.teams = (lg.teams || []).filter(t => ids.has(String((t.team || t).id)));
+  return all;
+}
+LEAGUES.push({ sportKey: "americanfootball_ncaaf", sport: "NCAAF", path: "football/college-football", load: collegeTeams, aka: require("./ncaaf.js").AKA });
 
 async function get(url) {
   const res = await fetch(url, { headers: { accept: "application/json" } });
@@ -46,8 +59,9 @@ async function run(opts) {
   let total = 0;
   for (const l of LEAGUES) {
     try {
-      const json = opts.fetch ? await opts.fetch(l) : await get(BASE + l.path + "/teams?limit=60");
+      const json = opts.fetch ? await opts.fetch(l) : l.load ? await l.load() : await get(BASE + l.path + "/teams?limit=60");
       const teams = parseTeams(json);
+      if (l.aka) teams.forEach(t => { if (l.aka[t.id]) t.aka = l.aka[t.id]; }); /* college football: the feed's other spellings */
       if (!teams.length) throw new Error("no teams");
       leagues[l.sportKey] = { sport: l.sport, teams: teams };
       total += teams.length;

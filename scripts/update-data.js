@@ -60,6 +60,11 @@ const SPORTS = [
   { key: "soccer_usa_mls", sport: "Soccer", league: "MLS", markets: ["h2h", "totals"], goals: true, days: [2, 3, 5, 6, 0], slots: ["afternoon"] }
   /* La Liga (soccer_spain_la_liga) is off to stay inside the free request tier; add it back here when the budget allows. */
 ];
+/* College football (scripts/ncaaf.js, 2026-11-08): Friday's afternoon run only (runDays, see runDayAllows). Its 36-hour
+   window holds Friday night and all of Saturday, where nearly every FBS game is; 3 credits a week instead of 18 for
+   every afternoon with a game (the MAC's Tuesday and Wednesday nights, Thursday) keeps the month inside the free tier
+   (see the request budget in CLAUDE.md). Shown as "College football" by the pages. */
+SPORTS.push({ key: "americanfootball_ncaaf", sport: "NCAAF", league: "NCAAF", markets: ["h2h", "spreads", "totals"], spreadLabel: "Spread", days: [5], slots: ["afternoon"], runDays: [5] });
 /* Pinnacle anchors the fair line; the rest are the books a pick can name. Ten bookmakers cost the same as one region. */
 const ANCHOR = "pinnacle";
 const BOOKS = [ANCHOR, "draftkings", "fanduel", "betmgm", "williamhill_us", "betrivers", "fanatics", "espnbet", "bovada", "betonlineag"];
@@ -515,6 +520,10 @@ function summarize(log, now) {
 function oddsCost(cfg) { return cfg.markets.length; } /* markets x regions; ten named bookmakers count as one region */
 /* a sport with `slots` is fetched only on those daily runs; a manual run (or none named) fetches every sport */
 function slotAllows(cfg, slot, weekday) { return !cfg.slots || !slot || slot === "manual" || cfg.slots.indexOf(slot) !== -1 || (slot === "morning" && !!cfg.morningDays && cfg.morningDays.indexOf(weekday) !== -1); }
+/* a sport with `runDays` (Eastern weekdays, 0 = Sunday; NCAAF: Friday) is fetched only on runs on those days; a manual run
+   fetches it whatever the day */
+function runDayAllows(cfg, slot, weekday) { return !cfg.runDays || !slot || slot === "manual" || weekday == null || cfg.runDays.indexOf(weekday) !== -1; }
+function runDayWhy(cfg) { return "fetched on " + cfg.runDays.map(d => ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d]).join(" and ") + " runs only"; }
 /* ESPN's scoreboard (free) for every Eastern day the pick window touches: how many games start inside the window, and
    whether any day could not be read (null, or no events list). Postponed and cancelled games do not count. */
 async function espnGames(src, cfg, now) {
@@ -551,6 +560,7 @@ function afternoonsLeft(now) {
    last to the 1st. */
 function fetchDecision(cfg, o) {
   if (!slotAllows(cfg, o.slot, o.weekday)) return { fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" };
+  if (!runDayAllows(cfg, o.slot, o.weekday)) return { fetch: false, why: runDayWhy(cfg) }; /* college football: Friday runs only */
   const e = o.espn;
   let why;
   /* a sport on the morning run only by its morningDays: a game must kick off before the afternoon run (2026-11-08) */
@@ -643,6 +653,7 @@ async function run(opts) {
     if (usage.remaining != null && usage.remaining < RULES.minRequestsLeft) { console.warn("Odds API quota low (" + usage.remaining + " left); skipping " + cfg.key); plan.push({ sport: cfg.key, fetch: false, why: "quota low" }); continue; }
     /* the slot rule first (no ESPN call for a sport this run never fetches), then ESPN's schedule, then the morning guard */
     if (!slotAllows(cfg, opts.slot, etWeekday(now))) { plan.push({ sport: cfg.key, fetch: false, why: "fetched on the " + cfg.slots.join(" and ") + " run only" }); continue; }
+    if (!runDayAllows(cfg, opts.slot, etWeekday(now))) { plan.push({ sport: cfg.key, fetch: false, why: runDayWhy(cfg) }); continue; } /* college football: Friday runs only */
     const espn = await espnGames(ctxSource, cfg, now);
     const d = fetchDecision(cfg, { slot: opts.slot, espn: espn, weekday: etWeekday(now), fixture: opts.fixture, remaining: usage.remaining, afternoonsLeft: afternoonsLeft(now) });
     if (!d.fetch) { plan.push({ sport: cfg.key, fetch: false, why: d.why }); continue; }
@@ -956,3 +967,4 @@ if (require.main === module) {
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
 module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
+module.exports.runDayAllows = runDayAllows; /* college football: Friday runs only */

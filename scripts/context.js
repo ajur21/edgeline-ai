@@ -17,6 +17,10 @@ const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball
 const ESPN_CORE = { americanfootball_nfl: "football/leagues/nfl", basketball_nba: "basketball/leagues/nba", baseball_mlb: "baseball/leagues/mlb", icehockey_nhl: "hockey/leagues/nhl", soccer_epl: "soccer/leagues/eng.1", soccer_spain_la_liga: "soccer/leagues/esp.1", soccer_usa_mls: "soccer/leagues/usa.1" };
 const DK_PROVIDER = "100"; /* ESPN's provider id for DraftKings, the only book it publishes */
 const OUTDOOR = { americanfootball_nfl: true, baseball_mlb: true, soccer_epl: true, soccer_spain_la_liga: true, soccer_usa_mls: true };
+/* college football (scripts/ncaaf.js, 2026-11-08): ESPN's scoreboard needs groups=80 (every game with an FBS team) and a
+   limit, or a Saturday of 55 games can come back short; SB_QUERY adds them to the scoreboard request */
+ESPN.americanfootball_ncaaf = "football/college-football"; ESPN_CORE.americanfootball_ncaaf = "football/leagues/college-football"; OUTDOOR.americanfootball_ncaaf = true;
+const SB_QUERY = { americanfootball_ncaaf: "&groups=80&limit=300" };
 const ET = "America/New_York";
 const DAY = 864e5;
 function etDate(d) { return new Intl.DateTimeFormat("en-CA", { timeZone: ET, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); }
@@ -44,12 +48,14 @@ function liveSource() {
   return {
     /* a player's game log: his latest season with games (this one if he has played in it), each game with his club's id */
     gamelog: (sport, athleteId) => get("https://site.web.api.espn.com/apis/common/v3/sports/" + ESPN[sport] + "/athletes/" + athleteId + "/gamelog", false).catch(() => null),
-    scoreboard: (sport, yyyymmdd) => get(site(sport) + "/scoreboard?dates=" + yyyymmdd).catch(() => null),
+    scoreboard: (sport, yyyymmdd) => get(site(sport) + "/scoreboard?dates=" + yyyymmdd + (SB_QUERY[sport] || "")).catch(() => null),
     odds: (sport, eventId) => get("https://sports.core.api.espn.com/v2/sports/" + ESPN_CORE[sport] + "/events/" + eventId + "/competitions/" + eventId + "/odds/" + DK_PROVIDER).catch(() => null),
     injuries: sport => get(site(sport) + "/injuries").catch(() => null),
     schedule: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/schedule").catch(() => null),
     /* a past season's schedule (the model's carry-over); MLB needs the regular-season type spelled out */
     scheduleSeason: (sport, teamId, season) => get(site(sport) + "/teams/" + teamId + "/schedule?season=" + season + (sport === "baseball_mlb" ? "&seasontype=2" : "")).catch(() => null),
+    /* one week of a college season, every game with an FBS team (scripts/ncaaf.js ratings; not kept: the model keeps the scores) */
+    week: (sport, season, type, week) => get(site(sport) + "/scoreboard?groups=80&limit=500&dates=" + season + "&seasontype=" + type + "&week=" + week, false).catch(() => null),
     standings: sport => get("https://site.api.espn.com/apis/v2/sports/" + ESPN[sport] + "/standings").catch(() => null),
     /* a club's roster: every player's ESPN id and position (the model asks only for a player the NBA's report names and ESPN's does not) */
     roster: (sport, teamId) => get(site(sport) + "/teams/" + teamId + "/roster").catch(() => null),
@@ -84,6 +90,7 @@ function fixtureSource(opts) {
     injuries: async sport => read("ctx-injuries-" + slug(sport)),
     schedule: async (sport, id) => read("ctx-schedule-" + slug(sport) + "-" + id),
     scheduleSeason: async (sport, id, season) => read("ctx-schedule-" + slug(sport) + "-" + id + "-" + season),
+    week: async (sport, season, type, week) => read("ctx-week-" + slug(sport) + "-" + season + "-" + type + "-" + week),
     gamelog: async (sport, id) => read("ctx-gamelog-" + slug(sport) + "-" + id),
     standings: async sport => read("ctx-standings-" + slug(sport)),
     roster: async (sport, id) => read("ctx-roster-" + slug(sport) + "-" + id),
@@ -102,6 +109,7 @@ function fixtureSource(opts) {
    "Columbus Crew SC" / "Columbus Crew", "CF Montreal" / "CF Montréal", "DC United" / "D.C. United", "Brighton and Hove
    Albion" / "Brighton & Hove Albion". Two MLS clubs go by other names (CLUB_ALIAS: ESPN's "LAFC" and "Red Bull New York") */
 const CLUB_ALIAS = { losangeles: "lafc", newyorkredbulls: "redbullnewyork", nyredbulls: "redbullnewyork" };
+Object.assign(CLUB_ALIAS, require("./ncaaf.js").clubAlias()); /* college football: the feed's spellings ("Appalachian State Mountaineers" is ESPN's "App State Mountaineers") */
 function clubCore(s) {
   const c = String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").split(" ").filter(w => w && !/^(fc|sc|cf|afc)$/.test(w)).join("");
   return CLUB_ALIAS[c] || c;
