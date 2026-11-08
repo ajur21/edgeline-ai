@@ -4,20 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Daily digest · EdgeLine AI</title>
-  <meta name="description" content="One page for today's slate: every pick by tip-off time with price, edge and the one-line verdict, plus the play and parlay of the day. Built to print or paste.">
+  <meta name="description" content="One page for today’s slate: every model lean by tip-off time with price, edge and the one-line verdict, plus the lean and parlay lean of the day. Built to print or paste.">
   <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="EdgeLine AI">
   <meta property="og:title" content="Daily digest · EdgeLine AI">
-  <meta property="og:description" content="One page for today's slate: every pick by tip-off time with price, edge and the one-line verdict, plus the play and parlay of the day. Built to print or paste.">
+  <meta property="og:description" content="One page for today’s slate: every model lean by tip-off time with price, edge and the one-line verdict, plus the lean and parlay lean of the day. Built to print or paste.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI feed" href="feed.xml">
+  <script src="data/replay.js"></script>
   <script src="js/app.js"></script>
   <script src="js/search.js" defer></script>
   <script src="js/space.js" defer></script>
@@ -31,7 +32,7 @@
     <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="picks.html">Today’s picks</a></li>
+      <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
       <li><a href="games.html">Games</a></li>
       <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
@@ -41,14 +42,14 @@
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
     <div class="nav-actions">
-      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, picks, teams and players" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, teams, players and bets" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
       <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
     </div>
   </div>
 </header>
 <main id="main">
-<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
 <nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#potd-host">Start here</a><a href="#top3">Likeliest three</a><a href="#slate-host">The slate</a><a href="#played">In progress and results</a></div></nav>
 
 <section class="section-tight">
@@ -67,7 +68,7 @@
     </div>
     <p class="digest-lede" id="digest-lede"></p>
     <div class="grid-4 digest-tiles" id="digest-tiles"></div>
-    <p class="digest-sub muted">Get this every day without an account: <a href="index.html#subscribe">subscribe by calendar or feed</a>, and each pick arrives at tip-off with its grade written in after the final.</p>
+    <p class="digest-sub muted">Get this every day without an account: <a href="index.html#subscribe">subscribe by calendar or feed</a>, and each <span data-pick="pick">lean</span> arrives at tip-off with its grade written in after the final.</p>
   </div>
 </section>
 
@@ -93,21 +94,22 @@
   <div class="container digest-slate">
     <div class="section-head row">
       <div>
-        <h2>Every pick, likeliest first</h2>
-        <p class="muted">Today's games first, then later days under their own heading; within a day, sides worth a bet first, ranked by our probability from the game data, then the rest. The start time (Eastern) is on every line. The verdict is the last line of each pick’s full breakdown. Prices are the best book at the last refresh; the chips on the picks page show every book.</p>
+        <h2>Every lean, likeliest first</h2>
+        <p class="muted">Today’s games first, then later days under their own heading; within a day, sides with an edge first, ranked by our probability from the game data, then the rest. The start time (Eastern) is on every line. The verdict is the last line of each full breakdown. Prices are the best book at the last refresh; the cards on <a href="picks.html" data-pick="Today’s picks">Today’s leans</a> show every book.</p>
       </div>
     </div>
     <div id="slate-host"></div>
     <div class="section-head row digest-played-head" id="played">
       <div>
         <h2>In progress and results</h2>
-        <p class="muted">A pick leaves the slate when its game starts and is marked here: live first, then awaiting a result, then graded with the final score and units.</p>
+        <p class="muted">A <span data-pick="pick">lean</span> leaves the slate when its game starts and is marked here: live first, then awaiting a result, then graded with the final score and units.</p>
       </div>
     </div>
     <div id="played-host"></div>
     <div class="notice digest-foot">
-      <strong>How to read it.</strong> To hit is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. Edge is that probability minus the probability implied by the price shown, in points. Each pick had to clear its own bar, the model’s margin of error on that side (never under 3 points); confidence is how far past it: Medium from 2 points, High from 5. A pick is locked once posted and graded at the posted price, even if a later check finds it below its bar. Nothing is graded against other books’ prices. Once a game starts its pick moves to In progress and results, where the live line shows the score and where the pick stands; results are graded officially from final scores at the next hourly check.
+      <strong>How to read it.</strong> To hit is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. Edge is that probability minus the probability implied by the price shown, in points. Each <span data-pick="pick">lean</span> had to clear its own bar, the model’s margin of error on that side (never under 3 points); confidence is how far past it: Medium from 2 points, High from 5. It is locked once posted and graded at the posted price, even if a later check finds it below its bar. Nothing is graded against other books’ prices. Once a game starts it moves to In progress and results, where the live line shows the score and where the side stands; results are graded officially from final scores at the next hourly check.
     </div>
+    <p class="replay-note" data-replay>In a replay of past seasons these leans did not beat the closing price. They become picks when the live record beats the close.</p>
   </div>
 </section>
 
@@ -161,7 +163,7 @@
   }
   /* a day heading where the game day changes (owner rule: a play from tomorrow never sits above one from today) */
   function dayBreaks(picks) { var spans = new Set(picks.map(E.dayKey)).size > 1, prev = null; return picks.map(function (p, i) { var k = E.dayKey(p), brk = spans && (i === 0 || k !== prev); prev = k; return brk ? k : null; }); }
-  var slateTitle = document.querySelector(".digest-slate .section-head h2").textContent, top3Title = document.querySelector("#top3-head h2").textContent;
+  var top3Title = document.querySelector("#top3-head h2").textContent;
 
   function render() {
   compute();
@@ -175,33 +177,33 @@
   var lede = document.getElementById("digest-lede");
   lede.textContent = "";
   if (!P.length) {
-    lede.textContent = played.length ? "Every pick on today’s board has started; where each stands is under In progress and results below. New picks are published around noon ET." : "Nothing on the board right now. Prices refresh around noon and 4:30 PM ET; when an edge appears it lands here.";
+    lede.textContent = played.length ? "Every " + E.word("one") + " on today’s board has started; where each stands is under In progress and results below. New " + E.word("many") + " are published around " + E.runClock(0) + "." : "Nothing on the board right now. Prices refresh around " + E.runClock(0) + " and " + E.runClock(1) + "; when a side clears its bar it lands here.";
   } else if (fallbackMode) {
     var closest = P[0];
     lede.textContent = "";
-    [E.el("strong", { text: "No pick clears its bar tonight. " }), MS.markets + " markets across " + MS.games + " games were priced on our probability from the game data, each against its own bar, and the likeliest is ", E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.hasModel(closest) ? (E.edgeOf(closest) * 100).toFixed(1) + " points over the price, " + E.pastWord(closest) + " of " + E.barName(closest) + ". " : "with no model yet. ") + (MS.watch ? MS.watch + " markets are at least halfway to their bar. " : "") + "Below is the watch list, not a card: first start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    [E.el("strong", { text: "No " + E.word("one") + " clears its bar tonight. " }), MS.markets + " markets across " + MS.games + " games were priced on our probability from the game data, each against its own bar, and the likeliest is ", E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.hasModel(closest) ? (E.edgeOf(closest) * 100).toFixed(1) + " points over the price, " + E.pastWord(closest) + " of " + E.barName(closest) + ". " : "with no model yet. ") + (MS.watch ? MS.watch + " markets are at least halfway to their bar. " : "") + "Below is the watch list, not a card: first start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   } else {
     /* the lead is the pick furthest past its own bar: picks are chosen on that one scale across every sport */
     var top = P.slice().sort(function (a, b) { var x = E.pastOf(a), y = E.pastOf(b); return (Number.isFinite(y) ? y : -9) - (Number.isFinite(x) ? x : -9); })[0], first = ordered[0];
     lede.textContent = "";
-    [E.el("strong", { text: P.length + (P.length === 1 ? " pick" : " picks") }), " across " + sportList.length + (sportList.length === 1 ? " sport" : " sports") + (high ? ", " + high + " of them High" : "") + ". ",
+    [E.el("strong", { text: E.nWord(P.length) }), " across " + sportList.length + (sportList.length === 1 ? " sport" : " sports") + (high ? ", " + high + " of them High" : "") + ". ",
      "Furthest past its bar is ", E.el("strong", { text: top.pick }), " at " + E.fmtOdds(top.odds) + (top.book ? " (" + top.book + ")" : "") + ": " + (E.edgeOf(top) * 100).toFixed(1) + " points over the price against " + E.barName(top) + ", " + E.pastWord(top) + ". ",
-     sportList.length > 1 ? sportList[0] + " carries the most action with " + sports[sportList[0]] + " picks. " : "",
+     sportList.length > 1 ? sportList[0] + " carries the most with " + E.nWord(sports[sportList[0]]) + ". " : "",
      "First start: " + slotLabel(first) + "."].forEach(function (c) { if (c) lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   }
-  if (P.length && played.length) lede.appendChild(document.createTextNode(" " + played.length + (played.length === 1 ? " pick has" : " picks have") + " already started: see In progress and results."));
+  if (P.length && played.length) lede.appendChild(document.createTextNode(" " + E.nWord(played.length) + (played.length === 1 ? " has" : " have") + " already started: see In progress and results."));
   var tiles = fallbackMode ? [
-    { label: "Picks", value: "0", sub: "Nothing clears its bar" },
+    { label: E.word("Many"), value: "0", sub: "Nothing clears its bar" },
     { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games: " + MS.sports.join(", ") },
     { label: "Watch list", value: String(MS.watch), sub: "At least halfway to their bar" }
   ] : [
-    { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "No edges right now" },
+    { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "Nothing on the board right now" },
     { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Lean" : "" },
-    { label: "Past the bar", value: P.length ? E.signed(avgPast * 100, 1) : "—", sub: P.length ? "Points past each pick’s own bar, on average (edge " + E.signed(avgEdge * 100, 1) + ")" : "Points past each pick’s own bar" }
+    { label: "Past the bar", value: P.length ? E.signed(avgPast * 100, 1) : "—", sub: P.length ? "Points past each " + E.word("one") + "’s own bar, on average (edge " + E.signed(avgEdge * 100, 1) + ")" : "Points past each " + E.word("one") + "’s own bar" }
   ];
   var last = S && S.byDate && S.byDate.length ? S.byDate[S.byDate.length - 1] : null;
   tiles.push(last ? { label: "Last results", value: last.wins + "-" + last.losses + (last.pushes ? "-" + last.pushes : ""), sub: E.signed(last.units, 2) + "u on " + new Date(last.date + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) + (S.record ? " · 30 days " + S.record.wins + "-" + S.record.losses + ", " + E.signed(S.units, 1) + "u" : "") }
-                   : { label: "Last results", value: "—", sub: "Results appear the morning after the first picks settle" });
+                   : { label: "Last results", value: "—", sub: "Results appear the morning after the first " + E.word("many") + " settle" });
   var th = document.getElementById("digest-tiles");
   th.textContent = "";
   tiles.forEach(function (t) { th.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [E.el("div", { class: "stat-label", text: t.label }), E.el("div", { class: "stat-value", text: t.value }), E.el("div", { class: "stat-sub", text: t.sub })])); });
@@ -226,15 +228,15 @@
       E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.probText(p) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev != null && ev <= 0 ? " neg" : ""), text: ev == null ? "—" : E.signed(ev * 100, 1) + "%" })])
     ]));
   });
-  document.querySelector(".digest-slate .section-head h2").textContent = fallbackMode ? "The watch list, likeliest first" : slateTitle;
+  document.querySelector(".digest-slate .section-head h2").textContent = fallbackMode ? "The watch list, likeliest first" : "Every " + E.word("one") + ", likeliest first";
 
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
   host.textContent = "";
-  if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: played.length ? "Every pick has started; see In progress and results below." : "No picks to list. Check back after the next refresh." }));
+  if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: played.length ? "Every " + E.word("one") + " has started; see In progress and results below." : "No " + E.word("many") + " to list. Check back after the next refresh." }));
   groups = ordered.length ? [{ label: "Today first; positive edge, then likeliest", picks: ordered }] : [];
   groups.forEach(function (g) {
-    var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: g.picks.length + (g.picks.length === 1 ? " pick" : " picks") })])]);
+    var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: E.nWord(g.picks.length) })])]);
     var breaks = dayBreaks(g.picks);
     g.picks.forEach(function (p, i) {
       if (breaks[i]) sec.appendChild(E.dayDivider(breaks[i]));
@@ -244,7 +246,7 @@
         E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event"), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear its bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
         E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "% edge" : "No model yet" }), E.hasModel(p) ? E.el("span", { class: "digest-bar", text: "bar " + E.barPts(p) + ", " + E.pastWord(p) }) : null, E.el("span", { text: "To hit " + E.probText(p) })]),
-        E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), E.standingChip(p), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: "Play of the day" }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
+        E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: p.confidence }), E.standingChip(p), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: E.word("ofDay") }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
         E.el("div", { class: "digest-live" }, [p.isMarket ? null : E.liveSlot(p.id)])
       ]));
     });
@@ -254,7 +256,7 @@
   /* ---------- in progress and results: started picks marked, never dropped ---------- */
   var playedHost = document.getElementById("played-host");
   playedHost.textContent = "";
-  if (!played.length) playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. A pick moves here when its game starts, with the live score, then the result." }));
+  if (!played.length) playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. A " + E.word("one") + " moves here when its game starts, with the live score, then the result." }));
   else {
     var box = E.el("div", { class: "card played-list" }), pb = dayBreaks(played);
     played.forEach(function (p, i) { if (pb[i]) box.appendChild(E.dayDivider(pb[i])); box.appendChild(E.playedRow(p, i + 1)); });
@@ -271,9 +273,9 @@
   function asText() {
     var lines = ["EdgeLine AI · " + dayLabel, ""];
     if (!P.length) lines.push("Nothing on the board.");
-    if (fallbackMode) lines.push("No pick clears its bar. Watch list (closest markets, not plays):", "");
-    if (D.playOfDay) lines.push("Play of the day: " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event + (E.isOpen(D.playOfDay) ? "" : " · " + E.stateText(D.playOfDay)));
-    if (D.parlayOfDay) lines.push("Parlay of the day (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
+    if (fallbackMode) lines.push("No " + E.word("one") + " clears its bar. Watch list (closest markets, not " + E.word("many") + "):", "");
+    if (D.playOfDay) lines.push(E.word("ofDay") + ": " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event + (E.isOpen(D.playOfDay) ? "" : " · " + E.stateText(D.playOfDay)));
+    if (D.parlayOfDay) lines.push(E.word("parlayOfDay") + " (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
@@ -287,7 +289,7 @@
       played.forEach(function (p) { lines.push("  " + E.stateText(p) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + (E.scoreText(p) ? " · final " + E.scoreText(p) : "") + (E.unitsText(p) ? " · " + E.unitsText(p) : "") + " · " + p.event); });
       lines.push("");
     }
-    lines.push(E.gradeRule, "Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
+    lines.push(E.gradeRule, E.replayText(), "Informational only. 21+. Gamble responsibly: 1-800-GAMBLER.");
     return lines.join("\n");
   }
   var copyBtn = document.getElementById("digest-copy");
@@ -309,13 +311,13 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
-        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+        <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
         <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
-          <li><a href="picks.html">Today’s picks</a></li>
+          <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>

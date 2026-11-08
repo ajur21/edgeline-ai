@@ -12,7 +12,9 @@
   "use strict";
   const FILES = [["MARKET_DATA", "data/market.js"], ["PICKS_DATA", "data/picks.js"], ["TEAMS_DATA", "data/teams.js"], ["FACES_DATA", "data/faces.js"]];
   const SPORT_WORDS = { NBA: "basketball", NHL: "hockey ice hockey", NFL: "football american football", MLB: "baseball", Soccer: "soccer football premier league epl la liga mls major league soccer" };
-  const GROUPS = [["sport", "Sports"], ["game", "Games"], ["pick", "Picks"], ["team", "Teams"], ["player", "Players"]];
+  /* the "pick" group is titled by the site's wording switch (EdgeLine.word: "Leans" while data/replay.js says leans) */
+  const GROUPS = [["sport", "Sports"], ["game", "Games"], ["pick", null], ["team", "Teams"], ["player", "Players"]];
+  function groupTitle(g) { return g[1] || E().word("Many"); }
   const PER_GROUP = { sport: 4, game: 5, pick: 5, team: 5, player: 5 };
   let dlg = null, input = null, list = null, opener = null, index = null, ready = null, active = -1;
 
@@ -69,7 +71,7 @@
       const picks = open ? g.rows.filter(function (x) { return x.pickId && onBoard[x.pickId]; }).length : 0;
       [home, away].forEach(function (t, i) { if (t) teamGame[(r.sportKey || "") + "|" + t.id] = { g: g, opp: i === 0 ? r.away : r.home }; });
       const s = sports[r.sport] || (sports[r.sport] = { games: 0, picks: 0 }); if (open) s.games++; s.picks += picks;
-      out.push(entry("game", r.event, [r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a pick on the board" : picks + " picks on the board") : null], "games.html#g-" + encodeURIComponent(id),
+      out.push(entry("game", r.event, [r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a " + Ed.word("one") : Ed.nWord(picks)) + " on the board" : null], "games.html#g-" + encodeURIComponent(id),
         [r.event, r.home, r.away, r.sport, alias(home), alias(away)].join(" "), picks ? 0.65 : 0.6, { row: r, home: home, away: away }));
     });
     (P.picks || []).forEach(function (p) {
@@ -92,7 +94,7 @@
     });
     Object.keys(sports).forEach(function (sp) {
       const s = sports[sp];
-      out.push(entry("sport", sp, [s.games + (s.games === 1 ? " game" : " games") + " on the board", s.picks ? s.picks + (s.picks === 1 ? " pick" : " picks") : "no picks yet"], "games.html?sport=" + encodeURIComponent(sp),
+      out.push(entry("sport", sp, [s.games + (s.games === 1 ? " game" : " games") + " on the board", s.picks ? Ed.nWord(s.picks) : "no " + Ed.word("many") + " yet"], "games.html?sport=" + encodeURIComponent(sp),
         sp + " " + (SPORT_WORDS[sp] || ""), 1, { sport: sp, count: s.games }));
     });
     return out;
@@ -106,7 +108,7 @@
     index.forEach(function (e) { const s = score(e, words); if (s > 0) (groups[e.kind] = groups[e.kind] || []).push({ e: e, s: s }); });
     return GROUPS.filter(function (g) { return groups[g[0]]; }).map(function (g, i) {
       const hits = groups[g[0]].sort(function (a, b) { return b.s - a.s; });
-      return { kind: g[0], title: g[1], top: hits[0].s, order: i, items: hits.slice(0, PER_GROUP[g[0]]).map(function (h) { return h.e; }) };
+      return { kind: g[0], title: groupTitle(g), top: hits[0].s, order: i, items: hits.slice(0, PER_GROUP[g[0]]).map(function (h) { return h.e; }) };
     }).sort(function (a, b) { return (b.top - a.top) || (a.order - b.order); });
   }
   /* an empty box: the sports on the board, then tonight's picks in the site's order */
@@ -119,7 +121,7 @@
     const picks = Ed.sortByProb(Ed.openOnly((window.PICKS_DATA && window.PICKS_DATA.picks) || [])).slice(0, 4);
     const byId = {}; index.forEach(function (e) { if (e.kind === "pick") byId[e.pick.id] = e; });
     const items = picks.map(function (p) { return byId[p.id]; }).filter(Boolean);
-    if (items.length) out.push({ kind: "pick", title: "Picks, likeliest first", items: items });
+    if (items.length) out.push({ kind: "pick", title: Ed.word("Many") + ", likeliest first", items: items });
     return out;
   }
 
@@ -149,7 +151,7 @@
         ]);
       }))));
     });
-    if (!n) list.appendChild(Ed.el("p", { class: "search-empty", text: q.trim() ? "No sport, game, pick, team or player matches “" + q.trim() + "”." : "Loading the board…" }));
+    if (!n) list.appendChild(Ed.el("p", { class: "search-empty", text: q.trim() ? "No sport, game, " + Ed.word("one") + ", team or player matches “" + q.trim() + "”." : "Loading the board…" }));
     list.appendChild(Ed.el("a", { class: "search-option search-all", role: "option", id: "search-o" + n, href: "games.html" + (q.trim() ? "?q=" + encodeURIComponent(q.trim()) : ""), "aria-selected": "false" }, [
       Ed.el("span", { class: "search-text" }, [Ed.el("span", { class: "search-title", text: q.trim() ? "Look for “" + q.trim() + "” on the Games page" : "Browse every game" })])
     ]));
@@ -165,7 +167,7 @@
   function go(a) { close(); location.assign(a.href); }
   function make() {
     const Ed = E();
-    input = Ed.el("input", { type: "search", class: "search-input", role: "combobox", "aria-expanded": "true", "aria-controls": "search-list", "aria-autocomplete": "list", "aria-label": "Search sports, games, picks, teams and players", placeholder: "Team, player, sport or bet", autocomplete: "off", spellcheck: "false" });
+    input = Ed.el("input", { type: "search", class: "search-input", role: "combobox", "aria-expanded": "true", "aria-controls": "search-list", "aria-autocomplete": "list", "aria-label": "Search sports, games, teams, players and bets", placeholder: "Team, player, sport or bet", autocomplete: "off", spellcheck: "false" });
     list = Ed.el("div", { class: "search-list", id: "search-list", role: "listbox", "aria-label": "Results" });
     const shut = Ed.el("button", { type: "button", class: "btn btn-secondary btn-sm search-close", text: "Close" });
     dlg = Ed.el("dialog", { class: "search-dialog", "aria-label": "Search" }, [

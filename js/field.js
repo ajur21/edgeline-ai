@@ -68,7 +68,7 @@
     const watching = data.filter(function (d) { return d.status === "watch"; }).length;
     const sorted = data.slice().sort(function (a, b) { return b.y - a.y; });
     const best = sorted[0];
-    const label = picks ? picks + (picks === 1 ? " pick on the board" : " picks on the board") : "none is on the board";
+    const label = picks ? E.nWord(picks) + " on the board" : "none is on the board";
     const svg = s("svg", { viewBox: "0 0 " + W + " " + H, role: "img", class: "field-svg" + (narrow ? " narrow" : ""),
       "aria-label": data.length + " sides priced across " + (sum.games || 0) + " games, given our probability from the game data and plotted by how far each edge sits past its own bar; " + label + ". " + watching + " on watch, at least halfway to their bar." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
 

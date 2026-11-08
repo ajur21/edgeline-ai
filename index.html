@@ -3,21 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EdgeLine AI · AI sports betting picks</title>
-  <meta name="description" content="Model-driven sports betting picks with the probability and edge behind every selection.">
+  <title data-pick="EdgeLine AI · AI sports betting picks">EdgeLine AI · Sports betting leans from game data</title>
+  <meta name="description" content="A game-data model’s sports betting leans, ranked by our probability, with every result in public.">
   <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="EdgeLine AI">
-  <meta property="og:title" content="EdgeLine AI · AI sports betting picks">
-  <meta property="og:description" content="Model-driven sports betting picks with the probability and edge behind every selection.">
+  <meta property="og:title" content="EdgeLine AI · Sports betting leans from game data">
+  <meta property="og:description" content="A game-data model’s sports betting leans, ranked by our probability, with every result in public.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI feed" href="feed.xml">
+  <script src="data/replay.js"></script>
   <script src="js/app.js"></script>
   <script src="js/search.js" defer></script>
   <script src="js/space.js" defer></script>
@@ -32,7 +33,7 @@
     <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="picks.html">Today’s picks</a></li>
+      <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
       <li><a href="games.html">Games</a></li>
       <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
@@ -42,25 +43,25 @@
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
     <div class="nav-actions">
-      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, picks, teams and players" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, teams, players and bets" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
       <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
     </div>
   </div>
 </header>
 <main id="main">
-<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
 
 <div class="ticker" aria-label="Today's board, scrolling"><div class="ticker-track" id="ticker-track"></div></div>
 
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow">Model picks for NFL, NBA, MLB, NHL and soccer</span>
-      <h1>Only bet when the model <span class="hl">beats the price.</span></h1>
-      <p class="lead">EdgeLine AI prices every side from the game data: results, form, rest, injuries and home edge, never other books’ prices. A pick is where our probability beats the price, with the number behind it.</p>
+      <span class="eyebrow" data-pick="Model picks for NFL, NBA, MLB, NHL and soccer">Model leans for NFL, NBA, MLB, NHL and soccer</span>
+      <h1><span data-pick="Picks">Leans</span> from game data, <span class="hl">likeliest first.</span></h1>
+      <p class="lead">EdgeLine AI is a game-data model: results, form, rest, injuries and home edge, never other books’ prices. Its <span data-pick="picks">leans</span> are ranked by our probability, with the number behind each, and every result is graded in public.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="picks.html">See today’s picks</a>
+        <a class="btn btn-primary" href="picks.html" data-pick="See today’s picks">See today’s leans</a>
         <a class="btn btn-secondary" href="performance.html">View track record</a>
       </div>
       <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
@@ -74,13 +75,13 @@
     </section>
   </div>
 </section>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#board">Board</a><a href="#field">Every side</a><a href="#plays">Plays</a><a href="#subscribe">Subscribe</a><a href="#how">How it works</a><a href="#ranked">Top picks</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#board">Board</a><a href="#field">Every side</a><a href="#plays" data-pick="Plays">Daily leans</a><a href="#subscribe">Subscribe</a><a href="#how">How it works</a><a href="#top-picks" data-pick="Top picks">Top leans</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
 <section class="section section-flush edge-field" id="field" aria-labelledby="field-title">
   <div class="container">
     <div class="section-head row field-head">
       <div>
         <h2 id="field-title">Every side we priced, against the bar</h2>
-        <p class="muted" id="field-sub">Each star is one side of one market: its price across, and up, how far our edge over that price sits past the side’s own bar, the model’s margin of error there. The line at 0 is the bar for every sport; cross it and the side can be a pick. Nothing is hidden, including the nights we pass.</p>
+        <p class="muted" id="field-sub">Each star is one side of one market: its price across, and up, how far our edge over that price sits past the side’s own bar, the model’s margin of error there. The line at 0 is the bar for every sport; cross it and the side can be a <span data-pick="pick">lean</span>. Nothing is hidden, including the nights we pass.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="market">Sample data</span>
     </div>
@@ -96,7 +97,7 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <h2>Play of the day. Parlay of the day.</h2>
+        <h2 data-pick="Play of the day. Parlay of the day.">Lean of the day. Parlay lean of the day.</h2>
         <p class="muted">Chosen once a day, locked in, and graded in public.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
@@ -112,8 +113,8 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <h2>Every pick lands in your calendar. Every grade lands in your reader.</h2>
-        <p class="muted">Subscribe once. Each pick arrives at tip-off with the price, the book and the number behind it, and its grade is written into the same event when the game ends. On the nights we pass, you get one line saying so.</p>
+        <h2 data-pick="Every pick lands in your calendar. Every grade lands in your reader.">Every lean lands in your calendar. Every grade lands in your reader.</h2>
+        <p class="muted">Subscribe once. Each <span data-pick="pick">lean</span> arrives at tip-off with the price, the book and the number behind it, and its grade is written into the same event when the game ends. On the nights we pass, you get one line saying so.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
     </div>
@@ -124,8 +125,8 @@
       </div>
       <div class="sub-channels">
         <div class="sub-channel card" data-tilt>
-          <h3>Calendar: picks at tip-off</h3>
-          <p class="muted">Apple Calendar, Outlook and Google. One event per pick, an alert 30 minutes before the start, the result written in after the final.</p>
+          <h3 data-pick="Calendar: picks at tip-off">Calendar: leans at tip-off</h3>
+          <p class="muted">Apple Calendar, Outlook and Google. One event per <span data-pick="pick">lean</span>, an alert 30 minutes before the start, the result written in after the final.</p>
           <div class="sub-actions">
             <a class="btn btn-primary" id="sub-webcal" href="webcal://ajur21.github.io/edgeline-ai/picks.ics">Add to calendar</a>
             <button type="button" class="btn btn-secondary" data-copy="picks.ics">Copy calendar link</button>
@@ -133,8 +134,8 @@
           <p class="sub-hint">Google Calendar: Other calendars, From URL, paste the link.</p>
         </div>
         <div class="sub-channel card" data-tilt>
-          <h3>Feed: picks and grades in a reader, Slack or email</h3>
-          <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per pick, one per grade, one per slate.</p>
+          <h3 data-pick="Feed: picks and grades in a reader, Slack or email">Feed: leans and grades in a reader, Slack or email</h3>
+          <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per <span data-pick="pick">lean</span>, one per grade, one per slate.</p>
           <div class="sub-actions">
             <a class="btn btn-primary" id="sub-rss" href="feed.xml">Open the feed</a>
             <button type="button" class="btn btn-secondary" data-copy="feed.xml">Copy feed link</button>
@@ -149,8 +150,9 @@
 <section class="section" id="how">
   <div class="container">
     <div class="section-head">
-      <h2>Three steps from data to a pick</h2>
-      <p class="muted">A pick only happens when our probability from the game data beats what a book’s price implies by more than the model’s own margin of error. Other books’ prices never set the grade.</p>
+      <h2 data-pick="Three steps from data to a pick">Three steps from data to a lean</h2>
+      <p class="muted">A side becomes a <span data-pick="pick">lean</span> when our probability from the game data sits above what a book’s price implies by more than the model’s own margin of error. Other books’ prices never set the grade.</p>
+      <p class="replay-note" data-replay>In a replay of past seasons these leans did not beat the closing price. They become picks when the live record beats the close.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -161,19 +163,19 @@
       <div class="step">
         <span class="step-term">Prices</span>
         <h3>Shop the price</h3>
-        <p>Moneyline, spread and total prices from the major U.S. sportsbooks are pulled in every day before the slate. They are the number to beat and where to bet it; the market’s own probability is shown beside ours for reference only.</p>
+        <p>Moneyline, spread and total prices from the major U.S. sportsbooks are pulled in every day before the slate. They are the number our probability has to clear and where to bet it; the market’s own probability is shown beside ours for reference only.</p>
       </div>
       <div class="step">
         <span class="step-term">Edge = our % − implied %</span>
         <h3>Find the edge</h3>
-        <p>When a book’s price implies a lower probability than ours, that gap is the edge. It must clear the side’s own bar: the model’s margin of error there, from game data alone, never from other books’ prices. The bar rises when the model knows less, early in a season or for a team with few games, and falls to 3 points as the season fills in. Two points past it is Medium, five High; a thin sample stays a Lean. At most one pick a game.</p>
+        <p>When a book’s price implies a lower probability than ours, that gap is the edge. It must clear the side’s own bar: the model’s margin of error there, from game data alone, never from other books’ prices. The bar rises when the model knows less, early in a season or for a team with few games, and falls to 3 points as the season fills in. Two points past it is Medium, five High; a thin sample stays a Lean. At most one <span data-pick="pick">lean</span> a game.</p>
       </div>
     </div>
 
     <div class="calc card" id="calc" data-tilt>
       <div class="calc-head">
         <h3>Find the edge yourself</h3>
-        <p class="muted">Drag the odds, our win probability and the side’s bar. A pick needs the edge to clear the bar; how far past it sets the tier.</p>
+        <p class="muted">Drag the odds, our win probability and the side’s bar. A <span data-pick="pick">lean</span> needs the edge to clear the bar; how far past it sets the tier.</p>
       </div>
       <div class="calc-grid">
         <label class="calc-field">
@@ -203,10 +205,10 @@
   <div class="container">
     <div class="section-head row">
       <div>
-        <h2>The likeliest picks right now</h2>
-        <p class="muted how-to">Sides worth a bet first, likeliest to hit on top; the rest follow. The bar on each card is our probability from the game data; the tick is what the price implies.</p>
+        <h2>The likeliest leans right now</h2>
+        <p class="muted how-to">Sides with an edge over the price first, likeliest to hit on top; the rest follow. The bar on each card is our probability from the game data; the tick is what the price implies.</p>
       </div>
-      <a class="btn btn-secondary btn-sm" href="picks.html">All picks</a>
+      <a class="btn btn-secondary btn-sm" href="picks.html" data-pick="All picks">All leans</a>
     </div>
     <div class="picks-grid" id="top-picks-grid"></div>
   </div>
@@ -217,7 +219,7 @@
     <div class="section-head row">
       <div>
         <h2>Simple plans, one model</h2>
-        <p class="muted">Start free. Upgrade when you want every pick and the number behind it.</p>
+        <p class="muted">Start free. Upgrade when you want every <span data-pick="pick">lean</span> and the number behind it.</p>
       </div>
       <div class="pricing-controls">
         <span class="badge badge-sample">Sample pricing</span>
@@ -232,7 +234,7 @@
         <div class="plan-head"><h3>Free</h3></div>
         <div class="plan-price"><span data-monthly="$0" data-yearly="$0">$0</span><small> /month</small></div>
         <ul>
-          <li>One featured pick per day</li>
+          <li data-pick="One featured pick per day">One featured lean per day</li>
           <li>Public performance page</li>
           <li>Calendar and feed subscriptions</li>
         </ul>
@@ -242,8 +244,8 @@
         <div class="plan-head"><h3>Pro</h3><span class="badge badge-strong">Most popular</span></div>
         <div class="plan-price"><span data-monthly="$29" data-yearly="$23">$29</span><small> /month</small></div>
         <ul>
-          <li>Every pick across all sports</li>
-          <li>Our probability and edge on each pick</li>
+          <li data-pick="Every pick across all sports">Every lean across all sports</li>
+          <li data-pick="Our probability and edge on each pick">Our probability and edge on each lean</li>
           <li>Line-move alerts</li>
           <li>Full historical database</li>
         </ul>
@@ -254,7 +256,7 @@
         <div class="plan-price"><span data-monthly="$79" data-yearly="$63">$79</span><small> /month</small></div>
         <ul>
           <li>Everything in Pro</li>
-          <li>Early access before line moves</li>
+          <li data-pick="An alert the moment a pick posts">An alert the moment a lean posts</li>
           <li>Bankroll and unit sizing tools</li>
           <li>API access</li>
         </ul>
@@ -272,27 +274,27 @@
     <div class="faq">
       <details open>
         <summary>What does “edge” mean?</summary>
-        <p>Edge is the difference between our probability for the side, from the game data (this season’s results and margins, form, rest, injuries, home edge), and the probability implied by the best available price. A +3% edge means we have the bet winning 3 percentage points more often than that price suggests, which is roughly +6% expected value at even odds. Nothing is graded against other books’ prices; the market’s own number appears on each breakdown for reference only.</p>
+        <p>Edge is the difference between our probability for the side, from the game data (this season’s results and margins, form, rest, injuries, home edge), and the probability implied by the best available price. A +3% edge means we have the bet winning 3 percentage points more often than that price suggests, which is roughly +6% expected value at even odds if our probability is right. It is the model’s read against the price, not proof that the price is wrong. Nothing is graded against other books’ prices; the market’s own number appears on each breakdown for reference only.</p>
       </details>
       <details>
-        <summary>Why does one pick need 3 points of edge and another 10?</summary>
+        <summary data-pick="Why does one pick need 3 points of edge and another 10?">Why does one lean need 3 points of edge and another 10?</summary>
         <p>Each side’s bar is the model’s own margin of error on it. A side the model knows little about needs a bigger edge before it is posted, so no sport floods the board because its numbers are noisy, and every sport is ranked the same way: points past its own bar.</p>
       </details>
       <details>
-        <summary>What happens if the price moves after a pick is posted?</summary>
-        <p>Nothing is taken back. A pick stays on the card and is graded at the price it was posted at. If a later check finds the edge under its bar, the card says “Below its bar now”; if the edge is gone, “Edge gone”.</p>
+        <summary data-pick="What happens if the price moves after a pick is posted?">What happens if the price moves after a lean is posted?</summary>
+        <p>Nothing is taken back. It stays on the card and is graded at the price it was posted at. If a later check finds the edge under its bar, the card says “Below its bar now”; if the edge is gone, “Edge gone”.</p>
       </details>
       <details>
         <summary>Does the model guarantee winners?</summary>
-        <p>No. Nothing does. Even a true edge loses often; the goal is positive expected value over a large number of bets, not winning every one.</p>
+        <p data-pick="No. Nothing does. Even a true edge loses often; the goal is positive expected value over a large number of bets, not winning every one.">No. Nothing does. In a replay of past seasons the model’s selections lost money at the closing price in the NHL, the NBA and the NFL: it knows less than the market, so most of its edges land on underdogs. That is why they are called leans. Read them as the model’s view of each game, ranked by how likely it makes each side, and judge them by the record on the performance page.</p>
       </details>
       <details>
         <summary>How are results tracked?</summary>
-        <p>Every pick is logged with its odds at the time of publication and graded to one unit of risk. Results are shown on the performance page and never edited after the fact.</p>
+        <p>Every <span data-pick="pick">lean</span> is logged with its odds at the time of publication and graded to one unit of risk. Results are shown on the performance page and never edited after the fact.</p>
       </details>
       <details>
         <summary>Which sportsbooks do you use for odds?</summary>
-        <p>Prices come from The Odds API (DraftKings, FanDuel, BetMGM, Caesars, BetRivers, Fanatics, ESPN Bet, Bovada, BetOnline), with SportsGameOdds adding more books on each pick’s line. They are where to bet it, nothing more: the grade comes from the game data, not from any book. Each pick names the book offering the best price, and its result is scored at that price. The market’s de-vigged number is shown for reference only.</p>
+        <p>Prices come from The Odds API (DraftKings, FanDuel, BetMGM, Caesars, BetRivers, Fanatics, ESPN Bet, Bovada, BetOnline), with SportsGameOdds adding more books on each side’s line. They are where to bet it, nothing more: the grade comes from the game data, not from any book. Each <span data-pick="pick">lean</span> names the book offering the best price, and its result is scored at that price. The market’s de-vigged number is shown for reference only.</p>
       </details>
       <details>
         <summary>Is this legal where I live?</summary>
@@ -321,7 +323,7 @@
     summary = E.marketSummary();
   }
   function emptyText() {
-    return E.playedPicks().length ? "Every pick on the board has started: the scores and results are under In progress and results. New picks are published around noon ET." : "No edges on the board right now. Prices refresh every afternoon around 4:30 PM ET.";
+    return E.playedPicks().length ? "Every " + E.word("one") + " on the board has started: the scores and results are under In progress and results. New " + E.word("many") + " are published around " + E.runClock(0) + "." : "Nothing on the board right now. Prices refresh around " + E.runClock(0) + " and " + E.runClock(1) + ".";
   }
 
   /* ticker: every pick (or the closest markets), twice, so the loop is seamless */
@@ -370,7 +372,7 @@
     var foot = document.getElementById("board-foot");
     foot.textContent = "";
     if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
-    else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first picks settle." }));
+    else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first " + E.word("many") + " settle." }));
     else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
      ["Units", E.signed(S.units, 1) + "u"],
      ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
@@ -414,7 +416,7 @@
         next.commence ? dateBlock(next.commence) : E.el("span"),
         E.el("div", { class: "cal-body" }, [
           E.el("div", { class: "cal-time", text: when + (alarm ? " · alert at " + alarm : "") }),
-          E.el("div", { class: "cal-title", text: (potd ? "Play of the day: " : "") + next.pick + " " + E.fmtOdds(next.odds) + " at " + next.book }),
+          E.el("div", { class: "cal-title", text: (potd ? E.word("ofDay") + ": " : "") + next.pick + " " + E.fmtOdds(next.odds) + " at " + next.book }),
           E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": next.sport, text: next.sport }),
             E.el("span", { class: "badge badge-conf-" + String(next.confidence).toLowerCase(), text: next.confidence }),
@@ -431,7 +433,7 @@
         dateBlock(gen),
         E.el("div", { class: "cal-body" }, [
           E.el("div", { class: "cal-time", text: "All day" }),
-          E.el("div", { class: "cal-title", text: summary.markets ? "No play tonight: " + summary.markets + " sides priced in " + summary.games + " games, none clears its bar" : "No play tonight: nothing priced yet" }),
+          E.el("div", { class: "cal-title", text: summary.markets ? "No " + E.word("one") + " tonight: " + summary.markets + " sides priced in " + summary.games + " games, none clears its bar" : "No " + E.word("one") + " tonight: nothing priced yet" }),
           near ? E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
             E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
@@ -454,7 +456,7 @@
       if (!out) { sec.hidden = true; return; }
       sec.hidden = false;
       title.replaceChildren(E.el("span", { class: "n", text: String(out.sides) }), " sides priced in " + out.games + " games. " +
-        (out.picks ? out.picks + (out.picks === 1 ? " pick on the board." : " picks on the board.") : "None is on the board."));
+        (out.picks ? E.nWord(out.picks) + " on the board." : "None is on the board."));
     } });
   }
   if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);
@@ -470,11 +472,11 @@
 
   /* top three picks by edge, or the three closest markets */
   var grid = document.getElementById("top-picks-grid"), th = document.querySelector("#top-picks h2"), tp = document.querySelector("#top-picks .section-head p");
-  var topTitle = th ? th.textContent : "", topHow = tp ? tp.textContent : "";
+  var topHow = tp ? tp.textContent : "";
   function renderTop() {
     grid.textContent = "";
-    if (th) th.textContent = !ranked.length && shown.length ? "The likeliest sides right now" : topTitle;
-    if (tp) tp.textContent = !ranked.length && shown.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means the edge is at least halfway to its own bar. They are not plays." : topHow;
+    if (th) th.textContent = !ranked.length && shown.length ? "The likeliest sides right now" : "The likeliest " + E.word("many") + " right now";
+    if (tp) tp.textContent = !ranked.length && shown.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means the edge is at least halfway to its own bar. They are not " + E.word("many") + "." : topHow;
     if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: emptyText() }));
     shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
     E.initTilt(grid);
@@ -534,13 +536,13 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
-        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+        <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
         <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
-          <li><a href="picks.html">Today’s picks</a></li>
+          <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>

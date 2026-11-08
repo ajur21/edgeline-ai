@@ -17,7 +17,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI feed" href="feed.xml">
+  <script src="data/replay.js"></script>
   <script src="js/app.js"></script>
   <script src="js/search.js" defer></script>
   <script src="js/space.js" defer></script>
@@ -30,7 +31,7 @@
     <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="picks.html">Today’s picks</a></li>
+      <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
       <li><a href="games.html">Games</a></li>
       <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
@@ -40,14 +41,14 @@
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
     <div class="nav-actions">
-      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, picks, teams and players" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, teams, players and bets" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
       <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
     </div>
   </div>
 </header>
 <main id="main">
-<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
 <nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#stat-tiles">Record</a><a href="#by-grade">By grade</a><a href="#pnl-cal">Calendar</a><a href="#units-chart">Units</a><a href="#sport-chart">By sport</a><a href="#recent-host">Results</a></div></nav>
 
 <section class="section-tight">
@@ -57,6 +58,7 @@
         <span class="eyebrow">Performance</span>
         <h1 class="page-title">Track record, last 30 days</h1>
         <p class="muted page-sub" id="as-of"></p>
+        <p class="replay-note" data-replay="detail">In a replay of past seasons these leans did not beat the closing price. They become picks when the live record beats the close.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="perf">Sample data</span>
     </div>
@@ -65,7 +67,7 @@
     <div class="grid-3 feature-tiles" id="feature-tiles"></div>
     <div class="grade-split" id="by-grade">
       <h2 class="chart-title">Record by grade</h2>
-      <p class="chart-sub">Picks graded on game data are kept apart from the earlier picks graded on the price edge, so the old grade never flatters or drags the new one. Last 30 days.</p>
+      <p class="chart-sub"><span data-pick="Picks">Leans</span> graded on game data are kept apart from the earlier selections graded on the price edge, so the old grade never flatters or drags the new one. Last 30 days.</p>
       <div class="grid-2 grade-tiles" id="grade-tiles"></div>
     </div>
   </div>
@@ -87,7 +89,7 @@
       <div class="chart-head">
         <div>
           <h2 class="chart-title">Cumulative units</h2>
-          <p class="chart-sub">Profit in units at one unit risked per pick. Hover or use arrow keys for daily values.</p>
+          <p class="chart-sub">Profit in units at one unit risked per <span data-pick="pick">lean</span>. Hover or use arrow keys for daily values.</p>
         </div>
         <div class="chart-actions">
           <div class="seg" role="group" aria-label="Range" id="range-seg">
@@ -117,15 +119,15 @@
     <div class="card chart-card">
       <div class="chart-head">
         <div>
-          <h2 class="chart-title">Recent graded picks</h2>
+          <h2 class="chart-title" data-pick="Recent graded picks">Recent graded leans</h2>
           <p class="chart-sub">The most recent results, newest first.</p>
         </div>
       </div>
-      <div class="table-wrap" id="recent-host" tabindex="0" role="region" aria-label="Recent graded picks"></div>
+      <div class="table-wrap" id="recent-host" tabindex="0" role="region" aria-label="Recent graded results"></div>
     </div>
 
     <div class="notice">
-      <strong>How grading works.</strong> Every pick is now made on game data: our probability for the side comes from each team’s results and margins this season, recent form, rest, the injury report and home edge, and a pick is a side where that probability beats the best price by more than its bar, the model’s own margin of error on that side (never under 3 points; picks posted before Nov 5 used a flat 3). Every pick is graded at the price it was posted at, even if a later check finds it below its bar. Nothing is graded against other books’ prices. Picks logged before the game model went live were made on the price edge against the sharpest book’s line; they keep their own record under Record by grade and are marked “price grade” in the results table. Each pick is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked. <strong>Closing line value</strong> (CLV) is a market measure: it compares the price we published with the market’s last pre-game line, the closing probability minus the probability implied by our price, in points. It says whether the price was good, not whether the read of the game was right, and it takes no part in the grade. Positive CLV means the market moved our way after we posted, which is the best available evidence that an edge was real rather than lucky. The close is DraftKings' closing number as published by ESPN (free, available after every game); when a spread or total closes on a different number than ours, the column shows whether the line moved toward (▲) or against (▼) the pick instead of a price figure. Between the two daily odds runs, a lighter job refreshes DraftKings' open and current numbers every two hours so each breakdown shows the market’s drift.
+      <strong>How grading works.</strong> Every <span data-pick="pick">lean</span> is made on game data: our probability for the side comes from each team’s results and margins this season, recent form, rest, the injury report and home edge, and a <span data-pick="pick">lean</span> is a side where that probability sits above what the best price implies by more than its bar, the model’s own margin of error on that side (never under 3 points; those posted before Nov 5 used a flat 3). Each is graded at the price it was posted at, even if a later check finds it below its bar. Nothing is graded against other books’ prices. Selections logged before the game model went live were made on the price edge against the sharpest book’s line; they keep their own record under Record by grade and are marked “price grade” in the results table. Everything is graded to one unit of risk at the odds published. A win at -110 returns +0.91u; a loss is -1.00u; a push is 0. Return on investment is units won divided by units risked. <strong>Closing line value</strong> (CLV) is a market measure: it compares the price we published with the market’s last pre-game line, the closing probability minus the probability implied by our price, in points. It says whether the price was good, not whether the read of the game was right, and it takes no part in the grade. Positive CLV means the market moved our way after we posted, which is the best available evidence that an edge was real rather than lucky. The close is DraftKings' closing number as published by ESPN (free, available after every game); when a spread or total closes on a different number than ours, the column shows whether the line moved toward (▲) or against (▼) the pick instead of a price figure. A replay of past seasons found the model’s selections lost money at the close in every league tested (above), so CLV is the number to watch here. Between the two daily odds runs, a lighter job refreshes DraftKings' open and current numbers every two hours so each breakdown shows the market’s drift.
     </div>
   </div>
 </section>
@@ -140,8 +142,8 @@
   /* stat tiles; first is the hero figure */
   var graded = S.record.wins + S.record.losses + S.record.pushes, decided = S.record.wins + S.record.losses;
   var tiles = [
-    { label: "Units won", num: S.units, fmt: function (n) { return E.signed(n, 2) + "u"; }, sub: "At one unit risked per pick", hero: true },
-    { label: "Record (W-L-P)", value: S.record.wins + "-" + S.record.losses + "-" + S.record.pushes, sub: graded + " picks graded" },
+    { label: "Units won", num: S.units, fmt: function (n) { return E.signed(n, 2) + "u"; }, sub: "At one unit risked per " + E.word("one"), hero: true },
+    { label: "Record (W-L-P)", value: S.record.wins + "-" + S.record.losses + "-" + S.record.pushes, sub: E.nWord(graded) + " graded" },
     { label: "Win rate", num: decided > 0 ? S.record.wins / decided * 100 : null, fmt: function (n) { return n.toFixed(1) + "%"; }, value: "—", sub: "Pushes excluded" },
     { label: "Return on investment", num: S.roi, fmt: function (n) { return E.signed(n, 1) + "%"; }, sub: "Units won ÷ units risked" }
   ];
@@ -158,7 +160,7 @@
 
   /* play of the day and parlay of the day records, then closing line value */
   var ft = document.getElementById("feature-tiles");
-  [["Play of the day", S.potd], ["Parlay of the day", S.parlays]].forEach(function (pair) {
+  [[E.word("ofDay"), S.potd], [E.word("parlayOfDay"), S.parlays]].forEach(function (pair) {
     var r = pair[1] || { wins: 0, losses: 0, pushes: 0, units: 0 }, n = r.wins + r.losses + r.pushes;
     ft.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [
       E.el("div", { class: "stat-label", text: pair[0] }),
@@ -171,7 +173,7 @@
   var clvTile = E.el("div", { class: "card stat", "data-tilt": "", id: "clv-tile" }, [
     E.el("div", { class: "stat-label", text: "Closing line value" }),
     E.el("div", { class: "stat-value" + (clv.n ? (clv.avg > 0 ? " clv-pos" : clv.avg < 0 ? " clv-neg" : "") : ""), text: clv.n ? E.signed(clv.avg, 2) + " pts" : "\u2014" }),
-    E.el("div", { class: "stat-sub", text: clv.n ? "Beat the close on " + clv.beatPct.toFixed(0) + "% of " + clv.n + " picks priced against the close" + ((clv.lineToward || clv.lineAway) ? "; " + (clv.lineToward || 0) + " of " + ((clv.lineToward || 0) + (clv.lineAway || 0)) + " line moves went our way" : "") : "Scored against DraftKings' closing number once picks are graded" })
+    E.el("div", { class: "stat-sub", text: clv.n ? "Beat the close on " + clv.beatPct.toFixed(0) + "% of " + E.nWord(clv.n) + " priced against the close" + ((clv.lineToward || clv.lineAway) ? "; " + (clv.lineToward || 0) + " of " + ((clv.lineToward || 0) + (clv.lineAway || 0)) + " line moves went our way" : "") : "Scored against DraftKings' closing number once " + E.word("many") + " are graded" })
   ]);
   ft.appendChild(clvTile);
 
@@ -247,15 +249,15 @@
       E.el("td", {}, [E.el("span", { class: cls }, [E.el("span", { class: "dot", "aria-hidden": "true" }), r.result])]),
       E.el("td", { class: "num", text: E.signed(r.units, 2) + "u" }),
       E.el("td", { class: "num" }, [typeof r.clv === "number" ? E.el("span", { class: r.clv > 0 ? "clv-pos" : r.clv < 0 ? "clv-neg" : "", title: (r.closeOdds != null ? "Closed " + E.fmtOdds(r.closeOdds) : "") + (r.closeSource ? " · " + r.closeSource : ""), text: E.signed(r.clv * 100, 1) })
-        : r.lineMove ? E.el("span", { class: r.lineMove === "toward" ? "clv-pos" : "clv-neg", title: "Closed on a different number (" + (r.closeLine != null ? r.closeLine : "") + "); the line moved " + (r.lineMove === "toward" ? "toward" : "against") + " the pick", text: r.lineMove === "toward" ? "line \u25B2" : "line \u25BC" })
-        : E.el("span", { class: "muted", title: "No closing number for this pick", text: "\u2014" })])
+        : r.lineMove ? E.el("span", { class: r.lineMove === "toward" ? "clv-pos" : "clv-neg", title: "Closed on a different number (" + (r.closeLine != null ? r.closeLine : "") + "); the line moved " + (r.lineMove === "toward" ? "toward" : "against") + " the " + E.word("one"), text: r.lineMove === "toward" ? "line \u25B2" : "line \u25BC" })
+        : E.el("span", { class: "muted", title: "No closing number for this " + E.word("one"), text: "\u2014" })])
     ]);
   });
-  var headRow = E.el("tr", {}, ["Date", "Sport", "Event", "Pick", "Odds", "Result", "Units", "CLV"].map(function (h, i) {
+  var headRow = E.el("tr", {}, ["Date", "Sport", "Event", E.word("One"), "Odds", "Result", "Units", "CLV"].map(function (h, i) {
     return E.el("th", { scope: "col", class: (i === 4 || i === 6 || i === 7) ? "num" : "", title: i === 7 ? "Closing line value, a market measure: the market's closing probability minus the probability implied by the published price, in points. Not part of the grade." : null, text: h });
   }));
   if (rows.length) document.getElementById("recent-host").appendChild(E.el("table", { class: "data" }, [E.el("thead", {}, [headRow]), E.el("tbody", {}, rows)]));
-  else document.getElementById("recent-host").appendChild(E.el("p", { class: "empty", text: "No graded picks yet. Results appear the morning after the first picks settle." }));
+  else document.getElementById("recent-host").appendChild(E.el("p", { class: "empty", text: "No graded " + E.word("many") + " yet. Results appear the morning after the first " + E.word("many") + " settle." }));
 })();
 </script>
 
@@ -268,13 +270,13 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
-        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+        <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
         <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
-          <li><a href="picks.html">Today’s picks</a></li>
+          <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>

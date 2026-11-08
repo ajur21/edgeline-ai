@@ -3,7 +3,7 @@
  * built: the project · redesign: polish · v2.0.0 */
 /* Hallmark · waive 37 · four faces, each with one job: Sora heads, Inter body, Oswald chips and ticker, JetBrains Mono figures · the owner locked this scoreboard type system on 2026-11-04 */
 /* Hallmark · waive 29 · translucent glass over the galaxy canvas so the stars show through every card · the owner locked the galaxy look */
-/* Hallmark · waive 38iii · the hero's coloured phrase "beats the price." appears once, in the hero, as the signature · it is the only accent phrase on the page */
+/* Hallmark · waive 38iii · the hero's coloured phrase "likeliest first." appears once, in the hero, as the signature (it was "beats the price." until 2026-11-05, when the replay showed the leans did not beat the close) · it is the only accent phrase on the page */
 /* Hallmark · dismissed 11 · the lift on buttons and chips is the locked 3D pressable control; cards tilt and never lift */
 /* Hallmark · dismissed F4 · each hero pairs one filled primary with an outlined secondary; the picks pair is a segmented control */
 /* Hallmark · dismissed 64 · the mono chart labels are figures (units, totals), not words */
@@ -374,12 +374,22 @@ a[href^="tel:"] { white-space: nowrap; }
 .picks-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 960px) { .picks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .picks-grid { grid-template-columns: 1fr; } }
-.pick { padding: 0; perspective: 1200px; }
-.pick-inner { display: grid; border-radius: inherit; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pick { padding: 0; perspective: 1200px; display: flex; flex-direction: column; }
+/* the card is sized by its front (2026-11-08: an NBA back with "Names to know" was taller and left a dead band of about
+   230px on the front); the back lies over the same box and its middle scrolls between a fixed head and foot. The inner
+   fills the card, so in a grid row every foot lines up and a flipped back covers the whole card */
+.pick-inner { flex: 1 1 auto; position: relative; display: grid; border-radius: inherit; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .pick-face { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 12px; padding: 20px; min-width: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; transition: visibility 0s linear 0.3s; }
 .pick-face[aria-hidden="true"] { visibility: hidden; }
 .pick-face[aria-hidden="false"] { transition-delay: 0s; } /* incoming face is focusable at once; outgoing hides after the flip crosses 90° */
-.pick-back { transform: rotateY(180deg); background: var(--surface-2); }
+.pick-back { position: absolute; inset: 0; overflow: hidden; transform: rotateY(180deg); background: var(--surface-2); }
+.pick-back-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; overscroll-behavior: contain; padding-right: 4px; }
+/* a scrollbar that stays drawn while the back runs long (overlay scrollbars hide it), so "Names to know" below the fold is found */
+.pick-back-body::-webkit-scrollbar { width: 4px; }
+.pick-back-body::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+.pick-back-body::-webkit-scrollbar-track { background: transparent; }
+@supports not selector(::-webkit-scrollbar) { .pick-back-body { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; } }
+.pick-back-body.has-more { -webkit-mask-image: linear-gradient(to bottom, var(--text) calc(100% - 36px), transparent); mask-image: linear-gradient(to bottom, var(--text) calc(100% - 36px), transparent); }
 .pick.flipped .pick-inner { transform: rotateY(180deg); }
 .pick-head-right { display: inline-flex; gap: 6px; align-items: center; }
 .pick-back .eyebrow { margin: 0; }
@@ -628,6 +638,8 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .parlay-legs { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .parlay-legs li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
 .parlay-legs li:last-child { border-bottom: 0; }
+/* a started leg's state chip takes its own line under the pick, so the pick keeps its width in a narrow card */
+.parlay-legs li > .badge-state { grid-column: 2 / -1; justify-self: start; }
 .leg-pick { display: grid; min-width: 0; }
 .leg-pick strong { font-family: var(--font-display); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .leg-event { font-size: 0.8rem; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1400,6 +1412,12 @@ a.line-btn:hover { text-decoration: none; border-color: var(--accent-3); }
 .meta.price-value { display: flex; margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
 .price-value .mono { color: var(--text); font-weight: 600; }
 .price-value .price-past, .price-value .price-past .mono { color: var(--accent-4-text); }
+/* the same team's moneyline under a spread lean (2026-11-05) */
+.meta.pick-ml { display: flex; margin: 2px 0 0; font-size: 0.8rem; color: var(--text-2); }
+.pick-ml .mono { color: var(--text); font-weight: 600; }
+.meta.bd-ml { margin-top: 4px; font-size: 0.85rem; }
+/* the replay against the close, said where a reader decides (2026-11-05) */
+p.replay-note, .section-head p.replay-note { margin: 12px 0 0; max-width: 72ch; font-size: 0.9rem; line-height: 1.5; color: var(--text-2); }
 /* the bar a side had to clear (2026-11-05: each side has its own, the model's own margin of error on it, never under 3) */
 .meta.pick-bar { display: flex; margin: 8px 0 0; font-size: 0.8rem; color: var(--text-2); }
 .pick-bar .mono { color: var(--text); font-weight: 600; }

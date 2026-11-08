@@ -3,21 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Today’s picks · EdgeLine AI</title>
-  <meta name="description" content="Today's model picks across NFL, NBA, MLB, NHL and soccer, filterable by sport, market, confidence and edge.">
+  <title data-pick="Today’s picks · EdgeLine AI">Today’s leans · EdgeLine AI</title>
+  <meta name="description" content="Today’s model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, filterable by sport, market, confidence and edge.">
   <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="EdgeLine AI">
-  <meta property="og:title" content="Today's picks · EdgeLine AI">
-  <meta property="og:description" content="Today's model picks across NFL, NBA, MLB, NHL and soccer, filterable by sport, market, confidence and edge.">
+  <meta property="og:title" content="Today’s leans · EdgeLine AI">
+  <meta property="og:description" content="Today’s model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, filterable by sport, market, confidence and edge.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI picks" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="EdgeLine AI feed" href="feed.xml">
+  <script src="data/replay.js"></script>
   <script src="js/app.js"></script>
   <script src="js/search.js" defer></script>
   <script src="js/space.js" defer></script>
@@ -32,7 +33,7 @@
     <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
     <nav class="nav-primary" aria-label="Primary"><ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="picks.html">Today’s picks</a></li>
+      <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
       <li><a href="games.html">Games</a></li>
       <li><a href="digest.html">Digest</a></li>
       <li><a href="props.html">Props</a></li>
@@ -42,23 +43,24 @@
       <li><a href="index.html#faq">FAQ</a></li>
     </ul></nav>
     <div class="nav-actions">
-      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, picks, teams and players" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="search-toggle" type="button" data-search-open aria-label="Search sports, games, teams, players and bets" aria-keyshortcuts="/" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
       <a class="btn btn-primary btn-sm" href="index.html#pricing">Get started</a>
     </div>
   </div>
 </header>
 <main id="main">
-<noscript><div class="container"><p class="notice">This site needs JavaScript to show picks and results.</p></div></noscript>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks">All picks</a><a href="#played">In progress and results</a><a href="#market">Market board</a></div></nav>
+<noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks" data-pick="All picks">All leans</a><a href="#played">In progress and results</a><a href="#market">Market board</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
     <div class="section-head row page-head">
       <div>
-        <span class="eyebrow">Today’s picks</span>
-        <h1 class="page-title">Model picks for today’s slate</h1>
+        <span class="eyebrow" data-pick="Today’s picks">Today’s leans</span>
+        <h1 class="page-title" data-pick="Model picks for today’s slate">Model leans for today’s slate</h1>
         <p class="muted page-sub" id="generated-at"></p>
+        <p class="replay-note" data-replay>In a replay of past seasons these leans did not beat the closing price. They become picks when the live record beats the close.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
     </div>
@@ -66,7 +68,7 @@
     <div class="section-head row parlays-head" id="parlays">
       <div>
         <h2>The best tickets on today’s board</h2>
-        <p class="muted">Every combination of picks from different games that is worth a bet at one book, likeliest ticket first, then by expected value. A pick that has slipped under its bar since it was posted is on no ticket.</p>
+        <p class="muted">Every combination of <span data-pick="picks">leans</span> from different games with an edge at one book, likeliest ticket first, then by expected value. A <span data-pick="pick">lean</span> that has slipped under its bar since it was posted is on no ticket.</p>
       </div>
       <div class="seg" role="group" aria-label="Legs" id="parlay-size">
         <button type="button" data-size="0" aria-pressed="true">Any</button>
@@ -79,7 +81,7 @@
     <p class="small muted parlays-note">The chance to hit multiplies each leg’s probability from the game data, treating the legs as independent, so expected value is an estimate. Longer parlays pay more and hit less; pick the length that suits your bankroll.</p>
 
     <div class="section-head row picks-head">
-      <div><h2 id="all-picks">All picks, likeliest first</h2><p class="muted how-to">Today's games come first, then later days, each under its own heading. Within a day, sides with a positive edge come first, ranked by our probability from the game data: #1 is today's side worth a bet that the model expects to hit most often. Picks that have slipped under their bar since they were posted come next (they stay on the card and are graded at the posted price), then sides priced against you, likeliest first. On each card the coloured bar is that probability and the tick is what the price implies; the line under the numbers is the edge the pick had to clear, its own bar, and how far past it the pick was posted; on a pick that has slipped, where it stands now.</p></div>
+      <div><h2 id="all-picks" data-pick="All picks, likeliest first">All leans, likeliest first</h2><p class="muted how-to" data-pick="Today’s games come first, then later days, each under its own heading. Within a day, sides with a positive edge come first, ranked by our probability from the game data: #1 is today’s side with an edge that the model expects to hit most often. Picks that have slipped under their bar since they were posted come next (they stay on the card and are graded at the posted price), then sides priced against you, likeliest first. On each card the coloured bar is that probability and the tick is what the price implies; the line under the numbers is the edge the pick had to clear, its own bar, and how far past it the pick was posted; on a pick that has slipped, where it stands now. On a spread, the line under the price is the same team’s moneyline.">Today’s games come first, then later days, each under its own heading. Within a day, sides with a positive edge come first, ranked by our probability from the game data: #1 is today’s side with an edge that the model expects to hit most often. Leans that have slipped under their bar since they were posted come next (they stay on the card and are graded at the posted price), then sides priced against you, likeliest first. On each card the coloured bar is that probability and the tick is what the price implies; the line under the numbers is the edge the lean had to clear, its own bar, and how far past it the lean was posted; on a lean that has slipped, where it stands now. On a spread, the line under the price is the same team’s moneyline.</p></div>
     </div>
     <div class="filter-row" role="group" aria-label="Filters">
       <label class="filter">Sport
@@ -109,7 +111,7 @@
       </label>
       <label class="filter">Sort by
         <select id="f-sort">
-          <option value="model">Worth a bet, likeliest first</option>
+          <option value="model">Likeliest first</option>
           <option value="edge">Biggest edge</option>
           <option value="odds">Longest odds</option>
           <option value="start">Start time</option>
@@ -123,13 +125,13 @@
     </div>
 
     <p class="filter-summary" id="summary" role="status"></p>
-    <h2 class="visually-hidden">Picks</h2>
+    <h2 class="visually-hidden" data-pick="Picks">Leans</h2>
     <div id="picks-host"></div>
 
     <div class="section-head row played-head" id="played">
       <div>
         <h2>In progress and results</h2>
-        <p class="muted how-to">A pick leaves the list above the moment its game starts and lands here, so it never vanishes. Live games first, then the ones past their usual length and awaiting a result, then the graded ones with the final score and units won or lost. Within each, sides worth a bet first, then likeliest. Grades are official once the pipeline settles them from final scores.</p>
+        <p class="muted how-to">A <span data-pick="pick">lean</span> leaves the list above the moment its game starts and lands here, so it never vanishes. Live games first, then the ones past their usual length and awaiting a result, then the graded ones with the final score and units won or lost. Within each, sides with an edge first, then likeliest. Grades are official once the pipeline settles them from final scores.</p>
       </div>
     </div>
     <div class="played-wrap" id="played-host"></div>
@@ -145,8 +147,8 @@
     <div class="market-filters" role="group" aria-label="Market board filters">
       <label class="filter">Sport<select id="m-sport"><option value="">All sports</option></select></label>
       <label class="filter">Market<select id="m-market"><option value="">All markets</option></select></label>
-      <label class="filter">Show<select id="m-status"><option value="">Everything</option><option value="positive">Positive edge only</option><option value="watch">Picks and watch list</option></select></label>
-      <label class="filter">Sort by<select id="m-sort"><option value="model">Worth a bet, likeliest first</option><option value="edge">Biggest edge</option><option value="start">Start time</option></select></label>
+      <label class="filter">Show<select id="m-status"><option value="">Everything</option><option value="positive">Positive edge only</option><option value="watch" data-pick="Picks and watch list">Leans and watch list</option></select></label>
+      <label class="filter">Sort by<select id="m-sort"><option value="model">Likeliest first</option><option value="edge">Biggest edge</option><option value="start">Start time</option></select></label>
       <label class="filter">Search<input type="search" id="m-search" placeholder="Team or side" autocomplete="off"></label>
     </div>
     <div id="market-host"></div>
@@ -157,7 +159,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a pick.</strong> “To hit” is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. “Implied” is the probability baked into the best available price. “Edge” is the difference; the higher it is, the further the price sits behind our read of the game. Each pick has to clear its own bar, the model’s margin of error on that side (never under 3 points); confidence is how far past it: Medium from 2 points, High from 5, and a thin sample stays a Lean. A pick is locked once posted and graded at the posted price; if a later check finds it below its bar, the card says so. Nothing is graded against other books’ prices; the market’s own number is in each breakdown for reference only.
+      <strong data-pick="Reading a pick.">Reading a lean.</strong> “To hit” is our probability for the side, from the game data: this season’s results and margins, recent form, rest, the injury report and home edge. “Implied” is the probability baked into the best available price. “Edge” is the difference; the higher it is, the further the price sits behind our read of the game. Each <span data-pick="pick">lean</span> has to clear its own bar, the model’s margin of error on that side (never under 3 points); confidence is how far past it: Medium from 2 points, High from 5, and a thin sample stays a Lean. It is locked once posted and graded at the posted price; if a later check finds it below its bar, the card says so. Nothing is graded against other books’ prices; the market’s own number is in each breakdown for reference only. An edge is the model’s read against the price, not proof that the price is wrong: in a replay of past seasons the selections lost money at the closing price.
     </div>
   </div>
 </section>
@@ -170,7 +172,7 @@
   </div>
   <div class="slip-body" id="slip-body"></div>
   <div class="slip-foot">
-    <button type="button" class="btn btn-secondary btn-sm" id="slip-load">Load parlay of the day</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="slip-load" data-pick="Load parlay of the day">Load parlay lean of the day</button>
     <button type="button" class="btn btn-secondary btn-sm" id="slip-clear">Clear</button>
   </div>
 </aside>
@@ -216,16 +218,16 @@
   function render() {
     var list = filtered(), open = E.openOnly(P), played = E.playedPicks().length;
     host.textContent = "";
-    summary.textContent = open.length ? list.length + " of " + open.length + " picks shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." + (played ? " " + played + (played === 1 ? " pick has" : " picks have") + " started: see In progress and results." : "") : "";
+    summary.textContent = open.length ? list.length + " of " + E.nWord(open.length) + " shown, sorted by " + (sortLabel[fo.value] || sortLabel.model) + "." + (played ? " " + E.nWord(played) + (played === 1 ? " has" : " have") + " started: see In progress and results." : "") : "";
     if (!list.length && !open.length) {
       /* nothing clears the bar (or every pick has started): show the closest open markets as cards, clearly labelled, so the page is never bare */
       var near = E.marketRows({ limit: 6, oneSidePerMarket: true });
       var s = E.marketSummary();
-      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: played ? "Every pick on the board has started; they are under In progress and results below. " : "No pick on the board right now. " }), s.markets ? s.markets + " markets across " + s.games + " games " + (played ? "that have not started yet " : "") + "were priced on our probability from the game data, each against its own bar. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means the edge is at least halfway to its bar. They are not plays." : played ? "New picks are published around noon ET." : "The market board fills at the next price refresh."]));
+      host.appendChild(E.el("p", { class: "watch-note" }, [E.el("strong", { text: played ? "Every " + E.word("one") + " on the board has started; they are under In progress and results below. " : "No " + E.word("one") + " on the board right now. " }), s.markets ? s.markets + " markets across " + s.games + " games " + (played ? "that have not started yet " : "") + "were priced on our probability from the game data, each against its own bar. Today's games come first, then later days; within a day, sides with a positive edge come first, ranked by our probability, and the rest follow, likeliest first. Watch means the edge is at least halfway to its bar. They are not " + E.word("many") + "." : played ? "New " + E.word("many") + " are published around " + E.runClock(0) + "." : "The market board fills at the next price refresh."]));
       if (near.length) { var g2 = E.el("div", { class: "picks-grid stagger" }), spans2 = new Set(near.map(E.dayKey)).size > 1, prev2 = null; near.forEach(function (p, i) { var k = E.dayKey(p), newDay = i === 0 || k !== prev2; prev2 = k; if (newDay && spans2) g2.appendChild(E.dayDivider(k)); if (!newDay && !(E.edgeOf(p) > 0) && E.edgeOf(near[i - 1]) > 0) g2.appendChild(E.el("p", { class: "grid-divider", text: "Priced against you from here: our probability sits below the price" })); var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); g2.appendChild(c); }); host.appendChild(g2); E.initTilt(g2); }
       return;
     }
-    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: "No picks match these filters." })); return; }
+    if (!list.length) { host.appendChild(E.el("div", { class: "card empty", text: "No " + E.word("many") + " match these filters." })); return; }
     if (view === "cards") {
       var grid = E.el("div", { class: "picks-grid stagger" }), spans = daysShown(fo.value) && new Set(list.map(E.dayKey)).size > 1, prevDay = null;
       list.forEach(function (p, i) { var k = E.dayKey(p); if (spans && (i === 0 || k !== prevDay)) grid.appendChild(E.dayDivider(k)); prevDay = k; var c = E.pickCard(p, { rank: i + 1 }); c.style.setProperty("--i", i); grid.appendChild(c); });
@@ -270,7 +272,7 @@
     playedHost.textContent = "";
     if (!list.length) {
       var first = E.openOnly(P).map(E.startMs).filter(Number.isFinite).sort(function (a, b) { return a - b; })[0];
-      playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. " + (first ? "The first game on the board starts " + E.clockET(first) + "; its pick moves here at the start, with the live score, then the result." : "When a game on the board starts, its pick moves here with the live score, then the result.") }));
+      playedHost.appendChild(E.el("p", { class: "played-empty", text: "Nothing under way yet. " + (first ? "The first game on the board starts " + E.clockET(first) + "; its " + E.word("one") + " moves here at the start, with the live score, then the result." : "When a game on the board starts, its " + E.word("one") + " moves here with the live score, then the result.") }));
       return;
     }
     var box = E.el("div", { class: "card played-list" }), spans = new Set(list.map(E.dayKey)).size > 1, prev = null;
@@ -309,8 +311,8 @@
   /* the board's counts against each side's own bar, and the bars themselves by sport */
   function barSummary(s) {
     var bars = E.barsText(s);
-    return (s.picks === 1 ? "1 pick" : s.picks + " picks") + " on the board" +
-      (s.clearOff ? "; " + s.clearOff + (s.clearOff === 1 ? " more side clears its bar but is held off the board" : " more sides clear their bar but are held off the board") + " (one pick a game, ten a day, five a sport)" : "") +
+    return E.nWord(s.picks) + " on the board" +
+      (s.clearOff ? "; " + s.clearOff + (s.clearOff === 1 ? " more side clears its bar but is held off the board" : " more sides clear their bar but are held off the board") + " (one " + E.word("one") + " a game, ten a day, five a sport)" : "") +
       "; " + s.watch + " on watch, at least halfway to their bar. " +
       (bars ? "Each side’s bar is the model’s own margin of error there, never under " + E.ptsLabel(E.floorBar()) + " points: " + bars + "." : "Every side is held to the " + E.barPts() + "-point bar.");
   }
@@ -348,10 +350,10 @@
     var potdAt = all.findIndex(function (par) { return sameLegs(par, D.parlayOfDay); });
     if (potdAt >= 6) list.push(Object.assign({ _rank: potdAt + 1 }, all[potdAt]));
     /* once a leg of the parlay of the day starts it can no longer be ranked or loaded: it is shown as it stands, last */
-    var under = D.parlayOfDay && (D.parlayOfDay.legs || []).some(function (l) { return !E.isOpen(E.legAsPick(l)); }) ? E.parlayCard(D.parlayOfDay, { title: "Parlay of the day, under way", tag: "Parlay of the day" }) : null;
-    if (!list.length) { parlaysHost.appendChild(open.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination is worth a bet at a single book right now." })); if (under) parlaysHost.appendChild(under); E.initTilt(parlaysHost); return; }
+    var under = D.parlayOfDay && (D.parlayOfDay.legs || []).some(function (l) { return !E.isOpen(E.legAsPick(l)); }) ? E.parlayCard(D.parlayOfDay, { title: E.word("parlayOfDay") + ", under way" }) : null;
+    if (!list.length) { parlaysHost.appendChild(open.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination has an edge at a single book right now." })); if (under) parlaysHost.appendChild(under); E.initTilt(parlaysHost); return; }
     list.forEach(function (par, i) {
-      var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + ": " + E.pct(par.fairProb) + " to hit, " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? "Parlay of the day" : null });
+      var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + ": " + E.pct(par.fairProb) + " to hit, " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? E.word("parlayOfDay") : null });
       card.querySelector("[data-load-parlay]").addEventListener("click", function () {
         try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
         E.slip.set(par.legs.map(function (l) { return l.id; }));
@@ -397,7 +399,7 @@
     document.getElementById("slip-count").textContent = String(legs.length);
     slipBody.textContent = "";
     if (droppedNote) slipBody.appendChild(E.el("p", { class: "slip-warn slip-dropped", role: "status", text: droppedNote }));
-    if (!legs.length) { slipBody.appendChild(E.el("p", { class: "slip-empty", text: "Add picks from the board to build a parlay. Legs must come from different games." })); return; }
+    if (!legs.length) { slipBody.appendChild(E.el("p", { class: "slip-empty", text: "Add " + E.word("many") + " from the board to build a parlay. Legs must come from different games." })); return; }
     /* one leg per game: later duplicates are kept on the list but left out of the maths */
     var seen = {}, used = [], dupes = [];
     legs.forEach(function (l) { if (seen[l.event]) dupes.push(l); else { seen[l.event] = true; used.push(l); } });
@@ -438,7 +440,7 @@
   document.getElementById("slip-clear").addEventListener("click", function () { E.slip.clear(); });
   document.getElementById("slip-load").addEventListener("click", function () {
     var par = D.parlayOfDay;
-    if (!par) { slipBody.appendChild(E.el("p", { class: "slip-warn", text: "There is no parlay of the day right now." })); return; }
+    if (!par) { slipBody.appendChild(E.el("p", { class: "slip-warn", text: "There is no " + E.word("parlayOfDay").toLowerCase() + " right now." })); return; }
     try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
     E.slip.set(par.legs.map(function (l) { return l.id; }));
     openSlip(true);
@@ -462,13 +464,13 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
-        <p class="footer-blurb">Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.</p>
+        <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
         <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>
         <nav aria-label="Product"><ul>
-          <li><a href="picks.html">Today’s picks</a></li>
+          <li><a href="picks.html" data-pick="Today’s picks">Today’s leans</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="digest.html">Digest</a></li>
           <li><a href="props.html">Props</a></li>

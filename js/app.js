@@ -28,6 +28,9 @@
     });
     const yr = document.querySelector("[data-year]");
     if (yr) yr.textContent = String(new Date().getFullYear());
+    /* the wording switch and the replay note (data/replay.js) */
+    applyCall(document);
+    replayNotes(document);
     /* hide "Sample data" labels once the files come from the real pipeline */
     document.querySelectorAll("[data-sample-flag]").forEach(function (elm) {
       const which = elm.getAttribute("data-sample-flag");
@@ -126,6 +129,47 @@
   }
   /* team logos, matchups and faces live in js/teams.js, loaded after the data files; everything here degrades to text without it */
   function TM() { return window.EdgeLineTeams || null; }
+
+  /* ---------- leans, not picks (owner decision, 2026-11-05) ----------
+     A held-out replay priced the game model's selections at the closing odds over past seasons and they lost money in
+     every league, so the pages, the digest and the feeds call them "leans" until the live record beats the close.
+     THE ONE SWITCH is `call` in data/replay.js: "leans" (the default, also when the file is missing) or "picks", which
+     restores the old wording everywhere. Generated copy asks word(); static copy carries the lean wording with the
+     pick wording beside it in data-pick, swapped in by applyCall. File names, ids, fields and anchors never change. */
+  const CALL_WORDS = {
+    leans: { one: "lean", many: "leans", One: "Lean", Many: "Leans", ofDay: "Lean of the day", parlayOfDay: "Parlay lean of the day" },
+    picks: { one: "pick", many: "picks", One: "Pick", Many: "Picks", ofDay: "Play of the day", parlayOfDay: "Parlay of the day" }
+  };
+  function callName() { const r = window.REPLAY_DATA; return r && r.call === "picks" ? "picks" : "leans"; }
+  function word(k) { const w = CALL_WORDS[callName()]; return w[k] != null ? w[k] : k; }
+  /* "1 lean", "3 leans" (capitalised with cap) */
+  function nWord(n, cap) { return n + " " + (n === 1 ? word(cap ? "One" : "one") : word(cap ? "Many" : "many")); }
+  function applyCall(scope) {
+    if (callName() !== "picks") return;
+    (scope || document).querySelectorAll("[data-pick]").forEach(function (n) { n.textContent = n.getAttribute("data-pick"); });
+  }
+
+  /* ---------- the replay against the close (data/replay.js), said where a reader decides ---------- */
+  function replayData() { const r = window.REPLAY_DATA; return r && Array.isArray(r.leagues) && r.leagues.length ? r : null; }
+  /* "−4.8%": a typographic minus, for prose */
+  function roiText(v) { v = Number(v); return (v < 0 ? "−" : v > 0 ? "+" : "") + Math.abs(v).toFixed(1) + "%"; }
+  /* "NHL −4.8%, NBA −7.9%, NFL −9.5%"; with detail "NHL −4.8% ± 3.7 over 883, …" (the performance page) */
+  function replayFigures(detail) {
+    const r = replayData();
+    if (!r) return "";
+    return r.leagues.filter(l => Number.isFinite(Number(l.roiClose))).map(function (l) {
+      return l.league + " " + roiText(l.roiClose) + (detail && Number.isFinite(Number(l.se)) ? " ± " + Number(l.se).toFixed(1) : "") + (detail && Number.isFinite(Number(l.picks)) ? " over " + Number(l.picks).toLocaleString("en-US") : "");
+    }).join(", ");
+  }
+  function replayText(detail) {
+    const f = replayFigures(detail), leans = callName() === "leans";
+    const figs = !f ? "" : detail ? ": " + f + " (ROI at the close, one unit on each)" : " (" + f + " ROI at the close)";
+    return "In a replay of past seasons " + (leans ? "these leans" : "the model’s selections") + " did not beat the closing price" + figs + ". " +
+      (leans ? "They become picks when the live record beats the close." : "Judge them by the live record.");
+  }
+  /* every [data-replay] slot gets the sentence with the figures (data-replay="detail" adds the error and the count);
+     without the file the static sentence in the HTML stays */
+  function replayNotes(scope) { if (!window.REPLAY_DATA) return; (scope || document).querySelectorAll("[data-replay]").forEach(function (n) { n.textContent = replayText(n.getAttribute("data-replay") === "detail"); }); }
 
   /* ---------- the bar: how far our probability must beat the price ----------
      Since 2026-11-05 every pick and market row carries its own bar: the model's own margin of error on that side
@@ -231,7 +275,7 @@
   }
   /* one sentence a bettor can act on */
   function shopSummary(p) {
-    const s = lineShop(p), bar = barName(p, "this pick’s");
+    const s = lineShop(p), bar = barName(p, "this " + word("one") + "’s");
     if (!s.books) return "";
     if (s.books === 1) return "Only " + s.best.book + " is priced on this line.";
     let t = "Best price " + fmtOdds(s.best.price) + " at " + s.best.book + ". ";
@@ -414,6 +458,11 @@
     [0, 1, 2].forEach(function (off) { slots.forEach(function (s) { const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]); if (t > n && t < best) best = t; }); });
     return best;
   }
+  /* a full run's time today in Eastern, for copy: runClock(0) "9 AM ET" (the morning run, 10 AM in summer), runClock(1) "3:30 PM ET" */
+  function runClock(i) {
+    const s = FULL_UTC[i] || FULL_UTC[0], d = new Date(now());
+    return etClock.format(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), s[0], s[1]))).replace(":00", "") + " ET";
+  }
   /* the parts of the line; opts.lines is the Games page, whose prices come only from the full runs */
   function updateParts(opts) {
     opts = opts || {};
@@ -422,12 +471,12 @@
     if (opts.lines) return [
       Number.isFinite(priced) ? "Lines priced " + clockET(priced) + " (" + ago(priced) + ")" : "Lines not priced yet",
       "Next pricing " + aboutET(nextRun(true)),
-      Number.isFinite(tracked) && tracked > priced ? "Picks rechecked " + clockET(tracked) : null
+      Number.isFinite(tracked) && tracked > priced ? word("Many") + " rechecked " + clockET(tracked) : null
     ];
     const times = [pub, tracked, priced].filter(Number.isFinite), latest = times.length ? Math.max.apply(null, times) : NaN;
     const fresher = Number.isFinite(latest) && (!Number.isFinite(pub) || latest - pub > 60e3);
     return [
-      Number.isFinite(pub) ? "Picks published " + clockET(pub) + (fresher ? "" : " (" + ago(pub) + ")") : null,
+      Number.isFinite(pub) ? word("Many") + " published " + clockET(pub) + (fresher ? "" : " (" + ago(pub) + ")") : null,
       fresher ? "Updated " + clockET(latest) + " (" + ago(latest) + ")" : null,
       "Next check " + aboutET(nextRun(false))
     ];
@@ -489,7 +538,7 @@
 
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: DEFAULT_BAR, watch: DEFAULT_WATCH, games: 0, generatedAt: null }; }
-  function statusLabel(st) { return st === "pick" ? "Pick" : st === "watch" ? "Watch" : "No bet"; }
+  function statusLabel(st) { return st === "pick" ? word("One") : st === "watch" ? "Watch" : "No bet"; }
   /* the status a row earns from its edge against its own bar: watch from halfway to the bar up, never a pick (that needs the board) */
   function rowStatus(r) { return hasModel(r) && rowEdge(r) >= watchLineOf(r) ? "watch" : "none"; }
   /* a row is a pick only while its pickId is on the current board */
@@ -501,14 +550,14 @@
     /* a row is a pick only while that pick is on the current board; otherwise it is market information, whatever the file says */
     const status = onBoard ? "pick" : modelled ? rowStatus(r) : "none";
     const why = !modelled ? "No model yet: too little game data behind this one to price it, so there is no probability and no edge."
-      : edge >= bar ? "Clears " + barLabel + (onBoard ? "." : " but is not on the board: there is at most one pick per game, ten a day and five per sport, chosen by how far each side clears its own bar.")
+      : edge >= bar ? "Clears " + barLabel + (onBoard ? "." : " but is not on the board: there is at most one " + word("one") + " per game, ten a day and five per sport, chosen by how far each side clears its own bar.")
       : edge > 0 ? "Edge of " + (edge * 100).toFixed(1) + " points sits under " + barLabel + (hasOwnBar(r) ? ": the model’s own margin of error on this side is bigger than the edge, so it is not a bet." : ": priced about right, not a bet.")
       : "No edge: the price implies " + (-edge * 100).toFixed(1) + " points more than our probability.";
     const marketRef = typeof r.marketFair === "number" ? "For reference the market makes it " + pct(r.marketFair) + "." : "";
     const rationale = modelled
       ? "Our probability is " + pct(r.modelProb) + ", from the game data: results and margins this season, form, rest, the injury report and home edge. " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + ". " + why + " Not graded against other books' prices." + (marketRef ? " " + marketRef : "")
       : why + " " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + "." + (marketRef ? " " + marketRef : "");
-    return { id: onBoard ? r.pickId : "m" + i, isMarket: !onBoard, status: status, sport: r.sport, league: r.league, sportKey: r.sportKey, event: r.event, home: r.home, away: r.away, commence: r.commence, start: r.start, marketKey: r.marketKey, market: r.market, outcome: r.outcome, pick: r.pick, odds: r.odds, book: r.book, prices: r.prices || {}, books: r.books, anchor: r.anchor, modelProb: modelled ? r.modelProb : null, ev: modelled ? r.ev : null,
+    return { id: onBoard ? r.pickId : "m" + i, isMarket: !onBoard, status: status, eventId: r.eventId, sport: r.sport, league: r.league, sportKey: r.sportKey, event: r.event, home: r.home, away: r.away, commence: r.commence, start: r.start, marketKey: r.marketKey, market: r.market, outcome: r.outcome, pick: r.pick, odds: r.odds, book: r.book, prices: r.prices || {}, books: r.books, anchor: r.anchor, modelProb: modelled ? r.modelProb : null, ev: modelled ? r.ev : null,
       basis: "game", modelled: modelled, model: r.model || null, marketFair: typeof r.marketFair === "number" ? r.marketFair : null, marketEdge: typeof r.marketEdge === "number" ? r.marketEdge : null,
       bar: hasOwnBar(r) ? Number(r.bar) : null, past: modelled ? edge - bar : null, barParts: r.barParts || null,
       confidence: onBoard ? "Lean" : statusLabel(status),
@@ -603,7 +652,7 @@
         el("td", { class: "num mono", text: probText(r), title: modelled ? "Our probability, from the game data" + (typeof r.marketFair === "number" ? "; the market makes it " + pct(r.marketFair) + " (reference only)" : "") : "No model yet for this game" }),
         el("td", { class: "num mono", text: pct(impliedProb(r.odds)) }),
         modelled ? el("td", { class: "num mono " + (rowEdge(r) > 0 ? "edge-pos" : "edge-neg"), title: "Its bar " + barPts(r) + " points: " + pastWord(r) }, [el("span", { class: "mkt-edge", text: signed(r.edge * 100, 1) }), hasOwnBar(r) ? el("span", { class: "mkt-bar", text: "bar " + barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" }),
-        el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: "Pick" }) : el("span", { class: "badge badge-status badge-" + st, text: statusLabel(st) })])
+        el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: word("One") }) : el("span", { class: "badge badge-status badge-" + st, text: statusLabel(st) })])
       ]);
       /* phone layout restacks each row as a card and labels the cells from this attribute */
       Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-label", MARKET_COLS[i]); });
@@ -620,7 +669,7 @@
     const top = marketRows({ limit: 3, oneSidePerMarket: true, positive: false });
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
-      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? (s.picks === 1 ? "1 pick on the board. " : s.picks + " picks on the board. ") : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + pastWord(s.best) + (hasOwnBar(s.best) ? " of its bar of " + barPts(s.best) : " of the " + barPts(s.best) + "-point bar") + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
+      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? nWord(s.picks) + " on the board. " : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + pastWord(s.best) + (hasOwnBar(s.best) ? " of its bar of " + barPts(s.best) : " of the " + barPts(s.best) + "-point bar") + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
       el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, p.start], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
       el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
@@ -678,11 +727,51 @@
     if (vt == null && !moved && !chip) return null;
     const past = moved && vt != null && decimalOdds(m.currentOdds) < decimalOdds(vt);
     const line = meta([
-      moved ? el("span", { class: "price-now" + (past ? " price-past" : ""), title: (past ? "Past the worst price still worth a bet. " : "") + (m.checkedAt ? "Best price at the check " + clockET(Date.parse(m.checkedAt)) : "") || null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""]) : null,
-      vt != null ? el("span", { class: "price-worth", title: "The worst price at which our probability still clears this pick’s bar" }, ["Worth a bet to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null
+      moved ? el("span", { class: "price-now" + (past ? " price-past" : ""), title: (past ? "Past the worst price at which our probability still clears its bar. " : "") + (m.checkedAt ? "Best price at the check " + clockET(Date.parse(m.checkedAt)) : "") || null }, ["now ", el("span", { class: "mono", text: fmtOdds(m.currentOdds) }), m.currentBook ? " at " + m.currentBook : ""]) : null,
+      vt != null ? el("span", { class: "price-worth", title: "The worst price at which our probability still clears this " + word("one") + "’s bar" }, ["Clears its bar to ", el("span", { class: "mono", text: fmtOdds(vt) })]) : null
     ], "price-value" + (cls ? " " + cls : ""));
     /* locked: a pick a later check put below its bar, or out of edge, stays on the card and says so (a chip, not a meta part) */
     if (chip) line.appendChild(chip);
+    return line;
+  }
+
+  /* ---------- the same team's moneyline beside a spread lean (owner ask, 2026-11-05) ----------
+     Likeliest first puts a +1.5 at −130 on top; the reader should see what the same team pays to win outright. For a
+     lean on a spread, puck line or run line, the card front and the breakdown show that team's moneyline from the last
+     pricing run (MARKET_DATA): the best price, its book and our probability. No row for it, nothing shown. */
+  /* the team on a spread side: the outcome's name, else the pick text without its number ("Vancouver Canucks +1.5") */
+  function spreadTeam(p) {
+    if (!p || p.marketKey !== "spreads") return "";
+    const o = p.outcome && p.outcome.name;
+    if (o) return String(o);
+    const m = String(p.pick || "").match(/^(.*\S)\s+[+-]?\d+(?:\.\d+)?$/);
+    return m ? m[1] : "";
+  }
+  /* a market row on the same game as a pick: the event id when both carry one; a pipeline pick's id starts with the first
+     ten characters of its event's id; else the same event label at the same start */
+  function sameGame(r, p) {
+    if (r.eventId != null && p.eventId != null) return String(r.eventId) === String(p.eventId);
+    if (r.eventId != null && p.id && String(p.id).indexOf(String(r.eventId).slice(0, 10) + "-") === 0) return true;
+    return !!r.event && r.event === p.event && (!r.commence || !p.commence || Date.parse(r.commence) === Date.parse(p.commence));
+  }
+  function moneylineFor(p) {
+    const team = spreadTeam(p);
+    if (!team) return null;
+    return marketData().rows.find(function (r) {
+      return r && r.marketKey === "h2h" && sameGame(r, p) && ((r.outcome && r.outcome.name === team) || r.pick === team + " ML");
+    }) || null;
+  }
+  /* the line: "Moneyline +185 at BetRivers | To hit 42.2%"; only while the game can still be bet (a started game's
+     prices are closed, so nothing on it looks bettable) */
+  function moneylineLine(p, cls) {
+    if (!isOpen(p)) return null;
+    const r = moneylineFor(p);
+    if (!r || !Number.isFinite(Number(r.odds)) || Number(r.odds) === 0) return null;
+    const line = meta([
+      el("span", {}, ["Moneyline ", el("span", { class: "mono", text: fmtOdds(r.odds) }), r.book ? " at " + r.book : ""]),
+      hasModel(r) ? el("span", {}, ["To hit ", el("span", { class: "mono", text: pct(r.modelProb) })]) : null
+    ], "pick-ml" + (cls ? " " + cls : ""));
+    line.title = "The same team to win outright: the best moneyline price at the last pricing run" + (hasModel(r) ? " and our probability for it, from the game data" : "; no model yet for this game");
     return line;
   }
 
@@ -696,14 +785,14 @@
     const modelled = hasModel(p), ours = modelled ? Number(p.modelProb) : 0, imp = impliedProb(p.odds);
     const confClass = p.isMarket ? "badge badge-status badge-" + (p.status || "none") : "badge badge-conf-" + String(p.confidence).toLowerCase();
     const factors = Array.isArray(p.factors) ? p.factors : [];
-    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: "Why this pick" });
+    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: "Why this " + word("one") });
     const backBtn = el("button", { type: "button", class: "flip-btn", text: "Back to numbers" });
     const front = el("div", { class: "pick-face pick-front" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "pick-head-left" }, [rankChip(opts.rank), el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
         el("span", { class: "pick-head-right" }, [
           isSample() ? el("span", { class: "badge badge-sample", text: "Sample" }) : null,
-          isPlayOfDay(p.id) ? el("span", { class: "badge badge-potd", text: "Play of the day" }) : null,
+          isPlayOfDay(p.id) ? el("span", { class: "badge badge-potd", text: word("ofDay") }) : null,
           el("span", { class: confClass, text: p.confidence })
         ])
       ]),
@@ -713,6 +802,7 @@
         el("h3", { class: "pick-selection", text: p.pick }),
         meta([p.market].concat(priceParts(p)), "pick-market"),
         valueLine(p),
+        moneylineLine(p),
         shopChips(p)
       ]),
       /* the probability bar: fill = our probability from the game data, tick = what the price implies, hairline = a coin flip */
@@ -731,15 +821,22 @@
         el("span", { class: "pick-actions" }, [p.isMarket ? null : isOpen(p) ? parlayButton(p.id) : stateChip(p), flipBtn])
       ])
     ]);
+    /* the back is sized to the front: its middle scrolls when the reasons and faces run longer, and fades at the foot while
+       there is more below */
+    const backBody = el("div", { class: "pick-back-body" }, [
+      el("h3", { class: "pick-selection", text: p.pick }),
+      el("p", { class: "pick-rationale", text: p.rationale }),
+      factors.length ? el("ul", { class: "pick-factors" }, factors.map(function (f) { return el("li", { text: f }); })) : null,
+      TM() ? TM().faces(p, { perTeam: 3, px: 40 }) : null
+    ]);
+    function moreBelow() { backBody.classList.toggle("has-more", backBody.scrollHeight - backBody.scrollTop - backBody.clientHeight > 2); }
+    backBody.addEventListener("scroll", moreBelow, { passive: true });
     const back = el("div", { class: "pick-face pick-back", "aria-hidden": "true" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: p.isMarket ? "Where the market sits" : "Why the model likes it" }),
         el("span", { class: confClass, text: p.confidence })
       ]),
-      el("h3", { class: "pick-selection", text: p.pick }),
-      el("p", { class: "pick-rationale", text: p.rationale }),
-      factors.length ? el("ul", { class: "pick-factors" }, factors.map(function (f) { return el("li", { text: f }); })) : null,
-      TM() ? TM().faces(p, { perTeam: 3, px: 40 }) : null,
+      backBody,
       el("div", { class: "pick-foot" }, [
         p.isMarket ? el("a", { class: "flip-btn bd-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn bd-btn", "data-breakdown": p.id, text: "Full breakdown" }),
         backBtn
@@ -754,6 +851,7 @@
       flipBtn.setAttribute("aria-expanded", String(f));
       back.setAttribute("aria-hidden", String(!f));
       front.setAttribute("aria-hidden", String(f));
+      if (f) moreBelow();
       (f ? backBtn : flipBtn).focus({ preventScroll: true });
     }
     flipBtn.addEventListener("click", function () { setFlipped(true); });
@@ -793,10 +891,10 @@
   }
 
   function picksTable(picks) {
-    const head = el("tr", {}, ["#", "Sport", "Event", "Start", "Market", "Pick", "Odds", "To hit", "Implied", "Edge", "Confidence", "Books", "Parlay"]
-      .map(function (h, i) { return el("th", { scope: "col", class: (i >= 6 && i <= 9) || i === 11 || i === 0 ? "num" : "", title: i === 0 ? "Rank by our probability from game data, likeliest first" : i === 7 ? "Our probability for the side, from the game data" : i === 11 ? "Books whose price still clears the pick’s own bar, out of every book priced on this line" : null, text: h }); }));
+    const head = el("tr", {}, ["#", "Sport", "Event", "Start", "Market", word("One"), "Odds", "To hit", "Implied", "Edge", "Confidence", "Books", "Parlay"]
+      .map(function (h, i) { return el("th", { scope: "col", class: (i >= 6 && i <= 9) || i === 11 || i === 0 ? "num" : "", title: i === 0 ? "Rank by our probability from game data, likeliest first" : i === 7 ? "Our probability for the side, from the game data" : i === 11 ? "Books whose price still clears the " + word("one") + "’s own bar, out of every book priced on this line" : null, text: h }); }));
     const tbody = el("tbody", {}, picks.map(pickRow));
-    return el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Picks table" }, [el("table", { class: "data" }, [el("thead", {}, [head]), tbody])]);
+    return el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": word("Many") + " table" }, [el("table", { class: "data" }, [el("thead", {}, [head]), tbody])]);
   }
 
   function sortByEdge(picks) {
@@ -823,17 +921,17 @@
       /* nothing cleared the bar: show the closest market instead, labelled as such */
       const alt = marketRows({ limit: 1, oneSidePerMarket: true, byPast: true })[0];
       if (alt) {
-        const past = pastOf(alt), why = !Number.isFinite(past) ? "There is no model on the board yet, so this is the first market priced, not a play." : past < 0 ? "Nothing is on the board yet, so this is the nearest miss on our numbers: " + (-past * 100).toFixed(1) + " points short of " + barName(alt) + ". Not a play." : "Nothing is on the board yet. This side was past " + barName(alt) + " at the last pricing but was not posted, so it is not a play.";
-        const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: why + " The play of the day is chosen at the first refresh with a pick." })); c.classList.add("potd-market"); return c;
+        const past = pastOf(alt), why = !Number.isFinite(past) ? "There is no model on the board yet, so this is the first market priced, not a " + word("one") + "." : past < 0 ? "Nothing is on the board yet, so this is the nearest miss on our numbers: " + (-past * 100).toFixed(1) + " points short of " + barName(alt) + ". Not a " + word("one") + "." : "Nothing is on the board yet. This side was past " + barName(alt) + " at the last pricing but was not posted, so it is not a " + word("one") + ".";
+        const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: why + " The " + word("ofDay").toLowerCase() + " is chosen at the first run with a " + word("one") + "." })); c.classList.add("potd-market"); return c;
       }
-      return el("div", { class: "card empty", text: "No play of the day yet. It is chosen at the first refresh with picks, around noon ET." });
+      return el("div", { class: "card empty", text: "No " + word("ofDay").toLowerCase() + " yet. It is chosen at the first run with " + word("many") + ", around " + runClock(0) + "." });
     }
     const modelled = hasModel(p), st = gameState(p), open = st === "upcoming" || st === "soon";
     /* chosen once a day and kept: once its game starts it shows where it stands, never an add button */
     const status = open ? [p.start || ""] : [stateChip(p), st === "final" ? meta([scoreText(p) ? "Final " + scoreText(p) : null, unitsText(p) || null], "potd-result") : meta([Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : "Started"], "potd-result")];
     const card = el("article", { class: "card potd", "data-sport": p.sport, "data-state": st, "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "eyebrow", text: p._eyebrow || "Play of the day" }),
+        el("span", { class: "eyebrow", text: p._eyebrow || word("ofDay") }),
         el("span", { class: "pick-head-right" }, [p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
       ]),
       TM() ? TM().matchup(p, { size: "lg" }) : null,
@@ -841,6 +939,7 @@
       el("h3", { class: "potd-selection", text: p.pick }),
       meta([p.market].concat(priceParts(p)), "potd-line"),
       valueLine(p),
+      moneylineLine(p),
       el("div", { class: "pick-metrics potd-metrics" }, [
         el("div", { class: "pick-metric", title: "Our probability for this side, from the game data; not other books' prices" }, [el("div", { class: "k", text: "To hit" }), el("div", { class: "v", text: probText(p) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: modelled ? "v edge" : "v muted", text: edgeText(p) })]),
@@ -932,13 +1031,13 @@
 
   function parlayCard(par, opts) {
     opts = opts || {};
-    if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No parlay of the day yet. It needs two or more picks from different games that are all worth a bet at the same book." });
+    if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No " + word("parlayOfDay").toLowerCase() + " yet. It needs two or more " + word("many") + " from different games, each with an edge at the same book." });
     /* each leg read from its pick on the board, so a leg whose game has started says so */
     const legPick = par.legs.map(legAsPick), begun = legPick.filter(p => !isOpen(p)).length;
     const status = par.result ? "Result: " + par.result : begun ? (begun === par.legs.length ? "Every leg has started" : begun + " of " + par.legs.length + " legs started") : "All legs ahead";
     return el("article", { class: "card parlay" + (begun ? " parlay-begun" : ""), "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
-        el("span", { class: "eyebrow", text: opts.title || "Parlay of the day" }),
+        el("span", { class: "eyebrow", text: opts.title || word("parlayOfDay") }),
         el("span", { class: "pick-head-right" }, [opts.tag ? el("span", { class: "badge badge-potd", text: opts.tag }) : null, el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })])
       ]),
       el("ul", { class: "parlay-legs" }, par.legs.map(function (l, i) {
@@ -1005,6 +1104,7 @@
           el("h3", { class: "bd-title", text: p.pick }),
           meta([p.event, p.market].concat(hasMoved(p) ? priceParts(p) : [fmtOdds(p.odds) + (p.book ? " at " + p.book : "")], [p.start]), "bd-sub"),
           valueLine(p, "bd-value"),
+          moneylineLine(p, "bd-ml"),
           standingLine(p) ? el("p", { class: "bd-standing", text: standingLine(p) }) : null,
           isOpen(p) ? null : el("p", { class: "bd-state" }, [stateChip(p), meta([gameState(p) === "final" && scoreText(p) ? "Final " + scoreText(p) : Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : null, unitsText(p) || null], "bd-state-meta")]),
           modelLine(p),
@@ -1016,7 +1116,7 @@
     /* the tier against this pick's own bar: the pipeline's text says it since 2026-11-05 (and the flat 3 / 5 / 8 for older
        picks); when the text predates that, the bar is said here from the pick's own numbers */
     const tierWhy = b && b.tierWhy ? String(b.tierWhy) : "", saysBar = /\bIts bar is\b|\bLean starts at\b/.test(tierWhy), own = barSentence(p);
-    if (!b) { if (own) sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + p.confidence }), el("p", { class: "bd-bar-why", text: own })])); sec.appendChild(el("p", { class: "muted", text: "No breakdown for this pick yet. It is written at the next data refresh." })); return sec; }
+    if (!b) { if (own) sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + p.confidence }), el("p", { class: "bd-bar-why", text: own })])); sec.appendChild(el("p", { class: "muted", text: "No breakdown for this " + word("one") + " yet. It is written at the next data refresh." })); return sec; }
     const list = (title, items, cls) => items && items.length ? el("div", { class: "bd-block" }, [el("h4", { text: title }), el("ul", { class: "bd-list " + cls }, items.map(t => el("li", { text: t })))]) : null;
     sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "Why " + b.tier }), !saysBar && own ? el("p", { class: "bd-bar-why", text: own }) : null, el("p", { text: tierWhy })]));
     sec.appendChild(el("div", { class: "bd-block" }, [el("h4", { text: "The number" }), el("p", { text: b.price })]));
@@ -1062,7 +1162,7 @@
     const body = dlg.querySelector(".bd-body"); body.textContent = "";
     const picks = ids.map(findPick).filter(Boolean);
     body.appendChild(el("p", { class: "bd-rule", text: GRADE_RULE }));
-    if (!picks.length) body.appendChild(el("p", { class: "muted", text: "That pick is no longer on the board." }));
+    if (!picks.length) body.appendChild(el("p", { class: "muted", text: "That " + word("one") + " is no longer on the board." }));
     picks.forEach(p => body.appendChild(breakdownSection(p)));
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     body.scrollTop = 0;
@@ -1109,7 +1209,7 @@
       }
       if (row.children.length) { while (row.children.length < 7) row.appendChild(el("td", { class: "cal-pad" })); body.appendChild(row); }
       table.appendChild(body);
-      summary.textContent = active ? label + ": " + signed(Math.round(mUnits * 100) / 100, 2) + " units over " + active + " days, " + mW + "-" + mL + (mP ? "-" + mP : "") + "." : "No graded picks in " + label + ".";
+      summary.textContent = active ? label + ": " + signed(Math.round(mUnits * 100) / 100, 2) + " units over " + active + " days, " + mW + "-" + mL + (mP ? "-" + mP : "") + "." : "No graded " + word("many") + " in " + label + ".";
     }
     head.addEventListener("click", function (e) { const b = e.target.closest("[data-cal]"); if (!b) return; month += Number(b.getAttribute("data-cal")); if (month < 0) { month = 11; year--; } if (month > 11) { month = 0; year++; } render(); });
     render();
@@ -1128,6 +1228,7 @@
     now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, ago: ago, scoreText: scoreText, unitsText: unitsText,
     onStateChange: onStateChange, checkStates: checkStates, updateLine: updateLine, updateParts: updateParts, nextRun: nextRun,
     playedPicks: playedPicks, playedRow: playedRow, playedSummary: playedSummary, startedNote: startedNote, findPick: findPick, legAsPick: legAsPick,
-    hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine
+    hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine, moneylineFor: moneylineFor, moneylineLine: moneylineLine, runClock: runClock,
+    call: callName, word: word, nWord: nWord, applyCall: applyCall, replayData: replayData, replayText: replayText, replayFigures: replayFigures, roiText: roiText
   };
 })();

@@ -8,6 +8,9 @@
    picks.js keeps started and graded picks on the day's card, so a pick can be in picks.js and the log at once; each is
    written once, under the same UID and guid it had before the game.
    No network. Deterministic for a given set of data files, so the workflow only commits when the data moved.
+   Wording: the selections are "leans" until the owner flips `call` in data/replay.js to "picks" (2026-11-05: a replay
+   of past seasons lost money at the closing price in every league). The switch is read from the data directory's
+   replay.js; without it the feeds say leans. File names, UIDs and guids never change.
    Run: node scripts/feeds.js [--data <dir>] [--out <dir>] [--base <site url>] */
 "use strict";
 const fs = require("fs"), path = require("path"), vm = require("vm");
@@ -129,9 +132,25 @@ function rss(channel, items) {
   return head.concat(body, ["</channel>", "</rss>"]).join("\n") + "\n";
 }
 
+/* ---------- the wording switch (data/replay.js `call`, the same one the pages read) ---------- */
+const CALL_WORDS = {
+  leans: { one: "lean", many: "leans", One: "Lean", Many: "Leans", ofDay: "Lean of the day", parlayOfDay: "Parlay lean of the day" },
+  picks: { one: "pick", many: "picks", One: "Pick", Many: "Picks", ofDay: "Play of the day", parlayOfDay: "Parlay of the day" }
+};
+let W = CALL_WORDS.leans, REPLAY = null;
+function callOf(replay, override) { const c = override || (replay && replay.call); return c === "picks" ? "picks" : "leans"; }
+function roiText(v) { v = Number(v); return (v < 0 ? "−" : v > 0 ? "+" : "") + Math.abs(v).toFixed(1) + "%"; }
+/* the replay against the close, one sentence (the pages' replayText) */
+function replayLine() {
+  const ls = REPLAY && Array.isArray(REPLAY.leagues) ? REPLAY.leagues.filter(l => Number.isFinite(Number(l.roiClose))) : [];
+  const f = ls.map(l => l.league + " " + roiText(l.roiClose)).join(", "), leans = W === CALL_WORDS.leans;
+  return "In a replay of past seasons " + (leans ? "these leans" : "the model's selections") + " did not beat the closing price" + (f ? " (" + f + " ROI at the close)" : "") + ". " +
+    (leans ? "They become picks when the live record beats the close." : "Judge them by the live record.");
+}
+
 /* ---------- content ---------- */
 function pickTitle(p) { return p.pick + " " + fmtOdds(p.odds) + " at " + p.book; }
-function pickItemTitle(p, potd) { return (potd ? "Play of the day: " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence || "Pick") + ", " + pts(edgeOf(p)) + ")"; }
+function pickItemTitle(p, potd) { return (potd ? W.ofDay + ": " : p.sport + ": ") + pickTitle(p) + " (" + (p.confidence || W.One) + ", " + pts(edgeOf(p)) + ")"; }
 function pickLines(p, base) {
   const b = p.breakdown || {}, lad = ladder(p), edge = edgeOf(p);
   const lines = [
@@ -151,8 +170,8 @@ function gradedLines(e, base) {
   const final = scoreText(e.score);
   if (final) lines.push("Final: " + final);
   if (typeof e.clv === "number") lines.push("Closing line value: " + pts(e.clv) + (e.close && e.close.odds != null ? " (closed " + fmtOdds(e.close.odds) + (e.close.source ? ", " + e.close.source : "") + ")" : "") + ".");
-  else if (e.lineMove) lines.push("The line moved " + e.lineMove + " the pick before close.");
-  lines.push("Record and every graded pick: " + base + "performance.html");
+  else if (e.lineMove) lines.push("The line moved " + e.lineMove + " the " + W.one + " before close.");
+  lines.push("Record and every graded " + W.one + ": " + base + "performance.html");
   return lines;
 }
 function closest(market, n) {
@@ -172,6 +191,8 @@ function build(opts) {
   opts = opts || {};
   const dataDir = opts.data || path.join(ROOT, "data");
   const base = (opts.base || DEFAULT_BASE).replace(/\/?$/, "/");
+  REPLAY = readWindowFile(path.join(dataDir, "replay.js"), "REPLAY_DATA");
+  W = CALL_WORDS[callOf(REPLAY, opts.call)];
   const picks = readWindowFile(path.join(dataDir, "picks.js"), "PICKS_DATA") || { sample: true, picks: [] };
   const market = readWindowFile(path.join(dataDir, "market.js"), "MARKET_DATA") || { rows: [], games: 0, threshold: 0.01 };
   const log = readJson(path.join(dataDir, "picks-log.json"), []);
@@ -189,13 +210,13 @@ function build(opts) {
   /* since 2026-11-05 each side has its own bar (the model's own margin of error on it, never under the floor) */
   const perSide = !!(market.bars && Object.keys(market.bars).length), barName = perSide ? "its bar" : "the " + bar + "-point bar";
   const slateDay = etDate(picks.generatedAt || updated);
-  const name = "EdgeLine AI picks" + (sample ? " (sample data)" : "");
+  const name = "EdgeLine AI " + W.many + (sample ? " (sample data)" : "");
   const events = [], items = [];
 
   /* upcoming picks: one event (with the alarm) and one item each */
   upcoming.forEach(function (p) {
     const potd = p.id === potdId;
-    const summary = (potd ? "Play of the day: " : "") + pickTitle(p) + (p.confidence ? " · " + p.confidence : "");
+    const summary = (potd ? W.ofDay + ": " : "") + pickTitle(p) + (p.confidence ? " · " + p.confidence : "");
     const start = Date.parse(p.commence);
     events.push({ uid: p.id + "@edgeline", stamp: p.pricesAt || updated, start: start, end: start + GAME_HOURS * 36e5, summary: summary,
       description: pickLines(p, base).join("\n"), location: p.context && p.context.venue, url: base + "picks.html#" + p.id, categories: [p.sport], alarmMinutes: ALARM_MINUTES });
@@ -208,7 +229,7 @@ function build(opts) {
   if (parlay && parlay.legs && parlay.legs.length) {
     const byId = {}; logSingles.forEach(e => { byId[e.id] = e; }); card.forEach(p => { byId[p.id] = p; });
     const starts = parlay.legs.map(l => byId[l.id] && Date.parse(byId[l.id].commence)).filter(Boolean);
-    const title = "Parlay of the day: " + parlay.legs.length + " legs " + fmtOdds(parlay.odds) + " at " + parlay.book;
+    const title = W.parlayOfDay + ": " + parlay.legs.length + " legs " + fmtOdds(parlay.odds) + " at " + parlay.book;
     const lines = ["All legs priced at " + parlay.book + ". Fair " + pct(parlay.fairProb) + ", implied " + pct(implied(parlay.odds)) + (parlay.ev != null ? ", EV " + signed(parlay.ev * 100, 1) + "% per unit" : "") + "."]
       .concat(parlay.legs.map(l => "- " + l.sport + ": " + l.pick + " " + fmtOdds(l.price) + " · " + l.event), [resultLabel(parlay) ? "Result: " + resultLabel(parlay) : null, "Every parlay: " + base + "picks.html#parlays"]);
     if (starts.length) {
@@ -247,11 +268,11 @@ function build(opts) {
   const slate = card.filter(p => p.status !== "void" && Date.parse(p.commence) > pricedAt);
   const noPlay = !slate.length;
   const slateTitle = noPlay
-    ? (sides ? "No play tonight: " + sides + " sides priced in " + games + " games, none clears " + (perSide ? "its bar" : "the " + bar + "-point bar") : "No play tonight: nothing priced yet")
-    : slate.length + (slate.length === 1 ? " pick" : " picks") + " tonight from " + sides + " priced sides";
+    ? (sides ? "No " + W.one + " tonight: " + sides + " sides priced in " + games + " games, none clears " + (perSide ? "its bar" : "the " + bar + "-point bar") : "No " + W.one + " tonight: nothing priced yet")
+    : slate.length + " " + (slate.length === 1 ? W.one : W.many) + " tonight from " + sides + " priced sides";
   const slateLines = [noPlay
-    ? (sides ? "Every main-line side was given our probability from the game data. None beats its best price by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side)" : barName) + ", so there is no bet." : "The next run prices the slate before the evening games.")
-    : "Picks are the sides where our probability from the game data beats the best price by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side), one pick a game at most" : barName + " or more") + "; the price is only the number to beat. Each one is above, with its price, book and breakdown."]
+    ? (sides ? "Every main-line side was given our probability from the game data. None sits above what its best price implies by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side)" : barName) + ", so there is no bet." : "The next run prices the slate before the evening games.")
+    : W.Many + " are the sides where our probability from the game data sits above what the best price implies by " + (perSide ? "its own bar (" + bar + " points or more: the model's margin of error on that side), one " + W.one + " a game at most" : barName + " or more") + "; the price is only the number to clear. Each one is above, with its price, book and breakdown.", replayLine()]
     .concat(near.length ? ["Closest to the bar:"].concat(near.map(r => "- " + r.sport + ": " + marketRowTitle(r) + " · " + r.event)) : [], ["The market board: " + base + "picks.html#market"]);
   if (noPlay && sides) {
     events.push({ uid: "slate-" + slateDay + "@edgeline", stamp: updated, allDay: true, day: slateDay, summary: slateTitle, description: slateLines.join("\n"), url: base + "picks.html#market", categories: ["Slate"] });
@@ -260,9 +281,9 @@ function build(opts) {
 
   events.sort((a, b) => (a.allDay ? Date.parse(a.day + "T00:00:00Z") : a.start) - (b.allDay ? Date.parse(b.day + "T00:00:00Z") : b.start));
   items.sort((a, b) => (Date.parse(b.date) - Date.parse(a.date)) || ((b.category === "Slate") - (a.category === "Slate")));
-  const ics = vcalendar(name, "Every EdgeLine AI pick at tip-off with its price, book and edge; the grade follows when the game ends. Informational only; 21+.", events);
+  const ics = vcalendar(name, "Every EdgeLine AI " + W.one + " at tip-off with its price, book and edge; the grade follows when the game ends. " + replayLine() + " Informational only; 21+.", events);
   const feed = rss({ title: name, link: base, self: base + "feed.xml", updated: updated,
-    description: "Sports betting picks graded on game data: every pick with our probability and its edge over the price, every grade, every slate. Informational only; 21+." }, items.slice(0, MAX_ITEMS));
+    description: "Sports betting " + W.many + " from a game-data model: every " + W.one + " with our probability and its edge over the price, every grade, every slate. " + replayLine() + " Informational only; 21+." }, items.slice(0, MAX_ITEMS));
   return { ics: ics, rss: feed, events: events.length, items: Math.min(items.length, MAX_ITEMS), sample: sample, noPlay: noPlay };
 }
 
