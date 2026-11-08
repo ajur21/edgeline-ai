@@ -308,10 +308,10 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:79ed3df594-h2h-Ipswich-Town@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T140654Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Ipswich Town ML +308 at BetOnline.ag · Lean
+SUMMARY:Ipswich Town ML +308 at BetOnline.ag · in play
 DESCRIPTION:Soccer · Ipswich Town vs. Bournemouth · Sun Nov 8\, 9:00 AM E
  T\nMoneyline: Ipswich Town ML at +308 (BetOnline.ag). Our probability 36.3
  % from game data\, the price implies 24.5%\, edge +11.8 pts\, EV +48.1% pe
@@ -334,21 +334,16 @@ LOCATION:Portman Road\, Ipswich
 URL:https://ajur21.github.io/edgeline-ai/picks.html#79ed3df594-h2h-Ipswich-
  Town
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T140654Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Ipswich Town ML +308 at BetOnline.ag · Lean
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0cfbab01e1-totals-Under@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T140654Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Under 3 goals -105 at Bovada · Medium
+SUMMARY:Under 3 goals -105 at Bovada · in play
 DESCRIPTION:Soccer · Crystal Palace vs. Liverpool · Sun Nov 8\, 9:00 AM E
  T\nTotal: Under 3 goals at -105 (Bovada). Our probability 61.7% from game 
  data\, the price implies 51.2%\, edge +10.5 pts\, EV +20.4% per unit. Conf
@@ -367,21 +362,16 @@ DESCRIPTION:Soccer · Crystal Palace vs. Liverpool · Sun Nov 8\, 9:00 AM E
 LOCATION:Selhurst Park\, London
 URL:https://ajur21.github.io/edgeline-ai/picks.html#0cfbab01e1-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T140654Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 3 goals -105 at Bovada · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8e3ca98e29-totals-Under@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T140654Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Under 3 goals -112 at Bovada · Lean
+SUMMARY:Under 3 goals -112 at Bovada · in play
 DESCRIPTION:Soccer · Brighton and Hove Albion vs. Brentford · Sun Nov 8\,
   9:00 AM ET\nTotal: Under 3 goals at -112 (Bovada). Our probability 59.2% 
  from game data\, the price implies 52.8%\, edge +6.4 pts\, EV +12.1% per u
@@ -400,14 +390,9 @@ DESCRIPTION:Soccer · Brighton and Hove Albion vs. Brentford · Sun Nov 8\,
 LOCATION:American Express Stadium\, Falmer
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8e3ca98e29-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T140654Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 3 goals -112 at Bovada · Lean
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b0a4b5448a-totals-Under@edgeline
@@ -443,11 +428,33 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-08@edgeline
+DTSTAMP:20261108T140654Z
+DTSTART:20261108T163000Z
+DTEND:20261109T041000Z
+SUMMARY:Parlay of the day: 3 legs +617 at Bovada
+DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
+ 9% per unit.\n- NHL: Boston Bruins ML -142 · Florida Panthers @ Boston Br
+ uins\n- Soccer: Under 3 goals -115 · Manchester United vs. Aston Villa\n-
+  NHL: Under 6.5 +125 · Pittsburgh Penguins @ Anaheim Ducks\n\nEvery parla
+ y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261108T140654Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay of the day: 3 legs +617 at Bovada
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:7fda7dbcff-h2h-Boston-Bruins@edgeline
-DTSTAMP:20261108T125925Z
+DTSTAMP:20261108T140654Z
 DTSTART:20261108T181000Z
 DTEND:20261108T211000Z
-SUMMARY:Boston Bruins ML -130 at BetOnline.ag · Medium
+SUMMARY:Play of the day: Boston Bruins ML -130 at BetOnline.ag · Medium
 DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM 
  ET\nMoneyline: Boston Bruins ML at -130 (BetOnline.ag). Our probability 66
  .7% from game data\, the price implies 56.5%\, edge +10.2 pts\, EV +18.0% 
@@ -468,25 +475,101 @@ DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM
  .2 on the season.\n- Boston Bruins without James Hagens (C) (-0.2).\n- Bos
  ton Bruins have Matthew Poitras (C) listed day-to-day or questionable.\nVe
  rdict: The game data lines up behind this side at this price.\nPrices: Bet
- Online.ag -130\, theScore Bet -130\, PointsBet -130\, DraftKings -135\, ES
- PN BET -135 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#7fda7dbcff-h2h-Boston-Bruins
+ Online.ag -130\, theScore Bet -130\, ESPN BET -135\, BetRivers -136\, Caes
+ ars -138 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
+ /picks.html#7fda7dbcff-h2h-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-B
  ruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T125925Z
+LAST-MODIFIED:20261108T140654Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Boston Bruins ML -130 at BetOnline.ag · Medium
+DESCRIPTION:Play of the day: Boston Bruins ML -130 at BetOnline.ag · Mediu
+ m
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
+DTSTAMP:20261108T140654Z
+DTSTART:20261109T001000Z
+DTEND:20261109T031000Z
+SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Lean
+DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
+ M ET\nMoneyline: Minnesota Timberwolves ML at -500 (BetRivers). Our probab
+ ility 90.1% from game data\, the price implies 83.3%\, edge +6.7 pts\, EV 
+ +8.1% per unit. Confidence: Lean.\nOur probability is 90.1%\, from the gam
+ e data: this season's results and margins\, recent form\, rest\, the injur
+ y report and home edge (projected margin +16.2 for the home side). BetRive
+ rs offers -500\, which implies only 83.3%. Its bar is 6.4 points: the mode
+ l's own margin of error on this side\, with 9 games behind the thinner tea
+ m (±4.58 points on the margin). It clears it by 0.4. Not graded against o
+ ther books' prices\; for reference the market makes it 82.0%.\nWhat suppor
+ ts it:\n- Minnesota Timberwolves rate +6.3 a game over 10 (7-3)\, Utah Jaz
+ z -8.1 over 9 (1-8)\; last season +3.4 and -8.4 a game.\n- Home edge +1.9 
+ for Minnesota Timberwolves.\n- Utah Jazz without Jaren Jackson Jr. (F) (+1
+ .8).\n- Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionab
+ le.\n- Projected margin +16.2 for Minnesota Timberwolves.\nWhat could go w
+ rong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.9).\n- Min
+ nesota Timberwolves have Joan Beringer (F) listed day-to-day or questionab
+ le.\nVerdict: The game data lines up behind this side at this price.\nPric
+ es: BetRivers -500\, Unibet -500\, FanDuel -560\, DraftKings -574\, BetOnl
+ ine.ag -580 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
+ -ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
+LOCATION:Target Center\, Minneapolis
+URL:https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesot
+ a-Timberwolves
+CATEGORIES:NBA
+LAST-MODIFIED:20261108T140654Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Minnesota Timberwolves ML -500 at BetRivers · Lean
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:26c46faca6-totals-Over@edgeline
+DTSTAMP:20261108T140654Z
+DTSTART:20261109T001000Z
+DTEND:20261109T031000Z
+SUMMARY:Over 5.5 -120 at BetOnline.ag · Lean
+DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
+  PM ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from
+  game data\, the price implies 54.5%\, edge +3.2 pts\, EV +5.8% per unit. 
+ Confidence: Lean.\nOur probability at 5.5 is 57.7%\, from the game data: t
+ his season's results and margins\, recent form\, rest\, the injury report 
+ and home edge (projected total 6.3). BetOnline.ag offers -120\, which impl
+ ies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin o
+ f error here is smaller). It clears it by 0.2. Not graded against other bo
+ oks' prices\; for reference the market makes it 51.7%.\nWhat supports it:\
+ n- Combined scoring 6 a game in Calgary Flames's games\, 5.6 in Philadelph
+ ia Flyers's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWha
+ t could go wrong:\n- Scorers out: Jonathan Huberdeau (LW)\, hip\; Connor Z
+ ary (C)\, knee\; Samuel Honzek (LW)\, lower body and 2 more. Fewer healthy
+  scorers leans under.\nVerdict: The game data lines up behind this side at
+  this price.\nPrices: BetOnline.ag -120\, BetMGM -120\, theScore Bet -120\
+ , ESPN BET -120\, DraftKings -122 and 6 more.\nFull breakdown: https://aju
+ r21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
+LOCATION:Scotiabank Saddledome\, Calgary
+URL:https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261108T140654Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -120 at BetOnline.ag · Lean
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:41a3f4e922-totals-Under@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T140654Z
 DTSTART:20261109T011000Z
 DTEND:20261109T041000Z
 SUMMARY:Under 6.5 +122 at FanDuel · Lean
@@ -501,17 +584,18 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10
  s\; for reference the market makes it 44.9%.\nWhat supports it:\n- Combine
  d scoring 7.5 a game in Anaheim Ducks's games\, 6.8 in Pittsburgh Penguins
  's (league average 6.4).\n- A better price is now available: +125 at BetOn
- line.ag.\n- A better price is available now: +125 at Caesars.\n- Scorers o
- ut: A.J. Greer (LW)\, upper body\; Troy Terry (RW)\, hip\; Ian Moore (D)\,
-  lower body and 5 more. Fewer healthy scorers leans under.\nWhat could go 
- wrong:\n- Projected total 6.53 against 6.5.\nVerdict: The game data lines 
- up behind this side at this price.\nPrices: Caesars +125\, Bovada +125\, D
- raftKings +124\, FanDuel +122\, ESPN BET +120 and 2 more.\nFull breakdown:
-  https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
+ line.ag.\n- A better price is available now: +124 at DraftKings.\n- Scorer
+ s out: A.J. Greer (LW)\, upper body\; Troy Terry (RW)\, hip\; Ian Moore (D
+ )\, lower body and 5 more. Fewer healthy scorers leans under.\n- Pittsburg
+ h Penguins on a back-to-back\; tired legs lean under.\nWhat could go wrong
+ :\n- Projected total 6.53 against 6.5.\nVerdict: The game data lines up be
+ hind this side at this price.\nPrices: Caesars +125\, Bovada +125\, DraftK
+ ings +124\, FanDuel +122\, ESPN BET +120 and 3 more.\nFull breakdown: http
+ s://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T140654Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

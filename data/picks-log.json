@@ -7642,9 +7642,10 @@
    "BetRivers": 106,
    "FanDuel": 122,
    "Caesars": 125,
-   "Unibet": -112,
+   "Unibet": -108,
    "ESPN BET": 120,
-   "Bovada": 125
+   "Bovada": 125,
+   "PointsBet": 120
   },
   "books": 3,
   "anchor": null,
@@ -7707,12 +7708,12 @@
   "units": 0,
   "loggedAt": "2026-11-07T18:31:30.088Z",
   "current": {
-   "at": "2026-11-07T23:49:52.382Z",
+   "at": "2026-11-08T14:06:54.761Z",
    "odds": 125,
    "book": "BetOnline.ag",
-   "fair": 0.4306,
-   "edge": 0.0482,
-   "modelProb": 0.4926,
+   "fair": 0.4293,
+   "edge": 0.0446,
+   "modelProb": 0.489,
    "bar": 0.03
   },
   "history": [
@@ -7725,6 +7726,11 @@
     "at": "2026-11-07T23:49:52.382Z",
     "odds": 125,
     "fair": 0.4306
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "odds": 125,
+    "fair": 0.4293
    }
   ],
   "context": {
@@ -7738,9 +7744,9 @@
      "away": "7-3-0"
     },
     "Pittsburgh Penguins": {
-     "overall": "5-9-2",
+     "overall": "6-9-2",
      "home": "4-3-1",
-     "away": "1-6-1"
+     "away": "2-6-1"
     }
    },
    "probables": {
@@ -7831,7 +7837,7 @@
       "status": "Injured Reserve",
       "type": "Lower Body",
       "detail": "",
-      "returnDate": "2026-11-08",
+      "returnDate": "2026-11-11",
       "date": "2026-10-12T17:51Z",
       "note": "ir"
      },
@@ -7857,10 +7863,10 @@
      "gamesLast7": 3
     },
     "Pittsburgh Penguins": {
-     "restDays": 3,
-     "b2b": false,
-     "lastGame": "2026-11-06",
-     "gamesLast7": 2
+     "restDays": 1,
+     "b2b": true,
+     "lastGame": "2026-11-08",
+     "gamesLast7": 3
     }
    },
    "weather": null,
@@ -7932,17 +7938,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 6,
+   "n": 5,
    "open": {
     "line": 7.5,
     "odds": -141
    },
    "now": {
     "line": 7,
-    "odds": -115
+    "odds": -114
    },
    "moved": "toward",
-   "label": "The market (6 books) opened 7.5 (-141), now 7 (-115)"
+   "label": "The market (5 books) opened 7.5 (-141), now 7 (-114)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -7951,20 +7957,21 @@
    "support": [
     "Combined scoring 7.5 a game in Anaheim Ducks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).",
     "A better price is now available: +125 at BetOnline.ag.",
-    "A better price is available now: +125 at Caesars.",
-    "Scorers out: A.J. Greer (LW), upper body; Troy Terry (RW), hip; Ian Moore (D), lower body and 5 more. Fewer healthy scorers leans under."
+    "A better price is available now: +124 at DraftKings.",
+    "Scorers out: A.J. Greer (LW), upper body; Troy Terry (RW), hip; Ian Moore (D), lower body and 5 more. Fewer healthy scorers leans under.",
+    "Pittsburgh Penguins on a back-to-back; tired legs lean under."
    ],
    "risks": [
     "Projected total 6.53 against 6.5."
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 3 books makes this side 44.9% (-0.2 points against the best price). For reference only.",
-    "Market: the sharp line has moved away since it was logged (44.9% → 43.1%).",
+    "Market: the sharp line has moved away since it was logged (44.9% → 42.9%).",
     "Market: DraftKings opened 6.5 (+105), now 6.5 (+124), moving against this side since the open.",
-    "Market: The market (6 books) opened 7.5 (-141), now 7 (-115), the consensus moving toward this side since the open.",
+    "Market: The market (5 books) opened 7.5 (-141), now 7 (-114), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Laurent Brossoit · Penguins Arturs Silovs.",
-    "Records: Pittsburgh Penguins 5-9-2 · Anaheim Ducks 9-7-1 · Honda Center, Anaheim."
+    "Records: Pittsburgh Penguins 6-9-2 · Anaheim Ducks 9-7-1 · Honda Center, Anaheim."
    ],
    "verdict": "The game data lines up behind this side at this price."
   },
@@ -7972,26 +7979,25 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "OBNI5li7yW4iDMa3PTxO",
-   "at": "2026-11-07T23:49:52.382Z",
+   "at": "2026-11-08T14:06:54.761Z",
    "books": {
     "FanDuel": 122,
     "DraftKings": 124,
-    "Caesars": 125,
-    "Unibet": -112,
+    "Unibet": -108,
     "ESPN BET": 120,
-    "Bovada": 125
+    "PointsBet": 120
    },
-   "n": 6,
+   "n": 5,
    "best": {
-    "book": "Caesars",
-    "odds": 125
+    "book": "DraftKings",
+    "odds": 124
    },
-   "fair": 0.4408,
-   "fairBooks": 6,
+   "fair": 0.4442,
+   "fairBooks": 5,
    "vendor": {
     "line": 7,
-    "odds": -115,
-    "fair": 0.5349,
+    "odds": -114,
+    "fair": 0.5327,
     "sameLine": false
    },
    "open": {
@@ -8000,12 +8006,12 @@
    },
    "now": {
     "line": 7,
-    "odds": -115
+    "odds": -114
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T23:49:52.382Z",
+  "pricesAt": "2026-11-08T14:06:54.761Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T18:31:30.088Z",
@@ -8024,6 +8030,15 @@
     "odds": -115,
     "best": 125,
     "n": 6
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "fair": 0.4442,
+    "vendorFair": 0.5327,
+    "line": 7,
+    "odds": -114,
+    "best": 124,
+    "n": 5
    }
   ],
   "movement": {
@@ -8031,9 +8046,9 @@
    "loggedFair": 0.4917,
    "currentOdds": 125,
    "currentBook": "BetOnline.ag",
-   "currentFair": 0.4306,
-   "currentEdge": 0.0482,
-   "checkedAt": "2026-11-07T23:49:52.382Z",
+   "currentFair": 0.4293,
+   "currentEdge": 0.0446,
+   "checkedAt": "2026-11-08T14:06:54.761Z",
    "history": [
     {
      "at": "2026-11-07T18:31:30.088Z",
@@ -8044,6 +8059,11 @@
      "at": "2026-11-07T23:49:52.382Z",
      "odds": 125,
      "fair": 0.4306
+    },
+    {
+     "at": "2026-11-08T14:06:54.761Z",
+     "odds": 125,
+     "fair": 0.4293
     }
    ]
   }
@@ -8446,10 +8466,10 @@
    },
    "weather": {
     "city": "Manchester, England",
-    "tempF": 50,
-    "windMph": 1,
-    "precipPct": 2,
-    "summary": "Partly cloudy",
+    "tempF": 48,
+    "windMph": 3,
+    "precipPct": 11,
+    "summary": "Overcast",
     "source": "Open-Meteo"
    },
    "broadcast": "USA Net, Tele",
@@ -8458,17 +8478,17 @@
     "now": {
      "spread": -0.5,
      "spreadOdds": {
-      "home": 105,
-      "away": -145
+      "home": 110,
+      "away": -150
      },
      "total": 3.5,
      "totalOdds": {
       "over": 125,
-      "under": -155
+      "under": -160
      },
      "ml": {
-      "home": 115,
-      "away": 215
+      "home": 120,
+      "away": 210
      }
     },
     "open": {
@@ -8507,6 +8527,12 @@
     "line": 3.5,
     "odds": -155,
     "fair": 0.5776
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "line": 3.5,
+    "odds": -160,
+    "fair": 0.5806
    }
   ],
   "dk": {
@@ -8518,11 +8544,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -155,
-    "fair": 0.5776397515527951
+    "odds": -160,
+    "fair": 0.5806451612903226
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
+   "label": "DraftKings opened 2.5 (+135), now 3.5 (-160)"
   },
   "mkt": null,
   "breakdown": {
@@ -8536,8 +8562,8 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.0% (-4.5 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
-    "Weather at kickoff: Partly cloudy, 50°F, wind 1 mph, 2% rain.",
+    "Market: DraftKings opened 2.5 (+135), now 3.5 (-160), moving against this side since the open.",
+    "Weather at kickoff: Overcast, 48°F, wind 3 mph, 11% rain.",
     "Records: Aston Villa 3-3-3 · Manchester United 1-4-4 · Old Trafford, Manchester."
    ],
    "verdict": "The game data lines up behind this side at this price."
@@ -8566,15 +8592,15 @@
   "odds": -130,
   "book": "BetOnline.ag",
   "prices": {
-   "DraftKings": -135,
+   "DraftKings": -142,
    "BetOnline.ag": -130,
    "BetRivers": -136,
-   "FanDuel": -137,
-   "BetMGM": -140,
+   "FanDuel": -140,
+   "BetMGM": -145,
    "theScore Bet": -130,
-   "Bovada": -140,
+   "Bovada": -142,
    "Caesars": -138,
-   "PointsBet": -130,
+   "PointsBet": -141,
    "ESPN BET": -135
   },
   "books": 7,
@@ -8646,19 +8672,24 @@
   "units": 0,
   "loggedAt": "2026-11-07T23:49:52.382Z",
   "current": {
-   "at": "2026-11-07T23:49:52.382Z",
-   "odds": -130,
-   "book": "BetOnline.ag",
-   "fair": 0.5475,
-   "edge": 0.1016,
-   "modelProb": 0.6668,
-   "bar": 0.0701
+   "at": "2026-11-08T14:06:54.761Z",
+   "odds": -134,
+   "book": "BetRivers",
+   "fair": 0.5661,
+   "edge": 0.0854,
+   "modelProb": 0.658,
+   "bar": 0.0706
   },
   "history": [
    {
     "at": "2026-11-07T23:49:52.382Z",
     "odds": -130,
     "fair": 0.5475
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "odds": -134,
+    "fair": 0.5661
    }
   ],
   "context": {
@@ -8710,6 +8741,18 @@
     ],
     "Florida Panthers": [
      {
+      "name": "Anton Lundell",
+      "pos": "C",
+      "athleteId": "4697395",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697395.png",
+      "status": "Day-To-Day",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-08",
+      "date": "2026-11-08T13:39Z",
+      "note": "day-to-day"
+     },
+     {
       "name": "Sandis Vilmanis",
       "pos": "LW",
       "athleteId": "5103599",
@@ -8720,18 +8763,6 @@
       "returnDate": "2026-11-12",
       "date": "2026-11-07T21:02Z",
       "note": "Vilmanis (undisclosed) will probably miss a few games, according to George Richards of Florida Hockey Now on Saturday."
-     },
-     {
-      "name": "Anton Lundell",
-      "pos": "C",
-      "athleteId": "4697395",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697395.png",
-      "status": "Out",
-      "type": "Undisclosed",
-      "detail": "",
-      "returnDate": "2026-11-08",
-      "date": "2026-11-07T15:33Z",
-      "note": "Lundell (undisclosed) won't play against Washington on Saturday, Rob Darragh of the Panthers' official site reports."
      },
      {
       "name": "Brad Marchand",
@@ -8801,8 +8832,8 @@
       "under": -125
      },
      "ml": {
-      "home": -135,
-      "away": 114
+      "home": -142,
+      "away": 120
      }
     },
     "open": {
@@ -8829,6 +8860,12 @@
     "line": null,
     "odds": -135,
     "fair": 0.5514
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "line": null,
+    "odds": -142,
+    "fair": 0.5635
    }
   ],
   "dk": {
@@ -8840,11 +8877,11 @@
    },
    "now": {
     "line": null,
-    "odds": -135,
-    "fair": 0.551441114716549
+    "odds": -142,
+    "fair": 0.5634920634920635
    },
-   "moved": null,
-   "label": "DraftKings opened -135, now -135"
+   "moved": "toward",
+   "label": "DraftKings opened -135, now -142"
   },
   "mkt": {
    "book": "Market consensus",
@@ -8855,10 +8892,10 @@
    },
    "now": {
     "line": null,
-    "odds": -125
+    "odds": -127
    },
    "moved": "away",
-   "label": "The market (7 books) opened -164, now -125"
+   "label": "The market (7 books) opened -164, now -127"
   },
   "breakdown": {
    "tier": "Medium",
@@ -8880,7 +8917,9 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 7 books makes this side 54.8% (-1.8 points against the best price). For reference only.",
-    "Market: The market (7 books) opened -164, now -125, the consensus moving against this side since the open.",
+    "Market: the sharp line has moved toward this side since it was logged (54.8% → 56.6%).",
+    "Market: DraftKings opened -135, now -142, moving toward this side since the open.",
+    "Market: The market (7 books) opened -164, now -127, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Bruins Jeremy Swayman · Panthers Jacob Markstrom.",
     "Records: Florida Panthers 9-6-2 · Boston Bruins 12-4-1 · TD Garden, Boston."
@@ -8891,27 +8930,27 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "hYVFpxGQ8VJoF4NhZYag",
-   "at": "2026-11-08T12:59:25.688Z",
+   "at": "2026-11-08T14:06:54.761Z",
    "books": {
-    "FanDuel": -137,
-    "DraftKings": -135,
+    "FanDuel": -140,
+    "DraftKings": -142,
     "Caesars": -138,
-    "PointsBet": -130,
-    "BetMGM": -140,
+    "PointsBet": -141,
+    "BetMGM": -145,
     "ESPN BET": -135,
-    "Bovada": -140
+    "Bovada": -142
    },
    "n": 7,
    "best": {
-    "book": "PointsBet",
-    "odds": -130
+    "book": "ESPN BET",
+    "odds": -135
    },
-   "fair": 0.5525,
+   "fair": 0.5592,
    "fairBooks": 7,
    "vendor": {
     "line": null,
-    "odds": -125,
-    "fair": 0.5556,
+    "odds": -127,
+    "fair": 0.5595,
     "sameLine": true
    },
    "open": {
@@ -8920,12 +8959,12 @@
    },
    "now": {
     "line": null,
-    "odds": -125
+    "odds": -127
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-08T12:59:25.688Z",
+  "pricesAt": "2026-11-08T14:06:54.761Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T23:49:52.382Z",
@@ -8944,8 +8983,39 @@
     "odds": -125,
     "best": -130,
     "n": 7
+   },
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "fair": 0.5592,
+    "vendorFair": 0.5595,
+    "line": null,
+    "odds": -127,
+    "best": -135,
+    "n": 7
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": -130,
+   "loggedFair": 0.6668,
+   "currentOdds": -134,
+   "currentBook": "BetRivers",
+   "currentFair": 0.5661,
+   "currentEdge": 0.0854,
+   "checkedAt": "2026-11-08T14:06:54.761Z",
+   "history": [
+    {
+     "at": "2026-11-07T23:49:52.382Z",
+     "odds": -130,
+     "fair": 0.5475
+    },
+    {
+     "at": "2026-11-08T14:06:54.761Z",
+     "odds": -134,
+     "fair": 0.5661
+    }
+   ]
+  },
+  "potd": "2026-11-08"
  },
  {
   "key": "79ed3df594d7b352ef027128b1ba5d0a|h2h|Ipswich Town|null",
@@ -9423,5 +9493,786 @@
    ],
    "verdict": "The game data lines up behind this side at this price."
   }
+ },
+ {
+  "key": "758ca94b2abd151c0593b182254dab32|h2h|Minnesota Timberwolves|null",
+  "id": "758ca94b2a-h2h-Minnesota-Timberwolves",
+  "date": "2026-11-08",
+  "commence": "2026-11-09T00:10:00Z",
+  "sport": "NBA",
+  "league": "NBA",
+  "sportKey": "basketball_nba",
+  "eventId": "758ca94b2abd151c0593b182254dab32",
+  "home": "Minnesota Timberwolves",
+  "away": "Utah Jazz",
+  "event": "Utah Jazz @ Minnesota Timberwolves",
+  "market": "Moneyline",
+  "marketKey": "h2h",
+  "outcome": {
+   "name": "Minnesota Timberwolves",
+   "point": null
+  },
+  "threeWay": false,
+  "pick": "Minnesota Timberwolves ML",
+  "odds": -500,
+  "book": "BetRivers",
+  "prices": {
+   "FanDuel": -560,
+   "BetOnline.ag": -580,
+   "DraftKings": -574,
+   "BetRivers": -500,
+   "BetMGM": -600,
+   "theScore Bet": -650,
+   "Bovada": -600,
+   "PointsBet": -588,
+   "Unibet": -500,
+   "Caesars": -650,
+   "ESPN BET": -650
+  },
+  "books": 8,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.9008,
+  "edge": 0.0675,
+  "ev": 0.081,
+  "confidence": "Lean",
+  "bar": 0.0638,
+  "past": 0.0037,
+  "barParts": {
+   "error": 0.0638,
+   "units": 4.58,
+   "unit": "points",
+   "gp": 9,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": 16.2,
+   "total": 225.6,
+   "sd": 14.3,
+   "sdTotal": 19,
+   "gp": 9,
+   "gpHome": 10,
+   "gpAway": 9,
+   "thin": false,
+   "parts": {
+    "ratingHome": 6.3,
+    "ratingAway": -8.1,
+    "lastHome": 3.4,
+    "lastAway": -8.4,
+    "homeEdge": 1.9,
+    "rest": 0,
+    "injuriesHome": -1.9,
+    "injuriesAway": 1.8,
+    "scoringOut": 0,
+    "pace": 225.6
+   },
+   "reasons": {
+    "for": [
+     "Minnesota Timberwolves rate +6.3 a game over 10 (7-3), Utah Jazz -8.1 over 9 (1-8); last season +3.4 and -8.4 a game",
+     "Home edge +1.9 for Minnesota Timberwolves",
+     "Utah Jazz without Jaren Jackson Jr. (F) (+1.8)",
+     "Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionable",
+     "Projected margin +16.2 for Minnesota Timberwolves"
+    ],
+    "against": [
+     "Minnesota Timberwolves without Anthony Edwards (G) (-1.9)",
+     "Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable"
+    ]
+   }
+  },
+  "marketFair": 0.8204,
+  "marketEdge": -0.013,
+  "rationale": "Our probability is 90.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +16.2 for the home side). BetRivers offers -500, which implies only 83.3%. Its bar is 6.4 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.58 points on the margin). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 82.0%.",
+  "factors": [
+   "Best price -500 at BetRivers",
+   "Probability 90.1% from game data, not other books",
+   "Edge 6.7 points over the price, 0.4 past its bar of 6.4",
+   "Market reference 82.0%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-08T14:06:54.761Z",
+  "current": {
+   "at": "2026-11-08T14:06:54.761Z",
+   "odds": -500,
+   "book": "BetRivers",
+   "fair": 0.8204,
+   "edge": 0.0675,
+   "modelProb": 0.9008,
+   "bar": 0.0638
+  },
+  "history": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "odds": -500,
+    "fair": 0.8204
+   }
+  ],
+  "context": {
+   "espnEventId": "401909947",
+   "venue": "Target Center, Minneapolis",
+   "indoor": true,
+   "records": {
+    "Minnesota Timberwolves": {
+     "overall": "7-3",
+     "home": "3-1",
+     "away": "4-2"
+    },
+    "Utah Jazz": {
+     "overall": "1-8",
+     "home": "1-4",
+     "away": "0-4"
+    }
+   },
+   "probables": {},
+   "injuries": {
+    "Minnesota Timberwolves": [
+     {
+      "name": "Joan Beringer",
+      "pos": "F",
+      "athleteId": "5279133",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5279133.png",
+      "status": "Day-To-Day",
+      "type": "Fracture",
+      "detail": "",
+      "returnDate": "2026-11-08",
+      "date": "2026-11-07T23:10Z",
+      "note": "Beringer (nose) is questionable for Sunday's game against the Jazz."
+     },
+     {
+      "name": "Anthony Edwards",
+      "pos": "G",
+      "athleteId": "4594268",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4594268.png",
+      "status": "Out",
+      "type": "Knee",
+      "detail": "Surgery",
+      "returnDate": "2026-12-21",
+      "date": "2026-10-29T18:33Z",
+      "note": "Edwards underwent a successful arthroscopic procedure on his right knee Thursday, the Timberwolves announced."
+     },
+     {
+      "name": "Donte DiVincenzo",
+      "pos": "G",
+      "athleteId": "3934673",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934673.png",
+      "status": "Out",
+      "type": "Achilles",
+      "detail": "Surgery",
+      "returnDate": "2027-04-02",
+      "date": "2026-10-05T20:53Z",
+      "note": "DiVincenzo (Achilles) remains confident that he'll return during the 2026-27 season, Jon Krawczynski of The Athletic reports."
+     }
+    ],
+    "Utah Jazz": [
+     {
+      "name": "Lauri Markkanen",
+      "pos": "F",
+      "athleteId": "4066336",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4066336.png",
+      "status": "Day-To-Day",
+      "type": "Wrist",
+      "detail": "Sprain",
+      "returnDate": "2026-11-08",
+      "date": "2026-11-07T23:14Z",
+      "note": "Markkanen is questionable for Sunday's game against the Timberwolves due to a right wrist sprain."
+     },
+     {
+      "name": "Jusuf Nurkic",
+      "pos": "C",
+      "athleteId": "3102530",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3102530.png",
+      "status": "Out",
+      "type": "Foot",
+      "detail": "Strain",
+      "returnDate": "2026-11-20",
+      "date": "2026-11-06T18:20Z",
+      "note": "Nurkic (toe) has begun participating in on-court activities as he continues recovering from a right foot injury sustained during an Oct. 4 preseason game agains"
+     },
+     {
+      "name": "Jaren Jackson Jr.",
+      "pos": "F",
+      "athleteId": "4277961",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4277961.png",
+      "status": "Out",
+      "type": "Knee",
+      "detail": "Not Specified",
+      "returnDate": "2026-12-14",
+      "date": "2026-10-27T19:25Z",
+      "note": "Jackson has been diagnosed with a torn MCL in his right knee and will be sidelined for 6-to-8 weeks, per Shams Charania of ESPN."
+     }
+    ]
+   },
+   "rest": {
+    "Minnesota Timberwolves": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-07",
+     "gamesLast7": 3
+    },
+    "Utah Jazz": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-07",
+     "gamesLast7": 3
+    }
+   },
+   "weather": null,
+   "broadcast": "DAZN MIN",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": -11.5,
+     "spreadOdds": {
+      "home": -106,
+      "away": -114
+     },
+     "total": 223.5,
+     "totalOdds": {
+      "over": -107,
+      "under": -113
+     },
+     "ml": {
+      "home": -574,
+      "away": 429
+     }
+    },
+    "open": {
+     "spread": -10.5,
+     "spreadOdds": {
+      "home": -114,
+      "away": -106
+     },
+     "total": 222.5,
+     "totalOdds": {
+      "over": -114,
+      "under": -106
+     },
+     "ml": {
+      "home": -486,
+      "away": 373
+     }
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "line": null,
+    "odds": -574,
+    "fair": 0.8184
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": null,
+    "odds": -486,
+    "fair": 0.7968649255749138
+   },
+   "now": {
+    "line": null,
+    "odds": -574,
+    "fair": 0.8183513634428076
+   },
+   "moved": "toward",
+   "label": "DraftKings opened -486, now -574"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 8,
+   "open": {
+    "line": null,
+    "odds": -160
+   },
+   "now": {
+    "line": null,
+    "odds": -447
+   },
+   "moved": "toward",
+   "label": "The market (8 books) opened -160, now -447"
+  },
+  "breakdown": {
+   "tier": "Lean",
+   "tierWhy": "Our probability for this side is 90.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 83.3%, so the edge is 6.8 points. Its bar is 6.4 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.58 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability is 90.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +16.2 for the home side). BetRivers offers -500, which implies only 83.3%. Its bar is 6.4 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.58 points on the margin). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 82.0%.",
+   "support": [
+    "Minnesota Timberwolves rate +6.3 a game over 10 (7-3), Utah Jazz -8.1 over 9 (1-8); last season +3.4 and -8.4 a game.",
+    "Home edge +1.9 for Minnesota Timberwolves.",
+    "Utah Jazz without Jaren Jackson Jr. (F) (+1.8).",
+    "Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionable.",
+    "Projected margin +16.2 for Minnesota Timberwolves."
+   ],
+   "risks": [
+    "Minnesota Timberwolves without Anthony Edwards (G) (-1.9).",
+    "Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 82.0% (-1.3 points against the best price). For reference only.",
+    "Market: DraftKings opened -486, now -574, moving toward this side since the open.",
+    "Market: The market (8 books) opened -160, now -447, the consensus moving toward this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Records: Utah Jazz 1-8 · Minnesota Timberwolves 7-3 · Target Center, Minneapolis."
+   ],
+   "verdict": "The game data lines up behind this side at this price."
+  },
+  "sgoEventId": "JJbK5MbHB4iR89PwkQFD",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "JJbK5MbHB4iR89PwkQFD",
+   "at": "2026-11-08T14:06:54.761Z",
+   "books": {
+    "FanDuel": -560,
+    "PointsBet": -588,
+    "Unibet": -500,
+    "Caesars": -650,
+    "DraftKings": -574,
+    "BetMGM": -600,
+    "ESPN BET": -650,
+    "Bovada": -600
+   },
+   "n": 8,
+   "best": {
+    "book": "Unibet",
+    "odds": -500
+   },
+   "fair": 0.8153,
+   "fairBooks": 8,
+   "vendor": {
+    "line": null,
+    "odds": -447,
+    "fair": 0.8172,
+    "sameLine": true
+   },
+   "open": {
+    "line": null,
+    "odds": -160
+   },
+   "now": {
+    "line": null,
+    "odds": -447
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-08T14:06:54.761Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "fair": 0.8153,
+    "vendorFair": 0.8172,
+    "line": null,
+    "odds": -447,
+    "best": -500,
+    "n": 8
+   }
+  ]
+ },
+ {
+  "key": "26c46faca681cd1f742dee05c5d7730b|totals|Over|5.5",
+  "id": "26c46faca6-totals-Over",
+  "date": "2026-11-08",
+  "commence": "2026-11-09T00:10:00Z",
+  "sport": "NHL",
+  "league": "NHL",
+  "sportKey": "icehockey_nhl",
+  "eventId": "26c46faca681cd1f742dee05c5d7730b",
+  "home": "Calgary Flames",
+  "away": "Philadelphia Flyers",
+  "event": "Philadelphia Flyers @ Calgary Flames",
+  "market": "Total",
+  "marketKey": "totals",
+  "outcome": {
+   "name": "Over",
+   "point": 5.5
+  },
+  "threeWay": false,
+  "pick": "Over 5.5",
+  "odds": -120,
+  "book": "BetOnline.ag",
+  "prices": {
+   "DraftKings": -122,
+   "BetOnline.ag": -120,
+   "BetRivers": -122,
+   "FanDuel": -122,
+   "BetMGM": -120,
+   "theScore Bet": -120,
+   "Bovada": -125,
+   "Caesars": -125,
+   "Unibet": -122,
+   "ESPN BET": -120,
+   "PointsBet": -125
+  },
+  "books": 8,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.577,
+  "edge": 0.0315,
+  "ev": 0.0578,
+  "confidence": "Lean",
+  "bar": 0.03,
+  "past": 0.0015,
+  "barParts": {
+   "error": 0.0276,
+   "units": 0.16,
+   "unit": "goals",
+   "gp": 17,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": 0.1,
+   "total": 6.3,
+   "sd": 2.4,
+   "sdTotal": 2.3,
+   "gp": 17,
+   "gpHome": 17,
+   "gpAway": 18,
+   "thin": false,
+   "parts": {
+    "ratingHome": -0.4,
+    "ratingAway": -0.4,
+    "lastHome": -0.6,
+    "lastAway": 0.1,
+    "homeEdge": 0.24,
+    "rest": 0,
+    "injuriesHome": -0.1,
+    "injuriesAway": 0,
+    "scoringOut": 0,
+    "pace": 5.8
+   },
+   "reasons": {
+    "for": [
+     "Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4)",
+     "Projected total 6.3 against 5.5"
+    ],
+    "against": []
+   }
+  },
+  "marketFair": 0.5171,
+  "marketEdge": -0.0284,
+  "rationale": "Our probability at 5.5 is 57.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.2. Not graded against other books' prices; for reference the market makes it 51.7%.",
+  "factors": [
+   "Best price -120 at BetOnline.ag",
+   "Probability 57.7% from game data, not other books",
+   "Edge 3.2 points over the price, 0.2 past its bar of 3.0",
+   "Market reference 51.7%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-08T14:06:54.761Z",
+  "current": {
+   "at": "2026-11-08T14:06:54.761Z",
+   "odds": -120,
+   "book": "BetOnline.ag",
+   "fair": 0.5171,
+   "edge": 0.0315,
+   "modelProb": 0.577,
+   "bar": 0.03
+  },
+  "history": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "odds": -120,
+    "fair": 0.5171
+   }
+  ],
+  "context": {
+   "espnEventId": "401892678",
+   "venue": "Scotiabank Saddledome, Calgary",
+   "indoor": true,
+   "records": {
+    "Calgary Flames": {
+     "overall": "7-9-1",
+     "home": "5-4-0",
+     "away": "2-5-1"
+    },
+    "Philadelphia Flyers": {
+     "overall": "4-10-4",
+     "home": "3-4-3",
+     "away": "1-6-1"
+    }
+   },
+   "probables": {
+    "Calgary Flames": "Dustin Wolf",
+    "Philadelphia Flyers": "Dan Vladar"
+   },
+   "injuries": {
+    "Calgary Flames": [
+     {
+      "name": "Kevin Bahl",
+      "pos": "D",
+      "athleteId": "4378686",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
+      "status": "Day-To-Day",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-08",
+      "date": "2026-11-07T09:12Z",
+      "note": "day-to-day"
+     },
+     {
+      "name": "Brennan Othmann",
+      "pos": "LW",
+      "athleteId": "4874733",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874733.png",
+      "status": "Day-To-Day",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-11-08",
+      "date": "2026-11-07T09:12Z",
+      "note": "day-to-day"
+     },
+     {
+      "name": "Jonathan Huberdeau",
+      "pos": "LW",
+      "athleteId": "2562606",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562606.png",
+      "status": "Injured Reserve",
+      "type": "Hip",
+      "detail": "Surgery",
+      "returnDate": "2026-11-21",
+      "date": "2026-11-06T16:42Z",
+      "note": "Huberdeau (hip) took the ice in a regular jersey Friday, Pat Steinberg of QR Calgary 770 AM reports."
+     },
+     {
+      "name": "Connor Zary",
+      "pos": "C",
+      "athleteId": "4697407",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697407.png",
+      "status": "Out",
+      "type": "Knee",
+      "detail": "Surgery",
+      "returnDate": "2026-11-28",
+      "date": "2026-10-30T16:44Z",
+      "note": "out"
+     },
+     {
+      "name": "Samuel Honzek",
+      "pos": "LW",
+      "athleteId": "5149191",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149191.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-15",
+      "date": "2026-10-20T03:51Z",
+      "note": "ir"
+     }
+    ],
+    "Philadelphia Flyers": [
+     {
+      "name": "Rasmus Ristolainen",
+      "pos": "D",
+      "athleteId": "3041999",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041999.png",
+      "status": "Injured Reserve",
+      "type": "Hand",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-11",
+      "date": "2026-10-27T14:26Z",
+      "note": "Ristolainen (hand) was placed on injured reserve, retroactive to Oct. 24, on Tuesday."
+     },
+     {
+      "name": "Nikita Grebenkin",
+      "pos": "RW",
+      "athleteId": "5188490",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188490.png",
+      "status": "Injured Reserve",
+      "type": "Back",
+      "detail": "",
+      "returnDate": "2027-02-13",
+      "date": "2026-10-10T16:58Z",
+      "note": "Grebenkin (back) underwent successful surgery and is expected to miss at least four months."
+     }
+    ]
+   },
+   "rest": {
+    "Calgary Flames": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-07",
+     "gamesLast7": 3
+    },
+    "Philadelphia Flyers": {
+     "restDays": 3,
+     "b2b": false,
+     "lastGame": "2026-11-06",
+     "gamesLast7": 2
+    }
+   },
+   "weather": null,
+   "broadcast": "ESPN+",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": 1.5,
+     "spreadOdds": {
+      "home": -270,
+      "away": 220
+     },
+     "total": 5.5,
+     "totalOdds": {
+      "over": -122,
+      "under": 102
+     },
+     "ml": {
+      "home": -102,
+      "away": -118
+     }
+    },
+    "open": {
+     "spread": 1.5,
+     "spreadOdds": {
+      "home": -245,
+      "away": 200
+     },
+     "total": 5.5,
+     "totalOdds": {
+      "over": -125,
+      "under": 105
+     },
+     "ml": {
+      "home": -102,
+      "away": -118
+     }
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "line": 5.5,
+    "odds": -122,
+    "fair": 0.5261
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5324675324675325
+   },
+   "now": {
+    "line": 5.5,
+    "odds": -122,
+    "fair": 0.5260865852617197
+   },
+   "moved": "away",
+   "label": "DraftKings opened 5.5 (-125), now 5.5 (-122)"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 8,
+   "open": {
+    "line": 5.5,
+    "odds": 105
+   },
+   "now": {
+    "line": 6,
+    "odds": 115
+   },
+   "moved": "toward",
+   "label": "The market (8 books) opened 5.5 (+105), now 6 (+115)"
+  },
+  "breakdown": {
+   "tier": "Lean",
+   "tierWhy": "Our probability for this side is 57.7%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 54.5%, so the edge is 3.1 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability at 5.5 is 57.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.2. Not graded against other books' prices; for reference the market makes it 51.7%.",
+   "support": [
+    "Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4).",
+    "Projected total 6.3 against 5.5."
+   ],
+   "risks": [
+    "Scorers out: Jonathan Huberdeau (LW), hip; Connor Zary (C), knee; Samuel Honzek (LW), lower body and 2 more. Fewer healthy scorers leans under."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-2.8 points against the best price). For reference only.",
+    "Market: DraftKings opened 5.5 (-125), now 5.5 (-122), moving against this side since the open.",
+    "Market: The market (8 books) opened 5.5 (+105), now 6 (+115), the consensus moving toward this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Probable pitchers: Flames Dustin Wolf · Flyers Dan Vladar.",
+    "Records: Philadelphia Flyers 4-10-4 · Calgary Flames 7-9-1 · Scotiabank Saddledome, Calgary."
+   ],
+   "verdict": "The game data lines up behind this side at this price."
+  },
+  "sgoEventId": "L9ujQnzrGf1L3PV0mO39",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "L9ujQnzrGf1L3PV0mO39",
+   "at": "2026-11-08T14:06:54.761Z",
+   "books": {
+    "FanDuel": -122,
+    "DraftKings": -122,
+    "Caesars": -125,
+    "Unibet": -122,
+    "BetMGM": -120,
+    "ESPN BET": -120,
+    "Bovada": -125,
+    "PointsBet": -125
+   },
+   "n": 8,
+   "best": {
+    "book": "BetMGM",
+    "odds": -120
+   },
+   "fair": 0.5262,
+   "fairBooks": 8,
+   "vendor": {
+    "line": 6,
+    "odds": 115,
+    "fair": 0.4651,
+    "sameLine": false
+   },
+   "open": {
+    "line": 5.5,
+    "odds": 105
+   },
+   "now": {
+    "line": 6,
+    "odds": 115
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-08T14:06:54.761Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-08T14:06:54.761Z",
+    "fair": 0.5262,
+    "vendorFair": 0.4651,
+    "line": 6,
+    "odds": 115,
+    "best": -120,
+    "n": 8
+   }
+  ]
+ },
+ {
+  "type": "parlay",
+  "id": "parlay-2026-11-08",
+  "date": "2026-11-08",
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-08T14:06:54.761Z",
+  "book": "Bovada",
+  "legs": [
+   "7fda7dbcff-h2h-Boston-Bruins",
+   "b0a4b5448a-totals-Under",
+   "41a3f4e922-totals-Under"
+  ],
+  "legPrices": [
+   -142,
+   -115,
+   125
+  ],
+  "decimal": 7.1689,
+  "odds": 617,
+  "fairProb": 0.2049,
+  "ev": 0.4688
  }
 ]
