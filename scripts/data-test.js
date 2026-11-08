@@ -654,6 +654,82 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
       && s.books.DraftKings === 250 && near(s.fair, fair, 1e-4) && s.score.home === 1 && s.score.away === 1 && S.teamMatches("Los Angeles FC", { names: { long: "LAFC", medium: "LAFC", short: "LAF", location: "Los Angeles" } });
   })());
 
+  /* ---------- college football (2026-11-08, scripts/ncaaf.js): FBS ratings from game data, Friday's run, nothing posted until a replay backs it ---------- */
+  const NCF = require("./ncaaf.js"), MCF = require("./model.js"), cfbCfg = SP("americanfootball_ncaaf");
+  check("ncaaf: wired as NCAAF (league NCAAF; moneyline, spread and total, 3 credits) and fetched on Friday's afternoon run only: not on Saturday's or Friday's morning run, nor any other day; a manual run fetches it any day", (() => {
+    const g = { games: 9, failed: 0 }, at = (slot, wd) => P.fetchDecision(cfbCfg, { slot: slot, espn: g, weekday: wd, remaining: 300, afternoonsLeft: 10 });
+    return cfbCfg && cfbCfg.sport === "NCAAF" && cfbCfg.league === "NCAAF" && cfbCfg.markets.join() === "h2h,spreads,totals" && P.oddsCost(cfbCfg) === 3 && at("afternoon", 5).fetch && !at("afternoon", 6).fetch && at("afternoon", 6).why === "fetched on Friday runs only" && !at("morning", 5).fetch && !at("afternoon", 2).fetch && at("manual", 2).fetch
+      && P.runDayAllows(cfbCfg, "afternoon", 5) && !P.runDayAllows(cfbCfg, "afternoon", 4) && P.runDayAllows(nbaC, "afternoon", 4) && P.planLine({ slot: "afternoon", plan: [{ sport: "americanfootball_ncaaf", fetch: false, why: "fetched on Friday runs only" }] }) === "Odds API (afternoon run): nothing fetched | skipped: NCAAF (fetched on Friday runs only)";
+  })());
+  /* end to end on Friday Nov 13's afternoon run: three Friday-night games and six Saturday games (ESPN fixtures trimmed from the live slate, priced at DraftKings' numbers), one earlier college pick to grade */
+  const tmpCF = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-ncaaf-"));
+  fs.writeFileSync(path.join(tmpCF, "picks-log.json"), JSON.stringify([{ key: "ncaaf-seed|h2h|Georgia Bulldogs|null", id: "ncaaf-seed-h2h-Georgia", date: "2026-11-07", commence: "2026-11-07T20:30:00Z", sport: "NCAAF", league: "NCAAF", sportKey: "americanfootball_ncaaf", eventId: "ncaaf-seed", home: "Ole Miss Rebels", away: "Georgia Bulldogs", event: "Georgia Bulldogs @ Ole Miss Rebels", market: "Moneyline", marketKey: "h2h", outcome: { name: "Georgia Bulldogs", point: null }, pick: "Georgia Bulldogs ML", odds: -150, book: "FanDuel", modelProb: 0.7, edge: 0.1, basis: "game", status: "pending", units: 0, loggedAt: "2026-11-06T20:30:00Z" }]));
+  const rcF = await P.run({ fixture: true, oddsFixture: "odds-ncaaf.json", out: tmpCF, now: "2026-11-13T20:30:00Z", slot: "afternoon" });
+  const sbNCF = { window: {} }; vm.runInNewContext(["picks.js", "market.js", "performance.js"].map(f => fs.readFileSync(path.join(tmpCF, f), "utf8")).join("\n"), sbNCF);
+  const MKCF = sbNCF.window.MARKET_DATA, PDCF = sbNCF.window.PICKS_DATA, PFCF = sbNCF.window.PERF_DATA, rowsCF = MKCF.rows.filter(r => r.sportKey === "americanfootball_ncaaf");
+  const cfbPlanF = rcF.plan.find(p => p.sport === "americanfootball_ncaaf");
+  check("ncaaf: Friday's afternoon run fetches the college slate (ESPN shows 9 FBS games inside 36 hours) and models every game, the feed's \"Appalachian State Mountaineers\" and \"Connecticut Huskies\" matched to ESPN's App State and UConn", cfbPlanF && cfbPlanF.fetch && /9 games inside 36 hours on ESPN/.test(cfbPlanF.why) && cfbPlanF.events === 9 && rcF.modelled === 9 && rcF.unmodelled === 0 && rowsCF.length === 54 && rowsCF.every(r => r.modelled && r.sport === "NCAAF" && r.league === "NCAAF") && rowsCF.some(r => r.home === "Connecticut Huskies") && rowsCF.some(r => r.away === "Appalachian State Mountaineers"), JSON.stringify([cfbPlanF, rcF.modelled, rcF.unmodelled, rowsCF.length]));
+  check("ncaaf: nothing is posted: spreads read even and totals about even (no signal at the books' lines, CALIB), and the moneyline is held (HOLD: the replay could not back it), so its sides past their bar stay plain market rows; no college pick, no watch", rowsCF.filter(r => r.marketKey === "spreads").every(r => r.modelProb === 0.5) && rowsCF.filter(r => r.marketKey === "totals").every(r => r.modelProb > 0.46 && r.modelProb < 0.54) && rowsCF.every(r => r.status === "none") && rowsCF.filter(r => r.marketKey === "h2h" && r.past >= 0).length >= 1 && !PDCF.picks.some(p => p.sportKey === "americanfootball_ncaaf" && p.status === "pending") && rcF.added === 0, JSON.stringify(rowsCF.filter(r => r.past >= 0).map(r => [r.pick, r.odds, r.modelProb, r.bar])));
+  check("ncaaf: prices at the extremes parse and price (Notre Dame -9995 and +3005, a 31.5-point spread): our probability stays inside (0, 1), the edge is ours minus the price's, and every bar is at least the 3-point floor", (() => {
+    const nd = rowsCF.find(r => r.pick === "Notre Dame Fighting Irish ML"), bc = rowsCF.find(r => r.pick === "Boston College Eagles ML"), sp = rowsCF.filter(r => r.marketKey === "spreads" && Math.abs(r.outcome.point) === 31.5);
+    return nd && bc && nd.odds === -9995 && bc.odds === 3005 && nd.modelProb > 0.9 && nd.modelProb < 1 && near(nd.edge, nd.modelProb - P.implied(-9995), 1e-4) && near(nd.modelProb + bc.modelProb, 1, 2e-4) && sp.length === 2 && rowsCF.every(r => r.bar >= 0.03) && near(P.implied(-10000), 0.990099, 1e-6) && P.valueTo(0.97, 0.03) === -1566;
+  })(), JSON.stringify(rowsCF.filter(r => /Notre Dame|Boston College/.test(r.pick)).map(r => [r.pick, r.odds, r.modelProb, r.edge, r.bar])));
+  const seedCF = JSON.parse(fs.readFileSync(path.join(tmpCF, "picks-log.json"), "utf8")).find(e => e.id === "ncaaf-seed-h2h-Georgia");
+  check("ncaaf: a college pick is graded from ESPN's final (Georgia 42, Ole Miss 7: the Georgia moneyline at -150 wins 0.67) and performance counts it under NCAAF", seedCF.status === "graded" && seedCF.result === "Win" && seedCF.units === 0.67 && seedCF.finalScore.away === 42 && seedCF.finalScore.home === 7 && PFCF.bySport.some(b => b.sport === "NCAAF" && b.record === "1-0" && b.units === 0.67) && rcF.settled === 1, JSON.stringify([seedCF.status, seedCF.result, seedCF.units, PFCF.bySport]));
+  const rcsF = await P.run({ fixture: true, oddsFixture: "odds-ncaaf.json", out: tmpCF, now: "2026-11-14T14:00:00Z", slot: "morning" });
+  const sbCF2 = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpCF, "market.js"), "utf8"), sbCF2);
+  const keptCF = sbCF2.window.MARKET_DATA.rows.filter(r => r.sportKey === "americanfootball_ncaaf");
+  /* Texas Tech at Oklahoma State carries ESPN's kickoff-to-be-announced placeholder (05:00 UTC, midnight Eastern), so by Saturday morning it counts as started and leaves with Friday's games */
+  check("ncaaf: Saturday's morning run does not fetch college football, and Saturday's games still ahead keep their rows from Friday's run with when they were priced (Friday's games, and one listed at ESPN's placeholder midnight, have started and leave)", rcsF.plan.some(p => p.sport === "americanfootball_ncaaf" && !p.fetch && p.why === "fetched on the afternoon run only") && keptCF.length === 30 && keptCF.length === rowsCF.filter(r => Date.parse(r.commence) > Date.parse("2026-11-14T14:00:00Z")).length && keptCF.every(r => r.pricedAt === MKCF.generatedAt && Date.parse(r.commence) > Date.parse("2026-11-14T14:00:00Z")), JSON.stringify([keptCF.length, rcsF.plan.find(p => p.sport === "americanfootball_ncaaf")]));
+  fs.rmSync(tmpCF, { recursive: true, force: true });
+  check("ncaaf: a game with an FCS team is not modelled (no probability, never a lean), and the season's weeks are not even asked for", await (async () => {
+    let weeks = 0;
+    const t = (id, name, conf) => ({ id: id, displayName: name, name: name.split(" ").pop(), location: name.split(" ")[0], shortDisplayName: name.split(" ")[0], conferenceId: conf });
+    const sb = { events: [{ id: "1", date: "2026-11-21T19:00Z", competitions: [{ neutralSite: false, competitors: [{ homeAway: "home", team: t("333", "Alabama Crimson Tide", "8") }, { homeAway: "away", team: t("236", "Chattanooga Mocs", "29") }] }] }] };
+    const src = { scoreboard: async () => sb, week: async () => { weeks++; return null; } };
+    const gm = await MCF.forEvent(src, CTX, { sportKey: "americanfootball_ncaaf", home: "Alabama Crimson Tide", away: "Chattanooga Mocs", commence: "2026-11-21T19:00:00Z" }, new Date("2026-11-20T20:30:00Z"), {});
+    return gm === null && weeks === 0 && NCF.isFbsConf("8") && !NCF.isFbsConf("29") && !NCF.isFbsConf(null);
+  })());
+  check("ncaaf: the ratings are schedule-adjusted: on a round robin with known strengths the fit recovers each gap, the home edge applies only away from a neutral site, a blowout counts only to the 35-point cap; a bowl in January belongs to the autumn's season", (() => {
+    const tr = { a: 14, b: 7, c: 0, d: -7 }, ids = Object.keys(tr), games = [];
+    let n = 0;
+    ids.forEach(h => ids.forEach(a => { if (h === a) return; const neutral = h === "a" && a === "d"; const m = tr[h] - tr[a] + (neutral ? 0 : 2.8); games.push({ id: String(n++), date: n * 864e5, done: true, home: h, away: a, hs: 30 + m / 2, as: 30 - m / 2, neutral: neutral }); }));
+    const R = NCF.fit(games, new Set(ids), null, { k: 0.01 });
+    const gaps = ids.every(x => near(R.r[x] - R.r.d, tr[x] - tr.d, 0.2));
+    const pj = NCF.project(R, "a", "d", false, null), pjN = NCF.project(R, "a", "d", true, null);
+    const blow = NCF.fit([{ id: "x", date: 1, done: true, home: "a", away: "b", hs: 77, as: 0, neutral: true }], new Set(["a", "b"]), null, { k: 0.001 });
+    const pr = NCF.fit([], new Set(["a"]), null, {});
+    return gaps && near(pj.margin - pjN.margin, 2.8, 1e-9) && near(pjN.margin, 21, 0.2) && near(blow.r.a - blow.r.b, 35, 0.2) && Object.keys(pr.r).length === 0
+      && NCF.seasonOf(Date.parse("2027-01-01T20:00Z")) === 2026 && NCF.seasonOf(Date.parse("2026-08-29T16:00Z")) === 2026 && NCF.seasonOf(Date.parse("2026-11-14T17:00Z")) === 2026;
+  })());
+  check("ncaaf: CALIB from the held-out replay (results only): spreads [0, 0] and totals [0, 0.11] read about even and have no signal; the moneyline stays as it is but is held, so no college market is pickable while the NFL moneyline still is; the reasons say why", (() => {
+    const K = "americanfootball_ncaaf", gm = { sportKey: K, home: "H", away: "A", margin: 7, total: 55, sd: 16, sdTotal: 16, gp: 9, gpHome: 9, gpAway: 9, reasons: [], parts: { lastHome: 3, lastAway: 1 } };
+    const ml = MCF.sideProb(gm, "h2h", { name: "H" }, "H", "A"), sp = MCF.sideProb(gm, "spreads", { name: "H", point: -3.5 }, "H", "A"), to = MCF.sideProb(gm, "totals", { name: "Over", point: 50.5 }, "H", "A");
+    const why = MCF.sideReasons(gm, "h2h", { name: "H" }, "H", "A").against.join(" "), whyS = MCF.sideReasons(gm, "spreads", { name: "H", point: -3.5 }, "H", "A").against.join(" ");
+    return JSON.stringify(MCF.CALIB[K]) === '{"spreads":[0,0],"totals":[0,0.11]}' && ["h2h", "spreads", "totals"].every(k => !MCF.hasSignal(K, k)) && MCF.hasSignal("americanfootball_nfl", "h2h") && MCF.hasSignal("icehockey_nhl", "spreads")
+      && near(ml, MCF.Phi(7 / 16), 2e-4) && sp === 0.5 && to > 0.5 && to < 0.53 && /won about as often as the price said/.test(why) && /did no better than a coin flip/.test(whyS);
+  })());
+  check("ncaaf: the curve holds at the extremes (a 35-point favourite 98.6% on the moneyline, about even at a 34.5-point spread before CALIB, the push on a whole number) and the bar is the ratings' own error (16 x sqrt(2 / (9 + 3)) = 6.5 points on the margin)", (() => {
+    const gm = { sportKey: "americanfootball_ncaaf", home: "H", away: "A", margin: 35, total: 60, sd: 16, sdTotal: 16, gp: 9, gpHome: 9, gpAway: 9, parts: { lastHome: 10, lastAway: -10 } };
+    const ml = MCF.rawSideProb(gm, "h2h", { name: "H" }, "H", "A"), sp = MCF.rawSideProb(gm, "spreads", { name: "H", point: -34.5 }, "H", "A"), push = MCF.rawSideProb(gm, "spreads", { name: "H", point: -35 }, "H", "A");
+    const n = MCF.noise(Object.assign({}, gm, { margin: 3 }), "h2h", { name: "H" }, "H", "A");
+    return near(ml, 0.9857, 2e-4) && near(sp, 0.5125, 2e-3) && near(push, 0.5, 1e-4) && n && near(n.units, 6.53, 0.01) && n.unit === "points" && n.p > 0.1 && n.p < 0.2;
+  })());
+  check("context: college names meet ESPN's (the feed's spellings: App State, Hawai'i, UConn, San José State, Miami (FL)) and never cross between the two Miamis or USC and South Carolina", (() => {
+    const T = (d, n, l) => ({ displayName: d, name: n, location: l, shortDisplayName: l });
+    const yes = [["Appalachian State Mountaineers", T("App State Mountaineers", "Mountaineers", "App State")], ["Hawaii Rainbow Warriors", T("Hawai'i Rainbow Warriors", "Rainbow Warriors", "Hawai'i")], ["Connecticut Huskies", T("UConn Huskies", "Huskies", "UConn")], ["San Jose State Spartans", T("San José State Spartans", "Spartans", "San José State")], ["Miami (FL) Hurricanes", T("Miami Hurricanes", "Hurricanes", "Miami")], ["Mississippi Rebels", T("Ole Miss Rebels", "Rebels", "Ole Miss")], ["Miami (OH) RedHawks", T("Miami (OH) RedHawks", "RedHawks", "Miami (OH)")]];
+    const no = [["Miami Hurricanes", T("Miami (OH) RedHawks", "RedHawks", "Miami (OH)")], ["Miami (OH) RedHawks", T("Miami Hurricanes", "Hurricanes", "Miami")], ["USC Trojans", T("South Carolina Gamecocks", "Gamecocks", "South Carolina")], ["Mississippi State Bulldogs", T("Ole Miss Rebels", "Rebels", "Ole Miss")], ["Washington Huskies", T("UConn Huskies", "Huskies", "UConn")]];
+    return yes.every(([a, t]) => CTX.teamMatches(a, t)) && !no.some(([a, t]) => CTX.teamMatches(a, t)) && CTX.ESPN.americanfootball_ncaaf === "football/college-football" && CTX.ESPN_CORE.americanfootball_ncaaf === "football/leagues/college-football";
+  })());
+  check("teams: update-teams writes college football as NCAAF with the feed's other spellings (aka) on the schools that need them", await (async () => {
+    const T = require("./update-teams.js"), tmpT = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-teams-"));
+    const espnTeam = (id, name, abbr) => ({ team: { id: id, abbreviation: abbr, displayName: name, shortDisplayName: name.split(" ")[0], name: name.split(" ").pop(), location: name.split(" ")[0], color: "000000", logos: [{ href: "https://a.espncdn.com/i/teamlogos/x/500/" + id + ".png", rel: ["full", "default"] }] } });
+    const d = await T.run({ out: tmpT, fetch: async l => ({ sports: [{ leagues: [{ teams: l.sportKey === "americanfootball_ncaaf" ? [espnTeam("2026", "App State Mountaineers", "APP"), espnTeam("2390", "Miami Hurricanes", "MIA")] : [espnTeam("1", "Atlanta Hawks", "ATL")] }] }] }) });
+    fs.rmSync(tmpT, { recursive: true, force: true });
+    const c = d.leagues.americanfootball_ncaaf;
+    return c && c.sport === "NCAAF" && c.teams.find(t => t.id === "2026").aka.indexOf("Appalachian State Mountaineers") !== -1 && c.teams.find(t => t.id === "2390").aka.indexOf("Miami (FL) Hurricanes") !== -1 && !d.leagues.basketball_nba.teams[0].aka;
+  })());
+
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });

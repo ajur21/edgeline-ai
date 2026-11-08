@@ -15,6 +15,7 @@
   /* "Los Angeles Lakers" -> "la lakers", "New York Knicks" -> "ny knicks", "St. Louis" -> "st louis" (norm does that) */
   function aliases(t) {
     const out = [t.name, t.short, t.nick, t.location, t.abbr, t.location && t.nick ? t.location + " " + t.nick : null];
+    if (t.aka) t.aka.forEach(function (n) { out.push(n); }); /* college football: the odds feed's other spellings (data/teams.js `aka`) */
     const loc = norm(t.location);
     if (/^los angeles/.test(loc)) out.push("la " + norm(t.nick), "l a " + norm(t.nick));
     if (/^new york/.test(loc)) out.push("ny " + norm(t.nick));
