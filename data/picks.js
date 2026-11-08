@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-07T23:49:52.382Z",
-  "trackedAt": "2026-11-08T05:18:01.557Z",
+  "trackedAt": "2026-11-08T12:59:25.688Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "picks": [
@@ -99,7 +99,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 23.7% (-0.8 points against the best price). For reference only.",
-          "Market: DraftKings opened +240, now +300, moving against this side since the open.",
+          "Market: DraftKings opened +240, now +255, moving against this side since the open.",
           "Weather at kickoff: Partly cloudy, 51°F, wind 2 mph, 1% rain.",
           "Records: Bournemouth 3-3-3 · Ipswich Town 3-2-4 · Portman Road, Ipswich."
         ],
@@ -154,17 +154,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": 0.5,
             "spreadOdds": {
-              "home": -115,
-              "away": -120
+              "home": -135,
+              "away": -105
             },
             "total": 2.5,
             "totalOdds": {
-              "over": -140,
-              "under": 110
+              "over": -145,
+              "under": 115
             },
             "ml": {
-              "home": 300,
-              "away": -110
+              "home": 255,
+              "away": 105
             }
           },
           "open": {
@@ -195,11 +195,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 300,
-          "fair": 0.32307692307692304
+          "odds": 255,
+          "fair": 0.36607142857142855
         },
         "moved": "away",
-        "label": "DraftKings opened +240, now +300"
+        "label": "DraftKings opened +240, now +255"
       },
       "dkHistory": [
         {
@@ -213,6 +213,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 300,
           "fair": 0.3231
+        },
+        {
+          "at": "2026-11-08T12:59:25.688Z",
+          "line": null,
+          "odds": 255,
+          "fair": 0.3661
         }
       ],
       "mkt": null,
@@ -316,7 +322,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.3% (-1.9 points against the best price). For reference only.",
-          "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
+          "Market: DraftKings opened 2.5 (+135), now 3.5 (-145), moving against this side since the open.",
           "Weather at kickoff: Partly cloudy, 52°F, wind 3 mph, 0% rain.",
           "Records: Liverpool 4-3-2 · Crystal Palace 2-1-6 · Selhurst Park, London."
         ],
@@ -369,19 +375,19 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": 0.5,
+            "spread": 1.5,
             "spreadOdds": {
-              "home": 135,
-              "away": -190
+              "home": -185,
+              "away": 130
             },
             "total": 3.5,
             "totalOdds": {
-              "over": 125,
-              "under": -155
+              "over": 115,
+              "under": -145
             },
             "ml": {
-              "home": 450,
-              "away": -175
+              "home": 475,
+              "away": -185
             }
           },
           "open": {
@@ -412,11 +418,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": -155,
-          "fair": 0.5776397515527951
+          "odds": -145,
+          "fair": 0.5599461158509206
         },
         "moved": "away",
-        "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
+        "label": "DraftKings opened 2.5 (+135), now 3.5 (-145)"
       },
       "dkHistory": [
         {
@@ -430,6 +436,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": -155,
           "fair": 0.5776
+        },
+        {
+          "at": "2026-11-08T12:59:25.688Z",
+          "line": 3.5,
+          "odds": -145,
+          "fair": 0.5599
         }
       ],
       "mkt": null,
@@ -477,15 +489,15 @@ window.PICKS_DATA = {
         "DraftKings": -135,
         "BetOnline.ag": -130,
         "BetRivers": -136,
-        "FanDuel": -134,
-        "BetMGM": -130,
+        "FanDuel": -137,
+        "BetMGM": -140,
         "theScore Bet": -130,
-        "Bovada": -135,
+        "Bovada": -140,
         "Caesars": -138,
         "PointsBet": -130,
-        "ESPN BET": -130
+        "ESPN BET": -135
       },
-      "pricesAt": "2026-11-07T23:49:52.382Z",
+      "pricesAt": "2026-11-08T12:59:25.688Z",
       "books": 7,
       "anchor": null,
       "modelProb": 0.6668,
@@ -559,7 +571,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 7 books makes this side 54.8% (-1.8 points against the best price). For reference only.",
-          "Market: The market (7 books) opened -164, now -121, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened -164, now -125, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Bruins Jeremy Swayman · Panthers Jacob Markstrom.",
           "Records: Florida Panthers 9-6-2 · Boston Bruins 12-4-1 · TD Garden, Boston."
@@ -761,27 +773,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -121
+          "odds": -125
         },
         "moved": "away",
-        "label": "The market (7 books) opened -164, now -121"
+        "label": "The market (7 books) opened -164, now -125"
       },
       "sgo": {
-        "at": "2026-11-07T23:49:52.382Z",
+        "at": "2026-11-08T12:59:25.688Z",
         "n": 7,
         "best": {
           "book": "PointsBet",
           "odds": -130
         },
-        "fair": 0.5462,
-        "vendorFair": 0.5475,
+        "fair": 0.5525,
+        "vendorFair": 0.5556,
         "open": {
           "line": null,
           "odds": -164
         },
         "now": {
           "line": null,
-          "odds": -121
+          "odds": -125
         }
       },
       "sgoHistory": [
@@ -791,6 +803,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.5475,
           "line": null,
           "odds": -121,
+          "best": -130,
+          "n": 7
+        },
+        {
+          "at": "2026-11-08T12:59:25.688Z",
+          "fair": 0.5525,
+          "vendorFair": 0.5556,
+          "line": null,
+          "odds": -125,
           "best": -130,
           "n": 7
         }
@@ -893,7 +914,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 49.0% (-4.5 points against the best price). For reference only.",
-          "Market: DraftKings opened 2.5 (+135), now 3.5 (-160), moving against this side since the open.",
+          "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
           "Weather at kickoff: Partly cloudy, 50°F, wind 1 mph, 2% rain.",
           "Records: Aston Villa 3-3-3 · Manchester United 1-4-4 · Old Trafford, Manchester."
         ],
@@ -953,12 +974,12 @@ window.PICKS_DATA = {
             },
             "total": 3.5,
             "totalOdds": {
-              "over": 130,
-              "under": -160
+              "over": 125,
+              "under": -155
             },
             "ml": {
               "home": 115,
-              "away": 220
+              "away": 215
             }
           },
           "open": {
@@ -989,11 +1010,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 3.5,
-          "odds": -160,
-          "fair": 0.5859872611464969
+          "odds": -155,
+          "fair": 0.5776397515527951
         },
         "moved": "away",
-        "label": "DraftKings opened 2.5 (+135), now 3.5 (-160)"
+        "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
       },
       "dkHistory": [
         {
@@ -1007,6 +1028,12 @@ window.PICKS_DATA = {
           "line": 3.5,
           "odds": -160,
           "fair": 0.586
+        },
+        {
+          "at": "2026-11-08T12:59:25.688Z",
+          "line": 3.5,
+          "odds": -155,
+          "fair": 0.5776
         }
       ],
       "mkt": null,
@@ -1110,7 +1137,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 50.5% (-2.4 points against the best price). For reference only.",
-          "Market: DraftKings opened 2.5 (+115), now 2.5 (+140), moving against this side since the open.",
+          "Market: DraftKings opened 2.5 (+115), now 2.5 (+130), moving against this side since the open.",
           "Weather at kickoff: Mainly clear, 53°F, wind 4 mph, 0% rain.",
           "Records: Brentford 3-5-1 · Brighton and Hove Albion 6-1-2 · American Express Stadium, Falmer."
         ],
@@ -1165,17 +1192,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -0.5,
             "spreadOdds": {
-              "home": -120,
-              "away": -115
+              "home": -130,
+              "away": -110
             },
             "total": 2.5,
             "totalOdds": {
-              "over": -175,
-              "under": 140
+              "over": -165,
+              "under": 130
             },
             "ml": {
-              "home": -110,
-              "away": 270
+              "home": -115,
+              "away": 290
             }
           },
           "open": {
@@ -1206,11 +1233,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 2.5,
-          "odds": 140,
-          "fair": 0.3956834532374101
+          "odds": 130,
+          "fair": 0.4111714507370054
         },
         "moved": "away",
-        "label": "DraftKings opened 2.5 (+115), now 2.5 (+140)"
+        "label": "DraftKings opened 2.5 (+115), now 2.5 (+130)"
       },
       "dkHistory": [
         {
@@ -1218,6 +1245,12 @@ window.PICKS_DATA = {
           "line": 2.5,
           "odds": 140,
           "fair": 0.3982
+        },
+        {
+          "at": "2026-11-08T12:59:25.688Z",
+          "line": 2.5,
+          "odds": 130,
+          "fair": 0.4112
         }
       ],
       "mkt": null,
@@ -1641,226 +1674,6 @@ window.PICKS_DATA = {
         "bar": 0.03
       },
       "standing": "clears"
-    },
-    {
-      "id": "842fcc5b9f-totals-Under",
-      "sport": "Soccer",
-      "league": "Premier League",
-      "sportKey": "soccer_epl",
-      "event": "Arsenal vs. Hull City",
-      "home": "Arsenal",
-      "away": "Hull City",
-      "marketKey": "totals",
-      "outcome": {
-        "name": "Under",
-        "point": 3
-      },
-      "commence": "2026-11-07T15:00:00Z",
-      "start": "Yesterday 10:00 AM ET",
-      "market": "Total",
-      "pick": "Under 3 goals",
-      "odds": 102,
-      "book": "Bovada",
-      "prices": {
-        "Bovada": 102,
-        "BetOnline.ag": 100
-      },
-      "pricesAt": "2026-11-07T00:14:27.529Z",
-      "books": 3,
-      "anchor": "Pinnacle",
-      "modelProb": 0.65,
-      "ev": 0.313,
-      "confidence": "High",
-      "basis": "game",
-      "model": {
-        "margin": 1.1,
-        "total": 2.6,
-        "sd": 1.7,
-        "sdTotal": 1.6,
-        "gp": 9,
-        "gpHome": 9,
-        "gpAway": 9,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0.9,
-          "ratingAway": 0,
-          "lastHome": 1.2,
-          "lastAway": null,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": 0,
-          "injuriesAway": 0,
-          "scoringOut": 0,
-          "pace": 2.2
-        },
-        "reasons": {
-          "for": [
-            "Combined scoring 2.1 a game in Arsenal's games, 2.3 in Hull City's (league average 2.7)",
-            "Projected total 2.6 against 3"
-          ],
-          "against": []
-        }
-      },
-      "marketFair": 0.4854,
-      "marketEdge": -0.0096,
-      "rationale": "Our probability at 3 is 65.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 2.6). Bovada offers +102, which implies only 49.5%. Its bar is 5.7 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total). It clears it by 9.8. Not graded against other books' prices; for reference the market makes it 48.5%.",
-      "factors": [
-        "Best price +102 at Bovada",
-        "Probability 65.0% from game data, not other books",
-        "Edge 15.5 points over the price, 9.8 past its bar of 5.7",
-        "Market reference 48.5%"
-      ],
-      "breakdown": {
-        "tier": "High",
-        "tierWhy": "Our probability for this side is 65.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Bovada implies 49.5%, so the edge is 15.5 points. Its bar is 5.7 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 9.8 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 3 is 65.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 2.6). Bovada offers +102, which implies only 49.5%. Its bar is 5.7 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total). It clears it by 9.8. Not graded against other books' prices; for reference the market makes it 48.5%.",
-        "support": [
-          "Combined scoring 2.1 a game in Arsenal's games, 2.3 in Hull City's (league average 2.7).",
-          "Projected total 2.6 against 3."
-        ],
-        "risks": [],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 48.5% (-1.0 points against the best price). For reference only.",
-          "Market: DraftKings opened 3.5 (-175), now 3.5 (-160), moving against this side since the open.",
-          "Weather at kickoff: Partly cloudy, 53°F, wind 2 mph, 14% rain.",
-          "Records: Hull City 2-5-2 · Arsenal 8-0-1 · Emirates Stadium, London."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401878760",
-        "venue": "Emirates Stadium, London",
-        "indoor": false,
-        "records": {
-          "Arsenal": {
-            "overall": "8-0-1",
-            "home": null,
-            "away": null
-          },
-          "Hull City": {
-            "overall": "2-5-2",
-            "home": null,
-            "away": null
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Arsenal": [],
-          "Hull City": []
-        },
-        "rest": {
-          "Arsenal": {
-            "restDays": 6,
-            "b2b": false,
-            "lastGame": "2026-11-01",
-            "gamesLast7": 1
-          },
-          "Hull City": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-10-31",
-            "gamesLast7": 1
-          }
-        },
-        "weather": {
-          "city": "London, England",
-          "tempF": 53,
-          "windMph": 2,
-          "precipPct": 14,
-          "summary": "Partly cloudy",
-          "source": "Open-Meteo"
-        },
-        "broadcast": "Peacock, Universo",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -2.5,
-            "spreadOdds": {
-              "home": 120,
-              "away": -165
-            },
-            "total": 3.5,
-            "totalOdds": {
-              "over": 130,
-              "under": -160
-            },
-            "ml": {
-              "home": -700,
-              "away": 1900
-            }
-          },
-          "open": {
-            "spread": -2.5,
-            "spreadOdds": {
-              "home": 120,
-              "away": -185
-            },
-            "total": 3.5,
-            "totalOdds": {
-              "over": 125,
-              "under": -175
-            },
-            "ml": {
-              "home": -700,
-              "away": 1400
-            }
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 3.5,
-          "odds": -175,
-          "fair": 0.5887850467289719
-        },
-        "now": {
-          "line": 3.5,
-          "odds": -160,
-          "fair": 0.5859872611464969
-        },
-        "moved": "away",
-        "label": "DraftKings opened 3.5 (-175), now 3.5 (-160)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-07T00:14:27.529Z",
-          "line": 3.5,
-          "odds": -170,
-          "fair": 0.5967
-        },
-        {
-          "at": "2026-11-07T05:20:48.964Z",
-          "line": 3.5,
-          "odds": -160,
-          "fair": 0.586
-        }
-      ],
-      "mkt": null,
-      "sgo": null,
-      "sgoHistory": [],
-      "status": "graded",
-      "started": true,
-      "result": "Win",
-      "units": 1.02,
-      "score": {
-        "home": 1,
-        "away": 0
-      },
-      "loggedAt": "2026-11-07T00:14:27.529Z",
-      "valueTo": -146,
-      "bar": 0.0565,
-      "past": 0.0985,
-      "barParts": {
-        "error": 0.0565,
-        "units": 0.18,
-        "unit": "goals",
-        "gp": 9,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null
     },
     {
       "id": "4e4cd20d20-totals-Under",
@@ -5263,11 +5076,14 @@ window.PICKS_DATA = {
           "n": 4
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 4,
+        "away": 2
+      },
       "loggedAt": "2026-11-06T20:17:51.147Z",
       "valueTo": 112,
       "bar": 0.0706,

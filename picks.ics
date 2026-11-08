@@ -290,40 +290,19 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:8fe46a5692-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T125925Z
 DTSTART:20261108T031000Z
 DTEND:20261108T061000Z
-SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · in play
+SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7\, 10:10
-  PM ET\nPuck line: Vancouver Canucks +1.5 at +117 (Bovada). Our probabilit
- y 54.3% from game data\, the price implies 46.1%\, edge +8.2 pts\, EV +17.
- 8% per unit. Confidence: Lean.\nOur probability at +1.5 is 54.3%\, from th
- e game data: this season's results and margins\, recent form\, rest\, the 
- injury report and home edge (projected margin +1.1 for the home side). Bov
- ada offers +117\, which implies only 46.1%. Its bar is 7.1 points: the mod
- el's own margin of error on this side\, with 17 games behind the thinner t
- eam (±0.45 goals on the margin). It clears it by 1.2. Not graded against 
- other books' prices\; for reference the market makes it 45.2%.\nWhat suppo
- rts it:\n- Edmonton Oilers without Isaac Howard (LW)\, Zach Hyman (LW)\, D
- evon Levi (G) (-0.3).\n- Edmonton Oilers have Tristan Jarry (G) listed day
- -to-day or questionable.\n- A better price is available now: +130 at Draft
- Kings.\nWhat could go wrong:\n- Edmonton Oilers rate +0.4 a game over 17 (
- 11-6)\, Vancouver Canucks -0.7 over 18 (3-15)\; last season +0.2 and -1.2 
- a game.\n- Edmonton Oilers trending: last five +1.8 vs +1.1 on the season.
- \n- Home edge +0.2 for Edmonton Oilers.\n- Vancouver Canucks without Filip
-  Chytil (C) (+0.1).\n- Vancouver Canucks have Tom Willander (D) listed day
- -to-day or questionable.\n- Projected margin -1.1 for Vancouver Canucks ag
- ainst +1.5.\n- At current prices our edge is 6.9 points\, under its bar of
-  7.2 points\; the pick stays posted and is graded at the price it was post
- ed at.\nVerdict: More working against this one than for it\; size down.\nP
- rices: DraftKings +130\, Bovada +130\, Caesars +130\, FanDuel +124\, BetRi
- vers +110.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.htm
- l#8fe46a5692-spreads-Vancouver-Canucks
+  PM ET\nPuck line: Vancouver Canucks +1.5 at +117 (Bovada). Lost -1.00u.\n
+ Final: 2-4\nClosing line value: -2.0 pts (closed +127\, consensus close (S
+ portsGameOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.g
+ ithub.io/edgeline-ai/performance.html
 LOCATION:Rogers Place\, Edmonton
-URL:https://ajur21.github.io/edgeline-ai/picks.html#8fe46a5692-spreads-Vanc
- ouver-Canucks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T125925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -465,7 +444,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7fda7dbcff-h2h-Boston-Bruins@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T125925Z
 DTSTART:20261108T181000Z
 DTEND:20261108T211000Z
 SUMMARY:Boston Bruins ML -130 at BetOnline.ag · Medium
@@ -489,14 +468,14 @@ DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM
  .2 on the season.\n- Boston Bruins without James Hagens (C) (-0.2).\n- Bos
  ton Bruins have Matthew Poitras (C) listed day-to-day or questionable.\nVe
  rdict: The game data lines up behind this side at this price.\nPrices: Bet
- Online.ag -130\, BetMGM -130\, theScore Bet -130\, PointsBet -130\, ESPN B
- ET -130 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
- picks.html#7fda7dbcff-h2h-Boston-Bruins
+ Online.ag -130\, theScore Bet -130\, PointsBet -130\, DraftKings -135\, ES
+ PN BET -135 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline
+ -ai/picks.html#7fda7dbcff-h2h-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-B
  ruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T125925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

@@ -4003,8 +4003,8 @@
    "Edge 8.2 points over the price, 1.2 past its bar of 7.1",
    "Market reference 45.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "current": {
    "at": "2026-11-07T23:49:52.382Z",
@@ -4426,7 +4426,31 @@
      "fair": 0.4241
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-4",
+  "finalScore": {
+   "home": 4,
+   "away": 2
+  },
+  "gradedAt": "2026-11-08T12:59:25.688Z",
+  "close": {
+   "source": "consensus close (SportsGameOdds, 0 books)",
+   "sgoEventId": "DRGAHQu0RZAHbgrjQ66M",
+   "line": 1.5,
+   "odds": 127,
+   "bestBook": null,
+   "fair": 0.4405,
+   "moved": null,
+   "open": {
+    "line": 3.5,
+    "odds": 100
+   },
+   "books": {},
+   "samples": 4
+  },
+  "clv": -0.0203,
+  "lineMove": null
  },
  {
   "key": "79334eedea6908f995f13dd5a8f11d20|h2h|Seattle Kraken|null",
@@ -5904,8 +5928,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-06",
   "date": "2026-11-06",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-06T20:17:51.147Z",
   "book": "Bovada",
   "legs": [
@@ -5921,7 +5945,9 @@
   "decimal": 11.2558,
   "odds": 1026,
   "fairProb": 0.1457,
-  "ev": 0.6403
+  "ev": 0.6403,
+  "gradedAt": "2026-11-08T12:59:25.688Z",
+  "result": "Loss"
  },
  {
   "key": "842fcc5b9feb8c63054a661ad1fc8926|totals|Under|3",
@@ -8026,8 +8052,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-07",
   "date": "2026-11-07",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-07T18:31:30.088Z",
   "book": "DraftKings",
   "legs": [
@@ -8043,7 +8069,9 @@
   "decimal": 18.4,
   "odds": 1740,
   "fairProb": 0.1285,
-  "ev": 1.3653
+  "ev": 1.3653,
+  "gradedAt": "2026-11-08T12:59:25.688Z",
+  "result": "Loss"
  },
  {
   "key": "0cfbab01e152f81e34f9014e02c7eb79|totals|Under|3",
@@ -8193,19 +8221,19 @@
    "odds": {
     "provider": "DraftKings",
     "now": {
-     "spread": 0.5,
+     "spread": 1.5,
      "spreadOdds": {
-      "home": 135,
-      "away": -190
+      "home": -185,
+      "away": 130
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 125,
-      "under": -155
+      "over": 115,
+      "under": -145
      },
      "ml": {
-      "home": 450,
-      "away": -175
+      "home": 475,
+      "away": -185
      }
     },
     "open": {
@@ -8238,6 +8266,12 @@
     "line": 3.5,
     "odds": -155,
     "fair": 0.5776
+   },
+   {
+    "at": "2026-11-08T12:59:25.688Z",
+    "line": 3.5,
+    "odds": -145,
+    "fair": 0.5599
    }
   ],
   "dk": {
@@ -8249,11 +8283,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -155,
-    "fair": 0.5776397515527951
+    "odds": -145,
+    "fair": 0.5599461158509206
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
+   "label": "DraftKings opened 2.5 (+135), now 3.5 (-145)"
   },
   "mkt": null,
   "breakdown": {
@@ -8267,7 +8301,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.3% (-1.9 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
+    "Market: DraftKings opened 2.5 (+135), now 3.5 (-145), moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 52°F, wind 3 mph, 0% rain.",
     "Records: Liverpool 4-3-2 · Crystal Palace 2-1-6 · Selhurst Park, London."
    ],
@@ -8429,12 +8463,12 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 130,
-      "under": -160
+      "over": 125,
+      "under": -155
      },
      "ml": {
       "home": 115,
-      "away": 220
+      "away": 215
      }
     },
     "open": {
@@ -8467,6 +8501,12 @@
     "line": 3.5,
     "odds": -160,
     "fair": 0.586
+   },
+   {
+    "at": "2026-11-08T12:59:25.688Z",
+    "line": 3.5,
+    "odds": -155,
+    "fair": 0.5776
    }
   ],
   "dk": {
@@ -8478,11 +8518,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -160,
-    "fair": 0.5859872611464969
+    "odds": -155,
+    "fair": 0.5776397515527951
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+135), now 3.5 (-160)"
+   "label": "DraftKings opened 2.5 (+135), now 3.5 (-155)"
   },
   "mkt": null,
   "breakdown": {
@@ -8496,7 +8536,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 49.0% (-4.5 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+135), now 3.5 (-160), moving against this side since the open.",
+    "Market: DraftKings opened 2.5 (+135), now 3.5 (-155), moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 50°F, wind 1 mph, 2% rain.",
     "Records: Aston Villa 3-3-3 · Manchester United 1-4-4 · Old Trafford, Manchester."
    ],
@@ -8529,13 +8569,13 @@
    "DraftKings": -135,
    "BetOnline.ag": -130,
    "BetRivers": -136,
-   "FanDuel": -134,
-   "BetMGM": -130,
+   "FanDuel": -137,
+   "BetMGM": -140,
    "theScore Bet": -130,
-   "Bovada": -135,
+   "Bovada": -140,
    "Caesars": -138,
    "PointsBet": -130,
-   "ESPN BET": -130
+   "ESPN BET": -135
   },
   "books": 7,
   "anchor": null,
@@ -8815,10 +8855,10 @@
    },
    "now": {
     "line": null,
-    "odds": -121
+    "odds": -125
    },
    "moved": "away",
-   "label": "The market (7 books) opened -164, now -121"
+   "label": "The market (7 books) opened -164, now -125"
   },
   "breakdown": {
    "tier": "Medium",
@@ -8840,7 +8880,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 7 books makes this side 54.8% (-1.8 points against the best price). For reference only.",
-    "Market: The market (7 books) opened -164, now -121, the consensus moving against this side since the open.",
+    "Market: The market (7 books) opened -164, now -125, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Bruins Jeremy Swayman · Panthers Jacob Markstrom.",
     "Records: Florida Panthers 9-6-2 · Boston Bruins 12-4-1 · TD Garden, Boston."
@@ -8851,27 +8891,27 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "hYVFpxGQ8VJoF4NhZYag",
-   "at": "2026-11-07T23:49:52.382Z",
+   "at": "2026-11-08T12:59:25.688Z",
    "books": {
-    "FanDuel": -134,
+    "FanDuel": -137,
     "DraftKings": -135,
     "Caesars": -138,
     "PointsBet": -130,
-    "BetMGM": -130,
-    "ESPN BET": -130,
-    "Bovada": -135
+    "BetMGM": -140,
+    "ESPN BET": -135,
+    "Bovada": -140
    },
    "n": 7,
    "best": {
     "book": "PointsBet",
     "odds": -130
    },
-   "fair": 0.5462,
+   "fair": 0.5525,
    "fairBooks": 7,
    "vendor": {
     "line": null,
-    "odds": -121,
-    "fair": 0.5475,
+    "odds": -125,
+    "fair": 0.5556,
     "sameLine": true
    },
    "open": {
@@ -8880,12 +8920,12 @@
    },
    "now": {
     "line": null,
-    "odds": -121
+    "odds": -125
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-07T23:49:52.382Z",
+  "pricesAt": "2026-11-08T12:59:25.688Z",
   "sgoHistory": [
    {
     "at": "2026-11-07T23:49:52.382Z",
@@ -8893,6 +8933,15 @@
     "vendorFair": 0.5475,
     "line": null,
     "odds": -121,
+    "best": -130,
+    "n": 7
+   },
+   {
+    "at": "2026-11-08T12:59:25.688Z",
+    "fair": 0.5525,
+    "vendorFair": 0.5556,
+    "line": null,
+    "odds": -125,
     "best": -130,
     "n": 7
    }
@@ -9057,17 +9106,17 @@
     "now": {
      "spread": 0.5,
      "spreadOdds": {
-      "home": -115,
-      "away": -120
+      "home": -135,
+      "away": -105
      },
      "total": 2.5,
      "totalOdds": {
-      "over": -140,
-      "under": 110
+      "over": -145,
+      "under": 115
      },
      "ml": {
-      "home": 300,
-      "away": -110
+      "home": 255,
+      "away": 105
      }
     },
     "open": {
@@ -9100,6 +9149,12 @@
     "line": null,
     "odds": 300,
     "fair": 0.3231
+   },
+   {
+    "at": "2026-11-08T12:59:25.688Z",
+    "line": null,
+    "odds": 255,
+    "fair": 0.3661
    }
   ],
   "dk": {
@@ -9111,11 +9166,11 @@
    },
    "now": {
     "line": null,
-    "odds": 300,
-    "fair": 0.32307692307692304
+    "odds": 255,
+    "fair": 0.36607142857142855
    },
    "moved": "away",
-   "label": "DraftKings opened +240, now +300"
+   "label": "DraftKings opened +240, now +255"
   },
   "mkt": null,
   "breakdown": {
@@ -9133,7 +9188,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 23.7% (-0.8 points against the best price). For reference only.",
-    "Market: DraftKings opened +240, now +300, moving against this side since the open.",
+    "Market: DraftKings opened +240, now +255, moving against this side since the open.",
     "Weather at kickoff: Partly cloudy, 51°F, wind 2 mph, 1% rain.",
     "Records: Bournemouth 3-3-3 · Ipswich Town 3-2-4 · Portman Road, Ipswich."
    ],
@@ -9290,17 +9345,17 @@
     "now": {
      "spread": -0.5,
      "spreadOdds": {
-      "home": -120,
-      "away": -115
+      "home": -130,
+      "away": -110
      },
      "total": 2.5,
      "totalOdds": {
-      "over": -175,
-      "under": 140
+      "over": -165,
+      "under": 130
      },
      "ml": {
-      "home": -110,
-      "away": 270
+      "home": -115,
+      "away": 290
      }
     },
     "open": {
@@ -9327,6 +9382,12 @@
     "line": 2.5,
     "odds": 140,
     "fair": 0.3982
+   },
+   {
+    "at": "2026-11-08T12:59:25.688Z",
+    "line": 2.5,
+    "odds": 130,
+    "fair": 0.4112
    }
   ],
   "dk": {
@@ -9338,11 +9399,11 @@
    },
    "now": {
     "line": 2.5,
-    "odds": 140,
-    "fair": 0.3956834532374101
+    "odds": 130,
+    "fair": 0.4111714507370054
    },
    "moved": "away",
-   "label": "DraftKings opened 2.5 (+115), now 2.5 (+140)"
+   "label": "DraftKings opened 2.5 (+115), now 2.5 (+130)"
   },
   "mkt": null,
   "breakdown": {
@@ -9356,7 +9417,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 50.5% (-2.4 points against the best price). For reference only.",
-    "Market: DraftKings opened 2.5 (+115), now 2.5 (+140), moving against this side since the open.",
+    "Market: DraftKings opened 2.5 (+115), now 2.5 (+130), moving against this side since the open.",
     "Weather at kickoff: Mainly clear, 53°F, wind 4 mph, 0% rain.",
     "Records: Brentford 3-5-1 · Brighton and Hove Albion 6-1-2 · American Express Stadium, Falmer."
    ],

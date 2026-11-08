@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 9,
-    "losses": 7,
+    "losses": 8,
     "pushes": 0
   },
-  "units": 0.06,
-  "roi": 0.4,
-  "avgEdge": 11.5,
-  "graded": 16,
+  "units": -0.94,
+  "roi": -5.5,
+  "avgEdge": 11.3,
+  "graded": 17,
   "daily": [
     {
       "date": "2026-11-05",
@@ -24,14 +24,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": 0.06
+      "units": -0.94
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 0.28,
-      "record": "6-4"
+      "units": -0.72,
+      "record": "6-5"
     },
     {
       "sport": "NBA",
@@ -45,6 +45,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-07",
+      "sport": "NHL",
+      "event": "Vancouver Canucks @ Edmonton Oilers",
+      "pick": "Vancouver Canucks +1.5",
+      "odds": 117,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0203,
+      "closeOdds": 127,
+      "closeLine": 1.5,
+      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-07",
       "sport": "NHL",
@@ -209,21 +224,6 @@ window.PERF_DATA = {
       "closeSource": "consensus close (SportsGameOdds, 0 books)",
       "lineMove": "toward",
       "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NBA",
-      "event": "Orlando Magic @ Phoenix Suns",
-      "pick": "Over 222.5",
-      "odds": -110,
-      "result": "Loss",
-      "units": -1,
-      "clv": null,
-      "closeOdds": -102,
-      "closeLine": 225.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "toward",
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -243,9 +243,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-07",
-      "units": 2.07,
+      "units": 1.07,
       "wins": 6,
-      "losses": 3,
+      "losses": 4,
       "pushes": 0
     }
   ],
@@ -258,31 +258,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 0,
-    "losses": 1,
+    "losses": 3,
     "pushes": 0,
-    "units": -1,
-    "n": 1
+    "units": -3,
+    "n": 3
   },
   "clv": {
-    "n": 7,
-    "avg": -13.48,
+    "n": 8,
+    "avg": -12.05,
     "beat": 2,
-    "beatPct": 28.6,
-    "graded": 16,
+    "beatPct": 25,
+    "graded": 17,
     "lineToward": 6,
     "lineAway": 3,
     "espnCloses": 1,
-    "sgoCloses": 15
+    "sgoCloses": 16
   },
   "byBasis": {
     "game": {
       "wins": 9,
-      "losses": 7,
+      "losses": 8,
       "pushes": 0,
-      "units": 0.06,
-      "n": 16,
-      "roi": 0.4,
-      "pending": 7,
+      "units": -0.94,
+      "n": 17,
+      "roi": -5.5,
+      "pending": 6,
       "since": "2026-11-05"
     },
     "price": {
