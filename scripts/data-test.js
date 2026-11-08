@@ -756,6 +756,98 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
       && s.books.DraftKings === 250 && near(s.fair, fair, 1e-4) && s.score.home === 1 && s.score.away === 1 && S.teamMatches("Los Angeles FC", { names: { long: "LAFC", medium: "LAFC", short: "LAF", location: "Los Angeles" } });
   })());
 
+  /* ---------- NFL model (2026-11-08): scripts/nfl.js on nflverse data, the Sunday morning run, the day's cap ----------
+     Fixtures: scripts/fixtures/nflverse, the AFC East's division games from nflverse's release files (CC BY 4.0), 2025
+     and 2026 to date, plus one made-up neutral-site game (2026_10_NE_MIA). Nothing here touches the network. */
+  const NFLM = require("./nfl.js"), nflFetch = NFLM.fixtureFetcher(path.join(__dirname, "fixtures", "nflverse"));
+  const nflNow = new Date("2026-11-11T15:00:00Z"), nflState = await NFLM.build(nflFetch, nflNow, null), nflIx = NFLM.index(nflState);
+  const ALLEN = "00-0034857", GENO = "00-0030565";
+  check("nfl: the cache reads nflverse's release files (schedules, team-week EPA, player-week passing) into games, team-game EPA, each QB's seasons and last season's QB mix; past seasons it could not read count as missing", nflState.v === 1 && nflState.season === 2026 && nflState.games.length === 18 && Object.keys(nflState.epa).length === 32 && nflState.qbs[ALLEN] && nflState.qbs[ALLEN].s["2025"][0] > 100 && (nflState.mix.BUF || []).some(([q]) => q === ALLEN) && nflState.missing >= 8 && nflState.qbSeasons.join() === "2025" && /nflverse/.test(nflState.attribution) && /CC BY 4\.0/.test(nflState.attribution),
+    JSON.stringify([nflState.games.length, Object.keys(nflState.epa).length, nflState.missing, nflState.qbSeasons]));
+  check("nfl: the weekly refresh: fresh once read after the latest Wednesday 12:00 UTC (Monday night's game is in by then), stale a week on, and a cache still missing a finished game's stats is read again after 12 hours", (() => {
+    const st = { v: 1, season: 2026, fetchedAt: "2026-11-05T09:00:00Z", missing: 0 };
+    return NFLM.lastBoundary(new Date("2026-11-08T15:00:00Z")) === Date.parse("2026-11-04T12:00:00Z") && NFLM.lastBoundary(new Date("2026-11-04T11:00:00Z")) === Date.parse("2026-10-28T12:00:00Z")
+      && NFLM.isFresh(st, new Date("2026-11-08T15:00:00Z")) && !NFLM.isFresh(st, new Date("2026-11-11T13:00:00Z")) && !NFLM.isFresh(Object.assign({}, st, { missing: 1 }), new Date("2026-11-05T22:00:00Z")) && NFLM.isFresh(Object.assign({}, st, { missing: 1 }), new Date("2026-11-05T20:00:00Z"))
+      && !NFLM.isFresh(Object.assign({}, st, { season: 2025 }), new Date("2026-11-08T15:00:00Z")) && NFLM.seasonOf(Date.parse("2027-01-10T18:00:00Z")) === 2026;
+  })());
+  check("nfl: load() reads a fresh cache without a download, refreshes a stale one, keeps a stale cache when the download fails, and gives null (the old margin model) with no cache and no download", await (async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-nfl-")), file = path.join(dir, "nflverse.json");
+    let calls = 0; const counting = async n => { calls++; return nflFetch(n); }, broken = async () => { throw new Error("offline"); };
+    const none = await NFLM.load({ file: file, now: nflNow, fetcher: broken });
+    const built = await NFLM.load({ file: file, now: nflNow, fetcher: counting }), first = calls;
+    const cached = JSON.parse(fs.readFileSync(file, "utf8")); cached.missing = 0; fs.writeFileSync(file, JSON.stringify(cached));
+    const again = await NFLM.load({ file: file, now: new Date("2026-11-12T15:00:00Z"), fetcher: counting });
+    const stale = await NFLM.load({ file: file, now: new Date("2026-11-19T15:00:00Z"), fetcher: broken });
+    fs.rmSync(dir, { recursive: true, force: true });
+    return none === null && built && first > 0 && again && calls === first && stale && stale.state.fetchedAt === nflNow.toISOString();
+  })());
+  check("nfl: rate(): a neutral site gets no home edge (the made-up London game), a home ground 2.146 points; the margin's own error is the posterior's, about 4 to 6 points this early", (() => {
+    const london = NFLM.rate(nflIx, { home: "MIA", away: "NE", commenceMs: Date.parse("2026-11-15T14:30:00Z") }), home = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z") });
+    return london && london.neutral && london.part.home === 0 && home && !home.neutral && home.part.home === 2.146 && near(home.margin, home.part.home + home.part.rating + home.part.epa + home.part.qb + home.part.rest, 1e-9) && home.sd > 3.5 && home.sd < 7 && home.gpHome === 2 && home.gpAway === 1 && home.qbHome.id === GENO && home.qbAway.id === ALLEN;
+  })());
+  check("nfl: the starting QB moves the margin: nflverse lists Geno Smith for the Jets; with ESPN listing him out, the club's next QB by last season's dropbacks starts instead (named, with whom he replaces) and the Jets' number moves", (() => {
+    const base = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z") });
+    const hurt = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z"), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Out" }] });
+    const soft = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z"), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Questionable" }] });
+    return hurt.qbHome.id !== GENO && hurt.qbHome.replaces === "Geno Smith" && hurt.qbHome.name && Math.abs(hurt.part.qb - base.part.qb) > 0.1 && near(hurt.part.rating, base.part.rating, 1e-9) && near(soft.margin, base.margin, 1e-9);
+  })());
+  check("nfl: apply() re-centres the old model's game on nflverse's margin (ESPN's WSH/LAR read as WAS/LA), prices the starting QB instead of a QB listed out (only the other listings cost points), keeps the total and the game counts, and leaves a game nflverse does not know alone", (() => {
+    const form = (gp, m) => ({ gp: gp, pf: 24, pa: 24 - m, margin: m, last5: m, wins: 1, losses: 0, games: [] });
+    const old = M.gameModel({ sportKey: "americanfootball_nfl", home: "New York Jets", away: "Buffalo Bills", homeForm: form(8, 2), awayForm: form(8, 5), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Out" }], awayInjuries: [], rest: {} });
+    const nonQB = { home: { cost: 0.5, out: ["A Lineman (OT)"], soft: [] }, away: { cost: 0, out: [], soft: [] } };
+    const g2 = NFLM.apply(old, nflIx, { homeAbbr: "NYJ", awayAbbr: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z"), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Out" }], awayInjuries: [], injuries: nonQB });
+    const r = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z"), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Out" }] });
+    const unknown = NFLM.apply(old, nflIx, { homeAbbr: "WSH", awayAbbr: "LAR", commenceMs: Date.parse("2026-11-15T18:00:00Z"), injuries: nonQB });
+    return g2 !== old && g2.nflverse && near(g2.margin, r.margin - 0.5, 1e-9) && near(g2.marginSd, r.sd, 1e-9) && g2.total === old.total && g2.gpHome === 8 && g2.parts.model === "nflverse" && g2.parts.injuriesHome === -0.5 && g2.reasons.some(x => /starts for New York Jets \(Geno Smith is listed out\)/.test(x.label)) && g2.reasons.some(x => /A Lineman/.test(x.label)) && !g2.reasons.some(x => /without Geno Smith/.test(x.label)) && g2.reasons.some(x => x.side === "total") && unknown === old && NFLM.apply(old, null, {}) === old;
+  })());
+  check("nfl: the bar reads the model's own margin error (marginSd): the posterior's 4.2 points makes a smaller bar than the old formula's, and a game without it keeps the old formula", (() => {
+    const g = { sportKey: "americanfootball_nfl", margin: -2, total: 45, sd: 13.3, sdTotal: 13.4, gpHome: 8, gpAway: 8, parts: { lastHome: 1, lastAway: 1 } };
+    const oldN = M.noise(g, "h2h", { name: "H" }, "H", "A"), newN = M.noise(Object.assign({}, g, { marginSd: 4.2 }), "h2h", { name: "H" }, "H", "A"), tot = M.noise(Object.assign({}, g, { marginSd: 4.2 }), "totals", { name: "Over", point: 44.5 }, "H", "A");
+    return near(newN.units, 4.2, 1e-9) && newN.p < oldN.p && near(oldN.units, 13.3 * Math.sqrt(2 / 14), 0.01) && near(tot.units, M.noise(g, "totals", { name: "Over", point: 44.5 }, "H", "A").units, 1e-9);
+  })());
+  check("nfl: the hook in model.forEvent: an NFL game ESPN knows is re-centred on nflverse's model when its data loaded, and keeps the old margin model when it did not (download failed, no cache)", await (async () => {
+    /* ESPN-shaped stubs from the fixture's 2026 games: the scoreboard for the Jets' home game and each club's schedule */
+    const ids = { BUF: "2", NYJ: "20", MIA: "15", NE: "17" }, names = { BUF: "Buffalo Bills", NYJ: "New York Jets", MIA: "Miami Dolphins", NE: "New England Patriots" };
+    const teamOf = c => ({ id: ids[c], abbreviation: c, displayName: names[c], name: names[c].split(" ").pop(), location: names[c].split(" ").slice(0, -1).join(" "), shortDisplayName: names[c].split(" ").pop() });
+    const evOf = g => ({ id: g.id, date: g.day + "T18:00:00Z", seasonType: { type: 2 }, competitions: [{ status: { type: { completed: g.hs != null } }, neutralSite: g.neutral, competitors: [{ homeAway: "home", team: teamOf(g.home), score: g.hs == null ? undefined : { value: g.hs } }, { homeAway: "away", team: teamOf(g.away), score: g.as == null ? undefined : { value: g.as } }] }] });
+    const g26 = nflIx.games.filter(g => g.season === 2026);
+    const src = { scoreboard: async () => ({ events: g26.filter(g => g.id === "2026_10_BUF_NYJ").map(evOf) }), schedule: async (sport, id) => ({ events: g26.filter(g => ids[g.home] === String(id) || ids[g.away] === String(id)).map(evOf) }), injuries: async () => ({ injuries: [] }), standings: async () => null };
+    const e = { sportKey: "americanfootball_nfl", home: "New York Jets", away: "Buffalo Bills", commence: "2026-11-15T18:00:00Z" };
+    const withData = await M.forEvent(src, CTX, e, nflNow, { nfl: { get: async () => nflIx } });
+    const without = await M.forEvent(src, CTX, e, nflNow, { nfl: { get: async () => null } });
+    const plain = await M.forEvent(src, CTX, e, nflNow, {});
+    return withData && withData.nflverse && Number.isFinite(withData.marginSd) && withData.parts.qbHome === "Geno Smith" && without && !without.nflverse && plain && near(without.margin, plain.margin, 1e-9) && !near(withData.margin, plain.margin, 1e-6);
+  })());
+  /* the Sunday morning run (owner, 2026-11-08: NFL "the same focus as NBA and NHL") */
+  check("slots: the morning run asks about the NFL only on its morning days (Sunday, Thursday for Thanksgiving, Saturday late in the season), never on a Monday, Tuesday, Wednesday or Friday; the Premier League and MLS stay afternoon-only", P.slotAllows(nflC, "morning", 0) && P.slotAllows(nflC, "morning", 4) && P.slotAllows(nflC, "morning", 6) && [1, 2, 3, 5].every(d => !P.slotAllows(nflC, "morning", d)) && !P.slotAllows(nflC, "morning") && [0, 6].every(d => !P.slotAllows(eplC, "morning", d) && !P.slotAllows(mlsC, "morning", d)) && P.slotAllows(nflC, "afternoon", 3));
+  check("slots: a Sunday morning (9 AM ET) counts the games kicking off before the afternoon run (London 9:30 AM, the 1 PM slate; not 4 PM, SNF or MNF) and fetches the NFL; Saturday's morning, with only Sunday's games in the window, does not; Thanksgiving's early games do; ESPN unreadable: Sundays only", await (async () => {
+    const sun = { "20261108": { events: [gameAt("2026-11-08T14:30Z"), gameAt("2026-11-08T18:00Z"), gameAt("2026-11-08T18:00Z"), gameAt("2026-11-08T21:25Z"), gameAt("2026-11-09T01:20Z")] }, "20261109": { events: [gameAt("2026-11-10T01:15Z")] }, "20261107": { events: [] }, "20261110": { events: [] } };
+    const espnSun = await P.espnGames(sbSrc(sun), nflC, new Date("2026-11-08T14:00:00Z")), espnSat = await P.espnGames(sbSrc(sun), nflC, new Date("2026-11-07T14:00:00Z"));
+    const tg = await P.espnGames(sbSrc({ "20261126": { events: [gameAt("2026-11-26T17:30Z"), gameAt("2026-11-26T21:30Z"), gameAt("2026-11-27T01:20Z")] }, "20261127": { events: [] }, "20261125": { events: [] } }), nflC, new Date("2026-11-26T14:00:00Z"));
+    const dSun = P.fetchDecision(nflC, { slot: "morning", espn: espnSun, weekday: 0 }), dSat = P.fetchDecision(nflC, { slot: "morning", espn: espnSat, weekday: 6 }), dTg = P.fetchDecision(nflC, { slot: "morning", espn: tg, weekday: 4 });
+    const downSun = P.fetchDecision(nflC, { slot: "morning", espn: { games: 0, failed: 2, early: 0 }, weekday: 0 }), downSat = P.fetchDecision(nflC, { slot: "morning", espn: { games: 0, failed: 2, early: 0 }, weekday: 6 });
+    const tnfMorning = P.fetchDecision(nflC, { slot: "morning", espn: { games: 1, failed: 0, early: 0 }, weekday: 4 });
+    return espnSun.early === 3 && espnSun.games === 6 && dSun.fetch && espnSat.early === 0 && espnSat.games > 0 && !dSat.fetch && /no game before the afternoon run/.test(dSat.why) && tg.early === 1 && dTg.fetch && downSun.fetch && !downSat.fetch && /mornings only on Sundays/.test(downSat.why) && !tnfMorning.fetch;
+  })());
+  check("slots: the morning guard still protects the afternoon runs: a Sunday morning NFL fetch gives way when the month's credits run short, the afternoon run never does", (() => {
+    const g = { games: 13, failed: 0, early: 11 };
+    const tight = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 100, afternoonsLeft: 8 }), ok = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 120, afternoonsLeft: 8 }), pm = P.fetchDecision(nflC, { slot: "afternoon", espn: g, weekday: 6, remaining: 40, afternoonsLeft: 8 });
+    return !tight.fetch && /morning run gives way: 100 credits left, 105 kept/.test(tight.why) && ok.fetch && pm.fetch;
+  })());
+  check("select: a Sunday morning run never posts a second pick on a game Saturday's run posted (one a game, any market), while a new game can still get one", (() => {
+    const satLog = [{ id: "sat-nfl", eventId: "nfl-g1", sport: "NFL", date: "2026-11-08", status: "pending", past: 0.02 }];
+    const sunC = [cand("g1-spread", "nfl-g1", "NFL", "2026-11-08", 0.06), cand("g2-ml", "nfl-g2", "NFL", "2026-11-08", 0.01)];
+    return P.selectPicks(satLog, sunC).map(c => c.id).join() === "g2-ml";
+  })());
+  check("select: the day's cap ranks across sports and runs by points past the bar: ten NHL and soccer picks posted earlier at 1 point past do not block an NFL side 4 points past, ten further past than it do; the bar itself never moves", (() => {
+    const day = "2026-11-08", posted = past => Array.from({ length: 10 }, (_, i) => ({ id: "p" + i, eventId: "e" + i, sport: i < 5 ? "NHL" : "Soccer", date: day, status: "pending", past: past }));
+    const weakLog = posted(0.01), strongLog = posted(0.08), oldLog = posted(undefined);
+    const nflSide = () => [cand("nfl", "nfl-g", "NFL", day, 0.04)];
+    const weak = P.selectPicks(weakLog, nflSide()).map(c => c.id), strong = P.selectPicks(strongLog, nflSide()).map(c => c.id), old = P.selectPicks(oldLog, nflSide()).map(c => c.id);
+    const run = P.selectPicks([], Array.from({ length: 12 }, (_, i) => cand("r" + i, "re" + i, ["NBA", "NHL", "NFL"][i % 3], day, 0.1 - i / 100))).map(c => c.id);
+    return weak.join() === "nfl" && strong.length === 0 && old.length === 0 && run.length === 10 && run.indexOf("r10") === -1 && run.indexOf("r11") === -1;
+  })());
+
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });
