@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Props · EdgeLine AI</title>
-  <meta name="description" content="NBA props, likeliest first: tonight's lines graded on game data only (history against the number, form, minutes, matchup, rest, injuries), never against other books' prices.">
+  <meta name="description" content="NBA and NFL props, likeliest first: each slate's lines graded on game data only (history against the number, form, usage, matchup, rest, injuries), never against other books' prices.">
   <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z' fill='%232a78d6'/%3E%3Cpath d='M8.2 17 L11 12.6 L13.8 17 Z' fill='%231c5cab'/%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="EdgeLine AI">
   <meta property="og:title" content="Props · EdgeLine AI">
-  <meta property="og:description" content="NBA props, likeliest first: tonight's lines graded on game data, with the reasons listed.">
+  <meta property="og:description" content="NBA and NFL props, likeliest first: each slate's lines graded on game data, with the reasons listed.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +57,7 @@
     <div class="section-head row page-head">
       <div>
         <span class="eyebrow">Props research</span>
-        <h1 class="page-title">Tonight’s props, likeliest first</h1>
+        <h1 class="page-title" id="props-title">Tonight’s props, likeliest first</h1>
         <p class="muted page-sub" id="props-asof"></p>
         <p class="muted page-sub" id="props-lines"></p>
         <p class="muted page-sub small" id="props-rule">Graded on game data: history against the number, form, minutes, matchup, rest and injuries. Never against other books’ prices.</p>
@@ -97,7 +97,7 @@
     <div class="section-head sub-head" id="players">
       <div>
         <h2>Every player</h2>
-        <p class="how-to muted" id="p-how">Each card opens on the prop the board ranked, with tonight’s line typed in and the reasons listed. Change the stat, the line or the span and the grade and bars recompute from the game data.</p>
+        <p class="how-to muted" id="p-how">Each card opens on the prop the board ranked, with the posted line typed in and the reasons listed. Change the stat, the line or the span and the grade and bars recompute from the game data.</p>
       </div>
     </div>
     <p class="filter-summary" id="p-summary" role="status"></p>
@@ -108,7 +108,7 @@
 <section class="section-tight">
   <div class="container">
     <div class="notice">
-      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at tonight’s posted line when there is one and you can type any other number; your line is kept on this device. <strong>How a side is graded.</strong> Only game data: half the grade is the player’s weighted hit rate against the number over the last ten games (the last five count more, and a short sample is pulled toward even), half is a projection from the last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against the player’s own game-to-game spread. High is 70%+, Medium 62%+, Low 56%+; anything closer to even is a coin flip and says so. The board lists only lines the books quote on both sides, players with at least four games logged (three in the NFL, where the projection is usage times the gain per touch against the defence) and games still to start. Nothing here is graded against other books’ prices; the price chips exist so you know where the number is best. <span id="props-credit"></span>
+      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at the posted line when there is one and you can type any other number; your line is kept on this device. <strong>How a side is graded.</strong> Only game data: half the grade is the player’s weighted hit rate against the number over the last ten games (the last five count more, and a short sample is pulled toward even), half is a projection from the last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against the player’s own game-to-game spread. High is 70%+, Medium 62%+, Low 56%+; anything closer to even is a coin flip and says so. The board lists only lines the books quote on both sides, players with at least four games logged (three in the NFL, where the projection is usage times the gain per touch against the defence) and games still to start. Nothing here is graded against other books’ prices; the price chips exist so you know where the number is best. <span id="props-credit"></span>
     </div>
   </div>
 </section>
@@ -117,8 +117,8 @@
 <script>
 (function () {
   var E = window.EdgeLine, DATA = window.PROPS_DATA || { players: [], games: [], generatedAt: null };
-  /* every entry carries its league (files before the NFL have none: NBA); the page head below describes the NBA, the
-     board and the cards every league */
+  /* every entry carries its league (files before the NFL have none: NBA); the page head below speaks for each league
+     present, the board and the cards for every league */
   function leagueOf(x) { return (x && x.league) || "NBA"; }
   function isNFL(p) { return leagueOf(p) === "NFL"; }
   var ALL = DATA.players || [], ALLG = DATA.games || [];
@@ -137,17 +137,47 @@
   function statLeague(k) { return NFL_KEYS.indexOf(k) !== -1 ? "NFL" : k ? "NBA" : ""; }
   var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); });
   var L = D.lines || {};
-  if (D.generatedAt) { var gen = new Date(D.generatedAt); if (!isNaN(gen)) document.getElementById("props-asof").textContent = (D.games.length ? D.games.length + " games tonight, " : "") + P.length + " rotation players. Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }) + "."; }
-  var linesNote = document.getElementById("props-lines");
-  if (HAS_LINES) { var at = L.at ? new Date(L.at) : null, priced = P.filter(function (p) { return p.lines; }).length; linesNote.textContent = "Lines: " + priced + " players priced" + (L.games ? " in " + L.games + (L.of ? " of " + L.of : "") + " games" : "") + ((L.books || []).length ? " at " + L.books.length + " books" : "") + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + "."; }
-  else { linesNote.textContent = P.length ? "No lines posted yet tonight: the board fills at the afternoon refresh. Type a line on any card to grade it now." : ""; }
+  /* ---------- the page head, league by league (2026-11-08): what each league's slate is and where its lines stand, from
+     PROPS_DATA.leagues (a file written before the NFL has none and is the NBA alone). The NFL's lines come on the morning
+     run and the NBA's on the afternoon run, so neither league's state may speak for the other ---------- */
+  var LG = DATA.leagues || {}, NFL_SUM = LG.NFL || null;
+  var NBA_ON = P.length > 0 || D.games.length > 0, NFL_ON = ALL.some(isNFL) || !!(NFL_SUM && NFL_SUM.date);
+  var NBA_DATE = (LG.NBA && LG.NBA.date) || D.date || null;
+  var TODAY = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(E.now()));
+  var LINES_BY = { NBA: HAS_LINES, NFL: ALL.some(function (p) { return isNFL(p) && twoSidedAny(p); }) };
+  var ANY_LINES = LINES_BY.NBA || LINES_BY.NFL;
+  var BOTH = NBA_ON && NFL_ON;
+  function clock(t) { var d = t ? new Date(t) : null; return d && !isNaN(d) ? d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : ""; }
+  function nbaWhenWords() { return !NBA_DATE || NBA_DATE === TODAY ? "tonight" : whenWords(NBA_DATE); }
+  document.getElementById("props-title").textContent = NFL_ON && NFL_SUM && NFL_SUM.date === TODAY ? "Today’s props, likeliest first"
+    : NBA_ON && (!NBA_DATE || NBA_DATE === TODAY) ? "Tonight’s props, likeliest first" : "Props, likeliest first";
+  if (D.generatedAt) {
+    var gen = new Date(D.generatedAt), slate = [];
+    if (NBA_ON) slate.push("NBA " + nbaWhenWords() + ": " + D.games.length + " game" + (D.games.length === 1 ? "" : "s") + ", " + P.length + " rotation players.");
+    if (NFL_ON) { var ng = ALLG.filter(isNFL).length, np = ALL.filter(isNFL).length; slate.push("NFL" + (NFL_SUM && NFL_SUM.date ? " " + whenWords(NFL_SUM.date) : "") + ": " + ng + " game" + (ng === 1 ? "" : "s") + ", " + np + " players."); }
+    if (!isNaN(gen)) document.getElementById("props-asof").textContent = slate.concat(["Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }) + "."]).join(" ");
+  }
+  /* the NBA's lines: priced, or why not yet (the morning run leaves them off: --lines nfl) */
+  function nbaLines() {
+    if (HAS_LINES) { var priced = P.filter(function (p) { return p.lines; }).length, at = clock(L.at); return (BOTH ? "NBA lines: " : "Lines: ") + priced + " players priced" + (L.games ? " in " + L.games + (L.of ? " of " + L.of : "") + " games" : "") + ((L.books || []).length ? " at " + L.books.length + " books" : "") + (at ? ", " + at : "") + "."; }
+    if (L.skipped === "budget") return "NBA lines were held back this run to keep the month’s odds budget.";
+    return "No NBA lines yet" + (nbaWhenWords() === "tonight" ? " tonight" : "") + ": the NBA board fills at the afternoon run, about " + E.runClock(1) + ".";
+  }
+  /* the NFL's lines in one sentence (the line under the filters has the detail) */
+  function nflLines() {
+    if (!LINES_BY.NFL) return nflWhen();
+    var nflPriced = ALL.filter(function (p) { return isNFL(p) && twoSidedAny(p); }).length, at = clock(NFL_SUM && NFL_SUM.lines && NFL_SUM.lines.at);
+    return "NFL lines: " + nflPriced + " players priced" + (at ? ", " + at : "") + ".";
+  }
+  var linesNote = document.getElementById("props-lines"), headLines = [];
+  if (NBA_ON) headLines.push(nbaLines());
+  if (NFL_ON) headLines.push(nflLines());
+  if (!ANY_LINES && ALL.length) headLines.push("Type a line on any card to grade it now.");
+  linesNote.textContent = headLines.join(" ");
   document.getElementById("props-credit").textContent = D.attribution || "";
   /* ---------- from here on: every league (the board, the filters, the cards) ---------- */
   P = ALL;
   function twoSidedAny(p) { return !!p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); }
-  var LINES_BY = { NBA: HAS_LINES, NFL: ALL.some(function (p) { return isNFL(p) && twoSidedAny(p); }) };
-  var ANY_LINES = LINES_BY.NBA || LINES_BY.NFL;
-  var NFL_SUM = (DATA.leagues && DATA.leagues.NFL) || null;
   ["NBA", "NFL"].forEach(function (lg) {
     var gs = ALLG.filter(function (g) { return leagueOf(g) === lg; }); if (!gs.length) return;
     fGame.appendChild(E.el("optgroup", { label: lg }, gs.map(function (g) { return E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + ", " + g.startLabel }); })));
@@ -634,7 +664,7 @@
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
         <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
-        <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
+        <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. NFL data via <a href="https://github.com/nflverse/nflverse-data">nflverse</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>

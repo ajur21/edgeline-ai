@@ -400,8 +400,8 @@
     return etWallMs(key, Number(m[1]) % 12 + (m[3].toUpperCase() === "PM" ? 12 : 0), Number(m[2]));
   }
   /* a game's usual length, start to final: past it with no result a pick is "awaiting" rather than "live" */
-  const GAME_HOURS = { NBA: 2.5, NFL: 3.5, NHL: 3, MLB: 3.5, Soccer: 2 };
-  const KEY_SPORT = { basketball_nba: "NBA", americanfootball_nfl: "NFL", icehockey_nhl: "NHL", baseball_mlb: "MLB" };
+  const GAME_HOURS = { NBA: 2.5, NFL: 3.5, NCAAF: 3.5, NHL: 3, MLB: 3.5, Soccer: 2 };
+  const KEY_SPORT = { basketball_nba: "NBA", americanfootball_nfl: "NFL", americanfootball_ncaaf: "NCAAF", icehockey_nhl: "NHL", baseball_mlb: "MLB" };
   function gameHours(p) {
     const s = GAME_HOURS[p.sport] ? p.sport : KEY_SPORT[p.sportKey] || (/^soccer/.test(p.sportKey || "") || /premier league|la liga|mls|soccer/i.test(p.league || "") ? "Soccer" : null);
     return s ? GAME_HOURS[s] : 3;

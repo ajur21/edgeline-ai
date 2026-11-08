@@ -11,8 +11,11 @@
    ========================================================================== */
 (function () {
   "use strict";
-  const ESPN = { americanfootball_nfl: "football/nfl", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1", soccer_usa_mls: "soccer/usa.1" };
-  const BY_LEAGUE = { NFL: "football/nfl", NBA: "basketball/nba", MLB: "baseball/mlb", NHL: "hockey/nhl", "Premier League": "soccer/eng.1", "La Liga": "soccer/esp.1", MLS: "soccer/usa.1" };
+  const ESPN = { americanfootball_nfl: "football/nfl", americanfootball_ncaaf: "football/college-football", basketball_nba: "basketball/nba", baseball_mlb: "baseball/mlb", icehockey_nhl: "hockey/nhl", soccer_epl: "soccer/eng.1", soccer_spain_la_liga: "soccer/esp.1", soccer_usa_mls: "soccer/usa.1" };
+  const BY_LEAGUE = { NFL: "football/nfl", NCAAF: "football/college-football", NBA: "basketball/nba", MLB: "baseball/mlb", NHL: "hockey/nhl", "Premier League": "soccer/eng.1", "La Liga": "soccer/esp.1", MLS: "soccer/usa.1" };
+  /* college football: ESPN's date scoreboard lists only the top games unless asked for every FBS game (groups=80) and a limit
+     past a Saturday's 55 or more */
+  const QUERY = { "football/college-football": "&groups=80&limit=300" };
   const ET = "America/New_York";
   const BEFORE_MS = 20 * 60e3, AFTER_MS = 5 * 36e5; /* watch a game from 20 minutes before tip-off to 5 hours after */
   const POLL_LIVE = 60e3, POLL_IDLE = 5 * 60e3;
@@ -101,7 +104,7 @@
     const key = path + "|" + yyyymmdd;
     if (cache[key] && Date.now() - cache[key].at < 20e3) return cache[key].data;
     try {
-      const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/" + path + "/scoreboard?dates=" + yyyymmdd, { headers: { accept: "application/json" } });
+      const res = await fetch("https://site.api.espn.com/apis/site/v2/sports/" + path + "/scoreboard?dates=" + yyyymmdd + (QUERY[path] || ""), { headers: { accept: "application/json" } });
       if (!res.ok) return null;
       const data = await res.json();
       cache[key] = { at: Date.now(), data: data };

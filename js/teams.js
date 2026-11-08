@@ -7,7 +7,7 @@
 (function () {
   "use strict";
   const CDN = "https://a.espncdn.com";
-  const SPORT_KEYS = { NBA: ["basketball_nba"], NFL: ["americanfootball_nfl"], MLB: ["baseball_mlb"], NHL: ["icehockey_nhl"], Soccer: ["soccer_epl", "soccer_usa_mls", "soccer_spain_la_liga"] };
+  const SPORT_KEYS = { NBA: ["basketball_nba"], NFL: ["americanfootball_nfl"], MLB: ["baseball_mlb"], NHL: ["icehockey_nhl"], NCAAF: ["americanfootball_ncaaf"], Soccer: ["soccer_epl", "soccer_usa_mls", "soccer_spain_la_liga"] };
   const HEADSHOT_PATH = { basketball_nba: "nba", americanfootball_nfl: "nfl", baseball_mlb: "mlb", icehockey_nhl: "nhl" };
   const el = function (tag, attrs, children) { return window.EdgeLine ? window.EdgeLine.el(tag, attrs, children) : document.createElement(tag); };
 

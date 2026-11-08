@@ -282,6 +282,22 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   check('props board: NBA tonight, then the NFL tomorrow under a day heading (the sample spans two days)', (await pp.locator('#props-board .day-divider').count()) === 2 && (await rows.first().getAttribute('data-league')) === 'NBA' && (await rows.evaluateAll(els => els.some(e => e.getAttribute('data-league') === 'NFL'))) && /NBA.*NFL/.test(await pp.textContent('#pb-summary')));
   check('props board: the lowest grade reads Low, never Lean (the selections are leans; owner decision 2026-11-08)', (await pp.locator('#props-board .pb-agree .badge').evaluateAll(els => els.some(e => e.textContent === 'Low') && !els.some(e => e.textContent === 'Lean'))) && /graded Low or better/.test(await pp.textContent('#pb-summary')));
   check('props: the NFL line under the filters says what is priced', /^NFL tomorrow: \d+ players priced in 1 of 1 games at 6 books/.test(await pp.textContent('#p-nfl-note')), await pp.textContent('#p-nfl-note'));
+  /* the head speaks for each league (2026-11-08): the NBA's lines come on the afternoon run, the NFL's on the morning run */
+  check('props head: league by league: the slate and the lines of the NBA and the NFL each named, the title for tonight', /^NBA tonight: \d+ games?, \d+ rotation players\. NFL tomorrow: 1 game, \d+ players\. Updated /.test(await pp.textContent('#props-asof')) && /NBA lines: \d+ players priced in .* at \d+ books.*NFL lines: \d+ players priced/.test(await pp.textContent('#props-lines')) && (await pp.textContent('#props-title')) === 'Tonight’s props, likeliest first', (await pp.textContent('#props-asof')) + ' / ' + (await pp.textContent('#props-lines')));
+  {
+    /* an NFL Sunday morning: the NFL's lines are up and the NBA's are not yet (the morning run passes --lines nfl) */
+    const vmx = require('vm'), sbx = { window: {} }; vmx.runInNewContext(fs.readFileSync(path.join(root, 'scripts/fixtures/sample-props.js'), 'utf8'), sbx);
+    const PD = JSON.parse(JSON.stringify(sbx.window.PROPS_DATA));
+    PD.players.forEach(pl => { if ((pl.league || 'NBA') === 'NBA') delete pl.lines; });
+    PD.lines = { skipped: 'off' }; PD.leagues.NBA.lines = { skipped: 'off' }; PD.leagues.NFL.date = '2026-11-04'; PD.leagues.NFL.today = true;
+    const mctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    await mctx.route('**/data/props.js', r => r.fulfill({ status: 200, contentType: 'text/javascript', body: 'window.PROPS_DATA = ' + JSON.stringify(PD) + ';' }));
+    const mp = await mctx.newPage(); await pinClock(mp); const merr = []; mp.on('pageerror', e => merr.push(e.message));
+    await mp.goto(url('props.html')); await mp.waitForTimeout(500);
+    const ml = await mp.textContent('#props-lines');
+    check('props head: with NFL lines up and none for the NBA yet, the head says so per league and never that no lines are posted', /No NBA lines yet tonight: the NBA board fills at the afternoon run, about 3:30 PM ET\./.test(ml) && /NFL lines: \d+ players priced/.test(ml) && !/No lines posted yet/.test(ml) && /NFL today: 1 game/.test(await mp.textContent('#props-asof')) && (await mp.textContent('#props-title')) === 'Today’s props, likeliest first' && merr.length === 0, ml + ' | ' + merr.join(' | '));
+    await mctx.close();
+  }
   check('props board: the how-to and the summary say the grade is game data, not other books', /not graded against other books/.test(await pp.textContent('#props-board-how')) && /[Gg]ame data only/.test(await pp.textContent('#pb-summary')) && /Never against other books/.test(await pp.textContent('#props-rule')));
   const r2 = rows.nth(1), pid2 = await r2.getAttribute('data-player'), stat2 = await r2.getAttribute('data-stat');
   await r2.locator('.pb-open').click(); await pp.waitForTimeout(300);
@@ -519,6 +535,25 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   const playerHref = await sp2.locator('.search-option[href^="props.html?q="]').first().getAttribute('href');
   await sp2.keyboard.press('Escape'); await sp2.goto(url(playerHref)); await sp2.waitForTimeout(500);
   check('search: a player opens the props page with the search filled in', playerHref === 'props.html?q=Paul%20George' && (await sp2.inputValue('#p-search')) === 'Paul George');
+  /* college football (2026-11-08): data/teams.js carries 265 college clubs with `aka`, the odds feed's own spellings; the chip has its own colour */
+  const cfHits = await sp2.evaluate(() => window.EdgeLineSearch.search('appalachian state').then(g => { const t = g.find(x => x.kind === 'team'); return t ? t.items.map(i => i.title + '|' + i.sub[0]) : []; }));
+  check('search: a college club is found by the feed\'s spelling (aka) and labelled College football', cfHits.indexOf('App State Mountaineers|College football') !== -1, cfHits.join(', '));
+  const cfPage = await sp2.evaluate(() => {
+    const lum = c => { const m = c.match(/\d+(\.\d+)?/g).slice(0, 3).map(Number).map(v => v / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)); return 0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2]; };
+    const cr = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+    const was = document.documentElement.getAttribute('data-theme'), out = [];
+    ['dark', 'light'].forEach(th => {
+      document.documentElement.setAttribute('data-theme', th);
+      const mk = sp => { const b = document.createElement('span'); b.className = 'badge badge-sport'; b.setAttribute('data-sport', sp); b.textContent = sp; document.body.appendChild(b); return b; };
+      const c = mk('NCAAF'), n = mk('NFL'), cs = getComputedStyle(c);
+      out.push({ ratio: cr(cs.backgroundColor, cs.color), own: cs.backgroundColor !== getComputedStyle(n).backgroundColor });
+      c.remove(); n.remove();
+    });
+    if (was) document.documentElement.setAttribute('data-theme', was); else document.documentElement.removeAttribute('data-theme');
+    const E = window.EdgeLine, t = E.now(), at = h => new Date(t - h * 36e5).toISOString();
+    return { out: out, live: E.gameState({ sport: 'NCAAF', commence: at(3.25) }) === 'live' && E.gameState({ sportKey: 'americanfootball_ncaaf', commence: at(3.25) }) === 'live' && E.gameState({ sport: 'NCAAF', commence: at(3.75) }) === 'awaiting' };
+  });
+  check('college football: its own chip colour in both themes, the text at 4.5:1 or better, and a game live for 3.5 hours', cfPage.out.every(o => o.own && o.ratio >= 4.5) && cfPage.live, JSON.stringify(cfPage));
   check('search and games: no page errors', sErr.length === 0, sErr.join(' | '));
   await sctx.close();
 

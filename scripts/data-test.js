@@ -924,6 +924,21 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     return c && c.sport === "NCAAF" && c.teams.find(t => t.id === "2026").aka.indexOf("Appalachian State Mountaineers") !== -1 && c.teams.find(t => t.id === "2390").aka.indexOf("Miami (FL) Hurricanes") !== -1 && !d.leagues.basketball_nba.teams[0].aka;
   })());
 
+  /* ---------- every pipeline request names us honestly (2026-11-08): BOT_UA or Node's own client name, never a browser's ---------- */
+  check("user agents: every user-agent header in scripts/ is BOT_UA (or a constant equal to it), nfl.js reads context.js's, and no script sends a browser's name or client hints", (function () {
+    const C = require("./context.js"), dir = __dirname;
+    if (C.BOT_UA !== "EdgeLineAI-data/1.0 (+https://ajur21.github.io/edgeline-ai/)") return false;
+    const files = fs.readdirSync(dir).filter(f => /\.js$/.test(f) && f !== "behavior.js" && f !== "screenshot.js" && f !== "data-test.js");
+    let ok = true;
+    files.forEach(function (f) {
+      const src = fs.readFileSync(path.join(dir, f), "utf8");
+      if (/Mozilla\/|AppleWebKit|Chrome\/|sec-ch-ua/i.test(src)) ok = false;
+      (src.match(/["']user-agent["']\s*:\s*([^,}]+)/gi) || []).forEach(function (m) { if (!/:\s*(BOT_UA|UA|NWS_UA)\s*$/.test(m.trim())) ok = false; });
+      (src.match(/const (UA|NWS_UA)\s*=\s*"([^"]+)"/g) || []).forEach(function (m) { if (m.indexOf(C.BOT_UA) === -1) ok = false; });
+    });
+    return ok && /require\("\.\/context\.js"\)\.BOT_UA/.test(fs.readFileSync(path.join(dir, "nfl.js"), "utf8"));
+  })());
+
   console.log(fails.length ? "FAILURES: " + fails.length : "ALL PASS");
   process.exit(fails.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });

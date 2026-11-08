@@ -465,4 +465,4 @@ async function enrich(entries, opts) {
   return got.requests;
 }
 function source(opts) { return opts && opts.fixture ? fixtureSource(opts) : liveSource(); }
-module.exports = { enrich, fetchContext, buildBreakdown, findEvent, regulationScore, clubCore, teamMatches, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };
+module.exports = { BOT_UA, enrich, fetchContext, buildBreakdown, findEvent, regulationScore, clubCore, teamMatches, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };

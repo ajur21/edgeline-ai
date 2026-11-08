@@ -96,7 +96,7 @@
   var params = new URLSearchParams(location.search);
   var state = { sport: params.get("sport") || "", q: params.get("q") || "", team: params.get("team") || "", league: params.get("league") || "", sort: params.get("sort") === "start" ? "start" : "model" };
   function norm(s) { return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9+]+/g, " ").trim(); }
-  function alias(t) { return t ? [t.name, t.short, t.nick, t.location, t.abbr].filter(Boolean).join(" ") : ""; }
+  function alias(t) { return t ? [t.name, t.short, t.nick, t.location, t.abbr].concat(t.aka || []).filter(Boolean).join(" ") : ""; } /* aka: the odds feed's other spellings (college football, data/teams.js) */
 
   /* one game per event: every side of every main line, the two clubs, its picks, and the side that leads it */
   var games = [], byId = {};
@@ -258,7 +258,7 @@
     seg.textContent = "";
     var counts = {}; games.forEach(function (g) { counts[g.r.sport] = (counts[g.r.sport] || 0) + 1; });
     var sports = Object.keys(counts).sort(function (a, b) { return (counts[b] - counts[a]) || (a < b ? -1 : 1); });
-    [["", "All", games.length]].concat(sports.map(function (s) { return [s, s, counts[s]]; })).forEach(function (s) {
+    [["", "All", games.length]].concat(sports.map(function (s) { return [s, s === "NCAAF" ? "College football" : s, counts[s]]; })).forEach(function (s) {
       var b = E.el("button", { type: "button", "data-sport": s[0], "aria-pressed": String(state.sport === s[0]) }, [s[1] + " ", E.el("span", { class: "seg-count", text: String(s[2]) })]);
       b.addEventListener("click", function () { state.sport = s[0]; sync(); renderSports(); render(); });
       seg.appendChild(b);
@@ -340,7 +340,7 @@
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 17 L11 4 L19 17 H15.4 L11 9.6 L6.6 17 Z" fill="currentColor"/><path d="M8.2 17 L11 12.6 L13.8 17 Z" class="brand-mark-accent"/></svg>EdgeLine AI</a>
         <p class="footer-blurb" data-pick="Model-driven picks across NFL, NBA, MLB, NHL and soccer, with the probability and edge behind every selection.">Model leans across NFL, NBA, MLB, NHL and soccer, ranked by our probability from the game data, with every result in public.</p>
-        <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. Marks belong to their leagues and clubs.</p>
+        <p class="footer-blurb footer-credit">Team logos and player photos via ESPN. NFL data via <a href="https://github.com/nflverse/nflverse-data">nflverse</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Marks belong to their leagues and clubs.</p>
       </div>
       <div>
         <h2>Product</h2>

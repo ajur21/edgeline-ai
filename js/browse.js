@@ -120,17 +120,23 @@
     return keyDate(k).toLocaleDateString("en-US", { timeZone: "UTC", weekday: "short" }) + " " + time;
   }
 
-  /* ---------- the pricing runs (scripts/update-data.js): full runs at 14:00 and 20:30 UTC; NFL, college football and
-     soccer on the afternoon run only; each asks for the games starting inside 36 hours ---------- */
-  const RUNS_UTC = [[14, 0], [20, 30]], AFTERNOON_ONLY = { NFL: true, NCAAF: true, Soccer: true }, WINDOW_MS = 36 * 36e5;
+  /* ---------- the pricing runs (scripts/update-data.js): full runs at 14:00 and 20:30 UTC; the NBA, NFL and soccer on the
+     afternoon run (the NFL's early-kickoff mornings only refresh games an afternoon run already priced), college football
+     on Friday's afternoon run only (`runDays`: Friday night and Saturday); each asks for the games starting inside 36 hours.
+     A game no scheduled run reaches before its kickoff (a midweek college game) has no first run: "Not priced yet" ---------- */
+  const RUNS_UTC = [[14, 0], [20, 30]], AFTERNOON_ONLY = { NBA: true, NFL: true, NCAAF: true, Soccer: true }, RUN_DAYS = { NCAAF: [5] }, WINDOW_MS = 36 * 36e5;
   function runsFor(sport) { return AFTERNOON_ONLY[sport] ? [RUNS_UTC[1]] : RUNS_UTC; }
   function runAfter(sport, from, strict) {
-    const d = new Date(from); let best = Infinity;
-    for (let off = 0; off < 4; off++) runsFor(sport).forEach(function (s) { const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]); if ((strict ? t > from : t >= from) && t < best) best = t; });
+    const d = new Date(from), days = RUN_DAYS[sport]; let best = Infinity;
+    for (let off = 0; off < 8; off++) runsFor(sport).forEach(function (s) {
+      const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]);
+      if (days && days.indexOf(new Date(t).getUTCDay()) === -1) return; /* both runs fall on the same Eastern weekday as their UTC date */
+      if ((strict ? t > from : t >= from) && t < best) best = t;
+    });
     return best;
   }
-  /* the first run whose window reaches the kickoff */
-  function firstRun(sport, kick) { return Number.isFinite(kick) ? runAfter(sport, kick - WINDOW_MS, false) : NaN; }
+  /* the first run whose window reaches the kickoff (NaN when none does before it) */
+  function firstRun(sport, kick) { if (!Number.isFinite(kick)) return NaN; const t = runAfter(sport, kick - WINDOW_MS, false); return t < kick ? t : NaN; }
   function nextRunFor(sport) { return runAfter(sport, E.now(), true); }
   /* "Saturday afternoon", "tomorrow morning", "this afternoon" */
   function runWord(t) {
@@ -287,7 +293,7 @@
     const p = g.picks.find(function (x) { return x.score && x.score.home != null && x.score.away != null; });
     return p ? { home: Number(p.score.home), away: Number(p.score.away), live: false, detail: "Final" } : null;
   }
-  /* the club record from data/teams.js, else one made from ESPN's own team (college football has no teams file yet) */
+  /* the club record from data/teams.js (college football's 265 clubs since 2026-11-08), else one made from ESPN's own team */
   function teamFor(g, which) {
     const tm = TM(), name = g[which];
     const t = tm && name ? tm.find(g.sportKey || g.sport, name) : null;
