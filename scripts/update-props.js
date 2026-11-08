@@ -1,5 +1,5 @@
 /* ==========================================================================
-   EdgeLine AI — NBA props research data
+   EdgeLine AI — props research data (NBA here; the NFL half in scripts/nfl-props.js)
    Builds data/props.js from ESPN's public (undocumented) endpoints: today's
    games, rosters with headshots and injury status, each rotation player's
    last games, and every team's points allowed for a defence ranking. Then,
@@ -10,14 +10,22 @@
    one. Signals ("confluences") compare a player's recent form, home/away
    split, minutes, rest and opponent defence.
 
-   Run:   node scripts/update-props.js            (hits ESPN, ~300-450 requests, polite delay; + 1 SportsGameOdds call)
-   Test:  node scripts/update-props.js --fixture  (reads scripts/fixtures/espn/ and fixtures/sgo/NBA-props.json)
-   Flags: --out <dir>  --now <iso>  --cache <dir> (save raw responses)  --teams <n> (limit, for quick runs)  --no-lines (skip the odds call)
+   The NFL pass runs first (its lines must land before Sunday's early kickoffs): see scripts/nfl-props.js. Each
+   league's pass stands alone: one failing keeps the other, and a failed NFL pass carries the last file's NFL
+   players whose games are still ahead.
+
+   Run:   node scripts/update-props.js            (hits ESPN, ~300-450 NBA requests + ~30-60 NFL, polite delay; + 1 SportsGameOdds call per league)
+   Test:  node scripts/update-props.js --fixture  (reads scripts/fixtures/espn/, fixtures/espn/nfl/ and fixtures/sgo/NBA-props.json, NFL-props.json)
+   Flags: --out <dir>  --now <iso>  --cache <dir> (save raw responses)  --teams <n> (limit, for quick runs)
+          --no-lines (no odds call for either league)  --lines nfl | nba | nba,nfl (which leagues spend SportsGameOdds
+          entities this run; the morning run passes --lines nfl: the NFL's early kickoffs come before the afternoon run)
+          --no-nfl (skip the NFL pass)
    ========================================================================== */
 "use strict";
 const fs = require("fs");
 const path = require("path");
 const sgo = require("./sgo.js");
+const NFL = require("./nfl-props.js");
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba";
 const WEB = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba";
@@ -130,8 +138,11 @@ function signals(p) {
 }
 
 /* ---------- lines: one SportsGameOdds call for the night, every player prop rides along ---------- */
+/* which leagues spend SportsGameOdds entities this run: lines false = none, an array = those leagues, else both */
+function linesFor(opts, league) { return opts.lines === false ? false : Array.isArray(opts.lines) ? opts.lines.indexOf(league) !== -1 : true; }
 async function attachLines(players, games, opts, now) {
-  if (opts.lines === false || !games.length) return { skipped: opts.lines === false ? "off" : "no games" };
+  const on = linesFor(opts, "NBA");
+  if (!on || !games.length) return { skipped: !on ? "off" : "no games" };
   const src = sgo.source({ fixture: opts.fixture, fixtureName: "NBA-props" });
   if (!src.enabled) return { skipped: "no key" };
   const usage = await src.usage();
@@ -156,10 +167,7 @@ async function attachLines(players, games, opts, now) {
 }
 
 /* ---------- main ---------- */
-async function run(opts) {
-  const now = opts.now ? new Date(opts.now) : new Date();
-  const src = opts.source || (opts.fixture ? fixtureSource() : liveSource(opts.cache));
-  const dataDir = opts.out || path.join(__dirname, "..", "data");
+async function runNBA(opts, now, src) {
   /* tonight is the Eastern date; once its games are all final (late at night) the next slate is tomorrow's */
   const ymd = d => etDate(d).replace(/-/g, "");
   let sb = await src.scoreboard(ymd(now));
@@ -218,14 +226,69 @@ async function run(opts) {
     cands.sort((a, b) => b.minutes.season - a.minutes.season).slice(0, RULES.playersPerTeam).forEach(p => players.push(p));
   }
   const lines = await attachLines(players, games, opts, now).catch(e => ({ skipped: e.message }));
-  const data = { sample: false, source: "ESPN", attribution: "Stats, schedules and player photos from ESPN's public API." + (lines.players ? " Lines from " + lines.source + " (" + lines.books.length + " books)." : ""), generatedAt: now.toISOString(), date: etDate(now), lines: lines, games: games.map(g => ({ id: g.id, start: g.start, startLabel: startLabel(new Date(g.start)), home: g.home, away: g.away })), players: players };
+  return { games: games, players: players, outs: outs, lines: lines };
+}
+async function run(opts) {
+  const now = opts.now ? new Date(opts.now) : new Date();
+  const src = opts.source || (opts.fixture ? fixtureSource() : liveSource(opts.cache));
+  const dataDir = opts.out || path.join(__dirname, "..", "data");
+  const prev = readPrevious(dataDir);
+  /* the NFL first; a custom NBA source (the tests) without an NFL one never reaches the live NFL endpoints */
+  const nfl = opts.nfl === false || (opts.source && !opts.nflSource && !opts.fixture) ? null : await runNFL(opts, now, dataDir, prev);
+  let nba;
+  try { nba = await runNBA(opts, now, src); }
+  catch (e) {
+    if (!nfl) throw e; /* the NBA alone: fail as before and keep the last file */
+    console.log("NBA props pass failed (" + e.message + "): keeping the last file's NBA games still ahead");
+    const keep = ((prev && prev.games) || []).filter(g => (g.league || "NBA") === "NBA" && Date.parse(g.start) + 3 * 36e5 > now.getTime()), ids = {};
+    keep.forEach(g => { ids[g.id] = true; });
+    nba = { games: keep, players: ((prev && prev.players) || []).filter(p => (p.league || "NBA") === "NBA" && ids[p.gameId]), outs: [], lines: Object.assign({}, (prev && prev.lines) || {}, { error: e.message }), failed: true };
+  }
+  const games = nba.games, players = nba.players, outs = nba.outs, lines = nba.lines;
+  /* every entry names its league and event (game.html and the board read them; NFL entries carry more, see CLAUDE.md) */
+  players.forEach(p => { const g = games.find(x => x.id === p.gameId); p.league = "NBA"; p.sportKey = "basketball_nba"; p.eventId = p.gameId; p.commence = g ? g.start : null; });
+  const nbaGames = nba.failed ? games : games.map(g => ({ id: g.id, league: "NBA", sportKey: "basketball_nba", eventId: g.id, start: g.start, startLabel: startLabel(new Date(g.start)), home: g.home, away: g.away }));
+  const nflLines = nfl && nfl.summary && nfl.summary.lines, books = {};
+  [lines, nflLines].forEach(l => { ((l && l.players && l.books) || []).forEach(b => { books[b] = true; }); });
+  const windUsed = !!(nfl && (nfl.games || []).some(g => g.wind));
+  const data = { sample: false, source: "ESPN", attribution: "Stats, schedules and player photos from ESPN's public API." + (Object.keys(books).length ? " Lines from " + sgo.SOURCE + " (" + Object.keys(books).length + " books)." : "") + (windUsed ? " NFL wind forecasts from the National Weather Service." : ""), generatedAt: now.toISOString(), date: etDate(now),
+    lines: lines, /* the NBA's lines summary (kept as it was); each league's is under leagues */
+    leagues: { NBA: { date: etDate(now), games: nbaGames.length, players: players.length, lines: lines }, NFL: nfl ? nfl.summary : { skipped: "off" } },
+    games: nbaGames.concat(nfl ? nfl.games : []), players: players.concat(nfl ? nfl.players : []) };
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(path.join(dataDir, "props.js"), "/* Generated by scripts/update-props.js from ESPN public data. Do not edit. */\nwindow.PROPS_DATA = " + JSON.stringify(data) + ";\n");
   /* the model reads each injured scorer's points from data/faces.js: a night with no games keeps the last file rather
      than leave the NBA's injuries uncosted */
-  if (games.length || !fs.existsSync(path.join(dataDir, "faces.js"))) writeFaces(dataDir, facesFrom(players, outs, now));
+  if (nba.failed) console.log("Keeping data/faces.js (the NBA pass failed)");
+  else if (games.length || !fs.existsSync(path.join(dataDir, "faces.js"))) writeFaces(dataDir, facesFrom(players, outs, now));
   else console.log("No NBA games on the slate: keeping data/faces.js from " + (function () { try { const sb2 = { window: {} }; require("vm").runInNewContext(fs.readFileSync(path.join(dataDir, "faces.js"), "utf8"), sb2); return sb2.window.FACES_DATA.generatedAt; } catch (e) { return "an earlier run"; } })());
-  return { games: games.length, players: players.length, requests: src.count(), lines: lines, bytes: fs.statSync(path.join(dataDir, "props.js")).size };
+  return { games: games.length, players: players.length, requests: src.count(), lines: lines, bytes: fs.statSync(path.join(dataDir, "props.js")).size, nfl: nfl ? { games: nfl.games.length, players: nfl.players.length, requests: nfl.requests, summary: nfl.summary } : null };
+}
+/* the last props file, for the NFL carry-over */
+function readPrevious(dataDir) {
+  try { const sb = { window: {} }; require("vm").runInNewContext(fs.readFileSync(path.join(dataDir, "props.js"), "utf8"), sb); return sb.window.PROPS_DATA || null; } catch (e) { return null; }
+}
+/* the NFL pass. Lines read on an earlier run stay on a player whose game this run did not price (it has started, or
+   the call was skipped) as long as it is the same game; a failed pass keeps the last file's NFL games still ahead. */
+async function runNFL(opts, now, dataDir, prev) {
+  const prevNfl = ((prev && prev.players) || []).filter(p => p.league === "NFL");
+  try {
+    const r = await NFL.run({ now: now.toISOString(), out: dataDir, fixture: opts.fixture, nflSource: opts.nflSource, sgoSource: opts.nflSgoSource, cache: opts.cache, lines: linesFor(opts, "NFL"), writeCache: opts.writeCache, log: m => console.log(m) });
+    let carried = 0;
+    r.players.forEach(function (p) {
+      if (p.lines) return;
+      const old = prevNfl.find(x => x.id === p.id && x.gameId === p.gameId && x.lines);
+      if (old) { p.lines = old.lines; p.sgoPlayerId = old.sgoPlayerId; p.sgoEventId = old.sgoEventId; p.linesAt = old.linesAt || (prev.leagues && prev.leagues.NFL && prev.leagues.NFL.lines && prev.leagues.NFL.lines.at) || null; p.linesCarried = true; carried++; }
+    });
+    if (carried) r.summary.carried = carried;
+    return r;
+  } catch (e) {
+    console.log("NFL props pass failed (" + e.message + "): keeping the last file's NFL games still ahead");
+    const keep = ((prev && prev.games) || []).filter(g => g.league === "NFL" && Date.parse(g.start) + 4 * 36e5 > now.getTime());
+    const ids = {}; keep.forEach(g => { ids[g.id] = true; });
+    const summary = Object.assign({}, (prev && prev.leagues && prev.leagues.NFL) || {}, { error: e.message, carriedFrom: prev && prev.generatedAt });
+    return { games: keep, players: prevNfl.filter(p => ids[p.gameId]), summary: summary, requests: 0 };
+  }
 }
 /* data/faces.js: a slim roster for the faces strips on the pick cards and the breakdown (js/teams.js):
    every rotation player with season points and minutes, plus the players ESPN lists as Out */
@@ -244,10 +307,15 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--fixture") o.fixture = true; else if (argv[i] === "--out") o.out = argv[++i]; else if (argv[i] === "--now") o.now = argv[++i];
     else if (argv[i] === "--cache") o.cache = argv[++i]; else if (argv[i] === "--teams") o.teams = Number(argv[++i]); else if (argv[i] === "--no-lines") o.lines = false;
+    else if (argv[i] === "--lines") o.lines = String(argv[++i] || "").toUpperCase().split(",").map(x => x.trim()).filter(Boolean); else if (argv[i] === "--no-nfl") o.nfl = false;
   }
   return o;
 }
 if (require.main === module) {
-  run(parseArgs(process.argv.slice(2))).then(r => console.log("Props: " + r.games + " games, " + r.players + " players, " + r.requests + " ESPN requests, " + Math.round(r.bytes / 1024) + " KB; lines: " + (r.lines.players != null ? r.lines.players + " players priced in " + r.lines.games + " of " + r.lines.of + " games (" + r.lines.entities + " SportsGameOdds entities, month " + r.lines.used + "/" + r.lines.max + ")" : "skipped (" + r.lines.skipped + ")"))).catch(e => { console.error(e.message); process.exit(1); });
+  const linesText = l => !l ? "none" : l.players != null ? l.players + " players priced in " + l.games + " of " + l.of + " games (" + l.entities + " SportsGameOdds entities, month " + l.used + "/" + l.max + ")" : "skipped (" + l.skipped + (l.next ? ", next game day " + l.next : "") + ")";
+  run(parseArgs(process.argv.slice(2))).then(r => {
+    console.log("Props NBA: " + r.games + " games, " + r.players + " players, " + r.requests + " ESPN requests, " + Math.round(r.bytes / 1024) + " KB (both leagues); lines: " + linesText(r.lines));
+    console.log("Props NFL: " + (r.nfl ? r.nfl.games + " games" + (r.nfl.summary.date ? " on " + r.nfl.summary.date + (r.nfl.summary.today ? " (today)" : "") : "") + ", " + r.nfl.players + " players, " + r.nfl.requests + " ESPN requests; lines: " + linesText(r.nfl.summary.lines) + (r.nfl.summary.error ? "; FAILED: " + r.nfl.summary.error : "") : "skipped"));
+  }).catch(e => { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, fixtureSource, attachLines, facesFrom, writeFaces, parseGamelog, parseScoreboard, pointsAllowed, statBlock, signals, seasonLabel, ordinal, RULES };
+module.exports = { run, runNFL, readPrevious, linesFor, fixtureSource, attachLines, facesFrom, writeFaces, parseGamelog, parseScoreboard, pointsAllowed, statBlock, signals, seasonLabel, ordinal, RULES };

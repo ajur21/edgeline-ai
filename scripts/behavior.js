@@ -277,7 +277,11 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   const rows = pp.locator('#props-board .pb-row');
   check('props board: ranked rows with #1 on top, a face, the side and line, a probability bar, a hit pill and a grade', (await rows.count()) >= 4 && (await rows.first().locator('.rank-top').count()) === 1 && (await rows.first().locator('.pb-face, .pb-line, .prob-bar, .hit-pill, .pb-agree .badge').count()) === 5, 'rows ' + await rows.count());
   const probs = await rows.evaluateAll(els => els.map(e => Number(e.getAttribute('data-prob'))));
-  check('props board: our probability descending, no book-price tier or divider', probs.every((v, i) => i === 0 || v <= probs[i - 1] + 1e-9) && probs[0] > 0.5 && (await pp.locator('#props-board .grid-divider').count()) === 0, probs.join(','));
+  const days = await rows.evaluateAll(els => els.map(e => e.getAttribute('data-day')));
+  check('props board: game day first, then our probability descending within the day, no book-price tier or divider', probs.every((v, i) => i === 0 || days[i] > days[i - 1] || (days[i] === days[i - 1] && v <= probs[i - 1] + 1e-9)) && days.every((d, i) => i === 0 || d >= days[i - 1]) && probs[0] > 0.5 && (await pp.locator('#props-board .grid-divider').count()) === 0, probs.join(','));
+  check('props board: NBA tonight, then the NFL tomorrow under a day heading (the sample spans two days)', (await pp.locator('#props-board .day-divider').count()) === 2 && (await rows.first().getAttribute('data-league')) === 'NBA' && (await rows.evaluateAll(els => els.some(e => e.getAttribute('data-league') === 'NFL'))) && /NBA.*NFL/.test(await pp.textContent('#pb-summary')));
+  check('props board: the lowest grade reads Low, never Lean (the selections are leans; owner decision 2026-11-08)', (await pp.locator('#props-board .pb-agree .badge').evaluateAll(els => els.some(e => e.textContent === 'Low') && !els.some(e => e.textContent === 'Lean'))) && /graded Low or better/.test(await pp.textContent('#pb-summary')));
+  check('props: the NFL line under the filters says what is priced', /^NFL tomorrow: \d+ players priced in 1 of 1 games at 6 books/.test(await pp.textContent('#p-nfl-note')), await pp.textContent('#p-nfl-note'));
   check('props board: the how-to and the summary say the grade is game data, not other books', /not graded against other books/.test(await pp.textContent('#props-board-how')) && /[Gg]ame data only/.test(await pp.textContent('#pb-summary')) && /Never against other books/.test(await pp.textContent('#props-rule')));
   const r2 = rows.nth(1), pid2 = await r2.getAttribute('data-player'), stat2 = await r2.getAttribute('data-stat');
   await r2.locator('.pb-open').click(); await pp.waitForTimeout(300);
@@ -315,6 +319,18 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   check('props: switching the stat relabels the summary and the board', (await pp.textContent('#p-summary')).includes('Rebounds') && (await pp.textContent('#pb-summary')).includes('Rebounds') && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-stat') === 'reb'))));
   await pp.locator('#props-host .prop-card').first().locator('.prop-log summary').click();
   check('props: game log opens with rows', (await pp.locator('#props-host .prop-card').first().locator('.prop-log tbody tr').count()) >= 3);
+  /* the NFL: the sport filter, its stats, its cards */
+  await pp.selectOption('#p-stat', ''); await pp.selectOption('#p-sport', 'NFL'); await pp.waitForTimeout(200);
+  check('props NFL: the sport filter keeps NFL leans only and hides the NBA stats', (await rows.count()) >= 5 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-league') === 'NFL'))) && (await pp.locator('#p-stat optgroup[data-league="NBA"]').evaluate(g => g.hidden)) && (await pp.locator('#props-host .prop-card[data-sport="NBA"]').count()) === 0);
+  const nc = pp.locator('#props-host .prop-card').first();
+  check('props NFL: a card grades its position\'s stats with the projection named in the reasons', (await nc.locator('.stat-chips [data-stat]').count()) >= 2 && /REC|RUSH|PASS/.test(await nc.locator('.stat-chips').first().textContent()) && /Projects [\d.]+ \(/.test(await nc.locator('.why').textContent()) && (await nc.locator('.side-pill.lead').count()) === 1);
+  await nc.locator('.prop-log summary').click();
+  check('props NFL: the game log has the week and the position\'s columns', /Wk/.test(await nc.locator('.prop-log thead').textContent()) && /Tgt|Car|C\/Att/.test(await nc.locator('.prop-log thead').textContent()));
+  await pp.selectOption('#p-stat', 'passYds'); await pp.waitForTimeout(200);
+  check('props NFL: a passing-yards board lists quarterbacks only', (await rows.count()) === 2 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-stat') === 'passYds'))));
+  await pp.selectOption('#p-sport', 'NBA'); await pp.waitForTimeout(200);
+  check('props NFL: switching back to the NBA clears an NFL stat', (await pp.inputValue('#p-stat')) === '' && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-league') === 'NBA'))));
+  await pp.selectOption('#p-sport', '');
   check('props: no page errors', perr.length === 0, perr.join(' | '));
   await pp.context().close();
 

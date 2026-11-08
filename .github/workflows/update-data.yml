@@ -23,7 +23,7 @@ on:
         type: boolean
         default: false
       slot:
-        description: "The daily slot this run fills (the routines set it): morning skips props lines; a slot already covered by a full run is skipped. manual always runs"
+        description: "The daily slot this run fills (the routines set it): morning spends props lines on the NFL only; a slot already covered by a full run is skipped. manual always runs"
         type: choice
         options: [manual, morning, afternoon]
         default: manual
@@ -78,10 +78,12 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
-      # Lines ride along from SportsGameOdds (one entity per game, about 14 a night); only the afternoon run and
-      # manual runs spend them, the morning run passes --no-lines so the month stays inside the free tier.
-      - name: Refresh NBA props research data (ESPN, no key) and tonight's lines (SportsGameOdds)
-        run: node scripts/update-props.js ${{ (github.event.schedule == '0 14 * * *' || inputs.slot == 'morning') && '--no-lines' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
+      # Lines ride along from SportsGameOdds (one entity per game). The NBA's (about 14 a night) come on the afternoon
+      # run and manual runs. The NFL's come on the morning run too (--lines nfl): Sunday's 9:30 AM and 1 PM kickoffs are
+      # gone by the afternoon run. The NFL call is ESPN-gated inside the script: only on an NFL game day, only for the
+      # games still to start (about 22 entities an NFL week; see CLAUDE.md, Props research and lines).
+      - name: Refresh props research data, NFL then NBA (ESPN, no key), and the lines (SportsGameOdds)
+        run: node scripts/update-props.js ${{ (github.event.schedule == '0 14 * * *' || inputs.slot == 'morning') && '--lines nfl' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
       - name: Refresh team identity (logos and colours from ESPN, no key)

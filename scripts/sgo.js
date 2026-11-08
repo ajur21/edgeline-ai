@@ -212,7 +212,9 @@ async function close(src, e, movedToward) {
 }
 
 /* ---------- player props: every player's lines ride along in the game's event object ----------
-   oddID = <statID>-<playerID>-game-ou-<over|under>, e.g. points-LEBRON_JAMES_1_NBA-game-ou-over.
+   oddID = <statID>-<playerID>-game-ou-<over|under>, e.g. points-LEBRON_JAMES_1_NBA-game-ou-over, or for the NFL
+   passing_yards-PATRICK_MAHOMES_1_NFL-game-ou-over (NFL statIDs: passing_yards, passing_touchdowns, rushing_yards,
+   receiving_yards, receiving_receptions; the vendor's market list, checked 2026-11-08).
    The event's `players` map gives names; when it is missing the name is read back out of the id. */
 const PROP_STATS = { pts: "points", reb: "rebounds", ast: "assists", threes: "threePointersMade", pra: "points+rebounds+assists" };
 function normName(s) {
@@ -276,11 +278,12 @@ function propSnapshot(ev, playerID, statID) {
     under: { fair: fairOver == null ? null : round(1 - fairOver, 4), odds: u.best ? u.best.odds : null, book: u.best ? u.best.book : null, n: u.n, books: u.books }
   };
 }
-/* every tracked stat for one named player on one event; null when the player is not priced */
-function playerProps(ev, name, index) {
+/* every tracked stat for one named player on one event; null when the player is not priced.
+   stats: our key -> the vendor's statID (the NBA's PROP_STATS by default; scripts/nfl-props.js passes the NFL's) */
+function playerProps(ev, name, index, stats) {
   const id = findPlayer(index || playerIndex(ev), name); if (!id) return null;
-  const out = {}; let any = false;
-  Object.keys(PROP_STATS).forEach(k => { const s = propSnapshot(ev, id, PROP_STATS[k]); if (s && (s.over.n || s.under.n || s.over.fair != null)) { out[k] = s; any = true; } });
+  const map = stats || PROP_STATS, out = {}; let any = false;
+  Object.keys(map).forEach(k => { const s = propSnapshot(ev, id, map[k]); if (s && (s.over.n || s.under.n || s.over.fair != null)) { out[k] = s; any = true; } });
   return any ? { playerID: id, stats: out } : null;
 }
 /* tonight's events for a league, all odds included (one entity per game) */
