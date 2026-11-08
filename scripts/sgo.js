@@ -16,7 +16,7 @@ const fs = require("fs");
 const path = require("path");
 const API = "https://api.sportsgameodds.com/v2";
 const { clubCore } = require("./context.js");
-const LEAGUE = { americanfootball_nfl: "NFL", basketball_nba: "NBA", baseball_mlb: "MLB", icehockey_nhl: "NHL", soccer_usa_mls: "MLS" };
+const LEAGUE = { americanfootball_nfl: "NFL", americanfootball_ncaaf: "NCAAF", basketball_nba: "NBA", baseball_mlb: "MLB", icehockey_nhl: "NHL", soccer_usa_mls: "MLS" }; /* NCAAF (on the free tier): refreshed only by the surplus spender, update-data.js sgoSurplus */
 const ODD_IDS = ["points-home-game-ml-home", "points-away-game-ml-away", "points-home-game-sp-home", "points-away-game-sp-away", "points-all-game-ou-over", "points-all-game-ou-under"];
 /* soccer (MLS, since 2026-11-05; the free tier has no EPL): the 1X2 and the goals total settle on 90 minutes, which the
    API carries on the `reg` period, the 1X2 as a three-way moneyline (ml3way: home, away and the draw, whose entity is

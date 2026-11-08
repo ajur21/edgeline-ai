@@ -43,12 +43,13 @@ jobs:
       - name: Rebuild the pick feeds (calendar + RSS)
         run: node scripts/feeds.js
       # What a track run writes: data/picks.js (the card), data/picks-log.json (grades, closes, prices),
-      # data/performance.js (only when it graded something), picks.ics and feed.xml. `git status` also sees a file the
-      # run created, which `git diff` would miss.
+      # data/performance.js (only when it graded something or repaired a close), data/props.js (when the SportsGameOdds
+      # surplus re-read the lines of games starting within three hours), data/budget.json (the surplus spenders' state),
+      # picks.ics and feed.xml. `git status` also sees a file the run created, which `git diff` would miss.
       - name: Commit data if it changed
         id: commit
         run: |
-          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js picks.ics feed.xml)" ]; then
+          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js data/props.js data/budget.json picks.ics feed.xml)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No movement."; exit 0
           fi
           git config user.name "edgeline-data-bot"

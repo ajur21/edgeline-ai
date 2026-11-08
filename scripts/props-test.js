@@ -53,6 +53,20 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
   const sh = D.players.find(p => p.name === "Sam Hauser");
   check("lines: an odd with no bookmaker map does not break the run; that side simply has no books", sh && sh.lines.threes && sh.lines.threes.line === 1.5 && sh.lines.threes.under.n === 0 && sh.lines.threes.over.n === 8);
   check("sgo: names match through accents, suffixes and hyphens", sgo.normName("Luka Dončić") === "lukadoncic" && sgo.normName("Jaren Jackson Jr.") === "jarenjackson" && sgo.findPlayer(sgo.playerIndex({ odds: { "points-JAREN_JACKSON_1_NBA-game-ou-over": { statEntityID: "JAREN_JACKSON_1_NBA" } } }), "Jaren Jackson Jr.") === "JAREN_JACKSON_1_NBA" && sgo.findPlayer(sgo.playerIndex({ players: { X_1_NBA: { name: "Nikola Jokic" } } }), "Nikola Jokić") === "X_1_NBA");
+  /* the hourly refresh (2026-11-08, the SportsGameOdds surplus): only games starting within three hours are re-read, one
+     entity per game the call returns, and each refreshed player says when */
+  {
+    const fx = league => sgo.source({ fixture: true, fixtureName: league + "-props" });
+    const soonList = P.gamesWithin(tmp, new Date("2026-11-04T21:15:00Z"), 3);
+    const before = fs.readFileSync(path.join(tmp, "props.js"), "utf8"), costR = P.refreshCost(tmp, new Date("2026-11-04T21:15:00Z"), 3);
+    const rf = await P.refreshLines(tmp, new Date("2026-11-04T21:15:00Z"), { hours: 3, sourceFor: fx });
+    const sbR = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp, "props.js"), "utf8"), sbR);
+    const DR = sbR.window.PROPS_DATA, first = DR.games.filter(g => g.league === "NBA").sort((a, b) => Date.parse(a.start) - Date.parse(b.start))[0];
+    const refreshed = DR.players.filter(p => p.linesAt === "2026-11-04T21:15:00.000Z");
+    check("refresh: lines are re-read for the NBA game starting within three hours only (its players get linesAt), the call's entities counted and priced beforehand (the window returns both games), the file otherwise as written", soonList.length === 1 && costR === 2 && rf.games === 1 && rf.players >= 1 && rf.entities === 2 && refreshed.length === rf.players && refreshed.every(p => p.gameId === first.id) && DR.linesRefreshedAt === "2026-11-04T21:15:00.000Z" && DR.players.length === DA.players.length && DR.generatedAt === DA.generatedAt, JSON.stringify(rf));
+    const none = await P.refreshLines(tmp, new Date("2026-11-04T12:00:00Z"), { hours: 3, sourceFor: fx });
+    check("refresh: with no game inside three hours nothing is asked and the file is left alone", none.games === 0 && none.entities === 0 && P.gamesWithin(tmp, new Date("2026-11-04T12:00:00Z"), 3).length === 0 && before.length > 0);
+  }
   const tmp2 = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-props-"));
   const r2 = await P.run({ fixture: true, out: tmp2, now: "2026-11-04T18:00:00Z", lines: false });
   check("run: --no-lines skips the odds call and writes no lines (either league)", r2.lines.skipped === "off" && r2.nfl.summary.lines.skipped === "off" && (() => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmp2, "props.js"), "utf8"), sb); return !sb.window.PROPS_DATA.players.some(p => p.lines); })());

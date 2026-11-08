@@ -701,11 +701,11 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     return down.failed === 3 && down.games === 0 && !P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 5 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: down, weekday: 4 }).fetch && P.fetchDecision(nbaC, { slot: "afternoon", espn: down, weekday: 5 }).fetch
       && half.failed === 2 && half.games === 1 && P.fetchDecision(mlsC, { slot: "afternoon", espn: half, weekday: 2 }).fetch && P.fetchDecision(nflC, { slot: "afternoon", espn: { games: 0, failed: 1 }, weekday: 4, fixture: false }).fetch;
   })());
-  check("budget: the morning run gives way first when credits run short: it keeps 10 for every afternoon run left before the reset on the 1st (plus the 25 floor); afternoon runs never yield", (() => {
+  check("budget: the morning run gives way first when credits run short: it keeps 10 for every afternoon run left before the reset on the 1st (plus the floor, 10 since 2026-11-08); afternoon runs never yield", (() => {
     const left = P.afternoonsLeft(new Date("2026-11-05T17:00:00Z")), leftAfter = P.afternoonsLeft(new Date("2026-11-05T21:00:00Z")), lastDay = P.afternoonsLeft(new Date("2026-11-30T21:00:00Z"));
     const g = { games: 4, failed: 0 };
-    const nhlC = SP("icehockey_nhl"), tight = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 280, afternoonsLeft: 26 }), ok = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 288, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
-    return left === 26 && leftAfter === 25 && lastDay === 0 && P.RULES.afternoonReserve === 10 && !tight.fetch && /morning run gives way: 280 credits left, 285 kept for the 26 afternoon runs/.test(tight.why) && ok.fetch && pm.fetch;
+    const nhlC = SP("icehockey_nhl"), tight = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 272, afternoonsLeft: 26 }), ok = P.fetchDecision(nhlC, { slot: "morning", espn: g, remaining: 273, afternoonsLeft: 26 }), pm = P.fetchDecision(nbaC, { slot: "afternoon", espn: g, remaining: 40, afternoonsLeft: 26 });
+    return left === 26 && leftAfter === 25 && lastDay === 0 && P.RULES.afternoonReserve === 10 && P.RULES.minRequestsLeft === 10 && !tight.fetch && /morning run gives way: 272 credits left, 270 kept for the 26 afternoon runs/.test(tight.why) && ok.fetch && pm.fetch;
   })());
   check("budget: the run's spend is one line for the Actions log: what was fetched, what it cost, what was skipped and why", P.planLine({ slot: "morning", remaining: 361, used: 139, plan: [{ sport: "basketball_nba", fetch: true, cost: 3, events: 9 }, { sport: "americanfootball_nfl", fetch: false, why: "fetched on the afternoon run only" }] }) === "Odds API (morning run): NBA 3 (9 events) | skipped: NFL (fetched on the afternoon run only) | credits left 361, used 139");
 
@@ -838,8 +838,8 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   })());
   check("slots: the morning guard still protects the afternoon runs: a Sunday morning NFL fetch gives way when the month's credits run short, the afternoon run never does", (() => {
     const g = { games: 13, failed: 0, early: 11 };
-    const tight = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 100, afternoonsLeft: 8 }), ok = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 120, afternoonsLeft: 8 }), pm = P.fetchDecision(nflC, { slot: "afternoon", espn: g, weekday: 6, remaining: 40, afternoonsLeft: 8 });
-    return !tight.fetch && /morning run gives way: 100 credits left, 105 kept/.test(tight.why) && ok.fetch && pm.fetch;
+    const tight = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 90, afternoonsLeft: 8 }), ok = P.fetchDecision(nflC, { slot: "morning", espn: g, weekday: 0, remaining: 93, afternoonsLeft: 8 }), pm = P.fetchDecision(nflC, { slot: "afternoon", espn: g, weekday: 6, remaining: 40, afternoonsLeft: 8 });
+    return !tight.fetch && /morning run gives way: 90 credits left, 90 kept/.test(tight.why) && ok.fetch && pm.fetch;
   })());
   check("select: a Sunday morning run never posts a second pick on a game Saturday's run posted (one a game, any market), while a new game can still get one", (() => {
     const satLog = [{ id: "sat-nfl", eventId: "nfl-g1", sport: "NFL", date: "2026-11-08", status: "pending", past: 0.02 }];
@@ -988,6 +988,64 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const pfR = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpR, "performance.js"), "utf8"), pfR);
     check("repair (full run): the bad close becomes DraftKings' close, performance.js's CLV is rewritten from it, the loss stays a loss", rr.closesRepaired === 1 && rl.close.source === "DraftKings close (ESPN)" && near(rl.clv, mlClv, 0.001) && rl.result === "Loss" && rl.units === -1 && near(pfR.window.PERF_DATA.clv.avg, mlClv * 100, 0.02) && pfR.window.PERF_DATA.clv.sgoCloses === 0, JSON.stringify([rr.closesRepaired, rl.close, pfR.window.PERF_DATA.clv]));
     fs.rmSync(tmpR, { recursive: true, force: true });
+  }
+
+  /* ---------- the surplus spenders (2026-11-08, owner: "stay with the budget and max out the credits from both APIs"):
+     spare credits on optional fetches in a fixed order, paced, never past the floor ---------- */
+  {
+    const SU = require("./surplus.js"), SPk = k => P.SPORTS.find(s => s.key === k);
+    const nov8 = Date.parse("2026-11-08T20:30:00Z");
+    check("surplus arithmetic: days to the reset count today (Nov 8 -> Dec 1: 23; the 30th: 1), spare = credits − the protected need − floor 10 − cushion 4, the day's pace 2 × spare ÷ days left", SU.daysLeft(nov8, SU.oddsResetMs(nov8)) === 23 && SU.daysLeft(Date.parse("2026-11-30T21:00:00Z"), SU.oddsResetMs(nov8)) === 1 && SU.oddsSpare(303, 279) === 10 && SU.oddsSpare(null, 279) === null && SU.dayCap(41, 23) === 3 && SU.dayCap(-5, 10) === 0 && SU.ODDS.floor === P.RULES.minRequestsLeft && P.RULES.minRequestsLeft === 10);
+    const cands = [{ key: "ncaaf", cost: 3, label: "NCAAF Thursday" }, { key: "epl", cost: 2, label: "EPL" }, { key: "mls", cost: 2, label: "MLS" }, { key: "sat", cost: 3, label: "NCAAF Saturday" }];
+    const c1 = SU.choose(cands, 6, 5), c2 = SU.choose(cands, 41, 3), c3 = SU.choose(cands, null, 9), c4 = SU.choose(cands, -3, 9);
+    check("surplus order: optional fetches are taken in the owner's order while the spare and the day's pace cover each; one that does not fit is passed over, a cheaper one after it may still fit; never with the credits unknown or the spare gone", c1.take.map(c => c.key).join() === "ncaaf,epl" && /spare 1 < 2/.test(c1.skip[0].why) && c2.take.map(c => c.key).join() === "ncaaf" && /today's pace allows 0/.test(c2.skip[0].why) && c3.take.length === 0 && c3.skip[0].why === "spare unknown" && c4.take.length === 0, JSON.stringify([c1, c2]));
+    const fri = [20, 30], at = s => Date.parse(s);
+    check("surplus: Friday's afternoon run reaches Friday night and Saturday (to 3:30 AM Sunday ET), not a Thursday night, a Friday 1 PM kickoff or a Tuesday MACtion game", SU.fridayCovers(at("2026-11-14T00:00:00Z"), fri) && SU.fridayCovers(at("2026-11-14T17:00:00Z"), fri) && SU.fridayCovers(at("2026-11-15T04:30:00Z"), fri) && !SU.fridayCovers(at("2026-11-13T00:30:00Z"), fri) && !SU.fridayCovers(at("2026-11-13T18:00:00Z"), fri) && !SU.fridayCovers(at("2026-11-11T00:00:00Z"), fri));
+    /* the protected need, counted the way the budget simulation counts it: a stub ESPN with an evening game every day in every sport */
+    const evening = { scoreboard: async (sport, d) => ({ events: [{ date: d.slice(0, 4) + "-" + d.slice(4, 6) + "-" + d.slice(6, 8) + "T23:30:00Z", competitions: [{ status: { type: { name: "STATUS_SCHEDULED" } } }] }] }) };
+    const noMlb = new Set(P.SPORTS.filter(s => s.key !== "baseball_mlb").map(s => s.key));
+    const need = await P.protectedOddsNeed(new Date("2026-11-29T21:00:00Z"), evening, noMlb);
+    check("surplus: the protected need counts every later run to the reset through the run's own gates (Sunday evening Nov 29: Monday's morning NHL 3, Monday's afternoon NBA, NFL, NHL 3 each and the Premier League and MLS 2 each: 16; college football waits for Friday)", need === 16, "need " + need);
+    /* this run's candidates: a Saturday morning (Premier League at 10 AM, MLS at 3:30 PM, college football at noon), a Thursday afternoon (a college Thursday-night game) */
+    const day = (d, h) => d.slice(0, 4) + "-" + d.slice(4, 6) + "-" + d.slice(6, 8) + "T" + h + ":00Z";
+    const sched = { americanfootball_ncaaf: "17:00", soccer_epl: "15:00", soccer_usa_mls: "19:30" }; /* college football on the Saturday only */
+    const satSrc = { scoreboard: async (sport, d) => sched[sport] && (sport !== "americanfootball_ncaaf" || d === "20261114") ? { events: [{ date: day(d, sched[sport]), competitions: [{ status: { type: { name: "STATUS_SCHEDULED" } } }] }] } : { events: [] } };
+    const tmpS = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-surplus-"));
+    const sat = await P.oddsSurplus({ now: new Date("2026-11-14T14:00:00Z"), slot: "morning", usage: { remaining: 200 }, active: noMlb, fetched: new Set(["icehockey_nhl"]), src: satSrc, dataDir: tmpS });
+    check("surplus (Saturday morning): the Premier League, then MLS, then college football's noon kickoffs, in that order, each with why; taken within the spare and the day's pace", sat.candidates.map(c => c.key).join() === "soccer_epl,soccer_usa_mls,americanfootball_ncaaf" && /^Premier League Saturday morning/.test(sat.candidates[0].label) && /^NCAAF Saturday morning/.test(sat.candidates[2].label) && sat.spare != null && sat.take.length >= 1 && sat.take[0].key === "soccer_epl" && sat.take.reduce((n, c) => n + c.cost, 0) <= sat.cap && /La Liga not offered/.test(sat.note), JSON.stringify({ c: sat.candidates.map(c => c.label), spare: sat.spare, need: sat.need, cap: sat.cap, take: sat.take.map(c => c.key) }));
+    const thuSrc = { scoreboard: async (sport, d) => sport === "americanfootball_ncaaf" && d === "20261112" ? { events: [{ date: "2026-11-13T00:30:00Z", competitions: [{ status: { type: { name: "STATUS_SCHEDULED" } } }] }] } : { events: [] } };
+    const thu = await P.oddsSurplus({ now: new Date("2026-11-12T20:30:00Z"), slot: "afternoon", usage: { remaining: 200 }, active: noMlb, fetched: new Set(), src: thuSrc, dataDir: tmpS });
+    const thuLine = P.planLine({ slot: "afternoon", remaining: 197, plan: [{ sport: "americanfootball_ncaaf", fetch: false, why: "fetched on Friday runs only" }, { sport: "americanfootball_ncaaf", fetch: true, optional: true, cost: 3, events: 1 }], surplus: { spare: thu.spare, need: thu.need, cap: thu.cap, room: thu.room, done: ["spent 3 on " + thu.take[0].label], skipped: [] } });
+    check("surplus (Thursday afternoon): a college Thursday-night game Friday's run does not reach is a candidate, and the plan line says what was spare and what was spent", thu.candidates.length === 1 && /^NCAAF Thursday \(1 game Friday's run does not reach\)$/.test(thu.candidates[0].label) && thu.take.length === 1 && /\| surplus: spare \d+ \(protected runs need \d+ to the reset\), today's pace \d+ of \d+, spent 3 on NCAAF Thursday/.test(thuLine), thuLine);
+    /* the pace: a day that has spent its share spends nothing more */
+    const st = SU.readState(tmpS), cy = SU.cycleOf(st, "oddsApi", "2026-11"); SU.addSpent(cy, Date.parse("2026-11-14T14:00:00Z"), 999); SU.writeState(tmpS, st);
+    const paced = await P.oddsSurplus({ now: new Date("2026-11-14T14:00:00Z"), slot: "morning", usage: { remaining: 200 }, active: noMlb, fetched: new Set(), src: satSrc, dataDir: tmpS });
+    const off = await P.oddsSurplus({ now: new Date("2026-11-14T14:00:00Z"), slot: "morning", usage: { remaining: 40 }, active: noMlb, fetched: new Set(), src: satSrc, dataDir: fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-surplus2-")) });
+    check("surplus pace: once the day has spent about 2 × spare ÷ days left nothing more is fetched that day; with too few credits for the protected runs the spare is negative and nothing optional is fetched", paced.take.length === 0 && paced.skip.every(c => /today's pace/.test(c.why)) && off.spare < 0 && off.take.length === 0, JSON.stringify([paced.room, off.spare]));
+    fs.rmSync(tmpS, { recursive: true, force: true });
+    /* end to end: Saturday Nov 14's morning run on the college fixtures, credits as if the API had 600 left: college football's noon kickoffs are fetched on the surplus */
+    const tmpE = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-surplus-run-"));
+    const re = await P.run({ fixture: true, oddsFixture: "odds-ncaaf.json", out: tmpE, now: "2026-11-14T14:00:00Z", slot: "morning", remaining: 600 });
+    const opt = re.plan.find(p => p.optional), stE = JSON.parse(fs.readFileSync(path.join(tmpE, "budget.json"), "utf8"));
+    const mkE = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpE, "market.js"), "utf8"), mkE);
+    const cfRows = mkE.window.MARKET_DATA.rows.filter(r => r.sportKey === "americanfootball_ncaaf"), keys = cfRows.map(r => r.eventId + "|" + r.marketKey + "|" + r.outcome.name + "|" + r.outcome.point);
+    check("surplus (run): Saturday morning fetches college football on the surplus (the protected rule still says Friday only), prices it fresh with no carried duplicate, writes data/budget.json and says so in the plan line", opt && opt.sport === "americanfootball_ncaaf" && /^surplus: NCAAF Saturday morning/.test(opt.why) && re.surplus.spent === 3 && re.surplus.done[0] === "spent 3 on " + opt.why.replace("surplus: ", "") && stE.oddsApi.days["2026-11-14"] === 3 && cfRows.length > 0 && cfRows.every(r => !r.pricedAt) && new Set(keys).size === keys.length && /\| surplus: spare \d+.*spent 3 on NCAAF Saturday morning/.test(P.planLine(re)), P.planLine(re));
+    fs.rmSync(tmpE, { recursive: true, force: true });
+    /* SportsGameOdds: the cycle's protected rate from the usage count between runs, the reserve, the spare */
+    const smp = [{ at: "2026-11-01T15:00:00Z", used: 300, surplus: 50 }];
+    check("surplus (SportsGameOdds): the protected rate is the usage count's daily rise net of the surplus spent (a week: (600 − 300 − 70) ÷ 7 = 32.9 a day; none yet: 36), the reserve 150 and 50 in the last five days, spare = left − rate × days − reserve", near(SU.sgoDailyRate(smp, 600, 120, Date.parse("2026-11-08T15:00:00Z")), 230 / 7, 1e-9) && SU.sgoDailyRate([], 600, 0, Date.parse("2026-11-08T15:00:00Z")) === 36 && SU.sgoReserve(23) === 150 && SU.sgoReserve(5) === 50 && SU.sgoSpare({ used: 900, max: 2500 }, 30, 23) === 760 && SU.sgoSpare({ used: 2400, max: 2500 }, 30, 3) === -40 && SU.sgoResetMs(Date.parse("2026-11-08T15:00:00Z"), { resetsAt: "2026-11-20T00:00:00Z" }) === Date.parse("2026-11-20T00:00:00Z"));
+    /* a track run 10 hours before Bucks @ Celtics (SportsGameOdds fixture sgo-nba-fix-1): outside the 8-hour window, inside the surplus's 12 */
+    const sgoPick = (id, extra) => Object.assign(pending(id, { date: "2026-11-05", commence: "2026-11-06T00:00:00Z", eventId: "nba-fix-1", market: "Moneyline", marketKey: "h2h", outcome: { name: "Boston Celtics", point: null }, pick: "Boston Celtics ML", odds: -145, book: "Caesars", prices: { Caesars: -145 }, modelProb: 0.7, basis: "game", loggedAt: "2026-11-05T10:00:00Z" }), extra || {});
+    const tmpG = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-sgo-surplus-"));
+    fs.writeFileSync(path.join(tmpG, "picks-log.json"), JSON.stringify([sgoPick("wide-1")]));
+    const rg = await P.run({ fixture: true, out: tmpG, now: "2026-11-05T14:00:00Z", track: true });
+    const wl = JSON.parse(fs.readFileSync(path.join(tmpG, "picks-log.json"), "utf8"))[0], sgS = JSON.parse(fs.readFileSync(path.join(tmpG, "budget.json"), "utf8")).sgo;
+    check("surplus (SportsGameOdds, track run): a board game 10 hours out, past the 8-hour window, is refreshed on the surplus (the 12-hour window): its pre-game point recorded for the close, the spend logged in the track line and data/budget.json", rg.sgoSurplus && rg.sgoSurplus.spent >= 1 && /on the 12-hour window \(1 board pick\)/.test(rg.sgoSurplus.done.join()) && (wl.sgoHistory || []).length === 1 && Date.parse(wl.sgoHistory[0].at) < Date.parse(wl.commence) && sgS.days["2026-11-05"] === rg.sgoSurplus.spent && sgS.samples.length === 1 && /SportsGameOdds surplus: spare \d+ \(protected 36 a day, 26 days left, reserve 150\)/.test(P.sgoSurplusText(rg.sgoSurplus)), JSON.stringify(rg.sgoSurplus));
+    const sgP = JSON.parse(fs.readFileSync(path.join(tmpG, "budget.json"), "utf8")); sgP.sgo.days["2026-11-05"] = 5000; fs.writeFileSync(path.join(tmpG, "budget.json"), JSON.stringify(sgP));
+    fs.writeFileSync(path.join(tmpG, "picks-log.json"), JSON.stringify([sgoPick("wide-2")]));
+    const rg2 = await P.run({ fixture: true, out: tmpG, now: "2026-11-05T14:30:00Z", track: true });
+    check("surplus (SportsGameOdds, track run): a day that has spent its pace spends nothing more (the 12-hour window waits)", rg2.sgoSurplus.spent === 0 && /today's pace/.test(rg2.sgoSurplus.skipped.join()) && !JSON.parse(fs.readFileSync(path.join(tmpG, "picks-log.json"), "utf8"))[0].sgoHistory, JSON.stringify(rg2.sgoSurplus));
+    fs.rmSync(tmpG, { recursive: true, force: true });
   }
 
   /* ---------- every pipeline request names us honestly (2026-11-08): BOT_UA or Node's own client name, never a browser's ---------- */
