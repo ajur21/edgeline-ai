@@ -5,12 +5,24 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
+const vm = require('vm');
+const { pathToFileURL } = require('url');
+/* the game page shot: the first lean's game on the board, else the first game priced */
+function gameId(root) {
+  const ctx = { window: {} };
+  ['data/market.js', 'data/picks.js'].forEach(f => { try { vm.runInNewContext(fs.readFileSync(path.join(root, f), 'utf8'), ctx); } catch (e) { /* no file, no game */ } });
+  const rows = (ctx.window.MARKET_DATA || {}).rows || [], picks = (ctx.window.PICKS_DATA || {}).picks || [];
+  const lean = rows.find(r => r.pickId && picks.some(p => p.id === r.pickId));
+  return lean ? lean.eventId : rows[0] ? rows[0].eventId : 'none';
+}
 (async () => {
   const root = path.resolve(__dirname, '..');
   const out = path.join(root, 'screenshots');
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
-  const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'];
+  const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'].map(p => [p, p.replace('.html', '')])
+    /* browse by sport and game (2026-11-08): two sport tabs, a game page and the unknown-game page */
+    .concat([['picks.html?sport=NHL', 'picks-nhl'], ['picks.html?sport=NFL', 'picks-nfl'], ['game.html?id=' + encodeURIComponent(gameId(root)), 'game'], ['game.html?id=unknown', 'game-missing']]);
   const problems = [];
   for (const scheme of ['light', 'dark']) {
     for (const [name, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', { width: 400, height: 860 }]]) {
@@ -23,14 +35,15 @@ const fs = require('fs');
       const page = await ctx.newPage();
       page.on('console', m => { if (m.type() === 'error') problems.push(`${scheme}/${name}: ${m.text()}`); });
       page.on('pageerror', e => problems.push(`${scheme}/${name}: PAGEERROR ${e.message}`));
-      for (const p of pages) {
-        await page.goto('file://' + path.join(root, p), { waitUntil: 'load' });
+      for (const [p, shot] of pages) {
+        const [file, query] = p.split('?');
+        await page.goto(pathToFileURL(path.join(root, file)).href + (query ? '?' + query : ''), { waitUntil: 'load' });
         /* scroll through so scroll-revealed sections are in their final state */
         await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo({ top: y, behavior: 'instant' }); await new Promise(r => setTimeout(r, 60)); } window.scrollTo({ top: 0, behavior: 'instant' }); });
         await page.waitForTimeout(900);
         const sw = await page.evaluate(() => document.documentElement.scrollWidth);
         if (sw > vp.width) problems.push(`${scheme}/${name}/${p}: horizontal overflow scrollWidth=${sw}`);
-        await page.screenshot({ path: path.join(out, `${p.replace('.html', '')}-${name}-${scheme}.png`), fullPage: true });
+        await page.screenshot({ path: path.join(out, `${shot}-${name}-${scheme}.png`), fullPage: true });
       }
       await ctx.close();
     }
