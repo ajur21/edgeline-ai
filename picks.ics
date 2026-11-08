@@ -368,7 +368,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-08@edgeline
-DTSTAMP:20261108T164338Z
+DTSTAMP:20261108T192648Z
 DTSTART:20261108T163000Z
 DTEND:20261109T041000Z
 SUMMARY:Parlay lean of the day: 3 legs +617 at Bovada
@@ -379,7 +379,7 @@ DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
  y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261108T164338Z
+LAST-MODIFIED:20261108T192648Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -390,29 +390,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b0a4b5448a-totals-Under@edgeline
-DTSTAMP:20261108T164338Z
+DTSTAMP:20261108T192648Z
 DTSTART:20261108T163000Z
 DTEND:20261108T193000Z
-SUMMARY:Under 3 goals -115 at Bovada · in play
+SUMMARY:Under 3 goals -115 at Bovada · Lost -1.00u
 DESCRIPTION:Soccer · Manchester United vs. Aston Villa · Sun Nov 8\, 11:3
- 0 AM ET\nTotal: Under 3 goals at -115 (Bovada). Our probability 62.5% from
-  game data\, the price implies 53.5%\, edge +9.0 pts\, EV +16.8% per unit.
-  Confidence: Medium.\nOur probability at 3 is 62.5%\, from the game data: 
- this season's results and margins\, recent form\, rest\, the injury report
-  and home edge (projected total 2.7). Bovada offers -115\, which implies o
- nly 53.5%. Its bar is 5.7 points: the model's own margin of error on this 
- side\, with 9 games behind the thinner team (±0.18 goals on the total). I
- t clears it by 3.3. Not graded against other books' prices\; for reference
-  the market makes it 49.0%.\nWhat supports it:\n- Combined scoring 2.8 a g
- ame in Manchester United's games\, 2.6 in Aston Villa's (league average 2.
- 7).\n- Projected total 2.7 against 3.\nVerdict: The game data lines up beh
- ind this side at this price.\nPrices: Bovada -115\, BetOnline.ag -116.\nFu
- ll breakdown: https://ajur21.github.io/edgeline-ai/picks.html#b0a4b5448a-t
- otals-Under
+ 0 AM ET\nTotal: Under 3 goals at -115 (Bovada). Lost -1.00u.\nFinal: 4-4\n
+ The line moved away the lean before close.\nRecord and every graded lean: 
+ https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Old Trafford\, Manchester
-URL:https://ajur21.github.io/edgeline-ai/picks.html#b0a4b5448a-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261108T164338Z
+LAST-MODIFIED:20261108T192648Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -421,7 +410,7 @@ UID:7fda7dbcff-h2h-Boston-Bruins@edgeline
 DTSTAMP:20261108T164338Z
 DTSTART:20261108T181000Z
 DTEND:20261108T211000Z
-SUMMARY:Lean of the day: Boston Bruins ML -130 at BetOnline.ag · Medium
+SUMMARY:Boston Bruins ML -130 at BetOnline.ag · in play
 DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM 
  ET\nMoneyline: Boston Bruins ML at -130 (BetOnline.ag). Our probability 66
  .7% from game data\, the price implies 56.5%\, edge +10.2 pts\, EV +18.0% 
@@ -452,16 +441,10 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Boston Bruins ML -130 at BetOnline.ag · Mediu
- m
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261108T164338Z
+DTSTAMP:20261108T192648Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
 SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Low
@@ -483,14 +466,14 @@ DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
  rong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.9).\n- Min
  nesota Timberwolves have Joan Beringer (F) listed day-to-day or questionab
  le.\nVerdict: The game data lines up behind this side at this price.\nPric
- es: BetRivers -500\, BetOnline.ag -580\, PointsBet -625\, DraftKings -650\
- , BetMGM -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeli
- ne-ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
+ es: BetRivers -500\, BetOnline.ag -580\, Bovada -625\, PointsBet -625\, Fa
+ nDuel -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-
+ ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
 LOCATION:Target Center\, Minneapolis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesot
  a-Timberwolves
 CATEGORIES:NBA
-LAST-MODIFIED:20261108T164338Z
+LAST-MODIFIED:20261108T192648Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -501,7 +484,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:26c46faca6-totals-Over@edgeline
-DTSTAMP:20261108T164338Z
+DTSTAMP:20261108T192648Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
 SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
@@ -515,17 +498,18 @@ DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
  f error here is smaller). It clears it by 0.2. Not graded against other bo
  oks' prices\; for reference the market makes it 51.7%.\nWhat supports it:\
  n- Combined scoring 6 a game in Calgary Flames's games\, 5.6 in Philadelph
- ia Flyers's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWha
- t could go wrong:\n- Scorers out: Jonathan Huberdeau (LW)\, hip\; Connor Z
- ary (C)\, knee\; Samuel Honzek (LW)\, lower body and 2 more. Fewer healthy
-  scorers leans under.\nVerdict: The game data lines up behind this side at
-  this price.\nPrices: BetOnline.ag -120\, BetMGM -120\, theScore Bet -120\
- , ESPN BET -120\, DraftKings -122 and 6 more.\nFull breakdown: https://aju
- r21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
+ ia Flyers's (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A
+  better price is available now: -117 at Bovada.\nWhat could go wrong:\n- S
+ corers out: Jonathan Huberdeau (LW)\, hip\; Connor Zary (C)\, knee\; Samue
+ l Honzek (LW)\, lower body and 2 more. Fewer healthy scorers leans under.\
+ nVerdict: The game data lines up behind this side at this price.\nPrices: 
+ Bovada -117\, BetOnline.ag -120\, BetMGM -120\, theScore Bet -120\, ESPN B
+ ET -120 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
+ picks.html#26c46faca6-totals-Over
 LOCATION:Scotiabank Saddledome\, Calgary
 URL:https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T164338Z
+LAST-MODIFIED:20261108T192648Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -536,7 +520,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:41a3f4e922-totals-Under@edgeline
-DTSTAMP:20261108T164338Z
+DTSTAMP:20261108T192648Z
 DTSTART:20261109T011000Z
 DTEND:20261109T041000Z
 SUMMARY:Under 6.5 +122 at FanDuel · Low
@@ -562,7 +546,7 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T164338Z
+LAST-MODIFIED:20261108T192648Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

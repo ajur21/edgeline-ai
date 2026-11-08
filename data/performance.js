@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 10,
-    "losses": 10,
+    "losses": 11,
     "pushes": 0
   },
-  "units": -2.05,
-  "roi": -10.2,
-  "avgEdge": 11.1,
-  "graded": 20,
+  "units": -3.05,
+  "roi": -14.5,
+  "avgEdge": 11,
+  "graded": 21,
   "daily": [
     {
       "date": "2026-11-05",
@@ -28,7 +28,7 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-08",
-      "units": -2.05
+      "units": -3.05
     }
   ],
   "bySport": [
@@ -44,11 +44,26 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": -0.33,
-      "record": "4-4"
+      "units": -1.33,
+      "record": "4-5"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-08",
+      "sport": "Soccer",
+      "event": "Manchester United vs. Aston Villa",
+      "pick": "Under 3 goals",
+      "odds": -115,
+      "result": "Loss",
+      "units": -1,
+      "clv": null,
+      "closeOdds": -135,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "basis": "game"
+    },
     {
       "date": "2026-11-08",
       "sport": "Soccer",
@@ -213,21 +228,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-07",
-      "sport": "Soccer",
-      "event": "Inter Miami CF vs. Charlotte FC",
-      "pick": "Under 4 goals",
-      "odds": -112,
-      "result": "Loss",
-      "units": -1,
-      "clv": null,
-      "closeOdds": -155,
-      "closeLine": 4.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "away",
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -254,9 +254,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-08",
-      "units": -1.11,
+      "units": -2.11,
       "wins": 1,
-      "losses": 2,
+      "losses": 3,
       "pushes": 0
     }
   ],
@@ -279,21 +279,21 @@ window.PERF_DATA = {
     "avg": -1.74,
     "beat": 2,
     "beatPct": 13.3,
-    "graded": 20,
+    "graded": 21,
     "lineToward": 2,
-    "lineAway": 3,
-    "espnCloses": 20,
+    "lineAway": 4,
+    "espnCloses": 21,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 10,
-      "losses": 10,
+      "losses": 11,
       "pushes": 0,
-      "units": -2.05,
-      "n": 20,
-      "roi": -10.2,
-      "pending": 5,
+      "units": -3.05,
+      "n": 21,
+      "roi": -14.5,
+      "pending": 4,
       "since": "2026-11-05"
     },
     "price": {
