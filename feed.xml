@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title>EdgeLine AI picks</title>
+<title>EdgeLine AI leans</title>
 <link>https://ajur21.github.io/edgeline-ai/</link>
-<description>Sports betting picks graded on game data: every pick with our probability and its edge over the price, every grade, every slate. Informational only; 21+.</description>
+<description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Sun, 08 Nov 2026 14:06:54 GMT</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 16:43:38 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>Sun Nov 8 slate: 5 picks tonight from 161 priced sides</title>
+<title>Graded: Ipswich Town ML +308 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">79ed3df594-h2h-Ipswich-Town#graded</guid>
+<pubDate>Sun, 08 Nov 2026 16:43:38 GMT</pubDate>
+<category>Soccer</category>
+<description>&lt;p&gt;Soccer · Ipswich Town vs. Bournemouth · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Moneyline: Ipswich Town ML at +308 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-1&lt;/p&gt;&lt;p&gt;Closing line value: +2.1 pts (closed +260, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 3 goals -105 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">0cfbab01e1-totals-Under#graded</guid>
+<pubDate>Sun, 08 Nov 2026 16:43:38 GMT</pubDate>
+<category>Soccer</category>
+<description>&lt;p&gt;Soccer · Crystal Palace vs. Liverpool · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at -105 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-1&lt;/p&gt;&lt;p&gt;The line moved away the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 3 goals -112 · Won +0.89u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">8e3ca98e29-totals-Under#graded</guid>
+<pubDate>Sun, 08 Nov 2026 16:43:38 GMT</pubDate>
+<category>Soccer</category>
+<description>&lt;p&gt;Soccer · Brighton and Hove Albion vs. Brentford · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at -112 (Bovada). Won +0.89u.&lt;/p&gt;&lt;p&gt;Final: 0-2&lt;/p&gt;&lt;p&gt;The line moved toward the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Sun Nov 8 slate: 5 leans tonight from 161 priced sides</title>
 <link>https://ajur21.github.io/edgeline-ai/digest.html</link>
 <guid isPermaLink="false">slate-2026-11-08T14:06:54.761Z</guid>
 <pubDate>Sun, 08 Nov 2026 14:06:54 GMT</pubDate>
 <category>Slate</category>
-<description>&lt;p&gt;Picks are the sides where our probability from the game data beats the best price by its own bar (3 points or more: the model's margin of error on that side), one pick a game at most; the price is only the number to beat. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Boston Bruins -1.5 +190 at FanDuel (+9.4 pts against a bar of +7.0 pts) · Florida Panthers @ Boston Bruins&lt;/li&gt;&lt;li&gt;NFL: Miami Dolphins ML +265 at Bovada (+12.4 pts against a bar of +13.7 pts) · Detroit Lions @ Miami Dolphins&lt;/li&gt;&lt;li&gt;NFL: Indianapolis Colts ML +190 at DraftKings (+11.8 pts against a bar of +13.6 pts) · Dallas Cowboys @ Indianapolis Colts&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Boston Bruins -1.5 +190 at FanDuel (+9.4 pts against a bar of +7.0 pts) · Florida Panthers @ Boston Bruins&lt;/li&gt;&lt;li&gt;NFL: Miami Dolphins ML +265 at Bovada (+12.4 pts against a bar of +13.7 pts) · Detroit Lions @ Miami Dolphins&lt;/li&gt;&lt;li&gt;NFL: Indianapolis Colts ML +190 at DraftKings (+11.8 pts against a bar of +13.6 pts) · Dallas Cowboys @ Indianapolis Colts&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
 </item>
 <item>
-<title>NBA: Minnesota Timberwolves ML -500 at BetRivers (Lean, +6.7 pts)</title>
+<title>NBA: Minnesota Timberwolves ML -500 at BetRivers (Low, +6.7 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves</link>
 <guid isPermaLink="false">758ca94b2a-h2h-Minnesota-Timberwolves</guid>
 <pubDate>Sun, 08 Nov 2026 14:06:54 GMT</pubDate>
 <category>NBA</category>
-<description>&lt;p&gt;NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Minnesota Timberwolves ML at -500 (BetRivers). Our probability 90.1% from game data, the price implies 83.3%, edge +6.7 pts, EV +8.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 90.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +16.2 for the home side). BetRivers offers -500, which implies only 83.3%. Its bar is 6.4 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.58 points on the margin). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 82.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Timberwolves rate +6.3 a game over 10 (7-3), Utah Jazz -8.1 over 9 (1-8); last season +3.4 and -8.4 a game.&lt;/li&gt;&lt;li&gt;Home edge +1.9 for Minnesota Timberwolves.&lt;/li&gt;&lt;li&gt;Utah Jazz without Jaren Jackson Jr. (F) (+1.8).&lt;/li&gt;&lt;li&gt;Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin +16.2 for Minnesota Timberwolves.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Timberwolves without Anthony Edwards (G) (-1.9).&lt;/li&gt;&lt;li&gt;Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetRivers -500, Unibet -500, FanDuel -560, DraftKings -574, BetOnline.ag -580 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves&lt;/p&gt;</description>
+<description>&lt;p&gt;NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Minnesota Timberwolves ML at -500 (BetRivers). Our probability 90.1% from game data, the price implies 83.3%, edge +6.7 pts, EV +8.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 90.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +16.2 for the home side). BetRivers offers -500, which implies only 83.3%. Its bar is 6.4 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.58 points on the margin). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 82.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Timberwolves rate +6.3 a game over 10 (7-3), Utah Jazz -8.1 over 9 (1-8); last season +3.4 and -8.4 a game.&lt;/li&gt;&lt;li&gt;Home edge +1.9 for Minnesota Timberwolves.&lt;/li&gt;&lt;li&gt;Utah Jazz without Jaren Jackson Jr. (F) (+1.8).&lt;/li&gt;&lt;li&gt;Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin +16.2 for Minnesota Timberwolves.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Timberwolves without Anthony Edwards (G) (-1.9).&lt;/li&gt;&lt;li&gt;Minnesota Timberwolves have Joan Beringer (F) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetRivers -500, BetOnline.ag -580, PointsBet -625, DraftKings -650, BetMGM -650 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves&lt;/p&gt;</description>
 </item>
 <item>
-<title>NHL: Over 5.5 -120 at BetOnline.ag (Lean, +3.2 pts)</title>
+<title>NHL: Over 5.5 -120 at BetOnline.ag (Low, +3.2 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over</link>
 <guid isPermaLink="false">26c46faca6-totals-Over</guid>
 <pubDate>Sun, 08 Nov 2026 14:06:54 GMT</pubDate>
@@ -33,7 +57,7 @@
 <description>&lt;p&gt;NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from game data, the price implies 54.5%, edge +3.2 pts, EV +5.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 57.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.2. Not graded against other books' prices; for reference the market makes it 51.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6 a game in Calgary Flames's games, 5.6 in Philadelphia Flyers's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Scorers out: Jonathan Huberdeau (LW), hip; Connor Zary (C), knee; Samuel Honzek (LW), lower body and 2 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag -120, BetMGM -120, theScore Bet -120, ESPN BET -120, DraftKings -122 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
-<title>Parlay of the day: 3 legs +617 at Bovada</title>
+<title>Parlay lean of the day: 3 legs +617 at Bovada</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
 <guid isPermaLink="false">parlay-2026-11-08</guid>
 <pubDate>Sun, 08 Nov 2026 14:06:54 GMT</pubDate>
@@ -46,15 +70,7 @@
 <guid isPermaLink="false">8fe46a5692-spreads-Vancouver-Canucks#graded</guid>
 <pubDate>Sun, 08 Nov 2026 12:59:25 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at +117 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-4&lt;/p&gt;&lt;p&gt;Closing line value: -2.0 pts (closed +127, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Graded: Seattle Kraken ML +110 · Lost -1.00u</title>
-<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
-<guid isPermaLink="false">79334eedea-h2h-Seattle-Kraken#graded</guid>
-<pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · New York Rangers @ Seattle Kraken · Sat Nov 7, 5:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Seattle Kraken ML at +110 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-3&lt;/p&gt;&lt;p&gt;Closing line value: -40.4 pts (closed +1281, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at +117 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-4&lt;/p&gt;&lt;p&gt;Closing line value: -4.4 pts (closed +130, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Austin FC ML +350 · Lost -1.00u</title>
@@ -62,7 +78,7 @@
 <guid isPermaLink="false">21a304be61-h2h-Austin-FC#graded</guid>
 <pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
 <category>Soccer</category>
-<description>&lt;p&gt;Soccer · Austin FC vs. Portland Timbers · Sat Nov 7, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Austin FC ML at +350 (BetRivers). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-0&lt;/p&gt;&lt;p&gt;Closing line value: -20.3 pts (closed +5188, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;Soccer · Austin FC vs. Portland Timbers · Sat Nov 7, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Austin FC ML at +350 (BetRivers). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-0&lt;/p&gt;&lt;p&gt;Closing line value: +1.1 pts (closed +300, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Under 4 goals -118 · Won +0.85u</title>
@@ -70,7 +86,7 @@
 <guid isPermaLink="false">0db0938ab6-totals-Under#graded</guid>
 <pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
 <category>Soccer</category>
-<description>&lt;p&gt;Soccer · San Diego FC vs. Sporting Kansas City · Sat Nov 7, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 4 goals at -118 (Bovada). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 1-0&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;Soccer · San Diego FC vs. Sporting Kansas City · Sat Nov 7, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 4 goals at -118 (Bovada). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 1-0&lt;/p&gt;&lt;p&gt;The line moved toward the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Over 5.5 -124 · Won +0.81u</title>
@@ -78,7 +94,7 @@
 <guid isPermaLink="false">6f96012d11-totals-Over#graded</guid>
 <pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · New Jersey Devils @ New York Islanders · Sat Nov 7, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -124 (FanDuel). Won +0.81u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;Closing line value: -1.0 pts (closed -119, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · New Jersey Devils @ New York Islanders · Sat Nov 7, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -124 (FanDuel). Won +0.81u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;Closing line value: -0.2 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: San Jose Sharks +1.5 +100 · Won +1.00u</title>
@@ -86,7 +102,7 @@
 <guid isPermaLink="false">1f21bf798a-spreads-San-Jose-Sharks#graded</guid>
 <pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: San Jose Sharks +1.5 at +100 (BetMGM). Won +1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-4&lt;/p&gt;&lt;p&gt;Closing line value: +0.7 pts (closed -103, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: San Jose Sharks +1.5 at +100 (BetMGM). Won +1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-4&lt;/p&gt;&lt;p&gt;Closing line value: -1.7 pts (closed -102, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Minnesota Wild +1.5 -210 · Won +0.48u</title>
@@ -94,18 +110,26 @@
 <guid isPermaLink="false">b5934d2ce0-spreads-Minnesota-Wild#graded</guid>
 <pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Minnesota Wild +1.5 at -210 (BetMGM). Won +0.48u.&lt;/p&gt;&lt;p&gt;Final: 4-3&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Minnesota Wild +1.5 at -210 (BetMGM). Won +0.48u.&lt;/p&gt;&lt;p&gt;Final: 4-3&lt;/p&gt;&lt;p&gt;Closing line value: -3.3 pts (closed -205, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
-<title>Play of the day: Boston Bruins ML -130 at BetOnline.ag (Medium, +10.2 pts)</title>
+<title>Graded: Seattle Kraken ML +110 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">79334eedea-h2h-Seattle-Kraken#graded</guid>
+<pubDate>Sun, 08 Nov 2026 05:18:01 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New York Rangers @ Seattle Kraken · Sat Nov 7, 5:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Seattle Kraken ML at +110 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-3&lt;/p&gt;&lt;p&gt;Closing line value: -2.8 pts (closed +114, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Lean of the day: Boston Bruins ML -130 at BetOnline.ag (Medium, +10.2 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-Bruins</link>
 <guid isPermaLink="false">7fda7dbcff-h2h-Boston-Bruins</guid>
 <pubDate>Sat, 07 Nov 2026 23:49:52 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Florida Panthers @ Boston Bruins · Sun Nov 8, 1:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Boston Bruins ML at -130 (BetOnline.ag). Our probability 66.7% from game data, the price implies 56.5%, edge +10.2 pts, EV +18.0% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability is 66.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1 for the home side). BetOnline.ag offers -130, which implies only 56.5%. Its bar is 7.0 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 54.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Boston Bruins rate +0.4 a game over 17 (12-5), Florida Panthers +0 over 17 (9-8); last season +0.3 and -0.3 a game.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Boston Bruins.&lt;/li&gt;&lt;li&gt;Boston Bruins are rested (3 days).&lt;/li&gt;&lt;li&gt;Florida Panthers are on the second night of a back-to-back.&lt;/li&gt;&lt;li&gt;Florida Panthers without Sandis Vilmanis (LW), Anton Lundell (C) (+0.3).&lt;/li&gt;&lt;li&gt;Projected margin +1 for Boston Bruins.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Boston Bruins trending: last five +0.4 vs +1.4 on the season.&lt;/li&gt;&lt;li&gt;Florida Panthers trending: last five +1.2 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Boston Bruins without James Hagens (C) (-0.2).&lt;/li&gt;&lt;li&gt;Boston Bruins have Matthew Poitras (C) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag -130, theScore Bet -130, ESPN BET -135, BetRivers -136, Caesars -138 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-Bruins&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Florida Panthers @ Boston Bruins · Sun Nov 8, 1:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Boston Bruins ML at -130 (BetOnline.ag). Our probability 66.7% from game data, the price implies 56.5%, edge +10.2 pts, EV +18.0% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability is 66.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1 for the home side). BetOnline.ag offers -130, which implies only 56.5%. Its bar is 7.0 points: the model's own margin of error on this side, with 17 games behind the thinner team (±0.45 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 54.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Boston Bruins rate +0.4 a game over 17 (12-5), Florida Panthers +0 over 17 (9-8); last season +0.3 and -0.3 a game.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Boston Bruins.&lt;/li&gt;&lt;li&gt;Boston Bruins are rested (3 days).&lt;/li&gt;&lt;li&gt;Florida Panthers are on the second night of a back-to-back.&lt;/li&gt;&lt;li&gt;Florida Panthers without Sandis Vilmanis (LW), Anton Lundell (C) (+0.3).&lt;/li&gt;&lt;li&gt;Projected margin +1 for Boston Bruins.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Boston Bruins trending: last five +0.4 vs +1.4 on the season.&lt;/li&gt;&lt;li&gt;Florida Panthers trending: last five +1.2 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Boston Bruins without James Hagens (C) (-0.2).&lt;/li&gt;&lt;li&gt;Boston Bruins have Matthew Poitras (C) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag -130, theScore Bet -130, BetRivers -136, ESPN BET -140, FanDuel -144 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-Bruins&lt;/p&gt;</description>
 </item>
 <item>
-<title>Soccer: Under 3 goals -115 at Bovada (Medium, +9.0 pts)</title>
+<title>Soccer: Under 3 goals -115 at Bovada (Medium, +9.0 pts) · in play</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#b0a4b5448a-totals-Under</link>
 <guid isPermaLink="false">b0a4b5448a-totals-Under</guid>
 <pubDate>Sat, 07 Nov 2026 23:49:52 GMT</pubDate>
@@ -113,36 +137,12 @@
 <description>&lt;p&gt;Soccer · Manchester United vs. Aston Villa · Sun Nov 8, 11:30 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at -115 (Bovada). Our probability 62.5% from game data, the price implies 53.5%, edge +9.0 pts, EV +16.8% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at 3 is 62.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 2.7). Bovada offers -115, which implies only 53.5%. Its bar is 5.7 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total). It clears it by 3.3. Not graded against other books' prices; for reference the market makes it 49.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 2.8 a game in Manchester United's games, 2.6 in Aston Villa's (league average 2.7).&lt;/li&gt;&lt;li&gt;Projected total 2.7 against 3.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada -115, BetOnline.ag -116.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#b0a4b5448a-totals-Under&lt;/p&gt;</description>
 </item>
 <item>
-<title>Soccer: Ipswich Town ML +308 at BetOnline.ag (Lean, +11.8 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#79ed3df594-h2h-Ipswich-Town</link>
-<guid isPermaLink="false">79ed3df594-h2h-Ipswich-Town</guid>
-<pubDate>Sat, 07 Nov 2026 23:49:52 GMT</pubDate>
-<category>Soccer</category>
-<description>&lt;p&gt;Soccer · Ipswich Town vs. Bournemouth · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Moneyline: Ipswich Town ML at +308 (BetOnline.ag). Our probability 36.3% from game data, the price implies 24.5%, edge +11.8 pts, EV +48.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 36.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.1 for the home side). BetOnline.ag offers +308, which implies only 24.5%. Its bar is 11.1 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.54 goals on the margin). It clears it by 0.7. Not graded against other books' prices; for reference the market makes it 23.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Ipswich Town.&lt;/li&gt;&lt;li&gt;Ipswich Town are rested (8 days).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Ipswich Town rate -0.2 a game over 9 (3-4), Bournemouth +0.1 over 9 (3-3); last season none and +0.1 a game.&lt;/li&gt;&lt;li&gt;Bournemouth are rested (8 days).&lt;/li&gt;&lt;li&gt;Projected margin -0.1 for Ipswich Town.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag +308, FanDuel +300, BetRivers +295, Bovada +290, DraftKings +285 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#79ed3df594-h2h-Ipswich-Town&lt;/p&gt;</description>
-</item>
-<item>
-<title>Soccer: Under 3 goals -105 at Bovada (Medium, +10.5 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#0cfbab01e1-totals-Under</link>
-<guid isPermaLink="false">0cfbab01e1-totals-Under</guid>
-<pubDate>Sat, 07 Nov 2026 23:49:52 GMT</pubDate>
-<category>Soccer</category>
-<description>&lt;p&gt;Soccer · Crystal Palace vs. Liverpool · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at -105 (Bovada). Our probability 61.7% from game data, the price implies 51.2%, edge +10.5 pts, EV +20.4% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at 3 is 61.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 2.7). Bovada offers -105, which implies only 51.2%. Its bar is 5.7 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total). It clears it by 4.7. Not graded against other books' prices; for reference the market makes it 49.3%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 3.3 a game in Crystal Palace's games, 2.2 in Liverpool's (league average 2.7).&lt;/li&gt;&lt;li&gt;Projected total 2.7 against 3.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada -105, BetOnline.ag -107.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#0cfbab01e1-totals-Under&lt;/p&gt;</description>
-</item>
-<item>
-<title>Soccer: Under 3 goals -112 at Bovada (Lean, +6.4 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#8e3ca98e29-totals-Under</link>
-<guid isPermaLink="false">8e3ca98e29-totals-Under</guid>
-<pubDate>Sat, 07 Nov 2026 23:49:52 GMT</pubDate>
-<category>Soccer</category>
-<description>&lt;p&gt;Soccer · Brighton and Hove Albion vs. Brentford · Sun Nov 8, 9:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at -112 (Bovada). Our probability 59.2% from game data, the price implies 52.8%, edge +6.4 pts, EV +12.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 3 is 59.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 2.8). Bovada offers -112, which implies only 52.8%. Its bar is 5.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±0.18 goals on the total). It clears it by 0.6. Not graded against other books' prices; for reference the market makes it 50.5%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 3.4 a game in Brighton and Hove Albion's games, 2.8 in Brentford's (league average 2.7).&lt;/li&gt;&lt;li&gt;Projected total 2.8 against 3.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada -112, BetOnline.ag -112.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8e3ca98e29-totals-Under&lt;/p&gt;</description>
-</item>
-<item>
 <title>Graded: Under 4 goals -112 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">4e4cd20d20-totals-Under#graded</guid>
 <pubDate>Sat, 07 Nov 2026 23:32:48 GMT</pubDate>
 <category>Soccer</category>
-<description>&lt;p&gt;Soccer · Inter Miami CF vs. Charlotte FC · Sat Nov 7, 4:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 4 goals at -112 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-3&lt;/p&gt;&lt;p&gt;The line moved away the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;Soccer · Inter Miami CF vs. Charlotte FC · Sat Nov 7, 4:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 4 goals at -112 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-3&lt;/p&gt;&lt;p&gt;The line moved away the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Under 3.5 goals -110 · Won +0.91u</title>
@@ -150,10 +150,10 @@
 <guid isPermaLink="false">f5ca1b83c8-totals-Under#graded</guid>
 <pubDate>Sat, 07 Nov 2026 23:32:48 GMT</pubDate>
 <category>Soccer</category>
-<description>&lt;p&gt;Soccer · New York Red Bulls vs. Atlanta United FC · Sat Nov 7, 4:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 3.5 goals at -110 (BetRivers). Won +0.91u.&lt;/p&gt;&lt;p&gt;Final: 0-3&lt;/p&gt;&lt;p&gt;Closing line value: +37.8 pts (closed -914, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;Soccer · New York Red Bulls vs. Atlanta United FC · Sat Nov 7, 4:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 3.5 goals at -110 (BetRivers). Won +0.91u.&lt;/p&gt;&lt;p&gt;Final: 0-3&lt;/p&gt;&lt;p&gt;Closing line value: -7.4 pts (closed +110, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
-<title>NHL: Under 6.5 +122 at FanDuel (Lean, +4.1 pts)</title>
+<title>NHL: Under 6.5 +122 at FanDuel (Low, +4.1 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under</link>
 <guid isPermaLink="false">41a3f4e922-totals-Under</guid>
 <pubDate>Sat, 07 Nov 2026 18:31:30 GMT</pubDate>
@@ -166,7 +166,7 @@
 <guid isPermaLink="false">842fcc5b9f-totals-Under#graded</guid>
 <pubDate>Sat, 07 Nov 2026 18:31:30 GMT</pubDate>
 <category>Soccer</category>
-<description>&lt;p&gt;Soccer · Arsenal vs. Hull City · Sat Nov 7, 10:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at +102 (Bovada). Won +1.02u.&lt;/p&gt;&lt;p&gt;Final: 0-1&lt;/p&gt;&lt;p&gt;The line moved away the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;Soccer · Arsenal vs. Hull City · Sat Nov 7, 10:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at +102 (Bovada). Won +1.02u.&lt;/p&gt;&lt;p&gt;Final: 0-1&lt;/p&gt;&lt;p&gt;The line moved away the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Columbus Blue Jackets ML +153 · Lost -1.00u</title>
@@ -174,7 +174,7 @@
 <guid isPermaLink="false">8094c7dc65-h2h-Columbus-Blue-Jackets#graded</guid>
 <pubDate>Sat, 07 Nov 2026 05:20:48 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +153 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-5&lt;/p&gt;&lt;p&gt;Closing line value: -37.2 pts (closed +4264, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +153 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-5&lt;/p&gt;&lt;p&gt;Closing line value: -1.2 pts (closed +150, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Philadelphia Flyers ML +133 · Lost -1.00u</title>
@@ -182,7 +182,7 @@
 <guid isPermaLink="false">b945b71332-h2h-Philadelphia-Flyers#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Philadelphia Flyers ML at +133 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: -33.9 pts (closed +1010, consensus close (SportsGameOdds, 0 books)).&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Philadelphia Flyers ML at +133 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: -0.1 pts (closed +124, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Anaheim Ducks +1.5 -145 · Won +0.69u</title>
@@ -190,7 +190,7 @@
 <guid isPermaLink="false">c672f144ec-spreads-Anaheim-Ducks#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Anaheim Ducks +1.5 at -145 (BetMGM). Won +0.69u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Anaheim Ducks +1.5 at -145 (BetMGM). Won +0.69u.&lt;/p&gt;&lt;p&gt;Final: 5-4&lt;/p&gt;&lt;p&gt;Closing line value: -2.0 pts (closed -148, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Philadelphia Flyers +1.5 -190 · Won +0.53u</title>
@@ -198,7 +198,7 @@
 <guid isPermaLink="false">b945b71332-spreads-Philadelphia-Flyers#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Philadelphia Flyers +1.5 at -190 (BetMGM). Won +0.53u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Philadelphia Flyers +1.5 at -190 (BetMGM). Won +0.53u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: -1.1 pts (closed -205, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Nashville Predators +1.5 -130 · Won +0.77u</title>
@@ -206,7 +206,7 @@
 <guid isPermaLink="false">446de9651d-spreads-Nashville-Predators#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.77u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.77u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;Closing line value: -1.4 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Vancouver Canucks +1.5 -130 · Lost -1.00u</title>
@@ -214,7 +214,7 @@
 <guid isPermaLink="false">5d5b6a0f37-spreads-Vancouver-Canucks#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-6&lt;/p&gt;&lt;p&gt;The line moved away the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-6&lt;/p&gt;&lt;p&gt;Closing line value: -1.4 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Over 222.5 -110 · Lost -1.00u</title>
@@ -222,7 +222,7 @@
 <guid isPermaLink="false">2a76b31e02-totals-Over#graded</guid>
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NBA</category>
-<description>&lt;p&gt;NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 222.5 at -110 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 104-117&lt;/p&gt;&lt;p&gt;The line moved toward the pick before close.&lt;/p&gt;&lt;p&gt;Record and every graded pick: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 222.5 at -110 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 104-117&lt;/p&gt;&lt;p&gt;Closing line value: -2.4 pts (closed -110, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>

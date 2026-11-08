@@ -3,9 +3,12 @@ VERSION:2.0
 PRODID:-//EdgeLine AI//Picks//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:EdgeLine AI picks
-X-WR-CALDESC:Every EdgeLine AI pick at tip-off with its price\, book and ed
- ge\; the grade follows when the game ends. Informational only\; 21+.
+X-WR-CALNAME:EdgeLine AI leans
+X-WR-CALDESC:Every EdgeLine AI lean at tip-off with its price\, book and ed
+ ge\; the grade follows when the game ends. In a replay of past seasons the
+ se leans did not beat the closing price (NHL −4.8%\, NBA −7.9%\, NFL 
+ −9.5% ROI at the close). They become picks when the live record beats th
+ e close. Informational only\; 21+.
 X-WR-TIMEZONE:America/New_York
 REFRESH-INTERVAL;VALUE=DURATION:PT1H
 X-PUBLISHED-TTL:PT1H
@@ -17,9 +20,9 @@ DTEND:20261106T031000Z
 SUMMARY:Philadelphia Flyers ML +133 at BetOnline.ag · Lost -1.00u
 DESCRIPTION:NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5\, 7:
  10 PM ET\nMoneyline: Philadelphia Flyers ML at +133 (BetOnline.ag). Lost -
- 1.00u.\nFinal: 2-3\nClosing line value: -33.9 pts (closed +1010\, consensu
- s close (SportsGameOdds\, 0 books)).\nRecord and every graded pick: https:
- //ajur21.github.io/edgeline-ai/performance.html
+ 1.00u.\nFinal: 2-3\nClosing line value: -0.1 pts (closed +124\, DraftKings
+  close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/ed
+ geline-ai/performance.html
 LOCATION:Madison Square Garden\, New York
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -35,8 +38,9 @@ DTEND:20261106T031000Z
 SUMMARY:Philadelphia Flyers +1.5 -190 at BetMGM · Won +0.53u
 DESCRIPTION:NHL · Philadelphia Flyers @ New York Rangers · Thu Nov 5\, 7:
  10 PM ET\nPuck line: Philadelphia Flyers +1.5 at -190 (BetMGM). Won +0.53u
- .\nFinal: 2-3\nThe line moved toward the pick before close.\nRecord and ev
- ery graded pick: https://ajur21.github.io/edgeline-ai/performance.html
+ .\nFinal: 2-3\nClosing line value: -1.1 pts (closed -205\, DraftKings clos
+ e (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgelin
+ e-ai/performance.html
 LOCATION:Madison Square Garden\, New York
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -52,8 +56,9 @@ DTEND:20261106T031000Z
 SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Lost -1.00u
 DESCRIPTION:NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5\, 7:10 PM
   ET\nPuck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.\nFin
- al: 2-6\nThe line moved away the pick before close.\nRecord and every grad
- ed pick: https://ajur21.github.io/edgeline-ai/performance.html
+ al: 2-6\nClosing line value: -1.4 pts (closed -135\, DraftKings close (ESP
+ N)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/p
+ erformance.html
 LOCATION:Canada Life Centre\, Winnipeg
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -69,8 +74,9 @@ DTEND:20261106T041000Z
 SUMMARY:Anaheim Ducks +1.5 -145 at BetMGM · Won +0.69u
 DESCRIPTION:NHL · Anaheim Ducks @ Edmonton Oilers · Thu Nov 5\, 8:10 PM E
  T\nPuck line: Anaheim Ducks +1.5 at -145 (BetMGM). Won +0.69u.\nFinal: 5-4
- \nThe line moved toward the pick before close.\nRecord and every graded pi
- ck: https://ajur21.github.io/edgeline-ai/performance.html
+ \nClosing line value: -2.0 pts (closed -148\, DraftKings close (ESPN)).\nR
+ ecord and every graded lean: https://ajur21.github.io/edgeline-ai/performa
+ nce.html
 LOCATION:Rogers Place\, Edmonton
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -85,9 +91,9 @@ DTSTART:20261106T021000Z
 DTEND:20261106T051000Z
 SUMMARY:Over 222.5 -110 at FanDuel · Lost -1.00u
 DESCRIPTION:NBA · Orlando Magic @ Phoenix Suns · Thu Nov 5\, 9:10 PM ET\n
- Total: Over 222.5 at -110 (FanDuel). Lost -1.00u.\nFinal: 104-117\nThe lin
- e moved toward the pick before close.\nRecord and every graded pick: https
- ://ajur21.github.io/edgeline-ai/performance.html
+ Total: Over 222.5 at -110 (FanDuel). Lost -1.00u.\nFinal: 104-117\nClosing
+  line value: -2.4 pts (closed -110\, DraftKings close (ESPN)).\nRecord and
+  every graded lean: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Mortgage Matchup Center\, Phoenix
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA
@@ -103,8 +109,9 @@ DTEND:20261106T054000Z
 SUMMARY:Nashville Predators +1.5 -130 at BetMGM · Won +0.77u
 DESCRIPTION:NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5\, 
  9:40 PM ET\nPuck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.7
- 7u.\nFinal: 3-2\nThe line moved toward the pick before close.\nRecord and 
- every graded pick: https://ajur21.github.io/edgeline-ai/performance.html
+ 7u.\nFinal: 3-2\nClosing line value: -1.4 pts (closed -135\, DraftKings cl
+ ose (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgel
+ ine-ai/performance.html
 LOCATION:Ball Arena\, Denver
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -120,9 +127,9 @@ DTEND:20261107T031000Z
 SUMMARY:Columbus Blue Jackets ML +153 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · Columbus Blue Jackets @ Buffalo Sabres · Fri Nov 6\, 7:
  10 PM ET\nMoneyline: Columbus Blue Jackets ML at +153 (Bovada). Lost -1.00
- u.\nFinal: 2-5\nClosing line value: -37.2 pts (closed +4264\, consensus cl
- ose (SportsGameOdds\, 0 books)).\nRecord and every graded pick: https://aj
- ur21.github.io/edgeline-ai/performance.html
+ u.\nFinal: 2-5\nClosing line value: -1.2 pts (closed +150\, DraftKings clo
+ se (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeli
+ ne-ai/performance.html
 LOCATION:KeyBank Center\, Buffalo
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -138,7 +145,7 @@ DTEND:20261107T180000Z
 SUMMARY:Under 3 goals +102 at Bovada · Won +1.02u
 DESCRIPTION:Soccer · Arsenal vs. Hull City · Sat Nov 7\, 10:00 AM ET\nTot
  al: Under 3 goals at +102 (Bovada). Won +1.02u.\nFinal: 0-1\nThe line move
- d away the pick before close.\nRecord and every graded pick: https://ajur2
+ d away the lean before close.\nRecord and every graded lean: https://ajur2
  1.github.io/edgeline-ai/performance.html
 LOCATION:Emirates Stadium\, London
 URL:https://ajur21.github.io/edgeline-ai/performance.html
@@ -155,7 +162,7 @@ DTEND:20261108T000000Z
 SUMMARY:Under 4 goals -112 at Bovada · Lost -1.00u
 DESCRIPTION:Soccer · Inter Miami CF vs. Charlotte FC · Sat Nov 7\, 4:00 P
  M ET\nTotal: Under 4 goals at -112 (Bovada). Lost -1.00u.\nFinal: 3-3\nThe
-  line moved away the pick before close.\nRecord and every graded pick: htt
+  line moved away the lean before close.\nRecord and every graded lean: htt
  ps://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Nu Stadium\, Miami\, Florida
 URL:https://ajur21.github.io/edgeline-ai/performance.html
@@ -172,9 +179,9 @@ DTEND:20261108T000000Z
 SUMMARY:Under 3.5 goals -110 at BetRivers · Won +0.91u
 DESCRIPTION:Soccer · New York Red Bulls vs. Atlanta United FC · Sat Nov 7
  \, 4:00 PM ET\nTotal: Under 3.5 goals at -110 (BetRivers). Won +0.91u.\nFi
- nal: 0-3\nClosing line value: +37.8 pts (closed -914\, consensus close (Sp
- ortsGameOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.gi
- thub.io/edgeline-ai/performance.html
+ nal: 0-3\nClosing line value: -7.4 pts (closed +110\, DraftKings close (ES
+ PN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/
+ performance.html
 LOCATION:Sports Illustrated Stadium\, Harrison\, New Jersey
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
@@ -190,9 +197,9 @@ DTEND:20261108T011000Z
 SUMMARY:Seattle Kraken ML +110 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · New York Rangers @ Seattle Kraken · Sat Nov 7\, 5:10 PM
   ET\nMoneyline: Seattle Kraken ML at +110 (Bovada). Lost -1.00u.\nFinal: 4
- -3\nClosing line value: -40.4 pts (closed +1281\, consensus close (SportsG
- ameOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.
- io/edgeline-ai/performance.html
+ -3\nClosing line value: -2.8 pts (closed +114\, DraftKings close (ESPN)).\
+ nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perfor
+ mance.html
 LOCATION:Climate Pledge Arena\, Seattle
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -208,9 +215,9 @@ DTEND:20261108T030000Z
 SUMMARY:Austin FC ML +350 at BetRivers · Lost -1.00u
 DESCRIPTION:Soccer · Austin FC vs. Portland Timbers · Sat Nov 7\, 7:00 PM
   ET\nMoneyline: Austin FC ML at +350 (BetRivers). Lost -1.00u.\nFinal: 2-0
- \nClosing line value: -20.3 pts (closed +5188\, consensus close (SportsGam
- eOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.io
- /edgeline-ai/performance.html
+ \nClosing line value: +1.1 pts (closed +300\, DraftKings close (ESPN)).\nR
+ ecord and every graded lean: https://ajur21.github.io/edgeline-ai/performa
+ nce.html
 LOCATION:Q2 Stadium\, Austin\, Texas
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
@@ -226,8 +233,8 @@ DTEND:20261108T030000Z
 SUMMARY:Under 4 goals -118 at Bovada · Won +0.85u
 DESCRIPTION:Soccer · San Diego FC vs. Sporting Kansas City · Sat Nov 7\, 
  7:00 PM ET\nTotal: Under 4 goals at -118 (Bovada). Won +0.85u.\nFinal: 1-0
- \nThe line moved toward the pick before close.\nRecord and every graded pi
- ck: https://ajur21.github.io/edgeline-ai/performance.html
+ \nThe line moved toward the lean before close.\nRecord and every graded le
+ an: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Snapdragon Stadium\, San Diego\, California
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
@@ -243,9 +250,9 @@ DTEND:20261108T031000Z
 SUMMARY:Over 5.5 -124 at FanDuel · Won +0.81u
 DESCRIPTION:NHL · New Jersey Devils @ New York Islanders · Sat Nov 7\, 7:
  10 PM ET\nTotal: Over 5.5 at -124 (FanDuel). Won +0.81u.\nFinal: 5-4\nClos
- ing line value: -1.0 pts (closed -119\, consensus close (SportsGameOdds\, 
- 0 books)).\nRecord and every graded pick: https://ajur21.github.io/edgelin
- e-ai/performance.html
+ ing line value: -0.2 pts (closed -135\, DraftKings close (ESPN)).\nRecord 
+ and every graded lean: https://ajur21.github.io/edgeline-ai/performance.ht
+ ml
 LOCATION:UBS Arena\, Elmont
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -261,9 +268,9 @@ DTEND:20261108T041000Z
 SUMMARY:San Jose Sharks +1.5 +100 at BetMGM · Won +1.00u
 DESCRIPTION:NHL · San Jose Sharks @ Dallas Stars · Sat Nov 7\, 8:10 PM ET
  \nPuck line: San Jose Sharks +1.5 at +100 (BetMGM). Won +1.00u.\nFinal: 3-
- 4\nClosing line value: +0.7 pts (closed -103\, consensus close (SportsGame
- Odds\, 0 books)).\nRecord and every graded pick: https://ajur21.github.io/
- edgeline-ai/performance.html
+ 4\nClosing line value: -1.7 pts (closed -102\, DraftKings close (ESPN)).\n
+ Record and every graded lean: https://ajur21.github.io/edgeline-ai/perform
+ ance.html
 LOCATION:American Airlines Center\, Dallas
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -279,8 +286,9 @@ DTEND:20261108T041000Z
 SUMMARY:Minnesota Wild +1.5 -210 at BetMGM · Won +0.48u
 DESCRIPTION:NHL · Tampa Bay Lightning @ Minnesota Wild · Sat Nov 7\, 8:10
   PM ET\nPuck line: Minnesota Wild +1.5 at -210 (BetMGM). Won +0.48u.\nFina
- l: 4-3\nThe line moved toward the pick before close.\nRecord and every gra
- ded pick: https://ajur21.github.io/edgeline-ai/performance.html
+ l: 4-3\nClosing line value: -3.3 pts (closed -205\, DraftKings close (ESPN
+ )).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/pe
+ rformance.html
 LOCATION:Grand Casino Arena\, Saint Paul
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -296,9 +304,9 @@ DTEND:20261108T061000Z
 SUMMARY:Vancouver Canucks +1.5 +117 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · Vancouver Canucks @ Edmonton Oilers · Sat Nov 7\, 10:10
   PM ET\nPuck line: Vancouver Canucks +1.5 at +117 (Bovada). Lost -1.00u.\n
- Final: 2-4\nClosing line value: -2.0 pts (closed +127\, consensus close (S
- portsGameOdds\, 0 books)).\nRecord and every graded pick: https://ajur21.g
- ithub.io/edgeline-ai/performance.html
+ Final: 2-4\nClosing line value: -4.4 pts (closed +130\, DraftKings close (
+ ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-a
+ i/performance.html
 LOCATION:Rogers Place\, Edmonton
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
@@ -308,98 +316,84 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:79ed3df594-h2h-Ipswich-Town@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Ipswich Town ML +308 at BetOnline.ag · in play
+SUMMARY:Ipswich Town ML +308 at BetOnline.ag · Lost -1.00u
 DESCRIPTION:Soccer · Ipswich Town vs. Bournemouth · Sun Nov 8\, 9:00 AM E
- T\nMoneyline: Ipswich Town ML at +308 (BetOnline.ag). Our probability 36.3
- % from game data\, the price implies 24.5%\, edge +11.8 pts\, EV +48.1% pe
- r unit. Confidence: Lean.\nOur probability is 36.3%\, from the game data: 
- this season's results and margins\, recent form\, rest\, the injury report
-  and home edge (projected margin -0.1 for the home side). BetOnline.ag off
- ers +308\, which implies only 24.5%. Its bar is 11.1 points: the model's o
- wn margin of error on this side\, with 9 games behind the thinner team (±
- 0.54 goals on the margin). It clears it by 0.7. Not graded against other b
- ooks' prices\; for reference the market makes it 23.7%.\nWhat supports it:
- \n- Home edge +0.2 for Ipswich Town.\n- Ipswich Town are rested (8 days).\
- nWhat could go wrong:\n- Ipswich Town rate -0.2 a game over 9 (3-4)\, Bour
- nemouth +0.1 over 9 (3-3)\; last season none and +0.1 a game.\n- Bournemou
- th are rested (8 days).\n- Projected margin -0.1 for Ipswich Town.\nVerdic
- t: More working against this one than for it\; size down.\nPrices: BetOnli
- ne.ag +308\, FanDuel +300\, BetRivers +295\, Bovada +290\, DraftKings +285
-  and 2 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.h
- tml#79ed3df594-h2h-Ipswich-Town
+ T\nMoneyline: Ipswich Town ML at +308 (BetOnline.ag). Lost -1.00u.\nFinal:
+  2-1\nClosing line value: +2.1 pts (closed +260\, DraftKings close (ESPN))
+ .\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perf
+ ormance.html
 LOCATION:Portman Road\, Ipswich
-URL:https://ajur21.github.io/edgeline-ai/picks.html#79ed3df594-h2h-Ipswich-
- Town
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:0cfbab01e1-totals-Under@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Under 3 goals -105 at Bovada · in play
+SUMMARY:Under 3 goals -105 at Bovada · Lost -1.00u
 DESCRIPTION:Soccer · Crystal Palace vs. Liverpool · Sun Nov 8\, 9:00 AM E
- T\nTotal: Under 3 goals at -105 (Bovada). Our probability 61.7% from game 
- data\, the price implies 51.2%\, edge +10.5 pts\, EV +20.4% per unit. Conf
- idence: Medium.\nOur probability at 3 is 61.7%\, from the game data: this 
- season's results and margins\, recent form\, rest\, the injury report and 
- home edge (projected total 2.7). Bovada offers -105\, which implies only 5
- 1.2%. Its bar is 5.7 points: the model's own margin of error on this side\
- , with 9 games behind the thinner team (±0.18 goals on the total). It cle
- ars it by 4.7. Not graded against other books' prices\; for reference the 
- market makes it 49.3%.\nWhat supports it:\n- Combined scoring 3.3 a game i
- n Crystal Palace's games\, 2.2 in Liverpool's (league average 2.7).\n- Pro
- jected total 2.7 against 3.\nVerdict: The game data lines up behind this s
- ide at this price.\nPrices: Bovada -105\, BetOnline.ag -107.\nFull breakdo
- wn: https://ajur21.github.io/edgeline-ai/picks.html#0cfbab01e1-totals-Unde
- r
+ T\nTotal: Under 3 goals at -105 (Bovada). Lost -1.00u.\nFinal: 3-1\nThe li
+ ne moved away the lean before close.\nRecord and every graded lean: https:
+ //ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Selhurst Park\, London
-URL:https://ajur21.github.io/edgeline-ai/picks.html#0cfbab01e1-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:8e3ca98e29-totals-Under@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261108T140000Z
 DTEND:20261108T170000Z
-SUMMARY:Under 3 goals -112 at Bovada · in play
+SUMMARY:Under 3 goals -112 at Bovada · Won +0.89u
 DESCRIPTION:Soccer · Brighton and Hove Albion vs. Brentford · Sun Nov 8\,
-  9:00 AM ET\nTotal: Under 3 goals at -112 (Bovada). Our probability 59.2% 
- from game data\, the price implies 52.8%\, edge +6.4 pts\, EV +12.1% per u
- nit. Confidence: Lean.\nOur probability at 3 is 59.2%\, from the game data
- : this season's results and margins\, recent form\, rest\, the injury repo
- rt and home edge (projected total 2.8). Bovada offers -112\, which implies
-  only 52.8%. Its bar is 5.8 points: the model's own margin of error on thi
- s side\, with 9 games behind the thinner team (±0.18 goals on the total).
-  It clears it by 0.6. Not graded against other books' prices\; for referen
- ce the market makes it 50.5%.\nWhat supports it:\n- Combined scoring 3.4 a
-  game in Brighton and Hove Albion's games\, 2.8 in Brentford's (league ave
- rage 2.7).\n- Projected total 2.8 against 3.\nVerdict: The game data lines
-  up behind this side at this price.\nPrices: Bovada -112\, BetOnline.ag -1
- 12.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8e3ca
- 98e29-totals-Under
+  9:00 AM ET\nTotal: Under 3 goals at -112 (Bovada). Won +0.89u.\nFinal: 0-
+ 2\nThe line moved toward the lean before close.\nRecord and every graded l
+ ean: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:American Express Stadium\, Falmer
-URL:https://ajur21.github.io/edgeline-ai/picks.html#8e3ca98e29-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-08@edgeline
+DTSTAMP:20261108T164338Z
+DTSTART:20261108T163000Z
+DTEND:20261109T041000Z
+SUMMARY:Parlay lean of the day: 3 legs +617 at Bovada
+DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
+ 9% per unit.\n- NHL: Boston Bruins ML -142 · Florida Panthers @ Boston Br
+ uins\n- Soccer: Under 3 goals -115 · Manchester United vs. Aston Villa\n-
+  NHL: Under 6.5 +125 · Pittsburgh Penguins @ Anaheim Ducks\n\nEvery parla
+ y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261108T164338Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 3 legs +617 at Bovada
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:b0a4b5448a-totals-Under@edgeline
-DTSTAMP:20261107T234952Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261108T163000Z
 DTEND:20261108T193000Z
-SUMMARY:Under 3 goals -115 at Bovada · Medium
+SUMMARY:Under 3 goals -115 at Bovada · in play
 DESCRIPTION:Soccer · Manchester United vs. Aston Villa · Sun Nov 8\, 11:3
  0 AM ET\nTotal: Under 3 goals at -115 (Bovada). Our probability 62.5% from
   game data\, the price implies 53.5%\, edge +9.0 pts\, EV +16.8% per unit.
@@ -418,43 +412,16 @@ DESCRIPTION:Soccer · Manchester United vs. Aston Villa · Sun Nov 8\, 11:3
 LOCATION:Old Trafford\, Manchester
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b0a4b5448a-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261107T234952Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 3 goals -115 at Bovada · Medium
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-08@edgeline
-DTSTAMP:20261108T140654Z
-DTSTART:20261108T163000Z
-DTEND:20261109T041000Z
-SUMMARY:Parlay of the day: 3 legs +617 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
- 9% per unit.\n- NHL: Boston Bruins ML -142 · Florida Panthers @ Boston Br
- uins\n- Soccer: Under 3 goals -115 · Manchester United vs. Aston Villa\n-
-  NHL: Under 6.5 +125 · Pittsburgh Penguins @ Anaheim Ducks\n\nEvery parla
- y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261108T140654Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay of the day: 3 legs +617 at Bovada
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7fda7dbcff-h2h-Boston-Bruins@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261108T181000Z
 DTEND:20261108T211000Z
-SUMMARY:Play of the day: Boston Bruins ML -130 at BetOnline.ag · Medium
+SUMMARY:Lean of the day: Boston Bruins ML -130 at BetOnline.ag · Medium
 DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM 
  ET\nMoneyline: Boston Bruins ML at -130 (BetOnline.ag). Our probability 66
  .7% from game data\, the price implies 56.5%\, edge +10.2 pts\, EV +18.0% 
@@ -475,29 +442,29 @@ DESCRIPTION:NHL · Florida Panthers @ Boston Bruins · Sun Nov 8\, 1:10 PM
  .2 on the season.\n- Boston Bruins without James Hagens (C) (-0.2).\n- Bos
  ton Bruins have Matthew Poitras (C) listed day-to-day or questionable.\nVe
  rdict: The game data lines up behind this side at this price.\nPrices: Bet
- Online.ag -130\, theScore Bet -130\, ESPN BET -135\, BetRivers -136\, Caes
- ars -138 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
+ Online.ag -130\, theScore Bet -130\, BetRivers -136\, ESPN BET -140\, FanD
+ uel -144 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
  /picks.html#7fda7dbcff-h2h-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7fda7dbcff-h2h-Boston-B
  ruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Play of the day: Boston Bruins ML -130 at BetOnline.ag · Mediu
+DESCRIPTION:Lean of the day: Boston Bruins ML -130 at BetOnline.ag · Mediu
  m
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
-SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Lean
+SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Low
 DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
  M ET\nMoneyline: Minnesota Timberwolves ML at -500 (BetRivers). Our probab
  ility 90.1% from game data\, the price implies 83.3%\, edge +6.7 pts\, EV 
@@ -516,28 +483,28 @@ DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
  rong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.9).\n- Min
  nesota Timberwolves have Joan Beringer (F) listed day-to-day or questionab
  le.\nVerdict: The game data lines up behind this side at this price.\nPric
- es: BetRivers -500\, Unibet -500\, FanDuel -560\, DraftKings -574\, BetOnl
- ine.ag -580 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
+ es: BetRivers -500\, BetOnline.ag -580\, PointsBet -625\, DraftKings -650\
+ , BetMGM -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeli
+ ne-ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
 LOCATION:Target Center\, Minneapolis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesot
  a-Timberwolves
 CATEGORIES:NBA
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Minnesota Timberwolves ML -500 at BetRivers · Lean
+DESCRIPTION:Minnesota Timberwolves ML -500 at BetRivers · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:26c46faca6-totals-Over@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
-SUMMARY:Over 5.5 -120 at BetOnline.ag · Lean
+SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
 DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
   PM ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from
   game data\, the price implies 54.5%\, edge +3.2 pts\, EV +5.8% per unit. 
@@ -558,21 +525,21 @@ DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
 LOCATION:Scotiabank Saddledome\, Calgary
 URL:https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -120 at BetOnline.ag · Lean
+DESCRIPTION:Over 5.5 -120 at BetOnline.ag · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:41a3f4e922-totals-Under@edgeline
-DTSTAMP:20261108T140654Z
+DTSTAMP:20261108T164338Z
 DTSTART:20261109T011000Z
 DTEND:20261109T041000Z
-SUMMARY:Under 6.5 +122 at FanDuel · Lean
+SUMMARY:Under 6.5 +122 at FanDuel · Low
 DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10 
  PM ET\nTotal: Under 6.5 at +122 (FanDuel). Our probability 49.2% from game
   data\, the price implies 45.0%\, edge +4.1 pts\, EV +9.2% per unit. Confi
@@ -595,12 +562,12 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T140654Z
+LAST-MODIFIED:20261108T164338Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +122 at FanDuel · Lean
+DESCRIPTION:Under 6.5 +122 at FanDuel · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT

@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-08",
   "windowDays": 30,
   "record": {
-    "wins": 9,
-    "losses": 8,
+    "wins": 10,
+    "losses": 10,
     "pushes": 0
   },
-  "units": -0.94,
-  "roi": -5.5,
-  "avgEdge": 11.3,
-  "graded": 17,
+  "units": -2.05,
+  "roi": -10.2,
+  "avgEdge": 11.1,
+  "graded": 20,
   "daily": [
     {
       "date": "2026-11-05",
@@ -25,6 +25,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-07",
       "units": -0.94
+    },
+    {
+      "date": "2026-11-08",
+      "units": -2.05
     }
   ],
   "bySport": [
@@ -40,11 +44,56 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 0.78,
-      "record": "3-2"
+      "units": -0.33,
+      "record": "4-4"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-08",
+      "sport": "Soccer",
+      "event": "Brighton and Hove Albion vs. Brentford",
+      "pick": "Under 3 goals",
+      "odds": -112,
+      "result": "Win",
+      "units": 0.89,
+      "clv": null,
+      "closeOdds": 120,
+      "closeLine": 2.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "toward",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-08",
+      "sport": "Soccer",
+      "event": "Ipswich Town vs. Bournemouth",
+      "pick": "Ipswich Town ML",
+      "odds": 308,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0209,
+      "closeOdds": 260,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-08",
+      "sport": "Soccer",
+      "event": "Crystal Palace vs. Liverpool",
+      "pick": "Under 3 goals",
+      "odds": -105,
+      "result": "Loss",
+      "units": -1,
+      "clv": null,
+      "closeOdds": -140,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "basis": "game"
+    },
     {
       "date": "2026-11-07",
       "sport": "NHL",
@@ -53,10 +102,10 @@ window.PERF_DATA = {
       "odds": 117,
       "result": "Loss",
       "units": -1,
-      "clv": -0.0203,
-      "closeOdds": 127,
+      "clv": -0.0438,
+      "closeOdds": 130,
       "closeLine": 1.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -68,11 +117,11 @@ window.PERF_DATA = {
       "odds": -210,
       "result": "Win",
       "units": 0.48,
-      "clv": null,
-      "closeOdds": 165,
-      "closeLine": 0,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "toward",
+      "clv": -0.0327,
+      "closeOdds": -205,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
       "basis": "game"
     },
     {
@@ -83,10 +132,10 @@ window.PERF_DATA = {
       "odds": 100,
       "result": "Win",
       "units": 1,
-      "clv": 0.0074,
-      "closeOdds": -103,
+      "clv": -0.0174,
+      "closeOdds": -102,
       "closeLine": 1.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -98,10 +147,10 @@ window.PERF_DATA = {
       "odds": -124,
       "result": "Win",
       "units": 0.81,
-      "clv": -0.0102,
-      "closeOdds": -119,
+      "clv": -0.0022,
+      "closeOdds": -135,
       "closeLine": 5.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -114,9 +163,9 @@ window.PERF_DATA = {
       "result": "Win",
       "units": 0.85,
       "clv": null,
-      "closeOdds": 100,
-      "closeLine": 2.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeOdds": 115,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": "toward",
       "basis": "game"
     },
@@ -128,10 +177,10 @@ window.PERF_DATA = {
       "odds": 350,
       "result": "Loss",
       "units": -1,
-      "clv": -0.2033,
-      "closeOdds": 5188,
+      "clv": 0.0105,
+      "closeOdds": 300,
       "closeLine": null,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -143,10 +192,10 @@ window.PERF_DATA = {
       "odds": 110,
       "result": "Loss",
       "units": -1,
-      "clv": -0.4038,
-      "closeOdds": 1281,
+      "clv": -0.0276,
+      "closeOdds": 114,
       "closeLine": null,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -158,10 +207,10 @@ window.PERF_DATA = {
       "odds": -110,
       "result": "Win",
       "units": 0.91,
-      "clv": 0.3776,
-      "closeOdds": -914,
+      "clv": -0.0744,
+      "closeOdds": 110,
       "closeLine": 3.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
+      "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
     },
@@ -174,55 +223,10 @@ window.PERF_DATA = {
       "result": "Loss",
       "units": -1,
       "clv": null,
-      "closeOdds": -124,
+      "closeOdds": -155,
       "closeLine": 4.5,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "away",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-07",
-      "sport": "Soccer",
-      "event": "Arsenal vs. Hull City",
-      "pick": "Under 3 goals",
-      "odds": 102,
-      "result": "Win",
-      "units": 1.02,
-      "clv": null,
-      "closeOdds": -135,
-      "closeLine": 3.5,
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": "away",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-06",
-      "sport": "NHL",
-      "event": "Columbus Blue Jackets @ Buffalo Sabres",
-      "pick": "Columbus Blue Jackets ML",
-      "odds": 153,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.3724,
-      "closeOdds": 4264,
-      "closeLine": null,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-05",
-      "sport": "NHL",
-      "event": "Nashville Predators @ Colorado Avalanche",
-      "pick": "Nashville Predators +1.5",
-      "odds": -130,
-      "result": "Win",
-      "units": 0.77,
-      "clv": null,
-      "closeOdds": -133,
-      "closeLine": 0,
-      "closeSource": "consensus close (SportsGameOdds, 0 books)",
-      "lineMove": "toward",
       "basis": "game"
     }
   ],
@@ -247,6 +251,13 @@ window.PERF_DATA = {
       "wins": 6,
       "losses": 4,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-08",
+      "units": -1.11,
+      "wins": 1,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
@@ -264,25 +275,25 @@ window.PERF_DATA = {
     "n": 3
   },
   "clv": {
-    "n": 8,
-    "avg": -12.05,
+    "n": 15,
+    "avg": -1.74,
     "beat": 2,
-    "beatPct": 25,
-    "graded": 17,
-    "lineToward": 6,
+    "beatPct": 13.3,
+    "graded": 20,
+    "lineToward": 2,
     "lineAway": 3,
-    "espnCloses": 1,
-    "sgoCloses": 16
+    "espnCloses": 20,
+    "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 9,
-      "losses": 8,
+      "wins": 10,
+      "losses": 10,
       "pushes": 0,
-      "units": -0.94,
-      "n": 17,
-      "roi": -5.5,
-      "pending": 8,
+      "units": -2.05,
+      "n": 20,
+      "roi": -10.2,
+      "pending": 5,
       "since": "2026-11-05"
     },
     "price": {
