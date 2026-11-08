@@ -282,18 +282,87 @@ function factors(c) {
 function slug(s) { return String(s).replace(/[^\w-]+/g, "-").replace(/^-+|-+$/g, ""); }
 
 /* ---------- closing line value ---------- */
-/* The closing line is the last price check before tip-off (the pipeline runs twice a day, so "close" means the last
-   look, not the final tick). CLV is the closing fair probability minus the probability implied by the price we logged:
-   positive means the price we took beat where the sharp market finished. Null until a later check exists. */
+/* The close is always a pre-game price (fixed 2026-11-08). Until then the first source was SportsGameOdds' event record
+   read after the game, whose odds are by then the last in-game state with no book open: 16 of the first 17 graded picks
+   read "consensus close (SportsGameOdds, 0 books)" (the Flyers ML posted at +133 "closed" at +1010, the Kraken ML at
+   +110 at +1281, an Under 3.5 at -914), so CLV read 20 to 40 points either way. Best source first now:
+   (a) ESPN's core odds record for the game, its explicit `close` block (DraftKings: context.closingOdds);
+   (b) the newest SportsGameOdds point we recorded ourselves before the start (`sgoHistory` with `at` before `commence`;
+       the hourly track runs add one whenever the price moves within RULES.sgoTrackWindowHours of the start): the
+       consensus fair across the books on our exact line, else the vendor's fair when its line is ours, else only the
+       direction the line moved;
+   (c) the newest Odds API check before the start (`history`, two checks or more: the first is the posting price itself);
+   else null. SportsGameOdds' post-game record still gives a score (sgo.result), never a price.
+   CLV = the close's fair probability − the probability implied by the price we logged, only when the close is on our line
+   (always for a moneyline); otherwise `clv` is null and `lineMove` says whether the line moved toward or away from us. */
+function preGame(points, commence) {
+  const t = Date.parse(commence || "");
+  return (points || []).filter(x => x && Number.isFinite(Date.parse(x.at || "")) && (!Number.isFinite(t) || Date.parse(x.at) < t));
+}
+const hasNum = v => v != null && v !== "" && Number.isFinite(Number(v));
 function closingLine(entry) {
-  const h = (entry.history || []).filter(x => x && Number.isFinite(Number(x.fair)));
+  const h = preGame(entry.history, entry.commence).filter(x => hasNum(x.fair));
   if (h.length < 2) return null;
   const last = h[h.length - 1];
-  return { at: last.at, odds: last.odds, fair: round(last.fair, 4), samples: h.length };
+  return { at: last.at, odds: last.odds, fair: round(Number(last.fair), 4), samples: h.length };
 }
 function clvOf(entry) {
   const c = closingLine(entry);
   return c ? round(c.fair - implied(entry.odds), 4) : null;
+}
+/* (b): our own last SportsGameOdds look before the start */
+function sgoPreClose(entry) {
+  const pts = preGame(entry.sgoHistory, entry.commence); if (!pts.length) return null;
+  const last = pts[pts.length - 1], point = entry.outcome && entry.outcome.point != null ? Number(entry.outcome.point) : null;
+  const vendorOnOurs = entry.marketKey === "h2h" || (hasNum(last.line) && point != null && Math.abs(Number(last.line) - point) < 1e-9);
+  let fair = null, line = entry.marketKey === "h2h" ? null : point, odds = hasNum(last.best) ? Number(last.best) : hasNum(last.odds) ? Number(last.odds) : null;
+  if (hasNum(last.fair)) fair = Number(last.fair); /* the books on our exact line, de-vigged */
+  else if (vendorOnOurs && hasNum(last.vendorFair)) { fair = Number(last.vendorFair); if (hasNum(last.odds)) odds = Number(last.odds); }
+  else if (!vendorOnOurs) { line = hasNum(last.line) ? Number(last.line) : null; odds = hasNum(last.odds) ? Number(last.odds) : odds; }
+  const moved = fair == null ? context.movedToward(entry, { line: point, odds: entry.odds }, { line: line, odds: odds }) : null;
+  return { source: "last pre-game check (SportsGameOdds, " + (last.n || 0) + " books)", at: last.at, line: line, odds: odds, fair: fair == null ? null : round(fair, 4), moved: moved, samples: pts.length };
+}
+/* the close, (a) -> (b) -> (c); deps.ctx is the context source (ESPN) */
+async function closeFor(entry, deps) {
+  let c = null;
+  if (deps && deps.ctx) { try { c = await context.closingOdds(deps.ctx, entry); } catch (err) { c = null; } }
+  if (!c) c = sgoPreClose(entry);
+  const own = closingLine(entry);
+  if (!c && own) c = Object.assign({ source: "last check (Odds API)" }, own);
+  if (c && c.samples == null) c.samples = own ? own.samples : 1;
+  if (c) delete c.score;
+  return c;
+}
+/* write a close and what follows from it; nothing else on the entry moves (result, units and grade stay as graded) */
+function applyClose(entry, c) {
+  entry.close = c || null;
+  entry.clv = c && typeof c.fair === "number" ? round(c.fair - implied(entry.odds), 4) : null;
+  entry.lineMove = c && c.fair == null && c.moved ? c.moved : null;
+}
+/* Self-heal (2026-11-08): a graded pick whose close was read from SportsGameOdds' post-game record ("consensus close
+   (SportsGameOdds, N books)": every one of them was read after the game), or whose close is a check taken after the start,
+   gets its close, CLV and line move re-derived by closeFor on the next run. A repair that finds no pre-game price leaves
+   the close null and tries again on the next two runs (`closeRepair.tries`), in case ESPN was down. */
+const REPAIR_TRIES = 3;
+function closeNeedsRepair(e) {
+  if (e.type || e.status !== "graded") return false;
+  if (!e.close) return !!(e.closeRepair && e.closeRepair.tries < REPAIR_TRIES);
+  if (/^consensus close \(SportsGameOdds/.test(e.close.source || "")) return true;
+  const at = Date.parse(e.close.at || ""), t = Date.parse(e.commence || "");
+  return Number.isFinite(at) && Number.isFinite(t) && at >= t;
+}
+async function repairCloses(log, now, deps) {
+  let repaired = 0;
+  for (const e of log) {
+    if (!closeNeedsRepair(e)) continue;
+    const was = e.close ? { source: e.close.source || null, odds: e.close.odds != null ? e.close.odds : null, line: e.close.line != null ? e.close.line : null, clv: e.clv != null ? e.clv : null } : (e.closeRepair && e.closeRepair.was) || null;
+    const c = await closeFor(e, deps);
+    applyClose(e, c);
+    e.closeRepair = { at: now.toISOString(), was: was, tries: c ? 0 : ((e.closeRepair && e.closeRepair.tries) || 0) + 1 };
+    if (c) delete e.closeRepair.tries;
+    repaired++;
+  }
+  return repaired;
 }
 
 /* ---------- grading ---------- */
@@ -360,18 +429,12 @@ async function gradeStarted(log, now, deps) {
   log.filter(e => !e.type && e.status === "pending" && Date.parse(e.commence) <= t).forEach(e => { (bySport[e.sportKey] = bySport[e.sportKey] || []).push(e); });
   let graded = 0, scoresRequests = 0;
   const fromScores = (e, home, away) => ({ completed: true, home_team: e.home, away_team: e.away, scores: [{ name: e.home, score: home }, { name: e.away, score: away }] });
-  async function settle(e, scoreEv, sgoClose) {
+  async function settle(e, scoreEv) {
     const g = grade(e, scoreEv); if (!g) return false;
     e.status = "graded"; e.result = g.result; e.units = g.units; e.score = g.score; e.finalScore = g.final; e.gradedAt = now.toISOString();
-    /* the close, best source first: the nine-book consensus (SportsGameOdds), DraftKings' close (ESPN), our last pre-game check */
-    let c = sgoClose || null;
-    if (!c && deps.sgoOk()) { try { c = await sgo.close(deps.sgoSrc, e, context.movedToward); } catch (err) { c = null; } }
-    if (!c) { try { c = await context.closingOdds(deps.ctx, e); } catch (err) { c = null; } }
-    const own = closingLine(e);
-    e.close = c ? Object.assign(c, { samples: own ? own.samples : 1 }) : own ? Object.assign({ source: "last check (Odds API)" }, own) : null;
-    if (e.close) delete e.close.score;
-    e.clv = e.close && typeof e.close.fair === "number" ? round(e.close.fair - implied(e.odds), 4) : null;
-    e.lineMove = e.close && e.close.moved ? e.close.moved : null;
+    /* the close, always pre-game (see closeFor): DraftKings' close (ESPN), our last SportsGameOdds look before the start,
+       our last Odds API check before the start */
+    applyClose(e, await closeFor(e, deps));
     graded++;
     return true;
   }
@@ -379,7 +442,7 @@ async function gradeStarted(log, now, deps) {
     const left = [];
     for (const e of bySport[sportKey]) {
       const past = Date.parse(e.commence) < floor;
-      let scoreEv = null, sgoClose = null, live = false;
+      let scoreEv = null, live = false;
       try {
         const sb = await deps.ctx.scoreboard(e.sportKey, etDate(new Date(Date.parse(e.commence))).replace(/-/g, ""));
         const m = context.findEvent(sb, e.home, e.away);
@@ -391,18 +454,19 @@ async function gradeStarted(log, now, deps) {
           else live = flag === false;
         }
       } catch (err) { scoreEv = null; }
+      /* SportsGameOdds' record of a finished game: its score only (never its prices: see closeFor) */
       if (!scoreEv && (!live || (past && !deps.track)) && deps.sgoOk()) {
-        try { sgoClose = await sgo.close(deps.sgoSrc, e, context.movedToward); } catch (err) { sgoClose = null; }
-        if (sgoClose && sgoClose.score) scoreEv = fromScores(e, sgoClose.score.home, sgoClose.score.away);
+        let res = null; try { res = await sgo.result(deps.sgoSrc, e); } catch (err) { res = null; }
+        if (res && res.score) scoreEv = fromScores(e, res.score.home, res.score.away);
       }
-      if (!scoreEv || !(await settle(e, scoreEv, sgoClose))) left.push(e);
+      if (!scoreEv || !(await settle(e, scoreEv))) left.push(e);
     }
     if (!deps.scores || !left.some(e => Date.parse(e.commence) < floor)) continue;
     const scores = await deps.scores(sportKey); scoresRequests++;
     const byId = {}; (scores || []).forEach(s => { byId[s.id] = s; });
     for (const e of left) {
       const s = byId[e.eventId];
-      if (s && isFinal(typeof s.completed === "boolean" ? s.completed : undefined, e.commence, now) && await settle(e, Object.assign({}, s, { completed: true }), null)) continue;
+      if (s && isFinal(typeof s.completed === "boolean" ? s.completed : undefined, e.commence, now) && await settle(e, Object.assign({}, s, { completed: true }))) continue;
       if (Date.parse(e.commence) < t - RULES.voidAfterDays * 864e5) e.status = "void";
     }
   }
@@ -636,6 +700,9 @@ async function run(opts) {
   const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: sportKey => source.scores(sportKey) });
   const scoresRequests = g.scoresRequests;
   gradeParlays(log, now);
+  /* closes read after the game before 2026-11-08 get a pre-game one (performance.js is rewritten below, as every full run does) */
+  const closesRepaired = await repairCloses(log, now, { ctx: ctxSource });
+  if (closesRepaired) console.log("Closes repaired: " + closesRepaired + " graded picks had a close read after the game; re-derived from pre-game prices");
 
   /* 2. fetch odds and find today's edges */
   const active = await source.activeSports();
@@ -750,7 +817,7 @@ async function run(opts) {
   writePicks(dataDir, picksData);
   const perf = summarize(log, now);
   writePerformance(dataDir, perf);
-  return { added: fresh.length, waited: waited, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, used: usage.used, plan: plan, slot: opts.slot || "manual", playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
+  return { added: fresh.length, closesRepaired: closesRepaired, waited: waited, board: boardEntries.length, card: card.length, settled: g.graded, graded: perf.graded, remaining: usage.remaining, used: usage.used, plan: plan, slot: opts.slot || "manual", playOfDay: playOfDay && playOfDay.pick, parlay: parlayOfDay && parlayOfDay.legs.length, contextRequests: ctxRequests, modelled: modelled, unmodelled: unmodelled, scoresRequests: scoresRequests, market: marketRows.length, marketGames: marketData.games, sgo: { enabled: sgoSrc.enabled, entities: sgoSrc.stats().entities, moved: sgoStats.changed, monthUsed: sgoBudget ? sgoBudget.used : null } };
 }
 const GENERATED = "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\n";
 function writePicks(dataDir, data) { fs.writeFileSync(path.join(dataDir, "picks.js"), GENERATED + "window.PICKS_DATA = " + JSON.stringify(data, null, 2) + ";\n"); }
@@ -893,6 +960,7 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > RULES.sgoReserve);
   const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: null, track: true });
   const parlaysGraded = gradeParlays(log, now);
+  const closesRepaired = await repairCloses(log, now, { ctx: ctxSource }); /* the same self-heal as a full run's */
   const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now, source: ctxSource });
   /* who plays: the NBA's official report and ESPN's, against what each posted NBA pick knew (flag only; picks stay locked) */
   let availabilityFlagged = 0;
@@ -912,8 +980,8 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
   writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: potdEntry ? publicPick(potdEntry, now) : null, parlayOfDay: publicParlay(parlayEntry, log, now), picks: card });
   /* a run that graded nothing leaves performance.js as the last run wrote it */
-  if (g.graded || parlaysGraded) writePerformance(dataDir, summarize(log, now));
-  return { track: true, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
+  if (g.graded || parlaysGraded || closesRepaired) writePerformance(dataDir, summarize(log, now));
+  return { track: true, closesRepaired: closesRepaired, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
 }
 
 function liveSource(key, usage) {
@@ -966,5 +1034,5 @@ if (require.main === module) {
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
+module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, sgoPreClose, closeFor, applyClose, closeNeedsRepair, repairCloses, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
 module.exports.runDayAllows = runDayAllows; /* college football: Friday runs only */

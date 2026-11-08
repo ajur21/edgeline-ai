@@ -6,8 +6,8 @@
    de-vigged "fair" number with its opener. No Pinnacle, so The Odds API keeps
    the sharp anchor and finds the edges; this feed does the cheap, frequent
    work: refresh every book's price on a pick's line between runs, show how
-   the whole market has drifted since the open, and give a nine-book close
-   after the game. Every event returned costs one entity, so calls are by
+   the whole market has drifted since the open, record our own pre-game look at the market (`sgoHistory`, a fallback
+   for the close) and read a finished game's score. Every event returned costs one entity, so calls are by
    eventIDs once a game is known and by a tight start window to find it.
    Key: SGO_API_KEY (repository secret). Without it every call is skipped.
    ========================================================================== */
@@ -192,23 +192,18 @@ async function refresh(entries, opts) {
   return { changed: changed, entities: src.stats().entities, requests: src.stats().requests };
 }
 
-/* ---------- the close for a finished pick ---------- */
-async function close(src, e, movedToward) {
+/* ---------- a finished game's result: its score, never a price (2026-11-08) ----------
+   This was `close()`, the first source of the close at grading. But the event record after a game carries the last
+   in-game prices with no book open: 16 of the first 17 graded picks read "consensus close (SportsGameOdds, 0 books)" (the
+   Flyers ML posted at +133 "closed" at +1010), so CLV read 20 to 40 points either way. The close now comes from ESPN's
+   DraftKings close or our own pre-game checks (update-data.js closeFor, which reads the `sgoHistory` points `refresh`
+   records before the start); this reads only the score, for grading a game ESPN cannot settle. */
+async function result(src, e) {
   if (!src.enabled || !LEAGUE[e.sportKey]) return null;
   const found = await findEvents(src, [e]);
   const ev = found[e.id]; if (!ev) return null;
-  const s = snapshot(ev, e);
-  if (!s || !s.finished) return null;
-  const point = e.outcome && e.outcome.point != null ? Number(e.outcome.point) : null;
-  /* the number that counts: the vendor's de-vigged fair when its closing line is ours (always for a moneyline);
-     else our own consensus across the books still on our line; else no price CLV, only a direction */
-  let fair = null, line = s.vendor.line;
-  if (s.vendor.sameLine && s.vendor.fair != null) fair = s.vendor.fair;
-  else if (s.fairBooks >= 2) { fair = s.fair; line = point; }
-  const logged = { line: point, odds: e.odds };
-  const closeSide = { line: line, odds: s.vendor.odds };
-  return { source: "consensus close (" + SOURCE + ", " + (s.n || s.fairBooks || 0) + " books)", sgoEventId: ev.eventID, line: line, odds: s.best ? s.best.odds : s.vendor.odds, bestBook: s.best ? s.best.book : null, fair: fair,
-    moved: fair == null && movedToward ? movedToward(e, logged, closeSide) : null, open: s.open, score: s.score, books: s.books };
+  if (!(ev.status && (ev.status.completed || ev.status.ended))) return null;
+  return { sgoEventId: ev.eventID, score: results(ev, e.sportKey) };
 }
 
 /* ---------- player props: every player's lines ride along in the game's event object ----------
@@ -294,4 +289,4 @@ async function nightEvents(src, league, starts) {
 }
 function eventFor(list, home, away) { return (list || []).find(ev => ev.teams && teamMatches(home, ev.teams.home) && teamMatches(away, ev.teams.away)) || null; }
 
-module.exports = { source, refresh, close, snapshot, sideIds, oddIdsFor, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOCCER_ODD_IDS, SOURCE, PROP_STATS, propSnapshot, playerProps, playerIndex, findPlayer, normName, nightEvents, eventFor, teamMatches };
+module.exports = { source, refresh, result, snapshot, sideIds, oddIdsFor, findEvents, results, matches, LEAGUE, BOOKS, ODD_IDS, SOCCER_ODD_IDS, SOURCE, PROP_STATS, propSnapshot, playerProps, playerIndex, findPlayer, normName, nightEvents, eventFor, teamMatches };

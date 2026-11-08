@@ -215,7 +215,8 @@ function scoreboardOdds(comp) {
   const snap = key => ({
     spread: lineNum(side(o.pointSpread, "home", key) && side(o.pointSpread, "home", key).line), spreadOdds: { home: american(side(o.pointSpread, "home", key) && side(o.pointSpread, "home", key).odds), away: american(side(o.pointSpread, "away", key) && side(o.pointSpread, "away", key).odds) },
     total: lineNum(side(o.total, "over", key) && side(o.total, "over", key).line), totalOdds: { over: american(side(o.total, "over", key) && side(o.total, "over", key).odds), under: american(side(o.total, "under", key) && side(o.total, "under", key).odds) },
-    ml: { home: american(side(o.moneyline, "home", key) && side(o.moneyline, "home", key).odds), away: american(side(o.moneyline, "away", key) && side(o.moneyline, "away", key).odds) }
+    ml: { home: american(side(o.moneyline, "home", key) && side(o.moneyline, "home", key).odds), away: american(side(o.moneyline, "away", key) && side(o.moneyline, "away", key).odds) },
+    draw: american(side(o.moneyline, "draw", key) && side(o.moneyline, "draw", key).odds) /* soccer's third way, when the scoreboard carries it */
   });
   const now = snap("close"), open = snap("open");
   if (now.spread == null && o.spread != null) now.spread = Number(o.spread);
@@ -231,7 +232,8 @@ function coreOdds(o) {
     return {
       spread: h && h.pointSpread ? lineNum(h.pointSpread.american) : null, spreadOdds: { home: h && h.spread ? american(h.spread.american) : null, away: a && a.spread ? american(a.spread.american) : null },
       total: t && t.total ? lineNum(t.total.american) : null, totalOdds: { over: t && t.over ? american(t.over.american) : null, under: t && t.under ? american(t.under.american) : null },
-      ml: { home: h && h.moneyLine ? american(h.moneyLine.american) : null, away: a && a.moneyLine ? american(a.moneyLine.american) : null }
+      ml: { home: h && h.moneyLine ? american(h.moneyLine.american) : null, away: a && a.moneyLine ? american(a.moneyLine.american) : null },
+      draw: t && t.draw ? american(t.draw.american) : null /* soccer: the draw's price sits in the open / current / close block */
     };
   };
   const close = snap("close"), current = snap("current"), open = snap("open");
@@ -244,7 +246,15 @@ function dkSide(e, snap) {
   if (!snap) return null;
   const home = e.outcome && e.outcome.name === e.home, away = e.outcome && e.outcome.name === e.away;
   if (e.marketKey === "h2h") {
-    if (!home && !away) return null; /* draws are not in ESPN's two-way block */
+    /* soccer's moneyline has three ways (2026-11-08): de-vigged across home, away and the draw, or no fair at all. A
+       two-way de-vig there left the draw out and read a side too high (Austin FC +300: 29.7% against 25.0% implied) */
+    if (/^soccer_/.test(e.sportKey || "") || e.threeWay) {
+      const draw = e.outcome && /^draw$/i.test(e.outcome.name || ""), mine = home ? snap.ml.home : away ? snap.ml.away : draw ? snap.draw : null;
+      if (mine == null) return null;
+      const all = [snap.ml.home, snap.ml.away, snap.draw];
+      return { line: null, odds: mine, fair: all.every(x => x != null) ? impliedP(mine) / all.reduce((s, x) => s + impliedP(x), 0) : null };
+    }
+    if (!home && !away) return null;
     const mine = home ? snap.ml.home : snap.ml.away, theirs = home ? snap.ml.away : snap.ml.home;
     return mine == null ? null : { line: null, odds: mine, fair: devig2(mine, theirs) };
   }
@@ -296,6 +306,7 @@ async function closingOdds(src, e) {
   const side = dkSide(e, o.close); if (!side || side.odds == null) return null;
   const logged = { line: e.outcome && e.outcome.point != null ? Number(e.outcome.point) : null, odds: e.odds };
   const sameLine = e.marketKey === "h2h" || (side.line != null && logged.line != null && Math.abs(side.line - logged.line) < 1e-9);
+  if (sameLine && side.fair == null) return null; /* on our line but a price missing to de-vig it: the next source (closeFor) */
   return { source: "DraftKings close (ESPN)", espnEventId: String(id), line: side.line, odds: side.odds, fair: sameLine ? round(side.fair, 4) : null, moved: sameLine ? null : movedToward(e, logged, side), open: (function (op) { return op ? { line: op.line, odds: op.odds, fair: op.fair == null ? null : round(op.fair, 4) } : null; })(dkSide(e, o.open)) };
 }
 /* track mode: refresh only the DraftKings numbers on every board entry (one scoreboard call per sport and day) */
