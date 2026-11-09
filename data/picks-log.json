@@ -7832,8 +7832,8 @@
    "Edge 4.1 points over the price, 1.1 past its bar of 3.0",
    "Market reference 44.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-07T18:31:30.088Z",
   "current": {
    "at": "2026-11-08T20:36:00.800Z",
@@ -8248,7 +8248,30 @@
      "fair": 0.4294
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-5",
+  "finalScore": {
+   "home": 5,
+   "away": 2
+  },
+  "gradedAt": "2026-11-09T05:29:25.100Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892679",
+   "line": 6.5,
+   "odds": 136,
+   "fair": 0.4066,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 105,
+    "fair": 0.4675
+   },
+   "samples": 4
+  },
+  "clv": -0.0439,
+  "lineMove": null
  },
  {
   "type": "parlay",
@@ -9905,8 +9928,8 @@
    "Edge 6.7 points over the price, 0.4 past its bar of 6.4",
    "Market reference 82.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.2,
   "loggedAt": "2026-11-08T14:06:54.761Z",
   "current": {
    "at": "2026-11-08T20:36:00.800Z",
@@ -10250,7 +10273,30 @@
      "fair": 0.8268
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "100-115",
+  "finalScore": {
+   "home": 115,
+   "away": 100
+  },
+  "gradedAt": "2026-11-09T05:29:25.100Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401909947",
+   "line": null,
+   "odds": -700,
+   "fair": 0.8409,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -486,
+    "fair": 0.7969
+   },
+   "samples": 2
+  },
+  "clv": 0.0076,
+  "lineMove": null
  },
  {
   "key": "26c46faca681cd1f742dee05c5d7730b|totals|Over|5.5",
@@ -10343,8 +10389,8 @@
    "Edge 3.2 points over the price, 0.2 past its bar of 3.0",
    "Market reference 51.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.83,
   "loggedAt": "2026-11-08T14:06:54.761Z",
   "current": {
    "at": "2026-11-08T20:36:00.800Z",
@@ -10697,14 +10743,37 @@
      "fair": 0.5125
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "3-4",
+  "finalScore": {
+   "home": 4,
+   "away": 3
+  },
+  "gradedAt": "2026-11-09T05:29:25.100Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892678",
+   "line": 5.5,
+   "odds": -118,
+   "fair": 0.5174,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
+   },
+   "samples": 2
+  },
+  "clv": -0.0281,
+  "lineMove": null
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-08",
   "date": "2026-11-08",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-08T14:06:54.761Z",
   "book": "Bovada",
   "legs": [
@@ -10720,6 +10789,8 @@
   "decimal": 7.1689,
   "odds": 617,
   "fairProb": 0.2049,
-  "ev": 0.4688
+  "ev": 0.4688,
+  "gradedAt": "2026-11-09T05:29:25.100Z",
+  "result": "Loss"
  }
 ]

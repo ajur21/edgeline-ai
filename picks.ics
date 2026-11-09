@@ -367,28 +367,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-08@edgeline
-DTSTAMP:20261108T233141Z
-DTSTART:20261108T163000Z
-DTEND:20261109T041000Z
-SUMMARY:Parlay lean of the day: 3 legs +617 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 20.5%\, implied 13.9%\, EV +46.
- 9% per unit.\n- NHL: Boston Bruins ML -142 · Florida Panthers @ Boston Br
- uins\n- Soccer: Under 3 goals -115 · Manchester United vs. Aston Villa\n-
-  NHL: Under 6.5 +125 · Pittsburgh Penguins @ Anaheim Ducks\n\nEvery parla
- y: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261108T233141Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 3 legs +617 at Bovada
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:b0a4b5448a-totals-Under@edgeline
 DTSTAMP:20261108T192648Z
 DTSTART:20261108T163000Z
@@ -425,117 +403,56 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261108T233141Z
+DTSTAMP:20261109T052925Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
-SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Low
+SUMMARY:Minnesota Timberwolves ML -500 at BetRivers · Won +0.20u
 DESCRIPTION:NBA · Utah Jazz @ Minnesota Timberwolves · Sun Nov 8\, 7:10 P
- M ET\nMoneyline: Minnesota Timberwolves ML at -500 (BetRivers). Our probab
- ility 90.1% from game data\, the price implies 83.3%\, edge +6.7 pts\, EV 
- +8.1% per unit. Confidence: Lean.\nOur probability is 90.1%\, from the gam
- e data: this season's results and margins\, recent form\, rest\, the injur
- y report and home edge (projected margin +16.2 for the home side). BetRive
- rs offers -500\, which implies only 83.3%. Its bar is 6.4 points: the mode
- l's own margin of error on this side\, with 9 games behind the thinner tea
- m (±4.58 points on the margin). It clears it by 0.4. Not graded against o
- ther books' prices\; for reference the market makes it 82.0%.\nWhat suppor
- ts it:\n- Minnesota Timberwolves rate +6.3 a game over 10 (7-3)\, Utah Jaz
- z -8.1 over 9 (1-8)\; last season +3.4 and -8.4 a game.\n- Home edge +1.9 
- for Minnesota Timberwolves.\n- Utah Jazz without Jaren Jackson Jr. (F) (+1
- .8).\n- Utah Jazz have Lauri Markkanen (F) listed day-to-day or questionab
- le.\n- Projected margin +16.2 for Minnesota Timberwolves.\nWhat could go w
- rong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.9).\n- Min
- nesota Timberwolves have Joan Beringer (F) listed day-to-day or questionab
- le.\n- At current prices our edge is 5.5 points\, under its bar of 5.6 poi
- nts\; the pick stays posted and is graded at the price it was posted at.\n
- Verdict: The game data lines up behind this side at this price.\nPrices: B
- etRivers -500\, BetOnline.ag -580\, PointsBet -625\, FanDuel -650\, theSco
- re Bet -650 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#758ca94b2a-h2h-Minnesota-Timberwolves
+ M ET\nMoneyline: Minnesota Timberwolves ML at -500 (BetRivers). Won +0.20u
+ .\nFinal: 100-115\nClosing line value: +0.8 pts (closed -700\, DraftKings 
+ close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edg
+ eline-ai/performance.html
 LOCATION:Target Center\, Minneapolis
-URL:https://ajur21.github.io/edgeline-ai/picks.html#758ca94b2a-h2h-Minnesot
- a-Timberwolves
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA
-LAST-MODIFIED:20261108T233141Z
+LAST-MODIFIED:20261109T052925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Minnesota Timberwolves ML -500 at BetRivers · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:26c46faca6-totals-Over@edgeline
-DTSTAMP:20261108T233141Z
+DTSTAMP:20261109T052925Z
 DTSTART:20261109T001000Z
 DTEND:20261109T031000Z
-SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
+SUMMARY:Over 5.5 -120 at BetOnline.ag · Won +0.83u
 DESCRIPTION:NHL · Philadelphia Flyers @ Calgary Flames · Sun Nov 8\, 7:10
-  PM ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from
-  game data\, the price implies 54.5%\, edge +3.2 pts\, EV +5.8% per unit. 
- Confidence: Lean.\nOur probability at 5.5 is 57.7%\, from the game data: t
- his season's results and margins\, recent form\, rest\, the injury report 
- and home edge (projected total 6.3). BetOnline.ag offers -120\, which impl
- ies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin o
- f error here is smaller). It clears it by 0.2. Not graded against other bo
- oks' prices\; for reference the market makes it 51.7%.\nWhat supports it:\
- n- Combined scoring 6 a game in Calgary Flames's games\, 5.6 in Philadelph
- ia Flyers's (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A
-  better price is now available: -117 at Bovada.\nWhat could go wrong:\n- S
- corers out: Brennan Othmann (LW)\, upper body\; Kevin Bahl (D)\, achilles\
- ; Jonathan Huberdeau (LW)\, hip and 4 more. Fewer healthy scorers leans un
- der.\nVerdict: The game data lines up behind this side at this price.\nPri
- ces: BetOnline.ag -120\, BetMGM -120\, theScore Bet -120\, Bovada -120\, E
- SPN BET -120 and 6 more.\nFull breakdown: https://ajur21.github.io/edgelin
- e-ai/picks.html#26c46faca6-totals-Over
+  PM ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Won +0.83u.\nFinal: 3-4\nC
+ losing line value: -2.8 pts (closed -118\, DraftKings close (ESPN)).\nReco
+ rd and every graded lean: https://ajur21.github.io/edgeline-ai/performance
+ .html
 LOCATION:Scotiabank Saddledome\, Calgary
-URL:https://ajur21.github.io/edgeline-ai/picks.html#26c46faca6-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T233141Z
+LAST-MODIFIED:20261109T052925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -120 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:41a3f4e922-totals-Under@edgeline
-DTSTAMP:20261108T233141Z
+DTSTAMP:20261109T052925Z
 DTSTART:20261109T011000Z
 DTEND:20261109T041000Z
-SUMMARY:Under 6.5 +122 at FanDuel · Low
+SUMMARY:Under 6.5 +122 at FanDuel · Lost -1.00u
 DESCRIPTION:NHL · Pittsburgh Penguins @ Anaheim Ducks · Sun Nov 8\, 8:10 
- PM ET\nTotal: Under 6.5 at +122 (FanDuel). Our probability 49.2% from game
-  data\, the price implies 45.0%\, edge +4.1 pts\, EV +9.2% per unit. Confi
- dence: Lean.\nOur probability at 6.5 is 49.2%\, from the game data: this s
- eason's results and margins\, recent form\, rest\, the injury report and h
- ome edge (projected total 6.5). FanDuel offers +122\, which implies only 4
- 5.0%. Its bar is 3.0 points (the floor: the model's own margin of error he
- re is smaller). It clears it by 1.1. Not graded against other books' price
- s\; for reference the market makes it 44.9%.\nWhat supports it:\n- Combine
- d scoring 7.5 a game in Anaheim Ducks's games\, 6.8 in Pittsburgh Penguins
- 's (league average 6.4).\n- A better price is now available: +124 at Draft
- Kings.\n- A better price is available now: +130 at DraftKings.\n- Scorers 
- out: A.J. Greer (LW)\, upper body\; Troy Terry (RW)\, hip\; Ian Moore (D)\
- , lower body and 5 more. Fewer healthy scorers leans under.\n- Pittsburgh 
- Penguins on a back-to-back\; tired legs lean under.\nWhat could go wrong:\
- n- Projected total 6.53 against 6.5.\nVerdict: The game data lines up behi
- nd this side at this price.\nPrices: DraftKings +130\, PointsBet +130\, Ca
- esars +125\, Bovada +125\, ESPN BET +120 and 3 more.\nFull breakdown: http
- s://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
+ PM ET\nTotal: Under 6.5 at +122 (FanDuel). Lost -1.00u.\nFinal: 2-5\nClosi
+ ng line value: -4.4 pts (closed +136\, DraftKings close (ESPN)).\nRecord a
+ nd every graded lean: https://ajur21.github.io/edgeline-ai/performance.htm
+ l
 LOCATION:Honda Center\, Anaheim
-URL:https://ajur21.github.io/edgeline-ai/picks.html#41a3f4e922-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261108T233141Z
+LAST-MODIFIED:20261109T052925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +122 at FanDuel · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 END:VCALENDAR
