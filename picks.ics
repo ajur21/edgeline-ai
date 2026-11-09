@@ -315,6 +315,23 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:0cfbab01e1-totals-Under@edgeline
+DTSTAMP:20261108T164338Z
+DTSTART:20261108T140000Z
+DTEND:20261108T170000Z
+SUMMARY:Under 3 goals -105 at Bovada · Lost -1.00u
+DESCRIPTION:Soccer · Crystal Palace vs. Liverpool · Sun Nov 8\, 9:00 AM E
+ T\nTotal: Under 3 goals at -105 (Bovada). Lost -1.00u.\nFinal: 3-1\nThe li
+ ne moved away the lean before close.\nRecord and every graded lean: https:
+ //ajur21.github.io/edgeline-ai/performance.html
+LOCATION:Selhurst Park\, London
+URL:https://ajur21.github.io/edgeline-ai/performance.html
+CATEGORIES:Soccer
+LAST-MODIFIED:20261108T164338Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 UID:79ed3df594-h2h-Ipswich-Town@edgeline
 DTSTAMP:20261108T164338Z
 DTSTART:20261108T140000Z
@@ -326,23 +343,6 @@ DESCRIPTION:Soccer · Ipswich Town vs. Bournemouth · Sun Nov 8\, 9:00 AM E
  .\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perf
  ormance.html
 LOCATION:Portman Road\, Ipswich
-URL:https://ajur21.github.io/edgeline-ai/performance.html
-CATEGORIES:Soccer
-LAST-MODIFIED:20261108T164338Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-UID:0cfbab01e1-totals-Under@edgeline
-DTSTAMP:20261108T164338Z
-DTSTART:20261108T140000Z
-DTEND:20261108T170000Z
-SUMMARY:Under 3 goals -105 at Bovada · Lost -1.00u
-DESCRIPTION:Soccer · Crystal Palace vs. Liverpool · Sun Nov 8\, 9:00 AM E
- T\nTotal: Under 3 goals at -105 (Bovada). Lost -1.00u.\nFinal: 3-1\nThe li
- ne moved away the lean before close.\nRecord and every graded lean: https:
- //ajur21.github.io/edgeline-ai/performance.html
-LOCATION:Selhurst Park\, London
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
 LAST-MODIFIED:20261108T164338Z
@@ -398,6 +398,30 @@ LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
 LAST-MODIFIED:20261108T233141Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:slate-2026-11-09@edgeline
+DTSTAMP:20261109T141051Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:No lean tonight: 32 sides priced in 6 games\, none clears its bar
+DESCRIPTION:Every main-line side was given our probability from the game da
+ ta. None sits above what its best price implies by its own bar (3 points o
+ r more: the model's margin of error on that side)\, so there is no bet.\nI
+ n a replay of past seasons these leans did not beat the closing price (NHL
+  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
+ when the live record beats the close.\nClosest to the bar:\n- NHL: Over 6.
+ 5 +110 at DraftKings (+1.5 pts against a bar of +3.0 pts) · Philadelphia 
+ Flyers @ Vancouver Canucks\n- NHL: Vancouver Canucks ML +118 at BetOnline.
+ ag (+4.5 pts against a bar of +7.3 pts) · Philadelphia Flyers @ Vancouver
+  Canucks\n- NFL: Minnesota Vikings +3 -102 at DraftKings (+0.1 pts against
+  a bar of +3.0 pts) · Buffalo Bills @ Minnesota Vikings\nThe market board
+ : https://ajur21.github.io/edgeline-ai/picks.html#market
+URL:https://ajur21.github.io/edgeline-ai/picks.html#market
+CATEGORIES:Slate
+LAST-MODIFIED:20261109T141051Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
