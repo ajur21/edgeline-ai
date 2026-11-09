@@ -403,7 +403,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:slate-2026-11-09@edgeline
-DTSTAMP:20261109T141051Z
+DTSTAMP:20261109T154047Z
 DTSTART;VALUE=DATE:20261109
 DTEND;VALUE=DATE:20261110
 SUMMARY:No lean tonight: 32 sides priced in 6 games\, none clears its bar
@@ -421,7 +421,7 @@ DESCRIPTION:Every main-line side was given our probability from the game da
  : https://ajur21.github.io/edgeline-ai/picks.html#market
 URL:https://ajur21.github.io/edgeline-ai/picks.html#market
 CATEGORIES:Slate
-LAST-MODIFIED:20261109T141051Z
+LAST-MODIFIED:20261109T154047Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
