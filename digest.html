@@ -135,32 +135,15 @@
     played = E.playedPicks();
   }
   var ET = "America/New_York";
-  var gen = new Date(D.generatedAt), now = isNaN(gen) ? new Date() : gen;
-  var dayLabel = now.toLocaleDateString("en-US", { timeZone: ET, weekday: "long", month: "long", day: "numeric" });
+  /* the slate's day is the visitor's Eastern day (the site's clock), like every start label on the page: after midnight
+     the games listed as "Today" are that day's, whenever the file was written */
+  var dayLabel = new Date(E.now()).toLocaleDateString("en-US", { timeZone: ET, weekday: "long", month: "long", day: "numeric" });
   document.getElementById("digest-title").textContent = "The slate for " + dayLabel;
   E.updateLine(document.getElementById("generated-at"));
 
-  /* ---------- ordering: by start time; picks without a timestamp are placed from their label ---------- */
-  var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var todayDow = DAYS.indexOf(now.toLocaleDateString("en-US", { timeZone: ET, weekday: "short" }));
-  function sortKey(p) {
-    var t = Date.parse(p.commence);
-    if (Number.isFinite(t)) return t;
-    var m = String(p.start || "").match(/^(Today|Tonight|Tomorrow|Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-    if (!m) return Number.MAX_SAFE_INTEGER;
-    /* the pipeline labels same-day games "Today"/"Tonight", so a bare weekday is always a later day (same weekday = next week) */
-    var word = m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), offset = word === "Tomorrow" ? 1 : DAYS.indexOf(word) === -1 ? 0 : ((DAYS.indexOf(word) - todayDow + 7) % 7 || 7);
-    var h = Number(m[2]) % 12 + (m[4].toUpperCase() === "PM" ? 12 : 0);
-    return offset * 1440 + h * 60 + Number(m[3]);
-  }
-  function slotLabel(p) {
-    var t = Date.parse(p.commence);
-    if (!Number.isFinite(t)) return p.start || "Start time to be confirmed";
-    var ref = new Date(E.now()), d = new Date(t), day = d.toLocaleDateString("en-CA", { timeZone: ET }), today = ref.toLocaleDateString("en-CA", { timeZone: ET });
-    var tomorrow = new Date(ref.getTime() + 864e5).toLocaleDateString("en-CA", { timeZone: ET });
-    var time = d.toLocaleTimeString("en-US", { timeZone: ET, hour: "numeric", minute: "2-digit" }) + " ET";
-    return (day === today ? "Today" : day === tomorrow ? "Tomorrow" : d.toLocaleDateString("en-US", { timeZone: ET, weekday: "short", month: "short", day: "numeric" })) + ", " + time;
-  }
+  /* the start on every line: the site's one label (EdgeLine.startLabel: "Today 8:10 PM ET", "Tomorrow …", a weekday),
+     built from commence against the site's clock, so a game played today never reads "Tomorrow" after midnight */
+  function slotLabel(p) { return E.startLabel(p) || "Start time to be confirmed"; }
   /* a day heading where the game day changes (owner rule: a play from tomorrow never sits above one from today) */
   function dayBreaks(picks) { var spans = new Set(picks.map(E.dayKey)).size > 1, prev = null; return picks.map(function (p, i) { var k = E.dayKey(p), brk = spans && (i === 0 || k !== prev); prev = k; return brk ? k : null; }); }
   var top3Title = document.querySelector("#top3-head h2").textContent;

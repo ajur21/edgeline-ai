@@ -219,7 +219,7 @@
       E.el("div", { class: "game-head" }, [
         E.el("div", { class: "game-tags" }, [E.el("span", { class: "badge badge-state badge-" + key, text: chip }), E.el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
         E.el("h3", { class: "game-title" }, [E.el("a", { href: "game.html?id=" + encodeURIComponent(g.id), text: r.event })]),
-        E.meta([Number.isFinite(t) ? "Started " + E.clockET(t) : r.start, "Lines closed at the start"], "game-meta")
+        E.meta([Number.isFinite(t) ? "Started " + E.clockET(t) : E.startLabel(r), "Lines closed at the start"], "game-meta")
       ]),
       g.allPicks.length ? E.el("ul", { class: "game-picks" }, g.allPicks.map(function (p) {
         var graded = E.gameState(p) === "final";
@@ -246,7 +246,7 @@
           g.modelled ? null : E.el("span", { class: "badge badge-status badge-none", text: "No model yet" })
         ]),
         E.el("h3", { class: "game-title" }, [E.el("a", { href: "game.html?id=" + encodeURIComponent(g.id), text: r.event })]),
-        E.meta([r.start, r.books ? r.books + " books on the main lines" : null], "game-meta")
+        E.meta([E.startLabel(r), r.books ? r.books + " books on the main lines" : null], "game-meta")
       ]),
       E.el("div", { class: "table-wrap game-lines-wrap" }, [lt.table]),
       booksTable(g, lt.sides)

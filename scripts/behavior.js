@@ -864,6 +864,10 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
     await hc.close();
   }
 
+  /* start labels on the clock, the bar wording, held games and flagged leans, the clearing price and the watchlist
+     (2026-11-10): scripts/watch-checks.js, on the same server, clock and counter */
+  await require('./watch-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc });
+
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;
   /* the smoke pass never calls ESPN: on a day with games under way the pages ask ESPN's scoreboard for live scores, and

@@ -96,12 +96,9 @@
   function shortDay(k) { return keyDate(k).toLocaleDateString("en-US", { timeZone: "UTC", weekday: "short", month: "short", day: "numeric" }).replace(",", ""); }
   function timeET(ms) { return fmtTime.format(new Date(ms)) + " ET"; }
   function startOf(g) { const t = Date.parse((g && g.commence) || ""); return Number.isFinite(t) ? t : E.startMs(g); }
-  /* "Today 7:10 PM ET", "Tomorrow 8:15 PM ET", "Thu Nov 12, 8:15 PM ET" */
-  function whenLong(ms) {
-    if (!Number.isFinite(ms)) return "";
-    const s = E.clockET(ms);
-    return /^\d/.test(s) ? "Today " + s : s.charAt(0).toUpperCase() + s.slice(1);
-  }
+  /* "Today 7:10 PM ET", "Tomorrow 8:15 PM ET", "Thu Nov 12, 8:15 PM ET": the site's one start label (EdgeLine.startLabel),
+     with the date on a day past tomorrow because a game page can be a week out */
+  function whenLong(ms) { return Number.isFinite(ms) ? E.startLabel({ commence: new Date(ms).toISOString() }, { date: true }) : ""; }
   /* "Starts in 2 hr 50 min", "Starts in 3 days" */
   function untilText(ms) {
     const m = Math.round((ms - E.now()) / 60e3);

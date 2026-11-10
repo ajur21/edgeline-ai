@@ -126,7 +126,7 @@
       const show = function () {
         const rect = svg.getBoundingClientRect(), hostRect = host.getBoundingClientRect();
         const px = rect.left - hostRect.left + (sx(d.x) / W) * rect.width, py = rect.top - hostRect.top + (sy(d.y) / H) * rect.height;
-        tt.date.textContent = d.r.event + " · " + (d.r.start || "");
+        tt.date.textContent = d.r.event + " · " + E.startLabel(d.r);
         tt.val.textContent = d.r.pick + "  " + E.fmtOdds(d.r.odds);
         tt.name.textContent = d.r.book + " · to hit " + E.pct(d.r.modelProb) + " (ours) vs " + E.pct(d.x) + " implied · edge " + E.signed(d.edge, 1) + " · bar " + E.ptsLabel(d.bar / 100) + ", " + pastTxt + " · " + E.statusLabel(d.status);
         tt.key.setAttribute("data-sport", d.r.sport);
