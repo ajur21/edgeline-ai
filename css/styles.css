@@ -1023,6 +1023,11 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .field-svg .axis { stroke: var(--axis); stroke-width: 1; }
 .field-svg .tick { fill: var(--muted); font-size: 11px; font-family: var(--font-mono); }
 .field-svg .field-bar-tick { fill: var(--accent-3-text); font-weight: 700; }
+/* the no-parlay card's rows: the side and its game take their own line under the logos, the price and the status, and
+   wrap, so nothing is cut in a card a third of the page wide (2026-11-10: "Colum…", "Florida Pant", "Tomorro") */
+.pulse .parlay-legs li { grid-template-columns: minmax(0, 1fr) auto auto; row-gap: 6px; }
+.pulse .parlay-legs .leg-pick { grid-column: 1 / -1; grid-row: 2; }
+.pulse .leg-pick strong, .pulse .leg-event { white-space: normal; overflow: visible; text-overflow: clip; }
 .field-svg .field-zone { fill: var(--accent-3-wash); opacity: 0.55; }
 .field-svg .field-fair { stroke: var(--axis); stroke-width: 1; }
 .field-svg .field-watch { stroke: var(--accent-4); stroke-width: 1; stroke-dasharray: 4 5; opacity: 0.8; }
