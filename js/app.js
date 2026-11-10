@@ -274,6 +274,34 @@
   /* one line for the breakdown */
   function standingLine(p) { return standingOf(p) ? ("Locked: graded at the posted price. " + standingNow(p)).trim() : ""; }
 
+  /* ---------- who plays changed after a lean was posted (the pipeline's flag since 2026-11-08, on the pages since 2026-11-10) ----------
+     A posted NBA lean carries `availability`: who the model knew about when it was posted (`posted`: the report, the
+     listed players) and whether that has changed since (`changed`, with the pipeline's own sentence in `note` and
+     `swing`, the points of margin toward the lean's side; null for a total). It is only a flag: the lean stays posted,
+     locked and graded at its posted price. Read from the field, never the sport, so another league's flag shows too. */
+  function flagOf(p) { const a = p && !p.isMarket ? p.availability : null; return a && a.changed === true ? a : null; }
+  /* against the lean's side, for it, or neither (a total, or a swing too small to say) */
+  function flagDir(a) { const s = finiteNum(a && a.swing); return !Number.isFinite(s) || Math.abs(s) < 0.05 ? "flat" : s < 0 ? "against" : "for"; }
+  function flagNote(p) {
+    const a = flagOf(p);
+    if (!a) return "";
+    const n = String(a.note || "").trim().replace(/[.\s]+$/, "") || "Who plays changed after this " + word("one") + " was posted";
+    return n + ". It stays posted and is graded at the posted price.";
+  }
+  function flagChip(p) { const a = flagOf(p); return a ? el("span", { class: "badge badge-standing badge-flag is-" + flagDir(a), title: flagNote(p), text: "Who plays changed" }) : null; }
+  /* the chip and the note together, for a card, the breakdown and the game page */
+  function flagLine(p, cls) { return flagOf(p) ? el("p", { class: "pick-note pick-flag" + (cls ? " " + cls : "") }, [flagChip(p), el("span", { text: flagNote(p) })]) : null; }
+  /* who the lean was posted knowing about: "Posted on the 3:30 PM ET official injury report: Jamal Murray (Denver) questionable." */
+  function postedKnowing(p) {
+    const a = p && p.availability, post = a && a.posted;
+    if (!post) return "";
+    const lead = post.report && post.report.label ? "Posted on the " + post.report.label + " official injury report" : "Posted on ESPN’s injury list";
+    const who = (post.players || []).filter(function (x) { return x && x.name; }).map(function (x) { const team = x.side === "home" ? p.home : x.side === "away" ? p.away : ""; return x.name + (team ? " (" + team + ")" : "") + (x.status ? " " + String(x.status).toLowerCase() : ""); });
+    return lead + (who.length ? ": " + who.join("; ") + "." : ": no one listed who moves the number.");
+  }
+  /* a held game's note on a card: why the side or the game is held and when that is decided */
+  function heldLine(p, cls) { return isHeld(p) && isOpen(p) ? el("p", { class: "pick-note pick-held" + (cls ? " " + cls : ""), text: heldNote(p) }) : null; }
+
   /* ---------- line shopping: every book's price on the pick's line ---------- */
   /* a book "clears the bar" when its price still leaves our probability the full edge this pick's own bar needs */
   const BOOK_ABBR = { DraftKings: "DK", FanDuel: "FD", BetMGM: "MGM", Caesars: "CZR", BetRivers: "BR", Fanatics: "FAN", "ESPN BET": "ESPN", Bovada: "BOV", "BetOnline.ag": "BOL", Pinnacle: "PIN", LowVig: "LV", "Hard Rock Bet": "HRB", Bet365: "365", PointsBet: "PB", Unibet: "UNI" };
@@ -492,6 +520,21 @@
     const s = FULL_UTC[i] || FULL_UTC[0], d = new Date(now());
     return etClock.format(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), s[0], s[1]))).replace(":00", "") + " ET";
   }
+  /* which full runs price a sport (the slot rule in scripts/update-data.js: SPORTS[].slots and runDays): the NBA, the NFL
+     and soccer on the afternoon run only, college football on Friday's afternoon run only, every other sport on both.
+     Change these with the pipeline's slot rule. runAfter: the sport's first full run at or after `from` (strict: after) */
+  const AFTERNOON_ONLY = { NBA: true, NFL: true, NCAAF: true, Soccer: true }, RUN_DAYS = { NCAAF: [5] };
+  function runAfter(sport, from, strict) {
+    const d = new Date(from), days = RUN_DAYS[sport], slots = AFTERNOON_ONLY[sport] ? [FULL_UTC[1]] : FULL_UTC;
+    let best = Infinity;
+    for (let off = 0; off < 8; off++) slots.forEach(function (s) {
+      const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]);
+      if (days && days.indexOf(new Date(t).getUTCDay()) === -1) return; /* both runs fall on the same Eastern weekday as their UTC date */
+      if ((strict ? t > from : t >= from) && t < best) best = t;
+    });
+    return best;
+  }
+  function nextRunFor(sport) { return runAfter(sport, now(), true); }
   /* the parts of the line; opts.lines is the Games page, whose prices come only from the full runs */
   function updateParts(opts) {
     opts = opts || {};
@@ -499,7 +542,8 @@
     const pub = Date.parse(d.generatedAt || ""), tracked = Date.parse(d.trackedAt || ""), priced = Date.parse(m.generatedAt || "");
     if (opts.lines) return [
       Number.isFinite(priced) ? "Lines priced " + clockET(priced) + " (" + ago(priced) + ")" : "Lines not priced yet",
-      "Next pricing " + aboutET(nextRun(true)),
+      /* a game page names its sport: the NBA, the NFL and soccer are priced on the afternoon run only */
+      "Next pricing " + aboutET(opts.sport ? nextRunFor(opts.sport) : nextRun(true)),
       Number.isFinite(tracked) && tracked > priced ? word("Many") + " rechecked " + clockET(tracked) : null
     ];
     const times = [pub, tracked, priced].filter(Number.isFinite), latest = times.length ? Math.max.apply(null, times) : NaN;
@@ -567,9 +611,40 @@
 
   /* ---------- the market board: every priced market from the last odds run, pick or not ---------- */
   function marketData() { const m = window.MARKET_DATA; return m && Array.isArray(m.rows) ? m : { sample: true, rows: [], threshold: DEFAULT_BAR, watch: DEFAULT_WATCH, games: 0, generatedAt: null }; }
-  function statusLabel(st) { return st === "pick" ? word("One") : st === "watch" ? "Watch" : "No bet"; }
-  /* the status a row earns from its edge against its own bar: watch from halfway to the bar up, never a pick (that needs the board) */
-  function rowStatus(r) { return hasModel(r) && rowEdge(r) >= watchLineOf(r) ? "watch" : "none"; }
+  function statusLabel(st) { return st === "pick" ? word("One") : st === "held" ? "Held" : st === "watch" ? "Watch" : "No bet"; }
+  /* the status a row earns from its edge against its own bar: watch from halfway to the bar up, never a pick (that needs
+     the board). A side the pipeline itself rules out (the file's status "none" on an edge that would read as watch: a
+     market with no signal in the replay, a held college moneyline) is never on watch, whatever its price */
+  function rowStatus(r) { return hasModel(r) && r.status !== "none" && rowEdge(r) >= watchLineOf(r) ? "watch" : "none"; }
+
+  /* ---------- held games (2026-11-10) ----------
+     A game the pipeline holds posts nothing until its news is in: an NBA game whose clubs are not both on the league's
+     official injury report yet (RULES.availabilityHold in scripts/update-data.js). Every market row of a held game
+     carries `waiting`, the reasons as text ("report not in for both clubs"), null otherwise. The pages read that field
+     and never the sport's name, so any game that carries it is held, whatever the league and whatever the reason.
+     A held side that clears its own bar is "Held", a state of its own: neither on watch (it is past its bar) nor kept
+     off by the caps (one lean a game, ten a day, five a sport). */
+  function waitingOf(x) { const w = x && x.waiting; return (Array.isArray(w) ? w : typeof w === "string" ? [w] : []).map(function (s) { return String(s == null ? "" : s).trim(); }).filter(Boolean); }
+  function isHeld(x) { return waitingOf(x).length > 0; }
+  function heldClears(x) { return isHeld(x) && hasModel(x) && pastNum(x) >= 0; }
+  /* the reasons as one phrase: "report not in for both clubs" */
+  function heldWhy(x) { return waitingOf(x).join("; "); }
+  /* when a held game is priced again: its sport's next full run, if that is before the start; NaN when none is left */
+  const SPORT_WORD = { NCAAF: "college football", Soccer: "soccer" };
+  function heldRun(x) { const t = nextRunFor(x && x.sport), s = startMs(x); return Number.isFinite(t) && (!Number.isFinite(s) || t < s) ? t : NaN; }
+  /* "Decided at the next NBA pricing run, about 3:30 PM ET."; inline: the same as a clause, "decided at the next NBA pricing run, about 3:30 PM ET" */
+  function heldWhen(x, inline) {
+    const t = heldRun(x), sport = x && x.sport ? (SPORT_WORD[x.sport] || x.sport) + " " : "";
+    const s = Number.isFinite(t) ? "decided at the next " + sport + "pricing run, " + aboutET(t) : "no pricing run is left before the start";
+    return inline ? s : s.charAt(0).toUpperCase() + s.slice(1) + (Number.isFinite(t) ? "." : ", so nothing posts from this game.");
+  }
+  /* the whole of it for a card, a paragraph or a title: why this side or game is held, and when that is decided; "" when it is not */
+  function heldNote(x) {
+    if (!isHeld(x)) return "";
+    return (heldClears(x) ? "Clears its bar but is held: " : "This game is held: ") + heldWhy(x) + ". " + heldWhen(x);
+  }
+  /* the chip a market row shows: Held for a held side that clears its bar, else its status against its own bar */
+  function chipStatus(r) { return heldClears(r) ? "held" : rowStatus(r); }
   /* a row is a pick only while its pickId is on the current board */
   function rowOnBoard(r) { if (!r || !r.pickId) return false; return ((window.PICKS_DATA || {}).picks || []).some(function (p) { return p.id === r.pickId; }); }
   /* a market row dressed as a pick so the card, board and digest code can show it; never confused with a real pick */
@@ -577,21 +652,24 @@
     const modelled = hasModel(r) && r.edge != null && Number.isFinite(Number(r.edge));
     const edge = modelled ? Number(r.edge) : NaN, bar = barOf(r), barLabel = barName(r), implied = pct(impliedProb(r.odds));
     /* a row is a pick only while that pick is on the current board; otherwise it is market information, whatever the file says */
-    const status = onBoard ? "pick" : modelled ? rowStatus(r) : "none";
+    const status = onBoard ? "pick" : modelled ? chipStatus(r) : "none", held = !onBoard && isHeld(r);
+    /* a held game's side says why it is held and when that is decided; only a side the caps keep off says so */
     const why = !modelled ? "No model yet: too little game data behind this one to price it, so there is no probability and no edge."
-      : edge >= bar ? "Clears " + barLabel + (onBoard ? "." : " but is not on the board: there is at most one " + word("one") + " per game, ten a day and five per sport, chosen by how far each side clears its own bar.")
+      : edge >= bar ? "Clears " + barLabel + (onBoard ? "." : held ? " but its game is held: " + heldWhy(r) + ". " + heldWhen(r) + " It posts then only if it still clears its bar and is the game’s side furthest past it."
+        : " but is not on the board: there is at most one " + word("one") + " per game, ten a day and five per sport, chosen by how far each side clears its own bar.")
       : edge > 0 ? "Edge of " + (edge * 100).toFixed(1) + " points sits under " + barLabel + (hasOwnBar(r) ? ": the model’s own margin of error on this side is bigger than the edge, so it is not a bet." : ": priced about right, not a bet.")
       : "No edge: the price implies " + (-edge * 100).toFixed(1) + " points more than our probability.";
+    const heldTail = held && modelled && !(edge >= bar) ? " The game is held too: " + heldWhy(r) + ". " + heldWhen(r) : "";
     const marketRef = typeof r.marketFair === "number" ? "For reference the market makes it " + pct(r.marketFair) + "." : "";
     const rationale = modelled
-      ? "Our probability is " + pct(r.modelProb) + ", from the game data: results and margins this season, form, rest, the injury report and home edge. " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + ". " + why + " Not graded against other books' prices." + (marketRef ? " " + marketRef : "")
+      ? "Our probability is " + pct(r.modelProb) + ", from the game data: results and margins this season, form, rest, the injury report and home edge. " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + ". " + why + heldTail + " Not graded against other books' prices." + (marketRef ? " " + marketRef : "")
       : why + " " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + "." + (marketRef ? " " + marketRef : "");
     return { id: onBoard ? r.pickId : "m" + i, isMarket: !onBoard, status: status, eventId: r.eventId, sport: r.sport, league: r.league, sportKey: r.sportKey, event: r.event, home: r.home, away: r.away, commence: r.commence, start: r.start, marketKey: r.marketKey, market: r.market, outcome: r.outcome, pick: r.pick, odds: r.odds, book: r.book, prices: r.prices || {}, books: r.books, anchor: r.anchor, modelProb: modelled ? r.modelProb : null, ev: modelled ? r.ev : null,
       basis: "game", modelled: modelled, model: r.model || null, marketFair: typeof r.marketFair === "number" ? r.marketFair : null, marketEdge: typeof r.marketEdge === "number" ? r.marketEdge : null,
-      bar: hasOwnBar(r) ? Number(r.bar) : null, past: modelled ? edge - bar : null, barParts: r.barParts || null,
+      bar: hasOwnBar(r) ? Number(r.bar) : null, past: modelled ? edge - bar : null, barParts: r.barParts || null, waiting: held ? waitingOf(r) : null,
       confidence: onBoard ? "Lean" : statusLabel(status),
       rationale: rationale,
-      factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, modelled ? "Probability " + pct(r.modelProb) + " from game data, not other books" : "No model yet: no probability from game data", modelled ? "Edge " + signed(edge * 100, 1) + " points over the price" : "No edge until the game has a model", modelled ? "Bar " + ptsLabel(bar) + " points: " + (edge >= bar ? ((edge - bar) * 100).toFixed(1) + " past it" : ((bar - edge) * 100).toFixed(1) + " short") : null, typeof r.marketFair === "number" ? "Market reference " + pct(r.marketFair) : null].filter(Boolean), breakdown: null, context: null, movement: null };
+      factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, modelled ? "Probability " + pct(r.modelProb) + " from game data, not other books" : "No model yet: no probability from game data", modelled ? "Edge " + signed(edge * 100, 1) + " points over the price" : "No edge until the game has a model", modelled ? "Bar " + ptsLabel(bar) + " points: " + (edge >= bar ? ((edge - bar) * 100).toFixed(1) + " past it" : ((bar - edge) * 100).toFixed(1) + " short") : null, held ? "Held: " + heldWhy(r) : null, typeof r.marketFair === "number" ? "Market reference " + pct(r.marketFair) : null].filter(Boolean), breakdown: null, context: null, movement: null };
   }
   /* the closest markets to the bar, best first, skipping the ones that are already picks on the board; a game that has started is never offered (opts.includeStarted keeps it) */
   function marketRows(opts) {
@@ -612,17 +690,20 @@
   /* the board's counts, open games only: a game that has started is counted apart (started, startedGames) and never as a market to bet */
   function marketSummary() {
     const m = marketData(), all = m.rows || [], rows = all.filter(isOpen), gone = all.filter(r => !isOpen(r));
+    const ids = list => new Set(list.map(r => r.eventId != null ? r.eventId : r.event)).size;
     /* picks are the rows on the current board; watch is read from each row's own bar, so the counts match the table */
     const onBoard = {}; ((window.PICKS_DATA || {}).picks || []).forEach(p => { onBoard[p.id] = true; });
     const isPick = r => !!(r.pickId && onBoard[r.pickId]);
-    const watch = rows.filter(r => !isPick(r) && rowStatus(r) === "watch").length, picks = rows.filter(isPick).length;
-    /* sides past their own bar that are not on the board: one pick per game, ten a day and five per sport keep them off */
-    const clearOff = rows.filter(r => !isPick(r) && hasModel(r) && rowEdge(r) >= barOf(r)).length;
+    const watch = rows.filter(r => !isPick(r) && chipStatus(r) === "watch").length, picks = rows.filter(isPick).length;
+    /* sides past their own bar that are not on the board, counted apart by what keeps them off: `held`, a game waiting on
+       its news (the row's `waiting`), and `clearOff`, the caps (one pick per game, ten a day and five per sport) */
+    const heldRows = rows.filter(r => !isPick(r) && heldClears(r)), held = heldRows.length;
+    const clearOff = rows.filter(r => !isPick(r) && !isHeld(r) && hasModel(r) && rowEdge(r) >= barOf(r)).length;
+    const heldGames = ids(rows.filter(r => !isPick(r) && isHeld(r)));
     const unmodelled = rows.filter(r => !hasModel(r)).length;
     /* closest to its own bar, so a sport with a wide bar is not flattered by a raw edge */
     const best = rows.filter(hasModel).sort((a, b) => (pastNum(b) - pastNum(a)) || (rowEdge(b) - rowEdge(a)))[0] || null;
     const when = m.generatedAt ? new Date(m.generatedAt) : null;
-    const ids = list => new Set(list.map(r => r.eventId != null ? r.eventId : r.event)).size;
     const games = gone.length && all.every(r => r.eventId != null || r.event) ? ids(rows) : (m.games || 0);
     const sports = (m.sports || []).filter(s => !gone.length || rows.some(r => r.sport === s));
     /* each sport's range of bars over the open modelled rows that carry one (none on files written before 2026-11-05) */
@@ -633,7 +714,7 @@
     });
     const order = s => { const i = (m.sports || []).indexOf(s); return i === -1 ? 99 : i; };
     bars.sort((a, b) => order(a.sport) - order(b.sport) || (a.sport < b.sport ? -1 : 1));
-    return { games: games, markets: rows.length, picks: picks, watch: watch, best: best, sports: sports, generatedAt: when && !isNaN(when) ? when : null, threshold: floorBar(), watchEdge: watchOf(), barPts: barPts(), watchPts: watchPts(), clearOff: clearOff, bars: bars, ownBars: bars.length > 0, modelled: Number.isFinite(Number(m.modelled)) ? Number(m.modelled) : null, unmodelled: unmodelled, started: gone.length, startedGames: gone.length ? ids(gone) : 0 };
+    return { games: games, markets: rows.length, picks: picks, watch: watch, best: best, sports: sports, generatedAt: when && !isNaN(when) ? when : null, threshold: floorBar(), watchEdge: watchOf(), barPts: barPts(), watchPts: watchPts(), clearOff: clearOff, held: held, heldRows: heldRows, heldGames: heldGames, bars: bars, ownBars: bars.length > 0, modelled: Number.isFinite(Number(m.modelled)) ? Number(m.modelled) : null, unmodelled: unmodelled, started: gone.length, startedGames: gone.length ? ids(gone) : 0 };
   }
   /* "NBA 8–10.8, NHL 6.5, MLB 3": each sport's bars in points, for copy; "" without per-side bars */
   function barsText(s) { s = s || marketSummary(); return (s.bars || []).map(function (b) { const lo = ptsLabel(b.min), hi = ptsLabel(b.max); return b.sport + " " + (lo === hi ? lo : lo + "–" + hi); }).join(", "); }
@@ -669,11 +750,12 @@
       if (newDay) { if (spansDays) body.push(marketDayRow(day)); prevDay = day; divided = false; }
       if (opts.divider && !divided && !newDay && !(rowEdge(r) > 0) && rowEdge(rows[idx - 1]) > 0) { divided = true; body.push(marketDivider(opts.divider)); }
       const isPick = !!(r.pickId && onBoard[r.pickId]), modelled = hasModel(r);
-      const st = isPick ? "pick" : rowStatus(r);
+      /* Held: a side past its bar in a game waiting on its news; its row says why under the game, and the chip's title when it is decided */
+      const st = isPick ? "pick" : chipStatus(r);
       r = Object.assign({}, r, { pickId: isPick ? r.pickId : null });
       const tr = el("tr", { class: "mkt-" + st + (modelled ? "" : " mkt-nomodel") }, [
         el("td", {}, [el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
-        el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(r, { size: "sm", abbr: false }) : null, el("span", { class: "mkt-game-text" }, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: startLabel(r) })])])]),
+        el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(r, { size: "sm", abbr: false }) : null, el("span", { class: "mkt-game-text" }, [el("span", { class: "mkt-event", text: r.event }), el("span", { class: "mkt-start", text: startLabel(r) }), st === "held" ? el("span", { class: "mkt-why", text: "Held: " + heldWhy(r) }) : null])])]),
         el("td", { text: r.market }),
         el("td", {}, [el("strong", { text: r.pick })]),
         el("td", { class: "num mono", text: fmtOdds(r.odds) }),
@@ -681,7 +763,7 @@
         el("td", { class: "num mono", text: probText(r), title: modelled ? "Our probability, from the game data" + (typeof r.marketFair === "number" ? "; the market makes it " + pct(r.marketFair) + " (reference only)" : "") : "No model yet for this game" }),
         el("td", { class: "num mono", text: pct(impliedProb(r.odds)) }),
         modelled ? el("td", { class: "num mono " + (rowEdge(r) > 0 ? "edge-pos" : "edge-neg"), title: "Its bar " + barPts(r) + " points: " + pastWord(r) }, [el("span", { class: "mkt-edge", text: signed(r.edge * 100, 1) }), hasOwnBar(r) ? el("span", { class: "mkt-bar", text: "bar " + barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" }),
-        el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: word("One") }) : el("span", { class: "badge badge-status badge-" + st, text: statusLabel(st) })])
+        el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: word("One") }) : el("span", { class: "badge badge-status badge-" + st, title: st === "held" ? heldNote(r) : null, text: statusLabel(st) })])
       ]);
       /* phone layout restacks each row as a card and labels the cells from this attribute */
       Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-label", MARKET_COLS[i]); });
@@ -698,7 +780,7 @@
     const top = marketRows({ limit: 3, oneSidePerMarket: true, positive: false });
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
-      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? nWord(s.picks) + " on the board. " : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + barGap(s.best) + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
+      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? nWord(s.picks) + " on the board. " : "None is on the board" + (s.held ? "; " + s.held + " held past " + (s.held === 1 ? "its" : "their") + " bar" : "") + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + barGap(s.best) + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
       el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, startLabel(p)], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
       el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
@@ -815,7 +897,7 @@
     const confClass = p.isMarket ? "badge badge-status badge-" + (p.status || "none") : "badge badge-conf-" + String(p.confidence).toLowerCase();
     const factors = Array.isArray(p.factors) ? p.factors : [];
     /* a market card is not a lean (the never-empty fallbacks, the watchlist): its link says so, as the game page does */
-    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: p.isMarket ? "Why no " + word("one") : "Why this " + word("one") });
+    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: !p.isMarket ? "Why this " + word("one") : p.status === "held" ? "Why it is held" : "Why no " + word("one") });
     const backBtn = el("button", { type: "button", class: "flip-btn", text: "Back to numbers" });
     const front = el("div", { class: "pick-face pick-front" }, [
       el("div", { class: "pick-head" }, [
@@ -845,6 +927,8 @@
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: modelled ? "v edge" : "v muted", text: edgeText(p) })])
       ]),
       barLine(p),
+      heldLine(p),
+      flagLine(p),
       el("div", { class: "pick-foot" }, [
         el("span", {}, [meta([p.league, startLabel(p)]), liveSlot(p.id)]),
         /* a game that has started is never offered: its state chip stands where the parlay button was */
@@ -909,7 +993,7 @@
       el("td", {}, [el("span", { class: "mkt-game" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { text: p.event })])]),
       el("td", { text: startLabel(p) }),
       el("td", { text: p.market }),
-      el("td", {}, [el("strong", { text: p.pick })]),
+      el("td", {}, [el("strong", { text: p.pick }), flagOf(p) ? el("span", { class: "row-note" }, [flagChip(p), el("span", { text: flagNote(p) })]) : null]),
       el("td", { class: "num", text: fmtOdds(p.odds) }),
       el("td", { class: "num", text: probText(p) }),
       el("td", { class: "num", text: pct(impliedProb(p.odds)) }),
@@ -951,7 +1035,8 @@
       /* nothing cleared the bar: show the closest market instead, labelled as such */
       const alt = marketRows({ limit: 1, oneSidePerMarket: true, byPast: true })[0];
       if (alt) {
-        const past = pastOf(alt), why = !Number.isFinite(past) ? "There is no model on the board yet, so this is the first market priced, not a " + word("one") + "." : past < 0 ? "Nothing is on the board yet, so this is the nearest miss on our numbers: " + (-past * 100).toFixed(1) + " points short of " + barName(alt) + ". Not a " + word("one") + "." : "Nothing is on the board yet. This side was past " + barName(alt) + " at the last pricing but was not posted, so it is not a " + word("one") + ".";
+        const past = pastOf(alt), why = !Number.isFinite(past) ? "There is no model on the board yet, so this is the first market priced, not a " + word("one") + "." : past < 0 ? "Nothing is on the board yet, so this is the nearest miss on our numbers: " + (-past * 100).toFixed(1) + " points short of " + barName(alt) + ". Not a " + word("one") + "." : isHeld(alt) ? "Nothing is on the board yet. This side clears " + barName(alt) + ", but its game is held: " + heldWhy(alt) + ". " + heldWhen(alt) + " Not a " + word("one") + " until then."
+          : "Nothing is on the board yet. This side was past " + barName(alt) + " at the last pricing but was not posted, so it is not a " + word("one") + ".";
         const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: why + " The " + word("ofDay").toLowerCase() + " is chosen at the first run with a " + word("one") + "." })); c.classList.add("potd-market"); return c;
       }
       return el("div", { class: "card empty", text: "No " + word("ofDay").toLowerCase() + " yet. It is chosen at the first run with " + word("many") + ", around " + runClock(0) + "." });
@@ -976,6 +1061,7 @@
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "EV / unit" }), el("div", { class: modelled ? "v edge" : "v muted", text: modelled ? signed((p.ev == null ? p.modelProb * decimalOdds(p.odds) - 1 : p.ev) * 100, 1) + "%" : "—" })])
       ]),
       barLine(p),
+      flagLine(p),
       el("p", { class: "pick-rationale", text: p._note || p.rationale }),
       el("div", { class: "pick-foot" }, [
         el("span", { class: "potd-state" }, status.concat([st === "final" || p.isMarket ? null : liveSlot(p.id)])),
@@ -1136,6 +1222,7 @@
           valueLine(p, "bd-value"),
           moneylineLine(p, "bd-ml"),
           standingLine(p) ? el("p", { class: "bd-standing", text: standingLine(p) }) : null,
+          flagLine(p, "bd-flag"),
           isOpen(p) ? null : el("p", { class: "bd-state" }, [stateChip(p), meta([gameState(p) === "final" && scoreText(p) ? "Final " + scoreText(p) : Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : null, unitsText(p) || null], "bd-state-meta")]),
           modelLine(p),
           barLine(p, "bd-bar")
@@ -1161,6 +1248,8 @@
     }))));
     const known = TM() ? TM().faces(p, { perTeam: 4, px: 48, title: false }) : null;
     if (known) grid.appendChild(el("div", { class: "bd-cell bd-wide" }, [el("h4", { text: "Names to know" }), known]));
+    /* who the lean was posted knowing about, and whether that has changed since (the pipeline's availability flag) */
+    if (postedKnowing(p)) { const av = p.availability, chk = Date.parse(av.checkedAt || ""); grid.appendChild(el("div", { class: "bd-cell bd-wide bd-avail" }, [el("h4", { text: "Who plays" }), el("p", { text: postedKnowing(p) }), el("p", { text: flagOf(p) ? flagNote(p) : "No change since" + (Number.isFinite(chk) ? ", checked " + clockET(chk) : "") + "." })])); }
     if (c.weather) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: [c.weather.summary, c.weather.tempF != null ? c.weather.tempF + "°F" : null, c.weather.windMph != null ? "wind " + c.weather.windMph + " mph" : null, c.weather.precipPct != null ? c.weather.precipPct + "% rain" : null].filter(Boolean).join(" · ") + (c.weather.city ? " · " + c.weather.city : "") })]));
     else if (c.indoor) grid.appendChild(el("div", { class: "bd-cell" }, [el("h4", { text: "Weather" }), el("p", { text: "Indoor venue." })]));
     const restTeams = Object.keys(c.rest || {}).filter(t => c.rest[t]);
@@ -1251,6 +1340,7 @@
     hasModel: hasModel, probOf: probOf, edgeNum: edgeNum, rowEdge: rowEdge, probText: probText, edgeText: edgeText, barOf: barOf, watchOf: watchOf, barPts: barPts, watchPts: watchPts, gradeRule: GRADE_RULE,
     hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barGap: barGap, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
     standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
+    flagOf: flagOf, flagNote: flagNote, flagChip: flagChip, flagLine: flagLine, postedKnowing: postedKnowing, heldLine: heldLine, waitingOf: waitingOf, isHeld: isHeld, heldClears: heldClears, heldWhy: heldWhy, heldWhen: heldWhen, heldNote: heldNote, heldRun: heldRun, chipStatus: chipStatus, runAfter: runAfter, nextRunFor: nextRunFor,
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,

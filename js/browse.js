@@ -121,20 +121,12 @@
      afternoon run (the NFL's early-kickoff mornings only refresh games an afternoon run already priced), college football
      on Friday's afternoon run only (`runDays`: Friday night and Saturday); each asks for the games starting inside 36 hours.
      A game no scheduled run reaches before its kickoff (a midweek college game) has no first run: "Not priced yet" ---------- */
-  const RUNS_UTC = [[14, 0], [20, 30]], AFTERNOON_ONLY = { NBA: true, NFL: true, NCAAF: true, Soccer: true }, RUN_DAYS = { NCAAF: [5] }, WINDOW_MS = 36 * 36e5;
-  function runsFor(sport) { return AFTERNOON_ONLY[sport] ? [RUNS_UTC[1]] : RUNS_UTC; }
-  function runAfter(sport, from, strict) {
-    const d = new Date(from), days = RUN_DAYS[sport]; let best = Infinity;
-    for (let off = 0; off < 8; off++) runsFor(sport).forEach(function (s) {
-      const t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + off, s[0], s[1]);
-      if (days && days.indexOf(new Date(t).getUTCDay()) === -1) return; /* both runs fall on the same Eastern weekday as their UTC date */
-      if ((strict ? t > from : t >= from) && t < best) best = t;
-    });
-    return best;
-  }
+  /* the slot rule itself (which runs price which sport) lives in js/app.js since 2026-11-10, where a held game's "decided at
+     the next run" reads it too: EdgeLine.runAfter(sport, from, strict), EdgeLine.nextRunFor(sport) */
+  const WINDOW_MS = 36 * 36e5, runAfter = E.runAfter;
   /* the first run whose window reaches the kickoff (NaN when none does before it) */
   function firstRun(sport, kick) { if (!Number.isFinite(kick)) return NaN; const t = runAfter(sport, kick - WINDOW_MS, false); return t < kick ? t : NaN; }
-  function nextRunFor(sport) { return runAfter(sport, E.now(), true); }
+  const nextRunFor = E.nextRunFor;
   /* "Saturday afternoon", "tomorrow morning", "this afternoon" */
   function runWord(t) {
     const k = keyOf(t), today = todayKey(), part = Number(fmtHour.format(new Date(t))) < 12 ? "morning" : "afternoon";
@@ -619,7 +611,7 @@
       ]),
       el("div", { class: "card game-board" + (sc && sc.live ? " is-live" : "") }, order(g).map(teamRow).concat([status, leanLine, updated]))
     ]);
-    if (updated) E.updateLine(updated, { lines: true });
+    if (updated) E.updateLine(updated, { lines: true, sport: g.sport });
     return box;
   }
   function resultSec(g) {
@@ -650,7 +642,15 @@
       E.initTilt(grid);
     } else if (g.id && g.rows.length) {
       const best = g.rows.filter(E.hasModel).sort(function (a, b) { return pastNum(b) - pastNum(a); })[0];
-      kids.push(el("p", { class: "game-none" }, [el("strong", { text: "No " + W("lean") + " on this game:" }), " no side cleared its own bar." + (best ? (pastNum(best) < 0 ? " The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.barGap(best) + "." : " " + best.pick + " cleared " + E.barName(best) + " but is held off: one " + W("lean") + " a game, ten a day and five per sport.") : " The game has no model yet, so no side has a probability.")]));
+      /* why there is none, from the data: every side short of its bar (the closest, and how far), a side past its bar in
+         a game that is held for its news (the rows' `waiting`: why, and when it is decided), or a side the caps kept off */
+      const open = st === "upcoming" || st === "soon", held = !!best && open && E.isHeld(best);
+      const heldText = held ? E.heldWhy(best) + ". " + E.heldWhen(best) : "";
+      const tail = !best ? " The game has no model yet, so no side has a probability."
+        : pastNum(best) < 0 ? " no side cleared its own bar. The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.barGap(best) + "." + (held ? " The game is held too: " + heldText : "")
+        : held ? " " + best.pick + " clears " + E.barName(best) + ", but the game is held: " + heldText + " It posts then only if it still clears its bar."
+        : " " + best.pick + " cleared " + E.barName(best) + " but the caps kept it off the board: one " + W("lean") + " a game, ten a day and five per sport.";
+      kids.push(el("p", { class: "game-none" }, [el("strong", { text: "No " + W("lean") + " on this game" + (best ? ":" : ".") }), tail]));
     } else if (st === "upcoming" || st === "soon") {
       const t = firstRun(g.sport, startOf(g));
       kids.push(Number.isFinite(t) && t > E.now()
@@ -666,12 +666,13 @@
     };
     const rows = g.rows.slice().sort(function (a, b) { return ((E.rowEdge(b) > 0) - (E.rowEdge(a) > 0)) || (E.probOf(b) - E.probOf(a)) || (E.rowEdge(b) - E.rowEdge(a)); });
     const cols = ["#", "Market", "Side", "Best price", "Book", "To hit", "Implied", "Edge"];
+    const started = g.state !== "upcoming" && g.state !== "soon", held = !started && !g.picks.length && g.rows.some(E.isHeld) ? g.rows.filter(E.isHeld)[0] : null;
     const body = rows.map(function (r, i) {
       const isLean = leanOf(r), modelled = E.hasModel(r);
       const tr = el("tr", { class: (isLean ? "is-lean" : "") + (modelled ? "" : " no-model") }, [
         el("td", { class: "num" }, [E.rankChip(i + 1, true)]),
         el("td", { text: r.market }),
-        el("td", {}, [el("strong", { text: r.pick }), isLean ? el("span", { class: "badge badge-status badge-pick sides-lean", text: "Our " + W("lean") }) : null]),
+        el("td", {}, [el("strong", { text: r.pick }), isLean ? el("span", { class: "badge badge-status badge-pick sides-lean", text: "Our " + W("lean") }) : !started && E.heldClears(r) ? el("span", { class: "badge badge-status badge-held sides-lean", title: E.heldNote(r), text: "Held" }) : null]),
         el("td", { class: "num mono", text: E.fmtOdds(r.odds) }),
         el("td", { text: r.book || "" }),
         el("td", { class: "num mono", text: E.probText(r), title: modelled ? "Our probability, from the game data" : "No model yet for this game" }),
@@ -681,9 +682,8 @@
       Array.prototype.forEach.call(tr.children, function (td, j) { td.setAttribute("data-label", cols[j]); });
       return tr;
     });
-    const started = g.state !== "upcoming" && g.state !== "soon";
     return section("sides", "Every side we priced", [
-      el("p", { class: "muted how-to", text: "Sides with a positive edge first, then the rest, each likeliest first by our probability from the game data. There is one " + W("lean") + " a game, the side furthest past its own bar" + (g.picks.length ? ", marked here; the others are information, not bets." : "; none cleared it on this game.") + " The price is the best one we found and the book that has it." + (started ? " The lines closed at the start; these are the prices from the last pricing run." : "") }),
+      el("p", { class: "muted how-to", text: "Sides with a positive edge first, then the rest, each likeliest first by our probability from the game data. There is one " + W("lean") + " a game, the side furthest past its own bar" + (g.picks.length ? ", marked here; the others are information, not bets." : held ? "; none is posted while the game is held (" + E.heldWhy(held) + "), and a side past its bar is marked Held." : "; none cleared it on this game.") + " The price is the best one we found and the book that has it." + (started ? " The lines closed at the start; these are the prices from the last pricing run." : "") }),
       el("div", { class: "table-wrap sides-table", role: "region", tabindex: "0", "aria-label": "Every side we priced on " + g.event }, [el("table", { class: "data" }, [el("thead", {}, [el("tr", {}, cols.map(function (c, i) { return el("th", { scope: "col", class: i === 0 || i === 3 || i >= 5 ? "num" : "", text: c }); }))]), el("tbody", {}, body)])])
     ]);
   }
@@ -693,6 +693,7 @@
     const list = function (title, items, cls) { return items && items.length ? el("div", { class: "bd-block" }, [el("h3", { class: "why-h", text: title }), el("ul", { class: "bd-list " + cls }, items.map(function (t) { return el("li", { text: tierText(t) }); }))]) : null; };
     if (lean) {
       const b = lean.breakdown;
+      if (E.flagOf(lean)) kids.push(E.flagLine(lean, "why-flag"));
       kids.push(el("div", { class: "bd-block" }, [el("h3", { class: "why-h", text: "Why " + tierLabel((b && b.tier) || lean.confidence || "") }), el("p", { text: tierText((b && b.tierWhy) || E.barSentence(lean) || lean.rationale || "") })]));
       if (b && b.price) kids.push(el("div", { class: "bd-block" }, [el("h3", { class: "why-h", text: "The number" }), el("p", { text: tierText(b.price) })]));
       if (b) [list("What supports it", b.support, "bd-support"), list("What could go wrong", b.risks, "bd-risk"), list("Also worth knowing", b.notes, "bd-note")].forEach(function (n) { if (n) kids.push(n); });
