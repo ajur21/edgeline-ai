@@ -86,10 +86,10 @@
       const s = sports[r.sport] || (sports[r.sport] = { games: 0, picks: 0 }); if (open) s.games++; s.picks += picks;
       const college = r.sport === "NCAAF" ? [SPORT_WORDS.NCAAF, collegeWords(r.home), collegeWords(r.away)].join(" ") : "";
       /* a game opens its own page (2026-11-08): its lean, every side we priced, why and its props */
-      out.push(entry("game", r.event, [SPORT_LABEL[r.sport] || r.sport, open ? r.start : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a " + Ed.word("one") : Ed.nWord(picks)) + " on the board" : null], "game.html?id=" + encodeURIComponent(id),
+      out.push(entry("game", r.event, [SPORT_LABEL[r.sport] || r.sport, open ? Ed.startLabel(r) : st === "live" ? "Live now" : "Finished", picks ? (picks === 1 ? "a " + Ed.word("one") : Ed.nWord(picks)) + " on the board" : null], "game.html?id=" + encodeURIComponent(id),
         [r.event, r.home, r.away, r.sport, alias(home), alias(away), college].join(" "), picks ? 0.65 : 0.6, { row: r, home: home, away: away }));
       /* a college club data/teams.js does not resolve (an FCS or lower-division school the file leaves out): that side of the game is its own team result, on the Games page search */
-      if (r.sport === "NCAAF") [[r.home, home, r.away], [r.away, away, r.home]].forEach(function (x) { if (!x[1] && x[0] && !collegeSeen[x[0]]) { collegeSeen[x[0]] = true; out.push(entry("team", x[0], ["College football", "vs " + x[2] + ", " + r.start], "games.html?q=" + encodeURIComponent(x[0]), [x[0], collegeWords(x[0]), "college football"].join(" "), 0.5, { team: null, name: x[0] })); } });
+      if (r.sport === "NCAAF") [[r.home, home, r.away], [r.away, away, r.home]].forEach(function (x) { if (!x[1] && x[0] && !collegeSeen[x[0]]) { collegeSeen[x[0]] = true; out.push(entry("team", x[0], ["College football", "vs " + x[2] + ", " + Ed.startLabel(r)], "games.html?q=" + encodeURIComponent(x[0]), [x[0], collegeWords(x[0]), "college football"].join(" "), 0.5, { team: null, name: x[0] })); } });
     });
     (P.picks || []).forEach(function (p) {
       if (!sports[p.sport]) sports[p.sport] = { games: 0, picks: 0 };
@@ -103,7 +103,7 @@
         const tg = teamGame[key + "|" + t.id];
         /* college football (265 clubs since 2026-11-08) also answers to the sport's words and the short names fans type (COLLEGE) */
         const college = lg.sport === "NCAAF" ? SPORT_WORDS.NCAAF + " " + collegeWords(t.name) : "";
-        out.push(entry("team", t.name, [SPORT_LABEL[lg.sport] || lg.sport, tg ? "vs " + tg.opp + ", " + tg.g.r.start : "no game on the board"], "games.html?team=" + encodeURIComponent(t.id) + "&league=" + encodeURIComponent(key),
+        out.push(entry("team", t.name, [SPORT_LABEL[lg.sport] || lg.sport, tg ? "vs " + tg.opp + ", " + Ed.startLabel(tg.g.r) : "no game on the board"], "games.html?team=" + encodeURIComponent(t.id) + "&league=" + encodeURIComponent(key),
           [alias(t), lg.sport, college].join(" "), tg ? 0.5 : 0, { team: t }));
       });
     });

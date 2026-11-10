@@ -65,12 +65,14 @@
     const sy = function (v) { return padT + (1 - (v - yMin) / (yMax - yMin)) * (H - padT - padB); };
 
     const picks = data.filter(function (d) { return d.status === "pick"; }).length;
-    const watching = data.filter(function (d) { return d.status === "watch"; }).length;
+    /* a held side past its bar is counted apart, as the market board counts it (its chip there reads Held, not Watch) */
+    const heldN = data.filter(function (d) { return d.status === "watch" && E.heldClears(d.r); }).length;
+    const watching = data.filter(function (d) { return d.status === "watch"; }).length - heldN;
     const sorted = data.slice().sort(function (a, b) { return b.y - a.y; });
     const best = sorted[0];
     const label = picks ? E.nWord(picks) + " on the board" : "none is on the board";
     const svg = s("svg", { viewBox: "0 0 " + W + " " + H, role: "img", class: "field-svg" + (narrow ? " narrow" : ""),
-      "aria-label": data.length + " sides priced across " + (sum.games || 0) + " games, given our probability from the game data and plotted by how far each edge sits past its own bar; " + label + ". " + watching + " on watch, at least halfway to their bar." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
+      "aria-label": data.length + " sides priced across " + (sum.games || 0) + " games, given our probability from the game data and plotted by how far each edge sits past its own bar; " + label + ". " + (heldN ? heldN + " held past " + (heldN === 1 ? "its" : "their") + " bar. " : "") + watching + " on watch, at least halfway to their bar." + (noModel ? " " + noModel + " more with no model yet." : "") + " Listed in full on the market board." });
 
     /* the pick zone and its horizons: the bar at 0 for every side */
     svg.appendChild(s("rect", { x: padL, y: padT - 6, width: W - padL - padR, height: Math.max(0, sy(0) - padT + 6), class: "field-zone" }));
@@ -120,15 +122,15 @@
       g.appendChild(s("circle", { cx: sx(d.x), cy: sy(d.y), r: d.status === "pick" ? 6.5 : d.status === "watch" ? 5 : 3.2, class: "dot" }));
       const key = d.r.eventId + "|" + d.r.marketKey + "|" + d.r.pick;
       const pastTxt = d.y >= 0 ? d.y.toFixed(1) + " past" : (-d.y).toFixed(1) + " short";
-      const desc = d.r.pick + " " + E.fmtOdds(d.r.odds) + " at " + d.r.book + ", " + d.r.event + ", edge " + E.signed(d.edge, 1) + " points, " + pastTxt + " of its bar of " + E.ptsLabel(d.bar / 100);
+      const desc = d.r.pick + " " + E.fmtOdds(d.r.odds) + " at " + d.r.book + ", " + d.r.event + ", edge " + E.signed(d.edge, 1) + " points, " + E.barGap(d.r);
       if (focusable[key] || hot) { g.setAttribute("tabindex", "0"); g.setAttribute("role", "link"); g.setAttribute("aria-label", desc); }
       else g.setAttribute("aria-hidden", "true");
       const show = function () {
         const rect = svg.getBoundingClientRect(), hostRect = host.getBoundingClientRect();
         const px = rect.left - hostRect.left + (sx(d.x) / W) * rect.width, py = rect.top - hostRect.top + (sy(d.y) / H) * rect.height;
-        tt.date.textContent = d.r.event + " · " + (d.r.start || "");
+        tt.date.textContent = d.r.event + " · " + E.startLabel(d.r);
         tt.val.textContent = d.r.pick + "  " + E.fmtOdds(d.r.odds);
-        tt.name.textContent = d.r.book + " · to hit " + E.pct(d.r.modelProb) + " (ours) vs " + E.pct(d.x) + " implied · edge " + E.signed(d.edge, 1) + " · bar " + E.ptsLabel(d.bar / 100) + ", " + pastTxt + " · " + E.statusLabel(d.status);
+        tt.name.textContent = d.r.book + " · to hit " + E.pct(d.r.modelProb) + " (ours) vs " + E.pct(d.x) + " implied · edge " + E.signed(d.edge, 1) + " · bar " + E.ptsLabel(d.bar / 100) + ", " + pastTxt + " · " + (d.status === "watch" && E.heldClears(d.r) ? "Held: " + E.heldWhy(d.r) : E.statusLabel(d.status));
         tt.key.setAttribute("data-sport", d.r.sport);
         tt.el.style.left = px + "px"; tt.el.style.top = py + "px"; tt.el.hidden = false;
         g.classList.add("lit");
@@ -165,7 +167,7 @@
     if (best) {
       note.appendChild(E.el("span", { text: (picks ? "Top of the field: " : "Closest to its bar: ") }));
       note.appendChild(E.el("strong", { text: best.r.pick + " " + E.fmtOdds(best.r.odds) }));
-      note.appendChild(E.el("span", { text: " at " + best.r.book + ", " + E.signed(best.edge, 1) + " pts over the price, " + (best.y >= 0 ? best.y.toFixed(1) + " past" : (-best.y).toFixed(1) + " short of") + " its bar of " + E.ptsLabel(best.bar / 100) + "." }));
+      note.appendChild(E.el("span", { text: " at " + best.r.book + ", " + E.signed(best.edge, 1) + " pts over the price, " + (best.y >= 0 ? best.y.toFixed(1) + " past" : (-best.y).toFixed(1) + " short of") + " its bar of " + E.ptsLabel(best.bar / 100) + "." + (best.status !== "pick" && E.heldClears(best.r) ? " Its game is held: " + E.heldWhy(best.r) + "." : "") }));
     }
     /* the bars differ by sport and game: say the range once, under the field */
     const barsTxt = uniform ? "" : E.barsText(sum);

@@ -970,6 +970,20 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .badge-watch { background: var(--accent-4-wash); color: var(--accent-4-text); }
 .badge-none { background: var(--surface-2); color: var(--muted); }
+/* Held (2026-11-10): a side past its own bar in a game waiting on its news (the row's `waiting`); the blue wash of the Medium tier, apart from Watch's orange */
+.badge-held { background: var(--accent-wash); color: var(--accent-strong); }
+.market-table .mkt-why { display: block; max-width: 36ch; font-size: 0.75rem; color: var(--text-2); white-space: normal; }
+.st-held .line-btn { border-color: var(--accent); }
+.game-held { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0; font-size: 0.85rem; color: var(--text-2); }
+/* a note under a card's numbers: why a side is held, or that who plays changed after a lean was posted (the chip, then the pipeline's sentence) */
+.pick-note { margin: 0; font-size: 0.8rem; line-height: 1.45; color: var(--text-2); }
+.pick-note .badge { margin-right: 8px; }
+.badge-flag { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.badge-flag.is-for { background: var(--accent-wash); color: var(--accent-strong); }
+.badge-flag.is-flat { background: var(--surface-2); color: var(--muted); }
+.pick-note.bd-flag, .pick-note.why-flag { margin: 8px 0 0; font-size: 0.85rem; max-width: 72ch; }
+.row-note { display: block; margin-top: 4px; min-width: 30ch; max-width: 46ch; font-size: 0.78rem; font-weight: 400; line-height: 1.4; color: var(--text-2); white-space: normal; }
+.row-note .badge { margin-right: 8px; }
 .market-card { --card-glow: var(--muted); }
 .market-card .meter > span { background: linear-gradient(90deg, var(--muted), var(--accent-4)); }
 .market-card .pick-metric .v.edge { color: var(--accent-4-text); }
@@ -1009,11 +1023,31 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .pulse .eyebrow { margin: 0; color: var(--accent-4-text); }
 .pulse-lede { margin: 0; color: var(--text-2); font-size: 0.95rem; line-height: 1.5; }
 .pulse-lede strong { color: var(--text); font-family: var(--font-display); }
+/* the no-parlay card's rows: the side and its game take their own line under the logos, the price and the status, and
+   wrap, so nothing is cut in a card a third of the page wide (2026-11-10: "Colum…", "Florida Pant", "Tomorro") */
+.pulse .parlay-legs li { grid-template-columns: minmax(0, 1fr) auto auto; row-gap: 6px; }
+.pulse .parlay-legs .leg-pick { grid-column: 1 / -1; grid-row: 2; }
+.pulse .leg-pick strong, .pulse .leg-event { white-space: normal; overflow: visible; text-overflow: clip; }
 .potd-market { box-shadow: inset 0 3px 0 var(--accent-4); }
 .potd-market .eyebrow { color: var(--accent-4-text); }
 .watch-note { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
+.watch-note strong { color: var(--text); }
+/* the watchlist (2026-11-10): the leans page's section for the sides nearest their bars. With no open lean it leads the
+   page at the lead section's size and the best tickets collapse to a sentence; otherwise it sits under the leans grid */
+.watch-head { margin-top: 44px; margin-bottom: 8px; }
+.watch-sec:not(.is-lead) .watch-head h2, .parlays-head.is-collapsed h2 { font-size: 1.4rem; }
+.watch-sec.is-lead .watch-head { margin-top: 8px; }
+.parlays-head.is-collapsed { margin-top: 44px; margin-bottom: 8px; }
+.parlays-none { grid-column: 1 / -1; margin: 0; max-width: 72ch; font-size: 0.92rem; color: var(--text-2); }
+.parlays-none strong { color: var(--text); }
+.pick-more a { font-weight: 600; }
 .t-watch { color: var(--ticker-watch); font-weight: 600; }
 .board-market .board-edge-watch { color: var(--accent-4-text); }
+/* the home board on a night with no lean: each watch row says what the side needs (the price that clears its bar) or why it is held */
+.board-game, .board-need { font-size: 0.8rem; color: var(--text-2); }
+.board-need { color: var(--text); }
+.board-watch { align-items: start; }
+.board-watch .board-pick .sel { white-space: normal; overflow: visible; text-overflow: clip; }
 
 /* ---------- the edge field: every priced side as a star against the bar ---------- */
 .edge-field { position: relative; }
