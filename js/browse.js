@@ -647,7 +647,7 @@
       const open = st === "upcoming" || st === "soon", held = !!best && open && E.isHeld(best);
       const heldText = held ? E.heldWhy(best) + ". " + E.heldWhen(best) : "";
       const tail = !best ? " The game has no model yet, so no side has a probability."
-        : pastNum(best) < 0 ? " no side cleared its own bar. The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.barGap(best) + "." + (held ? " The game is held too: " + heldText : "")
+        : pastNum(best) < 0 ? " no side cleared its own bar. The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.barGap(best) + "." + (E.clearText(best) && open ? " It " + E.clearText(best) + "." : "") + (held ? " The game is held too: " + heldText : "")
         : held ? " " + best.pick + " clears " + E.barName(best) + ", but the game is held: " + heldText + " It posts then only if it still clears its bar."
         : " " + best.pick + " cleared " + E.barName(best) + " but the caps kept it off the board: one " + W("lean") + " a game, ten a day and five per sport.";
       kids.push(el("p", { class: "game-none" }, [el("strong", { text: "No " + W("lean") + " on this game" + (best ? ":" : ".") }), tail]));
@@ -665,7 +665,7 @@
       return g.picks.some(function (p) { return (r.pickId && r.pickId === p.id) || (r.pick && r.pick === p.pick && (!p.marketKey || p.marketKey === r.marketKey)) || (p.marketKey === r.marketKey && p.outcome && r.outcome && p.outcome.name === r.outcome.name && ((p.outcome.point == null && r.outcome.point == null) || Number(p.outcome.point) === Number(r.outcome.point))); });
     };
     const rows = g.rows.slice().sort(function (a, b) { return ((E.rowEdge(b) > 0) - (E.rowEdge(a) > 0)) || (E.probOf(b) - E.probOf(a)) || (E.rowEdge(b) - E.rowEdge(a)); });
-    const cols = ["#", "Market", "Side", "Best price", "Book", "To hit", "Implied", "Edge"];
+    const cols = ["#", "Market", "Side", "Best price", "Book", "To hit", "Implied", "Edge", "Clears from"];
     const started = g.state !== "upcoming" && g.state !== "soon", held = !started && !g.picks.length && g.rows.some(E.isHeld) ? g.rows.filter(E.isHeld)[0] : null;
     const body = rows.map(function (r, i) {
       const isLean = leanOf(r), modelled = E.hasModel(r);
@@ -677,14 +677,16 @@
         el("td", { text: r.book || "" }),
         el("td", { class: "num mono", text: E.probText(r), title: modelled ? "Our probability, from the game data" : "No model yet for this game" }),
         el("td", { class: "num mono", text: E.pct(E.impliedProb(r.odds)) }),
-        modelled ? el("td", { class: "num mono", title: "Its bar " + E.barPts(r) + " points: " + E.pastWord(r) }, [el("span", { text: E.signed(Number(r.edge) * 100, 1) }), E.hasOwnBar(r) ? el("span", { class: "sides-bar", text: "bar " + E.barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" })
+        modelled ? el("td", { class: "num mono", title: "Its bar " + E.barPts(r) + " points: " + E.pastWord(r) }, [el("span", { text: E.signed(Number(r.edge) * 100, 1) }), E.hasOwnBar(r) ? el("span", { class: "sides-bar", text: "bar " + E.barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" }),
+        /* the price at which a side short of its bar would clear it (EdgeLine.clearFor, the pipeline's valueTo); a side past its bar says so */
+        (function () { const v = modelled ? E.clearFor(r) : null, past = modelled && E.pastOf(r) >= 0; return el("td", { class: "num mono" + (v == null ? " muted" : ""), title: v != null ? "The price at which our probability would clear this side’s bar; best now " + E.fmtOdds(r.odds) : null, text: v != null ? E.fmtOdds(v) : past ? "Past its bar" : "—" }); })()
       ]);
       Array.prototype.forEach.call(tr.children, function (td, j) { td.setAttribute("data-label", cols[j]); });
       return tr;
     });
     return section("sides", "Every side we priced", [
-      el("p", { class: "muted how-to", text: "Sides with a positive edge first, then the rest, each likeliest first by our probability from the game data. There is one " + W("lean") + " a game, the side furthest past its own bar" + (g.picks.length ? ", marked here; the others are information, not bets." : held ? "; none is posted while the game is held (" + E.heldWhy(held) + "), and a side past its bar is marked Held." : "; none cleared it on this game.") + " The price is the best one we found and the book that has it." + (started ? " The lines closed at the start; these are the prices from the last pricing run." : "") }),
-      el("div", { class: "table-wrap sides-table", role: "region", tabindex: "0", "aria-label": "Every side we priced on " + g.event }, [el("table", { class: "data" }, [el("thead", {}, [el("tr", {}, cols.map(function (c, i) { return el("th", { scope: "col", class: i === 0 || i === 3 || i >= 5 ? "num" : "", text: c }); }))]), el("tbody", {}, body)])])
+      el("p", { class: "muted how-to", text: "Sides with a positive edge first, then the rest, each likeliest first by our probability from the game data. There is one " + W("lean") + " a game, the side furthest past its own bar" + (g.picks.length ? ", marked here; the others are information, not bets." : held ? "; none is posted while the game is held (" + E.heldWhy(held) + "), and a side past its bar is marked Held." : "; none cleared it on this game.") + " The price is the best one we found and the book that has it." + (started ? "" : " Clears from is the price at which a side short of its bar would clear it.") + (started ? " The lines closed at the start; these are the prices from the last pricing run." : "") }),
+      el("div", { class: "table-wrap sides-table", role: "region", tabindex: "0", "aria-label": "Every side we priced on " + g.event }, [el("table", { class: "data" }, [el("thead", {}, [el("tr", {}, cols.map(function (c, i) { return el("th", { scope: "col", class: i === 0 || i === 3 || i >= 5 ? "num" : "", title: i === 8 ? "The price at which a side short of its bar would clear it" : null, text: c }); }))]), el("tbody", {}, body)])])
     ]);
   }
   function statusClass(st) { return /^(out|injured|ir|doubtful|suspended)/i.test(st || "") ? "inj-out" : st ? "inj-q" : ""; }

@@ -299,6 +299,11 @@
     const who = (post.players || []).filter(function (x) { return x && x.name; }).map(function (x) { const team = x.side === "home" ? p.home : x.side === "away" ? p.away : ""; return x.name + (team ? " (" + team + ")" : "") + (x.status ? " " + String(x.status).toLowerCase() : ""); });
     return lead + (who.length ? ": " + who.join("; ") + "." : ": no one listed who moves the number.");
   }
+  /* a side past its bar that is neither a lean nor held says what keeps it off (the market card's own reason, in short) */
+  function offLine(p) {
+    if (!p || !p.isMarket || !isOpen(p) || isHeld(p) || !hasModel(p) || !(pastNum(p) >= 0)) return null;
+    return el("p", { class: "pick-note pick-off", text: p.ruledOut ? "Past its bar on paper, but the model does not post from this market: the replay of past seasons found no signal in it." : "Clears its bar, but the caps keep it off the board: one " + word("one") + " a game, ten a day, five a sport." });
+  }
   /* a held game's note on a card: why the side or the game is held and when that is decided */
   function heldLine(p, cls) { return isHeld(p) && isOpen(p) ? el("p", { class: "pick-note pick-held" + (cls ? " " + cls : ""), text: heldNote(p) }) : null; }
 
@@ -626,7 +631,7 @@
      off by the caps (one lean a game, ten a day, five a sport). */
   function waitingOf(x) { const w = x && x.waiting; return (Array.isArray(w) ? w : typeof w === "string" ? [w] : []).map(function (s) { return String(s == null ? "" : s).trim(); }).filter(Boolean); }
   function isHeld(x) { return waitingOf(x).length > 0; }
-  function heldClears(x) { return isHeld(x) && hasModel(x) && pastNum(x) >= 0; }
+  function heldClears(x) { return isHeld(x) && hasModel(x) && x.status !== "none" && !x.ruledOut && pastNum(x) >= 0; }
   /* the reasons as one phrase: "report not in for both clubs" */
   function heldWhy(x) { return waitingOf(x).join("; "); }
   /* when a held game is priced again: its sport's next full run, if that is before the start; NaN when none is left */
@@ -653,8 +658,12 @@
     const edge = modelled ? Number(r.edge) : NaN, bar = barOf(r), barLabel = barName(r), implied = pct(impliedProb(r.odds));
     /* a row is a pick only while that pick is on the current board; otherwise it is market information, whatever the file says */
     const status = onBoard ? "pick" : modelled ? chipStatus(r) : "none", held = !onBoard && isHeld(r);
+    /* a side the pipeline rules out whatever its price (the file's status "none" on an edge past its bar: a market the
+       replay found no signal in, or a held college moneyline) is not kept off by the caps or by a hold */
+    const ruledOut = !onBoard && modelled && r.status === "none" && edge >= bar;
     /* a held game's side says why it is held and when that is decided; only a side the caps keep off says so */
     const why = !modelled ? "No model yet: too little game data behind this one to price it, so there is no probability and no edge."
+      : ruledOut ? "Past " + barLabel + " on paper, but the model does not post from this market: the replay of past seasons found no signal in it, so its sides read about even whatever the price."
       : edge >= bar ? "Clears " + barLabel + (onBoard ? "." : held ? " but its game is held: " + heldWhy(r) + ". " + heldWhen(r) + " It posts then only if it still clears its bar and is the game’s side furthest past it."
         : " but is not on the board: there is at most one " + word("one") + " per game, ten a day and five per sport, chosen by how far each side clears its own bar.")
       : edge > 0 ? "Edge of " + (edge * 100).toFixed(1) + " points sits under " + barLabel + (hasOwnBar(r) ? ": the model’s own margin of error on this side is bigger than the edge, so it is not a bet." : ": priced about right, not a bet.")
@@ -666,10 +675,10 @@
       : why + " " + r.book + " offers " + fmtOdds(r.odds) + ", which implies " + implied + "." + (marketRef ? " " + marketRef : "");
     return { id: onBoard ? r.pickId : "m" + i, isMarket: !onBoard, status: status, eventId: r.eventId, sport: r.sport, league: r.league, sportKey: r.sportKey, event: r.event, home: r.home, away: r.away, commence: r.commence, start: r.start, marketKey: r.marketKey, market: r.market, outcome: r.outcome, pick: r.pick, odds: r.odds, book: r.book, prices: r.prices || {}, books: r.books, anchor: r.anchor, modelProb: modelled ? r.modelProb : null, ev: modelled ? r.ev : null,
       basis: "game", modelled: modelled, model: r.model || null, marketFair: typeof r.marketFair === "number" ? r.marketFair : null, marketEdge: typeof r.marketEdge === "number" ? r.marketEdge : null,
-      bar: hasOwnBar(r) ? Number(r.bar) : null, past: modelled ? edge - bar : null, barParts: r.barParts || null, waiting: held ? waitingOf(r) : null,
+      bar: hasOwnBar(r) ? Number(r.bar) : null, past: modelled ? edge - bar : null, barParts: r.barParts || null, waiting: held ? waitingOf(r) : null, ruledOut: ruledOut,
       confidence: onBoard ? "Lean" : statusLabel(status),
       rationale: rationale,
-      factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, modelled ? "Probability " + pct(r.modelProb) + " from game data, not other books" : "No model yet: no probability from game data", modelled ? "Edge " + signed(edge * 100, 1) + " points over the price" : "No edge until the game has a model", modelled ? "Bar " + ptsLabel(bar) + " points: " + (edge >= bar ? ((edge - bar) * 100).toFixed(1) + " past it" : ((bar - edge) * 100).toFixed(1) + " short") : null, held ? "Held: " + heldWhy(r) : null, typeof r.marketFair === "number" ? "Market reference " + pct(r.marketFair) : null].filter(Boolean), breakdown: null, context: null, movement: null };
+      factors: ["Best price " + fmtOdds(r.odds) + " at " + r.book, modelled ? "Probability " + pct(r.modelProb) + " from game data, not other books" : "No model yet: no probability from game data", modelled ? "Edge " + signed(edge * 100, 1) + " points over the price" : "No edge until the game has a model", modelled ? "Bar " + ptsLabel(bar) + " points: " + (edge >= bar ? ((edge - bar) * 100).toFixed(1) + " past it" : ((bar - edge) * 100).toFixed(1) + " short" + (clearPrice(r.modelProb, hasOwnBar(r) ? r.bar : null) != null ? ", clears from " + fmtOdds(clearPrice(r.modelProb, hasOwnBar(r) ? r.bar : null)) : "")) : null, held ? "Held: " + heldWhy(r) : null, typeof r.marketFair === "number" ? "Market reference " + pct(r.marketFair) : null].filter(Boolean), breakdown: null, context: null, movement: null };
   }
   /* the closest markets to the bar, best first, skipping the ones that are already picks on the board; a game that has started is never offered (opts.includeStarted keeps it) */
   function marketRows(opts) {
@@ -687,6 +696,36 @@
     if (opts.oneRowPerGame) { const seen = {}; rows = rows.filter(r => { if (seen[r.eventId]) return false; seen[r.eventId] = true; return true; }); }
     return rows.slice(0, opts.limit || rows.length).map((r, i) => marketAsPick(r, i, !!(r.pickId && picksOnBoard[r.pickId])));
   }
+  /* ---------- the watchlist (2026-11-10): on a night with no lean, what nearly made it and what would change it ----------
+     One entry a game, because the pipeline posts at most one lean a game (the side furthest past its own bar): of an open
+     game's sides on watch (rowStatus: at least halfway to the bar, a held side past its bar included; never a side the
+     pipeline rules out), the one nearest its bar. A game that already has a lean gets no second, so it is left out, and
+     a game that has started is never listed. Each entry: `pick` (the side dressed for the card renderer), `row`, `more`
+     (the game's other sides on watch), `kind` ("short" of its bar, "held" past it in a game waiting on its news, "caps"
+     past it and kept off by the caps), `price` (the price that clears the bar, for a short side) and `held` (the game is
+     held, whichever the kind). Ordered by the site rule: game day, then our probability. Not leans. */
+  function watchlist() {
+    const picks = (((window.PICKS_DATA || {}).picks) || []).filter(function (p) { return p && p.id && p.status !== "void"; });
+    const games = {}, order = [];
+    marketData().rows.forEach(function (r) {
+      if (!r || !isOpen(r)) return;
+      const key = r.eventId != null ? "e" + r.eventId : "n" + r.event + "|" + (r.commence || r.start || "");
+      let g = games[key];
+      if (!g) { g = games[key] = { sides: [], lean: picks.some(function (p) { return sameGame(r, p); }) }; order.push(g); }
+      if (rowStatus(r) === "watch") g.sides.push(r);
+    });
+    const out = [];
+    order.forEach(function (g) {
+      if (g.lean || !g.sides.length) return;
+      g.sides.sort(function (a, b) { return (pastNum(b) - pastNum(a)) || (probOf(b) - probOf(a)); });
+      const r = g.sides[0], past = pastNum(r);
+      out.push({ row: r, pick: marketAsPick(r, out.length, false), more: g.sides.length - 1, kind: heldClears(r) ? "held" : past >= 0 ? "caps" : "short", price: clearFor(r), held: isHeld(r) });
+    });
+    out.sort(function (a, b) { return dayCmp(a.row, b.row) || (probOf(b.row) - probOf(a.row)) || (pastNum(b.row) - pastNum(a.row)); });
+    /* ids of their own (w0, w1, …) in display order, so a watch card never shares one with a fallback market card (m0, m1, …) */
+    out.forEach(function (e, i) { e.pick.id = "w" + i; });
+    return out;
+  }
   /* the board's counts, open games only: a game that has started is counted apart (started, startedGames) and never as a market to bet */
   function marketSummary() {
     const m = marketData(), all = m.rows || [], rows = all.filter(isOpen), gone = all.filter(r => !isOpen(r));
@@ -698,7 +737,7 @@
     /* sides past their own bar that are not on the board, counted apart by what keeps them off: `held`, a game waiting on
        its news (the row's `waiting`), and `clearOff`, the caps (one pick per game, ten a day and five per sport) */
     const heldRows = rows.filter(r => !isPick(r) && heldClears(r)), held = heldRows.length;
-    const clearOff = rows.filter(r => !isPick(r) && !isHeld(r) && hasModel(r) && rowEdge(r) >= barOf(r)).length;
+    const clearOff = rows.filter(r => !isPick(r) && !isHeld(r) && hasModel(r) && r.status !== "none" && rowEdge(r) >= barOf(r)).length;
     const heldGames = ids(rows.filter(r => !isPick(r) && isHeld(r)));
     const unmodelled = rows.filter(r => !hasModel(r)).length;
     /* closest to its own bar, so a sport with a wide bar is not flattered by a raw edge */
@@ -762,7 +801,7 @@
         el("td", { text: r.book }),
         el("td", { class: "num mono", text: probText(r), title: modelled ? "Our probability, from the game data" + (typeof r.marketFair === "number" ? "; the market makes it " + pct(r.marketFair) + " (reference only)" : "") : "No model yet for this game" }),
         el("td", { class: "num mono", text: pct(impliedProb(r.odds)) }),
-        modelled ? el("td", { class: "num mono " + (rowEdge(r) > 0 ? "edge-pos" : "edge-neg"), title: "Its bar " + barPts(r) + " points: " + pastWord(r) }, [el("span", { class: "mkt-edge", text: signed(r.edge * 100, 1) }), hasOwnBar(r) ? el("span", { class: "mkt-bar", text: "bar " + barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" }),
+        modelled ? el("td", { class: "num mono " + (rowEdge(r) > 0 ? "edge-pos" : "edge-neg"), title: "Its bar " + barPts(r) + " points: " + pastWord(r) + (clearText(r) ? "; " + clearText(r) : "") }, [el("span", { class: "mkt-edge", text: signed(r.edge * 100, 1) }), hasOwnBar(r) ? el("span", { class: "mkt-bar", text: "bar " + barPts(r) }) : null]) : el("td", { class: "num muted", text: "No model yet" }),
         el("td", {}, [r.pickId ? el("a", { class: "badge badge-status badge-pick", href: (opts.pickHref || "picks.html#") + r.pickId, text: word("One") }) : el("span", { class: "badge badge-status badge-" + st, title: st === "held" ? heldNote(r) : null, text: statusLabel(st) })])
       ]);
       /* phone layout restacks each row as a card and labels the cells from this attribute */
@@ -824,6 +863,36 @@
   /* ---------- posted against now: the price we logged, the best price now when it moved, and the worst price still worth a bet ---------- */
   function hasMoved(p) { const m = p && p.movement; return !!m && m.currentOdds != null && Number.isFinite(Number(m.currentOdds)) && Number(m.currentOdds) !== 0 && (Number(m.currentOdds) !== Number(p.odds) || (!!m.currentBook && !!p.book && m.currentBook !== p.book)); }
   function valueTo(p) { const v = Number(p && p.valueTo); return p && p.valueTo != null && Number.isFinite(v) && v !== 0 ? v : null; }
+  /* ---------- the price that would make a side a lean (2026-11-10) ----------
+     A side short of its bar clears it once the best price implies no more than our probability less the bar. That is the
+     pipeline's valueTo (scripts/update-data.js), the number a posted lean shows as "Clears its bar to -133", mirrored
+     here step for step so the two agree (a behaviour check runs both on the same inputs): the American price whose
+     implied probability is modelProb − bar (the floor for a side with no bar of its own), as a whole number on the side
+     that still clears (-118.4 -> -118, +134.2 -> +135; even money is +100). null when that probability is not strictly
+     between 0 and 1, so nothing is printed. */
+  function clearPrice(modelProb, bar) {
+    if (modelProb == null || modelProb === "") return null;
+    const p = Number(modelProb) - (Number(bar) > 0 ? Number(bar) : floorBar());
+    if (!Number.isFinite(p) || p <= 0 || p >= 1) return null;
+    const exact = p >= 0.5 ? -100 * p / (1 - p) : 100 * (1 - p) / p;
+    const whole = Math.ceil(exact - 1e-9); /* the epsilon keeps an exact whole price (p = 0.6 -> -150) from rounding past it */
+    return whole === -100 ? 100 : whole; /* even money is written +100 */
+  }
+  /* for a side with a model that is short of its bar: the price that clears it; null for a side past its bar, with no model, or with no finite answer */
+  function clearFor(x) { const past = pastOf(x); return hasModel(x) && Number.isFinite(past) && past < 0 ? clearPrice(x.modelProb, hasOwnBar(x) ? x.bar : null) : null; }
+  /* "clears its bar from +117", for prose and titles; "" when there is nothing to say */
+  function clearText(x) { const v = clearFor(x); return v == null ? "" : "clears its bar from " + fmtOdds(v); }
+  /* the line on a card that is not a lean, where a lean's "Clears its bar to" sits: "Clears its bar from +117 | best now +104".
+     Open games only: a started game's price is closed */
+  function clearLine(p, cls) {
+    if (!p || !p.isMarket || !isOpen(p)) return null;
+    const v = clearFor(p);
+    if (v == null) return null;
+    return meta([
+      el("span", { class: "price-worth", title: "The price at which our probability would clear this side’s own bar: it implies " + pct(impliedProb(v), 1) + ", our " + pct(p.modelProb) + " less the bar of " + barPts(p) + " points" }, ["Clears its bar from ", el("span", { class: "mono", text: fmtOdds(v) })]),
+      el("span", { class: "price-now" }, ["best now ", el("span", { class: "mono", text: fmtOdds(p.odds) })])
+    ], "price-value price-clear" + (cls ? " " + cls : ""));
+  }
   /* the market-line parts on a card: "Spread | -110 | DraftKings", or "Spread | Posted -110 at DraftKings" once the price moved (the price now goes on the line under it) */
   function priceParts(p) {
     if (!hasMoved(p)) return [el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null];
@@ -914,6 +983,7 @@
         el("h3", { class: "pick-selection", text: p.pick }),
         meta([p.market].concat(priceParts(p)), "pick-market"),
         valueLine(p),
+        clearLine(p),
         moneylineLine(p),
         shopChips(p)
       ]),
@@ -928,7 +998,10 @@
       ]),
       barLine(p),
       heldLine(p),
+      offLine(p),
       flagLine(p),
+      /* the watchlist lists one side a game: the others on watch are a link away, on the game page */
+      opts.more ? el("p", { class: "pick-note pick-more" }, [el("a", { href: "game.html?id=" + encodeURIComponent(p.eventId), text: "+" + opts.more + (opts.more === 1 ? " more side on watch in this game" : " more sides on watch in this game") })]) : null,
       el("div", { class: "pick-foot" }, [
         el("span", {}, [meta([p.league, startLabel(p)]), liveSlot(p.id)]),
         /* a game that has started is never offered: its state chip stands where the parlay button was */
@@ -956,7 +1029,7 @@
         backBtn
       ])
     ]);
-    const card = el("article", { class: "card pick" + (p.isMarket ? " market-card" : ""), "data-id": p.id, "data-sport": p.sport, "data-tilt": "" }, [
+    const card = el("article", { class: "card pick" + (p.isMarket ? " market-card" : ""), "data-id": p.id, "data-sport": p.sport, "data-event": p.isMarket && p.eventId != null ? String(p.eventId) : null, "data-tilt": "" }, [
       el("div", { class: "pick-inner" }, [front, back])
     ]);
     if (TM()) TM().tint(card, p);
@@ -1344,11 +1417,11 @@
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
-    marketData: marketData, marketRows: marketRows, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
+    marketData: marketData, marketRows: marketRows, watchlist: watchlist, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
     now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, startLabel: startLabel, ago: ago, scoreText: scoreText, unitsText: unitsText,
     onStateChange: onStateChange, checkStates: checkStates, updateLine: updateLine, updateParts: updateParts, nextRun: nextRun,
     playedPicks: playedPicks, playedRow: playedRow, playedSummary: playedSummary, startedNote: startedNote, findPick: findPick, legAsPick: legAsPick,
-    tierLabel: tierLabel, tierText: tierText, hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine, moneylineFor: moneylineFor, moneylineLine: moneylineLine, runClock: runClock,
+    tierLabel: tierLabel, tierText: tierText, hasMoved: hasMoved, priceParts: priceParts, valueLine: valueLine, clearPrice: clearPrice, clearFor: clearFor, clearText: clearText, clearLine: clearLine, moneylineFor: moneylineFor, moneylineLine: moneylineLine, runClock: runClock,
     call: callName, word: word, nWord: nWord, applyCall: applyCall, replayData: replayData, replayText: replayText, replayFigures: replayFigures, roiText: roiText
   };
 })();

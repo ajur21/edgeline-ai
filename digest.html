@@ -123,15 +123,17 @@
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA || { picks: [] }, S = window.PERF_DATA || null;
   /* the slate lists games that have not started; a started or graded pick is marked under In progress and results (owner ask, 2026-11-05) */
-  var realPicks, MS, fallbackMode, P, ordered, played = [], groups = [];
+  var realPicks, MS, fallbackMode, P, WL = [], ordered, played = [], groups = [];
   function compute() {
     realPicks = E.sortByProb(E.openOnly(D.picks || []));
     MS = E.marketSummary();
     /* nothing clears the bar: the digest lists the closest markets instead, labelled Watch / No bet, never empty */
     fallbackMode = !realPicks.length && MS.markets > 0;
-    P = realPicks.length ? realPicks : E.marketRows({ limit: 12, oneSidePerMarket: true });
+    /* with no lean the watchlist stands in (EdgeLine.watchlist, already in the site order); with nothing on watch, the likeliest sides */
+    WL = realPicks.length ? [] : E.watchlist();
+    P = realPicks.length ? realPicks : WL.length ? WL.map(function (e) { return e.pick; }) : E.marketRows({ limit: 12, oneSidePerMarket: true });
     /* owner rule: likeliest first, everywhere; the start time rides on each line */
-    ordered = E.sortByProb(P);
+    ordered = WL.length ? P : E.sortByProb(P);
     played = E.playedPicks();
   }
   var ET = "America/New_York";
@@ -162,9 +164,13 @@
   if (!P.length) {
     lede.textContent = played.length ? "Every " + E.word("one") + " on today’s board has started; where each stands is under In progress and results below. New " + E.word("many") + " are published around " + E.runClock(0) + "." : "Nothing on the board right now. Prices refresh around " + E.runClock(0) + " and " + E.runClock(1) + "; when a side clears its bar it lands here.";
   } else if (fallbackMode) {
-    var closest = P[0];
+    /* no lean: the watchlist stands in (the picks page's block: one side a game, the nearest its bar, held sides past
+       theirs), or the likeliest sides when nothing is even on watch. The lede says which, and why the lead side is not a lean */
+    var closest = P[0], heldN = WL.filter(function (e) { return e.kind === "held"; }).length;
     lede.textContent = "";
-    [E.el("strong", { text: "No " + E.word("one") + " clears its bar tonight. " }), MS.markets + " markets across " + MS.games + " games were priced on our probability from the game data, each against its own bar, and the likeliest is ", E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.hasModel(closest) ? (E.edgeOf(closest) * 100).toFixed(1) + " points over the price, " + E.barGap(closest) + ". " : "with no model yet. ") + (MS.watch ? MS.watch + " markets are at least halfway to their bar. " : "") + "Below is the watch list, not a card: first start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    [E.el("strong", { text: "No " + E.word("one") + " on the board tonight. " }), MS.markets + " markets across " + MS.games + " games were priced on our probability from the game data, each against its own bar. " +
+      (WL.length ? "Below is the watchlist, not a card: the side nearest its bar in " + (WL.length === 1 ? "the one game" : "each of the " + WL.length + " games") + " with a side at least halfway there" + (heldN ? "; " + heldN + (heldN === 1 ? " is past its bar and held for news" : " are past their bars and held for news") : "") + ". " : "No side is at least halfway to its bar; below are the likeliest sides, not a card. ") + "The likeliest is ",
+      E.el("strong", { text: closest.pick }), " at " + E.fmtOdds(closest.odds) + (closest.book ? " (" + closest.book + ")" : "") + ", " + (E.hasModel(closest) ? (E.edgeOf(closest) * 100).toFixed(1) + " points over the price, " + E.barGap(closest) + (E.isHeld(closest) ? " (" + (E.heldClears(closest) ? "held: " : "its game is held: ") + E.heldWhy(closest) + "; " + E.heldWhen(closest, true) + ")" : E.clearText(closest) ? "; it " + E.clearText(closest) : "") + ". " : "with no model yet. ") + "First start " + slotLabel(ordered[0]) + "."].forEach(function (c) { lede.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   } else {
     /* the lead is the pick furthest past its own bar: picks are chosen on that one scale across every sport */
     var top = P.slice().sort(function (a, b) { var x = E.pastOf(a), y = E.pastOf(b); return (Number.isFinite(y) ? y : -9) - (Number.isFinite(x) ? x : -9); })[0], first = ordered[0];
@@ -178,7 +184,7 @@
   var tiles = fallbackMode ? [
     { label: E.word("Many"), value: "0", sub: "Nothing clears its bar" },
     { label: "Markets priced", value: String(MS.markets), sub: MS.games + " games: " + MS.sports.join(", ") },
-    { label: "Watch list", value: String(MS.watch), sub: "At least halfway to their bar" }
+    { label: "On watch", value: String(MS.watch), sub: "Sides at least halfway to their bar" + (MS.held ? "; " + MS.held + " more past " + (MS.held === 1 ? "its" : "their") + " bar, held for news" : "") }
   ] : [
     { label: "On the board", value: P.length ? String(P.length) : "—", sub: P.length ? sportList.map(function (s) { return sports[s] + " " + s; }).join(", ") : "Nothing on the board right now" },
     { label: "High confidence", value: P.length ? String(high) : "—", sub: P.length ? P.filter(function (p) { return p.confidence === "Medium"; }).length + " Medium · " + P.filter(function (p) { return p.confidence === "Lean"; }).length + " Low" : "" },
@@ -211,15 +217,15 @@
       E.el("span", { class: "pick-metric" }, [E.el("span", { class: "k", text: "To hit " }), E.el("span", { class: "v", text: E.probText(p) }), E.el("span", { class: "k", text: " · EV " }), E.el("span", { class: "v edge" + (ev != null && ev <= 0 ? " neg" : ""), text: ev == null ? "—" : E.signed(ev * 100, 1) + "%" })])
     ]));
   });
-  document.querySelector(".digest-slate .section-head h2").textContent = fallbackMode ? "The watch list, likeliest first" : "Every " + E.word("one") + ", likeliest first";
+  document.querySelector(".digest-slate .section-head h2").textContent = fallbackMode ? (WL.length ? "The watchlist, likeliest first" : "The likeliest sides") : "Every " + E.word("one") + ", likeliest first";
 
   /* ---------- the slate ---------- */
   var host = document.getElementById("slate-host");
   host.textContent = "";
   if (!ordered.length) host.appendChild(E.el("div", { class: "card empty digest-empty", text: played.length ? "Every " + E.word("one") + " has started; see In progress and results below." : "No " + E.word("many") + " to list. Check back after the next refresh." }));
-  groups = ordered.length ? [{ label: "Today first; positive edge, then likeliest", picks: ordered }] : [];
+  groups = ordered.length ? [{ label: WL.length ? "Today first, then likeliest: one side a game, the nearest its bar" : "Today first; positive edge, then likeliest", picks: ordered }] : [];
   groups.forEach(function (g) {
-    var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: E.nWord(g.picks.length) })])]);
+    var sec = E.el("section", { class: "slot" }, [E.el("div", { class: "slot-head" }, [E.el("h3", { text: g.label }), E.el("span", { class: "slot-count", text: fallbackMode ? g.picks.length + (g.picks.length === 1 ? " side" : " sides") : E.nWord(g.picks.length) })])]);
     var breaks = dayBreaks(g.picks);
     g.picks.forEach(function (p, i) {
       if (breaks[i]) sec.appendChild(E.dayDivider(breaks[i]));
@@ -228,7 +234,7 @@
         E.el("span", { class: "leg-id digest-id" }, [E.rankChip(i + 1, true), T ? T.matchup(p, { size: "sm", abbr: false }) : null, E.el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]),
         E.el("div", { class: "digest-pick" }, [E.el("strong", { text: p.pick }), E.meta([p.event, p.market, slotLabel(p)], "leg-event"), E.el("div", { class: "digest-book", text: (shop.books > 1 ? shop.clears + " of " + shop.books + " books clear its bar" : "") + (shop.books > 1 && shop.sole ? " · one book only" : "") })]),
         E.el("div", { class: "digest-why" }, [E.el("span", { class: "why-tag", text: b && b.verdict ? "Verdict" : "Why" }), why || ""]),
-        E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "% edge" : "No model yet" }), E.hasModel(p) ? E.el("span", { class: "digest-bar", text: "bar " + E.barPts(p) + ", " + E.pastWord(p) }) : null, E.el("span", { text: "To hit " + E.probText(p) })]),
+        E.el("div", { class: "digest-nums" }, [E.el("span", { class: "mono", text: E.fmtOdds(p.odds) }), E.el("span", { text: p.book || "" }), E.el("span", { class: "edge", text: E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "% edge" : "No model yet" }), E.hasModel(p) ? E.el("span", { class: "digest-bar", text: "bar " + E.barPts(p) + ", " + E.pastWord(p) + (p.isMarket && E.clearFor(p) != null ? ", clears from " + E.fmtOdds(E.clearFor(p)) : "") }) : null, E.el("span", { text: "To hit " + E.probText(p) })]),
         E.el("div", { class: "digest-tags" }, [p.isMarket ? E.el("span", { class: "badge badge-status badge-" + p.status, text: E.statusLabel(p.status) }) : E.el("span", { class: "badge badge-conf-" + String(p.confidence).toLowerCase(), text: E.tierLabel(p.confidence) }), E.standingChip(p), D.playOfDay && D.playOfDay.id === p.id ? E.el("span", { class: "badge badge-potd", text: E.word("ofDay") }) : null, p.isMarket ? E.el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : E.el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Breakdown" })]),
         E.el("div", { class: "digest-live" }, [p.isMarket ? null : E.liveSlot(p.id)])
       ]));
@@ -256,14 +262,14 @@
   function asText() {
     var lines = ["EdgeLine AI · " + dayLabel, ""];
     if (!P.length) lines.push("Nothing on the board.");
-    if (fallbackMode) lines.push("No " + E.word("one") + " clears its bar. Watch list (closest markets, not " + E.word("many") + "):", "");
+    if (fallbackMode) lines.push("No " + E.word("one") + " on the board. " + (WL.length ? "Watchlist (the side nearest its bar in each game, not " + E.word("many") + "):" : "The likeliest sides (not " + E.word("many") + "):"), "");
     if (D.playOfDay) lines.push(E.word("ofDay") + ": " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event + (E.isOpen(D.playOfDay) ? "" : " · " + E.stateText(D.playOfDay)));
     if (D.parlayOfDay) lines.push(E.word("parlayOfDay") + " (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
     if (D.playOfDay || D.parlayOfDay) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
       var breaks = dayBreaks(g.picks);
-      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + E.tierLabel(p.confidence) + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%, bar " + E.barPts(p) + ", " + E.pastWord(p) : "no model yet") + (E.standingOf(p) === "gone" ? " · edge gone now, graded at the posted price" : E.standingOf(p) === "below" ? " · below its bar now, graded at the posted price" : "") + " · " + p.event + " · " + slotLabel(p)); });
+      g.picks.forEach(function (p, i) { if (breaks[i]) lines.push("  " + E.dayLabel(breaks[i])); lines.push("  #" + (i + 1) + " · " + p.sport + " · " + p.pick + " " + E.fmtOdds(p.odds) + (p.book ? " @ " + p.book : "") + " · to hit " + E.probText(p) + " · " + E.tierLabel(p.confidence) + " · edge " + (E.hasModel(p) ? E.signed(E.edgeOf(p) * 100, 1) + "%, bar " + E.barPts(p) + ", " + E.pastWord(p) + (p.isMarket && E.clearText(p) ? ", " + E.clearText(p) : "") + (p.isMarket && E.isHeld(p) ? " · held: " + E.heldWhy(p) + "; " + E.heldWhen(p, true) : "") : "no model yet") + (E.standingOf(p) === "gone" ? " · edge gone now, graded at the posted price" : E.standingOf(p) === "below" ? " · below its bar now, graded at the posted price" : "") + " · " + p.event + " · " + slotLabel(p)); });
       lines.push("");
     });
     /* started and graded picks, marked by state (no rank: they are no longer bets) */

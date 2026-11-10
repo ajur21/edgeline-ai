@@ -1031,8 +1031,23 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .potd-market { box-shadow: inset 0 3px 0 var(--accent-4); }
 .potd-market .eyebrow { color: var(--accent-4-text); }
 .watch-note { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
+.watch-note strong { color: var(--text); }
+/* the watchlist (2026-11-10): the leans page's section for the sides nearest their bars. With no open lean it leads the
+   page at the lead section's size and the best tickets collapse to a sentence; otherwise it sits under the leans grid */
+.watch-head { margin-top: 44px; margin-bottom: 8px; }
+.watch-sec:not(.is-lead) .watch-head h2, .parlays-head.is-collapsed h2 { font-size: 1.4rem; }
+.watch-sec.is-lead .watch-head { margin-top: 8px; }
+.parlays-head.is-collapsed { margin-top: 44px; margin-bottom: 8px; }
+.parlays-none { grid-column: 1 / -1; margin: 0; max-width: 72ch; font-size: 0.92rem; color: var(--text-2); }
+.parlays-none strong { color: var(--text); }
+.pick-more a { font-weight: 600; }
 .t-watch { color: var(--ticker-watch); font-weight: 600; }
 .board-market .board-edge-watch { color: var(--accent-4-text); }
+/* the home board on a night with no lean: each watch row says what the side needs (the price that clears its bar) or why it is held */
+.board-game, .board-need { font-size: 0.8rem; color: var(--text-2); }
+.board-need { color: var(--text); }
+.board-watch { align-items: start; }
+.board-watch .board-pick .sel { white-space: normal; overflow: visible; text-overflow: clip; }
 
 /* ---------- the edge field: every priced side as a star against the bar ---------- */
 .edge-field { position: relative; }
