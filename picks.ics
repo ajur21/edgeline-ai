@@ -402,30 +402,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:slate-2026-11-09@edgeline
-DTSTAMP:20261110T064051Z
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261110
-SUMMARY:No lean tonight: 118 sides priced in 20 games\, none clears its bar
-DESCRIPTION:Every main-line side was given our probability from the game da
- ta. None sits above what its best price implies by its own bar (3 points o
- r more: the model's margin of error on that side)\, so there is no bet.\nI
- n a replay of past seasons these leans did not beat the closing price (NHL
-  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
- when the live record beats the close.\nClosest to the bar:\n- NBA: Boston 
- Celtics ML -104 at BetRivers (+13.8 pts against a bar of +13.2 pts) · Bos
- ton Celtics @ Philadelphia 76ers\n- NHL: Over 5.5 -125 at BetRivers (+2.5 
- pts against a bar of +3.0 pts) · Detroit Red Wings @ St Louis Blues\n- NH
- L: Columbus Blue Jackets ML +104 at FanDuel (+6.8 pts against a bar of +7.
- 4 pts) · Florida Panthers @ Columbus Blue Jackets\nThe market board: http
- s://ajur21.github.io/edgeline-ai/picks.html#market
-URL:https://ajur21.github.io/edgeline-ai/picks.html#market
-CATEGORIES:Slate
-LAST-MODIFIED:20261110T064051Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
 DTSTAMP:20261109T052925Z
 DTSTART:20261109T001000Z
@@ -478,5 +454,135 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261109T052925Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d85899eb0d-h2h-Columbus-Blue-Jackets@edgeline
+DTSTAMP:20261110T211434Z
+DTSTART:20261111T004000Z
+DTEND:20261111T034000Z
+SUMMARY:Lean of the day: Columbus Blue Jackets ML +107 at Bovada · Low
+DESCRIPTION:NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10\,
+  7:40 PM ET\nMoneyline: Columbus Blue Jackets ML at +107 (Bovada). Our pro
+ bability 55.8% from game data\, the price implies 48.3%\, edge +7.5 pts\, 
+ EV +15.6% per unit. Confidence: Lean.\nOur probability is 55.8%\, from the
+  game data: this season's results and margins\, recent form\, rest\, the i
+ njury report and home edge (projected margin +0.4 for the home side). Bova
+ da offers +107\, which implies only 48.3%. Its bar is 7.4 points: the mode
+ l's own margin of error on this side\, with 15 games behind the thinner te
+ am (±0.45 goals on the margin). It clears it by 0.1. Not graded against o
+ ther books' prices\; for reference the market makes it 46.6%.\nWhat suppor
+ ts it:\n- Home edge +0.2 for Columbus Blue Jackets.\n- Columbus Blue Jacke
+ ts are rested (4 days).\n- Florida Panthers without Sandis Vilmanis (LW) (
+ +0.1).\n- Projected margin +0.4 for Columbus Blue Jackets.\nWhat could go 
+ wrong:\n- Columbus Blue Jackets rate -0.1 a game over 15 (7-8)\, Florida P
+ anthers 0 over 18 (9-9)\; last season 0 and -0.3 a game.\nVerdict: The gam
+ e data lines up behind this side at this price.\nPrices: Bovada +107\, Bet
+ Online.ag +106\, BetMGM +105\, FanDuel +104\, BetRivers +102 and 5 more.\n
+ Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d
+ -h2h-Columbus-Blue-Jackets
+LOCATION:Nationwide Arena\, Columbus
+URL:https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d-h2h-Columbus
+ -Blue-Jackets
+CATEGORIES:NHL
+LAST-MODIFIED:20261110T211434Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lean of the day: Columbus Blue Jackets ML +107 at Bovada · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-10@edgeline
+DTSTAMP:20261110T211434Z
+DTSTART:20261111T004000Z
+DTEND:20261112T061000Z
+SUMMARY:Parlay lean of the day: 3 legs +692 at FanDuel
+DESCRIPTION:All legs priced at FanDuel. Fair 16.6%\, implied 12.6%\, EV +31
+ .5% per unit.\n- NHL: Columbus Blue Jackets ML +104 · Florida Panthers @ 
+ Columbus Blue Jackets\n- NHL: Under 6.5 +118 · Pittsburgh Penguins @ San 
+ Jose Sharks\n- NHL: Over 5.5 -128 · New York Rangers @ Calgary Flames\n\n
+ Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261110T211434Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 3 legs +692 at FanDuel
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d6fb69c3f8-totals-Over@edgeline
+DTSTAMP:20261110T203942Z
+DTSTART:20261112T004000Z
+DTEND:20261112T034000Z
+SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
+DESCRIPTION:NHL · New York Rangers @ Calgary Flames · Wed Nov 11\, 7:40 P
+ M ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from g
+ ame data\, the price implies 54.5%\, edge +3.1 pts\, EV +5.8% per unit. Co
+ nfidence: Lean.\nOur probability at 5.5 is 57.7%\, from the game data: thi
+ s season's results and margins\, recent form\, rest\, the injury report an
+ d home edge (projected total 6.3). BetOnline.ag offers -120\, which implie
+ s only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of 
+ error here is smaller). It clears it by 0.1. Not graded against other book
+ s' prices\; for reference the market makes it 53.1%.\nWhat supports it:\n-
+  Combined scoring 6.1 a game in Calgary Flames's games\, 5.8 in New York R
+ angers's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat c
+ ould go wrong:\n- Scorers out: Kevin Bahl (D)\, achilles\; Jonathan Huberd
+ eau (LW)\, hip\; Connor Zary (C)\, knee and 7 more. Fewer healthy scorers 
+ leans under.\nVerdict: The game data lines up behind this side at this pri
+ ce.\nPrices: BetOnline.ag -120\, BetMGM -120\, DraftKings -122\, Caesars -
+ 125\, FanDuel -128 and 2 more.\nFull breakdown: https://ajur21.github.io/e
+ dgeline-ai/picks.html#d6fb69c3f8-totals-Over
+LOCATION:Scotiabank Saddledome\, Calgary
+URL:https://ajur21.github.io/edgeline-ai/picks.html#d6fb69c3f8-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261110T203942Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -120 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e75aa3d5c3-totals-Under@edgeline
+DTSTAMP:20261110T203942Z
+DTSTART:20261112T031000Z
+DTEND:20261112T061000Z
+SUMMARY:Under 6.5 +118 at FanDuel · Medium
+DESCRIPTION:NHL · Pittsburgh Penguins @ San Jose Sharks · Wed Nov 11\, 10
+ :10 PM ET\nTotal: Under 6.5 at +118 (FanDuel). Our probability 51.5% from 
+ game data\, the price implies 45.9%\, edge +5.7 pts\, EV +12.4% per unit. 
+ Confidence: Medium.\nOur probability at 6.5 is 51.5%\, from the game data:
+  this season's results and margins\, recent form\, rest\, the injury repor
+ t and home edge (projected total 6.4). FanDuel offers +118\, which implies
+  only 45.9%. Its bar is 3.0 points (the floor: the model's own margin of e
+ rror here is smaller). It clears it by 2.7. Not graded against other books
+ ' prices\; for reference the market makes it 45.8%.\nWhat supports it:\n- 
+ Combined scoring 6.1 a game in San Jose Sharks's games\, 6.8 in Pittsburgh
+  Penguins's (league average 6.4).\n- Projected total 6.4 against 6.5.\n- S
+ corers out: Igor Chernyshov (LW)\, upper body\; Quentin Musty (LW)\, upper
+  body\; Kyle Keyser (G)\, upper body and 4 more. Fewer healthy scorers lea
+ ns under.\nVerdict: The game data lines up behind this side at this price.
+ \nPrices: FanDuel +118\, DraftKings +110\, BetRivers +110\, Bovada +110\, 
+ Caesars +108 and 3 more.\nFull breakdown: https://ajur21.github.io/edgelin
+ e-ai/picks.html#e75aa3d5c3-totals-Under
+LOCATION:SAP Center at San Jose\, San Jose
+URL:https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-Under
+CATEGORIES:NHL
+LAST-MODIFIED:20261110T203942Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Under 6.5 +118 at FanDuel · Medium
+TRIGGER:-PT30M
+END:VALARM
 END:VEVENT
 END:VCALENDAR
