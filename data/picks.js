@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-10T20:39:42.407Z",
+  "trackedAt": "2026-11-10T21:14:34.224Z",
   "playOfDay": {
     "id": "d85899eb0d-h2h-Columbus-Blue-Jackets",
     "sport": "NHL",
@@ -34,7 +35,7 @@ window.PICKS_DATA = {
       "ESPN BET": 100,
       "PointsBet": 100
     },
-    "pricesAt": "2026-11-10T20:39:42.407Z",
+    "pricesAt": "2026-11-10T21:14:34.224Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.5583,
@@ -99,7 +100,7 @@ window.PICKS_DATA = {
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 46.6% (-1.7 points against the best price). For reference only.",
         "Market: DraftKings opened -115, now +100, moving against this side since the open.",
-        "Market: The market (7 books) opened +100, now +112, the consensus moving against this side since the open.",
+        "Market: The market (7 books) opened +100, now +111, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Jackets Cam Talbot · Panthers Jacob Markstrom.",
         "Records: Florida Panthers 9-7-2 · Columbus Blue Jackets 7-8-0 · Nationwide Arena, Columbus."
@@ -266,27 +267,27 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": 112
+        "odds": 111
       },
       "moved": "away",
-      "label": "The market (7 books) opened +100, now +112"
+      "label": "The market (7 books) opened +100, now +111"
     },
     "sgo": {
-      "at": "2026-11-10T20:39:42.407Z",
+      "at": "2026-11-10T21:14:34.224Z",
       "n": 7,
       "best": {
         "book": "Bovada",
         "odds": 107
       },
       "fair": 0.4725,
-      "vendorFair": 0.4717,
+      "vendorFair": 0.4739,
       "open": {
         "line": null,
         "odds": 100
       },
       "now": {
         "line": null,
-        "odds": 112
+        "odds": 111
       }
     },
     "sgoHistory": [
@@ -296,6 +297,15 @@ window.PICKS_DATA = {
         "vendorFair": 0.4717,
         "line": null,
         "odds": 112,
+        "best": 107,
+        "n": 7
+      },
+      {
+        "at": "2026-11-10T21:14:34.224Z",
+        "fair": 0.4725,
+        "vendorFair": 0.4739,
+        "line": null,
+        "odds": 111,
         "best": 107,
         "n": 7
       }
@@ -393,7 +403,7 @@ window.PICKS_DATA = {
         "ESPN BET": 100,
         "PointsBet": 100
       },
-      "pricesAt": "2026-11-10T20:39:42.407Z",
+      "pricesAt": "2026-11-10T21:14:34.224Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5583,
@@ -458,7 +468,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 46.6% (-1.7 points against the best price). For reference only.",
           "Market: DraftKings opened -115, now +100, moving against this side since the open.",
-          "Market: The market (7 books) opened +100, now +112, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened +100, now +111, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Jackets Cam Talbot · Panthers Jacob Markstrom.",
           "Records: Florida Panthers 9-7-2 · Columbus Blue Jackets 7-8-0 · Nationwide Arena, Columbus."
@@ -625,27 +635,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 112
+          "odds": 111
         },
         "moved": "away",
-        "label": "The market (7 books) opened +100, now +112"
+        "label": "The market (7 books) opened +100, now +111"
       },
       "sgo": {
-        "at": "2026-11-10T20:39:42.407Z",
+        "at": "2026-11-10T21:14:34.224Z",
         "n": 7,
         "best": {
           "book": "Bovada",
           "odds": 107
         },
         "fair": 0.4725,
-        "vendorFair": 0.4717,
+        "vendorFair": 0.4739,
         "open": {
           "line": null,
           "odds": 100
         },
         "now": {
           "line": null,
-          "odds": 112
+          "odds": 111
         }
       },
       "sgoHistory": [
@@ -655,6 +665,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.4717,
           "line": null,
           "odds": 112,
+          "best": 107,
+          "n": 7
+        },
+        {
+          "at": "2026-11-10T21:14:34.224Z",
+          "fair": 0.4725,
+          "vendorFair": 0.4739,
+          "line": null,
+          "odds": 111,
           "best": 107,
           "n": 7
         }
