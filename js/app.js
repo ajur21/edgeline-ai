@@ -814,7 +814,8 @@
     const modelled = hasModel(p), ours = modelled ? Number(p.modelProb) : 0, imp = impliedProb(p.odds);
     const confClass = p.isMarket ? "badge badge-status badge-" + (p.status || "none") : "badge badge-conf-" + String(p.confidence).toLowerCase();
     const factors = Array.isArray(p.factors) ? p.factors : [];
-    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: "Why this " + word("one") });
+    /* a market card is not a lean (the never-empty fallbacks, the watchlist): its link says so, as the game page does */
+    const flipBtn = el("button", { type: "button", class: "flip-btn", "aria-expanded": "false", text: p.isMarket ? "Why no " + word("one") : "Why this " + word("one") });
     const backBtn = el("button", { type: "button", class: "flip-btn", text: "Back to numbers" });
     const front = el("div", { class: "pick-face pick-front" }, [
       el("div", { class: "pick-head" }, [

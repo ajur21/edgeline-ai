@@ -81,6 +81,17 @@ async function run(h) {
   check('wording: the home page\'s daily card, the no-parlay card and the edge field say it right', /Closest: .+, [+-][\d.]+ pts, [\d.]+ (past|short of) its bar$/.test(cal) && /Closest: .+ edge [+-][\d.]+, [\d.]+ (past|short of) its bar of [\d.]+ points\./.test(pulse) && fieldLabels.length > 0 && fieldLabels.every(t => /points, [\d.]+ (past|short of) (its bar of [\d.]+ points|the [\d.]+-point bar)$/.test(t)) && ![cal, pulse].concat(fieldLabels).some(t => /past of|short its/.test(t)), JSON.stringify([cal, pulse, fieldLabels[0]]));
   await c.ctx.close();
 
+  /* ---------- "Why this lean" on a card that is not a lean (defect, 2026-11-10) ---------- */
+  const d = await open({ data: { picks: NO_PICKS } });
+  await d.page.goto(url('picks.html')); await d.page.waitForTimeout(400);
+  const marketLinks = await d.page.locator('article.market-card .pick-front .flip-btn').allTextContents();
+  await d.ctx.close();
+  const d2 = await open();
+  await d2.page.goto(url('picks.html')); await d2.page.waitForTimeout(400);
+  const leanLinks = await d2.page.locator('#picks-host article.card.pick:not(.market-card) .pick-front .flip-btn').allTextContents();
+  await d2.ctx.close();
+  check('cards: a card that is not a lean links to "Why no lean"; a lean keeps "Why this lean"', marketLinks.length >= 6 && marketLinks.every(t => t === 'Why no lean') && leanLinks.length === 12 && leanLinks.every(t => t === 'Why this lean'), JSON.stringify([marketLinks, leanLinks.slice(0, 2)]));
+
   check('watch checks: no page errors', errors.length === 0, errors.join(' | '));
 }
 
