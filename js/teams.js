@@ -158,6 +158,9 @@
     p = withSides(p);
     const d = window.FACES_DATA, all = (d && d.players) || [];
     if (!p || !all.length) return [];
+    /* the file holds one league's players, so a game from another league gets none: until 2026-11-10 an NHL game with the
+       Los Angeles Kings was given Sacramento's players, matched on the nickname */
+    if ((p.sportKey || (p.sport === "NBA" ? "basketball_nba" : null)) !== (d.league || "basketball_nba")) return [];
     const key = p.sportKey || p.sport, home = teamFor(p, "home"), away = teamFor(p, "away");
     const per = opts.perTeam || 3, out = [];
     [["away", away], ["home", home]].forEach(function (pair) {

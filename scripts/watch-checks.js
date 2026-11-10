@@ -296,6 +296,19 @@ async function run(h) {
   check('watchlist: with no lean and nothing on watch it still leads with one line', (await v.page.textContent('#watch-lead')) === 'No lean on the board right now. No side of a game still to start is at least halfway to its bar either. Every side we priced is on the market board below.' && (await v.page.locator('#watch-host article').count()) === 0);
   await v.ctx.close();
 
+  /* ---------- faces (defect, 2026-11-10): data/faces.js is one league's players. An NHL game with the Los Angeles Kings
+     was given Sacramento's (the club resolver's nickname match), under hockey headshot addresses that do not exist ---------- */
+  const fz = await open();
+  await fz.page.goto(url('picks.html')); await fz.page.waitForTimeout(300);
+  const faces = await fz.page.evaluate(() => {
+    const T = window.EdgeLineTeams;
+    window.FACES_DATA = { league: 'basketball_nba', players: [{ id: '1', name: 'A Guard', pos: 'G', team: 'Sacramento Kings', abbr: 'SAC', injury: null, pts: 20, min: 30 }] };
+    const nba = { sport: 'NBA', home: 'Sacramento Kings', away: 'Orlando Magic', event: 'Orlando Magic @ Sacramento Kings' };
+    return { resolves: !!T.find('icehockey_nhl', 'Sacramento Kings'), nhl: T.facesFor({ sport: 'NHL', sportKey: 'icehockey_nhl', home: 'Los Angeles Kings', away: 'Nashville Predators', event: 'Nashville Predators @ Los Angeles Kings' }).length, nba: T.facesFor(Object.assign({ sportKey: 'basketball_nba' }, nba)).length, bare: T.facesFor(nba).length };
+  });
+  check('faces: a game from another league never gets the file\'s players (an NHL Kings game is not given Sacramento\'s), and an NBA game still does', faces.nhl === 0 && faces.nba === 1 && faces.bare === 1, JSON.stringify(faces));
+  await fz.ctx.close();
+
   check('watch checks: no page errors', errors.length === 0, errors.join(' | '));
 }
 
