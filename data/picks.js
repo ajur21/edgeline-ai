@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-09T20:36:51.339Z",
-  "trackedAt": "2026-11-10T06:40:51.633Z",
+  "generatedAt": "2026-11-10T14:09:48.127Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "picks": []

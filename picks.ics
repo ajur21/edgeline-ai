@@ -402,30 +402,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:slate-2026-11-09@edgeline
-DTSTAMP:20261110T064051Z
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261110
-SUMMARY:No lean tonight: 118 sides priced in 20 games\, none clears its bar
-DESCRIPTION:Every main-line side was given our probability from the game da
- ta. None sits above what its best price implies by its own bar (3 points o
- r more: the model's margin of error on that side)\, so there is no bet.\nI
- n a replay of past seasons these leans did not beat the closing price (NHL
-  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
- when the live record beats the close.\nClosest to the bar:\n- NBA: Boston 
- Celtics ML -104 at BetRivers (+13.8 pts against a bar of +13.2 pts) · Bos
- ton Celtics @ Philadelphia 76ers\n- NHL: Over 5.5 -125 at BetRivers (+2.5 
- pts against a bar of +3.0 pts) · Detroit Red Wings @ St Louis Blues\n- NH
- L: Columbus Blue Jackets ML +104 at FanDuel (+6.8 pts against a bar of +7.
- 4 pts) · Florida Panthers @ Columbus Blue Jackets\nThe market board: http
- s://ajur21.github.io/edgeline-ai/picks.html#market
-URL:https://ajur21.github.io/edgeline-ai/picks.html#market
-CATEGORIES:Slate
-LAST-MODIFIED:20261110T064051Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
 UID:758ca94b2a-h2h-Minnesota-Timberwolves@edgeline
 DTSTAMP:20261109T052925Z
 DTSTART:20261109T001000Z
@@ -476,6 +452,30 @@ LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
 LAST-MODIFIED:20261109T052925Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:slate-2026-11-10@edgeline
+DTSTAMP:20261110T140948Z
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+SUMMARY:No lean tonight: 48 sides priced in 8 games\, none clears its bar
+DESCRIPTION:Every main-line side was given our probability from the game da
+ ta. None sits above what its best price implies by its own bar (3 points o
+ r more: the model's margin of error on that side)\, so there is no bet.\nI
+ n a replay of past seasons these leans did not beat the closing price (NHL
+  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
+ when the live record beats the close.\nClosest to the bar:\n- NBA: Boston 
+ Celtics ML -104 at BetRivers (+13.8 pts against a bar of +13.2 pts) · Bos
+ ton Celtics @ Philadelphia 76ers\n- NHL: Over 5.5 -125 at DraftKings (+2.2
+  pts against a bar of +3.0 pts) · Detroit Red Wings @ St Louis Blues\n- N
+ HL: Columbus Blue Jackets ML +103 at BetOnline.ag (+6.6 pts against a bar 
+ of +7.4 pts) · Florida Panthers @ Columbus Blue Jackets\nThe market board
+ : https://ajur21.github.io/edgeline-ai/picks.html#market
+URL:https://ajur21.github.io/edgeline-ai/picks.html#market
+CATEGORIES:Slate
+LAST-MODIFIED:20261110T140948Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
