@@ -650,7 +650,7 @@
       E.initTilt(grid);
     } else if (g.id && g.rows.length) {
       const best = g.rows.filter(E.hasModel).sort(function (a, b) { return pastNum(b) - pastNum(a); })[0];
-      kids.push(el("p", { class: "game-none" }, [el("strong", { text: "No " + W("lean") + " on this game:" }), " no side cleared its own bar." + (best ? (pastNum(best) < 0 ? " The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.pastWord(best) + " of " + E.barName(best) + "." : " " + best.pick + " cleared " + E.barName(best) + " but is held off: one " + W("lean") + " a game, ten a day and five per sport.") : " The game has no model yet, so no side has a probability.")]));
+      kids.push(el("p", { class: "game-none" }, [el("strong", { text: "No " + W("lean") + " on this game:" }), " no side cleared its own bar." + (best ? (pastNum(best) < 0 ? " The closest, " + best.pick + " at " + E.fmtOdds(best.odds) + (best.book ? " (" + best.book + ")" : "") + ", is " + E.barGap(best) + "." : " " + best.pick + " cleared " + E.barName(best) + " but is held off: one " + W("lean") + " a game, ten a day and five per sport.") : " The game has no model yet, so no side has a probability.")]));
     } else if (st === "upcoming" || st === "soon") {
       const t = firstRun(g.sport, startOf(g));
       kids.push(Number.isFinite(t) && t > E.now()

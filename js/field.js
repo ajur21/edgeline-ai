@@ -120,7 +120,7 @@
       g.appendChild(s("circle", { cx: sx(d.x), cy: sy(d.y), r: d.status === "pick" ? 6.5 : d.status === "watch" ? 5 : 3.2, class: "dot" }));
       const key = d.r.eventId + "|" + d.r.marketKey + "|" + d.r.pick;
       const pastTxt = d.y >= 0 ? d.y.toFixed(1) + " past" : (-d.y).toFixed(1) + " short";
-      const desc = d.r.pick + " " + E.fmtOdds(d.r.odds) + " at " + d.r.book + ", " + d.r.event + ", edge " + E.signed(d.edge, 1) + " points, " + pastTxt + " of its bar of " + E.ptsLabel(d.bar / 100);
+      const desc = d.r.pick + " " + E.fmtOdds(d.r.odds) + " at " + d.r.book + ", " + d.r.event + ", edge " + E.signed(d.edge, 1) + " points, " + E.barGap(d.r);
       if (focusable[key] || hot) { g.setAttribute("tabindex", "0"); g.setAttribute("role", "link"); g.setAttribute("aria-label", desc); }
       else g.setAttribute("aria-hidden", "true");
       const show = function () {

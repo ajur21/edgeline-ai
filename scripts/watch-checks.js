@@ -68,6 +68,19 @@ async function run(h) {
     JSON.stringify([gameMeta, digest.row, digest.title, gameSub, found]));
   await b.ctx.close();
 
+  /* ---------- the bar wording (defect, 2026-11-10): "0.5 past of its bar" ---------- */
+  const NO_PICKS = 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };';
+  const c = await open({ data: { picks: NO_PICKS } });
+  await c.page.goto(url('index.html')); await c.page.waitForTimeout(500);
+  const gap = await c.page.evaluate(() => { const E = window.EdgeLine, row = (edge, bar) => ({ modelProb: 0.6, odds: -110, edge: edge, bar: bar });
+    return { past: E.barGap(row(0.1376, 0.1324)), short: E.barGap(row(0.0484, 0.057)), briefPast: E.barGap(row(0.1376, 0.1324), true), briefShort: E.barGap(row(0.0484, 0.057), true), floor: E.barGap(row(0.02, null), true), none: E.barGap({ odds: -110 }) }; });
+  check('wording: a side past its bar reads "0.5 past its bar", a short one "0.9 short of its bar" (never "past of")', gap.past === '0.5 past its bar of 13.2 points' && gap.short === '0.9 short of its bar of 5.7 points' && gap.briefPast === '0.5 past its bar' && gap.briefShort === '0.9 short of its bar' && gap.floor === '1.0 short of the 3-point bar' && gap.none === '', JSON.stringify(gap));
+  const cal = await c.page.textContent('#sub-preview-host .cal-meta'), pulse = await c.page.textContent('#parlay-host .pulse-lede');
+  await c.page.goto(url('picks.html')); await c.page.waitForTimeout(400);
+  const fieldLabels = await c.page.evaluate(() => [...document.querySelectorAll('#field-host .star[aria-label]')].map(g => g.getAttribute('aria-label')));
+  check('wording: the home page\'s daily card, the no-parlay card and the edge field say it right', /Closest: .+, [+-][\d.]+ pts, [\d.]+ (past|short of) its bar$/.test(cal) && /Closest: .+ edge [+-][\d.]+, [\d.]+ (past|short of) its bar of [\d.]+ points\./.test(pulse) && fieldLabels.length > 0 && fieldLabels.every(t => /points, [\d.]+ (past|short of) (its bar of [\d.]+ points|the [\d.]+-point bar)$/.test(t)) && ![cal, pulse].concat(fieldLabels).some(t => /past of|short its/.test(t)), JSON.stringify([cal, pulse, fieldLabels[0]]));
+  await c.ctx.close();
+
   check('watch checks: no page errors', errors.length === 0, errors.join(' | '));
 }
 

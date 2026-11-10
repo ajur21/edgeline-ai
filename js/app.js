@@ -207,6 +207,15 @@
   function barName(x, whose) { return hasOwnBar(x) ? (whose || "its") + " bar of " + barPts(x) + " points" : "the " + barPts(x) + "-point bar"; }
   /* "5.2 past" or "1.4 short" */
   function pastWord(x) { const p = pastOf(x); return !Number.isFinite(p) ? "" : p >= 0 ? (p * 100).toFixed(1) + " past" : (-p * 100).toFixed(1) + " short"; }
+  /* the same against the bar, as a phrase: "0.5 past its bar of 13.2 points", "0.9 short of its bar of 5.7 points" (past
+     takes no "of": the old template joined pastWord and " of its bar" and read "0.5 past of its bar"); brief drops the
+     size: "0.5 past its bar", "0.9 short of its bar" */
+  function barGap(x, brief) {
+    const p = pastOf(x);
+    if (!Number.isFinite(p)) return "";
+    const name = !brief ? barName(x) : hasOwnBar(x) ? "its bar" : "the " + barPts(x) + "-point bar";
+    return p >= 0 ? (p * 100).toFixed(1) + " past " + name : (-p * 100).toFixed(1) + " short of " + name;
+  }
   /* the line under a card's numbers: "Bar 10.8 pts | 5.2 past" */
   function barLine(p, cls) {
     if (!hasModel(p) || !Number.isFinite(pastOf(p))) return null;
@@ -689,7 +698,7 @@
     const top = marketRows({ limit: 3, oneSidePerMarket: true, positive: false });
     return el("article", { class: "card pulse", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [el("span", { class: "eyebrow", text: opts.title || "Market pulse" }), el("span", { class: "badge badge-strong", text: s.games + " games" })]),
-      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? nWord(s.picks) + " on the board. " : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + pastWord(s.best) + (hasOwnBar(s.best) ? " of its bar of " + barPts(s.best) : " of the " + barPts(s.best) + "-point bar") + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
+      el("p", { class: "pulse-lede" }, [el("strong", { text: s.markets + " markets" }), " priced across " + s.sports.join(", ") + ", each side given our probability from the game data and its own bar. " + (s.picks ? nWord(s.picks) + " on the board. " : "None is on the board" + (s.watch ? "; " + s.watch + " on watch, at least halfway to their bar. " : ". ")) + (s.best ? "Closest: " + s.best.pick + " at " + fmtOdds(s.best.odds) + ", edge " + signed(s.best.edge * 100, 1) + ", " + barGap(s.best) + "." : "") + (s.unmodelled ? " " + s.unmodelled + (s.unmodelled === 1 ? " side has" : " sides have") + " no model yet." : "")]),
       el("ul", { class: "parlay-legs" }, top.map(function (p) { return el("li", {}, [el("span", { class: "leg-id" }, [TM() ? TM().matchup(p, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })]), el("span", { class: "leg-pick" }, [el("strong", { text: p.pick }), meta([p.event, startLabel(p)], "leg-event")]), el("span", { class: "mono leg-price", text: fmtOdds(p.odds) }), el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) })]); })),
       el("div", { class: "pick-foot" }, [el("span", { text: s.generatedAt ? "Priced " + clockET(s.generatedAt.getTime()) : "" }), el("a", { class: "flip-btn", href: "picks.html#market", text: "Open the market board" })])
     ]);
@@ -1239,7 +1248,7 @@
   window.EdgeLine = {
     impliedProb: impliedProb, fmtOdds: fmtOdds, pct: pct, edgeOf: edgeOf, signed: signed, isValidPick: isValidPick, decimalOdds: decimalOdds, americanFromDecimal: americanFromDecimal,
     hasModel: hasModel, probOf: probOf, edgeNum: edgeNum, rowEdge: rowEdge, probText: probText, edgeText: edgeText, barOf: barOf, watchOf: watchOf, barPts: barPts, watchPts: watchPts, gradeRule: GRADE_RULE,
-    hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
+    hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barGap: barGap, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
     standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
     potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,

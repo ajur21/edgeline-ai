@@ -438,7 +438,7 @@
           near ? E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
             E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
-            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts, " + E.pastWord(near) + " of its bar" : "no model yet") })
+            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts, " + E.barGap(near, true) : "no model yet") })
           ]) : E.el("span"),
           E.el("div", { class: "cal-note", text: "One line, so you know we looked and passed." })
         ])
