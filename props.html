@@ -96,12 +96,11 @@
       <div class="more-row" id="nl-more-row" hidden><button type="button" class="btn btn-secondary" id="nl-more"></button></div>
     </details>
 
-    <div class="section-head sub-head props-head" id="played" hidden>
-      <h2>In progress and results</h2>
+    <details class="props-noline props-played" id="played" hidden>
+      <summary><h2 class="props-noline-h">In progress and results</h2><span class="props-noline-n mono" id="pl-count"></span><span class="props-noline-how" id="pl-summary"></span></summary>
       <p class="how-to muted" id="pl-how"></p>
-      <p class="filter-summary" id="pl-summary" role="status"></p>
-    </div>
-    <div id="played-host"></div>
+      <div id="played-host"></div>
+    </details>
   </div>
 </section>
 
@@ -623,6 +622,11 @@
       pick: { commence: start, sportKey: sportKeyOf(r), result: r.result || null, status: void_ ? "void" : r.result ? "graded" : null } };
   }
   var STATE_ORDER = { live: 0, awaiting: 1, final: 2, soon: 3, upcoming: 4 }, PLAYED_CAP = 5;
+  /* the reader's own hand on the fold: its line, a link to it, or an address that names it */
+  var plTouched = false;
+  if (location.hash === "#played") { $("played").open = true; plTouched = true; }
+  $("played").querySelector("summary").addEventListener("click", function () { plTouched = true; });
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest('a[href="#played"]'); if (a && !$("played").hidden) { $("played").open = true; plTouched = true; } });
   function playedRow(it) {
     var st = E.gameState(it.pick);
     var result = it.result
@@ -653,6 +657,11 @@
     var c = {}; items.forEach(function (it) { var k = E.stateKey(it.pick); c[k] = (c[k] || 0) + 1; });
     $("pl-summary").textContent = [c.live ? c.live + " live" : null, c.awaiting ? c.awaiting + (RES ? " awaiting a result" : " finished, not graded") : null, c.won ? c.won + " won" : null, c.lost ? c.lost + " lost" : null, c.push ? plural(c.push, "push", "pushes") : null, c.void ? c.void + " void" : null].filter(Boolean).join(", ");
     $("pl-summary").hidden = !$("pl-summary").textContent;
+    $("pl-count").textContent = items.length ? String(items.length) : "";
+    /* the fold (owner, 2026-11-10: the page ran to about 4,070px with results): open while a prop is in progress, when
+       nothing is left on the board (the results are the page) and when a search lands only here; otherwise one closed
+       line with its count and tally. Once the reader has opened or closed it, it is theirs for the visit. */
+    if (!plTouched) head.open = !!(c.live || c.awaiting) || !Object.keys(SIDES).length || !!(state.q && items.length && !Object.keys(SIDES).some(function (id) { return matchQ(SIDES[id].p); }));
     if (!items.length) { box.appendChild(el("p", { class: "props-empty", text: "No started prop matches these filters." })); return; }
     var cap = playedAll || state.q ? items.length : Math.min(items.length, PLAYED_CAP), list = el("div", { class: "card played-list" }), days = {}, prev = null;
     items.forEach(function (it) { days[it.day] = 1; });

@@ -229,7 +229,12 @@ async function run(h) {
   r = await rowsOf(s);
   /* a results row, part by part: its chips, the prop, the meta line's parts, the outcome */
   const played = (page, sel) => page.$$eval(sel, els => els.map(n => ({ id: n.dataset.player, result: n.dataset.result, state: n.dataset.state, chip: (n.querySelector('.badge-state') || {}).textContent, rank: (n.querySelector('.rank') || {}).textContent || null, pick: n.querySelector('.played-pick strong').textContent, meta: Array.from(n.querySelectorAll('.played-pick .meta > span')).map(o => o.textContent).join(' | '), out: n.querySelector('.played-result').textContent.trim(), detail: n.querySelectorAll('a[data-open]').length, all: n.textContent, day: n.previousElementSibling && n.previousElementSibling.classList.contains('day-divider') ? n.previousElementSibling.textContent : null })));
+  /* the results fold (owner, 2026-11-10: "go" on folding the results list; the page ran to about 4,070px): In progress and
+     results is a native fold like No line yet. `seen` counts the rows a reader can see (a closed fold's rows are in the page) */
+  const foldOf = page => page.$eval('#played', n => ({ hidden: n.hidden, tag: n.tagName, open: n.open, head: n.querySelector('summary h2').textContent, count: n.querySelector('#pl-count').textContent, tally: n.querySelector('#pl-summary').textContent, rows: n.querySelectorAll('#played-host .played').length, seen: Array.from(n.querySelectorAll('#played-host .played')).filter(r => r.checkVisibility()).length, how: n.querySelector('#pl-how').checkVisibility(), h: Math.round(n.getBoundingClientRect().height) }));
   const live = await played(s, '#played-host .played[data-state="live"]');
+  const sFold = await foldOf(s);
+  check('props results fold: while a prop is in progress the section is open by itself, its rows in view under its own heading and tally', sFold.tag === 'DETAILS' && !sFold.hidden && sFold.open && sFold.rows >= 3 && sFold.seen === sFold.rows && sFold.how && sFold.head === 'In progress and results' && /^3 live, /.test(sFold.tally), JSON.stringify(sFold));
   check('props started: a game that has started leaves the board, the rest renumber from 1, and its chip and the tab count say so', r.length === 2 && r.every(x => x.game === 'MIL @ BOS') && r.map(x => x.rank).join() === '1,2' && same(r, board(D, 'NBA', STARTED)) && (await text(s, '#p-games [data-game="' + ATL_WSH + '"]')) === 'ATL @ WSH Live' && (await s.$eval('#p-games [data-game="' + ATL_WSH + '"]', n => n.classList.contains('is-started'))) && (await text(s, '#p-leagues [data-league="NBA"] .seg-count')) === '2' && (await text(s, '#props-slate')) === 'NBA tonight: 2 games, 1 started. NFL tomorrow: 1 game.', await text(s, '#props-slate'));
   check('props started: its props land under In progress and results as the board ranked them, Live, with no price and no rank they no longer hold', live.length === 3 && live.every(x => x.chip === 'Live' && x.rank === null && x.out === 'In progress' && !/[+-]\d{3}/.test(x.all)) && live[0].id === WALKER && live[0].pick === 'Nickeil Alexander-Walker: under 3.5 assists' && live[0].meta === 'ATL @ WSH | To hit 64.1% as ranked | Medium | Started 7:00 PM ET' && /^3 live, /.test(await text(s, '#pl-summary')), live.map(x => x.pick + ' [' + x.meta + '] ' + x.out).join(' || '));
   await s.click('#played-host .played[data-player="' + WALKER + '"] a[data-open]'); await s.waitForTimeout(150);
@@ -237,16 +242,25 @@ async function run(h) {
   check('props started: its detail says lines closed at the start, shows no price and offers nothing to bet', !!dd && dd.note === 'Lines closed at the start. This is the prop as the board ranked it.' && dd.sides.length === 2 && dd.sides.every(x => x.prices.length === 0) && dd.state === 'Live' && dd.rank === null, dd && dd.note);
   await s.close();
   const t = await open('', { at: Date.parse('2026-11-04T18:59:00-05:00') });
-  const before = (await rowsOf(t)).length;
+  const before = (await rowsOf(t)).length, tBefore = await foldOf(t);
   await t.evaluate(at => { window.EDGELINE_NOW = at; window.EdgeLinePropsPage.tick(); }, STARTED); await t.waitForTimeout(120);
+  const tAfter = await foldOf(t);
+  check('props results fold: with props on the board and nothing in progress it is closed, and a page left open opens it when the first game starts', !tBefore.open && tBefore.seen === 0 && tBefore.rows > 0 && tAfter.open && tAfter.seen === tAfter.rows && tAfter.seen >= 3, JSON.stringify([tBefore, tAfter]));
   check('props started: the page follows the clock without a reload', before === 5 && (await rowsOf(t)).length === 2 && (await t.locator('#played-host .played[data-state="live"]').count()) === 3 && (await text(t, '#p-leagues [data-league="NBA"] .seg-count')) === '2');
   await t.close();
   const u = await open('league=NBA', { at: NEXT_MORNING });
   check('props started: with every game of the league started the board says so and points at the results; nothing is offered as bettable', (await rowsOf(u)).length === 0 && /Every NBA game on this slate has started, so nothing is left to bet\./.test(await u.textContent('#props-board')) && (await u.locator('#props-board .props-empty a[href="#played"]').count()) === 1 && (await strip(u)) === '#board #record #played #how' && (await text(u, '#p-leagues [data-league="NBA"] .browse-next')) === 'started' && (await text(u, '#props-title')) === 'Today’s props, likeliest first' && /^5 awaiting a result, 2 won, 2 lost, 1 void$/.test(await text(u, '#pl-summary')), await text(u, '#pl-summary'));
+  const uFold = await foldOf(u);
+  check('props results fold: with nothing left on the board the results are the page, so the section is open', uFold.open && uFold.seen === uFold.rows && uFold.rows > 0, JSON.stringify(uFold));
   await u.close();
 
   /* ---------- results and the record (PROPS_DATA.results) ---------- */
   const R = D.results, v = await open('');
+  const vFold = await foldOf(v);
+  check('props results fold: with props on the board and every result final the section is one closed line, its count and tally on it, under the record that stays in view', !vFold.hidden && !vFold.open && vFold.seen === 0 && !vFold.how && vFold.rows === 5 && vFold.count === '5' && vFold.tally === '2 won, 2 lost, 1 void' && vFold.h < 110 && (await v.$eval('#record', n => !n.hidden && n.checkVisibility())), JSON.stringify(vFold));
+  await v.click('#played > summary'); await v.waitForTimeout(80);
+  const vOpen = await foldOf(v);
+  check('props results fold: a tap on its line opens it (a native details, reachable by keyboard) and shows the rows and how they are graded', vOpen.open && vOpen.seen === 5 && vOpen.how && (await v.$eval('#played > summary', n => n.tabIndex === 0)), JSON.stringify(vOpen));
   const rec = await v.evaluate(() => { const box = document.getElementById('record'); return { on: !box.hidden, h: box.querySelector('h2').textContent, lead: Array.from(box.querySelectorAll('.props-rec-lead > span')).map(n => n.textContent), tiers: Array.from(box.querySelectorAll('tbody tr')).map(tr => Array.from(tr.children).map(td => td.textContent)), how: box.querySelector('.how-to').textContent }; });
   check('props record: the last slate of the league, the run since the first graded day and each league, with hit rates', rec.on && rec.h === 'Record' && rec.lead.join(' | ') === 'Last NBA slate, yesterday: 2-2 (50.0%) | Since Wed Oct 28: 22-17-1 (56.4%) | NFL 5-3-1 (62.5%) | NBA 17-14 (54.8%)' && /graded from the box score at its posted line, through 3:10 AM ET\. No price takes part\./.test(rec.how) && R.record.w === 22 && R.byLeague.NBA.l === 14, rec.lead.join(' | '));
   check('props record: every tier against what it claims, the lowest read as Low', JSON.stringify(rec.tiers) === JSON.stringify([['High', '5-1', '83.3%', '70% or better'], ['Medium', '8-5', '61.5%', '62% to 70%'], ['Low', '6-6-1', '50.0%', '56% to 62%'], ['Coin flip', '3-5', '37.5%', 'Under 56%']]), JSON.stringify(rec.tiers));
@@ -254,10 +268,20 @@ async function run(h) {
   const nbaRecent = R.recent.filter(x => x.league === 'NBA');
   check('props results: the league’s graded props, in rank order, each with its result, what he finished with and how it was ranked; a player who sat is void', res.length === nbaRecent.length && res.every((x, i) => x.id === String(nbaRecent[i].playerId) && x.result === nbaRecent[i].result && x.rank === '#' + nbaRecent[i].rank && x.detail === 0) && res.map(x => x.chip).join() === 'Won,Won,Lost,Lost,Void' && res[0].pick === 'Nickeil Alexander-Walker: over 19.5 points' && res[0].meta === 'ATL @ IND | To hit 71.2% as ranked | High' && res[0].out === 'Finished with 34' && res[3].meta === 'ATL @ IND | To hit 57.8% as ranked | Low' && res[4].out === 'No action: he did not play' && res.every(x => !/[+-]\d{3}/.test(x.all)) && (await text(v, '#pl-summary')) === '2 won, 2 lost, 1 void' && /graded from the box score at its posted line, never from a price/.test(await text(v, '#pl-how')), JSON.stringify(res.map(x => x.chip + ' ' + x.pick + ' [' + x.meta + '] ' + x.out)));
   await v.click('#p-leagues [data-league="NFL"]'); await v.waitForTimeout(120);
-  const capped = await v.$$eval('#played-host .played', els => els.length), moreText = await text(v, '#pl-more');
+  const capped = await v.$$eval('#played-host .played', els => els.length), moreText = await text(v, '#pl-more'), vNfl = await foldOf(v);
+  check('props results fold: once the reader has opened it, it stays open through a change of league', vNfl.open && vNfl.seen === vNfl.rows && vNfl.count === '6', JSON.stringify(vNfl));
   await v.click('#pl-more'); await v.waitForTimeout(100);
   check('props results: each league shows its own last slate and results, a push among them; the list shows five and offers the rest, while its summary counts them all', (await v.$eval('#record .props-rec-lead > span', n => n.textContent)) === 'Last NFL slate, Sun Nov 1: 4-1-1 (80.0%)' && (await text(v, '#pl-summary')) === '4 won, 1 lost, 1 push' && capped === 5 && moreText === 'Show all 6' && (await v.locator('#pl-more').count()) === 0 && (await v.$$eval('#played-host .played', els => els.length === 6 && els.some(n => n.dataset.result === 'Push' && /Derrick Henry: under 53 rushing yards/.test(n.textContent) && /Finished with 53/.test(n.textContent)))), capped + ' ' + moreText);
   await v.close();
+  const sl = await open('');
+  await sl.click('.subnav a[href="#played"]'); await sl.waitForTimeout(120);
+  check('props results fold: the strip’s link to it opens it', (await foldOf(sl)).open && (await foldOf(sl)).seen === 5);
+  await sl.close();
+  /* a player who is only in the results: yesterday's, no longer in the file's games */
+  const ghost = sample(); ghost.results.recent.unshift(Object.assign({}, R.recent.find(x => x.league === 'NBA'), { playerId: '999001', name: 'Zed Onlyresult', rank: 9 }));
+  const sq = await open('q=Zed', { data: ghost }), sqFold = await foldOf(sq);
+  check('props results fold: a search that lands only in the results opens it, so the reader is not left with an empty board and a closed line', (await rowsOf(sq)).length === 0 && sqFold.open && sqFold.rows === 1 && sqFold.seen === 1 && sqFold.count === '1', JSON.stringify(sqFold));
+  await sq.close();
   const graded = sample();
   graded.players.filter(p => p.gameId === ATL_WSH && p.lines).forEach((p, i) => graded.results.recent.unshift({ league: 'NBA', date: '2026-11-04', gameId: p.gameId, playerId: p.id, name: p.name, teamAbbr: p.teamAbbr, oppAbbr: p.oppAbbr, home: p.home, stat: 'pts', side: 'over', line: 9.5, prob: 0.6, grade: 'Lean', rank: i + 1, actual: 12 + i, result: i === 1 ? 'Loss' : 'Win' }));
   const w = await open('league=NBA', { at: NEXT_MORNING, data: graded });
