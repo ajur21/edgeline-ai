@@ -32,13 +32,15 @@ const BOT_UA = "EdgeLineAI-data/1.0 (+https://ajur21.github.io/edgeline-ai/)";
 function round(n, d) { const m = Math.pow(10, d == null ? 1 : d); return Math.round(n * m) / m; }
 
 /* ---------- sources ---------- */
-function liveSource() {
+function liveSource(opts) {
   const cache = {}; let count = 0;
+  /* opts.named (scripts/nfl-week.js, 2026-11-10): every request goes out as BOT_UA instead of under Node's own client name */
+  const headers = opts && opts.named ? { "user-agent": BOT_UA, accept: "application/json" } : { accept: "application/json" };
   /* keep = false: the caller keeps what it needs (a game log can run to most of a megabyte; the model keeps its game ids) */
   async function get(url, keep) {
     if (cache[url]) return cache[url];
     await sleep(80); count++;
-    const res = await fetch(url, { headers: { accept: "application/json" } });
+    const res = await fetch(url, { headers: headers });
     if (!res.ok) throw new Error("HTTP " + res.status + " " + url);
     const json = await res.json();
     if (keep !== false) cache[url] = json;
@@ -475,5 +477,5 @@ async function enrich(entries, opts) {
   entries.forEach(function (e) { e.context = got.byId[e.id] || null; if (e.context && e.context.odds) recordDk(e, e.context.odds, opts && opts.now); e.breakdown = buildBreakdown(e, e.context, opts && opts.rules); });
   return got.requests;
 }
-function source(opts) { return opts && opts.fixture ? fixtureSource(opts) : liveSource(); }
+function source(opts) { return opts && opts.fixture ? fixtureSource(opts) : liveSource(opts); }
 module.exports = { BOT_UA, enrich, fetchContext, buildBreakdown, findEvent, regulationScore, clubCore, teamMatches, teamInjuries, athleteIdOf, appearances, restFromSchedule, weatherFor, ESPN, ESPN_CORE, source, closingOdds, trackOdds, scoreboardOdds, coreOdds, dkSide, movedToward, dkSummary, recordDk };

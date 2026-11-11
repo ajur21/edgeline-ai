@@ -279,4 +279,4 @@ function apply(gm, ix, x) {
   return Object.assign({}, gm, { margin: margin, marginSd: r.sd, parts: parts, reasons: reasons, nflverse: true });
 }
 
-module.exports = { PARAMS, BETA, ATTRIBUTION, RELEASE, seasonOf, parseCsv, build, load, lazy, isFresh, lastBoundary, index, rate, apply, qbValue, findGame, starterFor, ridge, fixtureFetcher };
+module.exports = { PARAMS, BETA, FROM_ESPN, ATTRIBUTION, RELEASE, seasonOf, parseCsv, build, load, lazy, isFresh, lastBoundary, index, rate, apply, qbValue, findGame, starterFor, ridge, fixtureFetcher };
