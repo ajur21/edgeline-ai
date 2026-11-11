@@ -209,7 +209,9 @@ async function result(src, e) {
 /* ---------- player props: every player's lines ride along in the game's event object ----------
    oddID = <statID>-<playerID>-game-ou-<over|under>, e.g. points-LEBRON_JAMES_1_NBA-game-ou-over, or for the NFL
    passing_yards-PATRICK_MAHOMES_1_NFL-game-ou-over (NFL statIDs: passing_yards, passing_touchdowns, rushing_yards,
-   receiving_yards, receiving_receptions; the vendor's market list, checked 2026-11-08).
+   receiving_yards, receiving_receptions; the vendor's market list, checked 2026-11-08; since 2026-11-10 also
+   passing_attempts, passing_completions, passing+rushing_yards and rushing_attempts, from the vendor's NFL market
+   page: the map is SGO_STATS in scripts/nfl-props.js).
    The event's `players` map gives names; when it is missing the name is read back out of the id. */
 const PROP_STATS = { pts: "points", reb: "rebounds", ast: "assists", threes: "threePointersMade", pra: "points+rebounds+assists" };
 function normName(s) {

@@ -49,7 +49,7 @@ jobs:
       - name: Commit data if it changed
         id: commit
         run: |
-          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js data/props.js data/budget.json picks.ics feed.xml)" ]; then
+          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js data/props.js data/props-log.json data/budget.json picks.ics feed.xml)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No movement."; exit 0
           fi
           git config user.name "edgeline-data-bot"

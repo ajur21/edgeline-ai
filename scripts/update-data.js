@@ -993,6 +993,10 @@ async function trackRun(opts, now, dataDir, logPath, log) {
      lines of games starting within three hours and the college board (sgoSurplus) */
   const sgoSpend = await sgoSurplus({ now: now, board: boardEntries, soon: soon, budget: sgoBudget, src: sgoSrc, dataDir: dataDir, fixture: opts.fixture, within: within });
   if (sgoSpend.moved) sgoStats.changed += sgoSpend.moved;
+  /* props (2026-11-10): lock the board's sides on the lines as they now stand (the surplus may just have re-read them)
+     and grade every prop whose game has ended, from ESPN's box scores: free, no entity, no credit (update-props.js track) */
+  let propsRecord = null;
+  try { propsRecord = await require("./update-props.js").track(dataDir, now, { fixture: opts.fixture }); } catch (err) { console.warn("props grading failed: " + err.message); }
   boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
   const today = etDate(now);
   const potdEntry = log.find(e => !e.type && e.potd === today) || null;
@@ -1007,7 +1011,7 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: potdEntry ? publicPick(potdEntry, now) : null, parlayOfDay: publicParlay(parlayEntry, log, now), picks: card });
   /* a run that graded nothing leaves performance.js as the last run wrote it */
   if (g.graded || parlaysGraded || closesRepaired) writePerformance(dataDir, summarize(log, now));
-  return { track: true, closesRepaired: closesRepaired, sgoSurplus: sgoSpend.public, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
+  return { track: true, closesRepaired: closesRepaired, sgoSurplus: sgoSpend.public, props: propsRecord, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
 }
 
 function liveSource(key, usage) {
@@ -1180,7 +1184,7 @@ function planLine(r) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
-    if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), availability changed on " + r.availabilityFlagged + " NBA pick(s), ESPN requests: " + r.contextRequests + sgoSurplusText(r.sgoSurplus) + (r.closesRepaired ? ", closes repaired: " + r.closesRepaired : "")); return; }
+    if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), availability changed on " + r.availabilityFlagged + " NBA pick(s), ESPN requests: " + r.contextRequests + sgoSurplusText(r.sgoSurplus) + (r.closesRepaired ? ", closes repaired: " + r.closesRepaired : "") + (r.props && !r.props.skipped ? " | props: " + require("./update-props.js").recordText(r.props) : "")); return; }
     console.log(planLine(r));
     if (r.waited && r.waited.length) console.log("NBA games held until who plays is in (the official report): " + r.waited.join("; "));
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));

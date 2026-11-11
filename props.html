@@ -111,6 +111,7 @@
     <p><strong>Only game data.</strong> Half of To hit is the player’s hit rate against the number over his last ten games (the last five count more, and a short sample is pulled toward even). The other half is a projection. For the NBA that is his last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against his own game-to-game spread. For the NFL it is usage (targets, carries, attempts) times what he gains per touch, against what the defence allows to his position, home or away, the wind and the injury report.</p>
     <p><strong>The tiers.</strong> High is 70% or better, Medium 62%, Low 56%; anything closer to even is a coin flip and says so. The board ranks only lines the books quote on both sides, players with at least four games logged (three in the NFL) and games still to start.</p>
     <p><strong>What a price is for.</strong> The posted line is only the number to clear. No book’s price takes part in the probability, the side or the rank; the best price is shown so you know where to bet it. In a row’s detail you can type any other number and both sides regrade for it; your line is kept on this device.</p>
+    <p id="how-record"><strong>The record.</strong> Each player’s ranked side is locked on the last lines read before his game starts, then graded from the box score: a win, a loss, a push when he lands on the number, and void when he does not play. The record was started on Nov 10. The slates from Nov 4 through that night were rebuilt from the lines this page had published before each game, ranked the way the board ranks today; from Nov 11 every prop is locked as its lines are read.</p>
     <p class="props-credit" id="props-credit">Stats, schedules and player photos from ESPN’s public API. Lines from SportsGameOdds. Wind at NFL kickoffs is the National Weather Service’s forecast.</p>
   </div>
 </section>
@@ -339,7 +340,7 @@
     if (lg === "NFL") {
       var N = LG.NFL; if (!N || !N.date) return "No NFL lines yet.";
       var first = N.first ? " (" + N.first.matchup + ")" : "", why = N.lines && N.lines.skipped;
-      if (N.date > todayKey()) return "No NFL lines yet. They are read on the next game day, " + lowerDay(E.dayLabel(N.date)) + first + ", on that morning’s run, about " + E.runClock(0) + ".";
+      if (N.date > todayKey()) return "No NFL lines yet. They are read on the next game day, " + lowerDay(E.dayLabel(N.date)) + first + ", on that morning’s run, about " + E.runClock(0) + ". When the month’s odds budget has room they come sooner, on the afternoon run one or two days before.";
       if (why === "budget") return "NFL lines were held back this run to keep the month’s odds budget. The next try is " + E.aboutET(nextRead("NFL")) + ".";
       return "No NFL lines yet. The next read is " + E.aboutET(nextRead("NFL")) + ", for the games still to start.";
     }
