@@ -283,6 +283,34 @@ async function run(h) {
     return { vw: vw, sw: document.documentElement.scrollWidth, bad: bad };
   });
   {
+    /* the phone fold (owner, 2026-11-10: "go" on folding the quarterbacks and the weather on phones; the hub was about
+       8,500px tall at 400 wide): what a forecast is built on sits behind one fold a card, the forecast and the price to
+       clear stay in view. On a wide screen there is no fold: the card is as it was. */
+    const foldOf = (page, id) => page.evaluate(gid => {
+      /* checkVisibility: a closed fold's content still has boxes, it is only not drawn */
+      const c = document.querySelector('.nfl-game[data-game="' + gid + '"]'), d = c.querySelector('details.nfl-built'), vis = n => !!n && n.checkVisibility(), txt = n => n.textContent.replace(/\s+/g, ' ').trim();
+      return { has: !!d, open: !!(d && d.open), summary: d ? [...d.querySelectorAll(':scope > summary .meta > span')].map(txt) : null, summaryShown: !!d && vis(d.querySelector(':scope > summary')), qb: vis(c.querySelector('.nfl-qb')), wx: vis(c.querySelector('.nfl-wx')), inj: vis(c.querySelector('.nfl-inj > summary, .nfl-inj-none')),
+        lean: vis(c.querySelector('.nfl-lean')), metrics: vis(c.querySelector('.pick-metrics')), bar: vis(c.querySelector('.prob-bar')), foot: vis(c.querySelector('.pick-foot')), inLines: !!d && d.parentNode.classList.contains('nfl-lines'), h: Math.round(c.getBoundingClientRect().height) };
+    }, id);
+    const ph = await open('picks.html?sport=NFL', { viewport: { width: 400, height: 860 } });
+    const fb = await foldOf(ph.page, JAX_BAL), fn = await foldOf(ph.page, ATL_NO), fp = await foldOf(ph.page, DAL_PHI), fg = await foldOf(ph.page, CHI_GB), fd = await foldOf(ph.page, LV_DEN), fk = await foldOf(ph.page, KC_BUF);
+    check('nfl hub (phone fold): at 400px each forecast card keeps its winner, bar, numbers, price to clear and links in view and folds the quarterbacks, the injuries and the weather behind one line, closed', [fb, fn, fp, fg].every(f => f.has && !f.open && f.summaryShown && f.inLines && !f.qb && !f.wx && !f.inj && f.lean && f.metrics && f.bar && f.foot) && !fd.has, JSON.stringify([fb, fd]));
+    check('nfl hub (phone fold): the fold’s line says what is behind it, and names a club that starts a backup, changes its quarterback or has its starter on the report, so the one fact that moves a forecast most is never hidden', fb.summary.join('|') === 'Quarterbacks, injuries, weather|BAL starts a backup' && fn.summary.join('|') === 'Quarterbacks, injuries, weather|NO changes quarterback' && fk.summary.join('|') === 'Quarterbacks, injuries, weather|KC starter questionable' && fp.summary.join('|') === 'Quarterbacks, injuries, weather' && fg.summary.join('|') === 'Quarterbacks, injuries, weather', [fb, fn, fk, fp, fg].map(f => f.summary.join('|')).join(' || '));
+    await ph.page.click('.nfl-game[data-game="' + JAX_BAL + '"] details.nfl-built > summary');
+    const fo = await foldOf(ph.page, JAX_BAL);
+    check('nfl hub (phone fold): a tap opens it (a native details, reachable by keyboard) and the card grows by what it held; the injuries’ own fold is still inside', fo.open && fo.qb && fo.wx && fo.inj && fo.h >= fb.h + 90 && (await ph.page.evaluate(id => { const d = document.querySelector('.nfl-game[data-game="' + id + '"] details.nfl-built'); return d.querySelector(':scope > summary').tabIndex === 0 && !!d.querySelector('details.nfl-inj') && !d.querySelector('details.nfl-inj').open; }, JAX_BAL)), JSON.stringify([fb.h, fo.h]));
+    await ph.page.setViewportSize({ width: 1280, height: 900 }); await ph.page.waitForTimeout(150);
+    const fw = await foldOf(ph.page, DAL_PHI);
+    await ph.page.setViewportSize({ width: 400, height: 860 }); await ph.page.waitForTimeout(150);
+    const fr = await foldOf(ph.page, DAL_PHI);
+    check('nfl hub (phone fold): a screen turned wide shows every line with no fold line, and turned narrow again folds them', fw.open && !fw.summaryShown && fw.qb && fw.wx && fw.inj && !fr.open && fr.summaryShown && !fr.qb, JSON.stringify([fw, fr]));
+    await ph.close();
+    const pw = await open('picks.html?sport=NFL'), fwide = await foldOf(pw.page, JAX_BAL);
+    check('nfl hub (phone fold): on a wide screen the card is as it was: the three lines in view, no fold line', fwide.open && !fwide.summaryShown && fwide.qb && fwide.wx && fwide.inj && fwide.lean, JSON.stringify(fwide));
+    await pw.close();
+    const pgp = await open('game.html?id=g5', { viewport: { width: 400, height: 860 } });
+    check('game page (phone): the one forecast card there has no fold of this kind: its quarterbacks, injuries (open) and weather are in view', await pgp.page.evaluate(() => { const c = document.querySelector('#forecast .nfl-game'), vis = n => !!n && n.checkVisibility(); return !c.querySelector('details.nfl-built') && vis(c.querySelector('.nfl-qb')) && vis(c.querySelector('.nfl-wx')) && c.querySelector('details.nfl-inj').open; }));
+    await pgp.close();
     const p = await open('picks.html?sport=NFL', { viewport: { width: 400, height: 860 } });
     await p.page.evaluate(() => document.querySelectorAll('#nfl-week details').forEach(d => { d.open = true; }));
     const P = await fits(p.page), cols = await p.page.evaluate(() => new Set([...document.querySelectorAll('#nfl-week .nfl-game')].map(c => Math.round(c.getBoundingClientRect().left))).size);

@@ -174,6 +174,32 @@
     return E.meta([el("span", { text: "Moneyline " + word() + " from" }), side("away"), side("home"), priced], "nfl-line nfl-lean");
   }
 
+  /* ---------- the phone fold (owner, 2026-11-10: the hub ran to about 8,500px at 400 wide) ----------
+     On a narrow screen a hub card keeps the forecast and the price to clear in view and puts what the forecast is built
+     on (the quarterbacks, the injuries, the weather) behind one native fold, closed. On a wide screen the fold is open
+     and its line is not shown (the stylesheet), so the card is as it was. The game page's one card has no fold. */
+  const NARROW = typeof window.matchMedia === "function" ? window.matchMedia("(max-width: 720px)") : null;
+  function narrow() { return !!(NARROW && NARROW.matches); }
+  /* a club that does not start its usual quarterback is named on the fold's own line: the one fact that moves a forecast most */
+  function qbFlags(g) {
+    const q = g.qb;
+    if (!q) return [];
+    return ["away", "home"].map(function (s) {
+      const x = q[s], t = g[s];
+      if (!x || !x.name) return t.abbr + " has no starter known";
+      return x.kind === "backup" ? t.abbr + " starts a backup" : x.kind === "change" ? t.abbr + " changes quarterback" : x.status ? t.abbr + " starter " + lower(x.status) : null;
+    }).filter(Boolean);
+  }
+  function builtFold(g, lines) {
+    const d = el("details", { class: "nfl-built" }, [el("summary", { title: "What the forecast is built on: the quarterbacks the model assumed, the injuries it charged for and the weather at kickoff" }, [E.meta(["Quarterbacks, injuries, weather"].concat(qbFlags(g)), "nfl-line")])].concat(lines));
+    if (!narrow()) d.setAttribute("open", "");
+    return d;
+  }
+  if (NARROW) {
+    const refold = function () { document.querySelectorAll("details.nfl-built").forEach(function (d) { d.open = !NARROW.matches; }); };
+    if (NARROW.addEventListener) NARROW.addEventListener("change", refold); else if (NARROW.addListener) NARROW.addListener(refold);
+  }
+
   /* ---------- a game still to start: one card ---------- */
   function rankChip(n) {
     const c = E.rankChip(n);
@@ -204,7 +230,8 @@
         el("div", { class: "pick-metric", title: "The projected margin, the two projected scores apart" }, [el("div", { class: "k", text: "Margin" }), el("div", { class: "v", text: one(Math.abs(p.margin)) + " pts" })]),
         num(p.marginSd) && p.marginSd > 0 ? el("div", { class: "pick-metric", title: "The model’s own error on that margin, one standard error" }, [el("div", { class: "k", text: "Give or take" }), el("div", { class: "v", text: one(p.marginSd) + " pts" })]) : null
       ]));
-      kids.push(el("div", { class: "nfl-lines" }, [qbLine(g), injuryBlock(g, !!o.open), weatherLine(g), leanLine(g, o)]));
+      const built = [qbLine(g), injuryBlock(g, !!o.open), weatherLine(g)];
+      kids.push(el("div", { class: "nfl-lines" }, (o.open ? built : [builtFold(g, built)]).concat([leanLine(g, o)])));
     }
     kids.push(el("div", { class: "pick-foot" }, [
       el("span", {}, [E.meta([when(g), g.neutral && g.venue && g.venue.city ? "neutral site, " + g.venue.city : null, g.tv || null])]),

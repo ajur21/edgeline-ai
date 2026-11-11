@@ -1762,6 +1762,19 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .nfl-inj-team strong { font-size: 0.8rem; color: var(--text); }
 .nfl-inj-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .nfl-inj-more { color: var(--muted); }
+/* the phone fold (owner, 2026-11-10: the hub ran to about 8,500px at 400 wide): what a forecast is built on (the
+   quarterbacks, the injuries, the weather) sits behind one line a card on a narrow screen. On a wide screen js/nfl.js
+   opens the fold and its line is not shown, so the card is as it was. */
+.nfl-built > summary { display: none; }
+.nfl-built > :not(summary) + * { margin-top: 8px; }
+@media (max-width: 720px) {
+  .nfl-built > summary { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; cursor: pointer; list-style: none; }
+  .nfl-built > summary::-webkit-details-marker { display: none; }
+  .nfl-built > summary::before { content: "+"; flex: none; width: 8px; font-family: var(--font-mono); font-weight: 600; color: var(--accent-strong); }
+  .nfl-built[open] > summary::before { content: "−"; }
+  .nfl-built > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nfl-built[open] > summary { margin-bottom: 4px; }
+}
 /* a started game's row: whether the forecast was right takes the result colours. The chips differ in width (Live, Right,
    Wrong, Tie), so the first column is held and every row's forecast starts on one line down the list; on a phone the
    score and its note take a row of their own (a long note beside the forecast squeezed it to nothing) */
