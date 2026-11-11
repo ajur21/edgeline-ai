@@ -16,6 +16,9 @@ const server = http.createServer((req, res) => {
   if (useSample && rel === 'data/props.js') rel = 'scripts/fixtures/sample-props.js';
   if (useSample && rel === 'data/market.js') rel = 'scripts/fixtures/sample-market.js';
   if (useSample && rel === 'data/faces.js') rel = 'scripts/fixtures/sample-faces.js';
+  /* the NFL week hub (js/nfl.js, 2026-11-10) reads data/nfl-week.js. The sample suite serves no week, so every page is
+     as it was before the hub; scripts/nfl-hub-checks.js routes its own file (scripts/fixtures/sample-nfl-week.js) */
+  if (useSample && rel === 'data/nfl-week.js') { res.writeHead(200, { 'Content-Type': 'text/javascript', 'Cache-Control': 'no-store' }); res.end('/* no NFL week in the sample suite */\n'); return; }
   const file = path.join(root, rel);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
@@ -797,6 +800,10 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   /* start labels on the clock, the bar wording, held games and flagged leans, the clearing price and the watchlist
      (2026-11-10): scripts/watch-checks.js, on the same server, clock and counter */
   await require('./watch-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc });
+
+  /* the NFL week hub (2026-11-10): the forecasts on the NFL tab and on an NFL game's page, their order, a started game,
+     finals, the record, and the page without the file: scripts/nfl-hub-checks.js, on the same server, clock and counter */
+  await require('./nfl-hub-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc });
 
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;

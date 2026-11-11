@@ -1721,3 +1721,58 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .pd-log table.data th { white-space: normal; }
   .pd-log-score { display: none; }
 }
+
+/* ==========================================================================
+   NFL week hub (2026-11-10, owner: "I want to focus on NFL next"). js/nfl.js:
+   every game of the NFL week with the model's forecast, in the NFL panel of
+   the picks page (#nfl-week) and on an NFL game's page (#forecast). It is
+   built from what the site already has: the card, the pick card's head,
+   selection, probability bar, metrics and foot, .meta lines, the rank chip,
+   day headings, .played rows for started games, .inj-status chips. Tokens
+   only, no new colour; the look stays locked.
+   ========================================================================== */
+.nfl-hub { display: grid; gap: 12px; margin-top: 24px; }
+.nfl-hub-title { margin: 0; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.015em; }
+.nfl-sub { margin: 16px 0 0; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+.nfl-hub .how-to { margin: 0; }
+.nfl-check { margin: 0; max-width: 72ch; font-size: 0.85rem; line-height: 1.5; }
+/* the record: one line between two hairlines */
+.nfl-record { margin: 0; padding: 8px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-2); }
+.nfl-record strong { color: var(--text); }
+.meta.nfl-record-line { display: flex; }
+.nfl-stamp-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0; font-size: 0.78rem; color: var(--muted); }
+.nfl-none { margin: 0; color: var(--text-2); }
+/* one game still to start: a card laid out like a pick card's front, with no back to flip to */
+.nfl-game { display: flex; flex-direction: column; gap: 12px; }
+.nfl-game .matchup { margin-bottom: 8px; }
+.nfl-lines { display: grid; gap: 8px; font-size: 0.82rem; line-height: 1.45; color: var(--text-2); }
+.meta.nfl-line { display: flex; }
+.meta.nfl-line > span:first-child { color: var(--muted); }
+.nfl-line .mono { color: var(--text); font-weight: 600; }
+.nfl-lean-link { font-weight: 600; color: var(--text); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.nfl-lean-link:hover { color: var(--accent-strong); text-decoration-color: currentColor; }
+/* the injuries charged: the points in the summary, the names one tap away */
+.nfl-inj > summary { display: flex; align-items: baseline; gap: 8px; cursor: pointer; list-style: none; }
+.nfl-inj > summary::-webkit-details-marker { display: none; }
+.nfl-inj > summary::before { content: "+"; flex: none; width: 8px; font-family: var(--font-mono); font-weight: 600; color: var(--accent-strong); }
+.nfl-inj[open] > summary::before { content: "−"; }
+.nfl-inj > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nfl-inj-none { margin: 0; }
+.nfl-inj-team { display: grid; gap: 4px; margin: 8px 0 0 16px; }
+.nfl-inj-team strong { font-size: 0.8rem; color: var(--text); }
+.nfl-inj-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.nfl-inj-more { color: var(--muted); }
+/* a started game's row: whether the forecast was right takes the result colours. The chips differ in width (Live, Right,
+   Wrong, Tie), so the first column is held and every row's forecast starts on one line down the list; on a phone the
+   score and its note take a row of their own (a long note beside the forecast squeezed it to nothing) */
+.nfl-played .nfl-call.pos { color: var(--good-text); font-weight: 600; }
+.nfl-played .nfl-call.neg { color: var(--bad); font-weight: 600; }
+@media (min-width: 721px) { .nfl-played .played-id { min-width: 136px; } }
+@media (max-width: 720px) { .nfl-played .played-result, .nfl-played .played-actions { grid-column: 1 / -1; } }
+/* game.html: the card beside how its margin is built */
+.nfl-forecast { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 16px 32px; align-items: start; }
+.nfl-forecast-sec .nfl-check { font-size: 0.85rem; }
+.nfl-parts { margin: 0; max-width: 56ch; }
+.nfl-parts .muted { margin: 0 0 8px; font-size: 0.85rem; }
+.nfl-parts .mono { color: var(--text); font-weight: 600; }
+@media (max-width: 720px) { .nfl-forecast { grid-template-columns: minmax(0, 1fr); } }

@@ -12,7 +12,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 | File | What it is |
 |---|---|
 | `index.html` | Landing page: odds ticker, hero with today's board, the edge field (every priced side of tonight's market as a star against the 1-point bar), play of the day, parlay of the day, how it works with an edge calculator, top three picks, pricing, FAQ |
-| `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, line shopping across every book, a parlay builder, and the market board: every market priced against the sharp line, pick or not |
+| `picks.html` | Best parlays ranked by expected value, today's picks with filters and sort, card or table view, line shopping across every book, a parlay builder, and the market board: every market priced against the sharp line, pick or not. League tabs sit above the list; the NFL tab also carries the NFL week hub: every game of the week with the model's projected winner and score (a forecast, graded straight up, with a running record), the quarterbacks, injuries and weather behind it, and the moneyline price at which each side would become a lean |
 | `games.html` | Every game on the board, the way a sportsbook lays it out: sport tabs, a team or player search, and each game's spread, total and moneyline with the best price and book for every side, our probability and edge, and every book's price one click away. |
 | `digest.html` | The daily digest: one page with the whole slate by tip-off time, the play and parlay of the day, the top three by expected value, and live scores once games start. Print it, save it as a PDF, or copy it as text |
 | `performance.html` | Track record: stat tiles, play and parlay records, closing line value, profit calendar, cumulative units chart, units by sport, recent graded picks |
@@ -32,6 +32,8 @@ js/space.js         canvas space backdrop: parallax stars, nebulae, shooting sta
 js/teams.js         team logos, matchup strips (the picked side lit in its colour), card tints and player faces, from the two files below
 data/teams.js       164 teams in six leagues (NBA, NFL, MLB, NHL, Premier League, La Liga): names, abbreviations, logos, colours -> window.TEAMS_DATA; `npm run teams`
 data/faces.js       NBA rotation players and the Out list with season points and injury status -> window.FACES_DATA (written with the props refresh)
+js/nfl.js           the NFL week hub on the picks page's NFL tab and the forecast block on an NFL game's page, from the file below
+data/nfl-week.js    every game of the NFL week with the model's forecast -> window.NFL_WEEK_DATA (written by scripts/nfl-week.js: ESPN and the National Weather Service, no odds credits)
 data/picks.js       SAMPLE picks  -> window.PICKS_DATA
 data/performance.js SAMPLE results -> window.PERF_DATA
 data/market.js      every priced market from the last run -> window.MARKET_DATA (the site falls back to it so no page is ever empty)

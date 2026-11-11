@@ -496,8 +496,10 @@
       const on = seg.querySelector('[aria-current="true"]');
       if (on && tabs.scrollWidth > tabs.clientWidth) tabs.scrollLeft = Math.max(0, on.offsetLeft - 16);
     }
+    /* the NFL week hub (js/nfl.js, 2026-11-10): present only with a real data/nfl-week.js that holds a week */
+    function nflHub() { const N = window.EdgeLineNFL; return N && typeof N.hub === "function" && N.has() ? N : null; }
     function howText(s) {
-      return "Every " + lab(s) + " " + W("lean") + " still to start, in the order of the full list: today’s games first, then our probability from the game data, so #1 is the " + lab(s) + " side the model expects to hit most often. Below them, every " + lab(s) + " game on the schedule, by start time, each linked to its game page.";
+      return "Every " + lab(s) + " " + W("lean") + " still to start, in the order of the full list: today’s games first, then our probability from the game data, so #1 is the " + lab(s) + " side the model expects to hit most often. Below them, " + (s === "NFL" && nflHub() ? "every game of the NFL week with the model’s forecast: the projected winner and score, graded straight up, each linked to its game page." : "every " + lab(s) + " game on the schedule, by start time, each linked to its game page.");
     }
     function relabel(s) {
       if (!head) return;
@@ -516,6 +518,8 @@
         const now = E.now(), t = games.filter(function (g) { return g.state === "upcoming" || g.state === "soon"; }).map(function (g) { return firstRun(s, startOf(g)); }).filter(function (x) { return Number.isFinite(x) && x > now; }).sort(function (a, b) { return a - b; })[0];
         return [el("strong", { text: "No " + lab(s) + " " + L + " yet:" }), t && t > E.now() ? " we price these games from " + runWord(t) + ", and post a " + W("lean") + " only where a side clears its bar." : " none of these games is on our board yet."];
       }
+      /* no board game and no schedule read, but the week hub below lists the games: never "no games" above a list of them */
+      if (s === "NFL" && nflHub()) return [el("strong", { text: "No NFL " + L + " on the board yet." }), " A " + W("lean") + " is posted only where a side clears its bar at a pricing run; every game of the week is below with the model’s forecast."];
       if (st && st.status === "loading") return [el("strong", { text: "No " + lab(s) + " games on our board." }), " Reading the schedule from ESPN…"];
       return [el("strong", { text: "No " + lab(s) + " games on our board or on this week’s schedule." })];
     }
@@ -525,7 +529,7 @@
       relabel(s);
       panel.hidden = !on;
       panel.textContent = "";
-      if (!on) return;
+      if (!on) { if (window.EdgeLineNFL && window.EdgeLineNFL.syncStrip) window.EdgeLineNFL.syncStrip(false); return; }
       const all = (D.picks || []).filter(function (p) { return sportOf(p) === s && today(p); });
       const open = E.sortByProb(E.openOnly(all)), started = all.filter(function (p) { return !E.isOpen(p); });
       const st = sched[s], games = gamesFor(s, st && st.data);
@@ -538,7 +542,14 @@
         panel.appendChild(grid);
         E.initTilt(grid);
       }
-      panel.appendChild(gamesBlock(s, games, st));
+      /* the NFL week hub: every game of the week with the model's forecast. When it lists every game the schedule
+         below would, the schedule stands down; while it does not (the week has turned on ESPN before the next full
+         run), both show. Without the hub the panel is exactly as it was. */
+      let hub = null;
+      if (s === "NFL" && nflHub()) { try { hub = nflHub().hub({ games: games, hrefFor: hrefFor, firstRun: firstRun, runWord: runWord }); } catch (e) { hub = null; } }
+      if (hub) panel.appendChild(hub.node);
+      if (window.EdgeLineNFL && window.EdgeLineNFL.syncStrip) window.EdgeLineNFL.syncStrip(!!hub);
+      if (!hub || !hub.covers) panel.appendChild(gamesBlock(s, games, st));
       linkCards(panel);
       if (window.EdgeLineLive && realData()) { try { const r = window.EdgeLineLive.refresh(); if (r && r.catch) r.catch(function () {}); } catch (e) { /* the page works without live status */ } }
     }
@@ -559,6 +570,8 @@
       if (card) { card.classList.add("highlight"); card.scrollIntoView({ block: "center" }); setTimeout(function () { card.classList.remove("highlight"); }, 2600); }
     });
     E.onStateChange(function () { if (current) renderPanel(); });
+    /* a hub game kicking off or ending redraws the NFL panel (the hub keeps its own minute timer: its games are not all on the board) */
+    if (window.EdgeLineNFL && window.EdgeLineNFL.onChange) window.EdgeLineNFL.onChange(function () { if (current === "NFL") renderPanel(); });
     return { go: go, current: function () { return current; } };
   }
 
@@ -836,9 +849,16 @@
       document.title = shortEvent(g) + " · EdgeLine AI";
       root.appendChild(crumbs(g));
       root.appendChild(hero(g));
-      [resultSec(g), leanSec(g), sidesSec(g), whySec(g), propsSec(g)].forEach(function (s) { if (s) root.appendChild(s); });
+      [resultSec(g), leanSec(g), forecastSec(g), sidesSec(g), whySec(g), propsSec(g)].forEach(function (s) { if (s) root.appendChild(s); });
       syncStrip();
     }
+    /* an NFL game of the week in data/nfl-week.js: the model's forecast for it (js/nfl.js, #forecast); null otherwise */
+    function forecastSec(g) {
+      const N = window.EdgeLineNFL;
+      if (!N || g.sport !== "NFL" || typeof N.gameSection !== "function") return null;
+      try { return N.gameSection(g); } catch (e) { return null; }
+    }
+    function watchForecast() { const N = window.EdgeLineNFL; if (N && N.onChange && g && g.sport === "NFL" && N.forGame(g)) N.onChange(render); }
     function extras() {
       const jobs = [];
       if (g.sport === "NBA" && !window.FACES_DATA) jobs.push(loadScript("data/faces.js"));
@@ -859,7 +879,7 @@
         look(false);
       }
     }
-    if (g) { render(); extras(); E.onStateChange(render); return; }
+    if (g) { render(); extras(); E.onStateChange(render); watchForecast(); return; }
     const lg = espnId && /^\d+$/.test(espnId) ? leagueOfKey(key) : null;
     if (lg) {
       root.textContent = "";
@@ -870,7 +890,7 @@
         if (!ev) { renderMissing(root, "espn"); return; }
         g = boardGames().find(function (b) { return b.sport === lg.sport && sameGame(b, ev); }) || null;
         if (g) g.espn = ev; else g = fromEspn(ev);
-        render(); extras(); E.onStateChange(render);
+        render(); extras(); E.onStateChange(render); watchForecast();
       });
       return;
     }
