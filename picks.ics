@@ -457,7 +457,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-10@edgeline
-DTSTAMP:20261111T023723Z
+DTSTAMP:20261111T040436Z
 DTSTART:20261111T004000Z
 DTEND:20261112T061000Z
 SUMMARY:Parlay lean of the day: 3 legs +692 at FanDuel
@@ -468,7 +468,7 @@ DESCRIPTION:All legs priced at FanDuel. Fair 16.6%\, implied 12.6%\, EV +31
  Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261111T023723Z
+LAST-MODIFIED:20261111T040436Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -479,34 +479,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d85899eb0d-h2h-Columbus-Blue-Jackets@edgeline
-DTSTAMP:20261110T211434Z
+DTSTAMP:20261111T040436Z
 DTSTART:20261111T004000Z
 DTEND:20261111T034000Z
-SUMMARY:Columbus Blue Jackets ML +107 at Bovada · in play
+SUMMARY:Columbus Blue Jackets ML +107 at Bovada · Lost -1.00u
 DESCRIPTION:NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10\,
-  7:40 PM ET\nMoneyline: Columbus Blue Jackets ML at +107 (Bovada). Our pro
- bability 55.8% from game data\, the price implies 48.3%\, edge +7.5 pts\, 
- EV +15.6% per unit. Confidence: Lean.\nOur probability is 55.8%\, from the
-  game data: this season's results and margins\, recent form\, rest\, the i
- njury report and home edge (projected margin +0.4 for the home side). Bova
- da offers +107\, which implies only 48.3%. Its bar is 7.4 points: the mode
- l's own margin of error on this side\, with 15 games behind the thinner te
- am (±0.45 goals on the margin). It clears it by 0.1. Not graded against o
- ther books' prices\; for reference the market makes it 46.6%.\nWhat suppor
- ts it:\n- Home edge +0.2 for Columbus Blue Jackets.\n- Columbus Blue Jacke
- ts are rested (4 days).\n- Florida Panthers without Sandis Vilmanis (LW) (
- +0.1).\n- Projected margin +0.4 for Columbus Blue Jackets.\nWhat could go 
- wrong:\n- Columbus Blue Jackets rate -0.1 a game over 15 (7-8)\, Florida P
- anthers 0 over 18 (9-9)\; last season 0 and -0.3 a game.\nVerdict: The gam
- e data lines up behind this side at this price.\nPrices: Bovada +107\, Bet
- Online.ag +106\, BetMGM +105\, FanDuel +104\, BetRivers +102 and 5 more.\n
- Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d
- -h2h-Columbus-Blue-Jackets
+  7:40 PM ET\nMoneyline: Columbus Blue Jackets ML at +107 (Bovada). Lost -1
+ .00u.\nFinal: 4-1\nClosing line value: -1.6 pts (closed +105\, DraftKings 
+ close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edg
+ eline-ai/performance.html
 LOCATION:Nationwide Arena\, Columbus
-URL:https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d-h2h-Columbus
- -Blue-Jackets
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261110T211434Z
+LAST-MODIFIED:20261111T040436Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

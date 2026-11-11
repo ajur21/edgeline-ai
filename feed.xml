@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Wed, 11 Nov 2026 02:37:23 GMT</lastBuildDate>
+<lastBuildDate>Wed, 11 Nov 2026 04:04:36 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Graded: Columbus Blue Jackets ML +107 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">d85899eb0d-h2h-Columbus-Blue-Jackets#graded</guid>
+<pubDate>Wed, 11 Nov 2026 04:04:36 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +107 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-1&lt;/p&gt;&lt;p&gt;Closing line value: -1.6 pts (closed +105, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
 <item>
 <title>Tue Nov 10 slate: 3 leans tonight from 114 priced sides</title>
 <link>https://ajur21.github.io/edgeline-ai/digest.html</link>
@@ -39,14 +47,6 @@
 <pubDate>Tue, 10 Nov 2026 20:39:42 GMT</pubDate>
 <category>Parlay</category>
 <description>&lt;p&gt;All legs priced at FanDuel. Fair 16.6%, implied 12.6%, EV +31.5% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Columbus Blue Jackets ML +104 · Florida Panthers @ Columbus Blue Jackets&lt;/li&gt;&lt;li&gt;NHL: Under 6.5 +118 · Pittsburgh Penguins @ San Jose Sharks&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -128 · New York Rangers @ Calgary Flames&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
-</item>
-<item>
-<title>Lean of the day: Columbus Blue Jackets ML +107 at Bovada (Low, +7.5 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d-h2h-Columbus-Blue-Jackets</link>
-<guid isPermaLink="false">d85899eb0d-h2h-Columbus-Blue-Jackets</guid>
-<pubDate>Tue, 10 Nov 2026 20:39:42 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +107 (Bovada). Our probability 55.8% from game data, the price implies 48.3%, edge +7.5 pts, EV +15.6% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Bovada offers +107, which implies only 48.3%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 46.6%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Columbus Blue Jackets.&lt;/li&gt;&lt;li&gt;Columbus Blue Jackets are rested (4 days).&lt;/li&gt;&lt;li&gt;Florida Panthers without Sandis Vilmanis (LW) (+0.1).&lt;/li&gt;&lt;li&gt;Projected margin +0.4 for Columbus Blue Jackets.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Columbus Blue Jackets rate -0.1 a game over 15 (7-8), Florida Panthers 0 over 18 (9-9); last season 0 and -0.3 a game.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada +107, BetOnline.ag +106, BetMGM +105, FanDuel +104, BetRivers +102 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#d85899eb0d-h2h-Columbus-Blue-Jackets&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Under 6.5 +122 · Lost -1.00u</title>

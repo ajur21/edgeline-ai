@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-10T20:39:42.407Z",
-  "trackedAt": "2026-11-11T02:37:23.146Z",
+  "trackedAt": "2026-11-11T04:04:36.231Z",
   "playOfDay": {
     "id": "d85899eb0d-h2h-Columbus-Blue-Jackets",
     "sport": "NHL",
@@ -310,11 +310,14 @@ window.PICKS_DATA = {
         "n": 7
       }
     ],
-    "status": "pending",
+    "status": "graded",
     "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
+    "result": "Loss",
+    "units": -1,
+    "score": {
+      "home": 1,
+      "away": 4
+    },
     "loggedAt": "2026-11-10T20:39:42.407Z",
     "valueTo": 107,
     "bar": 0.0742,
@@ -349,7 +352,7 @@ window.PICKS_DATA = {
         "sport": "NHL",
         "price": 104,
         "started": true,
-        "result": null
+        "result": "Loss"
       },
       {
         "id": "e75aa3d5c3-totals-Under",
@@ -458,6 +461,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
+          "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
           "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
@@ -613,12 +617,12 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -135,
-              "under": 114
+              "over": -130,
+              "under": 110
             },
             "ml": {
-              "home": 110,
-              "away": -130
+              "home": 114,
+              "away": -135
             },
             "draw": null
           },
@@ -651,11 +655,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 110,
+          "fair": 0.4572564612326044
         },
-        "moved": null,
-        "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
+        "moved": "toward",
+        "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
       },
       "dkHistory": [
         {
@@ -669,6 +673,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-11T04:04:36.231Z",
+          "line": 6.5,
+          "odds": 110,
+          "fair": 0.4573
         }
       ],
       "mkt": {
@@ -1421,11 +1431,14 @@ window.PICKS_DATA = {
           "n": 7
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 1,
+        "away": 4
+      },
       "loggedAt": "2026-11-10T20:39:42.407Z",
       "valueTo": 107,
       "bar": 0.0742,

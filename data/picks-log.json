@@ -11049,12 +11049,12 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -135,
-      "under": 114
+      "over": -130,
+      "under": 110
      },
      "ml": {
-      "home": 110,
-      "away": -130
+      "home": 114,
+      "away": -135
      },
      "draw": null
     },
@@ -11089,6 +11089,12 @@
     "line": 6.5,
     "odds": 114,
     "fair": 0.4486
+   },
+   {
+    "at": "2026-11-11T04:04:36.231Z",
+    "line": 6.5,
+    "odds": 110,
+    "fair": 0.4573
    }
   ],
   "dk": {
@@ -11100,11 +11106,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 114,
-    "fair": 0.448558885283451
+    "odds": 110,
+    "fair": 0.4572564612326044
    },
-   "moved": null,
-   "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
+   "moved": "toward",
+   "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -11132,6 +11138,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
+    "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
     "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
@@ -11697,8 +11704,8 @@
    "Edge 7.5 points over the price, 0.1 past its bar of 7.4",
    "Market reference 46.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "availability": null,
   "current": {
@@ -11963,7 +11970,30 @@
     "n": 7
    }
   ],
-  "potd": "2026-11-10"
+  "potd": "2026-11-10",
+  "result": "Loss",
+  "score": "4-1",
+  "finalScore": {
+   "home": 1,
+   "away": 4
+  },
+  "gradedAt": "2026-11-11T04:04:36.231Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892686",
+   "line": null,
+   "odds": 105,
+   "fair": 0.4675,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -115,
+    "fair": 0.5108
+   },
+   "samples": 1
+  },
+  "clv": -0.0156,
+  "lineMove": null
  },
  {
   "type": "parlay",

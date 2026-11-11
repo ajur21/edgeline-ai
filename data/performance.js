@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 13,
-    "losses": 12,
+    "losses": 13,
     "pushes": 0
   },
-  "units": -2.25,
-  "roi": -9,
-  "avgEdge": 10.2,
-  "graded": 25,
+  "units": -3.25,
+  "roi": -12.5,
+  "avgEdge": 10.1,
+  "graded": 26,
   "daily": [
     {
       "date": "2026-11-05",
@@ -29,13 +29,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-08",
       "units": -2.25
+    },
+    {
+      "date": "2026-11-10",
+      "units": -3.25
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -0.12,
-      "record": "8-6"
+      "units": -1.12,
+      "record": "8-7"
     },
     {
       "sport": "NBA",
@@ -49,6 +53,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-10",
+      "sport": "NHL",
+      "event": "Florida Panthers @ Columbus Blue Jackets",
+      "pick": "Columbus Blue Jackets ML",
+      "odds": 107,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0156,
+      "closeOdds": 105,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-08",
       "sport": "NHL",
@@ -213,21 +232,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-07",
-      "sport": "NHL",
-      "event": "New Jersey Devils @ New York Islanders",
-      "pick": "Over 5.5",
-      "odds": -124,
-      "result": "Win",
-      "units": 0.81,
-      "clv": -0.0022,
-      "closeOdds": -135,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -258,14 +262,21 @@ window.PERF_DATA = {
       "wins": 4,
       "losses": 4,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-10",
+      "units": -1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 1,
-    "losses": 3,
+    "losses": 4,
     "pushes": 0,
-    "units": -2.23,
-    "n": 4
+    "units": -3.23,
+    "n": 5
   },
   "parlays": {
     "wins": 0,
@@ -275,25 +286,25 @@ window.PERF_DATA = {
     "n": 4
   },
   "clv": {
-    "n": 19,
+    "n": 20,
     "avg": -1.62,
     "beat": 4,
-    "beatPct": 21.1,
-    "graded": 25,
+    "beatPct": 20,
+    "graded": 26,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 25,
+    "espnCloses": 26,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 13,
-      "losses": 12,
+      "losses": 13,
       "pushes": 0,
-      "units": -2.25,
-      "n": 25,
-      "roi": -9,
-      "pending": 3,
+      "units": -3.25,
+      "n": 26,
+      "roi": -12.5,
+      "pending": 2,
       "since": "2026-11-05"
     },
     "price": {
