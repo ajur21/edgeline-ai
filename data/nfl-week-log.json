@@ -20,7 +20,7 @@
    "home": "NYG",
    "away": "WSH",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "NYG",
     "prob": 0.5511,
@@ -43,7 +43,7 @@
    "home": "DET",
    "away": "NE",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "DET",
     "prob": 0.5525,
@@ -66,7 +66,7 @@
    "home": "NYJ",
    "away": "BUF",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "BUF",
     "prob": 0.6941,
@@ -89,7 +89,7 @@
    "home": "NO",
    "away": "CAR",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "NO",
     "prob": 0.5592,
@@ -112,7 +112,7 @@
    "home": "CLE",
    "away": "HOU",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "HOU",
     "prob": 0.5864,
@@ -135,7 +135,7 @@
    "home": "TEN",
    "away": "JAX",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "JAX",
     "prob": 0.8183,
@@ -158,7 +158,7 @@
    "home": "ATL",
    "away": "KC",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "KC",
     "prob": 0.6546,
@@ -181,7 +181,7 @@
    "home": "IND",
    "away": "MIA",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "IND",
     "prob": 0.5153,
@@ -204,7 +204,7 @@
    "home": "GB",
    "away": "MIN",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "GB",
     "prob": 0.5427,
@@ -227,7 +227,7 @@
    "home": "ARI",
    "away": "LAR",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "LAR",
     "prob": 0.6634,
@@ -250,7 +250,7 @@
    "home": "LV",
    "away": "SEA",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "SEA",
     "prob": 0.5775,
@@ -273,7 +273,7 @@
    "home": "DAL",
    "away": "SF",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "away",
     "team": "SF",
     "prob": 0.6586,
@@ -296,7 +296,7 @@
    "home": "CIN",
    "away": "PIT",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "CIN",
     "prob": 0.6252,
@@ -319,14 +319,14 @@
    "home": "BAL",
    "away": "LAC",
    "forecast": {
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "winner": "home",
     "team": "BAL",
-    "prob": 0.7311,
-    "margin": 8.9,
+    "prob": 0.5367,
+    "margin": 1.33,
     "total": 43,
-    "home": 25.9,
-    "away": 17,
+    "home": 22.1,
+    "away": 20.8,
     "model": "nflverse",
     "marginSd": 4.13
    },

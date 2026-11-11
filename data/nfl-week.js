@@ -3,7 +3,7 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-11T03:39:13.123Z",
+ "generatedAt": "2026-11-11T03:56:39.709Z",
  "checkedAt": null,
  "season": 2026,
  "week": {
@@ -109,7 +109,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Prime Video",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 1.85,
     "total": 45.2,
@@ -299,7 +299,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 1.9,
     "total": 47.8,
@@ -480,7 +480,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -7.33,
     "total": 48.5,
@@ -670,7 +670,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 2.15,
     "total": 49.2,
@@ -845,7 +845,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -3.15,
     "total": 44.3,
@@ -1011,7 +1011,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -13.11,
     "total": 44.3,
@@ -1183,7 +1183,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -5.74,
     "total": 44,
@@ -1358,7 +1358,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 0.55,
     "total": 43,
@@ -1533,7 +1533,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 1.55,
     "total": 40.1,
@@ -1723,7 +1723,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -6.09,
     "total": 45.3,
@@ -1904,7 +1904,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -2.82,
     "total": 45.9,
@@ -2073,7 +2073,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": -5.9,
     "total": 49.3,
@@ -2254,7 +2254,7 @@ window.NFL_WEEK_DATA = {
    "tv": "NBC",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
     "margin": 4.61,
     "total": 46.1,
@@ -2444,17 +2444,17 @@ window.NFL_WEEK_DATA = {
    "tv": "ESPN",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-11T03:39:13.123Z",
+    "at": "2026-11-11T03:56:39.709Z",
     "locked": false,
-    "margin": 8.9,
+    "margin": 1.33,
     "total": 43,
     "marginSd": 4.13,
-    "home": 25.9,
-    "away": 17,
+    "home": 22.1,
+    "away": 20.8,
     "winner": "home",
-    "prob": 0.7311,
-    "probHome": 0.7311,
-    "probAway": 0.2689,
+    "prob": 0.5367,
+    "probHome": 0.5367,
+    "probAway": 0.4633,
     "games": {
      "home": 9,
      "away": 8
@@ -2464,7 +2464,7 @@ window.NFL_WEEK_DATA = {
      "home": 2.15,
      "rating": 2.25,
      "epa": 1.71,
-     "qb": 1.91,
+     "qb": -5.66,
      "rest": 0.46,
      "injuries": 0.43
     },
@@ -2483,18 +2483,18 @@ window.NFL_WEEK_DATA = {
    },
    "qb": {
     "home": {
-     "id": "00-0034796",
-     "name": "Lamar Jackson",
-     "epa": 0.107,
+     "id": "00-0040981",
+     "name": "Joe Fagnano",
+     "epa": -0.149,
      "ref": 0.034,
-     "points": 2.1,
-     "starts": 5,
+     "points": -5.4,
+     "starts": 1,
      "games": 9,
      "kind": "backup",
      "replaces": "Tyler Huntley",
      "replacesStatus": "Injured Reserve",
      "lastStarter": null,
-     "status": "Injured Reserve"
+     "status": null
     },
     "away": {
      "id": "00-0036355",
@@ -2510,7 +2510,7 @@ window.NFL_WEEK_DATA = {
      "lastStarter": null,
      "status": "Questionable"
     },
-    "points": 1.9
+    "points": -5.7
    },
    "injuries": {
     "home": {
@@ -2586,14 +2586,14 @@ window.NFL_WEEK_DATA = {
    },
    "leanFrom": {
     "home": {
-     "prob": 0.7311,
-     "bar": 0.0935,
-     "price": -175
+     "prob": 0.5367,
+     "bar": 0.1121,
+     "price": 136
     },
     "away": {
-     "prob": 0.2689,
-     "bar": 0.0935,
-     "price": 471
+     "prob": 0.4633,
+     "bar": 0.1121,
+     "price": 185
     }
    },
    "board": null,
