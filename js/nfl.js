@@ -312,7 +312,7 @@
 
   /* ---------- picks.html?sport=NFL: the hub ----------
      ctx: { games: js/browse.js's NFL games (the board's and ESPN's schedule), hrefFor: its game-page link }.
-     Returns { node, covers } or null; covers is true when every game browse would list is in the hub. */
+     Returns { node, week, open, started } or null. */
   function hub(ctx) {
     const d = data();
     if (!d) return null;
@@ -352,7 +352,7 @@
       sec.appendChild(box);
     }
     wireLeanLinks(sec);
-    return { node: sec, covers: list.every(function (bg) { return d.games.some(function (g) { return matches(bg, g); }); }), week: d.week.number, open: open.length, started: started.length };
+    return { node: sec, week: d.week.number, open: open.length, started: started.length };
   }
   /* a posted lean's card is in the panel above the hub: ring it there instead of leaving the tab */
   function wireLeanLinks(scope) {

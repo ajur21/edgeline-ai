@@ -502,7 +502,7 @@
     /* the NFL week hub (js/nfl.js, 2026-11-10): present only with a real data/nfl-week.js that holds a week */
     function nflHub() { const N = window.EdgeLineNFL; return N && typeof N.hub === "function" && N.has() ? N : null; }
     function howText(s) {
-      return "Every " + lab(s) + " " + W("lean") + " still to start, in the order of the full list: today’s games first, then our probability from the game data, so #1 is the " + lab(s) + " side the model expects to hit most often. Below them, " + (s === "NFL" && nflHub() ? "every game of the NFL week with the model’s forecast: the projected winner and score, graded straight up, each linked to its game page." : "every " + lab(s) + " game on the schedule, by start time, each linked to its game page.");
+      return "Every " + lab(s) + " " + W("lean") + " still to start, in the order of the full list: today’s games first, then our probability from the game data, so #1 is the " + lab(s) + " side the model expects to hit most often. Below them, " + (s === "NFL" && nflHub() ? "every game of the NFL week with the model’s forecast (the projected winner and score, graded straight up), then " : "") + "every " + lab(s) + " game on the schedule, by start time, each linked to its game page.";
     }
     function relabel(s) {
       if (!head) return;
@@ -545,14 +545,15 @@
         panel.appendChild(grid);
         E.initTilt(grid);
       }
-      /* the NFL week hub: every game of the week with the model's forecast. When it lists every game the schedule
-         below would, the schedule stands down; while it does not (the week has turned on ESPN before the next full
-         run), both show. Without the hub the panel is exactly as it was. */
+      /* the NFL week hub: every game of the week with the model's forecast, above the schedule. The schedule stays
+         (the owner asked for it back, 2026-11-10: the first build hid it whenever the hub listed every game it would);
+         under the hub it shows only with a game to list, so the tab never says "no games" below a week of them.
+         Without the hub the panel is exactly as it was. */
       let hub = null;
       if (s === "NFL" && nflHub()) { try { hub = nflHub().hub({ games: games, hrefFor: hrefFor, firstRun: firstRun, runWord: runWord }); } catch (e) { hub = null; } }
       if (hub) panel.appendChild(hub.node);
       if (window.EdgeLineNFL && window.EdgeLineNFL.syncStrip) window.EdgeLineNFL.syncStrip(!!hub);
-      if (!hub || !hub.covers) panel.appendChild(gamesBlock(s, games, st));
+      if (!hub || games.length) panel.appendChild(gamesBlock(s, games, st));
       linkCards(panel);
       if (window.EdgeLineLive && realData()) { try { const r = window.EdgeLineLive.refresh(); if (r && r.catch) r.catch(function () {}); } catch (e) { /* the page works without live status */ } }
     }
