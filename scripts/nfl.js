@@ -196,19 +196,26 @@ function findGame(ix, home, away, commenceMs) {
   return ix.games.find(g => g.home === home && g.away === away && Math.abs(Date.parse(g.day + "T12:00:00Z") - t) <= 864e5) || null;
 }
 /* tonight's starter: nflverse's listed (or projected) QB unless ESPN's report has him out or doubtful, then the club's
-   QB with the most dropbacks this season besides him (else last season's), else a replacement-level QB */
+   QB with the most starts this season besides him (else last season's by dropbacks), else a replacement-level QB.
+   A QB the report lists out or doubtful never starts (2026-11-10: Baltimore was projected with Lamar Jackson while he
+   and Tyler Huntley were both on injured reserve): not as the backup, and not as the last starter of a club nflverse
+   lists no one for. Without a report (the held-out replay has none) nothing here changes. */
 function starterFor(ix, g, side, injuries, season, before) {
   const id = side === "home" ? g.hqb : g.aqb, name = side === "home" ? g.hqbn : g.aqbn, club = side === "home" ? g.home : g.away;
-  const hurt = (injuries || []).find(i => /QB/.test(i.pos || "") && SEVERE.test(i.status || "") && name && normName(i.name) === normName(name));
+  const nameOf = q => (ix.state.qbs[q] || {}).n || null;
+  const out = n => !!n && (injuries || []).some(i => /QB/.test(i.pos || "") && SEVERE.test(i.status || "") && normName(i.name) === normName(n));
+  const hurt = out(name);
   const lastStarter = () => { const past = ix.games.filter(x => x.season === season && x.day < before && x.hs != null && (x.home === club || x.away === club)).sort((a, b) => a.day < b.day ? 1 : -1)[0]; return past ? (past.home === club ? past.hqb : past.aqb) : null; };
   if (id && !hurt) return { id: id, name: name, listed: true };
-  if (!id && !hurt) { const ls = lastStarter(); if (ls) return { id: ls, name: (ix.state.qbs[ls] || {}).n || null, listed: false }; }
+  /* whom the backup stands in for: the listed starter, or the last starter when no one is listed and he is out */
+  let gone = id, goneName = name;
+  if (!id && !hurt) { const ls = lastStarter(); if (ls && !out(nameOf(ls))) return { id: ls, name: nameOf(ls), listed: false }; if (ls) { gone = ls; goneName = nameOf(ls); } }
   /* a backup: this season's other QBs by starts, then last season's mix */
-  const cands = {};
-  ix.games.filter(x => x.season === season && x.day < before && x.hs != null && (x.home === club || x.away === club)).forEach(x => { const q = x.home === club ? x.hqb : x.aqb; if (q && q !== id) cands[q] = (cands[q] || 0) + 1; });
+  const fit = q => !!q && q !== gone && !out(nameOf(q)), cands = {};
+  ix.games.filter(x => x.season === season && x.day < before && x.hs != null && (x.home === club || x.away === club)).forEach(x => { const q = x.home === club ? x.hqb : x.aqb; if (fit(q)) cands[q] = (cands[q] || 0) + 1; });
   let best = Object.entries(cands).sort((a, b) => b[1] - a[1])[0];
-  if (!best) best = ((ix.state.mix || {})[club] || []).filter(([q]) => q !== id).sort((a, b) => b[1] - a[1])[0];
-  return best ? { id: best[0], name: (ix.state.qbs[best[0]] || {}).n || null, listed: false, replaces: name } : { id: null, name: null, listed: false, replaces: name };
+  if (!best) best = ((ix.state.mix || {})[club] || []).filter(([q]) => fit(q)).sort((a, b) => b[1] - a[1])[0];
+  return best ? { id: best[0], name: nameOf(best[0]), listed: false, replaces: goneName } : { id: null, name: null, listed: false, replaces: goneName };
 }
 /* the expected margin (home minus away) for a game, from games before its day. null when the game or a club is unknown.
    g: { home, away (nflverse codes), commenceMs, homeInjuries, awayInjuries, neutral, restHome, restAway } */

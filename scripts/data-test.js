@@ -798,6 +798,18 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
     const soft = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: Date.parse("2026-11-15T18:00:00Z"), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Questionable" }] });
     return hurt.qbHome.id !== GENO && hurt.qbHome.replaces === "Geno Smith" && hurt.qbHome.name && Math.abs(hurt.part.qb - base.part.qb) > 0.1 && near(hurt.part.rating, base.part.rating, 1e-9) && near(soft.margin, base.margin, 1e-9);
   })());
+  /* 2026-11-10: Baltimore was projected with Lamar Jackson while he and Tyler Huntley were both on injured reserve */
+  check("nfl: a QB listed out never starts: with Geno Smith out and the Jets' next QB (Brady Cook) on injured reserve too, the one after him starts (Justin Fields); with every one of them out the club is read at replacement level; and a club nflverse lists no starter for does not get its last starter when he is listed out", (() => {
+    const at = Date.parse("2026-11-15T18:00:00Z"), out = n => ({ name: n, pos: "QB", status: "Out" });
+    const one = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: at, homeInjuries: [out("Geno Smith")] });
+    const two = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: at, homeInjuries: [out("Geno Smith"), { name: "Brady Cook", pos: "QB", status: "Injured Reserve" }] });
+    const all = NFLM.rate(nflIx, { home: "NYJ", away: "BUF", commenceMs: at, homeInjuries: ["Geno Smith", "Brady Cook", "Justin Fields", "Tyrod Taylor", "Isaiah Williams", "Austin McNamara"].map(out) });
+    const row = Object.assign({}, NFLM.findGame(nflIx, "NYJ", "BUF", at), { hqb: null, hqbn: null });
+    const open = NFLM.starterFor(nflIx, row, "home", [], row.season, row.day), shut = NFLM.starterFor(nflIx, row, "home", [out("Geno Smith")], row.season, row.day);
+    return one.qbHome.name === "Brady Cook" && two.qbHome.name === "Justin Fields" && two.qbHome.replaces === "Geno Smith" && Math.abs(two.part.qb - one.part.qb) > 1e-6
+      && all.qbHome.id === null && all.qbHome.replaces === "Geno Smith" && near(all.qbHome.q, NFLM.PARAMS.qbPrior, 1e-12)
+      && open.id === GENO && open.listed === false && !open.replaces && !!shut.id && shut.id !== GENO && shut.replaces === "Geno Smith";
+  })());
   check("nfl: apply() re-centres the old model's game on nflverse's margin (ESPN's WSH/LAR read as WAS/LA), prices the starting QB instead of a QB listed out (only the other listings cost points), keeps the total and the game counts, and leaves a game nflverse does not know alone", (() => {
     const form = (gp, m) => ({ gp: gp, pf: 24, pa: 24 - m, margin: m, last5: m, wins: 1, losses: 0, games: [] });
     const old = M.gameModel({ sportKey: "americanfootball_nfl", home: "New York Jets", away: "Buffalo Bills", homeForm: form(8, 2), awayForm: form(8, 5), homeInjuries: [{ name: "Geno Smith", pos: "QB", status: "Out" }], awayInjuries: [], rest: {} });
