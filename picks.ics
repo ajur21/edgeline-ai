@@ -456,11 +456,33 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-10@edgeline
+DTSTAMP:20261111T014725Z
+DTSTART:20261111T004000Z
+DTEND:20261112T061000Z
+SUMMARY:Parlay lean of the day: 3 legs +692 at FanDuel
+DESCRIPTION:All legs priced at FanDuel. Fair 16.6%\, implied 12.6%\, EV +31
+ .5% per unit.\n- NHL: Columbus Blue Jackets ML +104 · Florida Panthers @ 
+ Columbus Blue Jackets\n- NHL: Under 6.5 +118 · Pittsburgh Penguins @ San 
+ Jose Sharks\n- NHL: Over 5.5 -128 · New York Rangers @ Calgary Flames\n\n
+ Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261111T014725Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 3 legs +692 at FanDuel
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:d85899eb0d-h2h-Columbus-Blue-Jackets@edgeline
 DTSTAMP:20261110T211434Z
 DTSTART:20261111T004000Z
 DTEND:20261111T034000Z
-SUMMARY:Lean of the day: Columbus Blue Jackets ML +107 at Bovada · Low
+SUMMARY:Columbus Blue Jackets ML +107 at Bovada · in play
 DESCRIPTION:NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10\,
   7:40 PM ET\nMoneyline: Columbus Blue Jackets ML at +107 (Bovada). Our pro
  bability 55.8% from game data\, the price implies 48.3%\, edge +7.5 pts\, 
@@ -487,33 +509,6 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261110T211434Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Columbus Blue Jackets ML +107 at Bovada · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-10@edgeline
-DTSTAMP:20261110T211434Z
-DTSTART:20261111T004000Z
-DTEND:20261112T061000Z
-SUMMARY:Parlay lean of the day: 3 legs +692 at FanDuel
-DESCRIPTION:All legs priced at FanDuel. Fair 16.6%\, implied 12.6%\, EV +31
- .5% per unit.\n- NHL: Columbus Blue Jackets ML +104 · Florida Panthers @ 
- Columbus Blue Jackets\n- NHL: Under 6.5 +118 · Pittsburgh Penguins @ San 
- Jose Sharks\n- NHL: Over 5.5 -128 · New York Rangers @ Calgary Flames\n\n
- Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261110T211434Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 3 legs +692 at FanDuel
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d6fb69c3f8-totals-Over@edgeline

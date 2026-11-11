@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-10T20:39:42.407Z",
-  "trackedAt": "2026-11-10T21:14:34.224Z",
+  "trackedAt": "2026-11-11T01:47:25.889Z",
   "playOfDay": {
     "id": "d85899eb0d-h2h-Columbus-Blue-Jackets",
     "sport": "NHL",
@@ -311,7 +311,7 @@ window.PICKS_DATA = {
       }
     ],
     "status": "pending",
-    "started": false,
+    "started": true,
     "result": null,
     "units": null,
     "score": null,
@@ -348,7 +348,7 @@ window.PICKS_DATA = {
         "event": "Florida Panthers @ Columbus Blue Jackets",
         "sport": "NHL",
         "price": 104,
-        "started": false,
+        "started": true,
         "result": null
       },
       {
@@ -372,332 +372,6 @@ window.PICKS_DATA = {
     ]
   },
   "picks": [
-    {
-      "id": "d85899eb0d-h2h-Columbus-Blue-Jackets",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Florida Panthers @ Columbus Blue Jackets",
-      "home": "Columbus Blue Jackets",
-      "away": "Florida Panthers",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Columbus Blue Jackets",
-        "point": null
-      },
-      "commence": "2026-11-11T00:40:00Z",
-      "start": "Today 7:40 PM ET",
-      "market": "Moneyline",
-      "pick": "Columbus Blue Jackets ML",
-      "odds": 107,
-      "book": "Bovada",
-      "prices": {
-        "DraftKings": 100,
-        "BetOnline.ag": 106,
-        "theScore Bet": 100,
-        "BetRivers": 102,
-        "FanDuel": 104,
-        "BetMGM": 105,
-        "Bovada": 107,
-        "Caesars": 100,
-        "ESPN BET": 100,
-        "PointsBet": 100
-      },
-      "pricesAt": "2026-11-10T21:14:34.224Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.5583,
-      "ev": 0.1557,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.4,
-        "total": 6.3,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 15,
-        "gpHome": 15,
-        "gpAway": 18,
-        "thin": false,
-        "parts": {
-          "ratingHome": -0.1,
-          "ratingAway": 0,
-          "lastHome": 0,
-          "lastAway": -0.3,
-          "homeEdge": 0.24,
-          "rest": 0.1,
-          "injuriesHome": 0,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 6
-        },
-        "reasons": {
-          "for": [
-            "Home edge +0.2 for Columbus Blue Jackets",
-            "Columbus Blue Jackets are rested (4 days)",
-            "Florida Panthers without Sandis Vilmanis (LW) (+0.1)",
-            "Projected margin +0.4 for Columbus Blue Jackets"
-          ],
-          "against": [
-            "Columbus Blue Jackets rate -0.1 a game over 15 (7-8), Florida Panthers 0 over 18 (9-9); last season 0 and -0.3 a game"
-          ]
-        }
-      },
-      "marketFair": 0.4664,
-      "marketEdge": -0.0167,
-      "rationale": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Bovada offers +107, which implies only 48.3%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 46.6%.",
-      "factors": [
-        "Best price +107 at Bovada",
-        "Probability 55.8% from game data, not other books",
-        "Edge 7.5 points over the price, 0.1 past its bar of 7.4",
-        "Market reference 46.6%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 55.8%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Bovada implies 48.3%, so the edge is 7.5 points. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Bovada offers +107, which implies only 48.3%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 46.6%.",
-        "support": [
-          "Home edge +0.2 for Columbus Blue Jackets.",
-          "Columbus Blue Jackets are rested (4 days).",
-          "Florida Panthers without Sandis Vilmanis (LW) (+0.1).",
-          "Projected margin +0.4 for Columbus Blue Jackets."
-        ],
-        "risks": [
-          "Columbus Blue Jackets rate -0.1 a game over 15 (7-8), Florida Panthers 0 over 18 (9-9); last season 0 and -0.3 a game."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 46.6% (-1.7 points against the best price). For reference only.",
-          "Market: DraftKings opened -115, now +100, moving against this side since the open.",
-          "Market: The market (7 books) opened +100, now +111, the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Jackets Cam Talbot · Panthers Jacob Markstrom.",
-          "Records: Florida Panthers 9-7-2 · Columbus Blue Jackets 7-8-0 · Nationwide Arena, Columbus."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892686",
-        "venue": "Nationwide Arena, Columbus",
-        "indoor": true,
-        "records": {
-          "Columbus Blue Jackets": {
-            "overall": "7-8-0",
-            "home": "6-3-0",
-            "away": "1-5-0"
-          },
-          "Florida Panthers": {
-            "overall": "9-7-2",
-            "home": "4-2-0",
-            "away": "5-5-2"
-          }
-        },
-        "probables": {
-          "Columbus Blue Jackets": "Cam Talbot",
-          "Florida Panthers": "Jacob Markstrom"
-        },
-        "injuries": {
-          "Columbus Blue Jackets": [],
-          "Florida Panthers": [
-            {
-              "name": "Sandis Vilmanis",
-              "pos": "LW",
-              "athleteId": "5103599",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5103599.png",
-              "status": "Out",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-12",
-              "date": "2026-11-07T21:02Z",
-              "note": "Vilmanis (undisclosed) will probably miss a few games, according to George Richards of Florida Hockey Now on Saturday."
-            },
-            {
-              "name": "Brad Marchand",
-              "pos": "LW",
-              "athleteId": "3852",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3852.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2026-11-21",
-              "date": "2026-11-06T16:34Z",
-              "note": "Head coach Paul Maurice said Friday that Marchand (knee) will travel with the Panthers during their upcoming three-game road trip, Jameson Olive of the Panthers"
-            },
-            {
-              "name": "Aleksander Barkov",
-              "pos": "C",
-              "athleteId": "3041970",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041970.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2026-11-27",
-              "date": "2026-11-06T16:30Z",
-              "note": "Head coach Paul Maurice said Friday that Barkov (knee) will travel with the Panthers during their upcoming three-game road trip, Jameson Olive of the Panthers' "
-            },
-            {
-              "name": "Jonah Gadjovich",
-              "pos": "LW",
-              "athleteId": "4233890",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233890.png",
-              "status": "Injured Reserve",
-              "type": "Neck",
-              "detail": "Surgery",
-              "returnDate": "2026-11-28",
-              "date": "2026-09-17T20:53Z",
-              "note": "Gadjovich (upper body) is out indefinitely, the team announced Thursday."
-            }
-          ]
-        },
-        "rest": {
-          "Columbus Blue Jackets": {
-            "restDays": 4,
-            "b2b": false,
-            "lastGame": "2026-11-07",
-            "gamesLast7": 2
-          },
-          "Florida Panthers": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 3
-          }
-        },
-        "weather": null,
-        "broadcast": "Disney+, ESPN+, Hulu",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -258,
-              "away": 210
-            },
-            "total": 5.5,
-            "totalOdds": {
-              "over": -130,
-              "under": 110
-            },
-            "ml": {
-              "home": 100,
-              "away": -120
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 200,
-              "away": -245
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": 114,
-              "under": -135
-            },
-            "ml": {
-              "home": -115,
-              "away": -105
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": -115,
-          "fair": 0.5108342361863488
-        },
-        "now": {
-          "line": null,
-          "odds": 100,
-          "fair": 0.4782608695652174
-        },
-        "moved": "away",
-        "label": "DraftKings opened -115, now +100"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-10T20:39:42.407Z",
-          "line": null,
-          "odds": 100,
-          "fair": 0.4783
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 7,
-        "open": {
-          "line": null,
-          "odds": 100
-        },
-        "now": {
-          "line": null,
-          "odds": 111
-        },
-        "moved": "away",
-        "label": "The market (7 books) opened +100, now +111"
-      },
-      "sgo": {
-        "at": "2026-11-10T21:14:34.224Z",
-        "n": 7,
-        "best": {
-          "book": "Bovada",
-          "odds": 107
-        },
-        "fair": 0.4725,
-        "vendorFair": 0.4739,
-        "open": {
-          "line": null,
-          "odds": 100
-        },
-        "now": {
-          "line": null,
-          "odds": 111
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-10T20:39:42.407Z",
-          "fair": 0.4725,
-          "vendorFair": 0.4717,
-          "line": null,
-          "odds": 112,
-          "best": 107,
-          "n": 7
-        },
-        {
-          "at": "2026-11-10T21:14:34.224Z",
-          "fair": 0.4725,
-          "vendorFair": 0.4739,
-          "line": null,
-          "odds": 111,
-          "best": 107,
-          "n": 7
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-10T20:39:42.407Z",
-      "valueTo": 107,
-      "bar": 0.0742,
-      "past": 0.001,
-      "barParts": {
-        "error": 0.0742,
-        "units": 0.45,
-        "unit": "goals",
-        "gp": 15,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
     {
       "id": "e75aa3d5c3-totals-Under",
       "sport": "NHL",
@@ -784,7 +458,6 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
-          "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
           "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
@@ -940,8 +613,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -130,
-              "under": 110
+              "over": -135,
+              "under": 114
             },
             "ml": {
               "home": 110,
@@ -978,11 +651,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 110,
-          "fair": 0.4572564612326044
+          "odds": 114,
+          "fair": 0.448558885283451
         },
-        "moved": "toward",
-        "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
+        "moved": null,
+        "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
       },
       "dkHistory": [
         {
@@ -990,6 +663,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 110,
           "fair": 0.4573
+        },
+        {
+          "at": "2026-11-11T01:47:25.889Z",
+          "line": 6.5,
+          "odds": 114,
+          "fair": 0.4486
         }
       ],
       "mkt": {
@@ -1325,8 +1004,8 @@ window.PICKS_DATA = {
               "under": 102
             },
             "ml": {
-              "home": 114,
-              "away": -135
+              "home": 120,
+              "away": -142
             },
             "draw": null
           },
@@ -1430,6 +1109,332 @@ window.PICKS_DATA = {
         "units": 0.16,
         "unit": "goals",
         "gp": 18,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null,
+      "availability": null
+    },
+    {
+      "id": "d85899eb0d-h2h-Columbus-Blue-Jackets",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "Florida Panthers @ Columbus Blue Jackets",
+      "home": "Columbus Blue Jackets",
+      "away": "Florida Panthers",
+      "marketKey": "h2h",
+      "outcome": {
+        "name": "Columbus Blue Jackets",
+        "point": null
+      },
+      "commence": "2026-11-11T00:40:00Z",
+      "start": "Today 7:40 PM ET",
+      "market": "Moneyline",
+      "pick": "Columbus Blue Jackets ML",
+      "odds": 107,
+      "book": "Bovada",
+      "prices": {
+        "DraftKings": 100,
+        "BetOnline.ag": 106,
+        "theScore Bet": 100,
+        "BetRivers": 102,
+        "FanDuel": 104,
+        "BetMGM": 105,
+        "Bovada": 107,
+        "Caesars": 100,
+        "ESPN BET": 100,
+        "PointsBet": 100
+      },
+      "pricesAt": "2026-11-10T21:14:34.224Z",
+      "books": 8,
+      "anchor": "Pinnacle",
+      "modelProb": 0.5583,
+      "ev": 0.1557,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.4,
+        "total": 6.3,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 15,
+        "gpHome": 15,
+        "gpAway": 18,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.1,
+          "ratingAway": 0,
+          "lastHome": 0,
+          "lastAway": -0.3,
+          "homeEdge": 0.24,
+          "rest": 0.1,
+          "injuriesHome": 0,
+          "injuriesAway": 0.1,
+          "scoringOut": 0,
+          "pace": 6
+        },
+        "reasons": {
+          "for": [
+            "Home edge +0.2 for Columbus Blue Jackets",
+            "Columbus Blue Jackets are rested (4 days)",
+            "Florida Panthers without Sandis Vilmanis (LW) (+0.1)",
+            "Projected margin +0.4 for Columbus Blue Jackets"
+          ],
+          "against": [
+            "Columbus Blue Jackets rate -0.1 a game over 15 (7-8), Florida Panthers 0 over 18 (9-9); last season 0 and -0.3 a game"
+          ]
+        }
+      },
+      "marketFair": 0.4664,
+      "marketEdge": -0.0167,
+      "rationale": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Bovada offers +107, which implies only 48.3%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 46.6%.",
+      "factors": [
+        "Best price +107 at Bovada",
+        "Probability 55.8% from game data, not other books",
+        "Edge 7.5 points over the price, 0.1 past its bar of 7.4",
+        "Market reference 46.6%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 55.8%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at Bovada implies 48.3%, so the edge is 7.5 points. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.4 for the home side). Bovada offers +107, which implies only 48.3%. Its bar is 7.4 points: the model's own margin of error on this side, with 15 games behind the thinner team (±0.45 goals on the margin). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 46.6%.",
+        "support": [
+          "Home edge +0.2 for Columbus Blue Jackets.",
+          "Columbus Blue Jackets are rested (4 days).",
+          "Florida Panthers without Sandis Vilmanis (LW) (+0.1).",
+          "Projected margin +0.4 for Columbus Blue Jackets."
+        ],
+        "risks": [
+          "Columbus Blue Jackets rate -0.1 a game over 15 (7-8), Florida Panthers 0 over 18 (9-9); last season 0 and -0.3 a game."
+        ],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 46.6% (-1.7 points against the best price). For reference only.",
+          "Market: DraftKings opened -115, now +100, moving against this side since the open.",
+          "Market: The market (7 books) opened +100, now +111, the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Jackets Cam Talbot · Panthers Jacob Markstrom.",
+          "Records: Florida Panthers 9-7-2 · Columbus Blue Jackets 7-8-0 · Nationwide Arena, Columbus."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892686",
+        "venue": "Nationwide Arena, Columbus",
+        "indoor": true,
+        "records": {
+          "Columbus Blue Jackets": {
+            "overall": "7-8-0",
+            "home": "6-3-0",
+            "away": "1-5-0"
+          },
+          "Florida Panthers": {
+            "overall": "9-7-2",
+            "home": "4-2-0",
+            "away": "5-5-2"
+          }
+        },
+        "probables": {
+          "Columbus Blue Jackets": "Cam Talbot",
+          "Florida Panthers": "Jacob Markstrom"
+        },
+        "injuries": {
+          "Columbus Blue Jackets": [],
+          "Florida Panthers": [
+            {
+              "name": "Sandis Vilmanis",
+              "pos": "LW",
+              "athleteId": "5103599",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5103599.png",
+              "status": "Out",
+              "type": "Undisclosed",
+              "detail": "",
+              "returnDate": "2026-11-12",
+              "date": "2026-11-07T21:02Z",
+              "note": "Vilmanis (undisclosed) will probably miss a few games, according to George Richards of Florida Hockey Now on Saturday."
+            },
+            {
+              "name": "Brad Marchand",
+              "pos": "LW",
+              "athleteId": "3852",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3852.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "",
+              "returnDate": "2026-11-21",
+              "date": "2026-11-06T16:34Z",
+              "note": "Head coach Paul Maurice said Friday that Marchand (knee) will travel with the Panthers during their upcoming three-game road trip, Jameson Olive of the Panthers"
+            },
+            {
+              "name": "Aleksander Barkov",
+              "pos": "C",
+              "athleteId": "3041970",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041970.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "",
+              "returnDate": "2026-11-27",
+              "date": "2026-11-06T16:30Z",
+              "note": "Head coach Paul Maurice said Friday that Barkov (knee) will travel with the Panthers during their upcoming three-game road trip, Jameson Olive of the Panthers' "
+            },
+            {
+              "name": "Jonah Gadjovich",
+              "pos": "LW",
+              "athleteId": "4233890",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233890.png",
+              "status": "Injured Reserve",
+              "type": "Neck",
+              "detail": "Surgery",
+              "returnDate": "2026-11-28",
+              "date": "2026-09-17T20:53Z",
+              "note": "Gadjovich (upper body) is out indefinitely, the team announced Thursday."
+            }
+          ]
+        },
+        "rest": {
+          "Columbus Blue Jackets": {
+            "restDays": 4,
+            "b2b": false,
+            "lastGame": "2026-11-07",
+            "gamesLast7": 2
+          },
+          "Florida Panthers": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-08",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "Disney+, ESPN+, Hulu",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": 1.5,
+            "spreadOdds": {
+              "home": -258,
+              "away": 210
+            },
+            "total": 5.5,
+            "totalOdds": {
+              "over": -130,
+              "under": 110
+            },
+            "ml": {
+              "home": 100,
+              "away": -120
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 200,
+              "away": -245
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": 114,
+              "under": -135
+            },
+            "ml": {
+              "home": -115,
+              "away": -105
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": null,
+          "odds": -115,
+          "fair": 0.5108342361863488
+        },
+        "now": {
+          "line": null,
+          "odds": 100,
+          "fair": 0.4782608695652174
+        },
+        "moved": "away",
+        "label": "DraftKings opened -115, now +100"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-10T20:39:42.407Z",
+          "line": null,
+          "odds": 100,
+          "fair": 0.4783
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": null,
+          "odds": 100
+        },
+        "now": {
+          "line": null,
+          "odds": 111
+        },
+        "moved": "away",
+        "label": "The market (7 books) opened +100, now +111"
+      },
+      "sgo": {
+        "at": "2026-11-10T21:14:34.224Z",
+        "n": 7,
+        "best": {
+          "book": "Bovada",
+          "odds": 107
+        },
+        "fair": 0.4725,
+        "vendorFair": 0.4739,
+        "open": {
+          "line": null,
+          "odds": 100
+        },
+        "now": {
+          "line": null,
+          "odds": 111
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-10T20:39:42.407Z",
+          "fair": 0.4725,
+          "vendorFair": 0.4717,
+          "line": null,
+          "odds": 112,
+          "best": 107,
+          "n": 7
+        },
+        {
+          "at": "2026-11-10T21:14:34.224Z",
+          "fair": 0.4725,
+          "vendorFair": 0.4739,
+          "line": null,
+          "odds": 111,
+          "best": 107,
+          "n": 7
+        }
+      ],
+      "status": "pending",
+      "started": true,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-10T20:39:42.407Z",
+      "valueTo": 107,
+      "bar": 0.0742,
+      "past": 0.001,
+      "barParts": {
+        "error": 0.0742,
+        "units": 0.45,
+        "unit": "goals",
+        "gp": 15,
         "floor": 0.03
       },
       "now": null,

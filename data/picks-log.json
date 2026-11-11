@@ -11049,8 +11049,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -130,
-      "under": 110
+      "over": -135,
+      "under": 114
      },
      "ml": {
       "home": 110,
@@ -11083,6 +11083,12 @@
     "line": 6.5,
     "odds": 110,
     "fair": 0.4573
+   },
+   {
+    "at": "2026-11-11T01:47:25.889Z",
+    "line": 6.5,
+    "odds": 114,
+    "fair": 0.4486
    }
   ],
   "dk": {
@@ -11094,11 +11100,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 110,
-    "fair": 0.4572564612326044
+    "odds": 114,
+    "fair": 0.448558885283451
    },
-   "moved": "toward",
-   "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
+   "moved": null,
+   "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -11126,7 +11132,6 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
-    "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
     "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
@@ -11467,8 +11472,8 @@
       "under": 102
      },
      "ml": {
-      "home": 114,
-      "away": -135
+      "home": 120,
+      "away": -142
      },
      "draw": null
     },
