@@ -10816,14 +10816,16 @@
   "odds": 118,
   "book": "FanDuel",
   "prices": {
-   "DraftKings": 110,
+   "DraftKings": 114,
    "BetRivers": 110,
    "BetOnline.ag": 104,
-   "FanDuel": 118,
-   "BetMGM": 100,
-   "Bovada": 110,
-   "Unibet": -120,
-   "Caesars": 108
+   "FanDuel": 112,
+   "BetMGM": 110,
+   "Bovada": 115,
+   "Unibet": -122,
+   "Caesars": 115,
+   "ESPN BET": 115,
+   "PointsBet": 115
   },
   "books": 7,
   "anchor": "Pinnacle",
@@ -10886,12 +10888,12 @@
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "availability": null,
   "current": {
-   "at": "2026-11-10T20:39:42.407Z",
-   "odds": 118,
-   "book": "FanDuel",
-   "fair": 0.4578,
-   "edge": 0.0567,
-   "modelProb": 0.5154,
+   "at": "2026-11-11T14:08:52.538Z",
+   "odds": 117,
+   "book": "BetOnline.ag",
+   "fair": 0.4475,
+   "edge": 0.0587,
+   "modelProb": 0.5195,
    "bar": 0.03
   },
   "history": [
@@ -10899,6 +10901,11 @@
     "at": "2026-11-10T20:39:42.407Z",
     "odds": 118,
     "fair": 0.4578
+   },
+   {
+    "at": "2026-11-11T14:08:52.538Z",
+    "odds": 117,
+    "fair": 0.4475
    }
   ],
   "context": {
@@ -11120,17 +11127,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 6,
+   "n": 8,
    "open": {
     "line": 6.5,
     "odds": 105
    },
    "now": {
     "line": 6.5,
-    "odds": 116
+    "odds": 121
    },
    "moved": "away",
-   "label": "The market (6 books) opened 6.5 (+105), now 6.5 (+116)"
+   "label": "The market (8 books) opened 6.5 (+105), now 6.5 (+121)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -11144,7 +11151,8 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
-    "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
+    "Market: the sharp line has moved away since it was logged (45.8% → 44.8%).",
+    "Market: The market (8 books) opened 6.5 (+105), now 6.5 (+121), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
     "Records: Pittsburgh Penguins 6-10-2 · San Jose Sharks 8-11-1 · SAP Center at San Jose, San Jose."
@@ -11155,26 +11163,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "iIgqZR4FMeuD3dJ8obsb",
-   "at": "2026-11-10T20:39:42.407Z",
+   "at": "2026-11-11T14:08:52.538Z",
    "books": {
-    "DraftKings": 110,
-    "Unibet": -120,
-    "FanDuel": 118,
-    "Caesars": 108,
-    "BetMGM": 100,
-    "Bovada": 110
+    "DraftKings": 114,
+    "Unibet": -122,
+    "FanDuel": 112,
+    "Caesars": 115,
+    "BetMGM": 110,
+    "Bovada": 115,
+    "ESPN BET": 115,
+    "PointsBet": 115
    },
-   "n": 6,
+   "n": 8,
    "best": {
-    "book": "FanDuel",
-    "odds": 118
+    "book": "Caesars",
+    "odds": 115
    },
-   "fair": 0.4679,
-   "fairBooks": 6,
+   "fair": 0.4572,
+   "fairBooks": 8,
    "vendor": {
     "line": 6.5,
-    "odds": 116,
-    "fair": 0.463,
+    "odds": 121,
+    "fair": 0.4525,
     "sameLine": true
    },
    "open": {
@@ -11183,12 +11193,12 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 116
+    "odds": 121
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-10T20:39:42.407Z",
+  "pricesAt": "2026-11-11T14:08:52.538Z",
   "sgoHistory": [
    {
     "at": "2026-11-10T20:39:42.407Z",
@@ -11198,8 +11208,39 @@
     "odds": 116,
     "best": 118,
     "n": 6
+   },
+   {
+    "at": "2026-11-11T14:08:52.538Z",
+    "fair": 0.4572,
+    "vendorFair": 0.4525,
+    "line": 6.5,
+    "odds": 121,
+    "best": 115,
+    "n": 8
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": 118,
+   "loggedFair": 0.5154,
+   "currentOdds": 117,
+   "currentBook": "BetOnline.ag",
+   "currentFair": 0.4475,
+   "currentEdge": 0.0587,
+   "checkedAt": "2026-11-11T14:08:52.538Z",
+   "history": [
+    {
+     "at": "2026-11-10T20:39:42.407Z",
+     "odds": 118,
+     "fair": 0.4578
+    },
+    {
+     "at": "2026-11-11T14:08:52.538Z",
+     "odds": 117,
+     "fair": 0.4475
+    }
+   ]
+  },
+  "potd": "2026-11-11"
  },
  {
   "key": "d6fb69c3f844f53b1bb2619066cd7947|totals|Over|5.5",
@@ -11295,12 +11336,12 @@
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "availability": null,
   "current": {
-   "at": "2026-11-10T20:39:42.407Z",
+   "at": "2026-11-11T14:08:52.538Z",
    "odds": -120,
    "book": "BetOnline.ag",
-   "fair": 0.5313,
-   "edge": 0.0314,
-   "modelProb": 0.5769,
+   "fair": 0.5354,
+   "edge": 0.0274,
+   "modelProb": 0.5729,
    "bar": 0.03
   },
   "history": [
@@ -11308,6 +11349,11 @@
     "at": "2026-11-10T20:39:42.407Z",
     "odds": -120,
     "fair": 0.5313
+   },
+   {
+    "at": "2026-11-11T14:08:52.538Z",
+    "odds": -120,
+    "fair": 0.5354
    }
   ],
   "context": {
@@ -11352,7 +11398,7 @@
       "status": "Injured Reserve",
       "type": "Hip",
       "detail": "Surgery",
-      "returnDate": "2026-11-21",
+      "returnDate": "2026-11-15",
       "date": "2026-11-06T16:42Z",
       "note": "Huberdeau (hip) took the ice in a regular jersey Friday, Pat Steinberg of QR Calgary 770 AM reports."
      },
@@ -11387,12 +11433,12 @@
       "pos": "D",
       "athleteId": "5334662",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5334662.png",
-      "status": "Out",
+      "status": "Injured Reserve",
       "type": "Upper Body",
       "detail": "",
       "returnDate": "2026-11-22",
-      "date": "2026-11-09T17:10Z",
-      "note": "Smits (upper body) is week-to-week, according to Peter Baugh of The Athletic on Monday."
+      "date": "2026-11-10T22:13Z",
+      "note": "ir"
      },
      {
       "name": "Sean Durzi",
@@ -11556,6 +11602,7 @@
     "Projected total 6.3 against 5.5."
    ],
    "risks": [
+    "At current prices our edge is 2.7 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.",
     "Scorers out: Kevin Bahl (D), achilles; Jonathan Huberdeau (LW), hip; Connor Zary (C), knee and 7 more. Fewer healthy scorers leans under."
    ],
    "notes": [
@@ -11572,7 +11619,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "DrwCIVArzCSAuhfwahTk",
-   "at": "2026-11-11T13:50:06.340Z",
+   "at": "2026-11-11T14:08:52.538Z",
    "books": {
     "DraftKings": -122,
     "Unibet": -135,
@@ -11604,7 +11651,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-11T13:50:06.340Z",
+  "pricesAt": "2026-11-11T14:08:52.538Z",
   "sgoHistory": [
    {
     "at": "2026-11-10T20:39:42.407Z",
@@ -11624,7 +11671,28 @@
     "best": -122,
     "n": 5
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": -120,
+   "loggedFair": 0.5769,
+   "currentOdds": -120,
+   "currentBook": "BetOnline.ag",
+   "currentFair": 0.5354,
+   "currentEdge": 0.0274,
+   "checkedAt": "2026-11-11T14:08:52.538Z",
+   "history": [
+    {
+     "at": "2026-11-10T20:39:42.407Z",
+     "odds": -120,
+     "fair": 0.5313
+    },
+    {
+     "at": "2026-11-11T14:08:52.538Z",
+     "odds": -120,
+     "fair": 0.5354
+    }
+   ]
+  }
  },
  {
   "key": "d85899eb0ddff2e6e18a63b0c83bc7b8|h2h|Columbus Blue Jackets|null",
@@ -12033,5 +12101,26 @@
   "odds": 692,
   "fairProb": 0.166,
   "ev": 0.315
+ },
+ {
+  "type": "parlay",
+  "id": "parlay-2026-11-11",
+  "date": "2026-11-11",
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-11T14:08:52.538Z",
+  "book": "DraftKings",
+  "legs": [
+   "e75aa3d5c3-totals-Under",
+   "d6fb69c3f8-totals-Over"
+  ],
+  "legPrices": [
+   114,
+   -122
+  ],
+  "decimal": 3.8941,
+  "odds": 289,
+  "fairProb": 0.2973,
+  "ev": 0.1578
  }
 ]

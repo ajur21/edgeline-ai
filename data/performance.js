@@ -2,7 +2,7 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-10",
+  "asOf": "2026-11-11",
   "windowDays": 30,
   "record": {
     "wins": 13,
