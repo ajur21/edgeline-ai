@@ -141,7 +141,7 @@
   }
   function weatherLine(g) {
     const w = g.weather;
-    if (!w) return E.meta(["Weather", g.venue && g.venue.indoor ? "indoors" : g.neutral ? "no forecast read for a neutral site" : "no forecast read for this stadium yet"], "nfl-line nfl-wx");
+    if (!w) return E.meta(["Weather", g.venue && g.venue.indoor ? "indoors" : g.neutral ? "no forecast read for a neutral site" : "no forecast read for this stadium"], "nfl-line nfl-wx");
     /* the forecast's own words on a dry hour ("mostly cloudy"); the chance once rain or snow is a real one */
     const sky = num(w.precip) && w.precip >= 15 ? w.precip + "% chance of " + (/snow|flurr|sleet|ice/i.test(w.text || "") || (num(w.temp) && w.temp <= 32) ? "snow" : "rain") : w.text ? lower(w.text) : null;
     const line = E.meta(["Weather", num(w.temp) ? w.temp + "°" + (w.unit || "F") : null, num(w.mph) ? "wind " + w.mph + " mph" + (w.dir ? " " + w.dir : "") : null, sky], "nfl-line nfl-wx");
@@ -229,7 +229,7 @@
   }
   function playedRow(g, st, ev, o) {
     o = o || {};
-    const p = g.projection, w = p ? g[p.winner] : null, sc = scoreOf(g, ev), r = g.result, c = r && r.call, t = kick(g);
+    const p = g.projection, w = p ? g[p.winner] : null, sc = st === "off" || (g.result && g.result.call === "Void") ? null : scoreOf(g, ev), r = g.result, c = r && r.call, t = kick(g);
     const scoreText = sc ? g.away.abbr + " " + sc.away + "–" + sc.home + " " + g.home.abbr : null;
     let note;
     if (c === "Win") note = "Forecast right";

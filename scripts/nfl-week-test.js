@@ -279,10 +279,10 @@ const tmp = () => { const d = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-nf
     /* a game called off, and a game postponed: its own folder, from the run before kickoff */
     const V = tmp();
     await run(V, WED_10AM);
-    const off = Object.assign({}, sun, { [LAC_BAL]: { state: "post", completed: false, name: "STATUS_CANCELED", detail: "Canceled" } });
+    const off = Object.assign({}, sun, { [LAC_BAL]: { state: "post", completed: false, name: "STATUS_CANCELED", detail: "Canceled", score: { home: 0, away: 0 } } });
     const r = await run(V, MON_1159PM, { edits: off }), d = readData(V), b = gameOf(d, LAC_BAL), e = readLog(V).games[LAC_BAL];
     check("grading: a game called off is void: its forecast is neither a win, a loss nor a push, it is no longer pending, and the week's record is the other games'",
-      e.result.call === "Void" && b.result.call === "Void" && b.result.home === null && b.result.winner === null && b.projection === null && b.leanFrom === null && d.record.week.w === 1 && d.record.week.l === 1 && d.record.week.p === 0 && d.record.week.pending === 0 && r.graded === 2, JSON.stringify([b.result, d.record.week]));
+      e.result.call === "Void" && b.result.call === "Void" && b.result.home === null && b.result.winner === null && b.score === null && b.state === "post" && b.projection === null && b.leanFrom === null && d.record.week.w === 1 && d.record.week.l === 1 && d.record.week.p === 0 && d.record.week.pending === 0 && r.graded === 2, JSON.stringify([b.result, d.record.week]));
     const P = tmp();
     await run(P, WED_10AM);
     await run(P, MON_1159PM, { edits: Object.assign({}, sun, { [LAC_BAL]: { state: "pre", completed: false, name: "STATUS_POSTPONED", detail: "Postponed" } }) });

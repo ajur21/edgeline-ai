@@ -263,7 +263,8 @@ function postedFor(g, plog) {
 
 /* ---------- the public game ---------- */
 function publicTeam(t) { return { id: t.id, abbr: t.abbr, name: t.name, short: t.short, record: t.record }; }
-function stateOf(g) { return { state: g.state, status: g.status, detail: g.detail || null, score: g.state !== "pre" && finite(g.home.score) && finite(g.away.score) ? { home: g.home.score, away: g.away.score } : null }; }
+/* a game called off or postponed has no score to show (ESPN leaves 0-0 on it) */
+function stateOf(g) { return { state: g.state, status: g.status, detail: g.detail || null, score: g.state !== "pre" && !OFF.test(g.status || "") && finite(g.home.score) && finite(g.away.score) ? { home: g.home.score, away: g.away.score } : null }; }
 /* a started game with no projection in the last file still shows what the log forecast */
 function fromForecast(e) {
   const f = e && e.forecast; if (!f) return null;

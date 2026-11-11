@@ -127,6 +127,15 @@ async function run(h) {
     await x.close();
   }
 
+  {
+    /* a neutral site, and an outdoor stadium with no forecast read */
+    const X = sample(), n = X.games.find(g => g.id === DAL_PHI), o = X.games.find(g => g.id === JAX_BAL);
+    Object.assign(n, { neutral: true, venue: { name: 'FC Bayern Munich Stadium', city: 'Munich', state: null, country: 'Germany', indoor: false }, weather: null }); o.weather = null;
+    const x = await open('picks.html?sport=NFL', { nfl: X }), hx = await hubOf(x.page), nc = cardOf(hx, DAL_PHI);
+    check('nfl hub: a neutral site reads “v”, not “@”, names the city in the card’s foot and says no forecast was read for it; an outdoor stadium without a forecast says so too, never a made-up one', nc.eventText === 'Dallas Cowboys v Philadelphia Eagles' && nc.wx.join('|') === 'Weather|no forecast read for a neutral site' && nc.foot.join('|') === 'Sun 1:00 PM ET|neutral site, Munich|CBS' && cardOf(hx, JAX_BAL).wx.join('|') === 'Weather|no forecast read for this stadium' && (await x.page.evaluate(id => document.querySelector('.nfl-game[data-game="' + id + '"] .mu-at').textContent, DAL_PHI)) === 'v', nc.foot.join('|'));
+    await x.close();
+  }
+
   /* ---------- a started game is never shown as something to bet ---------- */
   {
     const s = await open('picks.html?sport=NFL', { at: THU_9PM }), S = await hubOf(s.page), r = rowOf(S, JAX_BAL);
@@ -184,10 +193,10 @@ async function run(h) {
     /* a final the hourly run has not graded yet, a postponed game, and a week with every game started */
     const X = sample(), g = X.games.find(x => x.id === JAX_BAL), p = X.games.find(x => x.id === CHI_GB);
     Object.assign(g, { state: 'post', status: 'STATUS_FINAL', detail: 'Final', score: { home: 24, away: 17 }, leanFrom: null, board: null }); g.projection.locked = true;
-    Object.assign(p, { status: 'STATUS_POSTPONED', detail: 'Postponed', projection: null, qb: null, injuries: null, weather: null, leanFrom: null });
+    Object.assign(p, { state: 'post', status: 'STATUS_POSTPONED', detail: 'Postponed', score: { home: 0, away: 0 }, projection: null, qb: null, injuries: null, weather: null, leanFrom: null });
     const u = await open('picks.html?sport=NFL', { at: FRI_9AM, nfl: X }), U = await hubOf(u.page), ur = rowOf(U, JAX_BAL), pr = rowOf(U, CHI_GB);
     check('nfl hub (results): a final not yet graded shows its score and says the grade comes at the next hourly check: the page never grades a forecast itself', ur.state === 'final' && ur.chip === 'Final' && /badge-final/.test(ur.chipClass) && ur.call === '' && ur.score === 'Final JAX 17–24 BAL' && ur.notes.join('|') === 'Graded straight up at the next hourly check', JSON.stringify(ur));
-    check('nfl hub (results): a postponed game is not a card to follow and not a result: it sits last, marked Postponed, its forecast waiting for a new date', !cardOf(U, CHI_GB) && pr.chip === 'Postponed' && /badge-void/.test(pr.chipClass) && pr.notes.join('|') === 'Postponed: the forecast waits for a new date' && U.playedOrder[U.playedOrder.length - 1] === CHI_GB, JSON.stringify(pr));
+    check('nfl hub (results): a postponed game is not a card to follow and not a result: it sits last, marked Postponed, its forecast waiting for a new date', !cardOf(U, CHI_GB) && pr.chip === 'Postponed' && /badge-void/.test(pr.chipClass) && pr.score === null && pr.notes.join('|') === 'Postponed: the forecast waits for a new date' && U.playedOrder[U.playedOrder.length - 1] === CHI_GB, JSON.stringify(pr));
     await u.close();
     const v = await open('picks.html?sport=NFL', { at: TUE_8AM }), V = await hubOf(v.page);
     check('nfl hub: once every game of the week has started there are no cards, and the hub says when the next week’s forecasts come', V.cards.length === 0 && V.none === 'Every game of Week 9 has started. Next week’s forecasts are posted on Tuesday morning.' && V.rows.length === 7 && V.rows.every(r => r.state === 'awaiting' && r.chip === 'Awaiting result'), V.none);
