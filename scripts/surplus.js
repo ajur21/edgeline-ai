@@ -22,13 +22,17 @@
    widened from 8 to 12 hours (more pre-game points for the close's fallback); props lines refreshed for NBA and NFL
    games starting within three hours; college football board games refreshed (a second price source and a pre-game
    close; none while `HOLD.h2h` keeps college moneylines off the board).
+
+   NFL lines before game day (2026-11-10, the owner: "NFL props depth"): the afternoon props run prices the next NFL
+   slate one or two days ahead from the same spare, the same pace and the same state (`sgoEarly`; the call is made by
+   scripts/nfl-props.js). Two days ahead gives way first: it is taken only while the spare also covers the day before.
    ========================================================================== */
 "use strict";
 const fs = require("fs");
 const path = require("path");
 
 const ODDS = { floor: 10, cushion: 4, pace: 2 };
-const SGO = { reserve: 150, reserveLate: 50, lateDays: 5, pace: 2, dailyDefault: 36, baseHours: 8, wideHours: 12, propsHours: 3 };
+const SGO = { reserve: 150, reserveLate: 50, lateDays: 5, pace: 2, dailyDefault: 36, baseHours: 8, wideHours: 12, propsHours: 3, earlyDays: 2 /* NFL lines: how many days before a game day */ };
 const DAY = 864e5;
 
 /* ---------- the calendar ---------- */
@@ -92,6 +96,27 @@ function sgoSpare(usage, rate, days) {
   return Math.floor(usage.max - usage.used - rate * days - sgoReserve(days));
 }
 
+/* NFL lines before game day: may the props run spend `cost` entities (one per game of the next slate) now?
+   The same arithmetic as the track run's spender, on the same cycle of data/budget.json: spare = entities left − the
+   protected rate × the days left − the reserve; a day spends at most about 2 × spare ÷ the days left, counted with what
+   the track runs spent today. Two days ahead must leave the day before its own call (2 × cost within the spare), so a
+   short month prices the day before only, and nothing once the spare is under one slate.
+   Returns { take, why, spare, rate, days, cap, room, reserve, cycle } (cycle: the state to record the spend in) */
+function sgoEarly(state, usage, now, o) {
+  const reset = sgoResetMs(now, usage), days = daysLeft(now, reset);
+  const c = cycleOf(state, "sgo", new Date(reset).toISOString().slice(0, 10));
+  const rate = sgoDailyRate(c.samples, usage && usage.used, c.total, now);
+  const spare = sgoSpare(usage, rate, days), cap = dayCap(spare, days, SGO.pace), room = cap - spentToday(c, now);
+  const ahead = o.daysAhead, need = ahead >= 2 ? 2 * o.cost : o.cost;
+  let why = null;
+  if (!(o.cost > 0)) why = "no game to price";
+  else if (!(ahead >= 1 && ahead <= SGO.earlyDays)) why = "the slate is " + ahead + " days ahead (lines are read one or two days before)";
+  else if (spare == null) why = "spare unknown";
+  else if (need > spare) why = "spare " + spare + " < " + need + (ahead >= 2 ? " (two days ahead leaves the day before its " + o.cost + ")" : "");
+  else if (o.cost > room) why = "today's pace allows " + Math.max(0, room);
+  return { take: !why, why: why, spare: spare, rate: Math.round(rate * 10) / 10, days: days, cap: cap, room: room, reserve: sgoReserve(days), cycle: c };
+}
+
 /* ---------- state: data/budget.json (what the spenders spent each day; the usage samples) ---------- */
 function readState(dataDir) {
   try { return JSON.parse(fs.readFileSync(path.join(dataDir, "budget.json"), "utf8")); } catch (e) { return {}; }
@@ -108,4 +133,4 @@ function cycleOf(state, api, cycle) {
 function spentToday(c, now) { return (c.days[dateKey(now)] || 0); }
 function addSpent(c, now, n) { if (!n) return; const k = dateKey(now); c.days[k] = (c.days[k] || 0) + n; c.total = (c.total || 0) + n; }
 
-module.exports = { ODDS, SGO, oddsResetMs, sgoResetMs, daysLeft, dayCap, oddsSpare, choose, fridayCovers, sgoDailyRate, sgoReserve, sgoSpare, readState, writeState, cycleOf, spentToday, addSpent, monthKey, dateKey };
+module.exports = { ODDS, SGO, oddsResetMs, sgoResetMs, daysLeft, dayCap, oddsSpare, choose, fridayCovers, sgoDailyRate, sgoReserve, sgoSpare, sgoEarly, readState, writeState, cycleOf, spentToday, addSpent, monthKey, dateKey };
