@@ -25,7 +25,10 @@
   /* ---------- the data: real, with a week of games; anything else and there is no hub ---------- */
   function data() {
     const d = window.NFL_WEEK_DATA;
-    return d && d.sample === false && d.week && Array.isArray(d.games) && d.games.length ? d : null;
+    if (!(d && d.sample === false && d.week && Array.isArray(d.games) && d.games.length)) return null;
+    /* a file left behind (no full run for days) is not shown as this week's: three days past the end of its week it is gone */
+    const end = Date.parse(d.week.end || "");
+    return Number.isFinite(end) && end + 3 * 864e5 < E.now() ? null : d;
   }
   const OFF = /POSTPONED|CANCELED|CANCELLED/i;
   const num = v => typeof v === "number" && Number.isFinite(v);
@@ -199,7 +202,7 @@
       kids.push(el("div", { class: "pick-metrics" }, [
         el("div", { class: "pick-metric lead", title: "Our probability that the " + w.short + " win, from the game data" }, [el("div", { class: "k", text: "To win" }), el("div", { class: "v", text: E.pct(p.prob) })]),
         el("div", { class: "pick-metric", title: "The projected margin, the two projected scores apart" }, [el("div", { class: "k", text: "Margin" }), el("div", { class: "v", text: one(Math.abs(p.margin)) + " pts" })]),
-        el("div", { class: "pick-metric", title: "The model’s own error on that margin, one standard error" }, [el("div", { class: "k", text: "Give or take" }), el("div", { class: "v", text: num(p.marginSd) && p.marginSd > 0 ? one(p.marginSd) + " pts" : "—" })])
+        num(p.marginSd) && p.marginSd > 0 ? el("div", { class: "pick-metric", title: "The model’s own error on that margin, one standard error" }, [el("div", { class: "k", text: "Give or take" }), el("div", { class: "v", text: one(p.marginSd) + " pts" })]) : null
       ]));
       kids.push(el("div", { class: "nfl-lines" }, [qbLine(g), injuryBlock(g, !!o.open), weatherLine(g), leanLine(g, o)]));
     }
@@ -424,5 +427,12 @@
     document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
   }
 
-  window.EdgeLineNFL = { has: function () { return !!data(); }, data: data, hub: hub, gameSection: gameSection, forGame: forGame, stateOf: stateOf, syncStrip: syncStrip, onChange: onChange, tick: tick, checkText: checkText };
+  /* the next kickoff of the week still ahead by the clock (ms), for the NFL tab's "next game"; null when none */
+  function next() {
+    const d = data(), now = E.now();
+    if (!d) return null;
+    const t = d.games.filter(function (g) { return g.timeValid !== false && isOpen(stateOf(g, null)) && kick(g) > now; }).map(kick).sort(function (a, b) { return a - b; })[0];
+    return Number.isFinite(t) ? t : null;
+  }
+  window.EdgeLineNFL = { has: function () { return !!data(); }, data: data, next: next, hub: hub, gameSection: gameSection, forGame: forGame, stateOf: stateOf, syncStrip: syncStrip, onChange: onChange, tick: tick, checkText: checkText };
 })();

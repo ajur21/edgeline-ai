@@ -468,7 +468,10 @@
     function nextGame(s) {
       const d = sched[s] && sched[s].data, now = E.now();
       const t = ((d && d.events) || []).filter(function (ev) { return ev.state === "pre" && ev.timeValid && ev.ms > now; }).map(function (ev) { return ev.ms; }).sort(function (a, b) { return a - b; })[0];
-      return Number.isFinite(t) ? t : null;
+      if (Number.isFinite(t)) return t;
+      /* the NFL week hub knows the week's kickoffs without ESPN: its tab is there from the first paint, and stays when ESPN cannot be read */
+      const h = s === "NFL" ? nflHub() : null, k = h && typeof h.next === "function" ? h.next() : null;
+      return Number.isFinite(k) ? k : null;
     }
     /* a tab counts the games on the board from today on (yesterday's finals stay under In progress and results) */
     function today(g) { return onOrAfter(g, todayKey()); }

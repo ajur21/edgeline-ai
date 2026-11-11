@@ -205,9 +205,24 @@ async function run(h) {
     check('nfl hub (fallback): a sample file, a file with no week, a week with no games, a file that sets nothing and a malformed file each leave the NFL tab word for word as it is without the hub, with no console error', cases.every(c => c.ok && c.errs.length === 0), cases.filter(c => !c.ok || c.errs.length).map(c => c.name + ' ' + c.errs.join(';')).join(' | '));
     const gone = await same('no file', 404);
     check('nfl hub (fallback): with the file missing altogether the page is the same again and no script fails; the one console line is the browser’s own note that the file was not found', gone.ok && gone.errs.every(e => !/^PAGEERROR/.test(e) && /404/.test(e)) && gone.errs.length <= 1, gone.errs.join(' | '));
+    /* a file nobody has rewritten: the week it holds ended on Wednesday Nov 11; by Saturday it is no longer shown */
+    const SAT = Date.parse('2026-11-14T12:00:00-05:00'), FRI = Date.parse('2026-11-13T12:00:00-05:00');
+    const stale = await open('picks.html?sport=NFL', { at: SAT }), staleP = await panelOf(stale.page); await stale.close();
+    const staleBase = await open('picks.html?sport=NFL', { at: SAT, nfl: null }), staleB = await panelOf(staleBase.page); await staleBase.close();
+    const kept = await open('picks.html?sport=NFL', { at: FRI }), keptP = await panelOf(kept.page); await kept.close();
+    check('nfl hub (fallback): a file left behind is not passed off as this week’s: three days after its week ended the tab is as it is without the hub; until then the finished week stays on view', !staleP.hub && staleP.text === staleB.text && staleP.strip === staleB.strip && keptP.hub, staleP.strip);
     const gp = await open('game.html?id=g5', { nfl: null }), gpStrip = await gp.page.evaluate(() => ({ forecast: !!document.getElementById('forecast'), strip: [...document.querySelectorAll('.subnav a')].filter(x => !x.hidden).map(x => x.textContent).join('|'), secs: [...document.querySelectorAll('#game-page .game-sec')].map(s => s.id).join() }));
     check('game page (fallback): with no NFL week an NFL game’s page has no forecast block and its strip has no Forecast link', !gpStrip.forecast && !/Forecast/.test(gpStrip.strip) && /^lean,sides/.test(gpStrip.secs), JSON.stringify(gpStrip));
     await gp.close();
+  }
+
+  /* ---------- the NFL tab itself: there whenever the hub has a week, with no NFL game on the board and ESPN unread ---------- */
+  {
+    const noNfl = route => route.fulfill({ contentType: 'text/javascript', body: BF.withAppended(sampleSrc(/market/.test(route.request().url()) ? 'sample-market.js' : 'sample-picks.js'), /market/.test(route.request().url()) ? 'window.MARKET_DATA.rows = window.MARKET_DATA.rows.filter(function (r) { return r.sport !== "NFL"; });' : 'window.PICKS_DATA.picks = window.PICKS_DATA.picks.filter(function (p) { return p.sport !== "NFL"; });') });
+    const tabs = async nfl => { const x = await open('picks.html', { nfl: nfl }); await x.ctx.route('**/data/picks.js', noNfl); await x.ctx.route('**/data/market.js', noNfl); await x.page.reload(); await x.page.waitForTimeout(450); const r = await x.page.evaluate(() => ({ tabs: [...document.querySelectorAll('.browse-tabs a')].map(t => t.getAttribute('data-sport')).join(','), nfl: (document.querySelector('.browse-tabs a[data-sport="NFL"]') || { textContent: null }).textContent, next: window.EdgeLineNFL ? window.EdgeLineNFL.next() : null })); await x.page.click('.browse-tabs a[data-sport="NFL"]').catch(() => {}); await x.page.waitForTimeout(250); r.panel = await panelOf(x.page); r.lead = await x.page.evaluate(() => (document.querySelector('#browse-panel .browse-lead') || { textContent: '' }).textContent); await x.close(); return r; };
+    const withHub = await tabs(undefined), without = await tabs(null);
+    check('nfl hub (tab): with no NFL game on the board and no schedule read, the NFL tab is still there because the hub knows the week, saying when the next game is; without the hub there is no NFL tab, as before', /^,NFL,/.test(withHub.tabs) && withHub.nfl === 'NFLnext game tomorrow 8:15 PM' && withHub.next === Date.parse('2026-11-06T01:15Z') && !/NFL/.test(without.tabs), withHub.tabs + ' | ' + withHub.nfl + ' | ' + without.tabs);
+    check('nfl hub (tab): opened that way the tab leads with a line that fits (no leans yet, the forecasts below), never “no games” above the week', withHub.panel.hub && withHub.lead === 'No NFL leans on the board yet. A lean is posted only where a side clears its bar at a pricing run; every game of the week is below with the model’s forecast.' && withHub.panel.leans.length === 0 && withHub.panel.schedule === 0, withHub.lead);
   }
 
   /* ---------- game.html: the same block for one NFL game ---------- */
