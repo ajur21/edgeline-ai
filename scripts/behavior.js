@@ -34,6 +34,13 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   base = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
+  /* ESPN's image host is not under test, and one stalled image holds a page's load event until goto times out (a run died
+     that way on 2026-11-10, 552 checks in). Every context answers it with a 1px image; a check that registers its own
+     route for the host afterwards (the props board's blocked-images check) still wins. The render check
+     (scripts/screenshot.js) keeps the real host, so a missing image on the real data still fails there. */
+  const PX = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
+  const newContext = browser.newContext.bind(browser);
+  browser.newContext = async opts => { const ctx = await newContext(opts); await ctx.route('**/a.espncdn.com/**', route => route.fulfill({ contentType: 'image/png', body: PX })); return ctx; };
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(page);
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 
