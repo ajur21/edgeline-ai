@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-10T20:39:42.407Z",
-  "trackedAt": "2026-11-11T05:26:46.549Z",
+  "trackedAt": "2026-11-11T13:50:06.340Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "picks": [
@@ -93,7 +93,6 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
-          "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
           "Market: The market (6 books) opened 6.5 (+105), now 6.5 (+116), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
@@ -244,13 +243,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -218,
-              "away": 180
+              "home": -205,
+              "away": 170
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -130,
-              "under": 110
+              "over": -135,
+              "under": 114
             },
             "ml": {
               "home": 114,
@@ -287,11 +286,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 110,
-          "fair": 0.4572564612326044
+          "odds": 114,
+          "fair": 0.448558885283451
         },
-        "moved": "toward",
-        "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
+        "moved": null,
+        "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
       },
       "dkHistory": [
         {
@@ -311,6 +310,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 110,
           "fair": 0.4573
+        },
+        {
+          "at": "2026-11-11T13:50:06.340Z",
+          "line": 6.5,
+          "odds": 114,
+          "fair": 0.4486
         }
       ],
       "mkt": {
@@ -401,10 +406,12 @@ window.PICKS_DATA = {
         "BetOnline.ag": -120,
         "FanDuel": -128,
         "BetMGM": -120,
-        "Unibet": -137,
-        "Caesars": -125
+        "Unibet": -135,
+        "Caesars": -125,
+        "ESPN BET": -130,
+        "PointsBet": -125
       },
-      "pricesAt": "2026-11-10T20:39:42.407Z",
+      "pricesAt": "2026-11-11T13:50:06.340Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.5769,
@@ -646,8 +653,8 @@ window.PICKS_DATA = {
               "under": 102
             },
             "ml": {
-              "home": 120,
-              "away": -142
+              "home": 124,
+              "away": -148
             },
             "draw": null
           },
@@ -709,13 +716,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 5.5 (-114), now 6 (+110)"
       },
       "sgo": {
-        "at": "2026-11-10T20:39:42.407Z",
+        "at": "2026-11-11T13:50:06.340Z",
         "n": 5,
         "best": {
-          "book": "BetMGM",
-          "odds": -120
+          "book": "DraftKings",
+          "odds": -122
         },
-        "fair": 0.5318,
+        "fair": 0.5364,
         "vendorFair": 0.4762,
         "open": {
           "line": 5.5,
@@ -734,6 +741,15 @@ window.PICKS_DATA = {
           "line": 6,
           "odds": 110,
           "best": -120,
+          "n": 5
+        },
+        {
+          "at": "2026-11-11T13:50:06.340Z",
+          "fair": 0.5364,
+          "vendorFair": 0.4762,
+          "line": 6,
+          "odds": 110,
+          "best": -122,
           "n": 5
         }
       ],

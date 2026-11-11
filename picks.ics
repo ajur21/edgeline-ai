@@ -475,7 +475,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:d6fb69c3f8-totals-Over@edgeline
-DTSTAMP:20261110T203942Z
+DTSTAMP:20261111T135006Z
 DTSTART:20261112T004000Z
 DTEND:20261112T034000Z
 SUMMARY:Over 5.5 -120 at BetOnline.ag · Low
@@ -494,12 +494,12 @@ DESCRIPTION:NHL · New York Rangers @ Calgary Flames · Wed Nov 11\, 7:40 P
  eau (LW)\, hip\; Connor Zary (C)\, knee and 7 more. Fewer healthy scorers 
  leans under.\nVerdict: The game data lines up behind this side at this pri
  ce.\nPrices: BetOnline.ag -120\, BetMGM -120\, DraftKings -122\, Caesars -
- 125\, FanDuel -128 and 2 more.\nFull breakdown: https://ajur21.github.io/e
- dgeline-ai/picks.html#d6fb69c3f8-totals-Over
+ 125\, PointsBet -125 and 4 more.\nFull breakdown: https://ajur21.github.io
+ /edgeline-ai/picks.html#d6fb69c3f8-totals-Over
 LOCATION:Scotiabank Saddledome\, Calgary
 URL:https://ajur21.github.io/edgeline-ai/picks.html#d6fb69c3f8-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261110T203942Z
+LAST-MODIFIED:20261111T135006Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
