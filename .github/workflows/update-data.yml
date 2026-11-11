@@ -78,6 +78,11 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
+      # The NFL week hub (scripts/nfl-week.js): every game of the week projected by the production model, each forecast
+      # locked at kickoff and graded straight up. ESPN and the National Weather Service only: no Odds API credit and no
+      # SportsGameOdds entity (a game the odds run above has priced is read from data/ on disk). Never fails the job.
+      - name: Project the NFL week (ESPN and the National Weather Service, no key)
+        run: node scripts/nfl-week.js || echo "::warning::NFL week refresh failed; keeping the previous data/nfl-week.js"
       # Lines ride along from SportsGameOdds (one entity per game). The NBA's (about 14 a night) come on the afternoon
       # run and manual runs. The NFL's come on the morning run too (--lines nfl): Sunday's 9:30 AM and 1 PM kickoffs are
       # gone by the afternoon run. The NFL call is ESPN-gated inside the script: only on an NFL game day, only for the

@@ -21,7 +21,8 @@
    Run:   node scripts/nfl-week.js             the full run (both daily workflows, after the odds run; never fails the job)
           node scripts/nfl-week.js --track     the hourly run: states, scores and grades only; one request, and none
                                                when no game of the week is in play
-   Flags: --fixture     scripts/fixtures/nfl-week/ instead of the network (tests)
+   Flags: --fixture     scripts/fixtures/nfl-week/ instead of the network (tests; it needs --out, so a fixture run can
+                        never overwrite the real data files)
           --out <dir>   read and write the data files there
           --now <iso>   pretend it is this moment
           --quiet       no table in the log
@@ -41,8 +42,7 @@ const OFF = /POSTPONED|CANCELED|CANCELLED/i;
 const RULES = {
   injuriesShown: 4,     /* listings named per club; the rest are counted */
   voidAfterDays: 10,    /* a logged forecast whose game never finished is set aside (never a win or a loss) */
-  farDays: 8,           /* between seasons: no week is "current" until one starts within this many days */
-  calibration: { minGames: 40, minBucket: 8, edges: [0.5, 0.6, 0.7, 0.8, 1.0001] }
+  farDays: 8            /* between seasons: no week is "current" until one starts within this many days */
 };
 /* what the held-out replay found (CLAUDE.md, "NFL model (2026-11-08)"): the moneyline is calibrated against results
    and carries no weight beyond the closing price; at the books' spread and total the model did worse than a coin
@@ -137,30 +137,33 @@ function settle(log, games, now) {
   });
   return graded;
 }
-/* the record, from the log alone: this week, the season since the log began, and calibration once there is enough */
+/* the record, from the log alone: this week and the season since the log began. Every tally is built in one fixed key
+   order, whatever order the log holds its games in, so the same log always writes the same bytes. avgProb is the mean
+   probability the forecasts gave their winners over the decided games: beside pct it says whether they ran hot or cold */
 function recordOf(log, season, cur) {
-  const all = Object.keys(log.games).map(k => log.games[k]).filter(e => e.forecast && e.season === season);
+  const all = Object.keys(log.games).sort().map(k => log.games[k]).filter(e => e.forecast && e.season === season);
   const tally = function (list) {
     const o = { w: 0, l: 0, p: 0, pending: 0, probSum: 0 };
     list.forEach(function (e) { const c = e.result && e.result.call; if (c === "Win") { o.w++; o.probSum += e.forecast.prob; } else if (c === "Loss") { o.l++; o.probSum += e.forecast.prob; } else if (c === "Push") o.p++; else if (!c) o.pending++; });
     const n = o.w + o.l;
     return { w: o.w, l: o.l, p: o.p, pending: o.pending, pct: n ? r4(o.w / n) : null, avgProb: n ? r4(o.probSum / n) : null };
   };
-  const C = RULES.calibration, decided = all.filter(e => e.result && (e.result.call === "Win" || e.result.call === "Loss"));
-  const buckets = C.edges.slice(0, -1).map(function (from, i) {
-    const to = C.edges[i + 1], inb = decided.filter(e => e.forecast.prob >= from && e.forecast.prob < to), won = inb.filter(e => e.result.call === "Win").length;
-    return { from: from, to: Math.min(1, to), n: inb.length, won: won, rate: inb.length ? r4(won / inb.length) : null, avgProb: inb.length ? r4(inb.reduce((s, e) => s + e.forecast.prob, 0) / inb.length) : null };
-  });
-  return { since: log.since || null, week: cur ? Object.assign({ label: cur.label }, tally(all.filter(e => e.type === cur.type && e.week === cur.week))) : null, season: tally(all),
-    calibration: { ready: decided.length >= C.minGames, graded: decided.length, minGames: C.minGames, minBucket: C.minBucket, buckets: buckets } };
+  /* `since` is when the log's first forecast was made: it qualifies "season to date" only in the season it began in */
+  return { since: log.since && log.since.season === season ? log.since : null, week: cur ? Object.assign({ label: cur.label }, tally(all.filter(e => e.type === cur.type && e.week === cur.week))) : null, season: tally(all) };
 }
 
 /* ---------- one game's projection: the production model, said in parts ---------- */
-/* the clubs' players the model charged for (in the results so far and now out or limited), the ones a fan would know first */
+/* the clubs' players the model charged for (in the results so far and now out or limited), the ones a fan would know first.
+   The quarterback is the one position that counts once a club (model.js SPORT[].single). On nflverse's model a
+   quarterback listed out is not an injury cost at all: the starter the model assumed is priced in the quarterback term,
+   so the list leaves quarterbacks to the quarterback line (2026-11-10: the draft listed both of Baltimore's on injured
+   reserve as charged). On the margin model, the fallback, only the costliest quarterback listing is charged. */
 const POS = ["QB", "WR", "RB", "TE", "OT", "T", "G", "C", "OL", "DE", "EDGE", "DT", "DL", "LB", "CB", "S", "DB", "K", "P", "LS"];
-function injurySide(items, points) {
+const SINGLE = model.SPORT[KEY].single;
+function injurySide(items, points, nflverse) {
   const rank = p => { const i = POS.indexOf(p || ""); return i === -1 ? POS.length : i; };
-  const listed = (items || []).filter(x => x && x.i && x.i.name && x.cost > 0);
+  const costed = (items || []).filter(x => x && x.i && x.i.name && x.cost > 0), one = costed.filter(x => SINGLE.test(x.i.pos || "")).sort((a, b) => b.cost - a.cost || String(a.i.name).localeCompare(String(b.i.name)))[0];
+  const listed = costed.filter(x => !SINGLE.test(x.i.pos || "") || (!nflverse && x === one));
   listed.sort((a, b) => (rank(a.i.pos) === 0 ? 0 : 1) - (rank(b.i.pos) === 0 ? 0 : 1) || (SEVERE.test(a.i.status || "") ? 0 : 1) - (SEVERE.test(b.i.status || "") ? 0 : 1) || b.cost - a.cost || rank(a.i.pos) - rank(b.i.pos) || String(a.i.name).localeCompare(String(b.i.name)));
   return { list: listed.slice(0, RULES.injuriesShown).map(x => ({ name: x.i.name, pos: x.i.pos || null, status: x.i.status || null, played: finite(x.i.played) ? x.i.played : null })), more: Math.max(0, listed.length - RULES.injuriesShown), points: r1(Math.abs(points || 0)) || 0 };
 }
@@ -190,7 +193,7 @@ async function weatherAt(src, g, now) {
     const pt = await src.point(s[0], s[1]), fc = await src.hourly(pt.properties.forecastHourly);
     p = fc.properties.periods.find(x => x.startTime === wind.at) || null;
   } catch (e) { p = null; }
-  const pop = p && p.probabilityOfPrecipitation ? Number(p.probabilityOfPrecipitation.value) : NaN;
+  const pop = p && p.probabilityOfPrecipitation && p.probabilityOfPrecipitation.value != null ? Number(p.probabilityOfPrecipitation.value) : NaN;
   return { mph: wind.mph, dir: wind.dir, temp: p && finite(Number(p.temperature)) && p.temperature !== null ? Number(p.temperature) : null, unit: p && p.temperatureUnit ? p.temperatureUnit : "F", precip: Number.isFinite(pop) ? pop : null, text: (p && p.shortForecast) || null, at: wind.at, source: wind.source };
 }
 /* g: parseWeek's game. Returns { projection, qb, injuries, leanFrom } or null when the model cannot build the game
@@ -228,14 +231,16 @@ async function project(g, ctx, cache, now) {
   return {
     projection: projection,
     qb: r ? { home: qbSide(ix, r, "home", gm.injuries.home), away: qbSide(ix, r, "away", gm.injuries.away), points: r1(r.part.qb) || 0 } : null,
-    injuries: { home: injurySide(items.home, P.injuriesHome), away: injurySide(items.away, P.injuriesAway) },
+    injuries: { home: injurySide(items.home, P.injuriesHome, !!r), away: injurySide(items.away, P.injuriesAway, !!r) },
     /* the price that would make each moneyline side a lean: the board's own rule (valueTo of our probability and the
        side's bar, the model's error on it), so the hub can name it all week, before any price is in */
     leanFrom: { home: { prob: pH, bar: barH, price: board.valueTo(pH, barH) }, away: { prob: pA, bar: barA, price: board.valueTo(pA, barA) } }
   };
 }
 
-/* ---------- the board, read from disk (no request): prices when the odds run has priced the game, and its lean ---------- */
+/* ---------- the board, read from disk (no request): prices when the odds run has priced the game, and its lean ----------
+   Moneylines only: the spread and the total are markets the replay found no signal in (model.hasSignal), so the hub
+   never carries their lines, and nothing here can read as an offer on one. */
 function marketFile(dataDir) { try { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(dataDir, "market.js"), "utf8"), sb); const m = sb.window.MARKET_DATA; return m && Array.isArray(m.rows) && m.sample === false ? m : null; } catch (e) { return null; } }
 function picksLog(dataDir) { try { const l = JSON.parse(fs.readFileSync(path.join(dataDir, "picks-log.json"), "utf8")); return Array.isArray(l) ? l : []; } catch (e) { return []; } }
 const asTeam = t => ({ displayName: t.name, name: t.nick, location: t.location, shortDisplayName: t.short });
@@ -247,10 +252,9 @@ function sameGame(x, g) {
 function boardFor(g, market) {
   const rows = market ? market.rows.filter(x => sameGame(x, g)) : [];
   if (!rows.length) return null;
-  const ml = name => rows.find(x => x.marketKey === "h2h" && x.outcome && x.outcome.name === name), sp = rows.find(x => x.marketKey === "spreads" && x.outcome && x.outcome.name === rows[0].home), tot = rows.find(x => x.marketKey === "totals");
-  const side = x => x && Number.isFinite(Number(x.odds)) ? { odds: Number(x.odds), book: x.book || null } : null;
-  return { eventId: String(rows[0].eventId), pricedAt: rows[0].pricedAt || market.generatedAt || null, home: side(ml(rows[0].home)), away: side(ml(rows[0].away)),
-    spread: sp && sp.outcome.point != null ? Number(sp.outcome.point) : null, total: tot && tot.outcome && tot.outcome.point != null ? Number(tot.outcome.point) : null };
+  const ml = name => rows.find(x => x.marketKey === "h2h" && x.outcome && x.outcome.name === name);
+  const side = x => x && Number.isFinite(Number(x.odds)) && Number(x.odds) !== 0 ? { odds: Number(x.odds), book: x.book || null } : null;
+  return { eventId: String(rows[0].eventId), pricedAt: rows[0].pricedAt || market.generatedAt || null, home: side(ml(rows[0].home)), away: side(ml(rows[0].away)) };
 }
 function postedFor(g, plog) {
   const e = plog.find(x => !x.type && x.status !== "void" && sameGame(x, g));
@@ -266,11 +270,16 @@ function fromForecast(e) {
   return { model: f.model, at: f.at, locked: true, margin: f.margin, total: f.total, marginSd: f.marginSd, home: f.home, away: f.away, winner: f.winner, prob: f.prob, probHome: f.winner === "home" ? f.prob : r4(1 - f.prob), probAway: f.winner === "away" ? f.prob : r4(1 - f.prob), games: null, thin: false, parts: null, ratings: null, epa: null, rest: null };
 }
 function resultOf(e) { const x = e && e.result; return x ? { home: x.home == null ? null : x.home, away: x.away == null ? null : x.away, winner: x.winner || null, call: x.call, gradedAt: x.gradedAt } : null; }
+/* the log as text: its games in one fixed order (by id), whatever order they were added or read in */
+function serialise(log) {
+  const games = {}; Object.keys(log.games).sort().forEach(k => { games[k] = log.games[k]; });
+  return JSON.stringify(Object.assign({}, log, { games: games }), null, 1) + "\n";
+}
 function write(dataDir, data, log) {
   fs.mkdirSync(dataDir, { recursive: true });
   const put = (name, text) => { const f = path.join(dataDir, name); let old = null; try { old = fs.readFileSync(f, "utf8"); } catch (e) { old = null; } if (old === text) return false; fs.writeFileSync(f, text); return true; };
   const a = put("nfl-week.js", GENERATED + "window.NFL_WEEK_DATA = " + JSON.stringify(data, null, 1) + ";\n");
-  const b = put("nfl-week-log.json", JSON.stringify(log, null, 1) + "\n");
+  const b = put("nfl-week-log.json", serialise(log));
   return a || b;
 }
 function header(now, season, cur, wkSb, games) {
@@ -280,7 +289,7 @@ function header(now, season, cur, wkSb, games) {
     generatedAt: now.toISOString(), checkedAt: null, season: season,
     week: { type: cur.type, number: cur.week, label: cur.label, start: cur.start, end: cur.end, from: kicks.length ? iso(kicks[0]) : null, to: kicks.length ? iso(kicks[kicks.length - 1]) : null, games: games.length,
       byes: (((wkSb && wkSb.week) || {}).teamsOnBye || []).map(t => t.abbreviation).filter(Boolean).sort() },
-    model: { name: "EdgeLine NFL game model", basis: "game data only: results, EPA and the starting quarterbacks from nflverse; schedules, rest and the injury report from ESPN", homeEdge: nfl.BETA.home, heldOut: HELD_OUT }
+    model: { name: "EdgeLine NFL game model", basis: "game data only: results, EPA and the starting quarterbacks from nflverse; schedules, rest and the injury report from ESPN", heldOut: HELD_OUT }
   };
 }
 
@@ -332,7 +341,7 @@ async function run(opts) {
       else counts.none++;
       if (b) {
         const p = b.projection, e = log.games[g.id] || (log.games[g.id] = { id: g.id, season: season, type: cur.type, week: cur.week, kickoff: g.start, home: g.home.abbr, away: g.away.abbr, forecast: null, locked: false, result: null });
-        e.kickoff = g.start;
+        e.kickoff = g.start; e.type = cur.type; e.week = cur.week; /* a game moved to another week is counted in the week it is played */
         e.forecast = { at: p.at, winner: p.winner, team: g[p.winner].abbr, prob: p.prob, margin: p.margin, total: p.total, home: p.home, away: p.away, model: p.model, marginSd: p.marginSd };
         if (!log.since) log.since = { at: now.toISOString(), date: etDate(now), season: season, type: cur.type, week: cur.week, label: cur.label };
       }
@@ -342,7 +351,6 @@ async function run(opts) {
       if (old && old.projection) b = { projection: Object.assign({}, old.projection, { locked: true }), qb: old.qb, injuries: old.injuries, weather: old.weather };
       else if (e && e.forecast) b = { projection: fromForecast(e), qb: null, injuries: null, weather: null };
     }
-    graded += 0;
     games.push(Object.assign({ id: g.id, week: cur.week, kickoff: g.start, timeValid: g.timeValid }, stateOf(g), {
       home: publicTeam(g.home), away: publicTeam(g.away), venue: g.venue, neutral: g.neutral, tv: g.tv,
       projection: b ? b.projection : null, qb: b ? b.qb || null : null, injuries: b ? b.injuries || null : null, weather: b ? b.weather || null : null,
@@ -400,6 +408,7 @@ function parseArgs(argv) {
 }
 if (require.main === module) {
   const o = parseArgs(process.argv.slice(2)); o.log = m => console.log(m);
+  if (o.fixture && !o.out) { console.error("NFL week: --fixture needs --out <dir>, so a fixture run never overwrites the real data files"); process.exit(1); }
   run(o).then(function (r) {
     if (r.track) { console.log("NFL week (hourly): " + (r.why || (r.live + " in play, graded " + r.graded)) + ", " + (r.changed ? "data/nfl-week.js rewritten" : "nothing changed") + ", requests: " + r.requests); return; }
     if (!r.week) { console.log("NFL week: no week within " + RULES.farDays + " days; requests: " + r.requests); return; }
@@ -409,4 +418,4 @@ if (require.main === module) {
     if (!o.quiet) console.log(table(r.data));
   }).catch(function (e) { console.error("NFL week failed: " + e.message); process.exit(1); });
 }
-module.exports = { run, track, table, weeksOf, currentWeek, parseWeek, isOver, rollDay, hasStarted, settle, gradeForecast, recordOf, project, weatherAt, injurySide, qbSide, boardFor, postedFor, sameGame, readLog, readData, newLog, fixtureCtx, RULES, HELD_OUT, KEY };
+module.exports = { run, track, table, serialise, weeksOf, currentWeek, parseWeek, isOver, rollDay, hasStarted, settle, gradeForecast, recordOf, project, weatherAt, injurySide, qbSide, boardFor, postedFor, sameGame, readLog, readData, newLog, fixtureCtx, RULES, HELD_OUT, KEY };

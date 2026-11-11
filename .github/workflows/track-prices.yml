@@ -40,16 +40,20 @@ jobs:
         run: node scripts/update-data.js --track
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
+      # The NFL week hub's hourly step: states, scores and grades for the week's games (one ESPN request, and none when
+      # no game is in play); it never touches a projection, spends nothing and never fails the job.
+      - name: Track the NFL week (ESPN, no key)
+        run: node scripts/nfl-week.js --track || echo "::warning::NFL week tracking failed; keeping the previous data/nfl-week.js"
       - name: Rebuild the pick feeds (calendar + RSS)
         run: node scripts/feeds.js
       # What a track run writes: data/picks.js (the card), data/picks-log.json (grades, closes, prices),
       # data/performance.js (only when it graded something or repaired a close), data/props.js (when the SportsGameOdds
       # surplus re-read the lines of games starting within three hours), data/budget.json (the surplus spenders' state),
-      # picks.ics and feed.xml. `git status` also sees a file the run created, which `git diff` would miss.
+      # data/nfl-week.js and data/nfl-week-log.json (the NFL week's states, scores and grades), picks.ics and feed.xml. `git status` also sees a file the run created, which `git diff` would miss.
       - name: Commit data if it changed
         id: commit
         run: |
-          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js data/props.js data/props-log.json data/budget.json picks.ics feed.xml)" ]; then
+          if [ -z "$(git status --porcelain -- data/picks.js data/picks-log.json data/performance.js data/props.js data/props-log.json data/budget.json data/nfl-week.js data/nfl-week-log.json picks.ics feed.xml)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No movement."; exit 0
           fi
           git config user.name "edgeline-data-bot"

@@ -4,7 +4,7 @@
   "description": "Static HTML/CSS/JS site for an AI sports betting picks product. No build step; Playwright is dev-only for the render check.",
   "scripts": {
     "check": "node scripts/screenshot.js",
-    "test": "node scripts/slot-test.js && node scripts/data-test.js && node scripts/feeds-test.js && node scripts/props-test.js && node scripts/behavior.js",
+    "test": "node scripts/slot-test.js && node scripts/data-test.js && node scripts/feeds-test.js && node scripts/props-test.js && node scripts/nfl-week-test.js && node scripts/behavior.js",
     "data": "node scripts/update-data.js",
     "data:fixture": "node scripts/update-data.js --fixture --out /tmp/edgeline-fixture-out",
     "props": "node scripts/update-props.js",
