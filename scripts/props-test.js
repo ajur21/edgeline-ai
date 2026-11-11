@@ -266,7 +266,7 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
   const tmpL = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-log-"));
   {
     const T0 = "2026-11-04T18:00:00Z", KEYS = "league,date,gameId,playerId,teamId,name,teamAbbr,oppAbbr,home,start,stat,side,line,prob,grade,l10,n,linesAt,status,actual,result";
-    const RES_KEYS = "since,asOf,record,byLeague,byGrade,slates,recent", ROW_KEYS = "league,date,gameId,playerId,name,teamAbbr,oppAbbr,home,stat,side,line,prob,grade,rank,actual,result";
+    const RES_KEYS = "since,asOf,record,byLeague,byGrade,slates,recent,check", ROW_KEYS = "league,date,gameId,playerId,name,teamAbbr,oppAbbr,home,stat,side,line,prob,grade,rank,actual,result";
     const rL = await P.run({ fixture: true, out: tmpL, now: T0 });
     const DL = load(tmpL), log = L.readLog(tmpL), ctxL = G.context(DL), board = DL.players.map(p => G.bestSide(p, { now: Date.parse(T0), ctx: ctxL })).filter(Boolean);
     check("log: the run locks one prop per player per game, the board's own side (bestSide of js/props-grade.js on this file), for every player the board ranks and no one else",
@@ -316,6 +316,7 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
     check("grading: no box score is asked for before a game can have ended, and a prop in a game under way waits, locked", asked.length === 0 && live.graded === 0 && live.locked === 5 && live.open === 9 && bytes(tmpL, "props-log.json") === logB, JSON.stringify(live));
     const g1 = await P.track(tmpL, new Date("2026-11-05T05:30:00Z"), { resultsSource: counting });
     const D1 = load(tmpL), R1 = D1.results, row = n => R1.recent.find(r => r.name === n);
+    const LOG1 = L.readLog(tmpL);
     check("grading (NBA): both games graded from their box scores, one request a game: five props, 3 wins and 2 losses", asked.sort().join() === "401909923,401909924" && g1.graded === 5 && g1.voided === 0 && g1.games === 2 && g1.file === true && same3(R1.record, { w: 3, l: 2, push: 0 }), JSON.stringify(g1));
     check("grading (NBA): an under that finished below its line wins, an over that finished below it loses, each with the box score's number",
       row("Nickeil Alexander-Walker").stat === "ast" && row("Nickeil Alexander-Walker").side === "under" && row("Nickeil Alexander-Walker").line === 3.5 && row("Nickeil Alexander-Walker").actual === 2 && row("Nickeil Alexander-Walker").result === "Win"
@@ -323,6 +324,12 @@ const check = (name, ok, extra) => { console.log((ok ? "PASS " : "FAIL ") + name
     check("results (contract): since is the first graded slate's Eastern day, asOf when the results were written, and the record, byLeague and byGrade count the same props",
       Object.keys(R1).join() === RES_KEYS && R1.since === "2026-11-04" && R1.asOf === "2026-11-05T05:30:00.000Z" && Object.keys(R1.record).join() === "w,l,push" && Object.keys(R1.byLeague).join() === "NBA" && same3(sum3(R1.byLeague), R1.record) && same3(sum3(R1.byGrade), R1.record)
       && Object.keys(R1.byGrade).every(t => ["High", "Medium", "Lean", "Coin flip"].indexOf(t) !== -1 && Object.keys(R1.byGrade[t]).join() === "w,l,push") && JSON.stringify(R1.slates) === JSON.stringify([{ league: "NBA", date: "2026-11-04", w: 3, l: 2, push: 0 }]), JSON.stringify([R1.since, R1.asOf, R1.record, R1.byLeague, R1.byGrade, R1.slates]));
+    /* the check (2026-11-11): the record against what the board stated, read by the play and parlay of the day */
+    const dayT = LOG1.days["NBA|2026-11-04"], heldT = LOG1.props.filter(e => e.status === "graded" && e.league === "NBA" && e.date === "2026-11-04" && (e.result === "Win" || e.result === "Loss"));
+    check("results.check: a day's tally carries the sum of the stated chances of its props decided win or loss, and check says how much of the stated edge the record bears out (empty before anything is graded)",
+      dayT && Math.abs(dayT.stated - heldT.reduce((a, e) => a + e.prob, 0)) < 1e-3 && R0.check && R0.check.all.n === 0 && R0.check.all.keep === 0.3 && !R0.check.NBA
+      && R1.check.all.n === dayT.w + dayT.l && R1.check.NBA.n === R1.check.all.n && Math.abs(R1.check.NBA.hit - dayT.w / (dayT.w + dayT.l)) < 1e-3 && Math.abs(R1.check.NBA.stated - dayT.stated / (dayT.w + dayT.l)) < 1e-3
+      && R1.check.NBA.keep >= 0 && R1.check.NBA.keep <= 1 && Math.abs(R1.check.NBA.keep - 0.3) < 0.05, JSON.stringify([dayT, R0.check, R1.check]));
     check("results (contract): each recent row has exactly the contract's fields, the tier is the data's name for the probability as ranked, the rank is the place on that day's board (1 the likeliest), and no row carries a price",
       R1.recent.length === 5 && R1.recent.every(r => Object.keys(r).join() === ROW_KEYS && r.league === "NBA" && r.date === "2026-11-04" && typeof r.gameId === "string" && typeof r.playerId === "string" && D1.players.some(p => String(p.id) === r.playerId && String(p.gameId) === r.gameId && p.teamAbbr === r.teamAbbr && p.oppAbbr === r.oppAbbr && !!p.home === r.home)
         && (r.side === "over" || r.side === "under") && typeof r.line === "number" && r.prob >= 0.5 && r.prob < 1 && r.grade === G.gradeOf(r.prob).tier && typeof r.actual === "number" && /^(Win|Loss|Push|Void)$/.test(r.result))

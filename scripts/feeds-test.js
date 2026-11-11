@@ -27,12 +27,15 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   P.RULES.barZ = 0; P.RULES.onePerGame = false;
   const MC = require("./model.js"); Object.keys(MC.CALIB).forEach(k => { delete MC.CALIB[k]; });
   await P.run({ fixture: true, out: tmp, now: "2026-11-05T15:00:00Z" });
+  /* the play of the day is chosen by its own step, after the props refresh (scripts/of-day.js): the likeliest play of
+     today's games that beats its price. Tonight has one game, so there is no parlay (its legs come from different games) */
+  await P.run({ fixture: true, out: tmp, now: "2026-11-05T20:31:00Z", ofDay: true, slot: "afternoon" });
   const a = F.build({ data: tmp, base: "https://example.test/site" });
-  check("pick night: one event per board pick plus the parlay of the day (five on the fixture), no all-day slate", a.events === 5 && !a.noPlay && !/VALUE=DATE/.test(a.ics));
+  check("pick night: one event per board pick (four on the fixture), no parlay on a one-game night, no all-day slate", a.events === 4 && !a.noPlay && !/VALUE=DATE/.test(a.ics) && !/Parlay/.test(a.ics));
   check("pick night: calendar is well-formed", /^BEGIN:VCALENDAR\r\n/.test(a.ics) && /\r\nEND:VCALENDAR\r\n$/.test(a.ics) && longest(a.ics) <= 75);
-  check("pick night: event carries uid, start, alarm and the play-of-the-day label", /UID:nba-fix-1-h2h-Boston-Celtics@edgeline/.test(a.ics) && /DTSTART:20261106T000000Z/.test(a.ics) && /TRIGGER:-PT30M/.test(a.ics) && /SUMMARY:Boston Celtics ML -145 at Caesars · High/.test(a.ics) && /SUMMARY:Lean of the day: Under 226\.5 -110 at DraftKings/.test(a.ics) && /Our probability 74\.9% from game data/.test(a.ics.replace(/\r\n /g, "")));
+  check("pick night: event carries uid, start, alarm and the play-of-the-day label", /UID:nba-fix-1-h2h-Boston-Celtics@edgeline/.test(a.ics) && /DTSTART:20261106T000000Z/.test(a.ics) && /TRIGGER:-PT30M/.test(a.ics) && /SUMMARY:Lean of the day: Boston Celtics ML -145 at Caesars · High/.test(a.ics) && /SUMMARY:Under 226\.5 -110 at DraftKings/.test(a.ics) && /Our probability 74\.9% from game data/.test(a.ics.replace(/\r\n /g, "")));
   check("pick night: base url is normalised with a trailing slash", /URL:https:\/\/example\.test\/site\/picks\.html#nba-fix-1/.test(a.ics.replace(/\r\n /g, "")));
-  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 6 && /<guid isPermaLink="false">nba-fix-1-h2h-Boston-Celtics<\/guid>/.test(a.rss) && /4 leans tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
+  check("pick night: feed has the pick item and the slate item, newest first", (a.rss.match(/<item>/g) || []).length === 5 && /<title>Lean of the day: Boston Celtics ML -145 at Caesars \(High, /.test(a.rss) && /<guid isPermaLink="false">nba-fix-1-h2h-Boston-Celtics<\/guid>/.test(a.rss) && /4 leans tonight from 11 priced sides/.test(a.rss) && a.rss.indexOf("slate-2026") < a.rss.indexOf("nba-fix-1"));
   check("pick night: feed escapes markup in descriptions", /&lt;ul&gt;&lt;li&gt;/.test(a.rss) && !/<ul>/.test(a.rss));
   check("pick night: feed declares itself", /<atom:link href="https:\/\/example\.test\/site\/feed\.xml" rel="self"/.test(a.rss) && /<lastBuildDate>/.test(a.rss));
 
@@ -47,10 +50,38 @@ const longest = s => s.split("\r\n").reduce((m, l) => Math.max(m, Buffer.byteLen
   const c = F.build({ data: tmp, base: "https://example.test/site" });
   const cflat = c.ics.replace(/\r\n /g, "");
   const nbaIds = ["nba-fix-1-h2h-Boston-Celtics", "nba-fix-1-spreads-Boston-Celtics", "nba-fix-1-totals-Under"];
-  check("in play: the started NBA picks keep their UID and read in play, with no alarm; the soccer pick is still upcoming", c.events === 5 && nbaIds.every(id => vevents(c.ics).some(v => v.indexOf("UID:" + id + "@edgeline") !== -1 && / · in play\r?\n/.test(v) && v.indexOf("VALARM") === -1)) && /SUMMARY:Boston Celtics ML -145 at Caesars · in play/.test(cflat) && vevents(c.ics).filter(v => /UID:epl-fix-1/.test(v)).every(v => v.indexOf("TRIGGER:-PT30M") !== -1 && v.indexOf("in play") === -1), JSON.stringify(uids(c.ics)));
-  check("in play: one event per pick and one item per pick, no duplicates (calendar UIDs and feed guids unique)", unique(uids(c.ics)) && uids(c.ics).length === 5 && unique(guids(c.rss)) && c.items === 6, JSON.stringify(guids(c.rss)));
+  check("in play: the started NBA picks keep their UID and read in play, with no alarm; the soccer pick is still upcoming", c.events === 4 && nbaIds.every(id => vevents(c.ics).some(v => v.indexOf("UID:" + id + "@edgeline") !== -1 && / · in play\r?\n/.test(v) && v.indexOf("VALARM") === -1)) && /SUMMARY:Boston Celtics ML -145 at Caesars · in play/.test(cflat) && vevents(c.ics).filter(v => /UID:epl-fix-1/.test(v)).every(v => v.indexOf("TRIGGER:-PT30M") !== -1 && v.indexOf("in play") === -1), JSON.stringify(uids(c.ics)));
+  check("in play: one event per pick and one item per pick, no duplicates (calendar UIDs and feed guids unique)", unique(uids(c.ics)) && uids(c.ics).length === 4 && unique(guids(c.rss)) && c.items === 5, JSON.stringify(guids(c.rss)));
   check("in play: the feed keeps each pick's item under the same guid and date, marked in play", nbaIds.every(id => / · in play<\/title>/.test(itemOf(c.rss, id))) && itemOf(c.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] === itemOf(a.rss, "nba-fix-1-h2h-Boston-Celtics").match(/<pubDate>[^<]*<\/pubDate>/)[0] && !/ · in play/.test(itemOf(c.rss, "epl-fix-1-h2h-Arsenal")));
   check("in play: the slate still counts the night's four picks (a pick night never reads no play at tip-off)", !c.noPlay && /4 leans tonight from 11 priced sides/.test(c.rss) && !/VALUE=DATE/.test(c.ics));
+
+  /* a night whose play of the day is a player prop and whose parlay is two props (the props fixture: two NBA games on
+     Nov 4, lines read at 18:00 UTC). The prop is not on the card, so the feeds write it from its log entry: ahead with
+     its alarm, then in play, then its grade from the box score, under one UID */
+  {
+    const pn = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-feeds-prop-"));
+    const NAW = "prop-NBA-401909923-4278039-ast-under-3.5", PG = "prop-NBA-401909924-4251-ast-over-3.5";
+    await require("./update-props.js").run({ fixture: true, out: pn, now: "2026-11-04T18:00:00Z" });
+    await P.run({ fixture: true, out: pn, now: "2026-11-04T18:00:00Z" });
+    const before = F.build({ data: pn, base: "https://example.test/" });
+    await P.run({ fixture: true, out: pn, now: "2026-11-04T20:31:00Z", ofDay: true, slot: "afternoon" });
+    const p1 = F.build({ data: pn, base: "https://example.test/", now: "2026-11-04T20:31:00Z" }), f1 = p1.ics.replace(/\r\n /g, "");
+    const ev = (ics, uid) => vevents(ics).find(v => v.indexOf("UID:" + uid + "@edgeline") !== -1) || "";
+    check("prop night: before the lock run there is no play of the day and no parlay in the feeds", !/Lean of the day/.test(before.ics) && !/Parlay/.test(before.ics) && !/prop-NBA/.test(before.rss));
+    check("prop night: a prop as the play of the day gets its own event at tip-off with the alarm, its line, price, book and both chances", p1.events === before.events + 2 && /SUMMARY:Lean of the day: Nickeil Alexander-Walker under 3\.5 assists -110 at DraftKings · Medium/.test(ev(p1.ics, NAW)) && /DTSTART:20261105T000000Z/.test(ev(p1.ics, NAW)) && /TRIGGER:-PT30M/.test(ev(p1.ics, NAW)) && /Our chance 54\.2% \(the model's own 64\.1%\\, cut to the 30% of an edge that graded props have borne out\)/.test(ev(p1.ics, NAW)) && /Stayed under 3\.5 in 5 of the last 8/.test(ev(p1.ics, NAW)) && /URL:https:\/\/example\.test\/index\.html#plays/.test(ev(p1.ics, NAW)) && unique(uids(p1.ics)), ev(p1.ics, NAW).slice(0, 700));
+    check("prop night: the parlay of two props has its event from the first leg's start to the last one's end, each leg named with its price", /SUMMARY:Parlay lean of the day: 2 legs \+273 at BetMGM/.test(ev(p1.ics, "parlay-2026-11-04")) && /DTSTART:20261105T000000Z/.test(ev(p1.ics, "parlay-2026-11-04")) && /DTEND:20261105T033000Z/.test(ev(p1.ics, "parlay-2026-11-04")) && /- NBA: Nickeil Alexander-Walker under 3\.5 assists -110 · Atlanta Hawks @ Washington Wizards/.test(ev(p1.ics, "parlay-2026-11-04")) && /- NBA: Paul George over 3\.5 assists -105/.test(ev(p1.ics, "parlay-2026-11-04")) && ev(p1.ics, PG) === "", ev(p1.ics, "parlay-2026-11-04").slice(0, 700));
+    check("prop night: the feed has an item for the prop play and one for the parlay, dated when they locked", p1.items === before.items + 2 && /<title>Lean of the day: Nickeil Alexander-Walker under 3\.5 assists -110 at DraftKings \(Medium, 54\.2% to hit\)<\/title>/.test(itemOf(p1.rss, NAW)) && /Wed, 04 Nov 2026 20:31:00 GMT/.test(itemOf(p1.rss, NAW)) && /Wed, 04 Nov 2026 20:31:00 GMT/.test(itemOf(p1.rss, "parlay-2026-11-04")) && unique(guids(p1.rss)));
+    const p2 = F.build({ data: pn, base: "https://example.test/", now: "2026-11-05T00:30:00Z" });
+    check("prop night: once the game starts the prop's event and item read in play, with no alarm", / · in play\r?\n/.test(ev(p2.ics, NAW)) && ev(p2.ics, NAW).indexOf("VALARM") === -1 && / · in play<\/title>/.test(itemOf(p2.rss, NAW)));
+    const KEYS5 = ["minutes", "points", "rebounds", "assists", "threePointFieldGoalsMade-threePointFieldGoalsAttempted"];
+    const ath = (id, stats) => ({ athlete: { id: id, displayName: "P" + id }, didNotPlay: false, stats: stats });
+    const box = a => ({ header: { competitions: [{ status: { type: { name: "STATUS_FINAL", completed: true } } }] }, boxscore: { players: [{ statistics: [{ keys: KEYS5, athletes: Array.from({ length: 10 }, (x, i) => ath("9" + i, ["20", "8", "3", "2", "1-3"])).concat(a) }] }] } });
+    const boxes = { "401909923": box([ath("4278039", ["30", "18", "4", "2", "2-5"])]), "401909924": box([ath("4251", ["33", "21", "6", "5", "3-7"])]) };
+    await P.run({ fixture: true, out: pn, now: "2026-11-05T04:00:00Z", track: true, propsSource: { nbaSummary: async id => boxes[id] || null, nflSummary: async () => null, nflGameRoster: async () => null, count: () => 0 } });
+    const p3 = F.build({ data: pn, base: "https://example.test/" }), f3 = p3.ics.replace(/\r\n /g, "");
+    check("prop night: the grade is written into the prop's event under the same UID, with the number the player finished on, and a #graded item replaces the play's item", /SUMMARY:Lean of the day: Nickeil Alexander-Walker under 3\.5 assists -110 at DraftKings · Won \+0\.91u/.test(ev(p3.ics, NAW)) && /Won \+0\.91u: finished on 2 assists\\, graded on the box score\./.test(ev(p3.ics, NAW)) && ev(p3.ics, NAW).indexOf("VALARM") === -1 && /Graded: Nickeil Alexander-Walker under 3\.5 assists -110 · Won \+0\.91u/.test(itemOf(p3.rss, NAW + "#graded")) && itemOf(p3.rss, NAW) === "" && /SUMMARY:Parlay lean of the day: 2 legs \+273 at BetMGM · Won \+2\.73u/.test(f3) && unique(uids(p3.ics)) && unique(guids(p3.rss)), ev(p3.ics, NAW).slice(0, 500));
+    fs.rmSync(pn, { recursive: true, force: true });
+  }
 
   /* later that night, hand-written: picks.js holds one pick ahead, one in play, two graded (one also in the log, which
      carries its close and CLV; one only in picks.js, with its score as { home, away }) and a void one; the log also holds

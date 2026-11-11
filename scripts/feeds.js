@@ -167,6 +167,18 @@ function pickLines(p, base) {
   lines.push("Full breakdown: " + base + "picks.html#" + p.id);
   return lines;
 }
+/* a player prop that is the play of the day (scripts/of-day.js): its chance is the model's, checked against the props
+   graded so far (`keep` is the share of a stated edge the record has borne out), and it is graded on the box score */
+function propLines(e, base) {
+  const res = resultLabel(e);
+  const lines = [e.sport + " · " + e.event + " · " + etLabel(e.commence),
+    "Player prop: " + e.pick + " at " + fmtOdds(e.odds) + " (" + e.book + "). Our chance " + pct(e.prob) + (e.stated != null && e.keep != null ? " (the model's own " + pct(e.stated) + ", cut to the " + Math.round(e.keep * 100) + "% of an edge that graded props have borne out)" : "") +
+      ", the price implies " + pct(implied(e.odds)) + (e.ev != null ? ", EV " + signed(e.ev * 100, 1) + "% per unit" : "") + "." + (e.tier ? " Grade: " + tierLabel(e.tier) + "." : "")];
+  if (res) lines.push(res + (e.actual != null ? ": finished on " + e.actual + " " + String(e.statLabel || "").toLowerCase() + ", graded on the box score." : "."));
+  else (e.reasons || []).slice(0, 4).forEach(r => lines.push("- " + r));
+  lines.push(res ? "Record and every graded " + W.one + ": " + base + "performance.html" : "Every prop, ranked: " + base + "props.html");
+  return lines;
+}
 function gradedLines(e, base) {
   const lines = [e.sport + " · " + e.event + " · " + etLabel(e.commence), e.market + ": " + e.pick + " at " + fmtOdds(e.odds) + " (" + e.book + "). " + resultLabel(e) + "."];
   const final = scoreText(e.score);
@@ -207,6 +219,7 @@ function build(opts) {
   const card = (picks.picks || []).filter(p => p && p.id && p.commence);
   const upcoming = card.filter(p => isPending(p) && Date.parse(p.commence) > now.getTime());
   const logSingles = (Array.isArray(log) ? log : []).filter(e => e && !e.type && e.id && e.commence);
+  const logProps = (Array.isArray(log) ? log : []).filter(e => e && e.type === "prop" && e.id && e.commence);
   const potdId = picks.playOfDay && picks.playOfDay.id;
   const bar = ((market.threshold || 0.01) * 100).toFixed(0);
   /* since 2026-11-05 each side has its own bar (the model's own margin of error on it, never under the floor) */
@@ -226,11 +239,12 @@ function build(opts) {
       title: pickItemTitle(p, potd), lines: pickLines(p, base) });
   });
 
-  /* parlay of the day: its legs are found on the card or in the log, so the event keeps its times once they start */
+  /* parlay of the day: its legs (game leans or player props) carry their start; an older file's are found on the card
+     or in the log, so the event keeps its times once they start */
   const parlay = picks.parlayOfDay;
   if (parlay && parlay.legs && parlay.legs.length) {
-    const byId = {}; logSingles.forEach(e => { byId[e.id] = e; }); card.forEach(p => { byId[p.id] = p; });
-    const starts = parlay.legs.map(l => byId[l.id] && Date.parse(byId[l.id].commence)).filter(Boolean);
+    const byId = {}; logProps.forEach(e => { byId[e.id] = e; }); logSingles.forEach(e => { byId[e.id] = e; }); card.forEach(p => { byId[p.id] = p; });
+    const starts = parlay.legs.map(l => Date.parse(l.commence || (byId[l.id] && byId[l.id].commence))).filter(Boolean);
     const title = W.parlayOfDay + ": " + parlay.legs.length + " legs " + fmtOdds(parlay.odds) + " at " + parlay.book;
     const lines = ["All legs priced at " + parlay.book + ". Fair " + pct(parlay.fairProb) + ", implied " + pct(implied(parlay.odds)) + (parlay.ev != null ? ", EV " + signed(parlay.ev * 100, 1) + "% per unit" : "") + "."]
       .concat(parlay.legs.map(l => "- " + l.sport + ": " + l.pick + " " + fmtOdds(l.price) + " · " + l.event), [resultLabel(parlay) ? "Result: " + resultLabel(parlay) : null, "Every parlay: " + base + "picks.html#parlays"]);
@@ -239,8 +253,21 @@ function build(opts) {
       events.push({ uid: parlay.id + "@edgeline", stamp: updated, start: start, end: Math.max.apply(null, starts) + GAME_HOURS * 36e5, summary: title + (resultLabel(parlay) ? " · " + resultLabel(parlay) : ""),
         description: lines.join("\n"), url: base + "picks.html#parlays", categories: ["Parlay"], alarmMinutes: ALARM_MINUTES });
     }
-    items.push({ guid: parlay.id, date: picks.generatedAt || updated, link: base + "picks.html#parlays", category: "Parlay", title: title, lines: lines });
+    items.push({ guid: parlay.id, date: parlay.lockedAt || picks.generatedAt || updated, link: base + "picks.html#parlays", category: "Parlay", title: title, lines: lines });
   }
+
+  /* a player prop as the play of the day: never on the card, so nothing above wrote it. From its log entry, like a lean:
+     ahead with its alarm, in play, then its grade (the event keeps its UID, the item gives way to a "#graded" one). A
+     void one (the player did not play) is left out. A prop that is only a parlay leg is listed in the parlay, not on its own. */
+  logProps.filter(e => e.potd && e.status !== "void" && Date.parse(e.commence) >= since).forEach(function (e) {
+    const start = Date.parse(e.commence), res = resultLabel(e), ahead = !res && start > now.getTime();
+    const url = base + (res ? "performance.html" : "index.html#plays"), lines = propLines(e, base);
+    events.push({ uid: e.id + "@edgeline", stamp: e.gradedAt || e.lockedAt || updated, start: start, end: start + GAME_HOURS * 36e5,
+      summary: W.ofDay + ": " + pickTitle(e) + (res ? " · " + res : ahead ? (e.tier ? " · " + tierLabel(e.tier) : "") : " · in play"),
+      description: lines.join("\n"), url: url, categories: [e.sport, "Prop"], alarmMinutes: ahead ? ALARM_MINUTES : 0 });
+    if (res) items.push({ guid: e.id + "#graded", date: e.gradedAt || updated, link: url, category: e.sport, title: "Graded: " + e.pick + " " + fmtOdds(e.odds) + " · " + res, lines: lines });
+    else items.push({ guid: e.id, date: e.lockedAt || updated, link: url, category: e.sport, title: W.ofDay + ": " + pickTitle(e) + " (" + (e.tier ? tierLabel(e.tier) + ", " : "") + pct(e.prob) + " to hit)" + (ahead ? "" : " · in play"), lines: lines });
+  });
 
   /* every pick that has started, once each whether it is on the card, in the log or both (the log's entry wins: it
      carries the grade's time, close and CLV). It keeps its UID and guid: in play until graded (the calendar event and

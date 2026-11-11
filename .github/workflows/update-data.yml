@@ -91,6 +91,13 @@ jobs:
         run: node scripts/update-props.js ${{ (github.event.schedule == '0 14 * * *' || inputs.slot == 'morning') && '--lines nfl' || '' }} || echo "::warning::props refresh failed; keeping the previous data/props.js"
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
+      # The play of the day and the parlay of the day (scripts/of-day.js): chosen from every play of today's games, game
+      # leans and player props together, so this runs after both the odds run and the props refresh. It locks on the
+      # afternoon run, when game lines and prop lines are both in; a play that starts before then locks on the morning
+      # run. The hourly workflow never chooses, it grades and republishes. No API call, no credit. Never fails the job:
+      # nothing locks this run and the next one looks again.
+      - name: Choose the play and parlay of the day (leans and props together, no key)
+        run: node scripts/update-data.js --of-day --slot ${{ github.event.schedule == '0 14 * * *' && 'morning' || github.event.schedule == '30 20 * * *' && 'afternoon' || inputs.slot || 'manual' }} || echo "::warning::play of the day step failed; nothing locked this run"
       - name: Refresh team identity (logos and colours from ESPN, no key)
         run: node scripts/update-teams.js || echo "::warning::team refresh failed; keeping the previous data/teams.js"
       - name: Rebuild the pick feeds (calendar + RSS)

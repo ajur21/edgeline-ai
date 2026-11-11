@@ -24,7 +24,14 @@
      was called off). A prop that cannot be settled within a week is dropped.
    - results(log, data): PROPS_DATA.results, the page's contract (CLAUDE.md,
      Props research and lines): { since, asOf, record, byLeague, byGrade,
-     slates, recent }.
+     slates, recent, check }. `check` (2026-11-11) is the record set against
+     what the board stated: each day's tally also carries `stated`, the sum of
+     the stated chances of its props decided win or loss, and js/plays.js
+     checkFrom turns the sums into how much of a stated edge to keep. The play
+     and parlay of the day read it (scripts/of-day.js).
+   - gradeEntries(entries, now, opts): the same box-score grading for props
+     held outside this log (a prop that is the play of the day or a parlay leg
+     lives in data/picks-log.json).
    Each is idempotent: the same file and the same box scores leave the log
    byte for byte as it was.
 
@@ -37,6 +44,7 @@ const fs = require("fs");
 const path = require("path");
 const G = require("../js/props-grade.js");
 const NFL = require("./nfl-props.js");
+const PLAYS = require("../js/plays.js");
 
 const UA = NFL.UA; /* every request names the pipeline honestly: the same string as BOT_UA in scripts/context.js */
 const SITE = "https://site.api.espn.com/apis/site/v2/sports";
@@ -215,20 +223,18 @@ function resultOf(side, line, actual) {
 
 /* ---------- grading ---------- */
 /* opts: { source, nflCache (data/nfl-games.json parsed) }. Returns { graded, voided, dropped, waiting, games, requests, changed } */
-async function grade(log, now, opts) {
-  opts = opts || {};
-  const t = now.getTime(), src = opts.source || liveSource(), before = src.count ? src.count() : 0;
-  const out = { graded: 0, voided: 0, dropped: 0, waiting: 0, games: 0, requests: 0, changed: false };
-  const due = log.props.filter(e => e.status === "pending" && Date.parse(e.start) + (RULES.minHours[e.league] || 3) * 36e5 <= t);
+/* has a prop's game had time to end? No box score is asked for before that */
+function isDue(e, t) { return Date.parse(e.start) + (RULES.minHours[e.league] || 3) * 36e5 <= t; }
+/* the box-score loop every graded prop goes through, whichever log holds it. `due`: props ({ league, gameId, playerId,
+   teamId, stat, start }) whose game has had time to end; settle(e, actual) is called for each one a box score answers
+   (actual null: he did not play, or the game was called off), old(list) for a game nothing settled within
+   RULES.dropAfterDays. out.waiting and out.games are counted here */
+async function settleDue(due, t, src, opts, settle, old, out) {
   const byGame = {}; due.forEach(e => { (byGame[e.league + "|" + e.gameId] = byGame[e.league + "|" + e.gameId] || []).push(e); });
-  const drop = {}, rosters = {};
-  const settle = function (e, actual) {
-    e.actual = actual == null ? null : actual; e.result = resultOf(e.side, e.line, e.actual); e.status = "graded";
-    if (e.result === "Void") out.voided++; else out.graded++;
-  };
+  const rosters = {};
   for (const k of Object.keys(byGame).sort()) {
     const list = byGame[k], league = list[0].league, gameId = list[0].gameId;
-    if (t - Date.parse(list[0].start) > RULES.dropAfterDays * 864e5) { list.forEach(e => { drop[keyOf(e)] = true; }); out.dropped += list.length; continue; }
+    if (t - Date.parse(list[0].start) > RULES.dropAfterDays * 864e5) { old(list); continue; }
     let box = null;
     try { box = league === "NBA" ? nbaBox(await src.nbaSummary(gameId)) : await nflBox(src, gameId, opts.nflCache); } catch (err) { box = null; }
     if (!box || box.final === false) { out.waiting += list.length; continue; }
@@ -247,6 +253,17 @@ async function grade(log, now, opts) {
       settle(e, played ? 0 : null);
     }
   }
+}
+async function grade(log, now, opts) {
+  opts = opts || {};
+  const t = now.getTime(), src = opts.source || liveSource(), before = src.count ? src.count() : 0;
+  const out = { graded: 0, voided: 0, dropped: 0, waiting: 0, games: 0, requests: 0, changed: false };
+  const due = log.props.filter(e => e.status === "pending" && isDue(e, t));
+  const drop = {};
+  await settleDue(due, t, src, opts, function (e, actual) {
+    e.actual = actual == null ? null : actual; e.result = resultOf(e.side, e.line, e.actual); e.status = "graded";
+    if (e.result === "Void") out.voided++; else out.graded++;
+  }, function (list) { list.forEach(e => { drop[keyOf(e)] = true; }); out.dropped += list.length; }, out);
   if (out.dropped) log.props = log.props.filter(e => !drop[keyOf(e)]);
   out.requests = (src.count ? src.count() : 0) - before;
   if (out.graded || out.voided) log.asOf = now.toISOString();
@@ -254,22 +271,40 @@ async function grade(log, now, opts) {
   out.changed = !!(out.graded || out.voided || out.dropped || tidy);
   return out;
 }
-/* each day's tally from its props while they are kept; then the props past the window go and the tally stays */
+/* The same grading for props held somewhere else (scripts/of-day.js: a prop that is the play of the day or a parlay leg).
+   entries: [{ league, gameId, playerId, teamId, stat, side, line, start }], each still to settle. One a box score answers
+   gets `actual` and `result` (Win, Loss, Push, Void) set on it; the caller owns everything else about it.
+   Returns { settled: [entries], old: [entries no box score settled within a week], waiting, games, requests } */
+async function gradeEntries(entries, now, opts) {
+  opts = opts || {};
+  const t = now.getTime(), src = opts.source || liveSource(), before = src.count ? src.count() : 0;
+  const out = { settled: [], old: [], waiting: 0, games: 0, requests: 0 };
+  const due = (entries || []).filter(e => e && isDue(e, t));
+  await settleDue(due, t, src, opts, function (e, actual) {
+    e.actual = actual == null ? null : actual; e.result = resultOf(e.side, e.line, e.actual); out.settled.push(e);
+  }, function (list) { list.forEach(e => out.old.push(e)); }, out);
+  out.requests = (src.count ? src.count() : 0) - before;
+  return out;
+}
+/* each day's tally from its props while they are kept; then the props past the window go and the tally stays.
+   `stated` is the sum of the stated chances of the day's props decided win or loss: with w and l it says how much of
+   what the board states has come true (results().check) */
 function rebuildDays(log, now) {
   const before = JSON.stringify(log.days) + "|" + log.props.length, fresh = {};
   log.props.forEach(function (e) {
     if (e.status !== "graded") return;
-    const d = fresh[dayKey(e)] || (fresh[dayKey(e)] = Object.assign({ league: e.league, date: e.date }, tally(), { void: 0, byGrade: {} }));
+    const d = fresh[dayKey(e)] || (fresh[dayKey(e)] = Object.assign({ league: e.league, date: e.date }, tally(), { void: 0, stated: 0, byGrade: {} }));
     if (e.result === "Void") { d.void++; return; }
     const f = e.result === "Win" ? "w" : e.result === "Loss" ? "l" : "push", g = d.byGrade[e.grade] || (d.byGrade[e.grade] = tally());
     d[f]++; g[f]++;
+    if (f !== "push" && Number.isFinite(Number(e.prob))) d.stated += Number(e.prob);
   });
   /* the tiers in one fixed order, whatever order the props are held in (a run's new props come last, the file's are
      sorted), so the same props always write the same bytes */
   Object.keys(fresh).forEach(function (k) {
     const d = fresh[k], by = {};
     TIERS.concat(Object.keys(d.byGrade).sort()).forEach(tier => { if (d.byGrade[tier] && !by[tier]) by[tier] = d.byGrade[tier]; });
-    d.byGrade = by; log.days[k] = d;
+    d.byGrade = by; d.stated = round(d.stated, 4); log.days[k] = d;
   });
   if (now) {
     const cut = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(now.getTime() - RULES.keepDays * 864e5));
@@ -303,9 +338,20 @@ function results(log, data) {
     .sort((a, b) => lgOrder(a.league) - lgOrder(b.league) || (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || ranks[keyOf(a)] - ranks[keyOf(b)])
     .map(e => ({ league: e.league, date: e.date, gameId: e.gameId, playerId: e.playerId, name: e.name, teamAbbr: e.teamAbbr, oppAbbr: e.oppAbbr, home: e.home, stat: e.stat, side: e.side, line: e.line, prob: e.prob, grade: e.grade, rank: ranks[keyOf(e)] || null, actual: e.actual, result: e.result }));
   const since = slates.length ? slates.map(s => s.date).sort()[0] : null;
-  return { since: since, asOf: log.asOf || null, record: record, byLeague: byLeague, byGrade: byGrade, slates: slates, recent: recent };
+  return { since: since, asOf: log.asOf || null, record: record, byLeague: byLeague, byGrade: byGrade, slates: slates, recent: recent, check: checkOf(log) };
+}
+/* the record set against what the board stated, per league and overall (js/plays.js checkFrom): { all: { n, hit, stated,
+   keep }, NBA: {...}, NFL: {...} }. Only days whose tally carries `stated` count, so both sides of the sum are the same props */
+function checkOf(log) {
+  const sums = {};
+  Object.keys(log.days).forEach(function (k) {
+    const d = log.days[k]; if (typeof d.stated !== "number" || !(d.w + d.l > 0)) return;
+    const s = sums[d.league] || (sums[d.league] = { n: 0, w: 0, stated: 0 });
+    s.n += d.w + d.l; s.w += d.w; s.stated += d.stated;
+  });
+  return PLAYS.checkFrom(sums);
 }
 /* how many props are locked and waiting for their game */
 function pending(log, now) { const t = now.getTime(); return { open: log.props.filter(e => e.status === "pending" && Date.parse(e.start) > t).length, locked: log.props.filter(e => e.status === "pending" && Date.parse(e.start) <= t).length }; }
 
-module.exports = { RULES, TIERS, NOTE, emptyLog, readLog, writeLog, serialise, lock, grade, results, rebuildDays, pending, resultOf, nbaBox, nbaActual, nflBox, playedFromRoster, liveSource, fixtureSource, keyOf, linesReadAt };
+module.exports = { RULES, TIERS, NOTE, emptyLog, readLog, writeLog, serialise, lock, grade, results, rebuildDays, pending, resultOf, nbaBox, nbaActual, nflBox, playedFromRoster, liveSource, fixtureSource, keyOf, linesReadAt, gradeEntries, checkOf, isDue };

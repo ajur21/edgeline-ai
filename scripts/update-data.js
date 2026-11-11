@@ -474,38 +474,28 @@ async function gradeStarted(log, now, deps) {
   return { graded: graded, scoresRequests: scoresRequests };
 }
 
-/* ---------- play of the day: one per Eastern day, the highest-EV pick on the board when first chosen ---------- */
-function choosePlayOfDay(log, board, today) {
-  let cur = log.find(e => !e.type && e.potd === today);
-  if (!cur && board.length) { cur = board.slice().sort((a, b) => (b.ev - a.ev) || (b.edge - a.edge))[0]; cur.potd = today; }
-  return cur || null;
+/* ---------- the play of the day and the parlay of the day ----------
+   Chosen in scripts/of-day.js from every play of the day, game leans and player props together (owner, 2026-11-11), by a
+   step of its own after the props refresh: `node scripts/update-data.js --of-day` (ofDayRun below). The odds run and the
+   hourly run only grade and publish what is locked. Until 2026-11-11 the odds run chose both here, from the leans
+   alone, by expected value. */
+const OFDAY = require("./of-day.js");
+const OFDAY_DEPS = { etDate: d => etDate(d), boardOf: (log, now) => boardOf(log, now), publicPick: (e, at) => publicPick(e, at), startLabel: (d, now) => startLabel(d, now), profitPerUnit: o => profitPerUnit(o) };
+/* box scores for the props the log holds (a prop that is the play of the day or a parlay leg): ESPN, free, no key */
+async function gradeHeldProps(log, now, opts, dataDir) {
+  try { return await OFDAY.gradeProps(log, now, OFDAY_DEPS, { source: opts.propsSource || (opts.fixture ? require("./props-log.js").fixtureSource() : undefined), nflCache: OFDAY.readJson(path.join(dataDir, "nfl-games.json")) }); }
+  catch (err) { console.warn("prop plays not graded: " + err.message); return { graded: 0, voided: 0, waiting: 0, requests: 0 }; }
 }
-
-/* ---------- parlay of the day: 2-3 legs from different games, priced at one book, max EV ---------- */
-function bestParlay(board) {
-  const legsAll = board.filter(e => e.prices && Object.keys(e.prices).length);
-  const books = {}; legsAll.forEach(e => Object.keys(e.prices).forEach(b => { books[b] = true; }));
-  let best = null;
-  Object.keys(books).forEach(function (book) {
-    const legs = legsAll.filter(e => e.prices[book] != null && implied(e.prices[book]) <= e.modelProb); /* each leg must still be +EV at this book */
-    const n = legs.length;
-    function consider(combo) {
-      const events = new Set(combo.map(e => e.eventId)); if (events.size !== combo.length) return;
-      const dec = combo.reduce((d, e) => d * decimal(e.prices[book]), 1), fair = combo.reduce((f, e) => f * e.modelProb, 1), ev = fair * dec - 1;
-      if (ev > 0 && (!best || ev > best.ev)) best = { book: book, legs: combo.map(e => e.id), legPrices: combo.map(e => e.prices[book]), decimal: round(dec, 4), odds: americanFromDecimal(dec), fairProb: round(fair, 4), ev: round(ev, 4) };
-    }
-    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { consider([legs[i], legs[j]]); for (let k = j + 1; k < n; k++) consider([legs[i], legs[j], legs[k]]); }
-  });
-  return best;
-}
-function ensureParlayOfDay(log, board, today, now) {
-  let cur = log.find(e => e.type === "parlay" && e.date === today);
-  if (cur) return cur;
-  const b = bestParlay(board);
-  if (!b) return null;
-  cur = Object.assign({ type: "parlay", id: "parlay-" + today, date: today, status: "pending", units: 0, loggedAt: now.toISOString() }, b);
-  log.push(cur);
-  return cur;
+/* the choosing step. Reads the log and data/props.js as the props refresh just left it, locks what is due
+   (scripts/of-day.js choose), and rewrites only the day's three fields of picks.js; every other field stays as the run
+   before it wrote it. */
+async function ofDayRun(opts, now, dataDir, logPath, log) {
+  const r = OFDAY.choose(log, OFDAY.readProps(dataDir), now, OFDAY_DEPS, { slot: opts.slot });
+  const pub = OFDAY.publish(log, now, OFDAY_DEPS), prev = OFDAY.readPicks(dataDir);
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
+  if (prev) writePicks(dataDir, Object.assign({}, prev, { playOfDay: pub.playOfDay, parlayOfDay: pub.parlayOfDay, ofDay: pub.ofDay }));
+  return Object.assign({ ofDayRun: true, slot: opts.slot || "manual", file: !!prev }, r);
 }
 /* a parlay settles once every leg has: any loss loses it, pushes drop out, the rest must all win. Returns how many settled. */
 function gradeParlays(log, now) {
@@ -569,7 +559,10 @@ function summarize(log, now) {
     d.units = round(d.units + e.units, 2); d[e.result === "Win" ? "wins" : e.result === "Loss" ? "losses" : "pushes"]++;
   });
   const byDate = Object.values(byDateMap).sort((a, b) => a.date < b.date ? -1 : 1);
-  const potd = record(singles.filter(e => e.potd && e.status === "graded" && e.date >= since));
+  /* a play of the day can be a prop (type "prop", 2026-11-11): it counts here and in no lean record above */
+  const potdAll = log.filter(e => OFDAY.isPlay(e) && e.potd && e.status === "graded" && e.potd >= since).sort((a, b) => (a.potd < b.potd ? -1 : a.potd > b.potd ? 1 : 0));
+  const potd = Object.assign(record(potdAll), { props: potdAll.filter(e => e.type === "prop").length,
+    recent: potdAll.slice().reverse().slice(0, 10).map(e => ({ date: e.potd, kind: e.type === "prop" ? "prop" : "lean", sport: e.sport, event: e.event, pick: e.pick, odds: e.odds, result: e.result, units: e.units })) });
   const parlays = record(log.filter(e => e.type === "parlay" && e.status === "graded" && e.date >= since));
   /* the record by grade: game-data picks apart from the earlier price-edge picks, each with its ROI and first date */
   const byBasis = {};
@@ -690,6 +683,7 @@ async function run(opts) {
   const logPath = path.join(dataDir, "picks-log.json");
   const log = fs.existsSync(logPath) ? JSON.parse(fs.readFileSync(logPath, "utf8")) : [];
   const usage = { remaining: null, used: null, last: null };
+  if (opts.ofDay) return ofDayRun(opts, now, dataDir, logPath, log);
   if (opts.track) return trackRun(opts, now, dataDir, logPath, log);
   const source = opts.fixture ? fixtureSource(opts.oddsFixture) : liveSource(opts.key, usage);
   if (opts.fixture && opts.remaining != null) usage.remaining = opts.remaining; /* offline tests of the surplus spender: credits as if read from the API */
@@ -702,6 +696,7 @@ async function run(opts) {
      endpoint only for picks past the floor that neither could settle), then the parlays */
   const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: sportKey => source.scores(sportKey) });
   const scoresRequests = g.scoresRequests;
+  const heldProps = await gradeHeldProps(log, now, opts, dataDir);
   gradeParlays(log, now);
   /* closes read after the game before 2026-11-08 get a pre-game one (performance.js is rewritten below, as every full run does) */
   const closesRepaired = await repairCloses(log, now, { ctx: ctxSource });
@@ -802,22 +797,19 @@ async function run(opts) {
   if (spend.cycle) { surplus.addSpent(spend.cycle, now.getTime(), spend.spent); spend.cycle.last = { at: now.toISOString(), spare: spend.spare, need: spend.need, cap: spend.cap, spent: spend.spent }; surplus.writeState(dataDir, spend.state); }
   selectPicks(log, candidates).forEach(p => fresh.push(p));
 
-  /* 3. today's board = every pending pick whose event is still ahead; then the day's play and parlay. Everything chosen
-     or refreshed below (context, prices, the play and parlay of the day) works on the board alone; picks.js also keeps
-     the picks that started in the last RULES.cardHours (cardEntries), as they were left when they left the board. */
+  /* 3. today's board = every pending pick whose event is still ahead. Everything refreshed below (context, prices) works
+     on the board alone; picks.js also keeps the picks that started in the last RULES.cardHours (cardEntries), as they
+     were left when they left the board. The play and parlay of the day are not chosen here (see ofDayRun): this run
+     publishes what is already locked. */
   const boardEntries = boardOf(log, now);
-  const today = etDate(now);
   /* context (injuries, weather, rest, records) and the written breakdown for every pick on the board */
   let ctxRequests = 0;
   try { ctxRequests = await context.enrich(boardEntries, { fixture: opts.fixture, rules: RULES, now: now, source: ctxSource }); } catch (err) { console.warn("context step failed: " + err.message); }
   /* second price source: every book's price on each pick's line and the market's drift since the open, then the breakdowns again */
   let sgoStats = { changed: 0, entities: 0 };
   if (sgoOk() && boardEntries.length) { try { sgoStats = await sgo.refresh(boardEntries.filter(e => !SGO_SURPLUS_ONLY[e.sportKey]), { fixture: opts.fixture, now: now, source: sgoSrc }); boardEntries.forEach(e => { e.breakdown = context.buildBreakdown(e, e.context, RULES); }); } catch (err) { console.warn("SportsGameOdds step failed: " + err.message); } }
-  const potdEntry = choosePlayOfDay(log, boardEntries, today);
-  const parlayEntry = ensureParlayOfDay(log, boardEntries, today, now);
   const card = cardEntries(log, now).map(e => publicPick(e, now));
-  const playOfDay = potdEntry ? publicPick(potdEntry, now) : null;
-  const parlayOfDay = publicParlay(parlayEntry, log, now);
+  const day = OFDAY.publish(log, now, OFDAY_DEPS), playOfDay = day.playOfDay, parlayOfDay = day.parlayOfDay;
 
   /* the market board: every priced market, flagged pick / watch / none, best edge first */
   const pendingByKey = {}; log.filter(e => !e.type && e.status === "pending").forEach(e => { pendingByKey[e.key] = e.id; });
@@ -835,7 +827,7 @@ async function run(opts) {
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
   if (marketRows.length || !fs.existsSync(path.join(dataDir, "market.js"))) fs.writeFileSync(path.join(dataDir, "market.js"), "/* Generated by scripts/update-data.js. Do not edit; the next run overwrites it. */\nwindow.MARKET_DATA = " + JSON.stringify(marketData, null, 1) + ";\n");
-  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, picks: card };
+  const picksData = { sample: false, source: "The Odds API", generatedAt: now.toISOString(), playOfDay: playOfDay, parlayOfDay: parlayOfDay, ofDay: day.ofDay, picks: card };
   writePicks(dataDir, picksData);
   const perf = summarize(log, now);
   writePerformance(dataDir, perf);
@@ -957,14 +949,6 @@ function publicAvailability(a) {
   return { changed: !!a.changed, note: a.note || null, swing: a.swing != null ? a.swing : null, changes: a.changes || [], checkedAt: a.checkedAt || null,
     posted: { read: a.posted.read || null, report: a.posted.report || null, players: knew("home").concat(knew("away")) } };
 }
-/* the parlay of the day as the site sees it; `units` is its profit once graded */
-function publicParlay(p, log, now) {
-  if (!p) return null;
-  const byId = {}; log.forEach(e => { byId[e.id] = e; });
-  return { id: p.id, date: p.date, book: p.book, odds: p.odds, decimal: p.decimal, fairProb: p.fairProb, ev: p.ev, status: p.status, result: p.result || null, units: p.status === "graded" && typeof p.units === "number" ? p.units : null,
-    legs: p.legs.map((id, i) => { const l = byId[id]; return { id: id, pick: l.pick, event: l.event, sport: l.sport, price: p.legPrices[i], started: Date.parse(l.commence) <= now.getTime(), result: l.result || null }; }) };
-}
-
 /* ---------- track mode: the hourly run between odds runs (no Odds API requests, ever) ----------
    1. grades every started game the free sources report finished (gradeStarted with no Odds API scores), then the
       parlays, and rewrites performance.js only when that settled something, so results land within the hour;
@@ -981,6 +965,7 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   const sgoBudget = sgoSrc.enabled ? await sgoSrc.usage() : null; /* free; the surplus spender reads the cycle from it */
   const sgoOk = () => sgoSrc.enabled && (!sgoBudget || sgoBudget.max - sgoBudget.used - sgoSrc.stats().entities > sgoReserveNow(now, sgoBudget));
   const g = await gradeStarted(log, now, { ctx: ctxSource, sgoSrc: sgoSrc, sgoOk: sgoOk, scores: null, track: true });
+  const heldProps = await gradeHeldProps(log, now, opts, dataDir); /* a prop that is the play of the day or a parlay leg */
   const parlaysGraded = gradeParlays(log, now);
   const closesRepaired = await repairCloses(log, now, { ctx: ctxSource }); /* the same self-heal as a full run's */
   const t = await context.trackOdds(boardEntries, { fixture: opts.fixture, now: now, source: ctxSource });
@@ -998,9 +983,8 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   let propsRecord = null;
   try { propsRecord = await require("./update-props.js").track(dataDir, now, { fixture: opts.fixture }); } catch (err) { console.warn("props grading failed: " + err.message); }
   boardEntries.forEach(function (e) { e.breakdown = context.buildBreakdown(e, e.context, RULES); });
-  const today = etDate(now);
-  const potdEntry = log.find(e => !e.type && e.potd === today) || null;
-  const parlayEntry = log.find(e => e.type === "parlay" && e.date === today) || null;
+  /* the day's play and parlay as they are locked: this run never chooses (scripts/of-day.js) */
+  const day = OFDAY.publish(log, now, OFDAY_DEPS);
   /* keep the odds run's timestamp as generatedAt; trackedAt says when the book numbers were last refreshed */
   let generatedAt = now.toISOString();
   const picksPath = path.join(dataDir, "picks.js");
@@ -1008,10 +992,10 @@ async function trackRun(opts, now, dataDir, logPath, log) {
   const card = cardEntries(log, now).map(e => publicPick(e, now));
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1) + "\n");
-  writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: potdEntry ? publicPick(potdEntry, now) : null, parlayOfDay: publicParlay(parlayEntry, log, now), picks: card });
+  writePicks(dataDir, { sample: false, source: "The Odds API", generatedAt: generatedAt, trackedAt: now.toISOString(), playOfDay: day.playOfDay, parlayOfDay: day.parlayOfDay, ofDay: day.ofDay, picks: card });
   /* a run that graded nothing leaves performance.js as the last run wrote it */
-  if (g.graded || parlaysGraded || closesRepaired) writePerformance(dataDir, summarize(log, now));
-  return { track: true, closesRepaired: closesRepaired, sgoSurplus: sgoSpend.public, props: propsRecord, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
+  if (g.graded || parlaysGraded || closesRepaired || heldProps.graded || heldProps.voided) writePerformance(dataDir, summarize(log, now));
+  return { track: true, propPlaysGraded: heldProps.graded + heldProps.voided, closesRepaired: closesRepaired, sgoSurplus: sgoSpend.public, props: propsRecord, board: boardEntries.length, card: card.length, graded: g.graded, parlaysGraded: parlaysGraded, scoresRequests: g.scoresRequests, moved: t.changed, sgoMoved: sgoStats.changed, sgoEntities: sgoSrc.stats().entities, contextRequests: t.requests, availabilityFlagged: availabilityFlagged };
 }
 
 function liveSource(key, usage) {
@@ -1041,6 +1025,7 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--fixture") o.fixture = true;
     else if (argv[i] === "--track") o.track = true;
+    else if (argv[i] === "--of-day") o.ofDay = true; /* choose and lock the play and parlay of the day, nothing else (ofDayRun) */
     else if (argv[i] === "--out") o.out = argv[++i];
     else if (argv[i] === "--now") o.now = argv[++i];
     else if (argv[i] === "--slot") o.slot = argv[++i]; /* morning | afternoon | manual (the workflow passes it; see SPORTS) */
@@ -1184,12 +1169,13 @@ function planLine(r) {
 
 if (require.main === module) {
   run(parseArgs(process.argv.slice(2))).then(function (r) {
+    if (r.ofDayRun) { console.log("Play and parlay of the day (" + r.slot + " run, " + r.date + (r.final ? ", the locking run" : ", not the locking run") + "): " + r.candidates + " plays beat their price today (" + r.leans + " game leans, " + r.props + " props); play: " + (r.play || "none locked") + (r.playLocked ? " (locked now)" : "") + "; parlay legs: " + (r.parlay || 0) + (r.parlayLocked ? " (locked now)" : "") + (r.file ? "" : "; no picks.js to update")); return; }
     if (r.track) { console.log("Track: " + r.board + " on the board, " + r.card + " on the card, graded " + r.graded + " (parlays " + r.parlaysGraded + ")" + (r.graded || r.parlaysGraded ? ", performance.js rewritten" : "") + ", DraftKings moved on " + r.moved + ", market moved on " + r.sgoMoved + " (" + r.sgoEntities + " SportsGameOdds entities), availability changed on " + r.availabilityFlagged + " NBA pick(s), ESPN requests: " + r.contextRequests + sgoSurplusText(r.sgoSurplus) + (r.closesRepaired ? ", closes repaired: " + r.closesRepaired : "") + (r.props && !r.props.skipped ? " | props: " + require("./update-props.js").recordText(r.props) : "")); return; }
     console.log(planLine(r));
     if (r.waited && r.waited.length) console.log("NBA games held until who plays is in (the official report): " + r.waited.join("; "));
     console.log("Picks added: " + r.added + ", on the board: " + r.board + ", on the card: " + r.card + ", graded this run: " + r.settled + ", market board: " + r.market + " markets in " + r.marketGames + " games, graded in window: " + r.graded + ", play of the day: " + (r.playOfDay || "none") + ", parlay legs: " + (r.parlay || 0) + ", context requests: " + r.contextRequests + ", Odds API score calls: " + r.scoresRequests + (r.remaining != null ? ", API requests remaining: " + r.remaining : "") + (r.sgo.enabled ? ", SportsGameOdds entities this run: " + r.sgo.entities + (r.sgo.monthUsed != null ? " (month: " + r.sgo.monthUsed + ")" : "") : ", SportsGameOdds: no key"));
   }).catch(function (e) { console.error(e.message); process.exit(1); });
 }
-module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, sgoPreClose, closeFor, applyClose, closeNeedsRepair, repairCloses, grade, isFinal, gradeStarted, summarize, profitPerUnit, bestParlay, choosePlayOfDay, gradeParlays, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
+module.exports = { run, availabilityUpdate, publicAvailability, implied, devig, decimal, americanFromDecimal, analyzeEvent, selectPicks, barOf, nowOf, standingOf, isWatch, priceOutcomes, priceWithModel, confidence, shiftedAnchor, closingLine, clvOf, sgoPreClose, closeFor, applyClose, closeNeedsRepair, repairCloses, grade, isFinal, gradeStarted, summarize, profitPerUnit, gradeParlays, ofDayRun, gradeHeldProps, OFDAY_DEPS, valueTo, boardOf, cardEntries, publicPick, RULES, SPORTS, LINE_VALUE, slotAllows, espnGames, afternoonsLeft, fetchDecision, oddsParams, oddsCost, planLine, carriedRows };
 module.exports.runDayAllows = runDayAllows; /* college football: Friday runs only */
 Object.assign(module.exports, { protectedOddsNeed, oddsSurplus, sgoSurplus, sgoCostOf, surplusText, sgoSurplusText }); /* the surplus spenders (2026-11-08) */

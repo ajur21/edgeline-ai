@@ -88,6 +88,11 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   /* the log entries above carry the market label in `market`, as the pipeline writes them; grading reads `marketKey` */
 
   const r1 = await P.run({ fixture: true, out: tmp, now: NOW });
+  /* the day's play and parlay are a step of their own since 2026-11-11 (scripts/of-day.js, run after the props refresh):
+     the odds run above chooses neither. A morning step leaves a 7 PM game unlocked; the afternoon step locks */
+  const readPicks = dir => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(dir, "picks.js"), "utf8"), sb); return sb.window.PICKS_DATA; };
+  const od0 = await P.run({ fixture: true, out: tmp, now: NOW, ofDay: true, slot: "morning" }), pd0 = readPicks(tmp);
+  const od1 = await P.run({ fixture: true, out: tmp, now: NOW, ofDay: true, slot: "afternoon" });
   const log = JSON.parse(fs.readFileSync(path.join(tmp, "picks-log.json"), "utf8"));
   const byId = {}; log.forEach(e => { byId[e.id] = e; });
   check("run: graded ML as a loss", byId["old-ml"].status === "graded" && byId["old-ml"].result === "Loss" && byId["old-ml"].units === -1);
@@ -134,7 +139,7 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   const PD = sandbox.window.PICKS_DATA, PF = sandbox.window.PERF_DATA;
   check("picks.js: sample=false, 4 picks on the board with start labels, every one on the game grade with the model's reasons and the market reference", PD.sample === false && PD.picks.length === 4 && /ET$/.test(PD.picks[0].start) && PD.picks.every(p => p.basis === "game" && p.model && p.model.reasons && typeof p.marketFair === "number"), PD.picks.map(p => p.start).join(", "));
   check("picks.js: pick fields match the site shape, with the pick's state through the game (status, started, result, units, score, loggedAt, valueTo)", PD.picks.every(p => ["id", "sport", "league", "event", "start", "market", "pick", "odds", "modelProb", "confidence", "rationale", "factors", "book", "basis", "model", "marketFair", "status", "started", "result", "units", "score", "loggedAt", "valueTo"].every(k => k in p)));
-  check("picks.js: an upcoming pick reads pending, not started, no result, units or score yet, posted at its run, with the worst price that still clears the bar", PD.picks.every(p => p.status === "pending" && p.started === false && p.result === null && p.units === null && p.score === null && p.loggedAt === "2026-11-05T15:00:00.000Z" && p.valueTo === P.valueTo(p.modelProb) && P.implied(p.odds) <= P.implied(p.valueTo) + 1e-9) && PD.picks.find(p => p.pick === "Boston Celtics ML").valueTo === -255 && PD.parlayOfDay.units === null, JSON.stringify(PD.picks.map(p => [p.pick, p.odds, p.valueTo])));
+  check("picks.js: an upcoming pick reads pending, not started, no result, units or score yet, posted at its run, with the worst price that still clears the bar", PD.picks.every(p => p.status === "pending" && p.started === false && p.result === null && p.units === null && p.score === null && p.loggedAt === "2026-11-05T15:00:00.000Z" && p.valueTo === P.valueTo(p.modelProb) && P.implied(p.odds) <= P.implied(p.valueTo) + 1e-9) && PD.picks.find(p => p.pick === "Boston Celtics ML").valueTo === -255 && PD.playOfDay.units === null && PD.parlayOfDay === null, JSON.stringify(PD.picks.map(p => [p.pick, p.odds, p.valueTo])));
   check("performance.js: 1-1-1 record, -0.09u, roi -3.0%", PF.record.wins === 1 && PF.record.losses === 1 && PF.record.pushes === 1 && near(PF.units, -0.09, 0.001) && near(PF.roi, -3.0, 0.01), JSON.stringify([PF.record, PF.units, PF.roi]));
   check("performance.js: one daily point, bySport NBA 1-1, 3 recent, void excluded", PF.daily.length === 1 && PF.bySport[0].record === "1-1" && PF.recent.length === 3);
   check("performance.js: clv summary: 2 of 3 with price CLV, both negative, one line moved toward us, all three closes DraftKings' from ESPN", PF.clv && PF.clv.n === 2 && PF.clv.graded === 3 && near(PF.clv.avg, (mlClv + totClv) / 2 * 100, 0.02) && PF.clv.beat === 0 && PF.clv.beatPct === 0 && PF.clv.lineToward === 1 && PF.clv.lineAway === 0 && PF.clv.sgoCloses === 0 && PF.clv.espnCloses === 3, JSON.stringify(PF.clv));
@@ -175,16 +180,19 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("market.js: the Bucks side the books like (+160, market 41%) is 25% to the model: priced against you, not a pick", (r => r && near(r.modelProb, 0.251, 0.001) && near(r.marketFair, 0.4115, 0.001) && r.edge < 0)(MK.rows.find(r => r.pick === "Milwaukee Bucks ML")));
 
   /* play of the day and parlay of the day on the fixture board */
-  check("potd: Under 226.5 (the highest EV on the model's numbers) is play of the day and is flagged in the log", PD.playOfDay && PD.playOfDay.pick === "Under 226.5" && log.find(e => e.potd === "2026-11-05").pick === "Under 226.5", PD.playOfDay && PD.playOfDay.pick);
+  check("potd: the odds run chooses nothing; a morning step leaves a 7 PM game unlocked and says the day is still open; the afternoon step locks the likeliest play of today's games (Boston Celtics ML at 74.9%, not the Under at 69.6% for all its higher expected value) and flags it in the log",
+    r1.playOfDay == null && od0.final === false && od0.playLocked === false && od0.candidates === 3 && od0.leans === 3 && pd0.playOfDay === null && pd0.ofDay.closed === false && pd0.ofDay.playLocked === false && pd0.ofDay.checkedAt === "2026-11-05T15:00:00.000Z" && pd0.ofDay.lockAt === "2026-11-05T20:30:00.000Z" && pd0.picks.length === 4 &&
+    od1.final === true && od1.playLocked === true && od1.play === "Boston Celtics ML" && PD.playOfDay && PD.playOfDay.pick === "Boston Celtics ML" && PD.playOfDay.kind === "lean" && PD.playOfDay.lockedAt === "2026-11-05T15:00:00.000Z" && PD.ofDay.playLocked === true && PD.ofDay.closed === true && log.filter(e => e.potd === "2026-11-05").map(e => e.pick).join() === "Boston Celtics ML", JSON.stringify([od0, od1, PD.playOfDay && PD.playOfDay.pick, PD.ofDay]));
   check("potd: board picks carry prices per book and ev", PD.picks.every(p => p.prices && Object.keys(p.prices).length >= 3 && typeof p.ev === "number"));
-  check("parlay: two legs from different games at one book where both are +EV on the model (Under 226.5 and Arsenal ML at FanDuel)", PD.parlayOfDay && PD.parlayOfDay.legs.length === 2 && PD.parlayOfDay.book === "FanDuel" && PD.parlayOfDay.legs.map(l => l.pick).sort().join() === "Arsenal ML,Under 226.5", PD.parlayOfDay && JSON.stringify([PD.parlayOfDay.book, PD.parlayOfDay.legs.map(l => l.pick)]));
+  check("parlay: none when today's plays are all in one game (tomorrow's Arsenal lean is not a leg of today's parlay), and the day is marked closed all the same", PD.parlayOfDay === null && PD.ofDay.parlayLocked === false && od1.parlay === 0 && log.filter(e => e.type === "parlay" && e.date === "2026-11-05").length === 0 && log.filter(e => e.type === "day" && e.date === "2026-11-05" && e.closedAt === "2026-11-05T15:00:00.000Z" && e.candidates === 3).length === 1, JSON.stringify(PD.parlayOfDay));
 
   /* parlay maths and grading on synthetic legs */
   const mk = (id, fair, prices, ev) => ({ id: id, eventId: "ev-" + id, modelProb: fair, prices: prices, status: "pending" });
   const A = mk("A", 0.55, { DraftKings: 100, FanDuel: -105 }), B = mk("B", 0.6, { DraftKings: -110, FanDuel: -120 }), C = mk("C", 0.5, { DraftKings: -130 });
-  const par = P.bestParlay([A, B, C]);
-  check("parlay: picks DraftKings A+B (C is -EV at DK), +282, EV +26%", par && par.book === "DraftKings" && par.legs.join() === "A,B" && par.odds === 282 && near(par.ev, 0.26, 0.01), JSON.stringify(par));
-  check("parlay: same-event legs never combine", P.bestParlay([A, Object.assign(mk("A2", 0.6, { DraftKings: 100 }), { eventId: "ev-A" })]) === null);
+  const PLAYS = require("../js/plays.js"), asPlay = (e, game) => ({ kind: "lean", id: e.id, day: "2026-11-05", gameKey: game || e.eventId, prob: e.modelProb, prices: e.prices, ev: 0.1 });
+  const par = PLAYS.parlay([A, B, C].map(e => asPlay(e)), "2026-11-05");
+  check("parlay: the likeliest two legs one book prices with each beating its price there: A+B (C is -EV at its only book), at DraftKings for the better payout, +282, EV +26%", par && par.book === "DraftKings" && par.legs.map(l => l.id).sort().join() === "A,B" && par.legPrices.slice().sort((a, b) => a - b).join() === "-110,100" && par.odds === 282 && near(par.fairProb, 0.33, 1e-4) && near(par.ev, 0.26, 0.01), JSON.stringify(par && [par.book, par.legs.map(l => l.id), par.legPrices, par.odds, par.ev]));
+  check("parlay: legs of the same game never combine, nor do legs of another day", PLAYS.parlay([asPlay(A), asPlay(mk("A2", 0.6, { DraftKings: 100 }), "ev-A")], "2026-11-05") === null && PLAYS.parlay([asPlay(A), asPlay(B)], "2026-11-06") === null);
   const plog = () => [Object.assign({}, A), Object.assign({}, B), { type: "parlay", id: "parlay-x", legs: ["A", "B"], legPrices: [100, -110], status: "pending", units: 0 }];
   let L = plog(); L[0].status = "graded"; L[0].result = "Win"; L[1].status = "graded"; L[1].result = "Win"; P.gradeParlays(L, new Date());
   check("parlay grading: two wins pay the combined price (+2.82u)", L[2].result === "Win" && near(L[2].units, 2.82, 0.01), String(L[2].units));
@@ -196,7 +204,11 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   check("parlay grading: a void leg voids the parlay", L[2].status === "void");
   L = plog(); L[0].status = "graded"; L[0].result = "Win"; P.gradeParlays(L, new Date());
   check("parlay grading: waits until every leg is settled", L[2].status === "pending");
-  check("potd: sticks to the first choice for the day", (() => { const l = [{ id: "x", potd: "2026-11-05", ev: 0.01 }]; return P.choosePlayOfDay(l, [{ id: "y", ev: 0.5, edge: 0.1 }], "2026-11-05").id === "x"; })());
+  check("potd: one play a day, never swapped: a later step that finds a likelier play leaves the first", (() => {
+    const lean = (id, prob, extra) => Object.assign({ id: id, pick: id, status: "pending", commence: "2026-11-06T00:00:00Z", modelProb: prob, odds: 100, prices: { DraftKings: 100 }, home: id, league: "NBA" }, extra);
+    const l = [lean("x", 0.56, { potd: "2026-11-05" }), lean("y", 0.7)];
+    const r = require("./of-day.js").choose(l, null, new Date("2026-11-05T21:00:00Z"), { etDate: () => "2026-11-05", boardOf: g => g.filter(e => !e.type), publicPick: e => e }, { slot: "afternoon" });
+    return r.play === "x" && r.playLocked === false && l[1].potd === undefined && l.filter(e => e.potd).length === 1; })());
 
   /* pricing every outcome: the main line qualifies, alternate lines and negative edges are priced but never picked */
   const nbaEv = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "odds.json"), "utf8")).find(e => e.id === "nba-fix-1");
@@ -565,9 +577,10 @@ const near = (a, b, eps) => Math.abs(a - b) < (eps || 1e-3);
   const tmpC = fs.mkdtempSync(path.join(os.tmpdir(), "edgeline-card-"));
   fs.writeFileSync(path.join(tmpC, "picks-log.json"), JSON.stringify([pending("hot-started", { sport: "NHL", league: "NHL", sportKey: "icehockey_nhl", eventId: "nhl-hot", event: "Visitors @ Hosts", home: "Hosts", away: "Visitors", commence: "2026-11-05T14:00:00Z", date: "2026-11-05", market: "Moneyline", marketKey: "h2h", outcome: { name: "Hosts", point: null }, pick: "Hosts ML", odds: 150, book: "FanDuel", prices: { FanDuel: 150, DraftKings: 150 }, modelProb: 0.9, edge: 0.5, ev: 1.25, basis: "game", loggedAt: "2026-11-05T12:00:00Z", breakdown: { verdict: "as logged" } })]));
   const rc = await P.run({ fixture: true, out: tmpC, now: NOW });
+  await P.run({ fixture: true, out: tmpC, now: NOW, ofDay: true, slot: "afternoon" });
   const pkC = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(tmpC, "picks.js"), "utf8"), pkC);
   const DC = pkC.window.PICKS_DATA, hot = DC.picks.find(p => p.id === "hot-started");
-  check("card: a started pick is on the card after the board, but never the play or parlay of the day, never re-priced or re-written, and no Odds API call an hour in", rc.board === 4 && rc.card === 5 && DC.picks.length === 5 && DC.picks[4].id === "hot-started" && hot.status === "pending" && hot.started === true && DC.playOfDay.pick === "Under 226.5" && DC.parlayOfDay.legs.every(l => l.id !== "hot-started") && hot.breakdown.verdict === "as logged" && hot.context === null && hot.sgo === null && rc.scoresRequests === 0 && rc.settled === 0, JSON.stringify([rc.board, rc.card, DC.playOfDay && DC.playOfDay.pick, DC.parlayOfDay && DC.parlayOfDay.legs.map(l => l.id), rc.scoresRequests]));
+  check("card: a started pick is on the card after the board, but never the play or parlay of the day, never re-priced or re-written, and no Odds API call an hour in", rc.board === 4 && rc.card === 5 && DC.picks.length === 5 && DC.picks[4].id === "hot-started" && hot.status === "pending" && hot.started === true && DC.playOfDay.pick === "Boston Celtics ML" && DC.parlayOfDay === null && hot.breakdown.verdict === "as logged" && hot.context === null && hot.sgo === null && rc.scoresRequests === 0 && rc.settled === 0, JSON.stringify([rc.board, rc.card, DC.playOfDay && DC.playOfDay.pick, DC.parlayOfDay && DC.parlayOfDay.legs.map(l => l.id), rc.scoresRequests]));
   fs.rmSync(tmpC, { recursive: true, force: true });
 
   /* after the games: the board empties, grading finds no scores yet for the new events */
