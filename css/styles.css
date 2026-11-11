@@ -745,75 +745,8 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 .lightbox[hidden] { display: none; }
 .local-note { font-size: 0.85rem; }
 
-/* ---------- props research ---------- */
-.props-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 1000px) { .props-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .props-grid { grid-template-columns: 1fr; } }
-.prop-card { display: flex; flex-direction: column; gap: 12px; animation: card-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 40ms); }
-.prop-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; }
-.headshot { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; background: var(--surface-2); border: 2px solid var(--border-strong); }
-.headshot-fallback { display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; color: var(--text-2); }
-.prop-name { font-size: 1.1rem; margin: 0; letter-spacing: -0.01em; }
-.prop-meta { font-size: 0.8rem; color: var(--text-2); }
-.prop-chips { display: grid; gap: 4px; justify-items: end; }
-.badge-inj { background: var(--accent-4-wash); color: var(--accent-4-text); }
-.prop-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
-.prop-stats .v { white-space: nowrap; }
-.prop-stats .v.up { color: var(--good-text); } .prop-stats .v.down { color: var(--bad); }
-.v-sub { font-size: 0.68em; color: var(--muted); font-weight: 400; }
-.spark { display: flex; align-items: flex-end; gap: 3px; height: 44px; }
-.spark-bar { flex: 1; height: var(--h, 10%); border-radius: 2px 2px 0 0; background: var(--border-strong); min-width: 4px; }
-.spark-bar.up { background: var(--accent-3); } .spark-bar.down { background: var(--accent-4); opacity: 0.8; }
-.line-row { display: grid; gap: 6px; }
-.line-label { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-2); }
-.line-label input { font: inherit; font-family: var(--font-mono); font-size: 0.95rem; width: 100px; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 5px 8px; }
-.hits { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-2); }
-.hit { padding: 3px 8px; border-radius: 4px; background: var(--surface-2); }
-.hit strong { color: var(--text); }
-.hit-over { background: var(--accent-3-wash); } .hit-over strong { color: var(--accent-3-text); }
-.hit-under { background: var(--accent-4-wash); } .hit-under strong { color: var(--accent-4-text); }
-.signals-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-.signals-head .k { font-size: 0.82rem; font-weight: 600; color: var(--text-2); }
-.signal-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.signal { font-size: 0.78rem; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-2); background: var(--surface-2); }
-.signal-over { border-color: color-mix(in srgb, var(--accent-3) 60%, transparent); color: var(--accent-3-text); background: var(--accent-3-wash); }
-.signal-under { border-color: color-mix(in srgb, var(--accent-4) 60%, transparent); color: var(--accent-4-text); background: var(--accent-4-wash); }
-.prop-opp { margin: 0; }
-.prop-log { margin-top: auto; }
-.prop-log summary { cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--accent-strong); list-style: none; }
-.prop-log summary::-webkit-details-marker { display: none; }
-.prop-log summary::before { content: "+ "; font-family: var(--font-mono); }
-.prop-log[open] summary::before { content: "− "; }
-.prop-log .table-wrap { margin-top: 8px; }
-.prop-log table.data th, .prop-log table.data td { padding: 6px 8px; font-size: 0.8rem; }
-.prop-log tr.row-up td { color: var(--text); } .prop-log tbody td { color: var(--text-2); }
+/* the "show all" row under a capped list (the leans, the props board) */
 .more-row { display: flex; justify-content: center; margin-top: 20px; }
-
-/* ---------- props: PrizePicks-style history block ---------- */
-.pp { display: grid; gap: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
-.stat-chips { display: flex; gap: 4px; flex-wrap: wrap; }
-.stat-chips button { font: inherit; font-family: var(--font-condensed); font-size: 0.8rem; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-2); }
-.stat-chips button[aria-selected="true"], .stat-chips button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: transparent; }
-.stat-chips.spans button { padding: 2px 8px; font-size: 0.72rem; }
-.pp-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.pp-line .line-label { gap: 8px; }
-.line-big { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; width: 92px; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 2px 8px; }
-.pp-avg { font-size: 0.78rem; color: var(--muted); }
-.hit-pill { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); font-variant-numeric: tabular-nums; }
-.hit-pill.pill-over { background: var(--accent-3-wash); color: var(--accent-3-text); }
-.hit-pill.pill-under { background: var(--accent-4-wash); color: var(--accent-4-text); }
-.hist-host svg.hist { width: 100%; height: auto; overflow: visible; display: block; }
-.hist-axis { stroke: var(--axis); stroke-width: 1; }
-.hist-bar.neutral { fill: var(--accent); fill-opacity: 0.55; }
-.hist-bar.over { fill: var(--good); }
-.hist-bar.under { fill: var(--bad); }
-.hist-bar.push { fill: var(--muted); }
-.hist-val { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: var(--text); }
-.hist-opp { font-family: var(--font-condensed); font-size: 9.5px; letter-spacing: 0.04em; fill: var(--text-2); }
-.hist-date { font-family: var(--font-mono); font-size: 8px; fill: var(--muted); }
-.hist-line { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 5 4; }
-.hist-line.avg { stroke: var(--muted); }
-.hist-line-label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: var(--text); }
 
 /* ---------- full breakdown dialog ---------- */
 .bd { width: min(760px, calc(100% - 32px)); max-height: min(86vh, 900px); padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: var(--bg); color: var(--text); box-shadow: var(--shadow-pop); }
@@ -970,6 +903,20 @@ table.data td.num { font-family: var(--font-mono); font-variant-numeric: tabular
 a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .badge-watch { background: var(--accent-4-wash); color: var(--accent-4-text); }
 .badge-none { background: var(--surface-2); color: var(--muted); }
+/* Held (2026-11-10): a side past its own bar in a game waiting on its news (the row's `waiting`); the blue wash of the Medium tier, apart from Watch's orange */
+.badge-held { background: var(--accent-wash); color: var(--accent-strong); }
+.market-table .mkt-why { display: block; max-width: 36ch; font-size: 0.75rem; color: var(--text-2); white-space: normal; }
+.st-held .line-btn { border-color: var(--accent); }
+.game-held { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0; font-size: 0.85rem; color: var(--text-2); }
+/* a note under a card's numbers: why a side is held, or that who plays changed after a lean was posted (the chip, then the pipeline's sentence) */
+.pick-note { margin: 0; font-size: 0.8rem; line-height: 1.45; color: var(--text-2); }
+.pick-note .badge { margin-right: 8px; }
+.badge-flag { background: var(--accent-4-wash); color: var(--accent-4-text); }
+.badge-flag.is-for { background: var(--accent-wash); color: var(--accent-strong); }
+.badge-flag.is-flat { background: var(--surface-2); color: var(--muted); }
+.pick-note.bd-flag, .pick-note.why-flag { margin: 8px 0 0; font-size: 0.85rem; max-width: 72ch; }
+.row-note { display: block; margin-top: 4px; min-width: 30ch; max-width: 46ch; font-size: 0.78rem; font-weight: 400; line-height: 1.4; color: var(--text-2); white-space: normal; }
+.row-note .badge { margin-right: 8px; }
 .market-card { --card-glow: var(--muted); }
 .market-card .meter > span { background: linear-gradient(90deg, var(--muted), var(--accent-4)); }
 .market-card .pick-metric .v.edge { color: var(--accent-4-text); }
@@ -1009,11 +956,31 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .pulse .eyebrow { margin: 0; color: var(--accent-4-text); }
 .pulse-lede { margin: 0; color: var(--text-2); font-size: 0.95rem; line-height: 1.5; }
 .pulse-lede strong { color: var(--text); font-family: var(--font-display); }
+/* the no-parlay card's rows: the side and its game take their own line under the logos, the price and the status, and
+   wrap, so nothing is cut in a card a third of the page wide (2026-11-10: "Colum…", "Florida Pant", "Tomorro") */
+.pulse .parlay-legs li { grid-template-columns: minmax(0, 1fr) auto auto; row-gap: 6px; }
+.pulse .parlay-legs .leg-pick { grid-column: 1 / -1; grid-row: 2; }
+.pulse .leg-pick strong, .pulse .leg-event { white-space: normal; overflow: visible; text-overflow: clip; }
 .potd-market { box-shadow: inset 0 3px 0 var(--accent-4); }
 .potd-market .eyebrow { color: var(--accent-4-text); }
 .watch-note { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
+.watch-note strong { color: var(--text); }
+/* the watchlist (2026-11-10): the leans page's section for the sides nearest their bars. With no open lean it leads the
+   page at the lead section's size and the best tickets collapse to a sentence; otherwise it sits under the leans grid */
+.watch-head { margin-top: 44px; margin-bottom: 8px; }
+.watch-sec:not(.is-lead) .watch-head h2, .parlays-head.is-collapsed h2 { font-size: 1.4rem; }
+.watch-sec.is-lead .watch-head { margin-top: 8px; }
+.parlays-head.is-collapsed { margin-top: 44px; margin-bottom: 8px; }
+.parlays-none { grid-column: 1 / -1; margin: 0; max-width: 72ch; font-size: 0.92rem; color: var(--text-2); }
+.parlays-none strong { color: var(--text); }
+.pick-more a { font-weight: 600; }
 .t-watch { color: var(--ticker-watch); font-weight: 600; }
 .board-market .board-edge-watch { color: var(--accent-4-text); }
+/* the home board on a night with no lean: each watch row says what the side needs (the price that clears its bar) or why it is held */
+.board-game, .board-need { font-size: 0.8rem; color: var(--text-2); }
+.board-need { color: var(--text); }
+.board-watch { align-items: start; }
+.board-watch .board-pick .sel { white-space: normal; overflow: visible; text-overflow: clip; }
 
 /* ---------- the edge field: every priced side as a star against the bar ---------- */
 .edge-field { position: relative; }
@@ -1207,10 +1174,6 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .market-table tr.mkt-divider td { padding: 10px 8px 6px; font-size: 0.78rem; color: var(--accent-4-text); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
 @media (max-width: 720px) { .market-table tr.mkt-divider { display: block; } .market-table tr.mkt-divider td::before { display: none; } }
 
-/* ---------- props: the board (lines from SportsGameOdds, ranked likeliest first) ---------- */
-.sub-head { max-width: none; margin: 26px 0 10px; }
-.sub-head h2 { font-size: 1.3rem; margin: 0 0 2px; letter-spacing: -0.01em; }
-.sub-head .how-to { font-size: 0.88rem; }
 /* meta lines: parts separated by space and a hairline, never a middle dot */
 .meta { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; min-width: 0; }
 .meta > span + span::before { content: ""; display: inline-block; width: 1px; height: 0.75em; background: var(--border-strong); margin: 0 9px; vertical-align: -1px; }
@@ -1225,53 +1188,6 @@ a.badge-pick:hover { text-decoration: none; filter: brightness(1.08); }
 .subnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 html { scroll-padding-top: calc(var(--header-h, 0px) + 60px); }
 .board-h { margin: 0; font-size: inherit; }
-.props-board { display: grid; gap: 8px; margin-bottom: 8px; }
-.pb-row { display: grid; grid-template-columns: auto auto minmax(140px, 1.1fr) minmax(150px, 1fr) minmax(130px, 0.9fr) auto auto auto; gap: 14px; align-items: center; padding: 10px 14px; animation: card-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 40ms); }
-.pb-row.is-top { border-color: color-mix(in srgb, var(--accent-3) 55%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-3) 25%, transparent), var(--shadow); }
-.pb-rank { min-width: 40px; }
-.pb-face { width: 40px; height: 40px; }
-.pb-who { display: grid; gap: 1px; min-width: 0; }
-.pb-name { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem; line-height: 1.2; overflow-wrap: anywhere; }
-.pb-meta { font-size: 0.76rem; color: var(--text-2); }
-.pb-prop { display: grid; gap: 2px; min-width: 0; }
-.pb-line { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; white-space: nowrap; }
-.pb-side-over { color: var(--accent-3-text); }
-.pb-side-under { color: var(--accent-4-text); }
-.pb-sub { font-size: 0.76rem; color: var(--text-2); line-height: 1.35; }
-.pb-prob { display: grid; gap: 5px; min-width: 0; }
-.pb-fair { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.8rem; }
-.pb-fair .k { font-size: 0.76rem; color: var(--muted); }
-.pb-fair strong { font-size: 0.95rem; }
-.pb-hit .hit-pill { white-space: nowrap; }
-.pb-agree { color: var(--text-2); white-space: nowrap; }
-.pb-open { justify-self: end; }
-@media (max-width: 1100px) {
-  .pb-row { grid-template-columns: auto auto minmax(0, 1fr) minmax(0, 1fr); row-gap: 10px; }
-  .pb-prob { grid-column: 3 / span 2; }
-  .pb-hit, .pb-agree { grid-column: auto; }
-  .pb-open { grid-column: 4; }
-}
-@media (max-width: 640px) {
-  .pb-row { grid-template-columns: auto auto minmax(0, 1fr); padding: 10px 12px; }
-  .pb-prop, .pb-prob, .pb-hit, .pb-agree, .pb-open { grid-column: 1 / -1; }
-  .pb-open { justify-self: start; }
-}
-/* the card: rank beside the name, market pills under the line box, a reset back to tonight's number, a flash when opened from the board */
-.prop-name-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.prop-name-row .rank { flex: none; }
-.stat-chips [data-stat] { font-variant-numeric: tabular-nums; }
-.pp-market { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-.side-pill { font-size: 0.78rem; padding: 4px 9px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2); }
-.side-pill strong { color: var(--text); }
-.side-pill.lead { border-color: color-mix(in srgb, var(--accent) 60%, transparent); background: var(--accent-wash); color: var(--text); }
-.badge-flip { background: var(--surface-2); color: var(--muted); border: 1px dashed var(--border-strong); }
-.why { display: grid; gap: 6px; padding-top: 8px; border-top: 1px dashed var(--border); }
-.signal-against { opacity: 0.8; border-style: dashed; }
-.pb-agree { display: grid; gap: 4px; justify-items: start; }
-.pb-why { font-size: 0.76rem; color: var(--text-2); white-space: nowrap; }
-.line-reset { font: inherit; font-size: 0.76rem; font-weight: 600; color: var(--accent-strong); background: transparent; border: 1px dashed var(--border-strong); border-radius: 999px; padding: 2px 8px; cursor: pointer; }
-.prop-card.is-focus { outline: 2px solid var(--accent); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { .pb-row { animation: none; } }
 /* day boundaries in ranked lists (owner rule, 2026-11-04): today's plays before tomorrow's, each day under its own heading; the .grid-divider / .mkt-divider look in --text-2, the date in the body font */
 .day-divider { grid-column: 1 / -1; margin: 8px 0 0; padding: 6px 0 0; border-top: 1px dashed var(--border-strong); font-size: 0.95rem; font-weight: 600; color: var(--text-2); }
 .day-divider .day-date { font-weight: 400; color: var(--text-2); }
@@ -1606,3 +1522,202 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .game-lean { grid-template-columns: minmax(0, 1fr); }
 }
 .game-props-more > summary { cursor: pointer; margin-top: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+
+/* ==========================================================================
+   Props: the ranked board (2026-11-10). The owner called the page of open
+   player cards "terrible, looks bad, set up bad" and chose this layout:
+   league tabs, game chips and stat tabs; one compact row per prop, likeliest
+   first; the chart, every book's price, the reasons and the game log in a
+   dialog opened from the row; a record and results after games.
+   Markup and behaviour are in props.html. Existing tokens and components
+   only: the league tabs are .seg.browse-seg, the dialog is .bd, results are
+   .played rows, prices are .shop-chip, the bar is .prob-bar.
+   ========================================================================== */
+.sub-head { max-width: none; margin: 26px 0 10px; }
+.sub-head h2 { font-size: 1.3rem; margin: 0 0 2px; letter-spacing: -0.01em; }
+.sub-head .how-to { font-size: 0.88rem; }
+.props-head .filter-summary { margin: 8px 0 0; font-size: 0.85rem; }
+.page-head .props-meta { font-size: 0.9rem; }
+.props-empty { margin: 14px 0 0; max-width: 72ch; font-size: 0.95rem; color: var(--text-2); }
+.props-empty a { text-decoration: underline; }
+/* a player's face: ESPN's headshot, or his initials when there is none */
+.headshot { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; background: var(--surface-2); border: 2px solid var(--border-strong); }
+.headshot-fallback { display: grid; place-items: center; font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; color: var(--text-2); }
+/* a side too close to even to carry a tier */
+.badge-flip { background: var(--surface-2); color: var(--muted); border: 1px dashed var(--border-strong); }
+
+/* the controls, three kinds so they read as three levels: the league is the segmented control, a game is a chip, a stat is a tab */
+.props-ctl { display: grid; gap: 12px; padding-block: 14px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.props-ctl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; min-width: 0; }
+.props-leagues { flex: none; }
+.props-chips { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.props-chip { display: inline-flex; align-items: baseline; gap: 7px; padding: 5px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--surface); color: var(--text-2); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.props-chip:hover { color: var(--text); background: var(--surface-2); }
+.props-chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: transparent; }
+.props-chip-t { font-size: 0.76rem; font-weight: 500; }
+.props-chip.is-started { border-style: dashed; }
+.props-chip-state { font-family: var(--font-body); }
+.props-chip-state.is-live { color: var(--accent-2-text); }
+.props-chip[aria-pressed="true"] .props-chip-state.is-live { color: inherit; }
+.props-tabs { display: flex; flex-wrap: wrap; gap: 2px; min-width: 0; margin-right: auto; }
+.props-tab { padding: 6px 10px; border: 0; border-radius: var(--radius); background: transparent; color: var(--text-2); font-size: 0.88rem; font-weight: 500; white-space: nowrap; }
+.props-tab:hover { color: var(--text); background: var(--surface-2); }
+.props-tab[aria-pressed="true"] { color: var(--text); background: var(--surface-2); box-shadow: inset 0 -2px 0 var(--accent); }
+.props-chip:focus-visible, .props-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.props-more { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }
+.props-more .filter select, .props-more .filter input { min-width: 0; padding: 6px 10px; font-size: 0.85rem; }
+.props-search input { width: 170px; }
+
+/* the board: one row per prop. The name is the row's one control; the whole row follows it */
+.props-table table.data { font-size: 0.88rem; }
+.props-table table.data th, .props-table table.data td { padding: 7px 10px; vertical-align: middle; }
+.props-table table.data td { padding-block: 5px; }
+.props-table tr.pr { cursor: pointer; }
+.props-table tr.pr:hover td, .props-table tr.pr:focus-within td { background: var(--surface-2); }
+.pr-who { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; align-items: center; }
+.headshot.pr-face { grid-row: 1 / span 2; width: 36px; height: 36px; border-width: 1px; }
+.pr-open { align-self: end; justify-self: start; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; color: var(--text); }
+.pr-open:hover { color: var(--accent-strong); }
+.meta.pr-sub { align-self: start; font-size: 0.76rem; color: var(--text-2); }
+.pr-inj { color: var(--accent-4-text); }
+.pr-game { line-height: 1.3; }
+.pr-match, .pr-start { display: block; }
+.pr-match { font-weight: 600; }
+.pr-start { font-size: 0.76rem; color: var(--text-2); }
+.pr-stat { color: var(--text-2); }
+.pr-line { font-size: 0.98rem; }
+.pr-side { font-family: var(--font-display); font-weight: 700; }
+.pr[data-side="over"] .pr-side { color: var(--accent-3-text); }
+.pr[data-side="under"] .pr-side { color: var(--accent-4-text); }
+.pr-tohit { display: grid; grid-template-columns: 5.4ch minmax(56px, 1fr) auto; gap: 10px; align-items: center; min-width: 190px; }
+.pr-prob { font-size: 0.98rem; font-weight: 600; }
+.pr-best strong { font-weight: 600; }
+.pr-book { margin-left: 6px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-2); }
+.props-table tr.day-divider td { padding: 12px 10px 6px; font-size: 0.92rem; font-weight: 600; color: var(--text); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
+.props-table tr.day-divider td .day-date { font-weight: 400; color: var(--text-2); }
+.props-table tbody tr.day-divider:first-child td { border-top: 0; }
+/* under 980px (where the table's cells would start to wrap) a row is a small card: who, then the lean and its best price, To hit, then the game and the hit rates */
+@media (max-width: 980px) {
+  .props-table table.data, .props-table tbody, .props-table td { display: block; }
+  .props-table thead { display: none; }
+  .props-table table.data { background: transparent; border: 0; }
+  .props-table table.data td { padding: 0; border: 0; white-space: normal; }
+  .props-table tr.pr { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 7px 10px; align-items: center; padding: 10px 12px; margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  .props-table tr.pr:hover, .props-table tr.pr:focus-within { border-color: var(--border-strong); }
+  .props-table tr.pr:hover td, .props-table tr.pr:focus-within td { background: transparent; }
+  .props-table td.pr-rank { grid-area: 1 / 1; }
+  .props-table td.pr-player { grid-area: 1 / 2 / auto / -1; min-width: 0; }
+  .props-table td.pr-lean { grid-area: 2 / 1; }
+  .props-table td.pr-prop { grid-area: 2 / 2; }
+  .props-table td.pr-best { grid-area: 2 / 3 / auto / -1; justify-self: end; }
+  .props-table td.pr-hit { grid-area: 3 / 1 / auto / -1; display: flex; align-items: center; gap: 10px; }
+  .props-table td.pr-hit::before { content: attr(data-label); flex: none; font-size: 0.78rem; color: var(--text-2); }
+  .pr-tohit { flex: 1; min-width: 0; }
+  .props-table td.pr-game { grid-area: 4 / 1 / auto / 3; display: flex; flex-wrap: wrap; gap: 0 8px; font-size: 0.78rem; color: var(--text-2); }
+  .pr-match, .pr-start { display: inline; }
+  .pr-match { font-weight: 500; }
+  .pr-start { font-size: inherit; }
+  .props-table td.pr-l5 { grid-area: 4 / 3; }
+  .props-table td.pr-l10 { grid-area: 4 / 4; }
+  .props-table table.data td.pr-l5, .props-table table.data td.pr-l10 { font-size: 0.78rem; text-align: left; white-space: nowrap; }
+  .props-table td.pr-l5::before, .props-table td.pr-l10::before { content: attr(data-label) " "; font-family: var(--font-body); color: var(--text-2); }
+  .props-table tr.day-divider { display: block; border-top: 0; margin: 0; padding: 0; }
+  .props-table table.data tr.day-divider td { padding: 10px 0 8px; }
+}
+
+/* the record: every ranked prop, graded; the tiers against what they claim */
+.props-rec { display: grid; gap: 10px; margin-top: 26px; padding: 16px; }
+.props-rec-h { font-size: 1.3rem; margin: 0; letter-spacing: -0.01em; }
+.props-rec .how-to { margin: 0; font-size: 0.88rem; }
+.meta.props-rec-lead { display: flex; font-size: 0.92rem; color: var(--text-2); }
+.props-rec-part strong { color: var(--text); font-weight: 600; }
+.props-rec-table { max-width: 560px; }
+.props-rec-table table.data th, .props-rec-table table.data td { padding: 7px 10px; font-size: 0.85rem; white-space: normal; }
+.props-rec-claim { color: var(--text-2); }
+
+/* no line yet: the players the board cannot rank, folded away until asked for */
+.props-noline { margin-top: 26px; }
+.props-noline > summary { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: baseline; gap: 4px 10px; cursor: pointer; list-style: none; }
+.props-noline > summary::-webkit-details-marker { display: none; }
+.props-noline > summary::before { content: "+"; width: 1ch; font-family: var(--font-mono); font-weight: 600; color: var(--accent-strong); }
+.props-noline[open] > summary::before { content: "−"; }
+.props-noline-h { font-size: 1.3rem; margin: 0; letter-spacing: -0.01em; }
+.props-noline-n { font-size: 0.85rem; color: var(--text-2); }
+.props-noline-how { grid-column: 1 / -1; max-width: 72ch; font-size: 0.88rem; color: var(--text-2); }
+.props-noline-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0 24px; }
+.props-noline-item { display: grid; gap: 1px; min-width: 0; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.props-noline-item a { justify-self: start; font-weight: 600; color: var(--text); }
+.props-noline-item a:hover { color: var(--accent-strong); }
+.meta.props-noline-sub, .meta.props-noline-avg { font-size: 0.78rem; color: var(--text-2); }
+
+/* how it is graded: the page's explanation, in the measure of a notice */
+.props-how h2 { font-size: 1.3rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+.props-how p { margin: 0 0 10px; max-width: 72ch; font-size: 0.9rem; color: var(--text-2); }
+.props-how p strong { color: var(--text); }
+.props-how .props-credit { font-size: 0.82rem; }
+
+/* the detail (dialog.bd.pd): the chart with the line across, the line box, both sides with every book's price, why, the log */
+.pd-body { display: grid; gap: 14px; align-content: start; padding-top: 14px; }
+.pd-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; }
+.headshot.pd-face { width: 56px; height: 56px; }
+.pd-name-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.pd-name { font-size: 1.35rem; margin: 0; letter-spacing: -0.02em; }
+.meta.pd-meta { display: flex; margin-top: 2px; font-size: 0.85rem; color: var(--text-2); }
+.pd-stats { display: flex; flex-wrap: wrap; gap: 6px; }
+.pd-stats .props-chip { font-family: var(--font-condensed); font-weight: 500; }
+.pd-stats .props-chip-t { font-family: var(--font-mono); }
+.pd-chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; }
+.pd-h { margin: 0; font-family: var(--font-body); font-size: 0.86rem; font-weight: 600; letter-spacing: 0; color: var(--text-2); }
+.pd-spans button { padding: 4px 10px; font-size: 0.8rem; }
+.hist-host { min-width: 0; }
+.hist-host svg.hist { display: block; width: 100%; height: auto; overflow: visible; }
+.hist-axis { stroke: var(--axis); stroke-width: 1; }
+.hist-bar.neutral { fill: var(--accent); fill-opacity: 0.55; }
+.hist-bar.over { fill: var(--good); }
+.hist-bar.under { fill: var(--bad); }
+.hist-bar.push { fill: var(--muted); }
+.hist-val { font-family: var(--font-mono); font-size: 11px; font-weight: 600; fill: var(--text); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+.hist-opp { font-family: var(--font-condensed); font-size: 10.5px; fill: var(--text-2); }
+.hist-date { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
+.hist-tight .hist-val { font-size: 10px; }
+.hist-tight .hist-opp { font-size: 8.5px; }
+.hist-tight .hist-date { font-size: 7.5px; }
+.hist-line { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.hist-line.avg { stroke: var(--muted); }
+.hist-line-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; fill: var(--text); }
+.pd-cap { margin-top: -6px; }
+.meta.pd-avgs { display: flex; font-size: 0.8rem; color: var(--text-2); }
+.pd-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.pd-line-label { font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+.line-big { width: 104px; padding: 2px 8px; font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius); }
+.line-reset { padding: 4px 9px; font-size: 0.78rem; font-weight: 600; color: var(--accent-strong); background: transparent; border: 1px dashed var(--border-strong); border-radius: var(--radius); }
+.pd-line-how { flex: 1 1 220px; font-size: 0.8rem; color: var(--text-2); }
+.pd-sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pd-side { display: grid; gap: 8px; align-content: start; min-width: 0; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.pd-side.is-lean { border-color: color-mix(in srgb, var(--accent) 60%, transparent); background: var(--accent-wash); }
+.pd-side-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 8px; }
+.pd-side-name { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.01em; }
+.pd-side-prob { display: grid; grid-template-columns: auto auto minmax(48px, 1fr); gap: 10px; align-items: center; }
+.pd-side-prob .k { font-size: 0.8rem; color: var(--text-2); }
+.pd-side-prob strong { font-size: 1.05rem; font-weight: 600; }
+.pd-side-k, .pd-side-none { margin: 0; font-size: 0.78rem; color: var(--text-2); }
+.pick-shop.pd-prices { margin-top: 0; }
+.pd-note, .pd-opp { margin: 0; font-size: 0.85rem; color: var(--text-2); }
+.pd-why li.is-for::before { background: var(--accent-3); }
+.pd-why li.is-against::before { background: var(--accent-4); }
+.pd-log table.data th, .pd-log table.data td { padding: 6px 8px; font-size: 0.8rem; }
+.pd-log tbody td { color: var(--text-2); }
+.pd-log tr.row-up td { color: var(--text); }
+.pd .bd-rule { margin: 0; }
+@media (max-width: 600px) {
+  .pd-sides { grid-template-columns: 1fr; }
+  .pd-name { font-size: 1.2rem; }
+  /* a meta line that would wrap is stacked, one part a line, so no line starts on a hairline */
+  .meta.pd-meta, .page-head .props-meta .meta { display: grid; gap: 1px; }
+  .meta.pd-meta > span + span::before, .page-head .props-meta .meta > span + span::before { display: none; }
+  .props-rec-table table.data th, .props-rec-table table.data td { padding: 6px 8px; }
+  /* the game log keeps every column on screen: tighter cells, heads that may wrap, the final score left to wider screens */
+  .pd-log table.data th, .pd-log table.data td { padding: 5px 4px; font-size: 0.74rem; }
+  .pd-log table.data th { white-space: normal; }
+  .pd-log-score { display: none; }
+}

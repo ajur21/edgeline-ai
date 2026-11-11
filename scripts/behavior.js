@@ -34,6 +34,13 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   base = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
+  /* ESPN's image host is not under test, and one stalled image holds a page's load event until goto times out (a run died
+     that way on 2026-11-10, 552 checks in). Every context answers it with a 1px image; a check that registers its own
+     route for the host afterwards (the props board's blocked-images check) still wins. The render check
+     (scripts/screenshot.js) keeps the real host, so a missing image on the real data still fails there. */
+  const PX = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
+  const newContext = browser.newContext.bind(browser);
+  browser.newContext = async opts => { const ctx = await newContext(opts); await ctx.route('**/a.espncdn.com/**', route => route.fulfill({ contentType: 'image/png', body: PX })); return ctx; };
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(page);
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 
@@ -268,87 +275,10 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   check('journal: no page errors', jerr.length === 0, jerr.join(' | '));
   await jctx.close();
 
-  // props research page (sample ESPN-shaped data with fixture lines from SportsGameOdds)
-  const pp = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage(); await pinClock(pp); const perr = []; pp.on('pageerror', e => perr.push(e.message));
-  await pp.goto(url('props.html')); await pp.waitForTimeout(500);
-  const nProps = await pp.locator('#props-host .prop-card').count();
-  check('props: player cards render with headshot, stat chips, history bars and signals', nProps >= 4 && (await pp.locator('#props-host .prop-card').first().locator('.headshot, .stat-chips [data-stat], svg.hist rect.hist-bar, .signals').count()) > 8, 'cards ' + nProps);
-  check('props: sort defaults to likeliest first and the lines note names the books', (await pp.inputValue('#p-sort')) === 'prob' && /priced in .* at \d+ books/.test(await pp.textContent('#props-lines')));
-  const rows = pp.locator('#props-board .pb-row');
-  check('props board: ranked rows with #1 on top, a face, the side and line, a probability bar, a hit pill and a grade', (await rows.count()) >= 4 && (await rows.first().locator('.rank-top').count()) === 1 && (await rows.first().locator('.pb-face, .pb-line, .prob-bar, .hit-pill, .pb-agree .badge').count()) === 5, 'rows ' + await rows.count());
-  const probs = await rows.evaluateAll(els => els.map(e => Number(e.getAttribute('data-prob'))));
-  const days = await rows.evaluateAll(els => els.map(e => e.getAttribute('data-day')));
-  check('props board: game day first, then our probability descending within the day, no book-price tier or divider', probs.every((v, i) => i === 0 || days[i] > days[i - 1] || (days[i] === days[i - 1] && v <= probs[i - 1] + 1e-9)) && days.every((d, i) => i === 0 || d >= days[i - 1]) && probs[0] > 0.5 && (await pp.locator('#props-board .grid-divider').count()) === 0, probs.join(','));
-  check('props board: NBA tonight, then the NFL tomorrow under a day heading (the sample spans two days)', (await pp.locator('#props-board .day-divider').count()) === 2 && (await rows.first().getAttribute('data-league')) === 'NBA' && (await rows.evaluateAll(els => els.some(e => e.getAttribute('data-league') === 'NFL'))) && /NBA.*NFL/.test(await pp.textContent('#pb-summary')));
-  check('props board: the lowest grade reads Low, never Lean (the selections are leans; owner decision 2026-11-08)', (await pp.locator('#props-board .pb-agree .badge').evaluateAll(els => els.some(e => e.textContent === 'Low') && !els.some(e => e.textContent === 'Lean'))) && /graded Low or better/.test(await pp.textContent('#pb-summary')));
-  check('props: the NFL line under the filters says what is priced', /^NFL tomorrow: \d+ players priced in 1 of 1 games at 6 books/.test(await pp.textContent('#p-nfl-note')), await pp.textContent('#p-nfl-note'));
-  /* the head speaks for each league (2026-11-08): the NBA's lines come on the afternoon run, the NFL's on the morning run */
-  check('props head: league by league: the slate and the lines of the NBA and the NFL each named, the title for tonight', /^NBA tonight: \d+ games?, \d+ rotation players\. NFL tomorrow: 1 game, \d+ players\. Updated /.test(await pp.textContent('#props-asof')) && /NBA lines: \d+ players priced in .* at \d+ books.*NFL lines: \d+ players priced/.test(await pp.textContent('#props-lines')) && (await pp.textContent('#props-title')) === 'Tonight’s props, likeliest first', (await pp.textContent('#props-asof')) + ' / ' + (await pp.textContent('#props-lines')));
-  {
-    /* an NFL Sunday morning: the NFL's lines are up and the NBA's are not yet (the morning run passes --lines nfl) */
-    const vmx = require('vm'), sbx = { window: {} }; vmx.runInNewContext(fs.readFileSync(path.join(root, 'scripts/fixtures/sample-props.js'), 'utf8'), sbx);
-    const PD = JSON.parse(JSON.stringify(sbx.window.PROPS_DATA));
-    PD.players.forEach(pl => { if ((pl.league || 'NBA') === 'NBA') delete pl.lines; });
-    PD.lines = { skipped: 'off' }; PD.leagues.NBA.lines = { skipped: 'off' }; PD.leagues.NFL.date = '2026-11-04'; PD.leagues.NFL.today = true;
-    const mctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-    await mctx.route('**/data/props.js', r => r.fulfill({ status: 200, contentType: 'text/javascript', body: 'window.PROPS_DATA = ' + JSON.stringify(PD) + ';' }));
-    const mp = await mctx.newPage(); await pinClock(mp); const merr = []; mp.on('pageerror', e => merr.push(e.message));
-    await mp.goto(url('props.html')); await mp.waitForTimeout(500);
-    const ml = await mp.textContent('#props-lines');
-    check('props head: with NFL lines up and none for the NBA yet, the head says so per league and never that no lines are posted', /No NBA lines yet tonight: the NBA board fills at the afternoon run, about 3:30 PM ET\./.test(ml) && /NFL lines: \d+ players priced/.test(ml) && !/No lines posted yet/.test(ml) && /NFL today: 1 game/.test(await mp.textContent('#props-asof')) && (await mp.textContent('#props-title')) === 'Today’s props, likeliest first' && merr.length === 0, ml + ' | ' + merr.join(' | '));
-    await mctx.close();
-  }
-  check('props board: the how-to and the summary say the grade is game data, not other books', /not graded against other books/.test(await pp.textContent('#props-board-how')) && /[Gg]ame data only/.test(await pp.textContent('#pb-summary')) && /Never against other books/.test(await pp.textContent('#props-rule')));
-  const r2 = rows.nth(1), pid2 = await r2.getAttribute('data-player'), stat2 = await r2.getAttribute('data-stat');
-  await r2.locator('.pb-open').click(); await pp.waitForTimeout(300);
-  const oc = pp.locator('#props-host .prop-card[data-id="' + pid2 + '"]');
-  check('props board: Open card lands on the ranked stat with tonight\'s line typed in, the favoured side marked and the reasons listed', (await oc.locator('.stat-chips [data-stat="' + stat2 + '"]').getAttribute('aria-selected')) === 'true' && (await oc.locator('.line-big').inputValue()) !== '' && (await oc.locator('.side-pill.lead').count()) === 1 && (await oc.locator('.why .signal').count()) >= 2 && /Cleared|Stayed under/.test(await oc.locator('.why').textContent()));
-  check('props board: the card\'s favoured side and grade match its board row', (await oc.locator('.side-pill.lead strong').textContent()).toLowerCase().startsWith(await r2.getAttribute('data-side')) && (await oc.locator('.pp-market .badge').textContent()) === (await r2.locator('.pb-agree .badge').textContent()));
-  const fc = pp.locator('#props-host .prop-card').first();
-  const marketLine = await fc.locator('.line-big').inputValue();
-  check('props: a priced card starts on the market line with coloured bars, a graded pill and its board rank', marketLine !== '' && (await fc.locator('rect.hist-bar.neutral').count()) === 0 && /hit \d+ of \d+/.test(await fc.locator('.hit-pill').textContent()) && (await fc.locator('.prop-name-row .rank').textContent()) === '#1');
-  const nl = pp.locator('#props-host .prop-card').filter({ has: pp.locator('.badge', { hasText: 'No line' }) }).first();
-  check('props: an unpriced card shows neutral bars and asks for a line', (await nl.count()) === 1 && (await nl.locator('rect.hist-bar.neutral').count()) > 0 && (await nl.locator('.hit-pill').textContent()).includes('Type a line'));
-  await fc.locator('.line-big').fill('-0.5');
-  check('props: with a line every bar is green, the pill reads 100% and the grade regrades to High over', (await fc.locator('rect.hist-bar.under').count()) === 0 && (await fc.locator('rect.hist-bar.over').count()) > 0 && /100%/.test(await fc.locator('.hit-pill').textContent()) && (await fc.locator('.pp-market .badge').textContent()) === 'High' && (await fc.locator('.side-pill.lead strong').textContent()).startsWith('Over'));
-  await fc.locator('.line-reset').click();
-  check('props: the Market line button restores tonight\'s number and hides itself', (await fc.locator('.line-big').inputValue()) === marketLine && (await fc.locator('.line-reset').isHidden()));
-  await fc.locator('.stat-chips.spans button').first().click();
-  check('props: L5 toggle shows at most five bars', (await fc.locator('rect.hist-bar').count()) <= 5 && (await fc.locator('.stat-chips.spans button').first().getAttribute('aria-pressed')) === 'true');
-  await fc.locator('.stat-chips [data-stat="reb"]').click();
-  check('props: per-card stat chip switches the chart to rebounds', (await fc.locator('.pp-avg').textContent()).startsWith('Rebounds') && (await fc.locator('svg.hist').getAttribute('aria-label')).startsWith('Rebounds'));
-  check('props: game filter has tonight\'s games', (await pp.locator('#p-game option').count()) >= 3);
-  const firstName = await pp.locator('#props-host .prop-name').first().textContent();
-  await pp.fill('#p-search', firstName.split(' ')[1] || firstName);
-  check('props: search narrows to the player and the board follows', (await pp.locator('#props-host .prop-card').count()) >= 1 && (await pp.locator('#props-host .prop-name').first().textContent()) === firstName && (await rows.count()) === 1);
-  await pp.fill('#p-search', '');
-  await pp.selectOption('#p-lean', 'under');
-  check('props: the Side filter keeps only props leaning under', (await rows.count()) >= 1 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-side') === 'under'))));
-  await pp.selectOption('#p-lean', '');
-  await pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]').click();
-  await pp.locator('#props-host .prop-card').first().locator('.line-big').fill('-0.5');
-  check('props: a line below zero is cleared in every game (100%)', /Over (\d+)\/\1 L10, 100%/.test(await pp.locator('#props-host .prop-card').first().locator('.hits').textContent()), await pp.locator('#props-host .prop-card').first().locator('.hits').textContent());
-  await pp.reload(); await pp.waitForTimeout(400);
-  await pp.locator('#props-host .prop-card').first().locator('.stat-chips [data-stat="pts"]').click();
-  check('props: the typed line is remembered over the market line for that stat', (await pp.locator('#props-host .prop-card').first().locator('.line-big').inputValue()) === '-0.5');
-  await pp.selectOption('#p-stat', 'reb');
-  check('props: switching the stat relabels the summary and the board', (await pp.textContent('#p-summary')).includes('Rebounds') && (await pp.textContent('#pb-summary')).includes('Rebounds') && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-stat') === 'reb'))));
-  await pp.locator('#props-host .prop-card').first().locator('.prop-log summary').click();
-  check('props: game log opens with rows', (await pp.locator('#props-host .prop-card').first().locator('.prop-log tbody tr').count()) >= 3);
-  /* the NFL: the sport filter, its stats, its cards */
-  await pp.selectOption('#p-stat', ''); await pp.selectOption('#p-sport', 'NFL'); await pp.waitForTimeout(200);
-  check('props NFL: the sport filter keeps NFL leans only and hides the NBA stats', (await rows.count()) >= 5 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-league') === 'NFL'))) && (await pp.locator('#p-stat optgroup[data-league="NBA"]').evaluate(g => g.hidden)) && (await pp.locator('#props-host .prop-card[data-sport="NBA"]').count()) === 0);
-  const nc = pp.locator('#props-host .prop-card').first();
-  check('props NFL: a card grades its position\'s stats with the projection named in the reasons', (await nc.locator('.stat-chips [data-stat]').count()) >= 2 && /REC|RUSH|PASS/.test(await nc.locator('.stat-chips').first().textContent()) && /Projects [\d.]+ \(/.test(await nc.locator('.why').textContent()) && (await nc.locator('.side-pill.lead').count()) === 1);
-  await nc.locator('.prop-log summary').click();
-  check('props NFL: the game log has the week and the position\'s columns', /Wk/.test(await nc.locator('.prop-log thead').textContent()) && /Tgt|Car|C\/Att/.test(await nc.locator('.prop-log thead').textContent()));
-  await pp.selectOption('#p-stat', 'passYds'); await pp.waitForTimeout(200);
-  check('props NFL: a passing-yards board lists quarterbacks only', (await rows.count()) === 2 && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-stat') === 'passYds'))));
-  await pp.selectOption('#p-sport', 'NBA'); await pp.waitForTimeout(200);
-  check('props NFL: switching back to the NBA clears an NFL stat', (await pp.inputValue('#p-stat')) === '' && (await rows.evaluateAll(els => els.every(e => e.getAttribute('data-league') === 'NBA'))));
-  await pp.selectOption('#p-sport', '');
-  check('props: no page errors', perr.length === 0, perr.join(' | '));
-  await pp.context().close();
+  /* the props page, the ranked board (2026-11-10): league tabs, game chips and stat tabs, one row per prop, the detail
+     dialog, results and the record. scripts/props-board-checks.js, on the same server, clock and counter; it stands in
+     for the checks of the card page it replaced */
+  await require('./props-board-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc: f => fs.readFileSync(path.join(root, 'scripts/fixtures', f), 'utf8') });
 
   // line shopping: chips on the card front, the ladder in the breakdown, a books column in the table
   await page.goto(url('picks.html')); await page.waitForTimeout(300);
@@ -373,7 +303,7 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   await page.selectOption('#m-sort', 'edge');
   check('market: sort control switches to biggest edge first', await page.evaluate(() => { const v = [...document.querySelectorAll('#market-host tbody tr td:nth-child(9)')].map(td => { const n = parseFloat(td.textContent); return Number.isNaN(n) ? -Infinity : n; }); return v.length > 1 && v.every((x, i) => i === 0 || x <= v[i - 1]); }) && (await page.textContent('#market-sub')).includes('biggest edge first'));
   await page.selectOption('#m-sort', 'model');
-  check('market: summary line counts markets, games, picks and watch against each side\'s own bar, and gives the bars by sport', /48 markets in 8 games/.test(await page.textContent('#market-sub')) && /2 leans on the board; 1 more side clears its bar but is held off the board \(one lean a game, ten a day, five a sport\); 4 on watch, at least halfway to their bar\./.test(await page.textContent('#market-sub')) && /never under 3 points: NBA 8–12\.5, NHL 6\.5, NFL 4\.5, MLB 3\./.test(await page.textContent('#market-sub')) && /6 sides have no model yet/.test(await page.textContent('#market-sub')), await page.textContent('#market-sub'));
+  check('market: summary line counts markets, games, picks and watch against each side\'s own bar, and gives the bars by sport', /48 markets in 8 games/.test(await page.textContent('#market-sub')) && /2 leans on the board; 1 more side clears its bar but the caps keep it off the board \(one lean a game, ten a day, five a sport\); 4 on watch, at least halfway to their bar\./.test(await page.textContent('#market-sub')) && /never under 3 points: NBA 8–12\.5, NHL 6\.5, NFL 4\.5, MLB 3\./.test(await page.textContent('#market-sub')) && /6 sides have no model yet/.test(await page.textContent('#market-sub')), await page.textContent('#market-sub'));
   check('market: a pick row links to its card', (await page.locator('#market-host tbody tr.mkt-pick a.badge-pick').first().getAttribute('href')) === '#p3' || (await page.locator('#market-host tbody tr.mkt-pick a.badge-pick').first().getAttribute('href')) === '#p11');
   await page.click('#market-more button'); await page.waitForTimeout(200);
   check('market: show more reveals the rest', (await page.locator('#market-host tbody tr:not(.mkt-divider):not(.day-divider)').count()) === 48);
@@ -391,16 +321,16 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   const ep = await ectx.newPage(); await pinClock(ep); const eerr = []; ep.on('pageerror', e => eerr.push(e.message)); ep.on('console', m => { if (m.type() === 'error') eerr.push(m.text()); });
   await ep.route('**/data/picks.js', route => route.fulfill({ contentType: 'text/javascript', body: 'window.PICKS_DATA = { sample: false, generatedAt: "2026-11-04T16:20:00Z", playOfDay: null, parlayOfDay: null, picks: [] };' }));
   await ep.goto(url('index.html')); await ep.waitForTimeout(500);
-  check('empty: home board shows the four closest markets with a status, retitled', (await ep.locator('#board-rows .board-row.board-market').count()) === 4 && (await ep.textContent('#board-title')) === 'Worth a look tonight' && (await ep.locator('#board-rows .board-row .rank').count()) === 4 && await ep.evaluate(() => { const v = [...document.querySelectorAll('#board-rows .board-row')].map(r => r.textContent); return true; }) && /Watch|No bet/.test(await ep.textContent('#board-rows')) && /markets priced in 8 games/.test(await ep.textContent('#board-foot')));
+  check('empty: home board shows four sides from the watchlist with a status and what each needs, retitled', (await ep.locator('#board-rows .board-row.board-market.board-watch').count()) === 4 && (await ep.textContent('#board-title')) === 'On watch, no lean yet' && (await ep.locator('#board-rows .board-row .rank').count()) === 4 && await ep.evaluate(() => { const v = [...document.querySelectorAll('#board-rows .board-row')].map(r => r.textContent); return true; }) && /Watch/.test(await ep.textContent('#board-rows')) && !/No bet/.test(await ep.textContent('#board-rows')) && (await ep.locator('#board-rows .board-need').count()) === 4 && /markets priced in 8 games/.test(await ep.textContent('#board-foot')) && (await ep.getAttribute('#board-foot a', 'href')) === 'picks.html#watchlist');
   check('empty: ticker carries the watch list', (await ep.locator('#ticker-track .ticker-item').count()) > 0 && (await ep.locator('#ticker-track .t-watch').count()) > 0);
   check('empty: play of the day slot shows the closest market, labelled, with no parlay button', (await ep.locator('#potd-host .potd.potd-market').count()) === 1 && (await ep.textContent('#potd-host .eyebrow')) === 'Closest to the bar' && (await ep.locator('#potd-host .add-parlay').count()) === 0);
   check('empty: parlay slot shows the market pulse with the three closest markets', (await ep.locator('#parlay-host .pulse').count()) === 1 && (await ep.locator('#parlay-host .pulse .parlay-legs li').count()) === 3 && /48 markets/.test(await ep.textContent('#parlay-host')));
   check('empty: top picks grid shows three market cards with status badges and no parlay buttons', (await ep.locator('#top-picks-grid article.market-card').count()) === 3 && (await ep.locator('#top-picks-grid .add-parlay').count()) === 0 && (await ep.locator('#top-picks-grid .badge-status').count()) >= 3 && (await ep.textContent('#top-picks h2')).includes('likeliest sides'));
   await ep.goto(url('picks.html')); await ep.waitForTimeout(500);
-  check('empty: picks page shows a labelled watch grid, the market pulse where parlays go, and the full board', (await ep.locator('#picks-host .watch-note').count()) === 1 && (await ep.locator('#picks-host article.market-card').count()) === 6 && (await ep.locator('#parlays-host .pulse').count()) === 1 && (await ep.locator('#market-host tbody tr:not(.mkt-divider):not(.day-divider)').count()) === 40);
+  check('empty: picks page shows a labelled watch grid, one sentence where parlays go (it points at the watchlist), and the full board', (await ep.locator('#picks-host .watch-note').count()) === 1 && (await ep.locator('#picks-host article.market-card').count()) === 6 && (await ep.locator('#parlays-host .pulse').count()) === 0 && (await ep.getAttribute('#parlays-host .parlays-none a', 'href')) === '#watchlist' && (await ep.locator('#market-host tbody tr:not(.mkt-divider):not(.day-divider)').count()) === 40);
   await ep.goto(url('digest.html')); await ep.waitForTimeout(500);
-  check('empty: digest lede explains, tiles switch to market counts, slate lists the watch list', /No lean clears its bar tonight/.test(await ep.textContent('#digest-lede')) && /of its bar of [\d.]+ points\./.test(await ep.textContent('#digest-lede')) && /Markets priced/.test(await ep.textContent('#digest-tiles')) && (await ep.locator('.digest-row').count()) === 12 && (await ep.locator('.digest-row .badge-status').count()) === 12 && (await ep.textContent('.digest-slate h2')).includes('watch list'));
-  check('empty: digest copy text says it is a watch list', await ep.evaluate(() => /Watch list \(closest markets, not leans\)/.test(window.EdgeLineDigest.asText())));
+  check('empty: digest lede explains, tiles switch to market counts, slate lists the watchlist', /No lean on the board tonight/.test(await ep.textContent('#digest-lede')) && /points over the price, [\d.]+ (past|short of) its bar of [\d.]+ points[.;]/.test(await ep.textContent('#digest-lede')) && !/past of/.test(await ep.textContent('#digest-lede')) && /Markets priced/.test(await ep.textContent('#digest-tiles')) && (await ep.locator('.digest-row').count()) === 5 && (await ep.locator('.digest-row .badge-status').count()) === 5 && (await ep.textContent('.digest-slate h2')).includes('watchlist') && /^5 sides$/.test(await ep.textContent('.digest-slate .slot-count')));
+  check('empty: digest copy text says it is the watchlist', await ep.evaluate(() => /Watchlist \(the side nearest its bar in each game, not leans\)/.test(window.EdgeLineDigest.asText())));
   check('empty: no page errors across the fallbacks', eerr.length === 0, eerr.join(' | '));
   await ectx.close();
 
@@ -863,6 +793,10 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
     check('card height (' + label + '): every card is as tall as the tallest front in its row, the back fits the same box, and an NBA back with faces scrolls inside it', bands.length === 12 && worst <= 4 && bands.every(b => b.back) && nba.length >= 1, JSON.stringify(bands.map(b => b.id + ':' + b.band)));
     await hc.close();
   }
+
+  /* start labels on the clock, the bar wording, held games and flagged leans, the clearing price and the watchlist
+     (2026-11-10): scripts/watch-checks.js, on the same server, clock and counter */
+  await require('./watch-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc });
 
   /* smoke pass over the real data files, whatever they currently hold (possibly an empty board) */
   useSample = false;

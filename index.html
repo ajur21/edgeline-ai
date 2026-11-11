@@ -315,13 +315,16 @@
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA, S = window.PERF_DATA;
   /* only games that have not started are offered; started picks move to the picks page's In progress and results (owner ask, 2026-11-05) */
-  var ranked, fallback, shown, summary;
+  var ranked, fallback, shown, summary, watch;
   function compute() {
     ranked = E.sortByProb(E.openOnly(D.picks));
     /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
     fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
     shown = ranked.length ? ranked : fallback;
     summary = E.marketSummary();
+    /* with no open lean the board lists the watchlist (one side a game, the nearest its bar, and held sides past
+       theirs) rather than the likeliest sides, some of which are No bet (2026-11-10) */
+    watch = ranked.length ? [] : E.watchlist();
   }
   function emptyText() {
     return E.playedPicks().length ? "Every " + E.word("one") + " on the board has started: the scores and results are under In progress and results. New " + E.word("many") + " are published around " + E.runClock(0) + "." : "Nothing on the board right now. Prices refresh around " + E.runClock(0) + " and " + E.runClock(1) + ".";
@@ -352,9 +355,25 @@
   var rows = document.getElementById("board-rows");
   function renderBoard() {
     rows.textContent = "";
-    document.getElementById("board-title").textContent = ranked.length || !summary.markets ? "Today’s board" : "Worth a look tonight";
+    var onWatch = !ranked.length && watch.length > 0;
+    document.getElementById("board-title").textContent = ranked.length || !summary.markets ? "Today’s board" : onWatch ? "On watch, no " + E.word("one") + " yet" : "Worth a look tonight";
     if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: emptyText() }));
-    shown.slice(0, 4).forEach(function (p, i) {
+    /* on watch: what each side needs to become a lean (the price that clears its bar), or why it is held and when that is decided */
+    if (onWatch) watch.slice(0, 4).forEach(function (e, i) {
+      var p = e.pick, clear = E.clearText(p);
+      rows.appendChild(E.el("a", { class: "board-row board-market board-watch", href: "picks.html#watchlist", "data-kind": e.kind }, [
+        E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
+        E.el("div", { class: "board-pick" }, [
+          E.el("div", { class: "sel", text: p.pick }),
+          E.el("div", { class: "board-game", text: p.event }),
+          E.meta([E.startLabel(p), E.statusLabel(p.status)], "ev"),
+          E.el("div", { class: "board-need", text: e.kind === "held" ? E.heldWhy(p).replace(/^./, function (c) { return c.toUpperCase(); }) + "; " + E.heldWhen(p, true) + "." : clear ? clear.replace(/^./, function (c) { return c.toUpperCase(); }) + "." : e.kind === "caps" ? "Past its bar; the caps keep it off the board." : E.barGap(p, true) + "." })
+        ]),
+        E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
+        E.el("span", { class: "board-edge board-edge-watch", text: E.edgeText(p) })
+      ]));
+    });
+    else shown.slice(0, 4).forEach(function (p, i) {
       rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
         E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
         E.el("div", { class: "board-pick" }, [
@@ -372,7 +391,8 @@
     if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: today ? "Earlier today" : "Recent games" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
     var foot = document.getElementById("board-foot");
     foot.textContent = "";
-    if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
+    if (onWatch) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. " + (watch.length > 4 ? (watch.length - 4) + " more on " : "These are from "), E.el("a", { href: "picks.html#watchlist", text: "the watchlist" }), "."]));
+    else if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
     else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first " + E.word("many") + " settle." }));
     else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
      ["Units", E.signed(S.units, 1) + "u"],
@@ -438,7 +458,7 @@
           near ? E.el("div", { class: "cal-meta" }, [
             E.el("span", { class: "badge badge-sport", "data-sport": near.sport, text: near.sport }),
             E.el("span", { class: "badge badge-status badge-" + near.status, text: E.statusLabel(near.status) }),
-            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts, " + E.pastWord(near) + " of its bar" : "no model yet") })
+            E.el("span", { text: "Closest: " + near.pick + " " + E.fmtOdds(near.odds) + " at " + near.book + ", " + (E.hasModel(near) ? E.signed(E.edgeOf(near) * 100, 1) + " pts, " + E.barGap(near, true) : "no model yet") })
           ]) : E.el("span"),
           E.el("div", { class: "cal-note", text: "One line, so you know we looked and passed." })
         ])
