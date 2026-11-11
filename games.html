@@ -73,7 +73,7 @@
     <div class="section-head games-head">
       <div>
         <h2 id="games">Games, likeliest first</h2>
-        <p class="muted how-to" id="g-how">Today’s games come first, then later days under their own heading. Within a day, games with a side priced under our probability lead, ordered by our probability for that side. Each cell is one side: its line, the best price and the book that has it, then our probability from the game data and its edge over that price. <span data-pick="Pick">Lean</span> means the side cleared its own bar and is on the board (it links to its card); Watch means the edge is at least halfway to its bar. Prices are where to bet it; nothing is graded against other books’ prices.</p>
+        <p class="muted how-to" id="g-how">Today’s games come first, then later days under their own heading. Within a day, games with a side priced under our probability lead, ordered by our probability for that side. Each cell is one side: its line, the best price and the book that has it, then our probability from the game data and its edge over that price. <span data-pick="Pick">Lean</span> means the side cleared its own bar and is on the board (it links to its card); Watch means the edge is at least halfway to its bar; Held means the side is past its bar but its game is waiting on news (the NBA’s official injury report, say), and the game says when that is decided. Prices are where to bet it; nothing is graded against other books’ prices.</p>
       </div>
     </div>
     <p class="filter-summary" id="g-summary" role="status"></p>
@@ -160,7 +160,7 @@
     if (!x) return E.el("td", { class: "line-cell line-empty" }, [E.el("span", { class: "line-none", text: "—" })]);
     var modelled = E.hasModel(x), pick = x.pickId && onBoard[x.pickId] ? onBoard[x.pickId] : null;
     /* Pick only while it is on the board; Watch from halfway to the side's own bar (each side has its own since 2026-11-05) */
-    var st = pick ? "pick" : E.rowStatus(x);
+    var st = pick ? "pick" : E.chipStatus(x);
     var o = x.outcome || {}, point = x.marketKey === "totals" ? (/^over/i.test(o.name) ? "O " : "U ") + o.point : x.marketKey === "spreads" && o.point != null ? (o.point > 0 ? "+" : "") + o.point : "";
     var parts = [
       E.el("span", { class: "line-top" }, [point ? E.el("span", { class: "line-point", text: point }) : null, E.el("span", { class: "line-price", text: E.fmtOdds(x.odds) })]),
@@ -168,7 +168,7 @@
       E.el("span", { class: "line-prob" }, modelled
         ? [E.el("span", { class: "line-hit", text: E.pct(x.modelProb) }), E.el("span", { class: "line-edge" + (E.rowEdge(x) > 0 ? " edge-pos" : ""), title: "Edge over the price; its bar is " + E.barPts(x) + " points, " + E.pastWord(x), text: E.signed(Number(x.edge) * 100, 1) })]
         : [E.el("span", { class: "line-hit", text: "No model" })]),
-      st !== "none" ? E.el("span", { class: "badge badge-status badge-" + st, text: st === "pick" ? E.word("One") : "Watch" }) : null
+      st !== "none" ? E.el("span", { class: "badge badge-status badge-" + st, title: st === "held" ? E.heldNote(x) : null, text: E.statusLabel(st) }) : null
     ];
     var inner = pick
       ? E.el("a", { class: "line-btn", href: "picks.html#" + encodeURIComponent(pick.id), "aria-label": x.pick + " " + E.fmtOdds(x.odds) + " at " + x.book + ", our probability " + E.pct(x.modelProb) + ": open the " + E.word("one") }, parts)
@@ -219,7 +219,7 @@
       E.el("div", { class: "game-head" }, [
         E.el("div", { class: "game-tags" }, [E.el("span", { class: "badge badge-state badge-" + key, text: chip }), E.el("span", { class: "badge badge-sport", "data-sport": r.sport, text: r.sport })]),
         E.el("h3", { class: "game-title" }, [E.el("a", { href: "game.html?id=" + encodeURIComponent(g.id), text: r.event })]),
-        E.meta([Number.isFinite(t) ? "Started " + E.clockET(t) : r.start, "Lines closed at the start"], "game-meta")
+        E.meta([Number.isFinite(t) ? "Started " + E.clockET(t) : E.startLabel(r), "Lines closed at the start"], "game-meta")
       ]),
       g.allPicks.length ? E.el("ul", { class: "game-picks" }, g.allPicks.map(function (p) {
         var graded = E.gameState(p) === "final";
@@ -246,7 +246,9 @@
           g.modelled ? null : E.el("span", { class: "badge badge-status badge-none", text: "No model yet" })
         ]),
         E.el("h3", { class: "game-title" }, [E.el("a", { href: "game.html?id=" + encodeURIComponent(g.id), text: r.event })]),
-        E.meta([r.start, r.books ? r.books + " books on the main lines" : null], "game-meta")
+        E.meta([E.startLabel(r), r.books ? r.books + " books on the main lines" : null], "game-meta"),
+        /* a game waiting on its news posts nothing yet: say why and when that is decided (the rows' `waiting`) */
+        !g.picks.length && E.isHeld(r) ? E.el("p", { class: "game-held" }, [E.el("span", { class: "badge badge-status badge-held", text: "Held" }), E.el("span", { text: E.heldWhy(r).replace(/^./, function (c) { return c.toUpperCase(); }) + ". " + E.heldWhen(r) })]) : null
       ]),
       E.el("div", { class: "table-wrap game-lines-wrap" }, [lt.table]),
       booksTable(g, lt.sides)

@@ -13,8 +13,11 @@
      receivers and tight ends, from the same box scores,
    - the wind at kickoff for outdoor U.S. stadiums (National Weather Service,
      public domain, keyless).
-   Then, on an NFL game day only, one SportsGameOdds call for the day's games
-   still to start (one entity per game) attaches every player's lines.
+   Then, on an NFL game day, one SportsGameOdds call for the day's games still
+   to start (one entity per game) attaches every player's lines; on the
+   afternoon run of the day or two before a game day the same call is paid
+   from the cycle's spare entities, when the surplus spender's rule allows
+   (scripts/surplus.js, sgoEarly).
    The grade is game data only (owner rule, 2026-11-04): the books' lines are
    the number to clear and their fair price is stored, never used.
 
@@ -24,6 +27,7 @@
 const fs = require("fs");
 const path = require("path");
 const sgo = require("./sgo.js");
+const surplus = require("./surplus.js"); /* NFL lines before game day spend from the SportsGameOdds surplus (2026-11-10) */
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/football/nfl";
 /* every request names us honestly (never a browser's user agent); the same string as BOT_UA in scripts/context.js on
@@ -40,19 +44,66 @@ const RULES = {
   maxNewBoxscores: 180,                           /* a run never fetches more box scores than this (the season's first run backfills ~130) */
   sgoReserve: 150                                 /* SportsGameOdds entities never spent (shared with update-data.js) */
 };
-/* the markets: two-sided at the six books the free tier carries for the NFL (SportsGameOdds' market list, checked
-   2026-11-08), and each one a count we can project from usage. Anytime touchdown is left out: most books quote only
-   "yes" (two of six quote "no"), so there is no two-sided line to clear, and a touchdown is the noisiest thing to project. */
+/* the markets: each a count we can project from usage, each quoted over and under by the books. Anytime touchdown is
+   left out (see DROPPED).
+   2026-11-10 (the owner: "NFL props depth"): seven candidates were fitted on 2025 and checked on 2026 like the first
+   five (--eval): pass attempts, completions, interceptions, passing plus rushing yards, carries, rushing plus receiving
+   yards and a touchdown. Four ship; three are in DROPPED with the reason. The vendor's stat ids are the ones its own
+   NFL market page lists with an over and an under each (sportsgameodds.com/blog/nfl-odds-api-market-coverage, read
+   2026-11-10: passing_attempts, passing_completions, passing_interceptions and rushing_attempts at 40-41 books,
+   passing+rushing_yards and rushing+receiving_yards at 39, touchdowns over/under at 21). No live response has been
+   read for them yet (this machine has no key), so which of the free tier's books carry each is unconfirmed: a market
+   the vendor does not return simply has no line, and a line quoted one way never reaches the board (twoSided in
+   js/props-grade.js). In display order. */
 const STATS = {
   passYds: { label: "Passing yards", short: "PASS YDS", sgo: "passing_yards", dist: "ratio" },
   passTds: { label: "Passing TDs", short: "PASS TD", sgo: "passing_touchdowns", dist: "poisson" },
+  att: { label: "Pass attempts", short: "PASS ATT", sgo: "passing_attempts", dist: "ratio" },
+  cmp: { label: "Completions", short: "CMP", sgo: "passing_completions", dist: "ratio" },
+  int: { label: "Interceptions", short: "INT", sgo: "passing_interceptions", dist: "poisson" },
+  passRushYds: { label: "Pass + rush yards", short: "PASS+RUSH", sgo: "passing+rushing_yards", dist: "ratio", sum: ["passYds", "rushYds"] },
   rushYds: { label: "Rushing yards", short: "RUSH YDS", sgo: "rushing_yards", dist: "ratio" },
+  car: { label: "Carries", short: "CAR", sgo: "rushing_attempts", dist: "ratio" },
   recYds: { label: "Receiving yards", short: "REC YDS", sgo: "receiving_yards", dist: "ratio" },
-  rec: { label: "Receptions", short: "REC", sgo: "receiving_receptions", dist: "poisson" }
+  rec: { label: "Receptions", short: "REC", sgo: "receiving_receptions", dist: "poisson" },
+  rushRecYds: { label: "Rush + rec yards", short: "RUSH+REC", sgo: "rushing+receiving_yards", dist: "ratio", sum: ["rushYds", "recYds"] },
+  td: { label: "Touchdowns", short: "TD", sgo: "touchdowns", dist: "poisson" }
 };
 const STAT_KEYS = Object.keys(STATS);
-const SGO_STATS = {}; STAT_KEYS.forEach(k => { SGO_STATS[k] = STATS[k].sgo; });
-const KEYS_BY_POS = { QB: ["passYds", "passTds", "rushYds"], RB: ["rushYds", "recYds", "rec"], WR: ["recYds", "rec"], TE: ["recYds", "rec"] };
+/* the five the model was first fitted on (2026-11-08); the rest were fitted on 2026-11-10, the same way */
+const CORE_KEYS = ["passYds", "passTds", "rushYds", "recYds", "rec"];
+const SUM_KEYS = STAT_KEYS.filter(k => STATS[k].sum), BASE_KEYS = STAT_KEYS.filter(k => !STATS[k].sum);
+/* The rule a new market ships by (2026-11-10): the books quote it both ways, and held out on 2026 its error is no
+   worse than the player's season average and its P(over) scores better than 2025's over rate as a constant and than a
+   coin flip. A candidate that fails stays in STATS so --eval keeps measuring it, and is neither projected for the page
+   nor asked of the vendor. The numbers are 2026 weeks 3-9 (104 games), settings frozen on 2025. */
+const DROPPED = {
+  /* error 0.68 against the season average's 0.67 (1.7% worse; n 193). Its P(over) does score well (Brier 0.188 against
+     the constant's 0.222), because the count is 0 two games in three and we say so; but the projection itself is no
+     better than the average, so by the rule it does not ship. */
+  int: "held out, its error is 1.7% worse than the player's season average",
+  /* error 29.60 against 29.58 (n 305): the sum of two projections, one of which (rushing yards) is itself level with
+     the season average. Brier 0.242 against 0.249. */
+  rushRecYds: "held out, its error is no better than the player's season average",
+  /* the anytime scorer: the vendor's market list (2026-11-08) had the "no" at two of the six books the free tier
+     carries for the NFL, so it is rarely a number quoted both ways there, and a book settles it on any touchdown the
+     player scores (returns and recoveries too) while the box score cache keeps rushing and receiving ones. Read as
+     over 0.5 it fails the check as well: error 1.0% worse than the season average (n 1,059); Brier 0.201 against the
+     constant's 0.210, its confident bucket hot (65% said, 52% came in, 21). */
+  td: "rarely quoted both ways on the free tier, settles on touchdowns the box score cache does not keep, and held out its error is 1.0% worse than the season average"
+};
+const SHIPPED = STAT_KEYS.filter(k => !DROPPED[k]);
+const SGO_STATS = {}; SHIPPED.forEach(k => { SGO_STATS[k] = STATS[k].sgo; });
+/* the stat list the page reads its tabs and labels from, in display order (PROPS_DATA.leagues.NFL.stats) */
+const STAT_LIST = SHIPPED.map(k => ({ key: k, label: STATS[k].label, short: STATS[k].short }));
+const KEYS_BY_POS = {
+  QB: ["passYds", "passTds", "att", "cmp", "int", "passRushYds", "rushYds"],
+  RB: ["rushYds", "car", "recYds", "rec", "rushRecYds", "td"],
+  WR: ["recYds", "rec", "td"], TE: ["recYds", "rec", "td"]
+};
+Object.keys(KEYS_BY_POS).forEach(pos => { KEYS_BY_POS[pos] = KEYS_BY_POS[pos].filter(k => !DROPPED[k]); });
+/* 2025's share of overs at the running-median line, per stat: the constant our P(over) has to beat held out */
+const OVER_2025 = { passYds: 0.544, passTds: 0.401, att: 0.505, cmp: 0.508, int: 0.351, passRushYds: 0.544, rushYds: 0.489, car: 0.474, recYds: 0.453, rec: 0.376, rushRecYds: 0.487, td: 0.29 };
 /* box score row columns in data/nfl-games.json (arrays keep the file small) */
 const COLS = ["id", "team", "cmp", "att", "pyd", "ptd", "int", "car", "ryd", "rtd", "tgt", "rec", "wyd", "wtd"];
 const C = {}; COLS.forEach((c, i) => { C[c] = i; });
@@ -191,23 +242,37 @@ async function updateCache(src, cache, sb, now, log) {
    tested, unchanged, on 2026 weeks 2-9 (see EVAL and `node scripts/nfl-props.js --eval`). No price takes part. */
 const PARAMS = {
   wRecent: 0.1,                                          /* the last three games' share of the usage (targets, carries, attempts): the season tells more */
-  k: { ypa: 25, tdr: 300, ypc: 120, cr: 5, ypt: 15 },    /* efficiency shrunk toward the league's for the position by this many attempts / carries / targets */
-  opp: { k: 16, pow: 0.75 },                             /* a defence's allowed-per-game, shrunk toward the league by 16 games: a small effect */
+  k: { ypa: 25, tdr: 300, ypc: 120, cr: 5, ypt: 15,      /* efficiency shrunk toward the league's for the position by this many attempts / carries / targets */
+    cmpr: 400, intr: 2000, rtdr: 800, wtdr: 200,         /* 2026-11-10: completion rate, interception rate, touchdowns a carry and a target */
+    attG: 6 },                                           /* the attempts and completions markets: a starter's volume pulled toward the league's by six games */
+  opp: { k: 16, pow: 0.75,                               /* a defence's allowed-per-game, shrunk toward the league by 16 games: a small effect */
+    by: { att: 1, cmp: 1, int: 0.75, car: 0.75, td: 0.25 } }, /* the same rule for the 2026-11-10 markets, each power fitted on 2025 (0 to 1) */
   home: 0.03,                                            /* +3% at home, -3% away */
+  homeBy: { att: -0.01, cmp: 0.01, int: 0, car: 0.03, td: 0.06 }, /* the 2026-11-10 counts: the home edge each one showed on 2025 */
   vacate: { tgt: 0, car: 0.3 },                          /* a missing teammate's carries: the rest pick up 30%; his targets: no rule beat none */
   backupQb: { recYds: 0.96, rec: 1, passYds: 1.15, passTds: 1.15 }, /* the usual quarterback out: receivers' yards -4%; the backup's own thin history reads 15% low */
   injured: 0.95,                                         /* the player himself listed Questionable (a prior: no injury history to fit) */
-  scale: { passYds: 0.984, passTds: 0.974, rushYds: 0.995, recYds: 0.958, rec: 0.936 }, /* each stat's level: a usage sample regresses toward the mean */
+  scale: { passYds: 0.984, passTds: 0.974, rushYds: 0.995, recYds: 0.958, rec: 0.936, /* each stat's level: a usage sample regresses toward the mean */
+    att: 0.97, cmp: 0.962, int: 1.008, car: 0.997, td: 1.009, passRushYds: 0.986, rushRecYds: 1.014 },
   wind: { from: 12, pass: 0.012, catch: 0.006, rush: 0.004, max: 0.15 } /* a prior from public research, not fitted (no wind history) */
 };
 /* league rates for 2025 (the fallback when the season's own sample is thin) */
-const LEAGUE_2025 = { ypa: 6.9, tdr: 0.046, ypc: { QB: 4.9, RB: 4.3, WR: 6.5, TE: 4, all: 4.4 }, cr: { WR: 0.63, TE: 0.73, RB: 0.79, QB: 0.5, all: 0.67 }, ypt: { WR: 8.3, TE: 7.4, RB: 6.1, QB: 5, all: 7.6 } };
+const LEAGUE_2025 = { ypa: 6.9, tdr: 0.046, ypc: { QB: 4.9, RB: 4.3, WR: 6.5, TE: 4, all: 4.4 }, cr: { WR: 0.63, TE: 0.73, RB: 0.79, QB: 0.5, all: 0.67 }, ypt: { WR: 8.3, TE: 7.4, RB: 6.1, QB: 5, all: 7.6 },
+  cmpr: 0.64, intr: 0.022, attStart: 32.5, rtdr: { QB: 0.047, RB: 0.032, WR: 0.03, TE: 0.03, all: 0.034 }, wtdr: { WR: 0.049, TE: 0.057, RB: 0.036, QB: 0.04, all: 0.049 } };
 /* the spread of outcomes around a projection: quantiles (5%, 10% ... 95%) of actual / projected on 2025 (n 461 passing,
    861 rushing, 2,026 receiving player-games), by projection size; a receiver projected under 25 yards is often held to 0 */
 const DIST = {
   passYds: [{ upTo: null, q: [0.35, 0.58, 0.64, 0.71, 0.76, 0.81, 0.86, 0.9, 0.95, 1, 1.03, 1.08, 1.12, 1.16, 1.23, 1.29, 1.36, 1.45, 1.61] }],
   rushYds: [{ upTo: 30, q: [-0.02, 0, 0.11, 0.19, 0.29, 0.4, 0.47, 0.57, 0.68, 0.75, 0.86, 0.95, 1.05, 1.26, 1.42, 1.66, 1.84, 2.19, 2.8] }, { upTo: 55, q: [0.1, 0.21, 0.32, 0.42, 0.51, 0.56, 0.65, 0.73, 0.81, 0.89, 0.97, 1.05, 1.18, 1.29, 1.38, 1.55, 1.79, 1.93, 2.5] }, { upTo: null, q: [0.29, 0.37, 0.46, 0.54, 0.57, 0.66, 0.73, 0.82, 0.87, 0.92, 0.99, 1.06, 1.11, 1.16, 1.24, 1.38, 1.49, 1.74, 2.02] }],
-  recYds: [{ upTo: 25, q: [0, 0, 0.03, 0.2, 0.29, 0.38, 0.48, 0.6, 0.67, 0.79, 0.91, 1.05, 1.17, 1.34, 1.51, 1.75, 2.02, 2.48, 3.63] }, { upTo: 50, q: [0, 0.13, 0.23, 0.34, 0.43, 0.52, 0.61, 0.7, 0.8, 0.87, 0.97, 1.08, 1.19, 1.34, 1.47, 1.68, 1.86, 2.13, 2.63] }, { upTo: null, q: [0.11, 0.25, 0.33, 0.44, 0.53, 0.59, 0.65, 0.72, 0.78, 0.84, 0.92, 0.99, 1.06, 1.17, 1.27, 1.39, 1.58, 1.78, 2.03] }]
+  recYds: [{ upTo: 25, q: [0, 0, 0.03, 0.2, 0.29, 0.38, 0.48, 0.6, 0.67, 0.79, 0.91, 1.05, 1.17, 1.34, 1.51, 1.75, 2.02, 2.48, 3.63] }, { upTo: 50, q: [0, 0.13, 0.23, 0.34, 0.43, 0.52, 0.61, 0.7, 0.8, 0.87, 0.97, 1.08, 1.19, 1.34, 1.47, 1.68, 1.86, 2.13, 2.63] }, { upTo: null, q: [0.11, 0.25, 0.33, 0.44, 0.53, 0.59, 0.65, 0.72, 0.78, 0.84, 0.92, 0.99, 1.06, 1.17, 1.27, 1.39, 1.58, 1.78, 2.03] }],
+  /* 2026-11-10, the same sample: attempts and completions (n 461 each), carries (739 back-games), passing plus rushing
+     (461) and rushing plus receiving (739). The three counts are read from quantiles too: a Poisson count was too
+     narrow for each (Brier 0.213 against 0.217 for attempts, 0.219 against 0.223, 0.234 against 0.237 for carries) */
+  att: [{ upTo: null, q: [0.5, 0.66, 0.73, 0.78, 0.83, 0.87, 0.89, 0.93, 0.97, 1.01, 1.04, 1.09, 1.11, 1.14, 1.18, 1.23, 1.28, 1.37, 1.49] }],
+  cmp: [{ upTo: null, q: [0.45, 0.64, 0.71, 0.77, 0.81, 0.86, 0.89, 0.93, 0.95, 0.99, 1.04, 1.09, 1.13, 1.17, 1.2, 1.26, 1.31, 1.38, 1.49] }],
+  car: [{ upTo: 8, q: [0.14, 0.26, 0.31, 0.39, 0.54, 0.63, 0.67, 0.75, 0.86, 0.94, 1, 1.11, 1.2, 1.38, 1.44, 1.53, 1.63, 2.03, 2.29] }, { upTo: 14, q: [0.3, 0.4, 0.51, 0.62, 0.72, 0.76, 0.81, 0.87, 0.92, 1, 1.05, 1.14, 1.21, 1.28, 1.36, 1.5, 1.63, 1.77, 1.99] }, { upTo: null, q: [0.41, 0.55, 0.65, 0.72, 0.77, 0.8, 0.82, 0.85, 0.88, 0.91, 0.97, 1.02, 1.08, 1.13, 1.15, 1.21, 1.28, 1.34, 1.54] }],
+  passRushYds: [{ upTo: null, q: [0.39, 0.58, 0.68, 0.73, 0.79, 0.85, 0.89, 0.93, 0.98, 1.01, 1.04, 1.08, 1.13, 1.16, 1.24, 1.3, 1.36, 1.43, 1.55] }],
+  rushRecYds: [{ upTo: 45, q: [0.05, 0.11, 0.18, 0.3, 0.36, 0.46, 0.58, 0.65, 0.71, 0.78, 0.88, 1.13, 1.22, 1.33, 1.45, 1.57, 1.79, 2.28, 2.69] }, { upTo: 80, q: [0.19, 0.34, 0.47, 0.54, 0.6, 0.65, 0.7, 0.78, 0.83, 0.9, 0.96, 1.02, 1.12, 1.2, 1.36, 1.44, 1.63, 1.87, 2.36] }, { upTo: null, q: [0.36, 0.44, 0.54, 0.6, 0.64, 0.71, 0.76, 0.82, 0.89, 0.95, 1, 1.04, 1.08, 1.13, 1.2, 1.3, 1.42, 1.54, 1.73] }]
 };
 const QS = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95];
 function distFor(k, mean) { const t = DIST[k]; if (!t) return null; const b = t.find(x => x.upTo == null || mean < x.upTo) || t[t.length - 1]; return b.q.map(r => round(r * mean, 1)); }
@@ -231,7 +296,9 @@ function pOver(proj, line) {
 function rowVal(r, k) {
   switch (k) {
     case "passYds": return r[C.pyd]; case "passTds": return r[C.ptd]; case "rushYds": return r[C.ryd]; case "recYds": return r[C.wyd]; case "rec": return r[C.rec];
-    case "att": return r[C.att]; case "car": return r[C.car]; case "tgt": return r[C.tgt]; default: return null;
+    case "att": return r[C.att]; case "car": return r[C.car]; case "tgt": return r[C.tgt];
+    case "cmp": return r[C.cmp]; case "int": return r[C.int]; case "td": return r[C.rtd] + r[C.wtd];
+    case "passRushYds": return r[C.pyd] + r[C.ryd]; case "rushRecYds": return r[C.ryd] + r[C.wyd]; default: return null;
   }
 }
 /* positions: the roster's word where we have it, else read from usage (a passer is a quarterback, a runner a back) */
@@ -266,58 +333,62 @@ function indexGames(cache, positions) {
 const before = (list, t) => (list || []).filter(x => Date.parse(x.d) < t);
 /* league rates from every game before t: per attempt, carry and target by position, and what a defence allows a game */
 function leagueRates(idx, t) {
-  const s = { att: 0, pyd: 0, ptd: 0, car: {}, ryd: {}, tgt: {}, rec: {}, wyd: {}, teamGames: 0, allowed: { passYds: 0, passTds: 0, rushYds: 0, recYds: { WR: 0, TE: 0, RB: 0 }, rec: { WR: 0, TE: 0, RB: 0 } } };
+  const s = { att: 0, pyd: 0, ptd: 0, cmp: 0, int: 0, car: {}, ryd: {}, tgt: {}, rec: {}, wyd: {}, rtd: {}, wtd: {}, teamGames: 0, allowed: emptyAllowed() };
   const add = (o, k, v) => { o[k] = (o[k] || 0) + v; o.all = (o.all || 0) + v; };
   idx.games.forEach(function (g) {
     if (Date.parse(g.d) >= t) return;
     s.teamGames += 2;
     g.r.forEach(function (r) {
       const pos = posOf(idx, r[C.id]) || "WR";
-      s.att += r[C.att]; s.pyd += r[C.pyd]; s.ptd += r[C.ptd];
-      add(s.car, pos, r[C.car]); add(s.ryd, pos, r[C.ryd]); add(s.tgt, pos, r[C.tgt]); add(s.rec, pos, r[C.rec]); add(s.wyd, pos, r[C.wyd]);
-      const a = s.allowed; a.passYds += r[C.pyd]; a.passTds += r[C.ptd]; if (pos !== "QB") a.rushYds += r[C.ryd];
-      if (a.recYds[pos] != null) { a.recYds[pos] += r[C.wyd]; a.rec[pos] += r[C.rec]; }
+      s.att += r[C.att]; s.pyd += r[C.pyd]; s.ptd += r[C.ptd]; s.cmp += r[C.cmp]; s.int += r[C.int];
+      if (r[C.att] >= 10) { s.starts = (s.starts || 0) + 1; s.startAtt = (s.startAtt || 0) + r[C.att]; }
+      add(s.car, pos, r[C.car]); add(s.ryd, pos, r[C.ryd]); add(s.tgt, pos, r[C.tgt]); add(s.rec, pos, r[C.rec]); add(s.wyd, pos, r[C.wyd]); add(s.rtd, pos, r[C.rtd]); add(s.wtd, pos, r[C.wtd]);
+      addAllowed(s.allowed, r, pos);
     });
   });
   const L = LEAGUE_2025, ratio = (num, den, fb, k) => den >= (k || 1) ? num / den : fb;
-  const out = { ypa: ratio(s.pyd, s.att, L.ypa, 500), tdr: ratio(s.ptd, s.att, L.tdr, 500), ypc: {}, cr: {}, ypt: {}, teamGames: s.teamGames, allowed: {} };
+  const out = { ypa: ratio(s.pyd, s.att, L.ypa, 500), tdr: ratio(s.ptd, s.att, L.tdr, 500), cmpr: ratio(s.cmp, s.att, L.cmpr, 500), intr: ratio(s.int, s.att, L.intr, 1500), attStart: ratio(s.startAtt || 0, s.starts || 0, L.attStart, 30), ypc: {}, cr: {}, ypt: {}, rtdr: {}, wtdr: {}, teamGames: s.teamGames, allowed: {} };
   ["QB", "RB", "WR", "TE", "all"].forEach(function (p) {
     out.ypc[p] = ratio(s.ryd[p] || 0, s.car[p] || 0, L.ypc[p], 150); out.cr[p] = ratio(s.rec[p] || 0, s.tgt[p] || 0, L.cr[p], 150); out.ypt[p] = ratio(s.wyd[p] || 0, s.tgt[p] || 0, L.ypt[p], 150);
+    out.rtdr[p] = ratio(s.rtd[p] || 0, s.car[p] || 0, L.rtdr[p], 1500); out.wtdr[p] = ratio(s.wtd[p] || 0, s.tgt[p] || 0, L.wtdr[p], 1500);
   });
-  const tg = Math.max(1, s.teamGames), a = s.allowed;
-  out.allowed = { passYds: a.passYds / tg, passTds: a.passTds / tg, rushYds: a.rushYds / tg, recYds: { WR: a.recYds.WR / tg, TE: a.recYds.TE / tg, RB: a.recYds.RB / tg }, rec: { WR: a.rec.WR / tg, TE: a.rec.TE / tg, RB: a.rec.RB / tg } };
+  const tg = Math.max(1, s.teamGames), a = s.allowed, per = o => { const x = {}; Object.keys(o).forEach(k => { x[k] = typeof o[k] === "object" ? per(o[k]) : o[k] / tg; }); return x; };
+  out.allowed = per(a);
   return out;
 }
 /* what one defence has allowed a game before t: passing yards and touchdowns, rushing yards by non-quarterbacks, catches and receiving yards by position */
+function emptyAllowed() { return { passYds: 0, passTds: 0, rushYds: 0, att: 0, cmp: 0, int: 0, car: 0, recYds: { WR: 0, TE: 0, RB: 0 }, rec: { WR: 0, TE: 0, RB: 0 }, td: { WR: 0, TE: 0, RB: 0 } }; }
+/* one offensive row against a defence: passing by anyone, rushing by non-quarterbacks, receiving by position group */
+function addAllowed(a, r, pos) {
+  a.passYds += r[C.pyd]; a.passTds += r[C.ptd]; a.att += r[C.att]; a.cmp += r[C.cmp]; a.int += r[C.int];
+  if (pos !== "QB") { a.rushYds += r[C.ryd]; a.car += r[C.car]; }
+  if (a.recYds[pos] != null) { a.recYds[pos] += r[C.wyd]; a.rec[pos] += r[C.rec]; a.td[pos] += r[C.rtd] + r[C.wtd]; }
+}
+const BY_GROUP = { recYds: true, rec: true, td: true };
+function allowedOf(a, k, pos) { if (!a || a[k] == null) return null; return BY_GROUP[k] ? a[k][pos === "TE" || pos === "RB" ? pos : "WR"] : a[k]; }
 function defenceAllowed(idx, teamId, t) {
-  const out = { games: 0, passYds: 0, passTds: 0, rushYds: 0, recYds: { WR: 0, TE: 0, RB: 0 }, rec: { WR: 0, TE: 0, RB: 0 } };
+  const out = Object.assign({ games: 0 }, emptyAllowed());
   /* the offence that faced this defence: the opponent's rows in each of its games */
   before(idx.byTeam[teamId], t).forEach(function (e) {
     const opp = (idx.byTeam[e.opp] || []).find(x => x.gid === e.gid); if (!opp) return;
     out.games++;
-    opp.rows.forEach(function (r) {
-      const pos = posOf(idx, r[C.id]) || "WR";
-      out.passYds += r[C.pyd]; out.passTds += r[C.ptd]; if (pos !== "QB") out.rushYds += r[C.ryd];
-      if (out.recYds[pos] != null) { out.recYds[pos] += r[C.wyd]; out.rec[pos] += r[C.rec]; }
-    });
+    opp.rows.forEach(function (r) { addAllowed(out, r, posOf(idx, r[C.id]) || "WR"); });
   });
   return out;
 }
 function oppFactor(def, lg, k, pos, params) {
   if (!def || !def.games) return { f: 1, perGame: null, lg: null };
-  const P = params.opp, key = k === "passYds" ? "passYds" : k === "passTds" ? "passTds" : k === "rushYds" ? "rushYds" : k;
-  let sum, mean;
-  if (key === "recYds" || key === "rec") { const g = pos === "TE" || pos === "RB" ? pos : "WR"; sum = def[key][g]; mean = lg.allowed[key][g]; }
-  else { sum = def[key]; mean = lg.allowed[key]; }
-  if (!mean) return { f: 1, perGame: null, lg: null };
-  const f = Math.pow((sum + P.k * mean) / ((def.games + P.k) * mean), P.pow);
+  const P = params.opp, pow = P.by && P.by[k] != null ? P.by[k] : P.pow;
+  const sum = allowedOf(def, k, pos), mean = allowedOf(lg.allowed, k, pos);
+  if (!mean || sum == null) return { f: 1, perGame: null, lg: null };
+  const f = Math.pow((sum + P.k * mean) / ((def.games + P.k) * mean), pow);
   return { f: f, perGame: sum / def.games, lg: mean };
 }
 /* every defence's rank for one stat and position group, 1 = allows the most */
 function defenceRanks(idx, t, k, pos) {
   const vals = Object.keys(idx.byTeam).map(function (tid) {
     const d = defenceAllowed(idx, tid, t); if (!d.games) return null;
-    const v = k === "recYds" || k === "rec" ? d[k][pos === "TE" || pos === "RB" ? pos : "WR"] : d[k];
+    const v = allowedOf(d, k, pos); if (v == null) return null;
     return { tid: tid, v: v / d.games };
   }).filter(Boolean).sort((a, b) => b.v - a.v);
   const out = {}; vals.forEach((x, i) => { out[x.tid] = { rank: i + 1, perGame: round(x.v, 1), of: vals.length }; });
@@ -342,6 +413,7 @@ function projectPlayer(idx, pid, g, params, lgIn) {
     const starts = games.filter(x => rowVal(x.r, "att") >= 10), s3 = starts.slice(-3);
     if (starts.length) { usage.att = params.wRecent * per(s3, "att") + (1 - params.wRecent) * per(starts, "att"); usage.season.att = per(starts, "att"); usage.last3.att = per(s3, "att"); }
     else usage.att = 30; /* a backup's first start: about a league starter's volume */
+    usage.starts = starts.length;
   }
   const reasons = {}, parts = {};
   STAT_KEYS.forEach(k => { reasons[k] = []; parts[k] = {}; });
@@ -357,7 +429,7 @@ function projectPlayer(idx, pid, g, params, lgIn) {
     named.forEach(n => {
       const nm = idx.names[n.id] || "A teammate";
       if (n.st >= 0.12 && tgtUp > 1.02) ["recYds", "rec"].forEach(k => reasons[k].push({ lean: "over", label: "Targets up " + Math.round((tgtUp - 1) * 100) + "%: " + nm + " (out) took " + Math.round(n.st * 100) + "% of the targets" }));
-      if (n.sc >= 0.25 && carUp > 1.02) reasons.rushYds.push({ lean: "over", label: "Carries up " + Math.round((carUp - 1) * 100) + "%: " + nm + " (out) took " + Math.round(n.sc * 100) + "% of the carries" });
+      if (n.sc >= 0.25 && carUp > 1.02) ["rushYds", "car"].forEach(k => reasons[k].push({ lean: "over", label: "Carries up " + Math.round((carUp - 1) * 100) + "%: " + nm + " (out) took " + Math.round(n.sc * 100) + "% of the carries" }));
     });
   }
   const tgtU = usage.tgt * Math.min(tgtUp, 1.4), carU = usage.car * Math.min(carUp, 1.5), attU = usage.att;
@@ -368,28 +440,43 @@ function projectPlayer(idx, pid, g, params, lgIn) {
   const ypc = (tot("ryd") + K.ypc * lg.ypc[lp(pos)]) / (tot("car") + K.ypc);
   const cr = (tot("rec") + K.cr * lg.cr[lp(pos)]) / (tot("tgt") + K.cr);
   const ypt = (tot("wyd") + K.ypt * lg.ypt[lp(pos)]) / (tot("tgt") + K.ypt);
+  /* 2026-11-10: completions and interceptions an attempt, touchdowns a carry and a target, shrunk the same way */
+  const cmpr = (tot("cmp") + K.cmpr * lg.cmpr) / (tot("att") + K.cmpr);
+  const intr = (tot("int") + K.intr * lg.intr) / (tot("att") + K.intr);
+  const rtdr = (tot("rtd") + K.rtdr * lg.rtdr[lp(pos)]) / (tot("car") + K.rtdr);
+  const wtdr = (tot("wtd") + K.wtdr * lg.wtdr[lp(pos)]) / (tot("tgt") + K.wtdr);
   const def = g.opp ? defenceAllowed(idx, g.opp, g.t) : null;
-  const home = 1 + (g.home ? params.home : -params.home);
-  const base = { passYds: attU * ypa, passTds: attU * tdr, rushYds: carU * ypc, recYds: tgtU * ypt, rec: tgtU * cr };
-  const out = {};
-  STAT_KEYS.forEach(function (k) {
+  /* the attempts and completions markets read the starter's volume pulled toward a league starter's by K.attG games
+     (a count regresses; the yards and touchdown projections keep the volume they were fitted on) */
+  const attV = K.attG ? (attU * (usage.starts || 0) + K.attG * lg.attStart) / ((usage.starts || 0) + K.attG) : attU;
+  const base = { passYds: attU * ypa, passTds: attU * tdr, rushYds: carU * ypc, recYds: tgtU * ypt, rec: tgtU * cr,
+    att: attV, cmp: attV * cmpr, int: attU * intr, car: carU, td: carU * rtdr + tgtU * wtdr };
+  const out = {}, exact = {};
+  const finish = function (k, m) { const proj = { mean: round(m, 1), dist: STATS[k].dist }; if (proj.dist === "ratio") proj.q = distFor(k, m); out[k] = proj; exact[k] = m; };
+  BASE_KEYS.forEach(function (k) {
     let m = base[k];
     const of = oppFactor(def, lg, k, pos, params); m *= of.f; parts[k].opp = round(of.f, 3); parts[k].oppPerGame = of.perGame == null ? null : round(of.perGame, 1); parts[k].oppLeague = of.lg == null ? null : round(of.lg, 1);
+    const hb = params.homeBy && params.homeBy[k] != null ? params.homeBy[k] : params.home, home = 1 + (g.home ? hb : -hb);
     m *= home; parts[k].home = round(home, 3);
     if (g.starterOut && pos !== "QB" && params.backupQb[k]) { m *= params.backupQb[k]; parts[k].backupQb = params.backupQb[k]; }
     if (g.starterOut && pos === "QB" && g.isBackup && params.backupQb[k]) { m *= params.backupQb[k]; parts[k].backupQb = params.backupQb[k]; }
     if (g.wind != null && g.wind > params.wind.from) {
       const over = g.wind - params.wind.from, W = params.wind;
-      const f = k === "passYds" || k === "passTds" || k === "recYds" ? 1 - Math.min(W.max, W.pass * over) : k === "rec" ? 1 - Math.min(W.max, W.catch * over) : k === "rushYds" ? 1 + Math.min(W.max / 2, W.rush * over) : 1;
+      const f = k === "passYds" || k === "passTds" || k === "recYds" ? 1 - Math.min(W.max, W.pass * over) : k === "rec" || k === "cmp" ? 1 - Math.min(W.max, W.catch * over) : k === "rushYds" || k === "car" ? 1 + Math.min(W.max / 2, W.rush * over) : 1;
       m *= f; parts[k].wind = round(f, 3);
     }
-    if (g.injury) { m *= params.injured; parts[k].injured = params.injured; }
+    if (g.injury && k !== "int") { m *= params.injured; parts[k].injured = params.injured; } /* a hobbled quarterback does not throw fewer interceptions */
     if (params.scale && params.scale[k]) m *= params.scale[k];
-    const proj = { mean: round(m, 1), dist: STATS[k].dist };
-    if (proj.dist === "ratio") proj.q = distFor(k, m);
-    out[k] = proj;
+    finish(k, m);
   });
-  return { pos: pos, gp: games.length, usage: usage, eff: { ypa: ypa, tdr: tdr, ypc: ypc, cr: cr, ypt: ypt }, proj: out, parts: parts, reasons: reasons, tgtUp: tgtUp, carUp: carUp, games: games };
+  /* the combined markets are the sum of their parts (each already carries its defence, home, wind and injury), then their own level */
+  SUM_KEYS.forEach(function (k) {
+    const a = STATS[k].sum; let m = exact[a[0]] + exact[a[1]];
+    parts[k].sum = [round(exact[a[0]], 1), round(exact[a[1]], 1)];
+    if (params.scale && params.scale[k]) m *= params.scale[k];
+    finish(k, m);
+  });
+  return { pos: pos, gp: games.length, usage: usage, eff: { ypa: ypa, tdr: tdr, ypc: ypc, cr: cr, ypt: ypt, cmpr: cmpr, intr: intr, rtdr: rtdr, wtdr: wtdr, attV: attV, attLeague: lg.attStart, carU: carU, tgtU: tgtU }, proj: out, parts: parts, reasons: reasons, tgtUp: tgtUp, carUp: carUp, games: games };
 }
 
 /* ---------- the honest check: every game projected from the games before it, against what happened ----------
@@ -428,14 +515,21 @@ function evalSample(idx, opts) {
         const mean = k => avg(hist.map(x => rowVal(x.r, k)));
         const keys = [];
         if (pid === qb || (starterOut && pos === "QB" && played[pid][C.att] > 0 && !Object.keys(played).some(o => o !== pid && posOf(idx, o) === "QB" && (attBy[o] || 0) > (attBy[pid] || 0)))) keys.push("passYds", "passTds");
+        const isQb = keys.length > 0;
+        if (isQb) keys.push("att", "cmp", "int", "passRushYds");
         if (mean("car") >= 5) keys.push("rushYds");
         if (mean("tgt") >= 3 && pos !== "QB") keys.push("recYds", "rec");
+        /* 2026-11-10: the usual quarterback's attempts, completions, interceptions and passing plus rushing; a back's
+           carries and rushing plus receiving; a touchdown (rushing or receiving, the anytime-scorer market read as over
+           0.5) for every back and receiver priced */
+        if (pos === "RB" && mean("car") >= 5) keys.push("car", "rushRecYds");
+        if (pos !== "QB" && (mean("car") >= 5 || mean("tgt") >= 3)) keys.push("td");
         if (!keys.length) return;
         const pr = projectPlayer(idx, pid, { t: t, team: team, opp: opp, home: home, outIds: outIds, starterOut: starterOut, isBackup: pos === "QB" && pid !== qb }, params, lg);
         if (!pr) return;
         keys.forEach(function (k) {
           const vals = hist.map(x => rowVal(x.r, k)).reverse(); /* newest first */
-          const line = Math.floor(median(vals)) + 0.5;
+          const line = k === "td" ? 0.5 : Math.floor(median(vals)) + 0.5; /* a touchdown is only ever quoted at 0.5 */
           const actual = rowVal(played[pid], k);
           rows.push({ k: k, pid: pid, pos: pos, w: g.w, gid: g.id, gp: hist.length, proj: pr.proj[k], base: avg(vals), actual: actual, line: line, pModel: pOver(pr.proj[k], line), pHit: weightedHit(vals, line), tgtUp: pr.tgtUp, carUp: pr.carUp, starterOut: starterOut, isQb: pos === "QB" });
         });
@@ -459,7 +553,7 @@ function summarise(rows) {
     });
     const lean = r.filter(x => Math.max(blend(x), 1 - blend(x)) >= 0.56);
     out[k] = { n: r.length, players: new Set(r.map(x => x.pid)).size, maeModel: round(mae(x => x.proj.mean), 2), maeBase: round(mae(x => x.base), 2), maeGain: round(1 - mae(x => x.proj.mean) / mae(x => x.base), 4),
-      overRate: round(avg(r.map(x => x.actual > x.line ? 1 : 0)), 3), brier: { model: round(brier(x => x.pModel), 4), hit: round(brier(x => x.pHit), 4), blend: round(brier(blend), 4), even: round(brier(() => 0.5), 4) },
+      overRate: round(avg(r.map(x => x.actual > x.line ? 1 : 0)), 3), brier: { model: round(brier(x => x.pModel), 4), hit: round(brier(x => x.pHit), 4), blend: round(brier(blend), 4), constant: round(brier(() => OVER_2025[k]), 4), even: round(brier(() => 0.5), 4) },
       logLoss: { model: round(ll(x => x.pModel), 4), blend: round(ll(blend), 4), even: round(ll(() => 0.5), 4) }, bins: bins,
       leanOrBetter: { n: lean.length, won: round(avg(lean.map(x => (blend(x) >= 0.5) === (x.actual > x.line) ? 1 : 0)), 3) } };
   });
@@ -516,6 +610,8 @@ function logRow(x, pos) {
   const r = x.r, o = { date: String(x.d).slice(0, 10), week: x.w, opp: x.oppAbbr, home: x.home, result: x.result, score: x.score };
   if (pos === "QB") Object.assign(o, { att: r[C.att], cmp: r[C.cmp], passYds: r[C.pyd], passTds: r[C.ptd], int: r[C.int], car: r[C.car], rushYds: r[C.ryd] });
   else Object.assign(o, pos === "RB" ? { car: r[C.car], rushYds: r[C.ryd] } : {}, { tgt: r[C.tgt], rec: r[C.rec], recYds: r[C.wyd], td: r[C.rtd] + r[C.wtd] });
+  /* a combined market the position is graded on has its own column: every stat key is a key of the log row */
+  (KEYS_BY_POS[pos] || []).forEach(k => { if (STATS[k].sum) o[k] = rowVal(r, k); });
   return o;
 }
 function statBlock(vals, homes) {
@@ -528,19 +624,29 @@ const POS_WORD = { QB: "quarterbacks", RB: "running backs", WR: "wide receivers"
 /* the reasons and confluences for one player, in the page's words */
 function explain(p, pr, g, ranks) {
   const reasons = {}, sig = [], u = pr.usage, n1 = x => round(x, 1), per = (x, one, many) => n1(x) + " " + (n1(x) === 1 ? one : many);
-  p.keys.forEach(k => { reasons[k] = (pr.reasons[k] || []).slice(); });
-  const why = {};
+  /* a combined market is explained by its parts, so the parts are reasoned through even when not graded on their own */
+  const rk = p.keys.slice(); p.keys.forEach(k => (STATS[k].sum || []).forEach(a => { if (rk.indexOf(a) === -1) rk.push(a); }));
+  rk.forEach(k => { reasons[k] = (pr.reasons[k] || []).slice(); });
+  const why = {}, has = k => p.keys.indexOf(k) !== -1, sumOf = k => (pr.parts[k] && pr.parts[k].sum) || [];
+  if (has("att")) why.att = n1(u.season.att) + " attempts a start, read as " + n1(pr.eff.attV) + " beside the league's " + n1(pr.eff.attLeague);
+  if (has("cmp")) why.cmp = per(pr.eff.attV, "attempt", "attempts") + " a game, " + Math.round(pr.eff.cmpr * 100) + "% completed";
+  if (has("int")) why.int = per(u.att, "attempt", "attempts") + " a game, an interception on " + n1(pr.eff.intr * 100) + "% of them";
+  if (has("car")) why.car = per(pr.eff.carU, "carry", "carries") + " a game";
+  if (has("passRushYds")) why.passRushYds = "passing " + sumOf("passRushYds")[0] + " + rushing " + sumOf("passRushYds")[1];
+  if (has("rushRecYds")) why.rushRecYds = "rushing " + sumOf("rushRecYds")[0] + " + receiving " + sumOf("rushRecYds")[1];
+  if (has("td")) why.td = per(pr.eff.carU, "carry", "carries") + " and " + per(pr.eff.tgtU, "target", "targets") + " a game, a touchdown on " + n1(pr.eff.rtdr * 100) + "% of carries and " + n1(pr.eff.wtdr * 100) + "% of targets";
   if (p.keys.indexOf("passYds") !== -1) why.passYds = per(u.att, "attempt", "attempts") + " a game at " + n1(pr.eff.ypa) + " yards an attempt";
   if (p.keys.indexOf("passTds") !== -1) why.passTds = per(u.att, "attempt", "attempts") + " a game, a touchdown on " + n1(pr.eff.tdr * 100) + "% of them";
   if (p.keys.indexOf("rushYds") !== -1) why.rushYds = per(u.car * (pr.carUp > 1 ? Math.min(pr.carUp, 1.5) : 1), "carry", "carries") + " a game at " + n1(pr.eff.ypc) + " yards a carry";
   if (p.keys.indexOf("recYds") !== -1) why.recYds = per(u.tgt, "target", "targets") + " a game at " + n1(pr.eff.ypt) + " yards a target";
   if (p.keys.indexOf("rec") !== -1) why.rec = per(u.tgt, "target", "targets") + " a game, " + Math.round(pr.eff.cr * 100) + "% caught";
   /* the defence, against the league, for this position */
-  p.keys.forEach(function (k) {
+  rk.forEach(function (k) {
     const r = ranks[k] && ranks[k][g.opp]; const part = pr.parts[k] || {};
     if (!r || part.opp == null) return;
-    const word = k === "passYds" ? "passing yards" : k === "passTds" ? "passing touchdowns" : k === "rushYds" ? "rushing yards to backs" : k === "recYds" ? "receiving yards to " + POS_WORD[p.pos === "QB" ? "WR" : p.pos] : "catches to " + POS_WORD[p.pos === "QB" ? "WR" : p.pos];
-    const text = p.oppAbbr + " allows " + r.perGame + " " + word + " a game, " + (r.rank <= r.of / 2 ? ordinal(r.rank) + " most" : ordinal(r.of + 1 - r.rank) + " fewest") + " (" + (part.opp >= 1 ? "+" : "") + Math.round((part.opp - 1) * 100) + "%)";
+    const group = POS_WORD[p.pos === "QB" ? "WR" : p.pos];
+    const word = { passYds: "passing yards", passTds: "passing touchdowns", att: "pass attempts", cmp: "completions", int: "interceptions", rushYds: "rushing yards to backs", car: "carries to backs", recYds: "receiving yards to " + group, rec: "catches to " + group, td: "touchdowns to " + group }[k];
+    const text = p.oppAbbr + (k === "int" ? " takes " : " allows ") + r.perGame + " " + word + " a game, " + (r.rank <= r.of / 2 ? ordinal(r.rank) + " most" : ordinal(r.of + 1 - r.rank) + " fewest") + " (" + (part.opp >= 1 ? "+" : "") + Math.round((part.opp - 1) * 100) + "%)";
     if (r.rank <= 8) reasons[k].push({ lean: "over", label: text }); else if (r.rank > r.of - 8) reasons[k].push({ lean: "under", label: text }); else reasons[k].push({ lean: "neutral", label: text });
   });
   const main = p.pos === "QB" ? "passYds" : p.pos === "RB" ? "rushYds" : "recYds";
@@ -550,20 +656,24 @@ function explain(p, pr, g, ranks) {
   /* usage trend: the last three against the season */
   const uk = p.pos === "QB" ? "att" : p.pos === "RB" ? "car" : "tgt", uw = { att: "Attempts", car: "Carries", tgt: "Targets" }[uk];
   if (u.season[uk] >= 3 && pr.gp >= 4) { const d = u.last3[uk] / u.season[uk] - 1; if (Math.abs(d) >= 0.2) sig.push({ key: "usage", label: uw + " " + (d > 0 ? "up" : "down") + ": " + n1(u.last3[uk]) + " a game last 3 vs " + n1(u.season[uk]) + " season", lean: d > 0 ? "over" : "under" }); }
-  p.keys.forEach(function (k) { const s = p.stats[k]; if (!s || pr.gp < 4 || s.season < (k === "passTds" || k === "rec" ? 1 : 10)) return; const l3 = avg(s.last.slice(0, 3)), d = l3 / s.season - 1; if (Math.abs(d) >= 0.25) sig.push({ key: k, label: STATS[k].label + " " + (d > 0 ? "up " : "down ") + Math.round(Math.abs(d) * 100) + "% last 3", lean: d > 0 ? "over" : "under" }); });
+  p.keys.filter(k => CORE_KEYS.indexOf(k) !== -1).forEach(function (k) { const s = p.stats[k]; if (!s || pr.gp < 4 || s.season < (k === "passTds" || k === "rec" ? 1 : 10)) return; const l3 = avg(s.last.slice(0, 3)), d = l3 / s.season - 1; if (Math.abs(d) >= 0.25) sig.push({ key: k, label: STATS[k].label + " " + (d > 0 ? "up " : "down ") + Math.round(Math.abs(d) * 100) + "% last 3", lean: d > 0 ? "over" : "under" }); });
   const ms = p.stats[main]; if (ms && ms.home && ms.away && pr.gp >= 4) { const mine = p.home ? ms.home : ms.away, other = p.home ? ms.away : ms.home, d = other ? mine / other - 1 : 0; if (Math.abs(d) >= 0.2) sig.push({ key: "split", label: (p.home ? "At home" : "On the road") + ": " + mine + " vs " + other + " " + STATS[main].label.toLowerCase(), lean: d > 0 ? "over" : "under" }); }
   if (p.restDays != null && p.restDays <= 5) sig.push({ key: "rest", label: "Short week: " + p.restDays + " days since his last game", lean: "neutral" });
   else if (p.restDays != null && p.restDays >= 13) sig.push({ key: "rest", label: "Off a bye: " + p.restDays + " days since his last game", lean: "neutral" });
   if (g.wind && g.wind.mph > PARAMS.wind.from) {
     const text = "Wind " + g.wind.mph + " mph at kickoff (National Weather Service forecast), a prior from public research, not fitted";
     sig.push({ key: "wind", label: "Wind " + g.wind.mph + " mph at kickoff", lean: p.pos === "RB" ? "neutral" : "under" });
-    p.keys.forEach(k => { const f = (pr.parts[k] || {}).wind; if (f && Math.abs(f - 1) >= 0.01) reasons[k].push({ lean: f < 1 ? "under" : "over", label: text + ": " + (f > 1 ? "+" : "") + Math.round((f - 1) * 100) + "%" }); });
+    rk.forEach(k => { const f = (pr.parts[k] || {}).wind; if (f && Math.abs(f - 1) >= 0.01) reasons[k].push({ lean: f < 1 ? "under" : "over", label: text + ": " + (f > 1 ? "+" : "") + Math.round((f - 1) * 100) + "%" }); });
   }
   if (g.starterOut && p.pos !== "QB" && g.primaryName) { sig.push({ key: "qb", label: "Backup quarterback expected: " + g.primaryName + " is " + (g.primaryStatus || "out").toLowerCase(), lean: "under" }); ["recYds"].forEach(k => { if (reasons[k]) reasons[k].push({ lean: "under", label: "Backup quarterback expected (" + g.primaryName + ", " + (g.primaryStatus || "out").toLowerCase() + "): receivers' yards ran 4% lower in 2025's backup starts" }); }); }
   if (g.starterOut && p.pos === "QB" && g.isBackup) sig.push({ key: "qb", label: "Expected to start: " + (g.primaryName || "the usual starter") + " is " + (g.primaryStatus || "out").toLowerCase(), lean: "neutral" });
-  if (p.injury) { sig.push({ key: "injury", label: "Injury report: " + p.injury, lean: "under" }); p.keys.forEach(k => reasons[k].push({ lean: "under", label: "Injury report: " + p.injury + " (projection 5% lower)" })); }
-  if (PARAMS.home) Object.keys(why).forEach(k => { why[k] += (p.home ? ", +" : ", -") + Math.round(PARAMS.home * 100) + "% " + (p.home ? "at home" : "on the road"); });
-  return { reasons: reasons, why: why, signals: sig };
+  if (p.injury) { sig.push({ key: "injury", label: "Injury report: " + p.injury, lean: "under" }); rk.forEach(k => { if ((pr.parts[k] || {}).injured) reasons[k].push({ lean: "under", label: "Injury report: " + p.injury + " (projection 5% lower)" }); }); }
+  /* home or away, where the stat carries it (the combined markets carry it through their parts) */
+  Object.keys(why).forEach(k => { const h = (pr.parts[k] || {}).home; if (h && h !== 1) why[k] += (h > 1 ? ", +" : ", -") + Math.round(Math.abs(h - 1) * 100) + "% " + (p.home ? "at home" : "on the road"); });
+  /* a combined market: its parts' reasons, each once */
+  p.keys.forEach(function (k) { const a = STATS[k].sum; if (!a) return; const seen = {}; reasons[k] = reasons[a[0]].concat(reasons[a[1]]).filter(x => seen[x.label] ? false : (seen[x.label] = true)); });
+  const outReasons = {}; p.keys.forEach(k => { outReasons[k] = reasons[k]; });
+  return { reasons: outReasons, why: why, signals: sig };
 }
 async function run(opts) {
   opts = opts || {};
@@ -641,7 +751,7 @@ async function run(opts) {
             stats: stats, proj: {},
             log: hist.slice(0, RULES.logGames).map(x => logRow(x, pos))
           };
-          const ranks = {}; keys.forEach(k => { ranks[k] = ranksFor(t, k, pos); });
+          const ranks = {}; keys.forEach(k => { ranks[k] = ranksFor(t, k, pos); (STATS[k].sum || []).forEach(a => { ranks[a] = ranksFor(t, a, pos); }); });
           const ex = explain(Object.assign({}, p, { stats: series }), pr, Object.assign({}, ctx, { wind: wind, primaryName: primary ? (roster[primary] && roster[primary].name) || idx.names[primary] : null, primaryStatus: primary && roster[primary] ? roster[primary].status : "not on the roster" }), ranks);
           keys.forEach(k => { p.proj[k] = Object.assign({}, pr.proj[k], { why: ex.why[k] || null, reasons: ex.reasons[k] }); });
           const mk = pos === "QB" ? "passYds" : pos === "RB" ? "rushYds" : "recYds", mr = ranks[mk] && ranks[mk][opp.id];
@@ -659,21 +769,60 @@ async function run(opts) {
   const first = games.slice().sort((a, b) => Date.parse(a.start) - Date.parse(b.start))[0];
   const summary = { date: slate.date, today: slate.today, label: slate.date ? dayLabel(slate.date) : null, week: (first && first.week) || slate.week || null, games: games.length, players: players.length,
     first: first ? { id: first.id, start: first.start, startLabel: first.startLabel, matchup: first.away.abbr + " @ " + first.home.abbr } : null,
-    lines: lines, boxscores: { games: Object.keys(cache.games).length, fetched: up.fetched, season: cache.season }, model: MODEL_NOTE };
+    lines: lines, stats: STAT_LIST, boxscores: { games: Object.keys(cache.games).length, fetched: up.fetched, season: cache.season }, model: MODEL_NOTE };
   return { games: games, players: players, summary: summary, requests: src.count() };
+}
+/* the lines summary in words, for the Actions log (scripts/update-props.js prints it) */
+function earlyText(l) {
+  const e = l && l.early; if (!e) return "";
+  const pace = e.cap != null ? "spare " + e.spare + " (protected " + e.rate + " a day, " + e.days + " days left, reserve " + e.reserve + "), today's pace " + Math.max(0, e.room) + " of " + e.cap : "";
+  if (e.skipped) return "; early lines for " + l.next + " (" + e.daysAhead + " day" + (e.daysAhead === 1 ? "" : "s") + " ahead, " + e.games + " game" + (e.games === 1 ? "" : "s") + ") not read: " + (e.why || e.skipped) + (pace ? " | SportsGameOdds surplus: " + pace : "");
+  return "; read " + e.daysAhead + " day" + (e.daysAhead === 1 ? "" : "s") + " ahead of " + l.next + " from the SportsGameOdds surplus: " + pace + ", spent " + e.spent;
 }
 /* what the page says about the model (the held-out numbers are in EVAL) */
 const MODEL_NOTE = { basis: "game data only", fitted: "2025 regular season", heldOut: "2026 weeks 3-9" };
-/* ---------- lines: one SportsGameOdds call on an NFL game day, for the games still to start ---------- */
+/* ---------- lines: one SportsGameOdds call on an NFL game day, for the games still to start ----------
+   and, since 2026-11-10, one on the afternoon run of the day or two before a game day (`opts.early`), paid from the
+   cycle's spare entities under the surplus spender's rule and pace (scripts/surplus.js sgoEarly; data/budget.json) */
+function daysAhead(now, date) { if (!date) return null; const a = etDate(now).split("-").map(Number), b = date.split("-").map(Number); return Math.round((Date.UTC(b[0], b[1] - 1, b[2]) - Date.UTC(a[0], a[1] - 1, a[2])) / 864e5); }
 async function attachLines(players, games, slate, opts, now) {
   if (opts.lines === false) return { skipped: "off" };
-  if (!slate.today) return { skipped: "not a game day", next: slate.date };
   const open = games.filter(g => Date.parse(g.start) > now.getTime());
+  if (!slate.today) return earlyLines(players, open, slate, opts, now);
   if (!open.length) return { skipped: "every game has started" };
   const src = opts.sgoSource || sgo.source({ fixture: opts.fixture, fixtureName: "NFL-props" });
   if (!src.enabled) return { skipped: "no key" };
   const usage = await src.usage();
   if (usage && usage.max && usage.max - usage.used - open.length < RULES.sgoReserve) return { skipped: "budget", used: usage.used, max: usage.max };
+  return priceGames(players, open, src, usage, now);
+}
+/* the next slate, a day or two ahead: priced only from the surplus, and only when the run asks (the afternoon and
+   manual runs; the morning run prices game days alone). Whatever is decided is written to the state and the summary. */
+async function earlyLines(players, open, slate, opts, now) {
+  const out = { skipped: "not a game day", next: slate.date }, ahead = daysAhead(now, slate.date);
+  if (!opts.early) return out;
+  const early = out.early = { daysAhead: ahead, games: open.length };
+  if (!open.length) { early.skipped = "no game to price"; return out; }
+  if (!(ahead >= 1 && ahead <= surplus.SGO.earlyDays)) { early.skipped = "too far ahead"; return out; }
+  const src = opts.sgoSource || sgo.source({ fixture: opts.fixture, fixtureName: "NFL-props" });
+  if (!src.enabled) { early.skipped = "no key"; return out; }
+  const usage = await src.usage();
+  if (!usage || !usage.max) { early.skipped = "usage unknown"; return out; }
+  const dataDir = opts.out || path.join(__dirname, "..", "data"), t = now.getTime();
+  const state = surplus.readState(dataDir), d = surplus.sgoEarly(state, usage, t, { cost: open.length, daysAhead: ahead });
+  Object.assign(early, { spare: d.spare, rate: d.rate, days: d.days, cap: d.cap, room: d.room, reserve: d.reserve });
+  const record = function (spent, priced) { d.cycle.early = { at: now.toISOString(), slate: slate.date, daysAhead: ahead, games: open.length, spare: d.spare, rate: d.rate, days: d.days, cap: d.cap, room: d.room, spent: spent, players: priced, why: d.why }; surplus.writeState(dataDir, state); };
+  if (!d.take) { early.skipped = "budget"; early.why = d.why; record(0, 0); return out; }
+  const before = src.stats().entities;
+  let priced;
+  try { priced = await priceGames(players, open, src, usage, now); }
+  catch (e) { const lost = src.stats().entities - before; surplus.addSpent(d.cycle, t, lost); early.skipped = e.message; early.spent = lost; record(lost, 0); return out; }
+  early.spent = src.stats().entities - before;
+  surplus.addSpent(d.cycle, t, early.spent); record(early.spent, priced.players);
+  return Object.assign(priced, { next: slate.date, early: early });
+}
+/* one call for these games (one entity per game the window returns); every player found gets his lines */
+async function priceGames(players, open, src, usage, now) {
   const list = await sgo.nightEvents(src, "NFL", open.map(g => g.start));
   const byGame = {}; let matched = 0;
   open.forEach(g => { const ev = sgo.eventFor(list, g.home.name, g.away.name); if (ev) { byGame[g.id] = { ev: ev, index: sgo.playerIndex(ev) }; matched++; } });
@@ -688,7 +837,7 @@ async function attachLines(players, games, slate, opts, now) {
   return { source: sgo.SOURCE, at: now.toISOString(), games: matched, of: open.length, players: priced, books: Object.keys(books).sort(), entities: src.stats().entities, used: usage ? usage.used : null, max: usage ? usage.max : null };
 }
 
-module.exports = { run, slateFor, rosterMap, windAt, attachLines, explain, STADIUMS, MODEL_NOTE, evalSample, summarise, weightedHit, median, PARAMS, LEAGUE_2025, DIST, QS, distFor, cdfQ, poissonCdf, pOver, rowVal, posOf, indexGames, leagueRates, defenceAllowed, oppFactor, defenceRanks, projectPlayer, RULES, STATS, STAT_KEYS, SGO_STATS, KEYS_BY_POS, COLS, C, liveSource, fixtureSource, parseSummary, parseScoreboard, emptyCache, readCache, weeksBegun, upcomingWeeks, seasonOf, updateCache, etDate, ymd, startLabel, dayLabel, round, avg, sd };
+module.exports = { UA, OVER_2025, run, slateFor, rosterMap, windAt, attachLines, earlyLines, earlyText, daysAhead, explain, STADIUMS, MODEL_NOTE, evalSample, summarise, weightedHit, median, PARAMS, LEAGUE_2025, DIST, QS, distFor, cdfQ, poissonCdf, pOver, rowVal, posOf, indexGames, leagueRates, defenceAllowed, allowedOf, oppFactor, defenceRanks, projectPlayer, logRow, RULES, STATS, STAT_KEYS, CORE_KEYS, SHIPPED, DROPPED, STAT_LIST, SGO_STATS, KEYS_BY_POS, COLS, C, liveSource, fixtureSource, parseSummary, parseScoreboard, emptyCache, readCache, weeksBegun, upcomingWeeks, seasonOf, updateCache, etDate, ymd, startLabel, dayLabel, round, avg, sd };
 
 /* node scripts/nfl-props.js --eval [--cache data/nfl-games.json] [--from 3]: the held-out check on the season so far,
    every week projected from the weeks before it with the shipped settings (fitted on 2025, never on this season) */
@@ -699,5 +848,6 @@ if (require.main === module) {
   if (!cache) { console.error("No box score cache yet: run scripts/update-props.js first"); process.exit(1); }
   const rows = evalSample(indexGames(cache), { fromWeek: Number(arg("--from", 3)) }), S = summarise(rows);
   console.log("Held-out check, " + cache.season + " season: " + rows.length + " player-stat games (line = the player's running median, rounded to a half)");
-  STAT_KEYS.forEach(k => { const s = S[k]; if (!s) return; console.log(STATS[k].label.padEnd(16) + " n " + String(s.n).padStart(4) + " | MAE " + s.maeModel + " vs season average " + s.maeBase + " (" + (s.maeGain * 100).toFixed(1) + "% lower) | over rate " + s.overRate + " | Brier: ours " + s.brier.model + ", with the hit rate " + s.brier.blend + ", hit rate alone " + s.brier.hit + ", a coin flip " + s.brier.even); });
+  STAT_KEYS.forEach(k => { const s = S[k]; if (!s) return; console.log((STATS[k].label + (DROPPED[k] ? " (not shipped)" : "")).padEnd(31) + " n " + String(s.n).padStart(4) + " | MAE " + s.maeModel + " vs season average " + s.maeBase + " (" + Math.abs(s.maeGain * 100).toFixed(1) + "% " + (s.maeGain >= 0 ? "lower" : "higher") + ") | over rate " + s.overRate + " | Brier: ours " + s.brier.model + ", with the hit rate " + s.brier.blend + ", hit rate alone " + s.brier.hit + ", 2025's over rate as a constant " + s.brier.constant + ", a coin flip " + s.brier.even); });
+  Object.keys(DROPPED).forEach(k => console.log("Not shipped, " + STATS[k].label.toLowerCase() + ": " + DROPPED[k]));
 }

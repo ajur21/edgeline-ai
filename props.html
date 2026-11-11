@@ -20,6 +20,7 @@
   <link rel="alternate" type="application/rss+xml" title="EdgeLine AI feed" href="feed.xml">
   <script src="data/replay.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/props-grade.js"></script>
   <script src="js/search.js" defer></script>
   <script src="js/space.js" defer></script>
   <script src="js/subnav.js" defer></script>
@@ -50,607 +51,895 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#props-board-head">The board</a><a href="#players">Every player</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#board">The board</a><a href="#record">Record</a><a href="#no-line">No line yet</a><a href="#played">In progress and results</a><a href="#how">How it is graded</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
     <div class="section-head row page-head">
       <div>
         <span class="eyebrow">Props research</span>
-        <h1 class="page-title" id="props-title">Tonight’s props, likeliest first</h1>
-        <p class="muted page-sub" id="props-asof"></p>
-        <p class="muted page-sub" id="props-lines"></p>
-        <p class="muted page-sub small" id="props-rule">Graded on game data: history against the number, form, minutes, matchup, rest and injuries. Never against other books’ prices.</p>
+        <h1 class="page-title" id="props-title">Props, likeliest first</h1>
+        <p class="muted page-sub" id="props-slate"></p>
+        <p class="muted page-sub props-meta" id="props-updated"></p>
+        <p class="muted page-sub props-meta" id="props-rule">Graded on game data only, never against other books’ prices. A price is shown so you know where to bet it.</p>
       </div>
       <span class="badge badge-sample" data-sample-flag="props">Sample data</span>
     </div>
 
-    <div class="filter-row" role="group" aria-label="Filters">
-      <label class="filter">Sport<select id="p-sport"><option value="">All sports</option><option value="NBA">NBA</option><option value="NFL">NFL</option></select></label>
-      <label class="filter">Game<select id="p-game"><option value="">All games</option></select></label>
-      <label class="filter">Stat
-        <select id="p-stat">
-          <option value="">Best per player</option>
-          <optgroup label="NBA" data-league="NBA"><option value="pts">Points</option><option value="reb">Rebounds</option><option value="ast">Assists</option><option value="threes">Threes</option><option value="pra">Pts + Reb + Ast</option></optgroup>
-          <optgroup label="NFL" data-league="NFL"><option value="passYds">Passing yards</option><option value="passTds">Passing TDs</option><option value="rushYds">Rushing yards</option><option value="recYds">Receiving yards</option><option value="rec">Receptions</option></optgroup>
-        </select>
-      </label>
-      <label class="filter">Sort by
-        <select id="p-sort">
-          <option value="prob">Likeliest first</option><option value="form">Form (hit rate at the line)</option><option value="heat">Hottest (last 5 above season)</option><option value="season">Season average</option><option value="minutes">Minutes or touches</option><option value="signals">Most reasons</option>
-        </select>
-      </label>
-      <label class="filter">Side<select id="p-lean"><option value="">Any</option><option value="over">Over</option><option value="under">Under</option></select></label>
-      <label class="filter">Search<input type="search" id="p-search" placeholder="Player or team" autocomplete="off"></label>
-    </div>
-    <p class="filter-summary" id="p-nfl-note" role="status" hidden></p>
-
-    <div class="section-head sub-head" id="props-board-head">
-      <div>
-        <h2>The props board</h2>
-        <p class="how-to muted" id="props-board-how">Our leans, ranked by game day and then by our probability that the side clears the line, likeliest first. The grade comes from game data only: half is the player’s last ten games against this number, half a projection. For the NBA that is recent form and minutes, the opponent’s defence, rest and the injury report; for the NFL it is usage (targets, carries, attempts) times what he gains per touch, against the yards the defence allows to his position, home or away and the injury report. It is not graded against other books’ prices; the best price is shown only so you know where to bet it. The bar is our probability, its tick the raw hit rate. A game that has started leaves the board.</p>
+    <div class="props-ctl" id="props-ctl" role="group" aria-label="Filters">
+      <div class="props-ctl-row">
+        <nav class="props-leagues" id="p-leagues" aria-label="League"></nav>
+        <div class="props-chips" id="p-games" role="group" aria-label="Game"></div>
+      </div>
+      <div class="props-ctl-row">
+        <div class="props-tabs" id="p-stats" role="group" aria-label="Stat"></div>
+        <div class="props-more">
+          <label class="filter"><span class="visually-hidden">Side</span><select id="p-side"><option value="">Either side</option><option value="over">Overs</option><option value="under">Unders</option></select></label>
+          <label class="filter"><span class="visually-hidden">Sort by</span><select id="p-sort"><option value="prob">Likeliest first</option><option value="form">Hit rate, last 10</option><option value="start">Start time</option></select></label>
+          <label class="filter props-search"><span class="visually-hidden">Search players and teams</span><input type="search" id="p-search" placeholder="Player or team" autocomplete="off"></label>
+        </div>
       </div>
     </div>
-    <p class="filter-summary" id="pb-summary" role="status"></p>
-    <div class="props-board" id="props-board" aria-label="Props board, likeliest first"></div>
 
-    <div class="section-head sub-head" id="players">
-      <div>
-        <h2>Every player</h2>
-        <p class="how-to muted" id="p-how">Each card opens on the prop the board ranked, with the posted line typed in and the reasons listed. Change the stat, the line or the span and the grade and bars recompute from the game data.</p>
-      </div>
+    <div class="section-head sub-head props-head" id="board">
+      <h2>The board</h2>
+      <p class="how-to muted" id="props-how">One row per player: his likeliest side on a line the books have posted. Today’s games come first, then the order is To hit, our probability from game data only that the side clears its line. L5 and L10 count how often it came in over his last five and ten games. Open a row for the chart, every book’s price and the reasons.</p>
+      <p class="filter-summary" id="pb-summary" role="status"></p>
     </div>
-    <p class="filter-summary" id="p-summary" role="status"></p>
-    <div class="props-grid" id="props-host"></div>
+    <div id="props-board"></div>
+
+    <section class="card props-rec" id="record" aria-labelledby="record-h" hidden></section>
+
+    <details class="props-noline" id="no-line" hidden>
+      <summary><h2 class="props-noline-h">No line yet</h2><span class="props-noline-n mono" id="nl-count"></span><span class="props-noline-how" id="nl-how"></span></summary>
+      <ul class="props-noline-list" id="nl-list"></ul>
+      <div class="more-row" id="nl-more-row" hidden><button type="button" class="btn btn-secondary" id="nl-more"></button></div>
+    </details>
+
+    <div class="section-head sub-head props-head" id="played" hidden>
+      <h2>In progress and results</h2>
+      <p class="how-to muted" id="pl-how"></p>
+      <p class="filter-summary" id="pl-summary" role="status"></p>
+    </div>
+    <div id="played-host"></div>
   </div>
 </section>
 
-<section class="section-tight">
-  <div class="container">
-    <div class="notice">
-      <strong>Reading a card.</strong> Season, last 5 and last 10 are the player’s averages for the stat shown; the bars are their last games, oldest to newest, green over the line and red under it. The line box starts at the posted line when there is one and you can type any other number; your line is kept on this device. <strong>How a side is graded.</strong> Only game data: half the grade is the player’s weighted hit rate against the number over the last ten games (the last five count more, and a short sample is pulled toward even), half is a projection from the last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against the player’s own game-to-game spread. High is 70%+, Medium 62%+, Low 56%+; anything closer to even is a coin flip and says so. The board lists only lines the books quote on both sides, players with at least four games logged (three in the NFL, where the projection is usage times the gain per touch against the defence) and games still to start. Nothing here is graded against other books’ prices; the price chips exist so you know where the number is best. <span id="props-credit"></span>
-    </div>
+<section class="section-tight section-flush">
+  <div class="container props-how" id="how">
+    <h2>How it is graded</h2>
+    <p><strong>Only game data.</strong> Half of To hit is the player’s hit rate against the number over his last ten games (the last five count more, and a short sample is pulled toward even). The other half is a projection. For the NBA that is his last five, last ten and season averages, scaled by the minutes trend, the opponent’s points allowed, rest and the injury report, read against his own game-to-game spread. For the NFL it is usage (targets, carries, attempts) times what he gains per touch, against what the defence allows to his position, home or away, the wind and the injury report.</p>
+    <p><strong>The tiers.</strong> High is 70% or better, Medium 62%, Low 56%; anything closer to even is a coin flip and says so. The board ranks only lines the books quote on both sides, players with at least four games logged (three in the NFL) and games still to start.</p>
+    <p><strong>What a price is for.</strong> The posted line is only the number to clear. No book’s price takes part in the probability, the side or the rank; the best price is shown so you know where to bet it. In a row’s detail you can type any other number and both sides regrade for it; your line is kept on this device.</p>
+    <p id="how-record"><strong>The record.</strong> Each player’s ranked side is locked on the last lines read before his game starts, then graded from the box score: a win, a loss, a push when he lands on the number, and void when he does not play. The record was started on Nov 10. The slates from Nov 4 through that night were rebuilt from the lines this page had published before each game, ranked the way the board ranks today; from Nov 11 every prop is locked as its lines are read.</p>
+    <p class="props-credit" id="props-credit">Stats, schedules and player photos from ESPN’s public API. Lines from SportsGameOdds. Wind at NFL kickoffs is the National Weather Service’s forecast.</p>
   </div>
 </section>
 
 <script src="data/props.js"></script>
 <script>
 (function () {
-  var E = window.EdgeLine, DATA = window.PROPS_DATA || { players: [], games: [], generatedAt: null };
-  /* every entry carries its league (files before the NFL have none: NBA); the page head below speaks for each league
-     present, the board and the cards for every league */
-  function leagueOf(x) { return (x && x.league) || "NBA"; }
-  function isNFL(p) { return leagueOf(p) === "NFL"; }
-  var ALL = DATA.players || [], ALLG = DATA.games || [];
-  var D = Object.assign({}, DATA, { players: ALL.filter(function (p) { return !isNFL(p); }), games: ALLG.filter(function (g) { return !isNFL(g); }) });
-  var P = D.players || [], host = document.getElementById("props-host"), summary = document.getElementById("p-summary");
-  var board = document.getElementById("props-board"), boardSummary = document.getElementById("pb-summary");
-  var fSport = document.getElementById("p-sport"), nflNote = document.getElementById("p-nfl-note");
-  var fGame = document.getElementById("p-game"), fStat = document.getElementById("p-stat"), fSort = document.getElementById("p-sort"), fLean = document.getElementById("p-lean"), fSearch = document.getElementById("p-search");
-  /* props.html?q=<player or team> (from the site search) opens with the search filled in */
-  var q0 = new URLSearchParams(location.search).get("q"); if (q0) fSearch.value = q0;
-  var STAT_LABEL ={ pts: "Points", reb: "Rebounds", ast: "Assists", threes: "Threes", pra: "Pts + Reb + Ast", passYds: "Passing yards", passTds: "Passing TDs", rushYds: "Rushing yards", recYds: "Receiving yards", rec: "Receptions" };
-  var STAT_KEYS = ["pts", "reb", "ast", "threes", "pra"], STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA", passYds: "PASS YDS", passTds: "PASS TD", rushYds: "RUSH YDS", recYds: "REC YDS", rec: "REC" };
-  var NFL_KEYS = ["passYds", "passTds", "rushYds", "recYds", "rec"];
-  /* the stats a player is graded on: the NBA's five, or the ones the pipeline projected for an NFL player's position */
-  function keysOf(p) { return isNFL(p) ? (p.keys || []) : STAT_KEYS; }
-  function statLeague(k) { return NFL_KEYS.indexOf(k) !== -1 ? "NFL" : k ? "NBA" : ""; }
-  var HAS_LINES = P.some(function (p) { return p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); });
-  var L = D.lines || {};
-  /* ---------- the page head, league by league (2026-11-08): what each league's slate is and where its lines stand, from
-     PROPS_DATA.leagues (a file written before the NFL has none and is the NBA alone). The NFL's lines come on the morning
-     run and the NBA's on the afternoon run, so neither league's state may speak for the other ---------- */
-  var LG = DATA.leagues || {}, NFL_SUM = LG.NFL || null;
-  var NBA_ON = P.length > 0 || D.games.length > 0, NFL_ON = ALL.some(isNFL) || !!(NFL_SUM && NFL_SUM.date);
-  var NBA_DATE = (LG.NBA && LG.NBA.date) || D.date || null;
-  var TODAY = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(E.now()));
-  var LINES_BY = { NBA: HAS_LINES, NFL: ALL.some(function (p) { return isNFL(p) && twoSidedAny(p); }) };
-  var ANY_LINES = LINES_BY.NBA || LINES_BY.NFL;
-  var BOTH = NBA_ON && NFL_ON;
-  function clock(t) { var d = t ? new Date(t) : null; return d && !isNaN(d) ? d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : ""; }
-  function nbaWhenWords() { return !NBA_DATE || NBA_DATE === TODAY ? "tonight" : whenWords(NBA_DATE); }
-  document.getElementById("props-title").textContent = NFL_ON && NFL_SUM && NFL_SUM.date === TODAY ? "Today’s props, likeliest first"
-    : NBA_ON && (!NBA_DATE || NBA_DATE === TODAY) ? "Tonight’s props, likeliest first" : "Props, likeliest first";
-  if (D.generatedAt) {
-    var gen = new Date(D.generatedAt), slate = [];
-    if (NBA_ON) slate.push("NBA " + nbaWhenWords() + ": " + D.games.length + " game" + (D.games.length === 1 ? "" : "s") + ", " + P.length + " rotation players.");
-    if (NFL_ON) { var ng = ALLG.filter(isNFL).length, np = ALL.filter(isNFL).length; slate.push("NFL" + (NFL_SUM && NFL_SUM.date ? " " + whenWords(NFL_SUM.date) : "") + ": " + ng + " game" + (ng === 1 ? "" : "s") + ", " + np + " players."); }
-    if (!isNaN(gen)) document.getElementById("props-asof").textContent = slate.concat(["Updated " + gen.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }) + "."]).join(" ");
-  }
-  /* the NBA's lines: priced, or why not yet (the morning run leaves them off: --lines nfl) */
-  function nbaLines() {
-    if (HAS_LINES) { var priced = P.filter(function (p) { return p.lines; }).length, at = clock(L.at); return (BOTH ? "NBA lines: " : "Lines: ") + priced + " players priced" + (L.games ? " in " + L.games + (L.of ? " of " + L.of : "") + " games" : "") + ((L.books || []).length ? " at " + L.books.length + " books" : "") + (at ? ", " + at : "") + "."; }
-    if (L.skipped === "budget") return "NBA lines were held back this run to keep the month’s odds budget.";
-    return "No NBA lines yet" + (nbaWhenWords() === "tonight" ? " tonight" : "") + ": the NBA board fills at the afternoon run, about " + E.runClock(1) + ".";
-  }
-  /* the NFL's lines in one sentence (the line under the filters has the detail) */
-  function nflLines() {
-    if (!LINES_BY.NFL) return nflWhen();
-    var nflPriced = ALL.filter(function (p) { return isNFL(p) && twoSidedAny(p); }).length, at = clock(NFL_SUM && NFL_SUM.lines && NFL_SUM.lines.at);
-    return "NFL lines: " + nflPriced + " players priced" + (at ? ", " + at : "") + ".";
-  }
-  var linesNote = document.getElementById("props-lines"), headLines = [];
-  if (NBA_ON) headLines.push(nbaLines());
-  if (NFL_ON) headLines.push(nflLines());
-  if (!ANY_LINES && ALL.length) headLines.push("Type a line on any card to grade it now.");
-  linesNote.textContent = headLines.join(" ");
-  document.getElementById("props-credit").textContent = D.attribution || "";
-  /* ---------- from here on: every league (the board, the filters, the cards) ---------- */
-  P = ALL;
-  function twoSidedAny(p) { return !!p.lines && Object.keys(p.lines).some(function (k) { var ln = p.lines[k]; return ln && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1; }); }
-  ["NBA", "NFL"].forEach(function (lg) {
-    var gs = ALLG.filter(function (g) { return leagueOf(g) === lg; }); if (!gs.length) return;
-    fGame.appendChild(E.el("optgroup", { label: lg }, gs.map(function (g) { return E.el("option", { value: g.id, text: g.away.abbr + " @ " + g.home.abbr + ", " + g.startLabel }); })));
-  });
-  if (!ALL.some(isNFL)) { fSport.closest(".filter").hidden = true; fStat.querySelector('optgroup[data-league="NFL"]').hidden = true; }
-  if (!ANY_LINES) { fSort.value = "heat"; fSort.querySelector('[value="prob"]').disabled = true; fSort.querySelector('[value="form"]').disabled = true; document.getElementById("props-board-head").hidden = true; board.hidden = true; boardSummary.hidden = true; }
-  /* when a game starts: its entry's commence, else the game's start */
-  var GAME_START = {}; ALLG.forEach(function (g) { GAME_START[g.id] = g.start; });
-  function startOf(p) { return p.commence || GAME_START[p.gameId] || null; }
-  function asPick(p) { return { commence: startOf(p), sportKey: p.sportKey || (isNFL(p) ? "americanfootball_nfl" : "basketball_nba") }; }
-  function openP(p) { return !startOf(p) || E.isOpen(asPick(p)); }
-  function dayOf(p) { return E.dayKey(asPick(p)); }
+  var E = window.EdgeLine, G = window.EdgeLineProps, el = E.el;
+  var DATA = window.PROPS_DATA || { players: [], games: [], generatedAt: null };
+  var ALL = DATA.players || [], GAMES = DATA.games || [], LG = DATA.leagues || {}, RES = DATA.results || null;
+  /* the grade lives in js/props-grade.js, shared with the pipeline: game data only, never other books' prices. The page
+     hands it the line (the posted one, or the number the reader typed), its clock and the slate's context */
+  var CTX = G.context(DATA), leagueOf = G.leagueOf, isNFL = G.isNFL;
+  function keysOf(p) { return G.keysOf(p, CTX); }
+  function $(id) { return document.getElementById(id); }
+  /* a section and its link on the "On this page" strip show and hide together */
+  function show(node, hash, on) { node.hidden = !on; var a = document.querySelector('.subnav a[href="' + hash + '"]'); if (a) a.hidden = !on; }
+  var host = $("props-board"), summary = $("pb-summary"), fSide = $("p-side"), fSort = $("p-sort"), fSearch = $("p-search");
 
-  /* ---------- the maths: one side per player per stat ---------- */
-  function statVal(r, k) { return k === "pra" ? r.pts + r.reb + r.ast : r[k]; }
-  function hitsFor(p, statKey, line, side) {
-    var vals = p.log.map(function (r) { return statVal(r, statKey); }).filter(function (v) { return v != null; });
-    var over = function (arr) { return arr.filter(function (v) { return side === "under" ? v < line : v > line; }).length; };
-    return { l5: [over(vals.slice(0, 5)), Math.min(5, vals.length)], l10: [over(vals.slice(0, 10)), Math.min(10, vals.length)], season: [over(vals), vals.length] };
+  /* ---------- stats: names and order from the data where it lists them (PROPS_DATA.leagues.<league>.stats), else the
+     built-in maps; a key the page has never seen still gets a name, a tab and a column ---------- */
+  var STAT_LABEL = { pts: "Points", reb: "Rebounds", ast: "Assists", threes: "Threes", pra: "Pts + Reb + Ast", passYds: "Passing yards", passTds: "Passing TDs", rushYds: "Rushing yards", recYds: "Receiving yards", rec: "Receptions" };
+  var STAT_SHORT = { pts: "PTS", reb: "REB", ast: "AST", threes: "3PM", pra: "PRA", passYds: "PASS YDS", passTds: "PASS TD", rushYds: "RUSH YDS", recYds: "REC YDS", rec: "REC" };
+  var STAT_TAB = { pra: "PRA", passYds: "Pass yards", passTds: "Pass TDs", rushYds: "Rush yards", recYds: "Rec yards" };
+  var STAT_WORDS = { pra: "points, rebounds and assists" };
+  var BUILT_IN = { NBA: G.NBA_KEYS, NFL: ["passYds", "passTds", "rushYds", "recYds", "rec"] };
+  var STAT_META = {};
+  Object.keys(LG).forEach(function (lg) { ((LG[lg] && LG[lg].stats) || []).forEach(function (s) { if (s && s.key && !STAT_META[s.key]) STAT_META[s.key] = s; }); });
+  function human(k) { var t = String(k).replace(/[_-]+/g, " ").replace(/([a-z0-9])([A-Z])/g, "$1 $2").toLowerCase(); return t.charAt(0).toUpperCase() + t.slice(1); }
+  function sentence(t) { t = String(t).toLowerCase(); return t.charAt(0).toUpperCase() + t.slice(1); }
+  /* the data's name for a stat wins over the built-in one */
+  function statLabel(k) { var m = STAT_META[k]; return (m && m.label) || STAT_LABEL[k] || human(k); }
+  function statShort(k) { var m = STAT_META[k]; return (m && m.short) || STAT_SHORT[k] || human(k).toUpperCase(); }
+  /* a name short enough for a tab and a row: the label, or the short form in sentence case when the label runs long */
+  function statTab(k) {
+    var m = STAT_META[k], l = statLabel(k);
+    if (STAT_TAB[k] && !(m && m.label && m.label !== STAT_LABEL[k])) return STAT_TAB[k];
+    return l.length <= 12 ? l : sentence(statShort(k));
   }
-  function rate(pair) { return pair[1] ? pair[0] / pair[1] : 0; }
-  /* confluences that bear on this stat and lean this way: the stat's own trend plus the general ones (minutes, rest, split, opponent, injury) */
-  function agreeing(p, statKey, side) {
-    var general = { min: 1, rest: 1, split: 1, opp: 1, injury: 1 };
-    var parts = statKey === "pra" ? { pts: 1, reb: 1, ast: 1 } : {}; parts[statKey] = 1;
-    var yes = 0, no = 0;
-    p.signals.forEach(function (x) { if (!(general[x.key] || parts[x.key])) return; if (x.lean === side) yes++; else if (x.lean === "over" || x.lean === "under") no++; });
-    return { yes: yes, no: no };
+  /* the stat inside a sentence: "points", "passing TDs" */
+  function statWords(k) { var m = STAT_META[k]; return (!(m && m.label) && STAT_WORDS[k]) || statLabel(k).replace(/^[A-Z](?=[a-z])/, function (c) { return c.toLowerCase(); }); }
+  /* a league's stat keys in display order: the data's list or the built-in one, then any key a player carries that neither names */
+  var STATS_OF = {};
+  function leagueStats(lg) {
+    if (STATS_OF[lg]) return STATS_OF[lg];
+    var listed = (CTX.stats[lg] || BUILT_IN[lg] || []).slice(), used = {};
+    ALL.forEach(function (p) { if (leagueOf(p) === lg) keysOf(p).forEach(function (k) { used[k] = 1; }); });
+    var out = listed.filter(function (k) { return used[k]; });
+    Object.keys(used).forEach(function (k) { if (out.indexOf(k) === -1) out.push(k); });
+    return (STATS_OF[lg] = out);
   }
-  /* ---- the grade: game data only, never other books' prices ----
-     half the weighted hit rate against the number (last five games count more, shrunk toward even when the sample is short),
-     half a projection from recent form and minutes, the opponent's defence, rest and the injury report, read against the
-     player's own game-to-game spread. The posted line is only the number to clear. */
-  var SD_FLOOR = { pts: 4, reb: 2, ast: 1.8, threes: 1, pra: 6 };
-  var LEAGUE_PA = (function () { var seen = {}, vals = []; P.forEach(function (p) { if (p.opp && p.opp.ptsAllowed && !seen[p.oppAbbr]) { seen[p.oppAbbr] = 1; vals.push(p.opp.ptsAllowed); } }); return vals.length ? vals.reduce(function (a, b) { return a + b; }, 0) / vals.length : 113; })();
-  function erf(x) { var s = x < 0 ? -1 : 1; x = Math.abs(x); var t = 1 / (1 + 0.3275911 * x); var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; }
-  function Phi(z) { return 0.5 * (1 + erf(z / Math.SQRT2)); }
-  function r1(n) { return Math.round(n * 10) / 10; }
-  function project(p, k) {
-    var s = p.stats[k], parts = [], w = [], reasons = [];
-    if (s.l5) { parts.push(s.l5); w.push(0.5); } if (s.l10) { parts.push(s.l10); w.push(0.3); } if (s.season) { parts.push(s.season); w.push(0.2); }
-    var tw = w.reduce(function (a, b) { return a + b; }, 0), base = tw ? parts.reduce(function (a, v, i) { return a + v * w[i]; }, 0) / tw : 0;
-    var m = p.minutes, ratio = m.season ? Math.max(0.7, Math.min(1.3, m.l5 / m.season)) : 1;
-    if (Math.abs(ratio - 1) >= 0.08) { base *= Math.pow(ratio, 0.5); reasons.push({ lean: ratio > 1 ? "over" : "under", label: "Minutes " + (ratio > 1 ? "up" : "down") + ": " + m.l5 + " last 5 vs " + m.season + " season" }); }
-    if (p.opp && p.opp.ptsAllowed) {
-      var r = p.opp.ptsAllowed / LEAGUE_PA, pow = k === "pts" || k === "pra" ? 0.6 : k === "threes" ? 0.4 : 0.25; base *= Math.pow(r, pow);
-      if (p.opp.rank <= 8) reasons.push({ lean: "over", label: p.oppAbbr + " allows " + p.opp.ptsAllowed + " a game, " + ordinalText(p.opp.rank) + " most" });
-      else if (p.opp.rank >= 23) reasons.push({ lean: "under", label: p.oppAbbr + " allows only " + p.opp.ptsAllowed + ", " + ordinalText(31 - p.opp.rank) + " fewest" });
+
+  /* ---------- leagues, games and the clock ---------- */
+  var ORDER = ["NFL", "NBA"];
+  var RECENT = RES && Array.isArray(RES.recent) ? RES.recent.filter(Boolean) : [];
+  var LEAGUES = (function () {
+    var on = {};
+    ALL.forEach(function (p) { on[leagueOf(p)] = 1; }); GAMES.forEach(function (g) { on[leagueOf(g)] = 1; }); RECENT.forEach(function (r) { on[leagueOf(r)] = 1; });
+    return ORDER.filter(function (l) { return on[l]; }).concat(Object.keys(on).filter(function (l) { return ORDER.indexOf(l) === -1; }).sort());
+  })();
+  function sportKeyOf(x) { return (x && x.sportKey) || (leagueOf(x) === "NFL" ? "americanfootball_nfl" : leagueOf(x) === "NBA" ? "basketball_nba" : null); }
+  function etKey(ms) { return E.dayKey({ commence: new Date(ms).toISOString() }); }
+  function todayKey() { return etKey(E.now()); }
+  function startOf(p) { return G.startOf(p, CTX); }
+  function startMsOf(p) { return Date.parse(startOf(p) || ""); }
+  function asPick(p) { return { commence: startOf(p), sportKey: sportKeyOf(p), start: p.start }; }
+  /* the start as every page writes it, off the reader's clock: "Today 7:30 PM ET", "Tomorrow 8:15 PM ET", "Thu 8:15 PM ET" */
+  function startText(p) { return E.startLabel(asPick(p)); }
+  function openP(p) { return G.isOpen(p, E.now(), CTX); }
+  function dayOf(p) { return G.dayOf(p, CTX); }
+  function playersIn(lg) { return ALL.filter(function (p) { return leagueOf(p) === lg; }); }
+  function gamesOf(lg) { return GAMES.filter(function (g) { return leagueOf(g) === lg; }).sort(function (a, b) { return (Date.parse(a.start || "") || 0) - (Date.parse(b.start || "") || 0); }); }
+  function gPick(g) { return { commence: g.start, sportKey: sportKeyOf(g), start: g.startLabel }; }
+  function gOpen(g) { return E.isOpen(gPick(g)); }
+  function gName(g) { return ((g.away && g.away.abbr) || "Away") + " @ " + ((g.home && g.home.abbr) || "Home"); }
+  var GAME_BY = {}; GAMES.forEach(function (g) { GAME_BY[g.id] = g; });
+  /* does a league's game log say where each game was played? A league with no home game in any log has the flag unset
+     (every row reads away), so the page says neither "@" nor "at home" for it rather than say something false */
+  var HOME_KNOWN = {}; ALL.forEach(function (p) { if ((p.log || []).some(function (r) { return r.home === true; })) HOME_KNOWN[leagueOf(p)] = true; });
+  function homeKnown(p) { return !!HOME_KNOWN[leagueOf(p)]; }
+  /* a game chip's start: the same label, without the words a chip can do without ("7:30 PM", "Thu 8:15 PM") */
+  function chipTime(g) { return E.startLabel(gPick(g)).replace(/^Today\s+/, "").replace(/\s+ET$/, ""); }
+  /* the default tab: the NFL on an NFL game day, else the league whose next game starts soonest, else the first with anything */
+  function defaultLeague() {
+    var now = E.now(), today = todayKey(), next = {};
+    LEAGUES.forEach(function (lg) { var ts = gamesOf(lg).map(function (g) { return Date.parse(g.start || ""); }).filter(function (t) { return t > now; }); next[lg] = ts.length ? Math.min.apply(null, ts) : Infinity; });
+    if (Number.isFinite(next.NFL) && gamesOf("NFL").some(function (g) { var t = Date.parse(g.start || ""); return t > now && etKey(t) === today; })) return "NFL";
+    var withGames = LEAGUES.filter(function (lg) { return Number.isFinite(next[lg]); }).sort(function (a, b) { return next[a] - next[b]; });
+    return withGames[0] || LEAGUES.filter(function (lg) { return playersIn(lg).length; })[0] || LEAGUES[0] || "NBA";
+  }
+
+  /* ---------- the view lives in the address: ?league=&game=&stat=&side=&q=&sort=, and ?p=<player>&stat=<key> for an open detail ---------- */
+  var Q = new URLSearchParams(location.search);
+  var state = { league: "", game: "", stat: "", side: "", q: "", sort: "prob", explicit: false };
+  var showAll = false, playedAll = false, noLineAll = false;
+  function matchQ(x, q) {
+    q = (q == null ? state.q : q).trim().toLowerCase(); if (!q) return true;
+    return [x.name, x.team, x.teamAbbr, x.oppName, x.oppAbbr].filter(function (v) { return typeof v === "string"; }).join(" ").toLowerCase().indexOf(q) !== -1;
+  }
+  function findPlayer(id) { return id == null ? null : ALL.filter(function (p) { return String(p.id) === String(id); })[0] || null; }
+  (function readAddress() {
+    var lg = String(Q.get("league") || "").trim().toUpperCase(), q = String(Q.get("q") || "").trim(), deep = findPlayer(Q.get("p"));
+    var g = Q.get("game"), game = g && GAME_BY[g] ? GAME_BY[g] : null, st = Q.get("stat");
+    state.q = q; fSearch.value = q;
+    if (LEAGUES.indexOf(lg) !== -1) { state.league = lg; state.explicit = true; }
+    if (deep) state.league = leagueOf(deep);
+    /* a link that names only a game or a stat still lands on its league */
+    if (!state.league && game) state.league = leagueOf(game);
+    if (!state.league && st) state.league = LEAGUES.filter(function (l) { return leagueStats(l).indexOf(st) !== -1; })[0] || "";
+    if (!state.league) {
+      state.league = defaultLeague();
+      /* a search from the site header or a game page lands on the league that has the player */
+      if (q && !playersIn(state.league).some(function (p) { return matchQ(p, q); })) { var alt = LEAGUES.filter(function (l) { return playersIn(l).some(function (p) { return matchQ(p, q); }); })[0]; if (alt) state.league = alt; }
     }
-    if (p.b2b) { base *= 0.96; reasons.push({ lean: "under", label: "Second night of a back-to-back" }); }
-    else if (p.restDays >= 3 && p.restDays <= 10) { base *= 1.02; reasons.push({ lean: "over", label: p.restDays + " days' rest" }); }
-    var split = p.home ? s.home : s.away, other = p.home ? s.away : s.home;
-    if (split && other && p.gp >= 4) { base = 0.85 * base + 0.15 * split; var d = split / other - 1; if (Math.abs(d) >= 0.12) reasons.push({ lean: d > 0 ? "over" : "under", label: (p.home ? "At home" : "On the road") + " averages " + split + " vs " + other }); }
-    if (p.injury) { base *= 0.95; reasons.push({ lean: "under", label: "Injury report: " + p.injury }); }
-    var sd = Math.max(s.sd || 0, SD_FLOOR[k]) * 1.25 * (p.injury ? 1.15 : 1); /* a quarter wider than the last ten suggest: tonight is one game */
-    return { proj: r1(base), sd: sd, reasons: reasons };
+    if (game && leagueOf(game) === state.league) state.game = g;
+    /* with a player open, stat is the detail's; the board behind it stays on every player's best stat */
+    if (st && !deep && leagueStats(state.league).indexOf(st) !== -1) state.stat = st;
+    var sd = String(Q.get("side") || "").toLowerCase(); if (sd === "over" || sd === "under") state.side = sd;
+    var so = String(Q.get("sort") || "").replace(/[^a-z]/g, ""); if (so && fSort.querySelector('option[value="' + so + '"]')) state.sort = so;
+    fSide.value = state.side; fSort.value = state.sort;
+  })();
+  function hrefFor(over) {
+    var s = Object.assign({}, state, over || {}), q = new URLSearchParams();
+    if (s.league && (s.explicit || s.game || s.stat || s.p || (over && over.league))) q.set("league", s.league);
+    if (s.game) q.set("game", s.game);
+    if (s.p) q.set("p", s.p);
+    if (s.stat) q.set("stat", s.stat);
+    if (s.side) q.set("side", s.side);
+    if (s.q) q.set("q", s.q);
+    if (s.sort && s.sort !== "prob") q.set("sort", s.sort);
+    var t = q.toString();
+    return "props.html" + (t ? "?" + t : "");
   }
-  var PHANTOM = 3; /* the hit rate is shrunk toward even by three phantom hits and three misses, so a 3-for-3 reads as 60%, not 100% */
-  function weightedHit(p, k, line, side) {
-    var vals = p.log.map(function (r) { return statVal(r, k); }).filter(function (v) { return v != null; }).slice(0, 10), num = PHANTOM, den = 2 * PHANTOM;
-    vals.forEach(function (v, i) { var w = i < 5 ? 1 : 0.6; den += w; if (side === "under" ? v < line : v > line) num += w; });
-    return { p: num / den, n: vals.length };
+  function syncUrl() {
+    var over = cur ? { p: cur.p.id, stat: cur.k } : null;
+    try { history.replaceState(null, "", hrefFor(over).replace(/^props\.html/, location.pathname.split("/").pop() || "props.html")); } catch (e) { /* a file:// page may refuse; the view still works */ }
   }
-  /* ---- the NFL: the pipeline's projection for the player's usage and the defence (scripts/nfl-props.js), read at any
-     number: quantiles of past outcomes around the projection for yards, a Poisson count for touchdowns and catches ---- */
-  var QS = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95];
-  function cdfQ(q, x) {
-    if (x < q[0]) return q[0] > 0 ? Math.max(0, QS[0] * x / q[0]) : 0;
-    var n = q.length - 1;
-    if (x >= q[n]) { var tau = Math.max(1, (q[n] - q[9]) / 3); return 1 - (1 - QS[n]) * Math.exp(-(x - q[n]) / tau); }
-    var i = 0; for (var j = 0; j < q.length; j++) if (q[j] <= x) i = j;
-    if (i >= n) return QS[n];
-    return q[i + 1] > q[i] ? QS[i] + (QS[i + 1] - QS[i]) * (x - q[i]) / (q[i + 1] - q[i]) : QS[i + 1];
-  }
-  function poissonCdf(lambda, k) { if (k < 0) return 0; var term = Math.exp(-lambda), sum = term; for (var i = 1; i <= k; i++) { term *= lambda / i; sum += term; } return Math.min(1, sum); }
-  function nflOver(pj, line) { return pj.dist === "poisson" ? 1 - poissonCdf(pj.mean, Math.floor(line + 1e-9)) : pj.q && pj.q.length ? 1 - cdfQ(pj.q, line) : 0.5; }
-  /* the lowest tier reads "Low" (owner decision, 2026-11-08: the selections are leans, so a "Lean" badge read badly); the class stays */
-  var GRADES = [[0.70, "High", "badge-conf-high"], [0.62, "Medium", "badge-conf-medium"], [0.56, "Low", "badge-conf-lean"]];
-  var MIN_GAMES = 4; /* the board wants at least this many logged games; a card still grades a thinner sample and says so */
-  function minGames(p) { return isNFL(p) ? 3 : MIN_GAMES; } /* NFL: three games, a month of football */
-  function twoSided(ln) { return !!(ln && ln.line != null && ln.over && ln.under && ln.over.n >= 1 && ln.under.n >= 1); }
-  function gradeOf(prob) { for (var i = 0; i < GRADES.length; i++) if (prob >= GRADES[i][0]) return { label: GRADES[i][1], cls: GRADES[i][2] }; return { label: "Coin flip", cls: "badge-flip" }; }
-  /* one stat at one number: the side we favour, our probability, the grade and the reasons; prices only for shopping */
-  function sideFor(p, k, lineOverride) {
-    var ln = p.lines && p.lines[k], line = lineOverride != null ? lineOverride : ln && ln.line != null ? ln.line : null;
-    if (line == null || !p.log.length) return null;
-    var pr, pModelOver;
-    if (isNFL(p)) {
-      var pj = p.proj && p.proj[k]; if (!pj) return null;
-      pr = { proj: pj.mean, sd: null, reasons: (pj.reasons || []).map(function (x) { return { lean: x.lean, label: x.label }; }), why: pj.why };
-      pModelOver = nflOver(pj, line);
-    } else { pr = project(p, k); pModelOver = 1 - Phi((line - pr.proj) / pr.sd); }
-    var emp = weightedHit(p, k, line, "over");
-    var pOver = 0.5 * pModelOver + 0.5 * emp.p;
-    var side = pOver >= 0.5 ? "over" : "under", prob = side === "over" ? pOver : 1 - pOver;
-    var h = hitsFor(p, k, line, side), g = gradeOf(prob);
-    var projText = isNFL(p) ? "Projects " + pr.proj + " (" + (pr.why ? pr.why + "; " : "") + "season " + p.stats[k].season + ")" : "Projects " + pr.proj + " (last 5: " + p.stats[k].l5 + ", last 10: " + p.stats[k].l10 + ", season: " + p.stats[k].season + ")";
-    var reasons = [{ lean: side, label: (side === "over" ? "Cleared " : "Stayed under ") + line + " in " + h.l10[0] + " of the last " + h.l10[1] }, { lean: pr.proj > line ? "over" : "under", label: projText }].concat(pr.reasons);
-    if (p.log.length < minGames(p)) reasons.push({ lean: "neutral", label: "Small sample: " + p.log.length + " game" + (p.log.length === 1 ? "" : "s") + " logged, so the grade is pulled toward even" });
-    var trend = p.signals.filter(function (x) { return isNFL(p) ? x.key === k || x.key === "usage" || x.key === "split" || x.key === "rest" : x.key === k || (k === "pra" && (x.key === "pts" || x.key === "reb" || x.key === "ast")) || x.key === "steady"; }).map(function (x) { return { lean: x.lean, label: x.label }; });
-    reasons = reasons.concat(trend);
-    var mine = reasons.filter(function (x) { return x.lean === side; }), theirs = reasons.filter(function (x) { return x.lean !== side && x.lean !== "neutral"; }), neutral = reasons.filter(function (x) { return x.lean === "neutral"; });
-    var px = ln && ln.line === line ? (side === "over" ? ln.over : ln.under) : null, other = ln && ln.line === line ? (side === "over" ? ln.under : ln.over) : null;
-    return { p: p, k: k, line: line, side: side, prob: prob, grade: g, proj: pr.proj, sd: pr.sd, hit: h, l10: rate(h.l10), emp: emp.p, reasons: mine, against: theirs, neutral: neutral,
-      odds: px && px.odds != null ? px.odds : null, book: px ? px.book : null, n: px ? px.n : 0, otherOdds: other && other.odds != null ? other.odds : null, otherBook: other ? other.book : null, posted: !!(ln && ln.line === line) };
-  }
-  function allSides(p) { return keysOf(p).map(function (k) { return sideFor(p, k); }).filter(Boolean); }
-  /* the site's order: game day first, then our probability, then the raw hit rate, then the longer sample */
-  function dayCmpP(a, b) { var x = dayOf(a) || "~", y = dayOf(b) || "~"; return x < y ? -1 : x > y ? 1 : 0; }
-  function better(a, b) { return dayCmpP(a.p, b.p) || (b.prob - a.prob) || (b.l10 - a.l10) || (b.hit.l10[1] - a.hit.l10[1]); }
-  /* the board: only stats with a line the books quote both ways, enough games behind the player, and a game still to start */
-  function boardable(p, k) { return twoSided(p.lines && p.lines[k]) && p.log.length >= minGames(p) && openP(p); }
-  function bestSide(p) { var keys = fStat.value ? [fStat.value] : keysOf(p); var s = keys.filter(function (k) { return keysOf(p).indexOf(k) !== -1 && boardable(p, k); }).map(function (k) { return sideFor(p, k); }).filter(Boolean); return s.length ? s.sort(better)[0] : null; }
-  var SIDES = {}; /* player id -> best side under the current filters; filled by render */
-  var RANK = {};  /* player id -> board rank */
 
-  /* ---------- the typed line: the market line unless the visitor overrides it for tonight's number ---------- */
-  function lineKeyFor(p, statKey) { return "prop-line:" + p.id + ":" + statKey; }
-  function marketLine(p, statKey) { var ln = p.lines && p.lines[statKey]; return ln && ln.line != null ? ln.line : null; }
-  function savedLineFor(p, statKey) {
-    var m = marketLine(p, statKey), raw = null;
-    try { raw = localStorage.getItem(lineKeyFor(p, statKey)); } catch (e) {}
+  /* ---------- small pieces ---------- */
+  function sideWord(s) { return s === "under" ? "Under" : "Over"; }
+  function tierCls(tier) { return tier === "High" ? "badge-conf-high" : tier === "Medium" ? "badge-conf-medium" : tier === "Lean" || tier === "Low" ? "badge-conf-lean" : "badge-flip"; }
+  /* the tier as every page shows it: the lowest reads "Low" (EdgeLine.tierLabel) */
+  function tierBadge(tier, cls) { return el("span", { class: "badge " + (cls || tierCls(tier)), text: E.tierLabel(tier) }); }
+  function shortName(n) { n = String(n || ""); if (n.length <= 20) return n; var i = n.indexOf(" "); return i > 0 ? n.charAt(0) + ". " + n.slice(i + 1) : n; }
+  /* "Day-To-Day: ankle" -> "Day-to-day" */
+  function injuryWord(s) { s = String(s || "").split(":")[0].trim(); return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : ""; }
+  function matchupOf(p) { return p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr; }
+  function gameLabel(p) { var g = GAME_BY[p.gameId]; return g ? gName(g) : (p.home ? p.oppAbbr + " @ " + p.teamAbbr : p.teamAbbr + " @ " + p.oppAbbr); }
+  function face(p, px, cls) {
+    var img = el("img", { class: cls || "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/" + (isNFL(p) ? "nfl" : "nba") + "/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: String(px), height: String(px) });
+    img.addEventListener("error", function () { img.replaceWith(el("span", { class: (cls || "headshot") + " headshot-fallback", "aria-hidden": "true", text: String(p.name || "").split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
+    return img;
+  }
+  /* the probability bar: the fill is our probability, the hairline 50%; with a tick, the raw hit rate over the last ten */
+  function probBar(prob, tick) {
+    var fill = el("span", { class: "prob-fill" }); fill.style.width = Math.max(0, Math.min(100, (prob || 0) * 100)).toFixed(1) + "%";
+    var kids = [fill];
+    if (tick != null) { var t = el("span", { class: "prob-tick" }); t.style.left = Math.max(0, Math.min(100, tick * 100)).toFixed(1) + "%"; kids.push(t); }
+    return el("div", { class: "prob-bar", title: "Our probability " + E.pct(prob) + (tick != null ? ", raw hit rate over the last ten " + E.pct(tick, 0) : "") }, kids);
+  }
+  function priceCell(odds, book) {
+    if (odds == null) return [el("span", { class: "muted", text: "No price" })];
+    return [el("strong", { class: "mono", text: E.fmtOdds(odds) }), book ? el("span", { class: "pr-book", title: book, text: E.bookAbbr(book) }) : null];
+  }
+  function dayRow(key, cols) {
+    var td = el("td", { colspan: String(cols) }), d = E.dayDivider(key);
+    while (d.firstChild) td.appendChild(d.firstChild);
+    return el("tr", { class: "day-divider" }, [td]);
+  }
+  function plural(n, one, many) { return n + " " + (n === 1 ? one : many || one + "s"); }
+  /* a label from the data, as the page prints prose: "4 days’ rest" */
+  function typo(t) { return String(t == null ? "" : t).replace(/'/g, "’"); }
+
+  /* ---------- the head: what is on, when lines were read and when they are read next ---------- */
+  function anyLines(lg) { return playersIn(lg).some(G.twoSidedAny); }
+  function whenWord(lg, ms) {
+    var key = etKey(ms), label = E.dayLabel(key);
+    if (label === "Today") return lg === "NBA" || Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", hour: "numeric" }).format(new Date(ms))) >= 17 ? "tonight" : "today";
+    if (label === "Tomorrow" || label === "Yesterday") return label.toLowerCase();
+    var days = Math.round((Date.parse(key + "T12:00:00Z") - Date.parse(todayKey() + "T12:00:00Z")) / 864e5);
+    return days > 0 && days < 7 ? new Date(Date.parse(key + "T12:00:00Z")).toLocaleDateString("en-US", { timeZone: "UTC", weekday: "long" }) : label;
+  }
+  function allStarted() { return GAMES.length > 0 && !GAMES.some(gOpen); }
+  /* the next run that reads lines. The afternoon run reads both leagues; the morning run reads the NFL's only, and only
+     on an NFL game day, so it never counts for the NBA (lg) and counts for the page only on that day */
+  function nextRead(lg) {
+    var t = E.nextRun(true), morning = new Date(t).getUTCHours() === 14;
+    var nflMorning = !!(LG.NFL && LG.NFL.date === etKey(t) && gamesOf("NFL").some(gOpen));
+    if (morning && (lg === "NBA" || !nflMorning)) t += 6.5 * 36e5;
+    return t;
+  }
+  /* when lines were last read: the newest stamp in the file that is not ahead of the reader's clock */
+  function linesReadAt() {
+    var now = E.now() + 5 * 60e3;
+    var ts = [DATA.linesRefreshedAt, DATA.lines && DATA.lines.at].concat(Object.keys(LG).map(function (lg) { return LG[lg] && LG[lg].lines && LG[lg].lines.at; })).map(function (v) { return Date.parse(v || ""); }).filter(function (t) { return Number.isFinite(t) && t <= now; });
+    return ts.length ? Math.max.apply(null, ts) : NaN;
+  }
+  function renderHead() {
+    var today = todayKey(), nflDay = LG.NFL && LG.NFL.date === today && playersIn("NFL").length, nbaDate = (LG.NBA && LG.NBA.date) || DATA.date || null;
+    $("props-title").textContent = nflDay ? "Today’s props, likeliest first" : playersIn("NBA").length && (!nbaDate || nbaDate === today) ? "Tonight’s props, likeliest first" : "Props, likeliest first";
+    var slate = $("props-slate"), parts = [];
+    if (!ALL.length && !GAMES.length) slate.textContent = "No props yet. They refresh with the " + E.word("many") + ", around " + E.runClock(0) + " and " + E.runClock(1) + " on game days.";
+    else if (allStarted()) slate.textContent = "Every game on this slate has started, so nothing here is left to bet. The next slate is priced " + E.aboutET(nextRead()) + ".";
+    else {
+      /* the league that plays soonest is named first */
+      LEAGUES.slice().sort(function (a, b) { var x = gamesOf(a)[0], y = gamesOf(b)[0]; return ((x && Date.parse(x.start || "")) || Infinity) - ((y && Date.parse(y.start || "")) || Infinity); }).forEach(function (lg) {
+        var gs = gamesOf(lg), n = gs.length; if (!n) return;
+        var started = gs.filter(function (g) { return !gOpen(g); }).length, first = Date.parse(gs[0].start || "");
+        parts.push(lg + (Number.isFinite(first) ? " " + whenWord(lg, first) : "") + ": " + plural(n, "game") + (started === n ? (n === 1 ? ", started" : ", all started") : started ? ", " + started + " started" : "") + ".");
+      });
+      slate.textContent = parts.join(" ");
+    }
+    renderUpdated();
+    var credit = $("props-credit");
+    if (DATA.attribution) credit.textContent = DATA.attribution + (ALL.some(isNFL) && !/Weather Service/.test(DATA.attribution) ? " Wind at NFL kickoffs is the National Weather Service’s forecast." : "");
+  }
+  function renderUpdated() {
+    var read = linesReadAt(), gen = Date.parse(DATA.generatedAt || ""), parts = [];
+    if (Number.isFinite(read)) parts.push("Lines read " + E.clockET(read) + " (" + E.ago(read) + ")");
+    else if (Number.isFinite(gen)) parts.push("Research updated " + E.clockET(gen) + ", no lines read yet");
+    if (!allStarted() && (ALL.length || GAMES.length)) parts.push("Next read " + E.aboutET(nextRead()));
+    $("props-updated").replaceChildren(E.meta(parts, "update-line"));
+  }
+  /* when a league's lines come: the sentence for a board with nothing priced */
+  function whenLines(lg) {
+    if (lg === "NFL") {
+      var N = LG.NFL; if (!N || !N.date) return "No NFL lines yet.";
+      var first = N.first ? " (" + N.first.matchup + ")" : "", why = N.lines && N.lines.skipped;
+      if (N.date > todayKey()) return "No NFL lines yet. They are read on the next game day, " + lowerDay(E.dayLabel(N.date)) + first + ", on that morning’s run, about " + E.runClock(0) + ". When the month’s odds budget has room they come sooner, on the afternoon run one or two days before.";
+      if (why === "budget") return "NFL lines were held back this run to keep the month’s odds budget. The next try is " + E.aboutET(nextRead("NFL")) + ".";
+      return "No NFL lines yet. The next read is " + E.aboutET(nextRead("NFL")) + ", for the games still to start.";
+    }
+    var L = (LG[lg] && LG[lg].lines) || DATA.lines || {};
+    if (L.skipped === "budget") return lg + " lines were held back this run to keep the month’s odds budget. The next try is " + E.aboutET(nextRead(lg)) + ".";
+    return "No " + lg + " lines yet. The books post most of them in the afternoon, and ours are read " + E.aboutET(nextRead(lg)) + ".";
+  }
+
+  /* ---------- the controls: league tabs, game chips, stat tabs ---------- */
+  function boardCount(lg) { var now = E.now(); return playersIn(lg).filter(function (p) { return G.bestSide(p, { now: now, ctx: CTX }); }).length; }
+  function renderLeagues() {
+    var nav = $("p-leagues"), had = nav.contains(document.activeElement);
+    nav.textContent = "";
+    var seg = el("div", { class: "seg browse-seg" });
+    LEAGUES.forEach(function (lg) {
+      var n = boardCount(lg), on = lg === state.league, none = playersIn(lg).some(openP) ? "no lines yet" : gamesOf(lg).length ? "started" : "";
+      var a = el("a", { href: hrefFor({ league: lg, game: "", stat: "", p: null }), "data-league": lg, "aria-current": on ? "true" : null, title: lg + ": " + (n ? plural(n, "prop") + " on the board" : none || "nothing on the board") }, [
+        el("span", { class: "browse-tab-name", text: lg }),
+        n ? el("span", { class: "seg-count", "aria-label": plural(n, "prop"), text: String(n) }) : none ? el("span", { class: "browse-next", text: none }) : null
+      ]);
+      a.addEventListener("click", function (ev) { if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return; ev.preventDefault(); setLeague(lg); });
+      seg.appendChild(a);
+    });
+    nav.appendChild(seg);
+    nav.hidden = LEAGUES.length < 1;
+    if (had) { var again = nav.querySelector('[aria-current="true"]'); if (again) again.focus(); }
+  }
+  function chip(text, pressed, attrs, kids) {
+    return el("button", Object.assign({ type: "button", class: "props-chip", "aria-pressed": String(!!pressed) }, attrs || {}), [el("span", { text: text })].concat(kids && kids.length ? [" "].concat(kids) : []));
+  }
+  function renderGames() {
+    var box = $("p-games"), gs = gamesOf(state.league);
+    box.textContent = "";
+    box.hidden = gs.length < 2 && !state.game;
+    if (box.hidden) return;
+    box.appendChild(chip("All games", !state.game, { "data-game": "" }));
+    gs.forEach(function (g) {
+      var st = E.gameState(gPick(g)), open = st === "upcoming" || st === "soon", when = E.startLabel(gPick(g));
+      var mark = open ? el("span", { class: "props-chip-t mono", text: chipTime(g) }) : el("span", { class: "props-chip-t props-chip-state" + (st === "live" ? " is-live" : ""), text: st === "live" ? "Live" : "Started" });
+      box.appendChild(chip(gName(g), state.game === g.id, { "data-game": g.id, class: "props-chip" + (open ? "" : " is-started"), title: gName(g) + (when ? ", " + when : "") + (open ? "" : ", started: off the board") }, [mark]));
+    });
+  }
+  function renderStats() {
+    var box = $("p-stats"), keys = leagueStats(state.league);
+    box.textContent = "";
+    box.hidden = !keys.length;
+    box.appendChild(chip("All stats", !state.stat, { "data-stat": "", class: "props-tab", title: "Each player’s likeliest stat" }));
+    keys.forEach(function (k) { box.appendChild(chip(statTab(k), state.stat === k, { "data-stat": k, class: "props-tab", title: statLabel(k) })); });
+  }
+  function press(box, attr, value) { box.querySelectorAll("button[" + attr + "]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute(attr) === value)); }); }
+  function setLeague(lg) {
+    if (lg === state.league) return;
+    state.league = lg; state.explicit = true; state.game = ""; state.stat = ""; showAll = false; playedAll = false; noLineAll = false;
+    renderLeagues(); renderGames(); renderStats(); render(); syncUrl();
+  }
+  $("p-games").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-game]"); if (!b) return;
+    state.game = b.getAttribute("data-game"); state.explicit = true; press($("p-games"), "data-game", state.game); render(); syncUrl();
+  });
+  $("p-stats").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-stat]"); if (!b) return;
+    state.stat = b.getAttribute("data-stat"); state.explicit = true; press($("p-stats"), "data-stat", state.stat); renderLeagues(); render(); syncUrl();
+  });
+  fSide.addEventListener("change", function () { state.side = fSide.value; render(); syncUrl(); });
+  fSort.addEventListener("change", function () { state.sort = fSort.value; render(); syncUrl(); });
+  fSearch.addEventListener("input", function () { state.q = fSearch.value.trim(); render(); syncUrl(); });
+  function clearFilters() {
+    state.game = ""; state.stat = ""; state.side = ""; state.q = ""; fSide.value = ""; fSearch.value = "";
+    renderGames(); renderStats(); render(); syncUrl();
+  }
+
+  /* ---------- the board: one row per prop, game day first, then likeliest ---------- */
+  var SIDES = {}, RANK = {}, CAP = 20;
+  function better(a, b) { return G.better(a, b, CTX); }
+  var SORTS = {
+    form: function (a, b) { return (b.l10 - a.l10) || better(a, b); },
+    start: function (a, b) { return ((startMsOf(a.p) || Infinity) - (startMsOf(b.p) || Infinity)) || better(a, b); }
+  };
+  var SORT_WORDS = { prob: "likeliest first", form: "by hit rate over the last ten", start: "by start time" };
+  function inGame(x) { return !state.game || String(x.gameId) === String(state.game); }
+  var COLS = ["#", "Player", "Game", "Prop", "Lean", "To hit", "L5", "L10", "Best price"];
+  function boardRow(s, rank) {
+    var p = s.p, inj = injuryWord(p.injury), words = sideWord(s.side) + " " + s.line + " " + statWords(s.k);
+    var open = el("a", { class: "pr-open", href: hrefFor({ p: p.id, stat: s.k }), "data-open": p.id, "data-stat": s.k, "aria-haspopup": "dialog",
+      "aria-label": p.name + ", " + words.toLowerCase() + ", to hit " + E.pct(s.prob) + ". Open the chart, the prices and the reasons.", title: p.name + ": open the chart, the prices and the reasons", text: shortName(p.name) });
+    var tr = el("tr", { class: "pr", "data-player": p.id, "data-stat": s.k, "data-side": s.side, "data-line": String(s.line), "data-prob": s.prob.toFixed(4), "data-rank": String(rank), "data-league": leagueOf(p), "data-day": dayOf(p) }, [
+      el("td", { class: "pr-rank" }, [E.rankChip(rank, true)]),
+      el("td", { class: "pr-player" }, [el("div", { class: "pr-who" }, [face(p, 36, "headshot pr-face"), open, E.meta([p.pos || null, p.teamAbbr, inj ? el("span", { class: "pr-inj", text: inj }) : null], "pr-sub")])]),
+      el("td", { class: "pr-game" }, [el("span", { class: "pr-match", text: gameLabel(p) }), " ", el("span", { class: "pr-start", text: startText(p) })]),
+      el("td", { class: "pr-prop" }, [el("span", { class: "pr-stat", title: statLabel(s.k), text: statTab(s.k) }), " ", el("strong", { class: "mono pr-line", text: String(s.line) })]),
+      el("td", { class: "pr-lean" }, [el("strong", { class: "pr-side", text: sideWord(s.side) })]),
+      el("td", { class: "pr-hit" }, [el("div", { class: "pr-tohit" }, [el("strong", { class: "mono pr-prob", text: E.pct(s.prob) }), probBar(s.prob), tierBadge(s.grade.tier, s.grade.cls)])]),
+      el("td", { class: "num pr-l5", title: "The " + s.side + " came in " + s.hit.l5[0] + " of his last " + s.hit.l5[1], text: s.hit.l5[0] + "/" + s.hit.l5[1] }),
+      el("td", { class: "num pr-l10", title: "The " + s.side + " came in " + s.hit.l10[0] + " of his last " + s.hit.l10[1], text: s.hit.l10[0] + "/" + s.hit.l10[1] }),
+      el("td", { class: "pr-best", title: s.odds != null ? "Where to bet it: the best of " + plural(s.n, "book") + " on this side. It takes no part in the grade." : null }, priceCell(s.odds, s.book))
+    ]);
+    Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-label", COLS[i]); });
+    return tr;
+  }
+  function emptyNote(ranked) {
+    var lg = state.league, mine = playersIn(lg), open = mine.filter(openP), kids = [], g = state.game && GAME_BY[state.game];
+    function say(t) { kids.push(t); }
+    if (!ALL.length) say("Nothing to rank until the first refresh.");
+    else if (!open.length && mine.length) { say("Every " + lg + " game on this slate has started, so nothing is left to bet. "); kids.push(el("a", { href: "#played", text: "Their props are under In progress and results." })); }
+    else if (!mine.length) say("No " + lg + " games on this slate.");
+    else if (g && !gOpen(g)) { say(gName(g) + " has started. "); kids.push(el("a", { href: "#played", text: "Its props are under In progress and results." })); }
+    else if (!anyLines(lg)) { say(whenLines(lg) + " Until then, "); kids.push(el("a", { href: "#no-line", text: "every player is listed under No line yet" })); say(": open one and type a line to grade it."); }
+    else if (state.q && ranked.length) {
+      say("No prop on this board matches “" + state.q + "”.");
+      var off = mine.filter(inGame).filter(openP).filter(function (x) { return !SIDES[x.id] && matchQ(x); }).length;
+      if (off) { say(" "); kids.push(el("a", { href: "#no-line", text: plural(off, "player") + " under No line yet " + (off === 1 ? "does." : "do.") })); }
+    }
+    else say("No prop matches these filters.");
+    var p = el("p", { class: "props-empty" }, kids);
+    if (state.game || state.stat || state.side || state.q) { var b = el("button", { type: "button", class: "flip-btn", id: "pb-clear", text: "Clear the filters" }); b.addEventListener("click", clearFilters); p.appendChild(document.createTextNode(" ")); p.appendChild(b); }
+    return p;
+  }
+  function renderBoard() {
+    var lg = state.league, now = E.now();
+    SIDES = {}; RANK = {};
+    /* the board's scope is the league, the game, the stat and the side; a search only narrows what is shown, so a rank stays a rank */
+    var ranked = playersIn(lg).filter(inGame).map(function (p) { return G.bestSide(p, { now: now, ctx: CTX, stat: state.stat }); }).filter(Boolean).filter(function (s) { return !state.side || s.side === state.side; }).sort(better);
+    ranked.forEach(function (s, i) { SIDES[s.p.id] = s; RANK[s.p.id] = i + 1; });
+    var shown = ranked.filter(function (s) { return matchQ(s.p); });
+    if (SORTS[state.sort]) shown = shown.slice().sort(SORTS[state.sort]);
+    host.textContent = "";
+    var dead = allStarted() && !state.q;
+    show($("board"), "#board", !dead); host.hidden = dead;
+    var scope = state.stat ? statWords(state.stat) : "each player’s likeliest stat";
+    summary.textContent = shown.length ? (shown.length < ranked.length ? shown.length + " of " : "") + ranked.length + " " + lg + (ranked.length === 1 ? " prop" : " props") + ", " + scope + (state.side ? ", " + state.side + "s only" : "") + (state.sort !== "prob" ? ", " + SORT_WORDS[state.sort] : "") + "." : "";
+    summary.hidden = !shown.length;
+    if (!shown.length) { host.appendChild(emptyNote(ranked)); otherLeagueHint(); return; }
+    var cap = showAll || state.q ? shown.length : Math.min(shown.length, CAP);
+    var byDay = state.sort === "prob" || state.sort === "start", days = {}; shown.forEach(function (s) { days[dayOf(s.p)] = 1; });
+    var spans = byDay && Object.keys(days).length > 1, body = el("tbody"), prev = null;
+    for (var i = 0; i < cap; i++) {
+      var d = dayOf(shown[i].p);
+      if (spans && (i === 0 || d !== prev)) body.appendChild(dayRow(d, COLS.length));
+      prev = d;
+      body.appendChild(boardRow(shown[i], RANK[shown[i].p.id]));
+    }
+    var thead = el("thead", {}, [el("tr", {}, COLS.map(function (h, i) { return el("th", { scope: "col", class: i === 6 || i === 7 ? "num" : null, title: i === 6 ? "How often the side came in over his last five games" : i === 7 ? "How often the side came in over his last ten games" : i === 5 ? "Our probability, from game data only" : null, text: h === "#" ? "Rank" : h }); }))]);
+    host.appendChild(el("div", { class: "table-wrap props-table" }, [el("table", { class: "data", "aria-label": lg + " props, " + SORT_WORDS[state.sort] }, [thead, body])]));
+    if (cap < shown.length) {
+      var more = el("button", { type: "button", class: "btn btn-secondary", id: "pb-more", text: "Show all " + shown.length + " props" });
+      more.addEventListener("click", function () { showAll = true; renderBoard(); var a = host.querySelectorAll("a.pr-open")[cap]; if (a) a.focus(); });
+      host.appendChild(el("div", { class: "more-row" }, [more]));
+    }
+    otherLeagueHint();
+  }
+  /* a search that finds nobody here but somebody in the other league says so, with the way over */
+  function otherLeagueHint() {
+    if (!state.q) return;
+    var here = playersIn(state.league).filter(function (p) { return matchQ(p); }).length;
+    LEAGUES.forEach(function (lg) {
+      if (lg === state.league) return;
+      var n = playersIn(lg).filter(function (p) { return matchQ(p); }).length; if (!n || here) return;
+      var b = el("button", { type: "button", class: "flip-btn", "data-switch": lg, text: "Show the " + lg + (n === 1 ? " match" : " matches") });
+      b.addEventListener("click", function () { setLeague(lg); });
+      host.appendChild(el("p", { class: "props-empty" }, ["“" + state.q + "” matches " + plural(n, "player") + " in the " + lg + ". ", b]));
+    });
+  }
+  /* a row is one control: the name is the link (Enter, and Space like a button), and a click anywhere on the row follows it */
+  function opener(e) {
+    var a = e.target.closest("a[data-open]"); if (a) return a;
+    var tr = e.target.closest("tr.pr"); return tr ? tr.querySelector("a[data-open]") : null;
+  }
+  document.addEventListener("click", function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    var a = e.target.closest && opener(e); if (!a) return;
+    var p = findPlayer(a.getAttribute("data-open")); if (!p) return;
+    e.preventDefault(); openDetail(p, a.getAttribute("data-stat"), a);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== " " || !e.target.matches || !e.target.matches("a[data-open]")) return;
+    e.preventDefault(); e.target.click();
+  });
+
+  /* ---------- the record: only when the data carries results (PROPS_DATA.results) ---------- */
+  function recN(r) { return r ? (Number(r.w) || 0) + (Number(r.l) || 0) + (Number(r.push) || 0) : 0; }
+  function recText(r) { return (Number(r.w) || 0) + "-" + (Number(r.l) || 0) + (Number(r.push) ? "-" + Number(r.push) : ""); }
+  /* wins over wins and losses; a push is neither */
+  function hitRate(r) { var d = (Number(r.w) || 0) + (Number(r.l) || 0); return d ? E.pct((Number(r.w) || 0) / d) : ""; }
+  function recPart(label, r) { return el("span", { class: "props-rec-part" }, [label + " ", el("strong", { class: "mono", text: recText(r) }), hitRate(r) ? " (" + hitRate(r) + ")" : ""]); }
+  function lowerDay(label) { return /^(Today|Tomorrow|Yesterday)$/.test(label) ? label.toLowerCase() : label; }
+  /* what a tier claims, read from the grade's own thresholds: "70% or better", "62% to 70%", "Under 56%" */
+  function tierClaim(tier) {
+    var gs = G.GRADES;
+    for (var i = 0; i < gs.length; i++) if (gs[i][3] === tier) return i === 0 ? E.pct(gs[0][0], 0) + " or better" : E.pct(gs[i][0], 0) + " to " + E.pct(gs[i - 1][0], 0);
+    return tier === "Coin flip" ? "Under " + E.pct(gs[gs.length - 1][0], 0) : "";
+  }
+  function renderRecord() {
+    var box = $("record"), R = RES && RES.record, on = recN(R) > 0;
+    show(box, "#record", on);
+    box.textContent = "";
+    if (!on) return;
+    var slates = Array.isArray(RES.slates) ? RES.slates.filter(Boolean) : [], last = slates.filter(function (s) { return leagueOf(s) === state.league && recN(s); })[0];
+    var since = RES.since ? E.dayLabel(String(RES.since).slice(0, 10)) : "", asOf = Date.parse(RES.asOf || ""), lead = [], byLg = RES.byLeague || {}, byTier = RES.byGrade || {};
+    if (last) lead.push(recPart("Last " + leagueOf(last) + " slate, " + lowerDay(E.dayLabel(String(last.date).slice(0, 10))) + ":", last));
+    lead.push(recPart(since ? "Since " + since + ":" : "All graded props:", R));
+    LEAGUES.concat(Object.keys(byLg).filter(function (l) { return LEAGUES.indexOf(l) === -1; })).forEach(function (lg) { if (recN(byLg[lg]) && recN(byLg[lg]) < recN(R)) lead.push(recPart(lg, byLg[lg])); });
+    var tiers = G.GRADES.map(function (g) { return g[3]; }).concat(["Coin flip"]);
+    tiers = tiers.concat(Object.keys(byTier).filter(function (t) { return tiers.indexOf(t) === -1; })).filter(function (t) { return recN(byTier[t]); });
+    box.appendChild(el("h2", { class: "props-rec-h", id: "record-h", text: "Record" }));
+    box.appendChild(el("p", { class: "how-to muted", text: "Every prop the board ranked, graded from the box score at its posted line" + (Number.isFinite(asOf) ? ", through " + E.clockET(asOf) : "") + ". No price takes part. A tier is honest when its hit rate lands in the range it claims." }));
+    box.appendChild(E.meta(lead, "props-rec-lead"));
+    if (tiers.length) {
+      var heads = ["Tier", "Record", "Hit rate", "The tier claims"];
+      box.appendChild(el("div", { class: "table-wrap props-rec-table" }, [el("table", { class: "data", "aria-label": "Record by tier" }, [
+        el("thead", {}, [el("tr", {}, heads.map(function (h, i) { return el("th", { scope: "col", class: i === 1 || i === 2 ? "num" : null, text: h }); }))]),
+        el("tbody", {}, tiers.map(function (t) {
+          return el("tr", { "data-tier": t }, [el("td", {}, [tierBadge(t)]), el("td", { class: "num", text: recText(byTier[t]) }), el("td", { class: "num", text: hitRate(byTier[t]) || "No decision yet" }), el("td", { class: "props-rec-claim", text: tierClaim(t) })]);
+        }))
+      ])]));
+    }
+  }
+
+  /* ---------- no line yet: players the board cannot rank, collapsed; the detail grades a typed line ---------- */
+  var NL_CAP = 30, nlAuto = false;
+  function renderNoLine() {
+    var box = $("no-line"), list = $("nl-list"), lg = state.league;
+    var scope = playersIn(lg).filter(inGame).filter(openP).filter(function (p) { return !SIDES[p.id] && (!state.stat || keysOf(p).indexOf(state.stat) !== -1); });
+    /* a player the Side filter set aside has a line: he is not "no line yet" */
+    if (state.side) scope = scope.filter(function (p) { return !G.bestSide(p, { now: E.now(), ctx: CTX, stat: state.stat }); });
+    var shown = scope.filter(function (p) { return matchQ(p); });
+    var on = scope.length > 0 && !(state.q && !shown.length);
+    show(box, "#no-line", on);
+    list.textContent = ""; $("nl-more-row").hidden = true;
+    if (!on) return;
+    $("nl-count").textContent = String(shown.length < scope.length ? shown.length + " of " + scope.length : scope.length);
+    $("nl-how").textContent = (state.stat ? "No two-sided " + statWords(state.stat) + " line" : "No line the books quote both ways") + ", or too few games to rank. By game, then team, with season averages. Open a player and type a line to grade it.";
+    function season(p, k) { var s = k && p.stats && p.stats[k]; return (s && Number(s.season)) || 0; }
+    shown.sort(function (a, b) { return ((startMsOf(a) || Infinity) - (startMsOf(b) || Infinity)) || String(a.teamAbbr).localeCompare(String(b.teamAbbr)) || (season(b, keysOf(b)[0]) - season(a, keysOf(a)[0])); });
+    var cap = noLineAll || state.q ? shown.length : Math.min(shown.length, NL_CAP);
+    shown.slice(0, cap).forEach(function (p) {
+      var thin = p.log.length < G.minGames(p);
+      var why = thin && G.twoSidedAny(p) ? plural(p.log.length, "game") + " logged" : null;
+      var avgs = keysOf(p).filter(function (k) { return k !== "pra" && season(p, k); }).slice(0, 3).map(function (k) { return statTab(k) + " " + season(p, k); });
+      list.appendChild(el("li", { class: "props-noline-item", "data-player": p.id }, [
+        el("a", { href: hrefFor({ p: p.id, stat: state.stat || "" }), "data-open": p.id, "data-stat": state.stat || "", "aria-haspopup": "dialog", text: p.name }),
+        E.meta([[p.pos, p.teamAbbr].filter(Boolean).join(" "), matchupOf(p), startText(p), why], "props-noline-sub"),
+        avgs.length ? E.meta(avgs, "props-noline-avg") : null
+      ]));
+    });
+    if (cap < shown.length) { $("nl-more").textContent = "Show all " + shown.length + " players"; $("nl-more-row").hidden = false; }
+    /* with nothing on the board, or a search that lands only here, the list is the page: open it (and close it again
+       when that stops being true, unless the reader opened it) */
+    var lead = !Object.keys(SIDES).length || !!(state.q && shown.length && !Object.keys(SIDES).some(function (id) { return matchQ(SIDES[id].p); }));
+    if (lead) { if (!box.open) { box.open = true; nlAuto = true; } }
+    else if (nlAuto) { box.open = false; nlAuto = false; }
+  }
+  $("nl-more").addEventListener("click", function () { noLineAll = true; renderNoLine(); var a = $("nl-list").querySelectorAll("a[data-open]")[NL_CAP]; if (a) a.focus(); });
+  /* the strip's link opens the list it points at */
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest('a[href="#no-line"]'); if (a && !$("no-line").hidden) $("no-line").open = true; });
+
+  /* ---------- in progress and results: a started game's props as ranked, then the result when the data has one ---------- */
+  var RECENT_BY = {}; RECENT.forEach(function (r) { var k = r.playerId + ":" + r.gameId; (RECENT_BY[k] = RECENT_BY[k] || []).push(r); });
+  function playedItems() {
+    var lg = state.league, items = [], used = {};
+    playersIn(lg).forEach(function (p) {
+      if (openP(p)) return;
+      var rows = RECENT_BY[p.id + ":" + p.gameId];
+      if (rows) { rows.forEach(function (r) { used[r.playerId + ":" + r.gameId + ":" + r.stat] = 1; items.push(fromRecent(r, p)); }); return; }
+      var s = G.bestSide(p, { ctx: CTX, stat: state.stat }); /* no clock: the side as the board had it */
+      if (s) items.push({ p: p, playerId: p.id, gameId: p.gameId, name: p.name, team: p.team, teamAbbr: p.teamAbbr, oppAbbr: p.oppAbbr, oppName: p.oppName, home: p.home, stat: s.k, side: s.side, line: s.line, prob: s.prob, tier: s.grade.tier, rank: null, ms: startMsOf(p), day: dayOf(p), pick: asPick(p) });
+    });
+    RECENT.forEach(function (r) {
+      if (leagueOf(r) !== lg || used[r.playerId + ":" + r.gameId + ":" + r.stat]) return;
+      var g = GAME_BY[r.gameId]; if (g && gOpen(g)) return; /* a result cannot precede its game */
+      items.push(fromRecent(r, null));
+    });
+    return items.filter(function (it) { return inGame(it) && (!state.stat || it.stat === state.stat) && (!state.side || it.side === state.side) && matchQ(it); });
+  }
+  /* a graded row of PROPS_DATA.results.recent as the list shows it; p is the player when his game is still in the file */
+  function fromRecent(r, p) {
+    var g = GAME_BY[r.gameId], start = p ? startOf(p) : g ? g.start : null, ms = Date.parse(start || ""), void_ = r.result === "Void";
+    return { p: p, playerId: r.playerId, gameId: r.gameId, name: r.name || (p && p.name) || "", team: p && p.team, teamAbbr: r.teamAbbr || (p && p.teamAbbr) || "", oppAbbr: r.oppAbbr || (p && p.oppAbbr) || "", oppName: p && p.oppName, home: r.home, stat: r.stat,
+      side: r.side, line: r.line, prob: Number(r.prob), tier: r.grade || G.gradeOf(Number(r.prob) || 0).tier, rank: r.rank || null, actual: r.actual, result: r.result || null, ms: ms,
+      day: String(r.date || "").slice(0, 10) || (Number.isFinite(ms) ? etKey(ms) : ""),
+      pick: { commence: start, sportKey: sportKeyOf(r), result: r.result || null, status: void_ ? "void" : r.result ? "graded" : null } };
+  }
+  var STATE_ORDER = { live: 0, awaiting: 1, final: 2, soon: 3, upcoming: 4 }, PLAYED_CAP = 5;
+  function playedRow(it) {
+    var st = E.gameState(it.pick);
+    var result = it.result
+      ? [it.actual != null ? el("span", { class: "played-score", text: "Finished with " + it.actual }) : null, it.result === "Void" ? el("span", { class: "played-note", text: "No action: he did not play" }) : null]
+      : [el("span", { class: "played-note", text: st === "live" ? "In progress" : RES ? "Result at the next update" : "Not graded yet" })];
+    return el("article", { class: "played", "data-player": it.playerId, "data-state": st, "data-result": it.result || "" }, [
+      el("div", { class: "played-id" }, [it.rank ? E.rankChip(it.rank, true) : null, E.stateChip(it.pick)]),
+      el("div", { class: "played-pick" }, [
+        el("strong", { text: it.name + ": " + sideWord(it.side).toLowerCase() + " " + it.line + " " + statWords(it.stat) }),
+        E.meta([it.oppAbbr ? it.teamAbbr + (it.home ? " vs " : " @ ") + it.oppAbbr : it.teamAbbr || null, Number.isFinite(it.prob) ? "To hit " + E.pct(it.prob) + " as ranked" : null, E.tierLabel(it.tier), !it.result && Number.isFinite(it.ms) ? "Started " + E.clockET(it.ms) : null], "leg-event")
+      ]),
+      el("div", { class: "played-result" }, result),
+      el("div", { class: "played-actions" }, [it.p ? el("a", { class: "flip-btn", href: hrefFor({ p: it.p.id, stat: it.stat }), "data-open": it.p.id, "data-stat": it.stat, "aria-haspopup": "dialog", text: "Detail" }) : null])
+    ]);
+  }
+  function renderPlayed() {
+    var box = $("played-host"), head = $("played");
+    var items = playedItems().sort(function (a, b) {
+      return (a.day < b.day ? 1 : a.day > b.day ? -1 : 0) || (STATE_ORDER[E.gameState(a.pick)] - STATE_ORDER[E.gameState(b.pick)]) || ((a.rank || 1e6) - (b.rank || 1e6)) || ((b.prob || 0) - (a.prob || 0));
+    });
+    var any = (playersIn(state.league).some(function (p) { return !openP(p); }) || RECENT.some(function (r) { return leagueOf(r) === state.league; })) && !(state.q && !items.length);
+    show(head, "#played", any); box.hidden = !any;
+    box.textContent = "";
+    if (!any) return;
+    $("pl-how").textContent = "A prop leaves the board when its game starts and lands here as it was ranked. " + (RES
+      ? "Each is graded from the box score at its posted line, never from a price."
+      : "Props are not graded after the game yet, so there is no result or record here so far.");
+    var c = {}; items.forEach(function (it) { var k = E.stateKey(it.pick); c[k] = (c[k] || 0) + 1; });
+    $("pl-summary").textContent = [c.live ? c.live + " live" : null, c.awaiting ? c.awaiting + (RES ? " awaiting a result" : " finished, not graded") : null, c.won ? c.won + " won" : null, c.lost ? c.lost + " lost" : null, c.push ? plural(c.push, "push", "pushes") : null, c.void ? c.void + " void" : null].filter(Boolean).join(", ");
+    $("pl-summary").hidden = !$("pl-summary").textContent;
+    if (!items.length) { box.appendChild(el("p", { class: "props-empty", text: "No started prop matches these filters." })); return; }
+    var cap = playedAll || state.q ? items.length : Math.min(items.length, PLAYED_CAP), list = el("div", { class: "card played-list" }), days = {}, prev = null;
+    items.forEach(function (it) { days[it.day] = 1; });
+    var spans = Object.keys(days).length > 1;
+    for (var i = 0; i < cap; i++) { if (spans && (i === 0 || items[i].day !== prev)) list.appendChild(E.dayDivider(items[i].day)); prev = items[i].day; list.appendChild(playedRow(items[i])); }
+    box.appendChild(list);
+    if (cap < items.length) {
+      var more = el("button", { type: "button", class: "btn btn-secondary", id: "pl-more", text: "Show all " + items.length });
+      more.addEventListener("click", function () { playedAll = true; renderPlayed(); });
+      box.appendChild(el("div", { class: "more-row" }, [more]));
+    }
+  }
+
+  /* ---------- the detail: everything about one player and one stat, in the site's dialog ---------- */
+  var dlg = null, cur = null, ui = null;
+  function lineKeyFor(p, k) { return "prop-line:" + p.id + ":" + k; }
+  /* the typed line: the posted line unless the reader typed over it; an override only counts against the posted line it
+     was typed over, so a stale one gives way to a fresh number */
+  function savedLineFor(p, k) {
+    var m = G.postedLine(p, k), raw = null;
+    try { raw = localStorage.getItem(lineKeyFor(p, k)); } catch (e) { /* no storage: the posted line */ }
     if (raw == null) return m == null ? "" : String(m);
     var v = raw, saved = null;
     if (raw.charAt(0) === "{") { try { var j = JSON.parse(raw); v = j.v; saved = j.m; } catch (e) { v = ""; } }
-    /* an override only counts against the market line it was typed over; a stale one gives way to tonight's number */
     if (m != null && (saved == null || Number(saved) !== m)) return String(m);
     return v == null ? "" : String(v);
   }
-  function rememberLine(p, statKey, value) {
-    var m = marketLine(p, statKey);
-    try { if (value === "" || (m != null && Number(value) === m)) localStorage.removeItem(lineKeyFor(p, statKey)); else localStorage.setItem(lineKeyFor(p, statKey), m == null ? value : JSON.stringify({ v: value, m: m })); } catch (e) {}
+  function rememberLine(p, k, value) {
+    var m = G.postedLine(p, k);
+    try { if (value === "" || (m != null && Number(value) === m)) localStorage.removeItem(lineKeyFor(p, k)); else localStorage.setItem(lineKeyFor(p, k), m == null ? value : JSON.stringify({ v: value, m: m })); } catch (e) { /* not kept */ }
   }
-
-  /* ---------- faces and small pieces ---------- */
-  /* a meta line: parts as spans, separated by a hairline in CSS, never a middle dot */
-  function meta(parts, cls) { return E.el("span", { class: "meta" + (cls ? " " + cls : "") }, parts.filter(Boolean).map(function (t) { return typeof t === "string" ? E.el("span", { text: t }) : t; })); }
-  function face(p, px, cls) {
-    var img = E.el("img", { class: cls || "headshot", src: p.headshot || ("https://a.espncdn.com/i/headshots/" + (isNFL(p) ? "nfl" : "nba") + "/players/full/" + p.id + ".png"), alt: "", loading: "lazy", width: String(px), height: String(px) });
-    img.addEventListener("error", function () { img.replaceWith(E.el("span", { class: (cls || "headshot") + " headshot-fallback", text: p.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2) })); });
-    return img;
-  }
-  function sideWord(s) { return s === "under" ? "Under" : "Over"; }
-  function probBar(prob, hitRate) {
-    return E.el("div", { class: "prob-bar", title: "Our probability " + E.pct(prob) + " · raw hit rate " + E.pct(hitRate, 0) }, [
-      E.el("span", { class: "prob-fill", style: "width:" + Math.max(0, Math.min(100, (prob || 0) * 100)).toFixed(1) + "%" }),
-      E.el("span", { class: "prob-tick", style: "left:" + Math.max(0, Math.min(100, hitRate * 100)).toFixed(1) + "%" })
-    ]);
-  }
-  function gradeBadge(s) { return E.el("span", { class: "badge " + s.grade.cls, text: s.grade.label }); }
-  function hitPill(s) {
-    var shown = s.hit.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
-    return E.el("span", { class: "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : ""), text: sideWord(s.side) + " hit " + shown[0] + " of " + shown[1] + ", " + r + "%" });
-  }
-  function ordinalText(n) { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
-
-  /* ---------- the board ---------- */
-  function boardRow(s, rank) {
-    var p = s.p;
-    var row = E.el("article", { class: "card pb-row" + (rank === 1 ? " is-top" : ""), "data-tilt": "", "data-player": p.id, "data-side": s.side, "data-stat": s.k, "data-prob": s.prob.toFixed(4), "data-league": leagueOf(p), "data-day": dayOf(p) });
-    row.appendChild(E.el("div", { class: "pb-rank" }, [E.rankChip(rank, true)]));
-    row.appendChild(face(p, 40, "headshot pb-face"));
-    row.appendChild(E.el("div", { class: "pb-who" }, [
-      E.el("strong", { class: "pb-name", text: p.name }),
-      meta([MIXED ? leagueOf(p) : null, p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr, p.start, p.injury ? p.injury.split(":")[0] : null], "pb-meta")
-    ]));
-    row.appendChild(E.el("div", { class: "pb-prop" }, [
-      E.el("strong", { class: "pb-line pb-side-" + s.side, text: sideWord(s.side) + " " + s.line + " " + STAT_SHORT[s.k] }),
-      meta(["projects " + s.proj, s.odds != null ? "best " + E.fmtOdds(s.odds) + (s.book ? " " + E.bookAbbr(s.book) : "") : null], "pb-sub mono")
-    ]));
-    row.appendChild(E.el("div", { class: "pb-prob" }, [
-      E.el("span", { class: "pb-fair" }, [E.el("span", { class: "k", text: "Our probability" }), " ", E.el("strong", { class: "mono", text: E.pct(s.prob) })]),
-      probBar(s.prob, s.l10)
-    ]));
-    row.appendChild(E.el("div", { class: "pb-hit" }, [hitPill(s)]));
-    row.appendChild(E.el("div", { class: "pb-agree small" }, [gradeBadge(s), E.el("span", { class: "pb-why", text: s.reasons.length + " for, " + s.against.length + " against" })]));
-    var open = E.el("button", { type: "button", class: "btn btn-secondary btn-sm pb-open", text: "Open card" });
-    open.addEventListener("click", function () { openCard(p, s.k); });
-    row.appendChild(open);
-    return row;
-  }
-  function openCard(p, k) {
-    var card = host.querySelector('.prop-card[data-id="' + p.id + '"]');
-    if (!card) { showAll(); card = host.querySelector('.prop-card[data-id="' + p.id + '"]'); }
-    if (!card) return;
-    var chip = card.querySelector('.stat-chips [data-stat="' + k + '"]'); if (chip && chip.getAttribute("aria-selected") !== "true") chip.click();
-    card.scrollIntoView({ behavior: "smooth", block: "start" });
-    card.classList.add("is-focus"); setTimeout(function () { card.classList.remove("is-focus"); }, 1800);
-    var input = card.querySelector(".line-big"); if (input) input.focus({ preventScroll: true });
-  }
-  var BOARD_CAP = 10, MIXED = false;
-  /* when the NFL's lines come: the never-empty line for an NFL board with nothing priced */
-  function nflWhen() {
-    var N = NFL_SUM; if (!N || !N.date) return "No NFL games in the next two weeks.";
-    var day = E.dayLabel(N.date), first = N.first ? " (" + N.first.matchup + ", " + N.first.startLabel + ")" : "";
-    if (!N.today) return "NFL lines come on the next game day, " + day + first + ", on that morning’s run (about 9 AM ET).";
-    var why = N.lines && N.lines.skipped;
-    if (why === "every game has started") return "Every NFL game today has started, so nothing is left to price. The next game day’s lines come on its morning run.";
-    if (why === "budget") return "NFL lines were held back this run to keep the month’s odds budget; the next try is the afternoon run (about 3:30 PM ET).";
-    /* the next run that prices the NFL, by the Eastern clock: the morning run (about 9 AM), the afternoon run (about 3:30 PM) */
-    var h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", hour: "numeric" }).format(new Date(E.now())));
-    return h < 10 ? "NFL lines for today come on the morning run (about 9 AM ET) and again on the afternoon run (about 3:30 PM ET) for the games still to start."
-      : h < 16 ? "No NFL lines on this run; the next try is the afternoon run (about 3:30 PM ET), for the games still to start."
-      : "No NFL lines came in today; the next game day’s come on its morning run (about 9 AM ET).";
-  }
-  function renderBoard(sides) {
-    board.textContent = "";
-    var old = document.getElementById("pb-more"); if (old) old.remove();
-    if (!ANY_LINES) return;
-    var graded = sides.filter(function (s) { return s.prob >= GRADES[2][0]; }).length;
-    var leagues = {}; sides.forEach(function (s) { leagues[leagueOf(s.p)] = (leagues[leagueOf(s.p)] || 0) + 1; });
-    MIXED = Object.keys(leagues).length > 1;
-    var byLeague = MIXED ? " (" + Object.keys(leagues).sort().map(function (l) { return leagues[l] + " " + l; }).join(", ") + ")" : "";
-    var wantNFL = fSport.value === "NFL" || statLeague(fStat.value) === "NFL";
-    boardSummary.textContent = sides.length ? sides.length + " leans ranked" + byLeague + ", " + (fStat.value ? STAT_LABEL[fStat.value] : "best stat per player") + ", " + graded + " graded Low or better. Game data only, not other books' prices." + (wantNFL && !leagues.NFL ? " " + nflWhen() : "") : (wantNFL && !LINES_BY.NFL ? "No NFL lines yet. " + nflWhen() : "No priced props match these filters.");
-    if (!sides.length) { board.appendChild(E.el("div", { class: "card empty", text: wantNFL && !LINES_BY.NFL ? nflWhen() : "Nothing priced here yet." })); return; }
-    var shown = 0;
-    function more(all) {
-      var upto = all ? sides.length : Math.min(sides.length, shown + BOARD_CAP);
-      for (var i = shown; i < upto; i++) {
-        /* a day heading wherever the game day changes (the site's order: game day first) */
-        if (i === 0 ? dayOf(sides[0].p) !== dayOf(sides[sides.length - 1].p) : dayOf(sides[i].p) !== dayOf(sides[i - 1].p)) board.appendChild(E.dayDivider(dayOf(sides[i].p)));
-        var r = boardRow(sides[i], i + 1); r.style.setProperty("--i", Math.min(i, 12)); board.appendChild(r);
-      }
-      shown = upto;
-      E.initTilt(board);
-      var b = document.getElementById("pb-more"); if (b) b.remove();
-      if (shown < sides.length) {
-        var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "pb-more", text: "Show all " + sides.length + " props" });
-        btn.addEventListener("click", function () { more(true); });
-        board.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), board.nextSibling);
-      }
-    }
-    more(false);
-  }
-
-  /* ---------- the history chart ---------- */
   var SVG = "http://www.w3.org/2000/svg";
   function sv(tag, attrs, text) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); if (text != null) n.textContent = text; return n; }
-  /* PrizePicks-style history: one bar per game, the line drawn across, green over / red under / grey push */
-  function historyChart(p, statKey, line, span) {
-    var rows = p.log.slice(0, span).slice().reverse(); /* oldest -> newest */
-    var vals = rows.map(function (r) { return statVal(r, statKey); });
-    var ref = line != null ? line : p.stats[statKey].season;
-    var W = 320, H = 150, padL = 6, padR = 44, padT = 18, padB = 30, plotW = W - padL - padR, plotH = H - padT - padB;
-    var max = Math.max.apply(null, vals.concat([ref, 1])) * 1.15;
-    var y = function (v) { return padT + plotH - (v / max) * plotH; };
-    var slot = plotW / Math.max(rows.length, 1), bw = Math.min(26, slot * 0.62);
-    var svg = sv("svg", { viewBox: "0 0 " + W + " " + H, class: "hist", role: "img", "aria-label": STAT_LABEL[statKey] + " in the last " + rows.length + " games" + (line != null ? " against a line of " + line : "") });
-    svg.appendChild(sv("line", { x1: padL, x2: W - padR, y1: y(0), y2: y(0), class: "hist-axis" }));
-    rows.forEach(function (r, i) {
-      var v = vals[i], cx = padL + slot * i + slot / 2, top = y(v);
-      var cls = line == null ? "hist-bar neutral" : v > line ? "hist-bar over" : v < line ? "hist-bar under" : "hist-bar push";
-      svg.appendChild(sv("rect", { x: cx - bw / 2, y: Math.min(top, y(0) - 2), width: bw, height: Math.max(2, y(0) - top), rx: 4, class: cls }));
-      svg.appendChild(sv("text", { x: cx, y: top - 5, class: "hist-val", "text-anchor": "middle" }, String(v)));
-      svg.appendChild(sv("text", { x: cx, y: H - 17, class: "hist-opp", "text-anchor": "middle" }, (r.home ? "" : "@") + (r.opp || "")));
-      svg.appendChild(sv("text", { x: cx, y: H - 6, class: "hist-date", "text-anchor": "middle" }, r.date.slice(5).replace("-", "/")));
-    });
-    svg.appendChild(sv("line", { x1: padL, x2: W - padR + 4, y1: y(ref), y2: y(ref), class: "hist-line" + (line == null ? " avg" : "") }));
-    svg.appendChild(sv("text", { x: W - padR + 8, y: y(ref) + 4, class: "hist-line-label" }, (line == null ? "avg " : "") + ref));
-    return svg;
+  function f1(n) { return (Math.round(n * 10) / 10).toString(); }
+  /* a bar with its data end rounded and its foot square on the baseline */
+  function barPath(x, top, w, base) {
+    var r = Math.max(0, Math.min(4, w / 2, base - top));
+    return "M" + f1(x) + "," + f1(base) + "V" + f1(top + r) + "Q" + f1(x) + "," + f1(top) + " " + f1(x + r) + "," + f1(top) + "H" + f1(x + w - r) + "Q" + f1(x + w) + "," + f1(top) + " " + f1(x + w) + "," + f1(top + r) + "V" + f1(base) + "Z";
   }
-
-  /* ---------- the stat block: chips, line box, market pills, history chart with L5/L10 toggle, hit summary ---------- */
-  function statBlock(p, startKey) {
-    var statKey = startKey || keysOf(p)[0] || "pts", span = 10;
-    var wrap = E.el("div", { class: "pp" });
-    var chips = E.el("div", { class: "stat-chips", role: "tablist", "aria-label": "Stat" }, keysOf(p).map(function (k) {
-      var b = E.el("button", { type: "button", role: "tab", "aria-selected": String(k === statKey), "data-stat": k, text: STAT_SHORT[k] + (marketLine(p, k) != null ? " " + marketLine(p, k) : "") });
-      b.addEventListener("click", function () { statKey = k; input.value = savedLineFor(p, k); draw(); });
-      return b;
-    }));
-    var input = E.el("input", { type: "number", step: "0.5", min: "0", inputmode: "decimal", class: "line-big", "aria-label": "Line", value: savedLineFor(p, statKey) });
-    var reset = E.el("button", { type: "button", class: "line-reset", text: "Market line" });
-    reset.addEventListener("click", function () { input.value = String(marketLine(p, statKey)); draw(); });
-    var avg = E.el("span", { class: "pp-avg" });
-    var market = E.el("div", { class: "pp-market" }), why = E.el("div", { class: "why" });
-    var spans = E.el("div", { class: "stat-chips spans", role: "group", "aria-label": "Games shown" }, [5, 10].map(function (n) {
-      var b = E.el("button", { type: "button", "aria-pressed": String(n === span), text: "L" + n });
-      b.addEventListener("click", function () { span = n; draw(); });
-      return b;
-    }));
-    var chartHost = E.el("div", { class: "hist-host" }), hits = E.el("div", { class: "hits" }), pill = E.el("div", { class: "hit-pill" });
-    function draw() {
-      var s = p.stats[statKey], lineVal = input.value === "" ? null : Number(input.value);
-      if (lineVal != null && !Number.isFinite(lineVal)) lineVal = null;
-      var m = marketLine(p, statKey), side = lineVal != null ? sideFor(p, statKey, lineVal) : null, lean = side ? side.side : "over";
-      chips.querySelectorAll("[data-stat]").forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-stat") === statKey)); });
-      spans.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.textContent === "L" + span)); });
-      input.placeholder = m != null ? String(m) : s.l10 ? String(Math.round(s.l10 * 2) / 2) : "line";
-      reset.hidden = !(m != null && lineVal !== m);
-      avg.textContent = STAT_LABEL[statKey] + ": season " + s.season + ", last 5 " + s.l5 + ", last 10 " + s.l10 + ", " + (p.home ? "home " + (s.home || "—") : "road " + (s.away || "—")) + (isNFL(p) && p.proj && p.proj[statKey] ? ", projects " + p.proj[statKey].mean : "");
-      market.textContent = ""; why.textContent = "";
-      if (side) {
-        ["over", "under"].forEach(function (sd) {
-          var mine = sd === side.side, pr = mine ? side.prob : 1 - side.prob, odds = mine ? side.odds : side.otherOdds, book = mine ? side.book : side.otherBook;
-          market.appendChild(E.el("span", { class: "side-pill" + (mine ? " lead" : ""), title: mine ? "The side we favour, from game data" : "" }, [
-            E.el("strong", { text: sideWord(sd) + " " + side.line }), " ",
-            E.el("span", { class: "mono", text: E.pct(pr, 0) + (odds != null ? "  " + E.fmtOdds(odds) + (book ? " " + E.bookAbbr(book) : "") : "") })
-          ]));
-        });
-        market.appendChild(gradeBadge(side));
-        why.appendChild(E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Why " + sideWord(side.side).toLowerCase() }), E.el("span", { class: "mono small", text: "game data only" })]));
-        why.appendChild(E.el("ul", { class: "signal-list" }, side.reasons.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })
-          .concat(side.against.map(function (x) { return E.el("li", { class: "signal signal-against", text: "But: " + x.label }); }))
-          .concat(side.neutral.map(function (x) { return E.el("li", { class: "signal", text: x.label }); }))));
-      }
-      chartHost.textContent = ""; chartHost.appendChild(historyChart(p, statKey, lineVal, span));
-      hits.textContent = ""; pill.textContent = "";
-      if (lineVal == null) { pill.textContent = "Type a line to grade each game"; pill.className = "hit-pill"; return; }
-      var gradeSide = lean;
-      var h = hitsFor(p, statKey, lineVal, gradeSide), shown = span === 5 ? h.l5 : h.l10, r = shown[1] ? Math.round(shown[0] / shown[1] * 100) : 0;
-      pill.textContent = sideWord(gradeSide) + " hit " + shown[0] + " of " + shown[1] + ", " + r + "%";
-      pill.className = "hit-pill " + (r >= 60 ? "pill-over" : r <= 40 ? "pill-under" : "");
-      [["L5", h.l5], ["L10", h.l10], ["Season", h.season]].forEach(function (pair) {
-        var o = pair[1][0], n = pair[1][1], rr = n ? Math.round(o / n * 100) : 0;
-        hits.appendChild(E.el("span", { class: "hit" + (rr >= 60 ? " hit-over" : rr <= 40 ? " hit-under" : "") }, [E.el("strong", { text: sideWord(gradeSide) + " " + o + "/" + n }), " " + pair[0] + ", " + rr + "%"]));
-      });
-      rememberLine(p, statKey, input.value);
-    }
-    input.addEventListener("input", draw);
-    wrap.appendChild(chips);
-    wrap.appendChild(E.el("div", { class: "pp-line" }, [E.el("label", { class: "line-label" }, ["Line", input]), reset, pill, spans]));
-    wrap.appendChild(market);
-    wrap.appendChild(avg);
-    wrap.appendChild(chartHost);
-    wrap.appendChild(hits);
-    wrap.appendChild(why);
-    draw();
-    return wrap;
+  /* the history: one bar per game, oldest to newest, the line drawn across; green over it, red under, grey on it.
+     Drawn at the width it is shown at, so the figures stay one size on a phone and on a desktop */
+  function historyChart(p, k, line, span, width) {
+    var rows = p.log.filter(function (r) { return G.statVal(r, k) != null; }).slice(0, span).reverse();
+    var vals = rows.map(function (r) { return G.statVal(r, k); }), st = (p.stats && p.stats[k]) || {};
+    var ref = line != null ? line : Number(st.season) || 0;
+    var W = Math.max(260, Math.min(720, Math.round(width || 320))), H = 176, padL = 4, padR = 46, padT = 20, padB = 34, plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = Math.max.apply(null, vals.concat([ref, 1])) * 1.12;
+    var y = function (v) { return padT + plotH - (Math.max(0, v) / max) * plotH; };
+    var slot = plotW / Math.max(rows.length, 1), bw = Math.min(24, slot * 0.62), base = y(0);
+    var svg = sv("svg", { viewBox: "0 0 " + W + " " + H, class: "hist" + (slot < 36 ? " hist-tight" : ""), role: "img", "aria-label": statLabel(k) + " in the last " + plural(rows.length, "game") + (line != null ? " against a line of " + line : "") + ": " + vals.join(", ") });
+    var where = homeKnown(p), mid = function (i) { return padL + slot * i + slot / 2; }, topOf = function (v) { return Math.min(y(v), base - 2); };
+    svg.appendChild(sv("line", { x1: padL, x2: W - padR, y1: base, y2: base, class: "hist-axis" }));
+    rows.forEach(function (r, i) {
+      var v = vals[i], cls = line == null ? "hist-bar neutral" : v > line ? "hist-bar over" : v < line ? "hist-bar under" : "hist-bar push";
+      svg.appendChild(sv("path", { d: barPath(mid(i) - bw / 2, topOf(v), bw, base), class: cls }));
+    });
+    /* the line goes over the bars and under the figures, so a value beside it stays readable */
+    svg.appendChild(sv("line", { x1: padL, x2: W - padR + 4, y1: f1(y(ref)), y2: f1(y(ref)), class: "hist-line" + (line == null ? " avg" : "") }));
+    rows.forEach(function (r, i) {
+      svg.appendChild(sv("text", { x: f1(mid(i)), y: f1(topOf(vals[i]) - 5), class: "hist-val", "text-anchor": "middle" }, String(vals[i])));
+      svg.appendChild(sv("text", { x: f1(mid(i)), y: H - 19, class: "hist-opp", "text-anchor": "middle" }, (where && !r.home ? "@" : "") + (r.opp || "")));
+      svg.appendChild(sv("text", { x: f1(mid(i)), y: H - 6, class: "hist-date", "text-anchor": "middle" }, String(r.date || "").slice(5).replace("-", "/")));
+    });
+    svg.appendChild(sv("text", { x: W - padR + 8, y: f1(y(ref) + 4), class: "hist-line-label" }, (line == null ? "avg " : "") + ref));
+    return svg;
   }
   /* the NFL's columns follow the position: a passer's line, a back's carries and catches, a receiver's targets */
   var NFL_COLS = { QB: [["C/Att", function (r) { return r.cmp + "/" + r.att; }], ["Pass yds", "passYds"], ["TD", "passTds"], ["Int", "int"], ["Rush yds", "rushYds"]],
     RB: [["Car", "car"], ["Rush yds", "rushYds"], ["Tgt", "tgt"], ["Rec", "rec"], ["Rec yds", "recYds"], ["TD", "td"]],
     WR: [["Tgt", "tgt"], ["Rec", "rec"], ["Rec yds", "recYds"], ["TD", "td"]] };
-  function logTable(p, statKey) {
-    if (isNFL(p)) {
-      var cols = NFL_COLS[p.pos] || NFL_COLS.WR;
-      var nhead = E.el("tr", {}, ["Wk", "Opp", "", "W/L"].concat(cols.map(function (c) { return c[0]; })).map(function (h, i) { return E.el("th", { scope: "col", class: i >= 4 ? "num" : "", text: h }); }));
-      var nrows = p.log.map(function (r) {
-        var v = statVal(r, statKey);
-        return E.el("tr", { class: v != null && p.stats[statKey] && v >= p.stats[statKey].season ? "row-up" : "" }, [
-          E.el("td", { text: r.week != null ? String(r.week) : r.date.slice(5) }), E.el("td", { text: r.opp || "" }), E.el("td", { text: r.home ? "vs" : "@" }), E.el("td", { text: (r.result || "") + (r.score ? " " + r.score : "") })
-        ].concat(cols.map(function (c) { return E.el("td", { class: "num", text: String(typeof c[1] === "function" ? c[1](r) : r[c[1]]) }); })));
-      });
-      return E.el("details", { class: "prop-log" }, [E.el("summary", { text: "Last " + p.log.length + " games" }), E.el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Game log for " + p.name }, [E.el("table", { class: "data" }, [E.el("thead", {}, [nhead]), E.el("tbody", {}, nrows)])])]);
-    }
-    var head = E.el("tr", {}, ["Date", "Opp", "", "W/L", "Min", "Pts", "Reb", "Ast", "3PM"].map(function (h, i) { return E.el("th", { scope: "col", class: i >= 4 ? "num" : "", text: h }); }));
+  var NBA_COLS = [["Min", "min"], ["Pts", "pts"], ["Reb", "reb"], ["Ast", "ast"], ["3PM", "threes"]];
+  function logTable(p, k) {
+    var nfl = isNFL(p), cols = (nfl ? NFL_COLS[p.pos] || NFL_COLS.WR : NBA_COLS).slice(), st = (p.stats && p.stats[k]) || {};
+    /* a stat the columns do not show (a combined one, or a market the page has never seen) gets a column of its own */
+    if (!cols.some(function (c) { return c[1] === k; }) && p.log.some(function (r) { return G.statVal(r, k) != null; })) cols.push([sentence(statShort(k)), function (r) { var v = G.statVal(r, k); return v == null ? "" : v; }]);
+    var where = homeKnown(p), lead = [nfl ? "Wk" : "Date", "Opp"].concat(where ? [""] : [], ["W/L"]);
+    var head = el("tr", {}, lead.concat(cols.map(function (c) { return c[0]; })).map(function (h, i) { return el("th", { scope: "col", class: i >= lead.length ? "num" : null }, h ? [h] : [el("span", { class: "visually-hidden", text: "Home or away" })]); }));
     var rows = p.log.map(function (r) {
-      var v = statVal(r, statKey);
-      return E.el("tr", { class: v != null && v >= p.stats[statKey].season ? "row-up" : "" }, [
-        E.el("td", { text: r.date.slice(5) }), E.el("td", { text: r.opp || "" }), E.el("td", { text: r.home ? "vs" : "@" }), E.el("td", { text: r.result || "" }),
-        E.el("td", { class: "num", text: String(r.min) }), E.el("td", { class: "num", text: String(r.pts) }), E.el("td", { class: "num", text: String(r.reb) }), E.el("td", { class: "num", text: String(r.ast) }), E.el("td", { class: "num", text: String(r.threes) })
-      ]);
+      var v = G.statVal(r, k), cell = function (c) { var x = typeof c[1] === "function" ? c[1](r) : r[c[1]]; return x == null ? "" : String(x); };
+      return el("tr", { class: v != null && st.season != null && v >= st.season ? "row-up" : null }, [
+        el("td", { text: nfl && r.week != null ? String(r.week) : String(r.date || "").slice(5) }), el("td", { text: r.opp || "" }), where ? el("td", { text: r.home ? "vs" : "@" }) : null, el("td", {}, [r.result || "", nfl && r.score ? el("span", { class: "pd-log-score", text: " " + r.score }) : null])
+      ].concat(cols.map(function (c) { return el("td", { class: "num", text: cell(c) }); })));
     });
-    return E.el("details", { class: "prop-log" }, [E.el("summary", { text: "Last " + p.log.length + " games" }), E.el("div", { class: "table-wrap", tabindex: "0", role: "region", "aria-label": "Game log for " + p.name }, [E.el("table", { class: "data" }, [E.el("thead", {}, [head]), E.el("tbody", {}, rows)])])]);
+    return el("div", { class: "table-wrap pd-log", tabindex: "0", role: "region", "aria-label": "Game log for " + p.name }, [el("table", { class: "data" }, [el("thead", {}, [head]), el("tbody", {}, rows)])]);
   }
   /* an NFL player's volume in words: "8 targets a game", "18.8 carries", "34 attempts" */
   function usageText(p) {
     var u = p.usage || {}, pick = p.pos === "QB" ? ["att", "attempts"] : p.pos === "RB" ? ["car", "carries"] : ["tgt", "targets"], v = u[pick[0]] && u[pick[0]].season;
     return v ? v + " " + pick[1] + " a game" : null;
   }
-  function card(p) {
-    var best = SIDES[p.id], startKey = keysOf(p).indexOf(fStat.value) !== -1 ? fStat.value : (best ? best.k : keysOf(p)[0] || "pts");
-    var over = p.signals.filter(function (x) { return x.lean === "over"; }).length, under = p.signals.filter(function (x) { return x.lean === "under"; }).length;
-    var nfl = isNFL(p), linesHere = LINES_BY[leagueOf(p)];
-    var restChip = nfl ? (p.restDays != null && p.restDays <= 5 ? E.el("span", { class: "badge badge-conf-lean", text: "Short week" }) : p.restDays >= 13 ? E.el("span", { class: "badge badge-conf-medium", text: "Off a bye" }) : null)
-      : p.b2b ? E.el("span", { class: "badge badge-conf-lean", text: "B2B" }) : (p.restDays >= 3 ? E.el("span", { class: "badge badge-conf-medium", text: p.restDays + "d rest" }) : null);
-    return E.el("article", { class: "card prop-card", "data-sport": leagueOf(p), "data-tilt": "", "data-id": p.id }, [
-      E.el("div", { class: "prop-head" }, [
-        face(p, 64),
-        E.el("div", { class: "prop-who" }, [
-          E.el("div", { class: "prop-name-row" }, [RANK[p.id] ? E.rankChip(RANK[p.id], true) : null, E.el("h3", { class: "prop-name", text: p.name })]),
-          meta([(p.pos || "") + (p.jersey ? " #" + p.jersey : ""), p.teamAbbr + (p.home ? " vs " : " @ ") + p.oppAbbr, p.start, nfl ? usageText(p) : p.minutes.l5 + " min last 5"], "prop-meta")
-        ]),
-        E.el("div", { class: "prop-chips" }, [
-          MULTI ? E.el("span", { class: "badge badge-sport", "data-sport": leagueOf(p), text: leagueOf(p) }) : null,
-          openP(p) ? null : E.stateChip(asPick(p)),
-          restChip,
-          p.injury ? E.el("span", { class: "badge badge-inj", text: p.injury.split(":")[0] }) : null,
-          linesHere && !keysOf(p).some(function (k) { return twoSided(p.lines && p.lines[k]); }) ? E.el("span", { class: "badge", text: "No line" }) : null,
-          linesHere && p.log.length < minGames(p) ? E.el("span", { class: "badge", text: p.log.length + " game" + (p.log.length === 1 ? "" : "s") }) : null
-        ])
-      ]),
-      statBlock(p, startKey),
-      E.el("div", { class: "signals" }, [
-        E.el("div", { class: "signals-head" }, [E.el("span", { class: "k", text: "Confluences" }), E.el("span", { class: "mono small", text: over + " over, " + under + " under" })]),
-        p.signals.length ? E.el("ul", { class: "signal-list" }, p.signals.map(function (x) { return E.el("li", { class: "signal signal-" + x.lean, text: x.label }); })) : E.el("p", { class: "small muted", text: "Nothing stands out; form is in line with the season." })
-      ]),
-      p.opp ? E.el("p", { class: "small muted prop-opp", text: nfl ? p.oppAbbr + " allows " + p.opp.perGame + " " + ({ passYds: "passing yards", rushYds: "rushing yards to backs", recYds: "receiving yards to " + (p.pos === "TE" ? "tight ends" : p.pos === "RB" ? "backs" : "wide receivers") })[p.opp.stat] + " a game, " + ordinalText(p.opp.rank) + " most of " + p.opp.of + "." : p.oppAbbr + " allows " + p.opp.ptsAllowed + " points per game, " + ordinalText(p.opp.rank) + " most in the league." }) : null,
-      logTable(p, startKey)
-    ]);
-  }
-
-  /* ---------- ordering: likeliest first when lines exist; the older orders stay as opt-ins ---------- */
-  function score(p) {
-    var k = keysOf(p).indexOf(fStat.value) !== -1 ? fStat.value : keysOf(p)[0] || "pts", s = p.stats[k] || { l5: 0, season: 0 }, best = SIDES[p.id];
-    /* heat across leagues: the NBA's absolute gain in points (favours volume players); an NFL yardage gain scaled to the same size */
-    var heat = isNFL(p) ? 10 * (s.l5 - s.season) / Math.max(1, s.season) : s.l5 - s.season;
-    if (fSort.value === "prob") return RANK[p.id] ? 1e6 - RANK[p.id] : heat; /* the board's order, then the unpriced by heat */
-    if (fSort.value === "form") return best ? best.l10 * 10 + best.prob : -1;
-    if (fSort.value === "season") return s.season;
-    if (fSort.value === "minutes") return isNFL(p) ? (p.usage ? p.usage.tgt.season + p.usage.car.season + p.usage.att.season / 3 : 0) : p.minutes.season;
-    if (fSort.value === "signals") return best ? best.reasons.length - best.against.length : p.signals.filter(function (x) { return x.lean === "over"; }).length - p.signals.filter(function (x) { return x.lean === "under"; }).length;
-    return heat;
-  }
-  var LIST = [], shownCards = 0, PAGE = 24;
-  function showAll() { while (shownCards < LIST.length) moreCards(); }
-  function moreCards() {
-    LIST.slice(shownCards, shownCards + PAGE).forEach(function (p, i) { var c = card(p); c.style.setProperty("--i", Math.min(i, 12)); host.appendChild(c); });
-    shownCards = Math.min(LIST.length, shownCards + PAGE);
-    E.initTilt(host);
-    var old = document.getElementById("p-more"); if (old) old.remove();
-    if (shownCards < LIST.length) {
-      var btn = E.el("button", { type: "button", class: "btn btn-secondary", id: "p-more", text: "Show " + Math.min(PAGE, LIST.length - shownCards) + " more (" + (LIST.length - shownCards) + " left)" });
-      btn.addEventListener("click", moreCards);
-      host.parentNode.insertBefore(E.el("div", { class: "more-row" }, [btn]), host.nextSibling);
+  /* ---- one "Why" list: the grade's reasons and the player's confluences merged, each fact once, the ones that agree
+     first, then the caveats, then what leans neither way ---- */
+  var TOPICS = [[/quarterback/i, "qb"], [/\ballows?\b/i, "opp"], [/\bwind\b|\bmph\b/i, "wind"], [/injury report|questionable|doubtful/i, "injury"], [/\b(carries|targets|attempts) (up|down)\b|took \d+% of/i, "usage"], [/^at home|^on the road/i, "split"], [/short week|bye\b|days'? rest|back-to-back/i, "rest"], [/^minutes\b/i, "min"]];
+  function topicOf(x) { if (x.key) return x.key; for (var i = 0; i < TOPICS.length; i++) if (TOPICS[i][0].test(x.label)) return TOPICS[i][1]; return null; }
+  function whyItems(p, s) {
+    var k = s.k, statKeys = {}; leagueStats(leagueOf(p)).forEach(function (x) { statKeys[x] = 1; });
+    var pj = isNFL(p) && p.proj && p.proj[k], seen = {}, labels = {}, out = { yes: [], no: [], note: [] };
+    function add(group, x, text) { var t = topicOf(x); if (t) seen[t] = 1; labels[x.label] = 1; out[group].push({ key: t, label: typo(text || x.label) }); }
+    function projLine() { return "Projects " + s.proj + " " + statWords(k) + (pj && pj.why ? ": " + pj.why : ""); }
+    /* the history against the number, said once: the last ten, then the last five and the season where they add something */
+    function hitLine(x) {
+      var h = s.hit, more = [h.l10[1] > 5 ? h.l5[0] + " of the last " + h.l5[1] : null, h.season[1] > h.l10[1] ? h.season[0] + " of " + h.season[1] + " this season" : null].filter(Boolean);
+      return x.label + (more.length ? " (" + more.join(", ") + ")" : "");
     }
-  }
-  var MULTI = ALL.some(isNFL) && ALL.some(function (p) { return !isNFL(p); });
-  function render() {
-    var q = fSearch.value.trim().toLowerCase(), want = fSport.value || statLeague(fStat.value);
-    SIDES = {}; RANK = {};
-    var list = P.filter(function (p) {
-      if (want && leagueOf(p) !== want) return false;
-      if (fStat.value && keysOf(p).indexOf(fStat.value) === -1) return false; /* an NFL stat lists the positions graded on it */
-      if (fGame.value && p.gameId !== fGame.value) return false;
-      if (q && (p.name + " " + p.team + " " + p.teamAbbr + " " + (p.oppName || p.opp) + " " + p.oppAbbr).toLowerCase().indexOf(q) === -1) return false;
-      return true;
+    function textOf(x) { return x.key === "proj" ? projLine() : x.key === "hit" ? hitLine(x) : null; }
+    s.reasons.forEach(function (x) { add("yes", x, textOf(x)); });
+    s.against.forEach(function (x) { add("no", x, textOf(x)); });
+    s.neutral.forEach(function (x) { add("note", x); });
+    /* the confluences the grade's own reasons did not already state: the general ones, and this stat's own trend */
+    (p.signals || []).forEach(function (x) {
+      if (labels[x.label] || seen[x.key]) return;
+      var mine = x.key === k || (k === "pra" && (x.key === "pts" || x.key === "reb" || x.key === "ast"));
+      if (statKeys[x.key] && !mine) return; /* another stat's trend: it is under that stat */
+      add(x.lean === s.side ? "yes" : x.lean === "over" || x.lean === "under" ? "no" : "note", x);
     });
-    list.forEach(function (p) { var b = bestSide(p); if (b) SIDES[p.id] = b; });
-    if (fLean.value) list = list.filter(function (p) { var b = SIDES[p.id]; return b ? b.side === fLean.value : p.signals.some(function (x) { return x.lean === fLean.value; }); });
-    /* the board: every priced side in the list, ranked; the rank carries onto the card */
-    var sides = list.map(function (p) { return SIDES[p.id]; }).filter(Boolean).sort(better);
-    sides.forEach(function (s, i) { RANK[s.p.id] = i + 1; });
-    renderBoard(sides);
-    LIST = list.sort(function (a, b) { return score(b) - score(a); });
-    host.textContent = ""; shownCards = 0;
-    var statName = fStat.value ? STAT_LABEL[fStat.value] : "best stat per player";
-    summary.textContent = P.length ? LIST.length + " of " + P.length + " players, " + statName + (fSort.value === "prob" && ANY_LINES ? ", likeliest first" : "") : "No props data yet. It refreshes with the " + E.word("many") + ", around " + E.runClock(0) + " and " + E.runClock(1) + " on game days.";
-    if (!LIST.length) { host.appendChild(E.el("div", { class: "card empty", text: P.length ? "No players match." : "Nothing to show until the first refresh." })); return; }
-    moreCards();
+    return out;
   }
-  /* the sport narrows the stat list to its own stats (a stat from the other league is cleared) */
-  fSport.addEventListener("change", function () {
-    fStat.querySelectorAll("optgroup").forEach(function (g) { g.hidden = !!fSport.value && g.getAttribute("data-league") !== fSport.value; });
-    if (fSport.value && statLeague(fStat.value) && statLeague(fStat.value) !== fSport.value) fStat.value = "";
-    render();
-  });
-  /* the NFL's line under the filters: what is priced, or when the lines come (never an empty promise) */
-  function whenWords(key) { var l = E.dayLabel(key); return l === "Today" ? "today" : l === "Tomorrow" ? "tomorrow" : "on " + l; }
-  function renderNflNote() {
-    var N = NFL_SUM, nflP = ALL.filter(isNFL); if (!N || (!nflP.length && !N.date)) { nflNote.hidden = true; return; }
-    var priced = nflP.filter(twoSidedAny), gamesN = ALLG.filter(isNFL).length, L2 = N.lines || {}, at = L2.at ? new Date(L2.at) : null, parts = [];
-    var head = N.date ? "NFL " + whenWords(N.date) + ": " : "NFL: ";
-    if (priced.length) {
-      var pg = {}; priced.forEach(function (p) { pg[p.gameId] = 1; });
-      var under = nflP.filter(function (p) { return !openP(p); }).length;
-      parts.push(head + priced.length + " players priced in " + Object.keys(pg).length + " of " + gamesN + " games" + ((L2.books || []).length ? " at " + L2.books.length + " books" : "") + (at && !isNaN(at) ? ", " + at.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", timeZoneName: "short" }) : "") + ".");
-      if (N.today) parts.push("Games still to start are priced again on the afternoon run (about 3:30 PM ET).");
-      if (under) parts.push(under + " of " + nflP.length + " players are in games under way, off the board.");
-    } else {
-      if (N.date) parts.push(head + gamesN + " game" + (gamesN === 1 ? "" : "s") + ", " + nflP.length + " players researched.");
-      parts.push(nflWhen());
-      if (nflP.length) parts.push("Until then, type a line on any NFL card to grade it from game data.");
+  function oppSentence(p, k) {
+    if (!p.opp) return null;
+    if (isNFL(p)) {
+      var what = ({ passYds: "passing yards", rushYds: "rushing yards to backs", recYds: "receiving yards to " + (p.pos === "TE" ? "tight ends" : p.pos === "RB" ? "backs" : "wide receivers") })[p.opp.stat] || (p.opp.stat ? statWords(p.opp.stat) : null);
+      return what && p.opp.perGame != null ? "The matchup: " + p.oppAbbr + " allows " + p.opp.perGame + " " + what + " a game, " + G.ordinalText(p.opp.rank) + " most of " + p.opp.of + "." : null;
     }
-    nflNote.textContent = parts.join(" ");
-    nflNote.hidden = false;
+    return p.opp.ptsAllowed ? "The matchup: " + p.oppAbbr + " allows " + p.opp.ptsAllowed + " points a game, " + G.ordinalText(p.opp.rank) + " most in the league." : null;
   }
-  renderNflNote();
-  [fGame, fStat, fSort, fLean].forEach(function (s) { s.addEventListener("change", render); });
-  fSearch.addEventListener("input", render);
-  render();
+  /* every book's price on one side, best first */
+  function priceChips(side) {
+    var books = side && side.books ? Object.keys(side.books).map(function (b) { return [b, side.books[b]]; }) : side && side.odds != null && side.book ? [[side.book, side.odds]] : [];
+    books = books.filter(function (x) { return x[1] != null; }).sort(function (a, b) { return E.decimalOdds(b[1]) - E.decimalOdds(a[1]); });
+    if (!books.length) return null;
+    return el("div", { class: "pick-shop pd-prices", role: "group", "aria-label": "Every book’s price, best first" }, books.map(function (x, i) {
+      return el("span", { class: "shop-chip" + (i === 0 ? " best" : ""), title: x[0] + " " + E.fmtOdds(x[1]) + (i === 0 ? ", the best price" : "") }, [el("span", { class: "shop-book", text: E.bookAbbr(x[0]) }), el("span", { class: "mono", text: E.fmtOdds(x[1]) })]);
+    }));
+  }
+  function ensureDialog() {
+    if (dlg) return dlg;
+    dlg = el("dialog", { id: "pd", class: "bd pd", "aria-labelledby": "pd-name" }, [
+      el("div", { class: "bd-top" }, [el("span", { class: "eyebrow", text: "Prop detail" }), el("button", { type: "button", class: "btn btn-secondary btn-sm", "data-pd-close": "", text: "Close" })]),
+      el("div", { class: "bd-body pd-body" })
+    ]);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("[data-pd-close]")) dlg.close(); });
+    dlg.addEventListener("close", function () {
+      var from = cur && cur.from, id = cur && cur.p.id;
+      cur = null; ui = null; syncUrl();
+      /* focus goes back to the row that opened it (found again if the board was redrawn meanwhile, or the page opened on it) */
+      if (!(from && from !== document.body && from.isConnected)) from = id != null ? document.querySelector('a[data-open="' + String(id).replace(/"/g, "") + '"]') : null;
+      if (from) from.focus();
+    });
+    document.body.appendChild(dlg);
+    return dlg;
+  }
+  function defaultKey(p, want) {
+    var keys = keysOf(p);
+    if (want && keys.indexOf(want) !== -1) return want;
+    if (SIDES[p.id]) return SIDES[p.id].k;
+    var best = G.bestSide(p, { ctx: CTX }); if (best) return best.k;
+    return keys.filter(function (k) { return G.postedLine(p, k) != null; })[0] || keys[0] || "pts";
+  }
+  function openDetail(p, k, from) {
+    ensureDialog();
+    cur = { p: p, k: defaultKey(p, k), span: 10, from: from || (cur && cur.from) || document.activeElement };
+    /* shown before it is built, so the chart can be drawn at the width it gets */
+    if (!dlg.open) { if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", ""); }
+    buildDetail();
+    dlg.querySelector(".pd-body").scrollTop = 0;
+    syncUrl();
+  }
+  function buildDetail() {
+    var p = cur.p, k = cur.k, body = dlg.querySelector(".pd-body"), keys = keysOf(p), board = SIDES[p.id];
+    body.textContent = "";
+    dlg.setAttribute("data-player", p.id); dlg.setAttribute("data-stat", k);
+    var volume = isNFL(p) ? usageText(p) : p.minutes && p.minutes.l5 != null ? p.minutes.l5 + " minutes a game, last 5" : null, inj = injuryWord(p.injury);
+    body.appendChild(el("header", { class: "pd-head" }, [
+      face(p, 56, "headshot pd-face"),
+      el("div", { class: "pd-who" }, [
+        el("div", { class: "pd-name-row" }, [el("h2", { class: "pd-name", id: "pd-name", text: p.name }), board && board.k === k ? E.rankChip(RANK[p.id], true) : null, E.stateChip(asPick(p))]),
+        E.meta([[p.pos, p.jersey ? "#" + p.jersey : null].filter(Boolean).join(" ") || null, matchupOf(p), startText(p) || null, volume, inj ? "Injury report: " + inj.toLowerCase() : null], "pd-meta")
+      ])
+    ]));
+    if (keys.length > 1) body.appendChild(el("div", { class: "pd-stats", role: "group", "aria-label": "Stat" }, keys.map(function (k2) {
+      var m = G.postedLine(p, k2);
+      var b = chip(statShort(k2), k2 === k, { "data-stat": k2, title: statLabel(k2) + (m != null ? ", posted line " + m : ", no line yet") }, m != null ? [el("span", { class: "props-chip-t mono", text: String(m) })] : null);
+      b.addEventListener("click", function () { cur.k = k2; buildDetail(); syncUrl(); var again = dlg.querySelector('.pd-stats [data-stat="' + k2 + '"]'); if (again) again.focus(); });
+      return b;
+    })));
+    var input = el("input", { type: "number", step: "0.5", inputmode: "decimal", class: "line-big", id: "pd-line", value: savedLineFor(p, k) });
+    var reset = el("button", { type: "button", class: "line-reset", id: "pd-reset" });
+    reset.addEventListener("click", function () { input.value = String(G.postedLine(p, k)); regrade(); input.focus(); });
+    input.addEventListener("input", regrade);
+    var spans = el("div", { class: "seg pd-spans", role: "group", "aria-label": "Games shown" }, [5, 10].map(function (n) {
+      var b = el("button", { type: "button", "data-span": String(n), "aria-pressed": String(n === cur.span), text: "Last " + n });
+      b.addEventListener("click", function () { cur.span = n; regrade(); });
+      return b;
+    }));
+    ui = { input: input, reset: reset, spans: spans, chartH: el("h3", { class: "pd-h" }), chart: el("div", { class: "hist-host" }), cap: el("div", { class: "pd-cap" }), sides: el("div", { class: "pd-sides" }), note: el("p", { class: "pd-note" }), whyH: el("h3", { class: "pd-h" }), why: el("ul", { class: "bd-list pd-why" }), opp: el("p", { class: "pd-opp" }) };
+    body.appendChild(el("div", { class: "pd-chart-head" }, [ui.chartH, spans]));
+    body.appendChild(ui.chart);
+    body.appendChild(ui.cap);
+    body.appendChild(el("div", { class: "pd-line" }, [el("label", { class: "pd-line-label", for: "pd-line", text: "Line" }), input, reset, el("span", { class: "pd-line-how", text: "Type another number and both sides regrade from the game data." })]));
+    body.appendChild(ui.sides);
+    body.appendChild(ui.note);
+    body.appendChild(ui.whyH);
+    body.appendChild(ui.why);
+    body.appendChild(ui.opp);
+    body.appendChild(el("h3", { class: "pd-h", text: "Game log, last " + plural(p.log.length, "game") }));
+    body.appendChild(logTable(p, k));
+    body.appendChild(el("p", { class: "bd-rule", text: "Graded on game data only: his history against the number and a projection. A price shows where to bet it and takes no part in the grade." }));
+    regrade();
+  }
+  function drawChart() {
+    if (!cur || !ui) return;
+    var raw = ui.input.value, line = raw === "" ? null : Number(raw); if (line != null && !Number.isFinite(line)) line = null;
+    ui.chart.textContent = ""; ui.chart.appendChild(historyChart(cur.p, cur.k, line, cur.span, ui.chart.clientWidth));
+  }
+  function regrade() {
+    var p = cur.p, k = cur.k, raw = ui.input.value, line = raw === "" ? null : Number(raw);
+    if (line != null && !Number.isFinite(line)) line = null;
+    var posted = G.postedLine(p, k), ln = p.lines && p.lines[k], s = line != null ? G.sideFor(p, k, line, CTX) : null, open = openP(p), st = (p.stats && p.stats[k]) || {};
+    ui.reset.hidden = !(posted != null && line !== posted);
+    ui.reset.textContent = posted != null ? "Posted line " + posted : "";
+    ui.input.placeholder = posted != null ? String(posted) : st.l10 ? String(Math.round(st.l10 * 2) / 2) : "line";
+    ui.spans.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(Number(b.getAttribute("data-span")) === cur.span)); });
+    ["line", "side", "prob", "tier"].forEach(function (a) { dlg.removeAttribute("data-" + a); });
+    if (line != null) dlg.setAttribute("data-line", String(line));
+    ui.sides.textContent = ""; ui.why.textContent = ""; ui.cap.textContent = "";
+    var atPosted = !!(ln && posted != null && line === posted);
+    if (s) {
+      dlg.setAttribute("data-side", s.side); dlg.setAttribute("data-prob", s.prob.toFixed(4)); dlg.setAttribute("data-tier", s.grade.tier);
+      ["over", "under"].forEach(function (sd) {
+        var mine = sd === s.side, pr = mine ? s.prob : 1 - s.prob, prices = atPosted && open ? priceChips(ln[sd]) : null;
+        ui.sides.appendChild(el("div", { class: "pd-side" + (mine ? " is-lean" : ""), "data-side": sd }, [
+          el("div", { class: "pd-side-top" }, [el("strong", { class: "pd-side-name", text: sideWord(sd) + " " + s.line }), mine ? tierBadge(s.grade.tier, s.grade.cls) : null]),
+          el("div", { class: "pd-side-prob" }, [el("span", { class: "k", text: "To hit" }), el("strong", { class: "mono", text: E.pct(pr) }), probBar(pr, mine ? s.l10 : null)]),
+          prices ? el("p", { class: "pd-side-k", text: "Every book’s price, best first" }) : null,
+          prices || (atPosted && open ? el("p", { class: "pd-side-none", text: "No book quotes this side at " + s.line + "." }) : null)
+        ]));
+      });
+    }
+    ui.sides.hidden = !s;
+    ui.note.textContent = !s ? (line == null ? "Type a line and both sides are graded from his games." : "Not enough behind this stat to grade it yet.")
+      : !open ? "Lines closed at the start. This is the prop as the board ranked it."
+      : posted == null ? "No book line yet: this is graded at the number you typed."
+      : !atPosted ? "Prices are quoted at the posted line, " + posted + ". At " + line + " only the grade changes."
+      : !G.twoSided(ln) ? "The books quote one side only at " + posted + ", so this prop is off the board."
+      : "";
+    ui.note.hidden = !ui.note.textContent;
+    drawChart();
+    var shownGames = Math.min(cur.span, p.log.filter(function (r) { return G.statVal(r, k) != null; }).length);
+    ui.chartH.textContent = statLabel(k) + ", last " + plural(shownGames, "game");
+    ui.whyH.textContent = s ? "Why " + s.side + " " + s.line + " " + statWords(k) : "What the game data says";
+    var avgs = [st.season != null ? "Season " + st.season : null, st.l5 != null ? "Last 5 " + st.l5 : null, st.l10 != null ? "Last 10 " + st.l10 : null, !homeKnown(p) ? null : p.home ? (st.home ? "At home " + st.home : null) : (st.away ? "On the road " + st.away : null)];
+    if (s) {
+      var w = whyItems(p, s);
+      w.yes.forEach(function (x) { ui.why.appendChild(el("li", { class: "is-for", text: x.label })); });
+      w.no.forEach(function (x) { ui.why.appendChild(el("li", { class: "is-against", text: "But: " + (/^[A-Z][a-z]/.test(x.label) ? x.label.charAt(0).toLowerCase() + x.label.slice(1) : x.label) })); });
+      w.note.forEach(function (x) { ui.why.appendChild(el("li", { class: "is-note", text: x.label })); });
+      var opp = w.yes.concat(w.no, w.note).some(function (x) { return x.key === "opp"; }) ? null : oppSentence(p, k);
+      ui.opp.textContent = opp || ""; ui.opp.hidden = !opp;
+    } else {
+      (p.signals || []).forEach(function (x) { ui.why.appendChild(el("li", { class: "is-note", text: typo(x.label) })); });
+      var o2 = oppSentence(p, k); ui.opp.textContent = o2 || ""; ui.opp.hidden = !o2;
+    }
+    ui.cap.appendChild(E.meta(avgs, "pd-avgs"));
+    ui.why.hidden = !ui.why.children.length; ui.whyH.hidden = ui.why.hidden;
+    rememberLine(p, k, line == null ? "" : raw);
+  }
+  var resizeT = null;
+  window.addEventListener("resize", function () { if (!cur) return; clearTimeout(resizeT); resizeT = setTimeout(drawChart, 120); });
+
+  /* ---------- render, and keep it honest as the clock moves ---------- */
+  function render() { renderBoard(); renderRecord(); renderNoLine(); renderPlayed(); }
+  function stateSig() { return GAMES.map(function (g) { return E.gameState(gPick(g)).charAt(0); }).join("") + ":" + ALL.filter(openP).length; }
+  var sig = stateSig();
+  function tick() {
+    renderUpdated();
+    var s = stateSig(); if (s === sig) return;
+    sig = s; renderHead(); renderLeagues(); renderGames(); render();
+    if (cur && ui) regrade();
+  }
+  setInterval(tick, 60e3);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
+
+  $("props-ctl").hidden = !ALL.length && !RECENT.length;
+  renderHead(); renderLeagues(); renderGames(); renderStats(); render();
+  /* props.html?p=<player>&stat=<key> opens that player's detail */
+  (function () { var deep = findPlayer(Q.get("p")); if (deep) openDetail(deep, Q.get("stat"), null); })();
+  window.EdgeLinePropsPage = { state: state, open: openDetail, render: render, tick: tick };
 })();
 </script>
 

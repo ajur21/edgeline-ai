@@ -9,8 +9,10 @@
   /* targets are looked up on each pass and skipped while hidden: the game page builds its sections after load and hides
      the ones a game does not have */
   function current() {
-    var line = headerH() + 80, best = -1;
-    links.forEach(function (a, i) { var t = a.hidden ? null : document.getElementById(a.getAttribute("href").slice(1)); if (t && t.getClientRects().length && t.getBoundingClientRect().top <= line) best = i; });
+    /* the section in view is the lowest one that has passed the line, wherever its link sits: a page can move a section
+       (the picks page's watchlist leads on a night with no lean) */
+    var line = headerH() + 80, best = -1, bestTop = -Infinity;
+    links.forEach(function (a, i) { var t = a.hidden ? null : document.getElementById(a.getAttribute("href").slice(1)), top = t && t.getClientRects().length ? t.getBoundingClientRect().top : NaN; if (top <= line && top >= bestTop) { best = i; bestTop = top; } });
     links.forEach(function (a, i) { if (i === best) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
     if (best >= 0) { var a = links[best], r = a.getBoundingClientRect(), n = nav.getBoundingClientRect(); var sc = nav.querySelector(".subnav-in") || nav; if (r.left < n.left || r.right > n.right) sc.scrollLeft += r.left - n.left - 12; }
   }
