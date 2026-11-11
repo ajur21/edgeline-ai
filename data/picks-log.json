@@ -10822,9 +10822,9 @@
    "FanDuel": 112,
    "BetMGM": 110,
    "Bovada": 115,
-   "Unibet": -122,
+   "Unibet": -120,
    "Caesars": 115,
-   "ESPN BET": 115,
+   "ESPN BET": 120,
    "PointsBet": 115
   },
   "books": 7,
@@ -11051,8 +11051,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -205,
-      "away": 170
+      "home": -198,
+      "away": 164
      },
      "total": 6.5,
      "totalOdds": {
@@ -11060,8 +11060,8 @@
       "under": 114
      },
      "ml": {
-      "home": 114,
-      "away": -135
+      "home": 120,
+      "away": -142
      },
      "draw": null
     },
@@ -11133,11 +11133,11 @@
     "odds": 105
    },
    "now": {
-    "line": 6.5,
-    "odds": 121
+    "line": 7,
+    "odds": -129
    },
    "moved": "away",
-   "label": "The market (8 books) opened 6.5 (+105), now 6.5 (+121)"
+   "label": "The market (8 books) opened 6.5 (+105), now 7 (-129)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -11146,13 +11146,14 @@
    "support": [
     "Combined scoring 6.1 a game in San Jose Sharks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).",
     "Projected total 6.4 against 6.5.",
+    "A better price is available now: +120 at ESPN BET.",
     "Scorers out: Igor Chernyshov (LW), upper body; Quentin Musty (LW), upper body; Kyle Keyser (G), upper body and 4 more. Fewer healthy scorers leans under."
    ],
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 45.8% (-0.1 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (45.8% → 44.8%).",
-    "Market: The market (8 books) opened 6.5 (+105), now 6.5 (+121), the consensus moving against this side since the open.",
+    "Market: The market (8 books) opened 6.5 (+105), now 7 (-129), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Sharks Yaroslav Askarov · Penguins Arturs Silovs.",
     "Records: Pittsburgh Penguins 6-10-2 · San Jose Sharks 8-11-1 · SAP Center at San Jose, San Jose."
@@ -11163,42 +11164,42 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "iIgqZR4FMeuD3dJ8obsb",
-   "at": "2026-11-11T14:08:52.538Z",
+   "at": "2026-11-11T21:48:46.651Z",
    "books": {
     "DraftKings": 114,
-    "Unibet": -122,
+    "Unibet": -120,
     "FanDuel": 112,
     "Caesars": 115,
     "BetMGM": 110,
     "Bovada": 115,
-    "ESPN BET": 115,
+    "ESPN BET": 120,
     "PointsBet": 115
    },
    "n": 8,
    "best": {
-    "book": "Caesars",
-    "odds": 115
+    "book": "ESPN BET",
+    "odds": 120
    },
-   "fair": 0.4572,
+   "fair": 0.4552,
    "fairBooks": 8,
    "vendor": {
-    "line": 6.5,
-    "odds": 121,
-    "fair": 0.4525,
-    "sameLine": true
+    "line": 7,
+    "odds": -129,
+    "fair": 0.5633,
+    "sameLine": false
    },
    "open": {
     "line": 6.5,
     "odds": 105
    },
    "now": {
-    "line": 6.5,
-    "odds": 121
+    "line": 7,
+    "odds": -129
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-11T14:08:52.538Z",
+  "pricesAt": "2026-11-11T21:48:46.651Z",
   "sgoHistory": [
    {
     "at": "2026-11-10T20:39:42.407Z",
@@ -11216,6 +11217,15 @@
     "line": 6.5,
     "odds": 121,
     "best": 115,
+    "n": 8
+   },
+   {
+    "at": "2026-11-11T21:48:46.651Z",
+    "fair": 0.4552,
+    "vendorFair": 0.5633,
+    "line": 7,
+    "odds": -129,
+    "best": 120,
     "n": 8
    }
   ],
@@ -11265,12 +11275,12 @@
   "odds": -120,
   "book": "BetOnline.ag",
   "prices": {
-   "DraftKings": -122,
+   "DraftKings": -125,
    "BetRivers": -137,
    "BetOnline.ag": -120,
    "FanDuel": -128,
    "BetMGM": -120,
-   "Unibet": -135,
+   "Unibet": -137,
    "Caesars": -125,
    "ESPN BET": -130,
    "PointsBet": -125
@@ -11528,12 +11538,12 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -125,
+      "under": 105
      },
      "ml": {
-      "home": 124,
-      "away": -148
+      "home": 120,
+      "away": -142
      },
      "draw": null
     },
@@ -11562,6 +11572,12 @@
     "line": 5.5,
     "odds": -122,
     "fair": 0.5261
+   },
+   {
+    "at": "2026-11-11T21:48:46.651Z",
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
    }
   ],
   "dk": {
@@ -11573,11 +11589,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -122,
-    "fair": 0.5260865852617197
+    "odds": -125,
+    "fair": 0.5324675324675325
    },
-   "moved": "away",
-   "label": "DraftKings opened 5.5 (-125), now 5.5 (-122)"
+   "moved": null,
+   "label": "DraftKings opened 5.5 (-125), now 5.5 (-125)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -11588,10 +11604,10 @@
    },
    "now": {
     "line": 6,
-    "odds": 110
+    "odds": 109
    },
    "moved": "toward",
-   "label": "The market (5 books) opened 5.5 (-114), now 6 (+110)"
+   "label": "The market (5 books) opened 5.5 (-114), now 6 (+109)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -11607,8 +11623,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 53.1% (-1.4 points against the best price). For reference only.",
-    "Market: DraftKings opened 5.5 (-125), now 5.5 (-122), moving against this side since the open.",
-    "Market: The market (5 books) opened 5.5 (-114), now 6 (+110), the consensus moving toward this side since the open.",
+    "Market: The market (5 books) opened 5.5 (-114), now 6 (+109), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Flames Dustin Wolf · Rangers Dylan Garand.",
     "Records: New York Rangers 10-8-1 · Calgary Flames 8-9-1 · Scotiabank Saddledome, Calgary."
@@ -11619,10 +11634,10 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "DrwCIVArzCSAuhfwahTk",
-   "at": "2026-11-11T14:08:52.538Z",
+   "at": "2026-11-11T21:48:46.651Z",
    "books": {
-    "DraftKings": -122,
-    "Unibet": -135,
+    "DraftKings": -125,
+    "Unibet": -137,
     "FanDuel": -128,
     "ESPN BET": -130,
     "PointsBet": -125
@@ -11630,14 +11645,14 @@
    "n": 5,
    "best": {
     "book": "DraftKings",
-    "odds": -122
+    "odds": -125
    },
-   "fair": 0.5364,
+   "fair": 0.538,
    "fairBooks": 5,
    "vendor": {
     "line": 6,
-    "odds": 110,
-    "fair": 0.4762,
+    "odds": 109,
+    "fair": 0.4785,
     "sameLine": false
    },
    "open": {
@@ -11646,12 +11661,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 110
+    "odds": 109
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-11T14:08:52.538Z",
+  "pricesAt": "2026-11-11T21:48:46.651Z",
   "sgoHistory": [
    {
     "at": "2026-11-10T20:39:42.407Z",
@@ -11669,6 +11684,15 @@
     "line": 6,
     "odds": 110,
     "best": -122,
+    "n": 5
+   },
+   {
+    "at": "2026-11-11T21:48:46.651Z",
+    "fair": 0.538,
+    "vendorFair": 0.4785,
+    "line": 6,
+    "odds": 109,
+    "best": -125,
     "n": 5
    }
   ],
