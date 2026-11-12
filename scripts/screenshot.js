@@ -23,7 +23,7 @@ function gameId(root) {
   const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'].map(p => [p, p.replace('.html', '')])
     /* browse by sport and game (2026-11-08): two sport tabs, a game page and the unknown-game page */
     .concat([['picks.html?sport=NHL', 'picks-nhl'], ['picks.html?sport=NFL', 'picks-nfl'], ['game.html?id=' + encodeURIComponent(gameId(root)), 'game'], ['game.html?id=unknown', 'game-missing']]);
-  const problems = [];
+  const problems = [], notes = [];
   for (const scheme of ['light', 'dark']) {
     for (const [name, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', { width: 400, height: 860 }]]) {
       const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme, deviceScaleFactor: 1 });
@@ -33,7 +33,14 @@ function gameId(root) {
          browser (a 403 with no CORS header), which failed this check with console errors (2026-11-08); an empty board instead */
       await ctx.route(/^https:\/\/site\.api\.espn\.com\//, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"events":[]}' }));
       const page = await ctx.newPage();
-      page.on('console', m => { if (m.type() === 'error') problems.push(`${scheme}/${name}: ${m.text()}`); });
+      page.on('console', m => {
+        if (m.type() !== 'error') return;
+        /* a player or club ESPN has no image for: js/teams.js swaps in the monogram, so the page is whole, but the browser
+           still logs the 404 (2026-11-12: an NHL player's headshot on a game page failed this check). Noted, not failed */
+        const at = (m.location() || {}).url || '';
+        if (/^Failed to load resource/.test(m.text()) && /^https:\/\/a\.espncdn\.com\//.test(at)) { notes.push(`${scheme}/${name}: no ESPN image at ${at}`); return; }
+        problems.push(`${scheme}/${name}: ${m.text()}`);
+      });
       page.on('pageerror', e => problems.push(`${scheme}/${name}: PAGEERROR ${e.message}`));
       for (const [p, shot] of pages) {
         const [file, query] = p.split('?');
@@ -49,6 +56,7 @@ function gameId(root) {
     }
   }
   await browser.close();
+  if (notes.length) console.log('Note (the monogram stands in):\n' + [...new Set(notes)].join('\n'));
   if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
   console.log('OK: no console errors, no overflow. Screenshots in', out);
 })();
