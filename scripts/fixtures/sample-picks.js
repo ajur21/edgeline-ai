@@ -2226,87 +2226,81 @@ window.PICKS_DATA = {
     }
   ],
   "playOfDay": {
-    "id": "p1",
-    "sport": "NFL",
-    "league": "NFL",
-    "event": "Kansas City @ Buffalo",
-    "start": "Sun 4:25 PM ET",
-    "commence": "2026-11-08T21:25:00Z",
-    "market": "Spread",
-    "pick": "Buffalo -2.5",
-    "odds": -110,
-    "modelProb": 0.612,
+    "id": "p2",
+    "sport": "NBA",
+    "league": "NBA",
+    "event": "Boston @ Milwaukee",
+    "start": "Tonight 8:00 PM ET",
+    "commence": "2026-11-05T01:00:00Z",
+    "market": "Total",
+    "pick": "Over 226.5",
+    "odds": -108,
+    "modelProb": 0.681,
     "confidence": "High",
     "basis": "game",
     "model": {
-      "margin": 6,
-      "total": 47.5,
-      "sd": 13.5,
-      "sdTotal": 14,
-      "gp": 7,
+      "margin": -1.5,
+      "total": 236,
+      "sd": 12.5,
+      "sdTotal": 19,
+      "gp": 8,
       "thin": false,
       "parts": {
-        "ratingHome": 3.1,
-        "ratingAway": -0.9,
-        "homeEdge": 2,
+        "ratingHome": -0.9,
+        "ratingAway": 3.1,
+        "homeEdge": 2.5,
         "rest": 0,
         "injuriesHome": 0,
         "injuriesAway": 0,
         "scoringOut": 0,
-        "pace": 47.5
+        "pace": 231
       },
       "reasons": {
         "for": [
-          "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3)",
-          "Home edge +2 for Buffalo",
-          "Projected margin +6 for Buffalo against -2.5",
-          "Kansas City without Key Forward (F), knee"
+          "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's",
+          "Projected total 236 against 226.5"
         ],
-        "against": [
-          "Buffalo are on the second night of a back-to-back"
-        ]
+        "against": []
       }
     },
-    "marketFair": 0.585,
-    "marketEdge": 0.0612,
-    "rationale": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
+    "marketFair": 0.567,
+    "marketEdge": 0.0478,
+    "rationale": "Our probability at 226.5 is 68.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 236). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
     "factors": [
-      "Best price -110 at DraftKings",
-      "Probability 61.2% from game data, not other books",
-      "Edge 8.8 points over the price",
-      "Market reference 58.5%"
+      "Best price -108 at FanDuel",
+      "Probability 68.1% from game data, not other books",
+      "Edge 16.2 points over the price",
+      "Market reference 56.7%"
     ],
-    "book": "DraftKings",
-    "valueTo": -136,
+    "book": "FanDuel",
+    "valueTo": -133,
     "status": "pending",
     "result": null,
     "units": null,
     "score": null,
     "loggedAt": "2026-11-04T09:00:00-05:00",
     "prices": {
-      "DraftKings": -110,
-      "FanDuel": -120,
-      "BetMGM": -125,
-      "Caesars": -115,
-      "BetRivers": -120,
-      "PointsBet": -105,
-      "Unibet": -112
+      "DraftKings": -108,
+      "FanDuel": -108,
+      "BetMGM": -113,
+      "Caesars": -118,
+      "BetRivers": -123
     },
-    "ev": 0.1684,
-    "away": "Kansas City",
-    "home": "Buffalo",
-    "marketKey": "spreads",
+    "ev": 0.3116,
+    "away": "Boston",
+    "home": "Milwaukee",
+    "marketKey": "totals",
     "context": {
-      "espnEventId": "x0",
-      "venue": "Highmark Stadium, Orchard Park",
-      "indoor": false,
+      "espnEventId": "x1",
+      "venue": "Arena",
+      "indoor": true,
       "records": {
-        "Buffalo": {
+        "Milwaukee": {
           "overall": "5-2",
           "home": "3-0",
           "away": null
         },
-        "Kansas City": {
+        "Boston": {
           "overall": "4-3",
           "home": null,
           "away": "1-2"
@@ -2314,208 +2308,158 @@ window.PICKS_DATA = {
       },
       "probables": {},
       "injuries": {
-        "Buffalo": [],
-        "Kansas City": [
+        "Milwaukee": [
           {
-            "name": "Key Forward",
-            "pos": "F",
-            "status": "Out",
-            "type": "Knee",
+            "name": "Starting Guard",
+            "athleteId": "4000000000",
+            "pos": "G",
+            "status": "Questionable",
+            "type": "Ankle",
             "detail": "Sprain",
-            "returnDate": "2026-11-20",
-            "note": "Out at least two weeks."
+            "returnDate": null,
+            "note": "Listed questionable; will test it pregame."
           }
-        ]
+        ],
+        "Boston": []
       },
       "rest": {
-        "Buffalo": {
-          "restDays": 1,
-          "b2b": true,
+        "Milwaukee": {
+          "restDays": 3,
+          "b2b": false,
           "lastGame": "2026-11-03",
           "gamesLast7": 3
         },
-        "Kansas City": {
+        "Boston": {
           "restDays": 2,
           "b2b": false,
           "lastGame": "2026-11-02",
           "gamesLast7": 3
         }
       },
-      "weather": {
-        "summary": "Clear",
-        "tempF": 48,
-        "windMph": 6,
-        "precipPct": 5,
-        "source": "Open-Meteo",
-        "city": "Buffalo, NY, USA"
-      },
+      "weather": null,
       "broadcast": "ESPN"
     },
     "breakdown": {
       "tier": "High",
-      "tierWhy": "Our probability for this side is 61.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 52.4%, so the edge is 8.8 points. Its bar is 3.5 points: the model's own margin of error on this side, with 7 games behind the thinner team (±3.4 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-      "price": "Our probability at -2.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +6 for the home side). DraftKings offers -110, which implies only 52.4%. Not graded against other books' prices; for reference the market makes it 58.5%.",
+      "tierWhy": "Our probability for this side is 68.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 51.9%, so the edge is 16.2 points. Its bar is 11.0 points: the model's own margin of error on this side, with 8 games behind the thinner team (±6.2 points on the total); it falls as the season fills in and never drops under 3.0 points. It clears it by 5.2 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+      "price": "Our probability at 226.5 is 68.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 236). FanDuel offers -108, which implies only 51.9%. Not graded against other books' prices; for reference the market makes it 56.7%.",
       "support": [
-        "Buffalo rate +3.1 a game over 7 (5-2), Kansas City -0.9 over 7 (4-3).",
-        "Home edge +2 for Buffalo.",
-        "Projected margin +6 for Buffalo against -2.5.",
-        "Kansas City without Key Forward (F), knee."
+        "Combined scoring 231.8 a game in Milwaukee's games, 230.4 in Boston's.",
+        "Projected total 236 against 226.5.",
+        "A better price is now available: -103 at FanDuel."
       ],
-      "risks": [
-        "Buffalo are on the second night of a back-to-back."
-      ],
+      "risks": [],
       "notes": [
-        "Where the market sits: the de-vigged consensus of 7 books makes this side 58.5% (+6.1 points against the best price). For reference only.",
-        "Weather at kickoff: Clear, 48°F, wind 6 mph, 5% rain.",
-        "Records: Kansas City 4-3 · Buffalo 5-2 · Highmark Stadium, Orchard Park."
+        "Where the market sits: Pinnacle's de-vigged price makes this side 56.7% (+4.8 points against the best price). For reference only.",
+        "Market: the sharp line has moved toward this side since it was logged (56.7% → 57.9%).",
+        "Indoor venue; weather is not a factor.",
+        "Records: Boston 4-3 · Milwaukee 5-2 · Arena."
       ],
       "verdict": "The game data lines up behind this side at this price."
     },
-    "movement": null,
-    "dk": {
-      "book": "DraftKings",
-      "open": {
-        "line": -1.5,
-        "odds": -110,
-        "fair": 0.5
-      },
-      "now": {
-        "line": -2.5,
-        "odds": -110,
-        "fair": 0.5
-      },
-      "moved": "toward",
-      "label": "DraftKings opened -1.5 (-110), now -2.5 (-110)"
+    "movement": {
+      "loggedOdds": -108,
+      "loggedFair": 0.681,
+      "currentOdds": -103,
+      "currentBook": "FanDuel",
+      "currentFair": 0.579,
+      "currentEdge": 0.1736,
+      "checkedAt": "2026-11-04T16:00:00Z",
+      "history": [
+        {
+          "at": "2026-11-04T12:00:00Z",
+          "odds": -108,
+          "fair": 0.567
+        }
+      ]
     },
-    "dkHistory": [
-      {
-        "at": "2026-11-04T17:00:00Z",
-        "line": -1.5,
-        "odds": -110,
-        "fair": 0.5
-      },
-      {
-        "at": "2026-11-04T21:00:00Z",
-        "line": -2.5,
-        "odds": -110,
-        "fair": 0.5
-      }
-    ],
-    "mkt": {
-      "book": "Market consensus",
-      "n": 7,
-      "open": {
-        "line": -1.5,
-        "odds": -104
-      },
-      "now": {
-        "line": -2.5,
-        "odds": 102
-      },
-      "moved": "toward",
-      "label": "The market (7 books) opened -1.5 (-104), now -2.5 (+102)"
-    },
-    "sgo": {
-      "at": "2026-11-04T21:00:00Z",
-      "n": 7,
-      "best": {
-        "book": "PointsBet",
-        "odds": -105
-      },
-      "fair": 0.49,
-      "vendorFair": 0.495,
-      "open": {
-        "line": -1.5,
-        "odds": -104
-      },
-      "now": {
-        "line": -2.5,
-        "odds": 102
-      }
-    },
-    "sgoHistory": [
-      {
-        "at": "2026-11-04T17:00:00Z",
-        "fair": 0.5,
-        "line": -1.5,
-        "odds": -104,
-        "best": -110,
-        "n": 7
-      },
-      {
-        "at": "2026-11-04T19:00:00Z",
-        "fair": 0.495,
-        "line": -2.5,
-        "odds": 100,
-        "best": -108,
-        "n": 7
-      },
-      {
-        "at": "2026-11-04T21:00:00Z",
-        "fair": 0.49,
-        "line": -2.5,
-        "odds": 102,
-        "best": -105,
-        "n": 7
-      }
-    ],
-    "bar": 0.035,
-    "past": 0.0532,
+    "bar": 0.11,
+    "past": 0.0518,
     "barParts": {
-      "error": 0.035,
-      "units": 3.4,
+      "error": 0.11,
+      "units": 6.2,
       "unit": "points",
-      "gp": 7,
+      "gp": 8,
       "floor": 0.03
     },
     "now": {
       "at": "2026-11-04T16:30:00-05:00",
-      "odds": -110,
-      "book": "DraftKings",
-      "modelProb": 0.606,
-      "edge": 0.0822,
-      "bar": 0.035
+      "odds": -103,
+      "book": "FanDuel",
+      "modelProb": 0.672,
+      "edge": 0.1646,
+      "bar": 0.108
     },
-    "standing": "clears"
+    "standing": "clears",
+    "kind": "lean",
+    "lockedAt": "2026-11-04T20:42:00.000Z"
   },
   "parlayOfDay": {
-    "id": "parlay-sample",
+    "id": "parlay-2026-11-04",
     "date": "2026-11-04",
-    "book": "Caesars",
-    "odds": 908,
-    "decimal": 10.077,
-    "fairProb": 0.1418,
-    "ev": 0.4289,
+    "book": "DraftKings",
+    "odds": 235,
+    "decimal": 3.3525,
+    "fairProb": 0.429,
+    "ev": 0.4383,
     "status": "pending",
     "result": null,
+    "units": null,
+    "lockedAt": "2026-11-04T20:42:00.000Z",
     "legs": [
       {
-        "id": "p1",
-        "pick": "Buffalo -2.5",
-        "event": "Kansas City @ Buffalo",
-        "sport": "NFL",
-        "price": -115,
+        "id": "p2",
+        "kind": "lean",
+        "pick": "Over 226.5",
+        "event": "Boston @ Milwaukee",
+        "sport": "NBA",
+        "price": -108,
+        "commence": "2026-11-05T01:00:00Z",
         "started": false,
-        "result": null
+        "result": null,
+        "void": false
       },
       {
-        "id": "p4",
-        "pick": "Atlanta ML",
-        "event": "LA Dodgers @ Atlanta",
-        "sport": "MLB",
-        "price": 120,
+        "id": "p3",
+        "kind": "lean",
+        "pick": "Colorado ML",
+        "event": "Toronto @ Colorado",
+        "sport": "NHL",
+        "price": -135,
+        "commence": "2026-11-05T02:00:00Z",
         "started": false,
-        "result": null
-      },
-      {
-        "id": "p9",
-        "pick": "Yankees -1.5",
-        "event": "NY Yankees @ Houston",
-        "sport": "MLB",
-        "price": 145,
-        "started": false,
-        "result": null
+        "result": null,
+        "void": false
       }
     ]
+  },
+  "ofDay": {
+    "date": "2026-11-04",
+    "lockAt": "2026-11-04T20:30:00.000Z",
+    "playLocked": true,
+    "parlayLocked": true,
+    "closed": true,
+    "checkedAt": "2026-11-04T20:42:00.000Z",
+    "last": {
+      "play": {
+        "date": "2026-11-03",
+        "kind": "prop",
+        "sport": "NBA",
+        "event": "Philadelphia 76ers @ Chicago Bulls",
+        "pick": "Paul George over 3.5 assists",
+        "odds": -105,
+        "status": "graded",
+        "result": "Win",
+        "units": 0.95
+      },
+      "parlay": {
+        "date": "2026-11-03",
+        "legs": 2,
+        "odds": 248,
+        "status": "graded",
+        "result": "Loss",
+        "units": -1
+      }
+    }
   }
 };

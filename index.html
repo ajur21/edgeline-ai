@@ -61,7 +61,7 @@
         <div class="today-kick"><span class="eyebrow">Today’s card</span><span class="today-date" id="today-date"></span><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
         <h1 id="today-title"><span data-pick="Picks">Leans</span> from game data, <span class="hl">likeliest first.</span></h1>
       </div>
-      <p class="lead">EdgeLine AI is a game-data model. Each day it names one <span data-pick="play">lean</span> and one parlay, chosen from every game <span data-pick="pick">lean</span> and every player prop: the likeliest to hit that still beats its price. Both lock at <span id="lock-clock">3:30 PM ET</span>, are never swapped, and are graded in public.</p>
+      <p class="lead">EdgeLine AI is a game-data model. Each day it names one <span data-pick="play">lean</span> and one parlay, chosen from every game <span data-pick="pick">lean</span> and every player prop: the likeliest to hit with an edge at its price. Both lock at <span id="lock-clock">3:30 PM ET</span>, are never swapped, and are graded in public.</p>
     </div>
     <h2 class="visually-hidden" data-pick="Play of the day. Parlay of the day.">Lean of the day. Parlay lean of the day.</h2>
     <div class="plays">
@@ -316,7 +316,7 @@
     <div class="faq">
       <details>
         <summary data-pick="How is the play of the day chosen?">How is the lean of the day chosen?</summary>
-        <p>Everything on today’s games goes into one pool: sides, totals and moneylines from the game model, and player props. The one with the highest chance to hit that still beats its price is named. The parlay is the likeliest two from different games at one book, each beating its price there. A prop’s chance is the props board’s number, checked against how graded props have finished. Both lock with the 3:30 PM ET run, earlier if the game starts earlier, and are never swapped. A day with nothing that beats its price names none.</p>
+        <p>Everything on today’s games goes into one pool: sides, totals and moneylines from the game model, and player props. The one with the highest chance to hit that still has an edge at its price is named. The parlay is the likeliest two from different games at one book, each with an edge there. A prop’s chance is the props board’s number, checked against how graded props have finished. Both lock with the 3:30 PM ET run, earlier if the game starts earlier, and are never swapped. A day with no edge on any of them names none.</p>
       </details>
       <details>
         <summary>What does “edge” mean?</summary>
@@ -367,7 +367,7 @@
   var PL = window.EdgeLinePlays || null, PR = window.PROPS_DATA || null, NW = window.NFL_WEEK_DATA || null;
   /* the ranked list shows CAP rows before "Show all"; the ticker carries the first TICK */
   var CAP = 8, TICK = 12, view = { kind: "all", sport: "all", all: false };
-  var ranked, summary, plays, listed, fallback, watch, front, check, today, nowMs, counts, pod, par, stale;
+  var ranked, summary, day, plays, listed, fallback, watch, front, check, today, nowMs, counts, pod, par, stale;
   function isProp(x) { return x.kind === "prop"; }
   function isLean(x) { return x.kind !== "prop"; }
   function asPlay(p) { return { kind: "lean", id: p.id, sport: p.sport, event: p.event, pick: p.pick, market: p.market, prob: p.modelProb, odds: p.odds, book: p.book, tier: p.confidence || null, day: E.dayKey(p), commence: p.commence, src: p }; }
@@ -378,10 +378,9 @@
     nowMs = E.now();
     ranked = E.sortByProb(E.openOnly(D.picks));
     summary = E.marketSummary();
-    check = PL ? PL.checkOf(PR) : null;
-    plays = PL ? PL.all(D, PR, nowMs, { check: check }) : [];
-    today = PL ? PL.dayOf(nowMs) : E.etKey(new Date(nowMs));
-    front = plays.length ? PL.frontRunner(plays, nowMs) : null;
+    /* the day's play and parlay, locked or front-running, and the one list they are chosen from (EdgeLine.ofDayView, shared with the digest) */
+    day = E.ofDayView();
+    check = day.check; plays = day.plays; today = day.today; front = day.front;
     /* nothing beats its price: the open leans that slipped under their bar are listed; with none of those either, the
        watchlist or the closest markets stand in, so the page is never bare */
     var open = PL ? PL.rank(PL.leanPlays(D, nowMs, { slipped: true })) : ranked.map(asPlay);
@@ -392,17 +391,9 @@
     counts = { leans: plays.filter(isLean).length, props: plays.filter(isProp).length, slipped: plays.length ? open.length - plays.filter(isLean).length : 0,
       priced: priced.length, short: priced.filter(function (x) { return !x.worth; }).length };
     /* the play and the parlay as the pipeline published them; an earlier day's, once finished, leave the card for the record's last line */
-    stale = { play: null, parlay: null };
-    pod = D.playOfDay || null;
-    var podDay = pod ? ((D.ofDay && D.ofDay.date) || E.dayKey(pod)) : null;
-    if (pod && podDay && podDay < today && E.gameState(pod) === "final") { stale.play = { date: podDay, pick: pod }; pod = null; }
-    par = D.parlayOfDay || null;
-    var parDay = par ? (par.date || (D.ofDay && D.ofDay.date) || (/^parlay-(\d{4}-\d{2}-\d{2})$/.exec(par.id || "") || [])[1] || null) : null;
-    if (par && parDay && parDay < today && (par.result || par.status === "graded" || par.status === "void")) { stale.parlay = { date: parDay, par: par }; par = null; }
+    stale = day.stale; pod = day.play; par = day.parlay;
   }
   function sig() { return [today, front ? front.late : "", listed.map(function (x) { return x.id; }).join(","), pod ? pod.id + E.gameState(pod) : "", par ? par.id : ""].join("|"); }
-  function ofDayToday() { return D.ofDay && D.ofDay.date === today ? D.ofDay : null; }
-  function lockMs() { var o = ofDayToday(), at = o && o.lockAt ? Date.parse(o.lockAt) : NaN; return isFinite(at) ? at : front ? front.lockAt : null; }
   function avatar(play, px) { return !T ? null : isProp(play) ? T.face(play.sportKey, play.player, px) : T.sideLogo(play.src, px); }
   function hrefOf(play) { return isProp(play) ? E.propHref(play) : "picks.html#" + play.id; }
   function emptyText() {
@@ -438,21 +429,11 @@
 
   /* the play and the parlay of the day. Locked: as the pipeline chose them, and once their games start they show where
      they stand. Before the lock: the front-runner so far, marked not final. A day with none says so. */
-  function noneCard(cls, eyebrow, title, text) {
-    return E.el("div", { class: "card " + cls + " potd-none" }, [E.el("span", { class: "eyebrow", text: eyebrow }), E.el("h3", { text: title }), E.el("p", { text: text })]);
-  }
   function renderPlays() {
     var ph = document.getElementById("potd-host"), pl = document.getElementById("parlay-host");
-    var od = ofDayToday(), at = lockMs(), closed = !!(od && od.closed);
     ph.textContent = ""; pl.textContent = "";
-    ph.appendChild(pod ? E.potdCard(pod)
-      : closed ? noneCard("potd", E.word("ofDay"), "No " + E.word("ofDay").toLowerCase() + " today", "At the lock no game " + E.word("one") + " or player prop for today’s games beat its price, so none was named. Nothing is forced.")
-      : front && front.play ? E.potdCard(E.playAsPick(front.play, check), { front: true, lockAt: at })
-      : E.potdCard(null));
-    pl.appendChild(par ? E.parlayCard(par)
-      : closed ? noneCard("parlay", E.word("parlayOfDay"), "No parlay today", "It needs two " + E.word("many") + " or props from different games at one book, each beating its price there. Today did not have them at the lock.")
-      : front && front.parlay ? E.parlayCard(E.frontParlay(front.parlay), { front: true, lockAt: at })
-      : E.parlayCard(null));
+    ph.appendChild(E.dayPlayCard(day));
+    pl.appendChild(E.dayParlayCard(day));
     E.initTilt(ph); E.initTilt(pl);
   }
 
@@ -540,7 +521,7 @@
       : !summary.markets ? "Today’s board" : onWatch ? "On watch, no " + E.word("one") + " yet" : "Worth a look tonight";
     how.textContent = beat ? "Game " + E.word("many") + " and player props in one order: today’s games first, then the chance to hit. A prop’s chance is the props board’s number checked against how graded props have finished. The bar is our chance; the tick is what the price implies."
       : has ? "These have slipped under their own bar since they were posted, so none can be the " + E.word("ofDay").toLowerCase() + ". They stay listed until their games start and are graded at the posted price."
-      : onWatch ? "Nothing beats its price yet. These are the sides nearest their own bar, and what each needs."
+      : onWatch ? "Nothing is on the list yet. These are the sides nearest their own bar, and what each needs."
       : fallback.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top. They are not " + E.word("many") + "."
       : "";
     how.hidden = !how.textContent;
@@ -566,7 +547,7 @@
       else rows.appendChild(E.el("p", { class: "board-empty", text: emptyText() }));
     } else if (!shownList.length) {
       rows.appendChild(view.kind === "prop"
-        ? E.el("p", { class: "board-empty" }, ["No player prop beats its price right now. Most prop lines arrive with the " + E.runClock(1) + " run. ", E.el("a", { href: "props.html", text: "Open the props board" })])
+        ? E.el("p", { class: "board-empty" }, ["No player prop has an edge at its price right now. Most prop lines arrive with the " + E.runClock(1) + " run. ", E.el("a", { href: "props.html", text: "Open the props board" })])
         : E.el("p", { class: "board-empty" }, ["No game " + E.word("one") + " is on the board right now. ", E.el("a", { href: "picks.html#watchlist", text: "See the watchlist" })]));
     } else {
       /* a day heading opens each day whenever the list spans more than one; the rank numbers the whole list */
@@ -597,13 +578,13 @@
     var one = counts.short === 1;
     var propsLine = !PL || !PR ? null
       : counts.priced === 0 ? ["No player prop is priced right now; most prop lines arrive with the " + E.runClock(1) + " run."]
-      : counts.short > 0 ? [counts.short + (one ? " priced prop does not beat its price and is" : " priced props do not beat their price and are") + " not listed. ", E.el("a", { href: "props.html", text: "Props board" })]
+      : counts.short > 0 ? [counts.short + (one ? " priced prop has no edge at its price and is" : " priced props have no edge at their price and are") + " not listed. ", E.el("a", { href: "props.html", text: "Props board" })]
       : null;
     if (beat) {
       var nl = counts.leans, np = counts.props, leans = nl + " game " + (nl === 1 ? E.word("one") : E.word("many")), props = np + " player prop" + (np === 1 ? "" : "s");
-      if (nl && np) line([leans + " and " + props + " beat their price right now."]);
-      else if (nl) line([leans + (nl === 1 ? " beats its price right now." : " beat their price right now.")]);
-      else line([props + (np === 1 ? " beats its price right now." : " beat their price right now.") + " No game " + E.word("one") + " is on the board. ", E.el("a", { href: "picks.html#watchlist", text: "Watchlist" })]);
+      if (nl && np) line([leans + " and " + props + " have an edge at their price right now."]);
+      else if (nl) line([leans + (nl === 1 ? " has an edge at its price right now." : " have an edge at their price right now.")]);
+      else line([props + (np === 1 ? " has an edge at its price right now." : " have an edge at their price right now.") + " No game " + E.word("one") + " is on the board. ", E.el("a", { href: "picks.html#watchlist", text: "Watchlist" })]);
       if (counts.slipped > 0) line([counts.slipped + " more open " + (counts.slipped === 1 ? E.word("one") + " has slipped under its bar and is" : E.word("many") + " have slipped under their bar and are") + " not listed here. ", E.el("a", { href: "picks.html", text: "All " + E.word("many") })]);
       if (propsLine) line(propsLine);
     } else if (has) {
@@ -643,11 +624,13 @@
     grid.appendChild(pn ? tile("Player props graded", pr.w + "-" + pr.l + (pr.push ? "-" + pr.push : ""), [E.pct(pr.w / pn) + " hit", PR.results.since ? "since " + E.shortDate(E.keyDate(PR.results.since)) : null])
       : tile("Player props graded", "0-0", ["Grading starts with the first priced props"]));
     E.initTilt(grid);
+    /* the last one: a finished play that has just left the card (the file is still an earlier day's) is newer than the
+       file's own `last`, which is the day before that */
     var was = D.ofDay && D.ofDay.last ? D.ofDay.last : {};
-    if (was.play) last.appendChild(lastLine(E.word("ofDay"), was.play.date, was.play.pick + " " + E.fmtOdds(was.play.odds), was.play));
-    else if (stale.play) last.appendChild(lastLine(E.word("ofDay"), stale.play.date, stale.play.pick.pick + " " + E.fmtOdds(stale.play.pick.odds), stale.play.pick));
-    if (was.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), was.parlay.date, was.parlay.legs + " legs at " + E.fmtOdds(was.parlay.odds), was.parlay));
-    else if (stale.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), stale.parlay.date, stale.parlay.par.legs.length + " legs at " + E.fmtOdds(stale.parlay.par.odds), stale.parlay.par));
+    if (stale.play) last.appendChild(lastLine(E.word("ofDay"), stale.play.date, stale.play.pick.pick + " " + E.fmtOdds(stale.play.pick.odds), stale.play.pick));
+    else if (was.play) last.appendChild(lastLine(E.word("ofDay"), was.play.date, was.play.pick + " " + E.fmtOdds(was.play.odds), was.play));
+    if (stale.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), stale.parlay.date, stale.parlay.par.legs.length + " legs at " + E.fmtOdds(stale.parlay.par.odds), stale.parlay.par));
+    else if (was.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), was.parlay.date, was.parlay.legs + " legs at " + E.fmtOdds(was.parlay.odds), was.parlay));
     last.hidden = !last.childNodes.length;
   }
 

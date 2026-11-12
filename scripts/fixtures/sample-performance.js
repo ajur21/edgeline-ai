@@ -557,13 +557,48 @@ window.PERF_DATA = {
     "wins": 16,
     "losses": 12,
     "pushes": 2,
-    "units": 4.1
+    "units": 4.1,
+    "n": 30,
+    "props": 9,
+    "recent": [
+      {
+        "date": "2026-11-03",
+        "kind": "prop",
+        "sport": "NBA",
+        "event": "Philadelphia 76ers @ Chicago Bulls",
+        "pick": "Paul George over 3.5 assists",
+        "odds": -105,
+        "result": "Win",
+        "units": 0.95
+      },
+      {
+        "date": "2026-11-02",
+        "kind": "lean",
+        "sport": "NFL",
+        "event": "Dallas @ Philadelphia",
+        "pick": "Philadelphia -3",
+        "odds": -110,
+        "result": "Loss",
+        "units": -1
+      },
+      {
+        "date": "2026-11-01",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Boston @ Toronto",
+        "pick": "Under 6.5",
+        "odds": -105,
+        "result": "Win",
+        "units": 0.95
+      }
+    ]
   },
   "parlays": {
     "wins": 5,
     "losses": 19,
     "pushes": 0,
-    "units": 7.9
+    "units": 7.9,
+    "n": 24
   },
   "graded": 106,
   "clv": {

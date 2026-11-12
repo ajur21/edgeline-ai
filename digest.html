@@ -119,12 +119,18 @@
 <script src="data/teams.js"></script>
 <script src="data/faces.js"></script>
 <script src="js/teams.js"></script>
+<script src="data/props.js"></script>
+<script src="js/props-grade.js"></script>
+<script src="js/plays.js"></script>
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA || { picks: [] }, S = window.PERF_DATA || null;
   /* the slate lists games that have not started; a started or graded pick is marked under In progress and results (owner ask, 2026-11-05) */
-  var realPicks, MS, fallbackMode, P, WL = [], ordered, played = [], groups = [];
+  var realPicks, MS, fallbackMode, P, WL = [], ordered, played = [], groups = [], V = null;
   function compute() {
+    /* the day's play and parlay: locked, or the front-runner before the lock, from every game lean and player prop
+       (EdgeLine.ofDayView, the home page's; data/props.js and js/plays.js are loaded for it) */
+    V = E.ofDayView();
     realPicks = E.sortByProb(E.openOnly(D.picks || []));
     MS = E.marketSummary();
     /* nothing clears the bar: the digest lists the closest markets instead, labelled Watch / No bet, never empty */
@@ -200,8 +206,8 @@
   /* ---------- lead plays ---------- */
   var potdHost = document.getElementById("potd-host"), parlayHost = document.getElementById("parlay-host");
   potdHost.textContent = ""; parlayHost.textContent = "";
-  potdHost.appendChild(E.potdCard(D.playOfDay || null));
-  parlayHost.appendChild(E.parlayCard(D.parlayOfDay || null));
+  potdHost.appendChild(E.dayPlayCard(V));
+  parlayHost.appendChild(E.dayParlayCard(V));
   /* the likeliest three are bets: open games only */
   var top3 = document.getElementById("top3");
   top3.textContent = "";
@@ -263,9 +269,13 @@
     var lines = ["EdgeLine AI · " + dayLabel, ""];
     if (!P.length) lines.push("Nothing on the board.");
     if (fallbackMode) lines.push("No " + E.word("one") + " on the board. " + (WL.length ? "Watchlist (the side nearest its bar in each game, not " + E.word("many") + "):" : "The likeliest sides (not " + E.word("many") + "):"), "");
-    if (D.playOfDay) lines.push(E.word("ofDay") + ": " + D.playOfDay.pick + " " + E.fmtOdds(D.playOfDay.odds) + (D.playOfDay.book ? " (" + D.playOfDay.book + ")" : "") + " · " + D.playOfDay.event + (E.isOpen(D.playOfDay) ? "" : " · " + E.stateText(D.playOfDay)));
-    if (D.parlayOfDay) lines.push(E.word("parlayOfDay") + " (" + D.parlayOfDay.book + ", " + E.fmtOdds(D.parlayOfDay.odds) + "): " + D.parlayOfDay.legs.map(function (l) { return l.pick; }).join(" + "));
-    if (D.playOfDay || D.parlayOfDay) lines.push("");
+    /* the day's play and parlay as the cards show them: locked, or the front-runner before the lock, said to be not final */
+    var notFinal = " · front-runner, not final: it locks " + (V.lockAt ? E.aboutET(V.lockAt) : "with the " + E.runClock(1) + " run");
+    var pod = V.play || (!V.closed && V.front && V.front.play ? E.playAsPick(V.front.play, V.check) : null), par = V.parlay || (!V.closed && V.front && V.front.parlay ? E.frontParlay(V.front.parlay) : null);
+    if (pod) lines.push(E.word("ofDay") + ": " + pod.pick + " " + E.fmtOdds(pod.odds) + (pod.book ? " (" + pod.book + ")" : "") + " · " + pod.event + (E.isOpen(pod) ? "" : " · " + E.stateText(pod)) + (V.play ? "" : notFinal));
+    else if (V.closed) lines.push("No " + E.word("ofDay").toLowerCase() + " today: nothing had an edge at its price at the lock.");
+    if (par) lines.push(E.word("parlayOfDay") + " (" + par.book + ", " + E.fmtOdds(par.odds) + "): " + par.legs.map(function (l) { return l.pick; }).join(" + ") + (V.parlay ? "" : notFinal));
+    if (pod || par || V.closed) lines.push("");
     groups.forEach(function (g) {
       lines.push(g.label);
       var breaks = dayBreaks(g.picks);

@@ -395,21 +395,29 @@
   function sameLegs(a, b) { return a && b && a.legs.map(function (l) { return l.id; }).sort().join() === b.legs.map(function (l) { return l.id; }).sort().join(); }
   function renderParlays() {
     parlaysHost.textContent = "";
-    /* likeliest first, open games only; the parlay of the day (highest EV) is always shown, at its real rank or appended with it */
+    /* likeliest first, open games only; the parlay of the day is always shown: at its real rank when it is one of these
+       tickets, appended with its rank when it is past the sixth */
     var open = E.openOnly(P), all = E.bestParlays(open, { size: parlaySize || null, limit: 100000 }), list = all.slice(0, 6);
-    var potdAt = all.findIndex(function (par) { return sameLegs(par, D.parlayOfDay); });
+    var day = D.parlayOfDay || null, potdAt = all.findIndex(function (par) { return sameLegs(par, day); });
     if (potdAt >= 6) list.push(Object.assign({ _rank: potdAt + 1 }, all[potdAt]));
     /* once a leg of the parlay of the day starts it can no longer be ranked or loaded: it is shown as it stands, last */
-    var under = D.parlayOfDay && (D.parlayOfDay.legs || []).some(function (l) { return !E.isOpen(E.legAsPick(l)); }) ? E.parlayCard(D.parlayOfDay, { title: E.word("parlayOfDay") + ", under way" }) : null;
+    var begun = !!day && (day.legs || []).some(function (l) { return !E.isOpen(E.legAsPick(l)); });
+    var under = begun ? E.parlayCard(day, { title: E.word("parlayOfDay") + ", under way" }) : null;
+    /* since 2026-11-11 the parlay of the day is the likeliest two plays and a leg can be a player prop, so it need not be
+       one of the tickets ranked here (game leans only). Then it leads the section as it was locked, unranked */
+    var lead = day && !begun && potdAt < 0 && !day.result && day.status !== "void" && (!parlaySize || parlaySize === day.legs.length) ? E.parlayCard(day) : null;
     /* no open lean: a ticket needs two, so the section is one sentence that points at the watchlist, which leads the page (2026-11-10) */
     var noLean = !open.length, head = document.getElementById("parlays");
     head.classList.toggle("is-collapsed", noLean);
     [head.querySelector("p"), document.getElementById("parlay-size"), document.querySelector(".parlays-note")].forEach(function (n) { if (n) n.hidden = noLean; });
     if (noLean) {
-      parlaysHost.appendChild(E.el("p", { class: "parlays-none" }, [E.el("strong", { text: "No tickets right now. " }), "A parlay needs two " + E.word("many") + " from different games, and " + (E.playedPicks().length ? "every " + E.word("one") + " on the board has started. " : "none is on the board. "), "What came closest is on ", E.el("a", { href: "#watchlist", text: "the watchlist" }), "."]));
-      if (under) { parlaysHost.appendChild(under); E.initTilt(parlaysHost); }
+      if (lead) parlaysHost.appendChild(lead);
+      parlaysHost.appendChild(E.el("p", { class: "parlays-none" }, [E.el("strong", { text: lead ? "No other tickets right now. " : "No tickets right now. " }), "A parlay " + (lead ? "ranked here " : "") + "needs two " + E.word("many") + " from different games, and " + (E.playedPicks().length ? "every " + E.word("one") + " on the board has started. " : "none is on the board. "), "What came closest is on ", E.el("a", { href: "#watchlist", text: "the watchlist" }), "."]));
+      if (under) parlaysHost.appendChild(under);
+      if (lead || under) E.initTilt(parlaysHost);
       return;
     }
+    if (lead) parlaysHost.appendChild(lead);
     if (!list.length) { parlaysHost.appendChild(open.length < 2 ? E.pulseCard({ title: "No parlays yet: the market right now" }) : E.el("div", { class: "card empty", text: "No " + (parlaySize ? parlaySize + "-leg " : "") + "combination has an edge at a single book right now." })); if (under) parlaysHost.appendChild(under); E.initTilt(parlaysHost); return; }
     list.forEach(function (par, i) {
       var card = E.parlayCard(par, { loadButton: true, title: "#" + (par._rank || i + 1) + ": " + E.pct(par.fairProb) + " to hit, " + E.signed(par.ev * 100, 1) + "% EV", tag: sameLegs(par, D.parlayOfDay) ? E.word("parlayOfDay") : null });
@@ -500,6 +508,8 @@
   document.getElementById("slip-load").addEventListener("click", function () {
     var par = D.parlayOfDay;
     if (!par) { slipBody.appendChild(E.el("p", { class: "slip-warn", text: "There is no " + E.word("parlayOfDay").toLowerCase() + " right now." })); return; }
+    /* a leg can be a player prop since 2026-11-11; the builder prices game leans only, so such a ticket is not loaded in part */
+    if (par.legs.some(E.isPropPlay)) { slipBody.appendChild(E.el("p", { class: "slip-warn", text: "Today’s " + E.word("parlayOfDay").toLowerCase() + " has a player prop leg, and the builder prices game " + E.word("many") + " only. The whole ticket leads the best tickets on this page." })); return; }
     try { localStorage.setItem(BOOK_KEY, par.book); } catch (e) {}
     E.slip.set(par.legs.map(function (l) { return l.id; }));
     openSlip(true);

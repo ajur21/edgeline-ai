@@ -16,7 +16,10 @@ async function run(h) {
     opts = opts || {};
     const ctx = await browser.newContext({ viewport: opts.viewport || { width: 1280, height: 900 } });
     await ctx.route('**/site.api.espn.com/**', route => route.fulfill({ contentType: 'application/json', body: '{"events":[]}' }));
-    for (const f of Object.keys(opts.data || {})) await ctx.route('**/data/' + f + '.js', route => route.fulfill({ contentType: 'text/javascript', body: opts.data[f] }));
+    /* these states are about game sides, so no player prop is served: since 2026-11-11 the home page lists every play, and
+       a night with no lean but props that have an edge lists those instead of the watchlist (scripts/home-checks.js) */
+    const data = Object.assign({ props: 'window.PROPS_DATA = { sample: true, games: [], players: [] };\n' }, opts.data || {});
+    for (const f of Object.keys(data)) await ctx.route('**/data/' + f + '.js', route => route.fulfill({ contentType: 'text/javascript', body: data[f] }));
     const page = await ctx.newPage(); await pinClock(page, opts.at);
     page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     return { ctx, page };

@@ -165,7 +165,8 @@
     ft.appendChild(E.el("div", { class: "card stat", "data-tilt": "" }, [
       E.el("div", { class: "stat-label", text: pair[0] }),
       E.el("div", { class: "stat-value", text: n ? r.wins + "-" + r.losses + (r.pushes ? "-" + r.pushes : "") : "\u2014" }),
-      E.el("div", { class: "stat-sub", text: n ? E.signed(r.units, 2) + "u over " + n + " graded, last 30 days" : "Nothing graded yet" })
+      /* since 2026-11-11 the play of the day can be a player prop; the tile says how many were */
+      E.el("div", { class: "stat-sub", text: n ? E.signed(r.units, 2) + "u over " + n + " graded, last 30 days" + (r.props ? ", " + (r.props === 1 ? "1 a player prop" : r.props + " of them player props") : "") : "Nothing graded yet" })
     ]));
   });
   /* CLV: did the price we published beat where the market closed? Evidence about the price, never part of the grade. */

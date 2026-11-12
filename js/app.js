@@ -1212,9 +1212,9 @@
       if (alt) {
         const past = pastOf(alt), why = !Number.isFinite(past) ? "There is no model on the board yet, so this is the first market priced, not a " + word("one") + "." : past < 0 ? "Nothing is on the board yet, so this is the nearest miss on our numbers: " + (-past * 100).toFixed(1) + " points short of " + barName(alt) + ". Not a " + word("one") + "." : isHeld(alt) ? "Nothing is on the board yet. This side clears " + barName(alt) + ", but its game is held: " + heldWhy(alt) + ". " + heldWhen(alt) + " Not a " + word("one") + " until then."
           : "Nothing is on the board yet. This side was past " + barName(alt) + " at the last pricing but was not posted, so it is not a " + word("one") + ".";
-        const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: why + " The " + word("ofDay").toLowerCase() + " is chosen at the first run with a " + word("one") + "." })); c.classList.add("potd-market"); return c;
+        const c = potdCard(Object.assign({}, alt, { _eyebrow: "Closest to the bar", _note: why + " The " + word("ofDay").toLowerCase() + " locks with the " + runClock(1) + " run." })); c.classList.add("potd-market"); return c;
       }
-      return el("div", { class: "card empty", text: "No " + word("ofDay").toLowerCase() + " yet. It is chosen at the first run with " + word("many") + ", around " + runClock(0) + "." });
+      return el("div", { class: "card empty", text: "No " + word("ofDay").toLowerCase() + " yet. It locks with the " + runClock(1) + " run, from every game " + word("one") + " and player prop with an edge at its price." });
     }
     if (isPropPlay(p)) return propPlayCard(p, opts);
     const modelled = hasModel(p), st = gameState(p), open = st === "upcoming" || st === "soon";
@@ -1293,7 +1293,7 @@
   /* the slip: pick ids kept in localStorage; buttons everywhere reflect it */
   const SLIP_KEY = "parlay-slip";
   /* a leg the slip can price: its pick is on the board and its game has not started */
-  function slipLeg(id) { const p = findPick(id); return p && isOpen(p) ? p : null; }
+  function slipLeg(id) { const p = findPick(id); return p && !isPropPlay(p) && isOpen(p) ? p : null; }
   const slip = {
     get: function () { try { return JSON.parse(localStorage.getItem(SLIP_KEY) || "[]"); } catch (e) { return []; } },
     set: function (ids) { try { localStorage.setItem(SLIP_KEY, JSON.stringify(ids)); } catch (e) { /* ignore */ } syncButtons(); document.dispatchEvent(new CustomEvent("slipchange", { detail: ids })); },
@@ -1324,7 +1324,7 @@
 
   function parlayCard(par, opts) {
     opts = opts || {};
-    if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No " + word("parlayOfDay").toLowerCase() + " yet. It needs two or more " + word("many") + " from different games, each with an edge at the same book." });
+    if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No " + word("parlayOfDay").toLowerCase() + " yet. It needs two " + word("many") + " or player props from different games, each with an edge at the same book." });
     /* each leg read from its pick on the board, so a leg whose game has started says so */
     const legPick = par.legs.map(legAsPick), begun = legPick.filter(p => !isOpen(p)).length;
     /* a prop leg has no pick on the board: no breakdown dialog and no place in the builder */
@@ -1366,6 +1366,42 @@
     if (l && l.kind === "prop") return Object.assign({ id: l.id, kind: "prop", sport: l.sport, sportKey: l.sportKey, league: l.league, event: l.event, pick: l.pick, commence: l.commence, home: l.home, away: l.away }, l.result ? { result: l.result } : {}, l.void ? { status: "void" } : {}, l.started === true ? { started: true } : {});
     const p = findPick(l.id) || {};
     return Object.assign({}, p, { id: l.id, sport: p.sport || l.sport, event: p.event || l.event, pick: p.pick || l.pick }, !p.commence && l.commence ? { commence: l.commence } : {}, l.result ? { result: l.result } : {}, l.void ? { status: "void" } : {}, l.started === true ? { started: true } : {});
+  }
+
+  /* ---------- the day's play and parlay as a page shows them (home, digest; 2026-11-11) ----------
+     Locked: what the pipeline published (PICKS_DATA.playOfDay, parlayOfDay). Before the lock: the front-runner, the first
+     of the one ranked list (js/plays.js, on a page that loads it and data/props.js), marked not final. After the locking
+     run with nothing named: a card that says so. An earlier day's play or parlay, once finished, leaves the card
+     (`stale`: the home page's "last time" line reads it when the file has no `ofDay.last`).
+     Returns { today, plays, check, front, ofDay, closed, lockAt (ms or null), play, parlay, stale: { play, parlay } } */
+  function ofDayView() {
+    const D = window.PICKS_DATA || {}, PL = window.EdgeLinePlays || null, PR = window.PROPS_DATA || null, t = now();
+    const today = PL ? PL.dayOf(t) : etKey(new Date(t));
+    const check = PL ? PL.checkOf(PR) : null, plays = PL ? PL.all(D, PR, t, { check: check }) : [];
+    const front = plays.length ? PL.frontRunner(plays, t) : null;
+    const od = D.ofDay && D.ofDay.date === today ? D.ofDay : null, at = od && od.lockAt ? Date.parse(od.lockAt) : NaN;
+    const stale = { play: null, parlay: null };
+    let play = D.playOfDay || null, parlay = D.parlayOfDay || null;
+    const playDay = play ? ((D.ofDay && D.ofDay.date) || dayKey(play)) : null;
+    if (play && playDay && playDay < today && gameState(play) === "final") { stale.play = { date: playDay, pick: play }; play = null; }
+    const parDay = parlay ? (parlay.date || (D.ofDay && D.ofDay.date) || (/^parlay-(\d{4}-\d{2}-\d{2})$/.exec(parlay.id || "") || [])[1] || null) : null;
+    if (parlay && parDay && parDay < today && (parlay.result || parlay.status === "graded" || parlay.status === "void")) { stale.parlay = { date: parDay, par: parlay }; parlay = null; }
+    return { today: today, plays: plays, check: check, front: front, ofDay: od, closed: !!(od && od.closed), lockAt: Number.isFinite(at) ? at : front ? front.lockAt : PL ? PL.lockAt(today) : null, play: play, parlay: parlay, stale: stale };
+  }
+  function noneCard(cls, eyebrow, title, text) {
+    return el("div", { class: "card " + cls + " potd-none" }, [el("span", { class: "eyebrow", text: eyebrow }), el("h3", { text: title }), el("p", { text: text })]);
+  }
+  function dayPlayCard(v) {
+    return v.play ? potdCard(v.play)
+      : v.closed ? noneCard("potd", word("ofDay"), "No " + word("ofDay").toLowerCase() + " today", "At the lock no game " + word("one") + " or player prop for today’s games had an edge at its price, so none was named. Nothing is forced.")
+      : v.front && v.front.play ? potdCard(playAsPick(v.front.play, v.check), { front: true, lockAt: v.lockAt })
+      : potdCard(null);
+  }
+  function dayParlayCard(v) {
+    return v.parlay ? parlayCard(v.parlay)
+      : v.closed ? noneCard("parlay", word("parlayOfDay"), "No parlay today", "It needs two " + word("many") + " or props from different games at one book, each with an edge at its price there. Today did not have them at the lock.")
+      : v.front && v.front.parlay ? parlayCard(frontParlay(v.front.parlay), { front: true, lockAt: v.lockAt })
+      : parlayCard(null);
   }
 
   /* ---------- full breakdown dialog ---------- */
@@ -1524,7 +1560,7 @@
     standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
     flagOf: flagOf, flagNote: flagNote, flagChip: flagChip, flagLine: flagLine, postedKnowing: postedKnowing, heldLine: heldLine, waitingOf: waitingOf, isHeld: isHeld, heldClears: heldClears, heldWhy: heldWhy, heldWhen: heldWhen, heldNote: heldNote, heldRun: heldRun, chipStatus: chipStatus, runAfter: runAfter, nextRunFor: nextRunFor,
     el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, etKey: etKey, keyDate: keyDate, shortDate: shortDate, rankChip: rankChip, eventShort: eventShort, initTilt: initTilt, animateNumber: animateNumber,
-    potdCard: potdCard, parlayCard: parlayCard, isPropPlay: isPropPlay, propHref: propHref, propSel: propSel, playAsPick: playAsPick, frontParlay: frontParlay, lockLine: lockLine, probMeter: probMeter, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
+    potdCard: potdCard, parlayCard: parlayCard, isPropPlay: isPropPlay, propHref: propHref, propSel: propSel, playAsPick: playAsPick, frontParlay: frontParlay, lockLine: lockLine, probMeter: probMeter, ofDayView: ofDayView, dayPlayCard: dayPlayCard, dayParlayCard: dayParlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, watchlist: watchlist, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
     now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, startLabel: startLabel, ago: ago, scoreText: scoreText, unitsText: unitsText,
