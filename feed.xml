@@ -5,9 +5,33 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Thu, 12 Nov 2026 02:47:18 GMT</lastBuildDate>
+<lastBuildDate>Thu, 12 Nov 2026 06:32:02 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Graded: Over 5.5 -120 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">d6fb69c3f8-totals-Over#graded</guid>
+<pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New York Rangers @ Calgary Flames · Wed Nov 11, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -120 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-1&lt;/p&gt;&lt;p&gt;Closing line value: -1.3 pts (closed -125, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 6.5 +121 · Won +1.21u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">43a0ad5ba8-totals-Under#graded</guid>
+<pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.&lt;/p&gt;&lt;p&gt;Final: 4-2&lt;/p&gt;&lt;p&gt;Closing line value: -2.5 pts (closed +124, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 6.5 +118 · Won +1.18u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">e75aa3d5c3-totals-Under#graded</guid>
+<pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Pittsburgh Penguins @ San Jose Sharks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +118 (FanDuel). Won +1.18u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;Closing line value: -2.2 pts (closed +120, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
 <item>
 <title>Wed Nov 11 slate: 4 leans tonight from 122 priced sides</title>
 <link>https://ajur21.github.io/edgeline-ai/digest.html</link>
@@ -22,15 +46,7 @@
 <guid isPermaLink="false">5a2820b80e-spreads-Seattle-Kraken</guid>
 <pubDate>Thu, 12 Nov 2026 01:58:51 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12, 12:00 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Seattle Kraken +1.5 at +100 (Bovada). Our probability 61.2% from game data, the price implies 50.0%, edge +11.2 pts, EV +22.3% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.6 for the home side). Bovada offers +100, which implies only 50.0%. Its bar is 6.7 points: the model's own margin of error on this side, with 16 games behind the thinner team (±0.45 goals on the margin). It clears it by 4.4. Not graded against other books' prices; for reference the market makes it 48.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Seattle Kraken.&lt;/li&gt;&lt;li&gt;Seattle Kraken are rested (5 days).&lt;/li&gt;&lt;li&gt;Carolina Hurricanes without Jordan Staal (C) (+0.1).&lt;/li&gt;&lt;li&gt;Carolina Hurricanes have William Carrier (LW) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Seattle Kraken rate -0.1 a game over 16 (9-7), Carolina Hurricanes +0.7 over 19 (14-5); last season -0.5 and +0.7 a game.&lt;/li&gt;&lt;li&gt;Seattle Kraken trending: last five -1.4 vs 0 on the season.&lt;/li&gt;&lt;li&gt;Carolina Hurricanes trending: last five +2.8 vs +1.7 on the season.&lt;/li&gt;&lt;li&gt;Carolina Hurricanes are rested (5 days).&lt;/li&gt;&lt;li&gt;Seattle Kraken without Curtis Douglas (C), Jared McCann (LW), Ryan Lindgren (D) (-0.1).&lt;/li&gt;&lt;li&gt;Projected margin -0.6 for Seattle Kraken against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: Bovada +100, BetRivers -105, theScore Bet -105, ESPN BET -105, BetOnline.ag -107 and 3 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seattle-Kraken&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Under 6.5 +121 at BetOnline.ag (Medium, +6.0 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#43a0ad5ba8-totals-Under</link>
-<guid isPermaLink="false">43a0ad5ba8-totals-Under</guid>
-<pubDate>Thu, 12 Nov 2026 01:58:51 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +121 (BetOnline.ag). Our probability 51.2% from game data, the price implies 45.2%, edge +6.0 pts, EV +13.2% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at 6.5 is 51.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +121, which implies only 45.2%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 44.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 7.5 a game in Anaheim Ducks's games, 5.9 in Nashville Predators's (league average 6.3).&lt;/li&gt;&lt;li&gt;Projected total 6.4 against 6.5.&lt;/li&gt;&lt;li&gt;Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body. Fewer healthy scorers leans under.&lt;/li&gt;&lt;li&gt;Nashville Predators on a back-to-back; tired legs lean under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag +121, DraftKings +120, theScore Bet +120, Bovada +117, PointsBet +115 and 4 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#43a0ad5ba8-totals-Under&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12, 12:00 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Seattle Kraken +1.5 at +100 (Bovada). Our probability 61.2% from game data, the price implies 50.0%, edge +11.2 pts, EV +22.3% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 61.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.6 for the home side). Bovada offers +100, which implies only 50.0%. Its bar is 6.7 points: the model's own margin of error on this side, with 16 games behind the thinner team (±0.45 goals on the margin). It clears it by 4.4. Not graded against other books' prices; for reference the market makes it 48.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Seattle Kraken.&lt;/li&gt;&lt;li&gt;Seattle Kraken are rested (5 days).&lt;/li&gt;&lt;li&gt;Carolina Hurricanes without Jordan Staal (C) (+0.1).&lt;/li&gt;&lt;li&gt;Carolina Hurricanes have William Carrier (LW) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Seattle Kraken rate -0.1 a game over 16 (9-7), Carolina Hurricanes +0.7 over 19 (14-5); last season -0.5 and +0.7 a game.&lt;/li&gt;&lt;li&gt;Seattle Kraken trending: last five -1.4 vs 0 on the season.&lt;/li&gt;&lt;li&gt;Carolina Hurricanes trending: last five +2.8 vs +1.7 on the season.&lt;/li&gt;&lt;li&gt;Carolina Hurricanes are rested (5 days).&lt;/li&gt;&lt;li&gt;Seattle Kraken without Curtis Douglas (C), Jared McCann (LW), Ryan Lindgren (D) (-0.1).&lt;/li&gt;&lt;li&gt;Projected margin -0.6 for Seattle Kraken against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: Bovada +100, ESPN BET +100, DraftKings -102, Caesars -102, BetRivers -105 and 4 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seattle-Kraken&lt;/p&gt;</description>
 </item>
 <item>
 <title>NHL: Over 5.5 -117 at BetRivers (Low, +3.9 pts)</title>
@@ -41,36 +57,12 @@
 <description>&lt;p&gt;NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetRivers). Our probability 57.8% from game data, the price implies 53.9%, edge +3.9 pts, EV +7.2% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 57.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetRivers offers -117, which implies only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.9. Not graded against other books' prices; for reference the market makes it 53.2%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in New York Islanders's (league average 6.3).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;li&gt;A better price is available now: -116 at Unibet.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Scorers out: Kevin Fiala (LW), lower leg; Jakub Dvorak (D), upper body; Matias Maccelli (LW), lower body and 4 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Unibet -116, BetRivers -117, FanDuel -128, DraftKings -130, theScore Bet -130 and 1 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
-<title>Parlay lean of the day: 2 legs +289 at DraftKings</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
-<guid isPermaLink="false">parlay-2026-11-11</guid>
-<pubDate>Thu, 12 Nov 2026 01:58:51 GMT</pubDate>
-<category>Parlay</category>
-<description>&lt;p&gt;All legs priced at DraftKings. Fair 29.7%, implied 25.7%, EV +15.8% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Under 6.5 +114 · Pittsburgh Penguins @ San Jose Sharks&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -122 · New York Rangers @ Calgary Flames&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
-</item>
-<item>
 <title>Graded: Columbus Blue Jackets ML +107 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">d85899eb0d-h2h-Columbus-Blue-Jackets#graded</guid>
 <pubDate>Wed, 11 Nov 2026 04:04:36 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Florida Panthers @ Columbus Blue Jackets · Tue Nov 10, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Columbus Blue Jackets ML at +107 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-1&lt;/p&gt;&lt;p&gt;Closing line value: -1.6 pts (closed +105, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Lean of the day: Under 6.5 +118 at FanDuel (Medium, +5.7 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-Under</link>
-<guid isPermaLink="false">e75aa3d5c3-totals-Under</guid>
-<pubDate>Tue, 10 Nov 2026 20:39:42 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Pittsburgh Penguins @ San Jose Sharks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +118 (FanDuel). Our probability 51.5% from game data, the price implies 45.9%, edge +5.7 pts, EV +12.4% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at 6.5 is 51.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). FanDuel offers +118, which implies only 45.9%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 2.7. Not graded against other books' prices; for reference the market makes it 45.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.1 a game in San Jose Sharks's games, 6.8 in Pittsburgh Penguins's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.4 against 6.5.&lt;/li&gt;&lt;li&gt;A better price is now available: +120 at DraftKings.&lt;/li&gt;&lt;li&gt;A better price is available now: +120 at DraftKings.&lt;/li&gt;&lt;li&gt;Scorers out: Igor Chernyshov (LW), upper body; Quentin Musty (LW), upper body; Kyle Keyser (G), upper body and 4 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: DraftKings +120, ESPN BET +120, Bovada +115, Caesars +115, PointsBet +115 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-Under&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 5.5 -120 at BetOnline.ag (Low, +3.1 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#d6fb69c3f8-totals-Over</link>
-<guid isPermaLink="false">d6fb69c3f8-totals-Over</guid>
-<pubDate>Tue, 10 Nov 2026 20:39:42 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · New York Rangers @ Calgary Flames · Wed Nov 11, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from game data, the price implies 54.5%, edge +3.1 pts, EV +5.8% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 57.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.1. Not graded against other books' prices; for reference the market makes it 53.1%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.1 a game in Calgary Flames's games, 5.8 in New York Rangers's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;At current prices our edge is 2.7 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.&lt;/li&gt;&lt;li&gt;Scorers out: Kevin Bahl (D), achilles; Jonathan Huberdeau (LW), hip; Connor Zary (C), knee and 7 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag -120, BetMGM -120, DraftKings -125, Caesars -125, PointsBet -125 and 4 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#d6fb69c3f8-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Under 6.5 +122 · Lost -1.00u</title>

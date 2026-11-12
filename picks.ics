@@ -474,134 +474,62 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-11@edgeline
-DTSTAMP:20261112T024718Z
-DTSTART:20261112T004000Z
-DTEND:20261112T061000Z
-SUMMARY:Parlay lean of the day: 2 legs +289 at DraftKings
-DESCRIPTION:All legs priced at DraftKings. Fair 29.7%\, implied 25.7%\, EV 
- +15.8% per unit.\n- NHL: Under 6.5 +114 · Pittsburgh Penguins @ San Jose 
- Sharks\n- NHL: Over 5.5 -122 · New York Rangers @ Calgary Flames\n\nEvery
-  parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261112T024718Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +289 at DraftKings
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:d6fb69c3f8-totals-Over@edgeline
-DTSTAMP:20261111T214846Z
+DTSTAMP:20261112T063202Z
 DTSTART:20261112T004000Z
 DTEND:20261112T034000Z
-SUMMARY:Over 5.5 -120 at BetOnline.ag · in play
+SUMMARY:Over 5.5 -120 at BetOnline.ag · Lost -1.00u
 DESCRIPTION:NHL · New York Rangers @ Calgary Flames · Wed Nov 11\, 7:40 P
- M ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Our probability 57.7% from g
- ame data\, the price implies 54.5%\, edge +3.1 pts\, EV +5.8% per unit. Co
- nfidence: Lean.\nOur probability at 5.5 is 57.7%\, from the game data: thi
- s season's results and margins\, recent form\, rest\, the injury report an
- d home edge (projected total 6.3). BetOnline.ag offers -120\, which implie
- s only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of 
- error here is smaller). It clears it by 0.1. Not graded against other book
- s' prices\; for reference the market makes it 53.1%.\nWhat supports it:\n-
-  Combined scoring 6.1 a game in Calgary Flames's games\, 5.8 in New York R
- angers's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat c
- ould go wrong:\n- At current prices our edge is 2.7 points\, under its bar
-  of 3.0 points\; the pick stays posted and is graded at the price it was p
- osted at.\n- Scorers out: Kevin Bahl (D)\, achilles\; Jonathan Huberdeau (
- LW)\, hip\; Connor Zary (C)\, knee and 7 more. Fewer healthy scorers leans
-  under.\nVerdict: The game data lines up behind this side at this price.\n
- Prices: BetOnline.ag -120\, BetMGM -120\, DraftKings -125\, Caesars -125\,
-  PointsBet -125 and 4 more.\nFull breakdown: https://ajur21.github.io/edge
- line-ai/picks.html#d6fb69c3f8-totals-Over
+ M ET\nTotal: Over 5.5 at -120 (BetOnline.ag). Lost -1.00u.\nFinal: 3-1\nCl
+ osing line value: -1.3 pts (closed -125\, DraftKings close (ESPN)).\nRecor
+ d and every graded lean: https://ajur21.github.io/edgeline-ai/performance.
+ html
 LOCATION:Scotiabank Saddledome\, Calgary
-URL:https://ajur21.github.io/edgeline-ai/picks.html#d6fb69c3f8-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261111T214846Z
+LAST-MODIFIED:20261112T063202Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:43a0ad5ba8-totals-Under@edgeline
-DTSTAMP:20261112T024718Z
+DTSTAMP:20261112T063202Z
 DTSTART:20261112T031000Z
 DTEND:20261112T061000Z
-SUMMARY:Under 6.5 +121 at BetOnline.ag · Medium
+SUMMARY:Under 6.5 +121 at BetOnline.ag · Won +1.21u
 DESCRIPTION:NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11\, 10:1
- 0 PM ET\nTotal: Under 6.5 at +121 (BetOnline.ag). Our probability 51.2% fr
- om game data\, the price implies 45.2%\, edge +6.0 pts\, EV +13.2% per uni
- t. Confidence: Medium.\nOur probability at 6.5 is 51.2%\, from the game da
- ta: this season's results and margins\, recent form\, rest\, the injury re
- port and home edge (projected total 6.4). BetOnline.ag offers +121\, which
-  implies only 45.2%. Its bar is 3.0 points (the floor: the model's own mar
- gin of error here is smaller). It clears it by 3.0. Not graded against oth
- er books' prices\; for reference the market makes it 44.0%.\nWhat supports
-  it:\n- Combined scoring 7.5 a game in Anaheim Ducks's games\, 5.9 in Nash
- ville Predators's (league average 6.3).\n- Projected total 6.4 against 6.5
- .\n- Scorers out: Ryan Poehling (C)\, knee\; Ian Moore (D)\, lower body\; 
- A.J. Greer (LW)\, upper body. Fewer healthy scorers leans under.\n- Nashvi
- lle Predators on a back-to-back\; tired legs lean under.\nVerdict: The gam
- e data lines up behind this side at this price.\nPrices: BetOnline.ag +121
- \, DraftKings +120\, theScore Bet +120\, Bovada +117\, PointsBet +115 and 
- 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#4
- 3a0ad5ba8-totals-Under
+ 0 PM ET\nTotal: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.\nFinal: 4-2\
+ nClosing line value: -2.5 pts (closed +124\, DraftKings close (ESPN)).\nRe
+ cord and every graded lean: https://ajur21.github.io/edgeline-ai/performan
+ ce.html
 LOCATION:Honda Center\, Anaheim
-URL:https://ajur21.github.io/edgeline-ai/picks.html#43a0ad5ba8-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T024718Z
+LAST-MODIFIED:20261112T063202Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +121 at BetOnline.ag · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e75aa3d5c3-totals-Under@edgeline
-DTSTAMP:20261112T024718Z
+DTSTAMP:20261112T063202Z
 DTSTART:20261112T031000Z
 DTEND:20261112T061000Z
-SUMMARY:Lean of the day: Under 6.5 +118 at FanDuel · Medium
+SUMMARY:Under 6.5 +118 at FanDuel · Won +1.18u
 DESCRIPTION:NHL · Pittsburgh Penguins @ San Jose Sharks · Wed Nov 11\, 10
- :10 PM ET\nTotal: Under 6.5 at +118 (FanDuel). Our probability 51.5% from 
- game data\, the price implies 45.9%\, edge +5.7 pts\, EV +12.4% per unit. 
- Confidence: Medium.\nOur probability at 6.5 is 51.5%\, from the game data:
-  this season's results and margins\, recent form\, rest\, the injury repor
- t and home edge (projected total 6.4). FanDuel offers +118\, which implies
-  only 45.9%. Its bar is 3.0 points (the floor: the model's own margin of e
- rror here is smaller). It clears it by 2.7. Not graded against other books
- ' prices\; for reference the market makes it 45.8%.\nWhat supports it:\n- 
- Combined scoring 6.1 a game in San Jose Sharks's games\, 6.8 in Pittsburgh
-  Penguins's (league average 6.4).\n- Projected total 6.4 against 6.5.\n- A
-  better price is now available: +120 at DraftKings.\n- A better price is a
- vailable now: +120 at DraftKings.\n- Scorers out: Igor Chernyshov (LW)\, u
- pper body\; Quentin Musty (LW)\, upper body\; Kyle Keyser (G)\, upper body
-  and 4 more. Fewer healthy scorers leans under.\nVerdict: The game data li
- nes up behind this side at this price.\nPrices: DraftKings +120\, ESPN BET
-  +120\, Bovada +115\, Caesars +115\, PointsBet +115 and 5 more.\nFull brea
- kdown: https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-U
- nder
+ :10 PM ET\nTotal: Under 6.5 at +118 (FanDuel). Won +1.18u.\nFinal: 3-2\nCl
+ osing line value: -2.2 pts (closed +120\, DraftKings close (ESPN)).\nRecor
+ d and every graded lean: https://ajur21.github.io/edgeline-ai/performance.
+ html
 LOCATION:SAP Center at San Jose\, San Jose
-URL:https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T024718Z
+LAST-MODIFIED:20261112T063202Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Under 6.5 +118 at FanDuel · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
-DTSTAMP:20261112T015851Z
+DTSTAMP:20261112T063202Z
 DTSTART:20261112T170000Z
 DTEND:20261112T200000Z
 SUMMARY:Seattle Kraken +1.5 +100 at Bovada · Medium
@@ -625,15 +553,15 @@ DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
  ina Hurricanes are rested (5 days).\n- Seattle Kraken without Curtis Dougl
  as (C)\, Jared McCann (LW)\, Ryan Lindgren (D) (-0.1).\n- Projected margin
   -0.6 for Seattle Kraken against +1.5.\nVerdict: More working against this
-  one than for it\; size down.\nPrices: Bovada +100\, BetRivers -105\, theS
- core Bet -105\, ESPN BET -105\, BetOnline.ag -107 and 3 more.\nFull breakd
- own: https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Se
- attle-Kraken
+  one than for it\; size down.\nPrices: Bovada +100\, ESPN BET +100\, Draft
+ Kings -102\, Caesars -102\, BetRivers -105 and 4 more.\nFull breakdown: ht
+ tps://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seattle-K
+ raken
 LOCATION:Veikkaus Arena\, Helsinki
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seat
  tle-Kraken
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T015851Z
+LAST-MODIFIED:20261112T063202Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

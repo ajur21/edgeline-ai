@@ -10883,8 +10883,8 @@
    "Edge 5.7 points over the price, 2.7 past its bar of 3.0",
    "Market reference 45.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.18,
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "availability": null,
   "current": {
@@ -11275,7 +11275,30 @@
     }
    ]
   },
-  "potd": "2026-11-11"
+  "potd": "2026-11-11",
+  "result": "Win",
+  "score": "3-2",
+  "finalScore": {
+   "home": 2,
+   "away": 3
+  },
+  "gradedAt": "2026-11-12T06:32:02.419Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892695",
+   "line": 6.5,
+   "odds": 120,
+   "fair": 0.4365,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 114,
+    "fair": 0.4486
+   },
+   "samples": 3
+  },
+  "clv": -0.0222,
+  "lineMove": null
  },
  {
   "key": "d6fb69c3f844f53b1bb2619066cd7947|totals|Over|5.5",
@@ -11366,8 +11389,8 @@
    "Edge 3.1 points over the price, 0.1 past its bar of 3.0",
    "Market reference 53.1%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "availability": null,
   "current": {
@@ -11741,7 +11764,30 @@
      "fair": 0.5354
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "3-1",
+  "finalScore": {
+   "home": 1,
+   "away": 3
+  },
+  "gradedAt": "2026-11-12T06:32:02.419Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892691",
+   "line": 5.5,
+   "odds": -125,
+   "fair": 0.5325,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
+   },
+   "samples": 2
+  },
+  "clv": -0.013,
+  "lineMove": null
  },
  {
   "key": "d85899eb0ddff2e6e18a63b0c83bc7b8|h2h|Columbus Blue Jackets|null",
@@ -12132,8 +12178,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-10",
   "date": "2026-11-10",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-10T20:39:42.407Z",
   "book": "FanDuel",
   "legs": [
@@ -12149,14 +12195,16 @@
   "decimal": 7.9216,
   "odds": 692,
   "fairProb": 0.166,
-  "ev": 0.315
+  "ev": 0.315,
+  "gradedAt": "2026-11-12T06:32:02.419Z",
+  "result": "Loss"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-11",
   "date": "2026-11-11",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-11T14:08:52.538Z",
   "book": "DraftKings",
   "legs": [
@@ -12170,7 +12218,9 @@
   "decimal": 3.8941,
   "odds": 289,
   "fairProb": 0.2973,
-  "ev": 0.1578
+  "ev": 0.1578,
+  "gradedAt": "2026-11-12T06:32:02.419Z",
+  "result": "Loss"
  },
  {
   "key": "5a2820b80e20b69258bd5eb25c18eb78|spreads|Seattle Kraken|1.5",
@@ -12197,12 +12247,13 @@
   "prices": {
    "BetRivers": -105,
    "FanDuel": -114,
-   "DraftKings": -108,
+   "DraftKings": -102,
    "BetOnline.ag": -107,
    "theScore Bet": -105,
    "Bovada": 100,
-   "Caesars": -107,
-   "ESPN BET": -105
+   "Caesars": -102,
+   "ESPN BET": 100,
+   "BetMGM": -105
   },
   "books": 7,
   "anchor": "Pinnacle",
@@ -12432,8 +12483,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -108,
-      "away": -112
+      "home": -102,
+      "away": -118
      },
      "total": 6.5,
      "totalOdds": {
@@ -12471,6 +12522,12 @@
     "line": 1.5,
     "odds": -108,
     "fair": 0.4957
+   },
+   {
+    "at": "2026-11-12T06:32:02.419Z",
+    "line": 1.5,
+    "odds": -102,
+    "fair": 0.4826
    }
   ],
   "dk": {
@@ -12482,25 +12539,25 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -108,
-    "fair": 0.4956702459300312
+    "odds": -102,
+    "fair": 0.4826358742837298
    },
    "moved": "away",
-   "label": "DraftKings opened +1.5 (-125), now +1.5 (-108)"
+   "label": "DraftKings opened +1.5 (-125), now +1.5 (-102)"
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 5,
+   "n": 6,
    "open": {
     "line": 1,
     "odds": 100
    },
    "now": {
     "line": 1.5,
-    "odds": 104
+    "odds": 109
    },
    "moved": "away",
-   "label": "The market (5 books) opened +1 (+100), now +1.5 (+104)"
+   "label": "The market (6 books) opened +1 (+100), now +1.5 (+109)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -12522,8 +12579,8 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 48.0% (-2.0 points against the best price). For reference only.",
-    "Market: DraftKings opened +1.5 (-125), now +1.5 (-108), moving against this side since the open.",
-    "Market: The market (5 books) opened +1 (+100), now +1.5 (+104), the consensus moving against this side since the open.",
+    "Market: DraftKings opened +1.5 (-125), now +1.5 (-102), moving against this side since the open.",
+    "Market: The market (6 books) opened +1 (+100), now +1.5 (+109), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Kraken Philipp Grubauer · Hurricanes Pyotr Kochetkov.",
     "Records: Carolina Hurricanes 14-3-2 · Seattle Kraken 9-6-1 · Veikkaus Arena, Helsinki."
@@ -12534,25 +12591,26 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "JfMmDBLF1lxRJoEg2pIW",
-   "at": "2026-11-12T01:58:51.832Z",
+   "at": "2026-11-12T06:32:02.419Z",
    "books": {
-    "Caesars": -107,
+    "Caesars": -102,
     "FanDuel": -114,
-    "DraftKings": -108,
-    "ESPN BET": -105,
+    "DraftKings": -102,
+    "ESPN BET": 100,
+    "BetMGM": -105,
     "Bovada": 100
    },
-   "n": 5,
+   "n": 6,
    "best": {
-    "book": "Bovada",
+    "book": "ESPN BET",
     "odds": 100
    },
-   "fair": 0.492,
-   "fairBooks": 5,
+   "fair": 0.4862,
+   "fairBooks": 6,
    "vendor": {
     "line": 1.5,
-    "odds": 104,
-    "fair": 0.4902,
+    "odds": 109,
+    "fair": 0.4785,
     "sameLine": true
    },
    "open": {
@@ -12561,12 +12619,12 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 104
+    "odds": 109
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T01:58:51.832Z",
+  "pricesAt": "2026-11-12T06:32:02.419Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T01:58:51.832Z",
@@ -12576,6 +12634,15 @@
     "odds": 104,
     "best": 100,
     "n": 5
+   },
+   {
+    "at": "2026-11-12T06:32:02.419Z",
+    "fair": 0.4862,
+    "vendorFair": 0.4785,
+    "line": 1.5,
+    "odds": 109,
+    "best": 100,
+    "n": 6
    }
   ]
  },
@@ -12668,8 +12735,8 @@
    "Edge 6.0 points over the price, 3.0 past its bar of 3.0",
    "Market reference 44.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.21,
   "loggedAt": "2026-11-12T01:58:51.832Z",
   "availability": null,
   "current": {
@@ -12930,7 +12997,30 @@
     "best": 120,
     "n": 5
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "4-2",
+  "finalScore": {
+   "home": 2,
+   "away": 4
+  },
+  "gradedAt": "2026-11-12T06:32:02.419Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892694",
+   "line": 6.5,
+   "odds": 124,
+   "fair": 0.4279,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": -105,
+    "fair": 0.4892
+   },
+   "samples": 1
+  },
+  "clv": -0.0246,
+  "lineMove": null
  },
  {
   "key": "2df93287814e2ffcbf1186e138b4a3d8|totals|Over|5.5",
