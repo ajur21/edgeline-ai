@@ -12247,11 +12247,11 @@
   "prices": {
    "BetRivers": -105,
    "FanDuel": -104,
-   "DraftKings": -102,
+   "DraftKings": 102,
    "BetOnline.ag": -107,
    "theScore Bet": -105,
-   "Bovada": 105,
-   "Caesars": -103,
+   "Bovada": 102,
+   "Caesars": 107,
    "ESPN BET": 100,
    "BetMGM": 105
   },
@@ -12488,8 +12488,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -102,
-      "away": -118
+      "home": 102,
+      "away": -122
      },
      "total": 6.5,
      "totalOdds": {
@@ -12533,6 +12533,12 @@
     "line": 1.5,
     "odds": -102,
     "fair": 0.4826
+   },
+   {
+    "at": "2026-11-12T16:53:25.490Z",
+    "line": 1.5,
+    "odds": 102,
+    "fair": 0.4739
    }
   ],
   "dk": {
@@ -12544,11 +12550,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -102,
-    "fair": 0.4826358742837298
+    "odds": 102,
+    "fair": 0.4739134147382802
    },
    "moved": "away",
-   "label": "DraftKings opened +1.5 (-125), now +1.5 (-102)"
+   "label": "DraftKings opened +1.5 (-125), now +1.5 (+102)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -12574,7 +12580,7 @@
     "Carolina Hurricanes without Jordan Staal (C) (+0.1).",
     "Carolina Hurricanes have William Carrier (LW) listed day-to-day or questionable.",
     "A better price is now available: +105 at BetMGM.",
-    "A better price is available now: +105 at BetMGM."
+    "A better price is available now: +107 at Caesars."
    ],
    "risks": [
     "Seattle Kraken rate -0.1 a game over 16 (9-7), Carolina Hurricanes +0.7 over 19 (14-5); last season -0.5 and +0.7 a game.",
@@ -12587,7 +12593,7 @@
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 48.0% (-2.0 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (48.0% → 46.9%).",
-    "Market: DraftKings opened +1.5 (-125), now +1.5 (-102), moving against this side since the open.",
+    "Market: DraftKings opened +1.5 (-125), now +1.5 (+102), moving against this side since the open.",
     "Market: The market (6 books) opened +1 (+100), now +1.5 (+109), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Kraken Philipp Grubauer · Hurricanes Pyotr Kochetkov.",
@@ -12599,21 +12605,21 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "JfMmDBLF1lxRJoEg2pIW",
-   "at": "2026-11-12T14:08:32.813Z",
+   "at": "2026-11-12T16:53:25.490Z",
    "books": {
-    "Caesars": -103,
+    "Caesars": 107,
     "FanDuel": -104,
-    "DraftKings": -102,
+    "DraftKings": 102,
     "ESPN BET": 100,
     "BetMGM": 105,
-    "Bovada": 105
+    "Bovada": 102
    },
    "n": 6,
    "best": {
-    "book": "BetMGM",
-    "odds": 105
+    "book": "Caesars",
+    "odds": 107
    },
-   "fair": 0.478,
+   "fair": 0.474,
    "fairBooks": 6,
    "vendor": {
     "line": 1.5,
@@ -12632,7 +12638,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T14:08:32.813Z",
+  "pricesAt": "2026-11-12T16:53:25.490Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T01:58:51.832Z",
@@ -12659,6 +12665,15 @@
     "line": 1.5,
     "odds": 109,
     "best": 105,
+    "n": 6
+   },
+   {
+    "at": "2026-11-12T16:53:25.490Z",
+    "fair": 0.474,
+    "vendorFair": 0.4785,
+    "line": 1.5,
+    "odds": 109,
+    "best": 107,
     "n": 6
    }
   ],
@@ -13088,7 +13103,7 @@
    "DraftKings": -130,
    "BetRivers": -117,
    "theScore Bet": -130,
-   "Unibet": -118,
+   "Unibet": -130,
    "ESPN BET": -135,
    "PointsBet": -125
   },
@@ -13423,20 +13438,20 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "x1vTmnEgDjSV3MKkhakz",
-   "at": "2026-11-12T14:08:32.813Z",
+   "at": "2026-11-12T16:53:25.490Z",
    "books": {
     "FanDuel": -140,
     "DraftKings": -130,
-    "Unibet": -118,
+    "Unibet": -130,
     "ESPN BET": -135,
     "PointsBet": -125
    },
    "n": 5,
    "best": {
-    "book": "Unibet",
-    "odds": -118
+    "book": "PointsBet",
+    "odds": -125
    },
-   "fair": 0.5389,
+   "fair": 0.5435,
    "fairBooks": 5,
    "vendor": {
     "line": 6,
@@ -13455,7 +13470,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T14:08:32.813Z",
+  "pricesAt": "2026-11-12T16:53:25.490Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T01:58:51.832Z",
@@ -13473,6 +13488,15 @@
     "line": 6,
     "odds": 101,
     "best": -118,
+    "n": 5
+   },
+   {
+    "at": "2026-11-12T16:53:25.490Z",
+    "fair": 0.5435,
+    "vendorFair": 0.4975,
+    "line": 6,
+    "odds": 101,
+    "best": -125,
     "n": 5
    }
   ],

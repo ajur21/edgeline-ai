@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-12T14:08:32.813Z",
+  "trackedAt": "2026-11-12T16:53:25.490Z",
   "playOfDay": {
     "id": "5a2820b80e-spreads-Seattle-Kraken",
     "sport": "NHL",
@@ -25,15 +26,15 @@ window.PICKS_DATA = {
     "prices": {
       "BetRivers": -105,
       "FanDuel": -104,
-      "DraftKings": -102,
+      "DraftKings": 102,
       "BetOnline.ag": -107,
       "theScore Bet": -105,
-      "Bovada": 105,
-      "Caesars": -103,
+      "Bovada": 102,
+      "Caesars": 107,
       "ESPN BET": 100,
       "BetMGM": 105
     },
-    "pricesAt": "2026-11-12T14:08:32.813Z",
+    "pricesAt": "2026-11-12T16:53:25.490Z",
     "books": 7,
     "anchor": "Pinnacle",
     "modelProb": 0.6116,
@@ -97,7 +98,7 @@ window.PICKS_DATA = {
         "Carolina Hurricanes without Jordan Staal (C) (+0.1).",
         "Carolina Hurricanes have William Carrier (LW) listed day-to-day or questionable.",
         "A better price is now available: +105 at BetMGM.",
-        "A better price is available now: +105 at BetMGM."
+        "A better price is available now: +107 at Caesars."
       ],
       "risks": [
         "Seattle Kraken rate -0.1 a game over 16 (9-7), Carolina Hurricanes +0.7 over 19 (14-5); last season -0.5 and +0.7 a game.",
@@ -110,7 +111,7 @@ window.PICKS_DATA = {
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 48.0% (-2.0 points against the best price). For reference only.",
         "Market: the sharp line has moved away since it was logged (48.0% → 46.9%).",
-        "Market: DraftKings opened +1.5 (-125), now +1.5 (-102), moving against this side since the open.",
+        "Market: DraftKings opened +1.5 (-125), now +1.5 (+102), moving against this side since the open.",
         "Market: The market (6 books) opened +1 (+100), now +1.5 (+109), the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Kraken Philipp Grubauer · Hurricanes Pyotr Kochetkov.",
@@ -261,8 +262,8 @@ window.PICKS_DATA = {
         "now": {
           "spread": 1.5,
           "spreadOdds": {
-            "home": -102,
-            "away": -118
+            "home": 102,
+            "away": -122
           },
           "total": 6.5,
           "totalOdds": {
@@ -324,11 +325,11 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": 1.5,
-        "odds": -102,
-        "fair": 0.4826358742837298
+        "odds": 102,
+        "fair": 0.4739134147382802
       },
       "moved": "away",
-      "label": "DraftKings opened +1.5 (-125), now +1.5 (-102)"
+      "label": "DraftKings opened +1.5 (-125), now +1.5 (+102)"
     },
     "dkHistory": [
       {
@@ -342,6 +343,12 @@ window.PICKS_DATA = {
         "line": 1.5,
         "odds": -102,
         "fair": 0.4826
+      },
+      {
+        "at": "2026-11-12T16:53:25.490Z",
+        "line": 1.5,
+        "odds": 102,
+        "fair": 0.4739
       }
     ],
     "mkt": {
@@ -359,13 +366,13 @@ window.PICKS_DATA = {
       "label": "The market (6 books) opened +1 (+100), now +1.5 (+109)"
     },
     "sgo": {
-      "at": "2026-11-12T14:08:32.813Z",
+      "at": "2026-11-12T16:53:25.490Z",
       "n": 6,
       "best": {
-        "book": "BetMGM",
-        "odds": 105
+        "book": "Caesars",
+        "odds": 107
       },
-      "fair": 0.478,
+      "fair": 0.474,
       "vendorFair": 0.4785,
       "open": {
         "line": 1,
@@ -403,6 +410,15 @@ window.PICKS_DATA = {
         "odds": 109,
         "best": 105,
         "n": 6
+      },
+      {
+        "at": "2026-11-12T16:53:25.490Z",
+        "fair": 0.474,
+        "vendorFair": 0.4785,
+        "line": 1.5,
+        "odds": 109,
+        "best": 107,
+        "n": 6
       }
     ],
     "status": "pending",
@@ -430,7 +446,9 @@ window.PICKS_DATA = {
       "bar": 0.0672
     },
     "standing": "clears",
-    "availability": null
+    "availability": null,
+    "kind": "lean",
+    "lockedAt": "2026-11-12T01:58:51.832Z"
   },
   "parlayOfDay": {
     "id": "parlay-2026-11-12",
@@ -443,26 +461,62 @@ window.PICKS_DATA = {
     "status": "pending",
     "result": null,
     "units": null,
+    "lockedAt": "2026-11-12T14:08:32.813Z",
     "legs": [
       {
         "id": "5a2820b80e-spreads-Seattle-Kraken",
+        "kind": "lean",
         "pick": "Seattle Kraken +1.5",
         "event": "Carolina Hurricanes @ Seattle Kraken",
         "sport": "NHL",
         "price": -105,
+        "commence": "2026-11-12T17:00:00Z",
         "started": false,
-        "result": null
+        "result": null,
+        "void": false
       },
       {
         "id": "2df9328781-totals-Over",
+        "kind": "lean",
         "pick": "Over 5.5",
         "event": "New York Islanders @ Los Angeles Kings",
         "sport": "NHL",
         "price": -117,
+        "commence": "2026-11-13T03:00:00Z",
         "started": false,
-        "result": null
+        "result": null,
+        "void": false
       }
     ]
+  },
+  "ofDay": {
+    "date": "2026-11-12",
+    "lockAt": "2026-11-12T20:30:00.000Z",
+    "playLocked": true,
+    "parlayLocked": true,
+    "closed": false,
+    "checkedAt": null,
+    "last": {
+      "play": {
+        "date": "2026-11-11",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Pittsburgh Penguins @ San Jose Sharks",
+        "pick": "Under 6.5",
+        "odds": 118,
+        "status": "graded",
+        "result": "Win",
+        "units": 1.18
+      },
+      "parlay": {
+        "date": "2026-11-11",
+        "legs": 2,
+        "odds": 289,
+        "status": "graded",
+        "result": "Loss",
+        "units": -1
+      }
+    }
   },
   "picks": [
     {
@@ -487,15 +541,15 @@ window.PICKS_DATA = {
       "prices": {
         "BetRivers": -105,
         "FanDuel": -104,
-        "DraftKings": -102,
+        "DraftKings": 102,
         "BetOnline.ag": -107,
         "theScore Bet": -105,
-        "Bovada": 105,
-        "Caesars": -103,
+        "Bovada": 102,
+        "Caesars": 107,
         "ESPN BET": 100,
         "BetMGM": 105
       },
-      "pricesAt": "2026-11-12T14:08:32.813Z",
+      "pricesAt": "2026-11-12T16:53:25.490Z",
       "books": 7,
       "anchor": "Pinnacle",
       "modelProb": 0.6116,
@@ -559,7 +613,7 @@ window.PICKS_DATA = {
           "Carolina Hurricanes without Jordan Staal (C) (+0.1).",
           "Carolina Hurricanes have William Carrier (LW) listed day-to-day or questionable.",
           "A better price is now available: +105 at BetMGM.",
-          "A better price is available now: +105 at BetMGM."
+          "A better price is available now: +107 at Caesars."
         ],
         "risks": [
           "Seattle Kraken rate -0.1 a game over 16 (9-7), Carolina Hurricanes +0.7 over 19 (14-5); last season -0.5 and +0.7 a game.",
@@ -572,7 +626,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 48.0% (-2.0 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (48.0% → 46.9%).",
-          "Market: DraftKings opened +1.5 (-125), now +1.5 (-102), moving against this side since the open.",
+          "Market: DraftKings opened +1.5 (-125), now +1.5 (+102), moving against this side since the open.",
           "Market: The market (6 books) opened +1 (+100), now +1.5 (+109), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Kraken Philipp Grubauer · Hurricanes Pyotr Kochetkov.",
@@ -723,8 +777,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -102,
-              "away": -118
+              "home": 102,
+              "away": -122
             },
             "total": 6.5,
             "totalOdds": {
@@ -786,11 +840,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": -102,
-          "fair": 0.4826358742837298
+          "odds": 102,
+          "fair": 0.4739134147382802
         },
         "moved": "away",
-        "label": "DraftKings opened +1.5 (-125), now +1.5 (-102)"
+        "label": "DraftKings opened +1.5 (-125), now +1.5 (+102)"
       },
       "dkHistory": [
         {
@@ -804,6 +858,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -102,
           "fair": 0.4826
+        },
+        {
+          "at": "2026-11-12T16:53:25.490Z",
+          "line": 1.5,
+          "odds": 102,
+          "fair": 0.4739
         }
       ],
       "mkt": {
@@ -821,13 +881,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1 (+100), now +1.5 (+109)"
       },
       "sgo": {
-        "at": "2026-11-12T14:08:32.813Z",
+        "at": "2026-11-12T16:53:25.490Z",
         "n": 6,
         "best": {
-          "book": "BetMGM",
-          "odds": 105
+          "book": "Caesars",
+          "odds": 107
         },
-        "fair": 0.478,
+        "fair": 0.474,
         "vendorFair": 0.4785,
         "open": {
           "line": 1,
@@ -864,6 +924,15 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": 109,
           "best": 105,
+          "n": 6
+        },
+        {
+          "at": "2026-11-12T16:53:25.490Z",
+          "fair": 0.474,
+          "vendorFair": 0.4785,
+          "line": 1.5,
+          "odds": 109,
+          "best": 107,
           "n": 6
         }
       ],
@@ -918,11 +987,11 @@ window.PICKS_DATA = {
         "DraftKings": -130,
         "BetRivers": -117,
         "theScore Bet": -130,
-        "Unibet": -118,
+        "Unibet": -130,
         "ESPN BET": -135,
         "PointsBet": -125
       },
-      "pricesAt": "2026-11-12T14:08:32.813Z",
+      "pricesAt": "2026-11-12T16:53:25.490Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.5782,
@@ -1235,13 +1304,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 5.5 (+100), now 6 (+101)"
       },
       "sgo": {
-        "at": "2026-11-12T14:08:32.813Z",
+        "at": "2026-11-12T16:53:25.490Z",
         "n": 5,
         "best": {
-          "book": "Unibet",
-          "odds": -118
+          "book": "PointsBet",
+          "odds": -125
         },
-        "fair": 0.5389,
+        "fair": 0.5435,
         "vendorFair": 0.4975,
         "open": {
           "line": 5.5,
@@ -1269,6 +1338,15 @@ window.PICKS_DATA = {
           "line": 6,
           "odds": 101,
           "best": -118,
+          "n": 5
+        },
+        {
+          "at": "2026-11-12T16:53:25.490Z",
+          "fair": 0.5435,
+          "vendorFair": 0.4975,
+          "line": 6,
+          "odds": 101,
+          "best": -125,
           "n": 5
         }
       ],

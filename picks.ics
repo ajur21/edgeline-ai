@@ -529,7 +529,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
-DTSTAMP:20261112T140832Z
+DTSTAMP:20261112T165325Z
 DTSTART:20261112T170000Z
 DTEND:20261112T200000Z
 SUMMARY:Lean of the day: Seattle Kraken +1.5 +100 at Bovada · Medium
@@ -547,22 +547,22 @@ DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
  ed (5 days).\n- Carolina Hurricanes without Jordan Staal (C) (+0.1).\n- Ca
  rolina Hurricanes have William Carrier (LW) listed day-to-day or questiona
  ble.\n- A better price is now available: +105 at BetMGM.\n- A better price
-  is available now: +105 at BetMGM.\nWhat could go wrong:\n- Seattle Kraken
-  rate -0.1 a game over 16 (9-7)\, Carolina Hurricanes +0.7 over 19 (14-5)\
- ; last season -0.5 and +0.7 a game.\n- Seattle Kraken trending: last five 
- -1.4 vs 0 on the season.\n- Carolina Hurricanes trending: last five +2.8 v
- s +1.7 on the season.\n- Carolina Hurricanes are rested (5 days).\n- Seatt
- le Kraken without Curtis Douglas (C)\, Jared McCann (LW)\, Ryan Lindgren (
- D) (-0.1).\n- Projected margin -0.6 for Seattle Kraken against +1.5.\nVerd
- ict: The game data lines up behind this side at this price.\nPrices: Bovad
- a +105\, BetMGM +105\, ESPN BET +100\, DraftKings -102\, Caesars -103 and 
- 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#5
- a2820b80e-spreads-Seattle-Kraken
+  is available now: +107 at Caesars.\nWhat could go wrong:\n- Seattle Krake
+ n rate -0.1 a game over 16 (9-7)\, Carolina Hurricanes +0.7 over 19 (14-5)
+ \; last season -0.5 and +0.7 a game.\n- Seattle Kraken trending: last five
+  -1.4 vs 0 on the season.\n- Carolina Hurricanes trending: last five +2.8 
+ vs +1.7 on the season.\n- Carolina Hurricanes are rested (5 days).\n- Seat
+ tle Kraken without Curtis Douglas (C)\, Jared McCann (LW)\, Ryan Lindgren 
+ (D) (-0.1).\n- Projected margin -0.6 for Seattle Kraken against +1.5.\nVer
+ dict: The game data lines up behind this side at this price.\nPrices: Caes
+ ars +107\, BetMGM +105\, DraftKings +102\, Bovada +102\, ESPN BET +100 and
+  4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#
+ 5a2820b80e-spreads-Seattle-Kraken
 LOCATION:Veikkaus Arena\, Helsinki
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seat
  tle-Kraken
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T140832Z
+LAST-MODIFIED:20261112T165325Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -573,7 +573,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-12@edgeline
-DTSTAMP:20261112T140832Z
+DTSTAMP:20261112T165325Z
 DTSTART:20261112T170000Z
 DTEND:20261113T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
@@ -584,7 +584,7 @@ DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
  ays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261112T140832Z
+LAST-MODIFIED:20261112T165325Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -595,7 +595,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2df9328781-totals-Over@edgeline
-DTSTAMP:20261112T140832Z
+DTSTAMP:20261112T165325Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -613,13 +613,13 @@ DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
  hat could go wrong:\n- Scorers out: Kevin Fiala (LW)\, lower leg\; Jakub D
  vorak (D)\, upper body\; Matias Maccelli (LW)\, lower body and 4 more. Few
  er healthy scorers leans under.\nVerdict: The game data lines up behind th
- is side at this price.\nPrices: BetRivers -117\, Unibet -118\, PointsBet -
- 125\, DraftKings -130\, theScore Bet -130 and 2 more.\nFull breakdown: htt
+ is side at this price.\nPrices: BetRivers -117\, PointsBet -125\, DraftKin
+ gs -130\, theScore Bet -130\, Unibet -130 and 2 more.\nFull breakdown: htt
  ps://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T140832Z
+LAST-MODIFIED:20261112T165325Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
