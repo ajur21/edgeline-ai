@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 15,
-    "losses": 14,
+    "losses": 15,
     "pushes": 0
   },
-  "units": -1.86,
-  "roi": -6.4,
-  "avgEdge": 9.5,
-  "graded": 29,
+  "units": -2.86,
+  "roi": -9.5,
+  "avgEdge": 9.6,
+  "graded": 30,
   "daily": [
     {
       "date": "2026-11-05",
@@ -37,13 +37,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-11",
       "units": -1.86
+    },
+    {
+      "date": "2026-11-12",
+      "units": -2.86
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 0.27,
-      "record": "10-8"
+      "units": -0.73,
+      "record": "10-9"
     },
     {
       "sport": "NBA",
@@ -57,6 +61,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-12",
+      "sport": "NHL",
+      "event": "Carolina Hurricanes @ Seattle Kraken",
+      "pick": "Seattle Kraken +1.5",
+      "odds": 100,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0261,
+      "closeOdds": 102,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-11",
       "sport": "NHL",
@@ -221,21 +240,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "Soccer",
-      "event": "Crystal Palace vs. Liverpool",
-      "pick": "Under 3 goals",
-      "odds": -105,
-      "result": "Loss",
-      "units": -1,
-      "clv": null,
-      "closeOdds": -140,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "away",
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -280,14 +284,94 @@ window.PERF_DATA = {
       "wins": 2,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-12",
+      "units": -1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 2,
-    "losses": 4,
+    "losses": 5,
     "pushes": 0,
-    "units": -2.05,
-    "n": 6
+    "units": -3.05,
+    "n": 7,
+    "props": 0,
+    "recent": [
+      {
+        "date": "2026-11-12",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Carolina Hurricanes @ Seattle Kraken",
+        "pick": "Seattle Kraken +1.5",
+        "odds": 100,
+        "result": "Loss",
+        "units": -1
+      },
+      {
+        "date": "2026-11-11",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Pittsburgh Penguins @ San Jose Sharks",
+        "pick": "Under 6.5",
+        "odds": 118,
+        "result": "Win",
+        "units": 1.18
+      },
+      {
+        "date": "2026-11-10",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Florida Panthers @ Columbus Blue Jackets",
+        "pick": "Columbus Blue Jackets ML",
+        "odds": 107,
+        "result": "Loss",
+        "units": -1
+      },
+      {
+        "date": "2026-11-08",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Florida Panthers @ Boston Bruins",
+        "pick": "Boston Bruins ML",
+        "odds": -130,
+        "result": "Win",
+        "units": 0.77
+      },
+      {
+        "date": "2026-11-07",
+        "kind": "lean",
+        "sport": "Soccer",
+        "event": "Austin FC vs. Portland Timbers",
+        "pick": "Austin FC ML",
+        "odds": 350,
+        "result": "Loss",
+        "units": -1
+      },
+      {
+        "date": "2026-11-06",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Columbus Blue Jackets @ Buffalo Sabres",
+        "pick": "Columbus Blue Jackets ML",
+        "odds": 153,
+        "result": "Loss",
+        "units": -1
+      },
+      {
+        "date": "2026-11-05",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Philadelphia Flyers @ New York Rangers",
+        "pick": "Philadelphia Flyers ML",
+        "odds": 133,
+        "result": "Loss",
+        "units": -1
+      }
+    ]
   },
   "parlays": {
     "wins": 0,
@@ -297,24 +381,24 @@ window.PERF_DATA = {
     "n": 6
   },
   "clv": {
-    "n": 23,
-    "avg": -1.67,
+    "n": 24,
+    "avg": -1.71,
     "beat": 4,
-    "beatPct": 17.4,
-    "graded": 29,
+    "beatPct": 16.7,
+    "graded": 30,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 29,
+    "espnCloses": 30,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 15,
-      "losses": 14,
+      "losses": 15,
       "pushes": 0,
-      "units": -1.86,
-      "n": 29,
-      "roi": -6.4,
+      "units": -2.86,
+      "n": 30,
+      "roi": -9.5,
       "pending": 2,
       "since": "2026-11-05"
     },

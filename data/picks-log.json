@@ -12320,8 +12320,8 @@
    "Edge 11.2 points over the price, 4.4 past its bar of 6.7",
    "Market reference 48.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-12T01:58:51.832Z",
   "availability": null,
   "current": {
@@ -12698,7 +12698,30 @@
     }
    ]
   },
-  "potd": "2026-11-12"
+  "potd": "2026-11-12",
+  "result": "Loss",
+  "score": "4-1",
+  "finalScore": {
+   "home": 1,
+   "away": 4
+  },
+  "gradedAt": "2026-11-12T20:36:23.500Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401891808",
+   "line": 1.5,
+   "odds": 102,
+   "fair": 0.4739,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": -125,
+    "fair": 0.5325
+   },
+   "samples": 2
+  },
+  "clv": -0.0261,
+  "lineMove": null
  },
  {
   "key": "43a0ad5ba8bff6cdca19964348b53eff|totals|Under|6.5",
@@ -13100,12 +13123,12 @@
   "book": "BetRivers",
   "prices": {
    "FanDuel": -140,
-   "DraftKings": -130,
+   "DraftKings": -135,
    "BetRivers": -117,
    "theScore Bet": -130,
-   "Unibet": -130,
+   "Unibet": -127,
    "ESPN BET": -135,
-   "PointsBet": -125
+   "PointsBet": -130
   },
   "books": 4,
   "anchor": null,
@@ -13168,12 +13191,12 @@
   "loggedAt": "2026-11-12T01:58:51.832Z",
   "availability": null,
   "current": {
-   "at": "2026-11-12T14:08:32.813Z",
-   "odds": -118,
+   "at": "2026-11-12T20:36:23.500Z",
+   "odds": -127,
    "book": "BetRivers",
-   "fair": 0.5402,
-   "edge": 0.0373,
-   "modelProb": 0.5786,
+   "fair": 0.5469,
+   "edge": 0.0185,
+   "modelProb": 0.578,
    "bar": 0.03
   },
   "history": [
@@ -13186,6 +13209,11 @@
     "at": "2026-11-12T14:08:32.813Z",
     "odds": -118,
     "fair": 0.5402
+   },
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "odds": -127,
+    "fair": 0.5469
    }
   ],
   "context": {
@@ -13211,40 +13239,16 @@
    "injuries": {
     "Los Angeles Kings": [
      {
-      "name": "Drew Doughty",
-      "pos": "D",
-      "athleteId": "3995",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3995.png",
-      "status": "Day-To-Day",
-      "type": "Lower Body",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-12",
-      "date": "2026-11-11T20:40Z",
-      "note": "day-to-day"
-     },
-     {
       "name": "Erik Gustafsson",
       "pos": "D",
       "athleteId": "5774",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5774.png",
-      "status": "Day-To-Day",
+      "status": "Out",
       "type": "Undisclosed",
       "detail": "Not Specified",
-      "returnDate": "2026-11-12",
-      "date": "2026-11-11T14:56Z",
-      "note": "day-to-day"
-     },
-     {
-      "name": "Kevin Fiala",
-      "pos": "LW",
-      "athleteId": "3114743",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3114743.png",
-      "status": "Injured Reserve",
-      "type": "Lower Leg",
-      "detail": "Surgery",
       "returnDate": "2026-11-14",
-      "date": "2026-11-10T18:56Z",
-      "note": "Fiala (lower leg) should play Thursday against the Islanders or Saturday against Calgary, according to Emily Kaplan of ESPN."
+      "date": "2026-11-12T20:04Z",
+      "note": "out"
      },
      {
       "name": "Jakub Dvorak",
@@ -13261,16 +13265,16 @@
     ],
     "New York Islanders": [
      {
-      "name": "Matias Maccelli",
-      "pos": "LW",
-      "athleteId": "4587580",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4587580.png",
-      "status": "Injured Reserve",
+      "name": "Jean-Gabriel Pageau",
+      "pos": "C",
+      "athleteId": "2593131",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2593131.png",
+      "status": "Out",
       "type": "Lower Body",
       "detail": "",
       "returnDate": "2026-11-14",
-      "date": "2026-11-09T18:55Z",
-      "note": "Maccelli (lower body) is day-to-day, according to Andrew Gross of Newsday on Monday."
+      "date": "2026-11-12T19:30Z",
+      "note": "Pageau is dealing with a lower-body injury and will be sidelined against the Kings on Thursday."
      },
      {
       "name": "Mathew Barzal",
@@ -13283,18 +13287,6 @@
       "returnDate": "2026-11-14",
       "date": "2026-11-09T18:52Z",
       "note": "Barzal (knee) won't be in the lineup against the Sharks on Monday but has been upgraded to day-to-day, Andrew Gross of Newsday reports."
-     },
-     {
-      "name": "Ryan Pulock",
-      "pos": "D",
-      "athleteId": "3042019",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042019.png",
-      "status": "Out",
-      "type": "Upper Body",
-      "detail": "",
-      "returnDate": "2026-11-28",
-      "date": "2026-11-01T17:56Z",
-      "note": "out"
      },
      {
       "name": "Calum Ritchie",
@@ -13343,13 +13335,13 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 195,
-      "away": -238
+      "home": 205,
+      "away": -250
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -130,
-      "under": 110
+      "over": -135,
+      "under": 114
      },
      "ml": {
       "home": -125,
@@ -13382,6 +13374,12 @@
     "line": 5.5,
     "odds": -130,
     "fair": 0.5427
+   },
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "line": 5.5,
+    "odds": -135,
+    "fair": 0.5514
    }
   ],
   "dk": {
@@ -13393,11 +13391,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -130,
-    "fair": 0.5427435387673957
+    "odds": -135,
+    "fair": 0.551441114716549
    },
    "moved": "toward",
-   "label": "DraftKings opened 5.5 (-112), now 5.5 (-130)"
+   "label": "DraftKings opened 5.5 (-112), now 5.5 (-135)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -13422,11 +13420,13 @@
     "Projected total 6.3 against 5.5."
    ],
    "risks": [
-    "Scorers out: Kevin Fiala (LW), lower leg; Jakub Dvorak (D), upper body; Matias Maccelli (LW), lower body and 4 more. Fewer healthy scorers leans under."
+    "At current prices our edge is 1.8 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.",
+    "Scorers out: Erik Gustafsson (D), undisclosed; Jakub Dvorak (D), upper body; Jean-Gabriel Pageau (C), lower body and 3 more. Fewer healthy scorers leans under."
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 53.3% (-0.7 points against the best price). For reference only.",
-    "Market: DraftKings opened 5.5 (-112), now 5.5 (-130), moving toward this side since the open.",
+    "Market: the sharp line has moved toward this side since it was logged (53.3% → 54.7%).",
+    "Market: DraftKings opened 5.5 (-112), now 5.5 (-135), moving toward this side since the open.",
     "Market: The market (5 books) opened 5.5 (+100), now 6 (+101), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Kings Darcy Kuemper · Islanders Ilya Sorokin.",
@@ -13438,20 +13438,20 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "x1vTmnEgDjSV3MKkhakz",
-   "at": "2026-11-12T16:53:25.490Z",
+   "at": "2026-11-12T20:36:23.500Z",
    "books": {
     "FanDuel": -140,
-    "DraftKings": -130,
-    "Unibet": -130,
+    "DraftKings": -135,
+    "Unibet": -127,
     "ESPN BET": -135,
-    "PointsBet": -125
+    "PointsBet": -130
    },
    "n": 5,
    "best": {
-    "book": "PointsBet",
-    "odds": -125
+    "book": "Unibet",
+    "odds": -127
    },
-   "fair": 0.5435,
+   "fair": 0.546,
    "fairBooks": 5,
    "vendor": {
     "line": 6,
@@ -13470,7 +13470,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T16:53:25.490Z",
+  "pricesAt": "2026-11-12T20:36:23.500Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T01:58:51.832Z",
@@ -13498,16 +13498,25 @@
     "odds": 101,
     "best": -125,
     "n": 5
+   },
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "fair": 0.546,
+    "vendorFair": 0.4975,
+    "line": 6,
+    "odds": 101,
+    "best": -127,
+    "n": 5
    }
   ],
   "movement": {
    "loggedOdds": -117,
    "loggedFair": 0.5782,
-   "currentOdds": -118,
+   "currentOdds": -127,
    "currentBook": "BetRivers",
-   "currentFair": 0.5402,
-   "currentEdge": 0.0373,
-   "checkedAt": "2026-11-12T14:08:32.813Z",
+   "currentFair": 0.5469,
+   "currentEdge": 0.0185,
+   "checkedAt": "2026-11-12T20:36:23.500Z",
    "history": [
     {
      "at": "2026-11-12T01:58:51.832Z",
@@ -13518,6 +13527,11 @@
      "at": "2026-11-12T14:08:32.813Z",
      "odds": -118,
      "fair": 0.5402
+    },
+    {
+     "at": "2026-11-12T20:36:23.500Z",
+     "odds": -127,
+     "fair": 0.5469
     }
    ]
   }
@@ -13542,5 +13556,441 @@
   "odds": 262,
   "fairProb": 0.3536,
   "ev": 0.2805
+ },
+ {
+  "key": "069bea369487ef0cd3017c9ceea68817|spreads|Vancouver Canucks|1.5",
+  "id": "069bea3694-spreads-Vancouver-Canucks",
+  "date": "2026-11-13",
+  "commence": "2026-11-14T02:10:00Z",
+  "sport": "NHL",
+  "league": "NHL",
+  "sportKey": "icehockey_nhl",
+  "eventId": "069bea369487ef0cd3017c9ceea68817",
+  "home": "Vancouver Canucks",
+  "away": "New York Rangers",
+  "event": "New York Rangers @ Vancouver Canucks",
+  "market": "Puck line",
+  "marketKey": "spreads",
+  "outcome": {
+   "name": "Vancouver Canucks",
+   "point": 1.5
+  },
+  "threeWay": false,
+  "pick": "Vancouver Canucks +1.5",
+  "odds": -130,
+  "book": "BetMGM",
+  "prices": {
+   "DraftKings": -135,
+   "BetMGM": -130,
+   "BetRivers": -143,
+   "FanDuel": -140,
+   "theScore Bet": -135,
+   "Caesars": -132,
+   "ESPN BET": -135
+  },
+  "books": 6,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.662,
+  "edge": 0.0968,
+  "ev": 0.1712,
+  "confidence": "Medium",
+  "bar": 0.0626,
+  "past": 0.0342,
+  "barParts": {
+   "error": 0.0626,
+   "units": 0.44,
+   "unit": "goals",
+   "gp": 20,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": -0.3,
+   "total": 6.4,
+   "sd": 2.4,
+   "sdTotal": 2.3,
+   "gp": 20,
+   "gpHome": 20,
+   "gpAway": 20,
+   "thin": false,
+   "parts": {
+    "ratingHome": -0.8,
+    "ratingAway": 0,
+    "lastHome": -1.2,
+    "lastAway": -0.1,
+    "homeEdge": 0.24,
+    "rest": 0.1,
+    "injuriesHome": -0.1,
+    "injuriesAway": 0.3,
+    "scoringOut": 0,
+    "pace": 6.5
+   },
+   "reasons": {
+    "for": [
+     "Home edge +0.2 for Vancouver Canucks",
+     "Vancouver Canucks are rested (4 days)",
+     "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3)"
+    ],
+    "against": [
+     "Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game",
+     "New York Rangers trending: last five +0.8 vs +0.2 on the season",
+     "Vancouver Canucks without Filip Chytil (C) (-0.1)",
+     "Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable",
+     "Projected margin -0.3 for Vancouver Canucks against +1.5"
+    ]
+   }
+  },
+  "marketFair": 0.5541,
+  "marketEdge": -0.0111,
+  "rationale": "Our probability at +1.5 is 66.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.3 for the home side). BetMGM offers -130, which implies only 56.5%. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 55.4%.",
+  "factors": [
+   "Best price -130 at BetMGM",
+   "Probability 66.2% from game data, not other books",
+   "Edge 9.7 points over the price, 3.4 past its bar of 6.3",
+   "Market reference 55.4%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-12T20:36:23.500Z",
+  "availability": null,
+  "current": {
+   "at": "2026-11-12T20:36:23.500Z",
+   "odds": -130,
+   "book": "BetMGM",
+   "fair": 0.5541,
+   "edge": 0.0968,
+   "modelProb": 0.662,
+   "bar": 0.0626
+  },
+  "history": [
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "odds": -130,
+    "fair": 0.5541
+   }
+  ],
+  "context": {
+   "espnEventId": "401892706",
+   "venue": "Rogers Arena, Vancouver",
+   "indoor": true,
+   "records": {
+    "Vancouver Canucks": {
+     "overall": "3-16-1",
+     "home": "1-8-0",
+     "away": "2-8-1"
+    },
+    "New York Rangers": {
+     "overall": "11-8-1",
+     "home": "8-2-0",
+     "away": "3-6-1"
+    }
+   },
+   "probables": {
+    "Vancouver Canucks": "Leevi Merilainen",
+    "New York Rangers": "Dylan Garand"
+   },
+   "injuries": {
+    "Vancouver Canucks": [
+     {
+      "name": "Tom Willander",
+      "pos": "D",
+      "athleteId": "5149180",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149180.png",
+      "status": "Day-To-Day",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-13",
+      "date": "2026-11-10T14:24Z",
+      "note": "day-to-day"
+     },
+     {
+      "name": "Filip Chytil",
+      "pos": "C",
+      "athleteId": "4233643",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233643.png",
+      "status": "Injured Reserve",
+      "type": "Shoulder",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-13",
+      "date": "2026-11-09T18:22Z",
+      "note": "Chytil (shoulder) will not be in action versus the Flyers on Monday, Canucks play-by-play announcer Brendan Batchelor reports."
+     },
+     {
+      "name": "Mackenzie MacEachern",
+      "pos": "LW",
+      "athleteId": "3069342",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069342.png",
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-29",
+      "date": "2026-09-29T17:03Z",
+      "note": "ir-nr"
+     },
+     {
+      "name": "Thatcher Demko",
+      "pos": "G",
+      "athleteId": "3096217",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3096217.png",
+      "status": "Injured Reserve",
+      "type": "Hip",
+      "detail": "Surgery",
+      "returnDate": "2026-12-21",
+      "date": "2026-09-28T17:58Z",
+      "note": "Co-president of hockey operations Henrik Sedin said Monday that he hopes Demko (hip) will be ready to return before Christmas, Kevin Woodley of NHL.com reports."
+     }
+    ],
+    "New York Rangers": [
+     {
+      "name": "Alberts Smits",
+      "pos": "D",
+      "athleteId": "5334662",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5334662.png",
+      "status": "Injured Reserve",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-10T22:13Z",
+      "note": "ir"
+     },
+     {
+      "name": "Sean Durzi",
+      "pos": "D",
+      "athleteId": "4378683",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378683.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-16",
+      "date": "2026-11-05T19:23Z",
+      "note": "Durzi (undisclosed) was put on injured reserve Thursday, per Mollie Walker of the New York Post."
+     },
+     {
+      "name": "Igor Shesterkin",
+      "pos": "G",
+      "athleteId": "3151297",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
+      "status": "Injured Reserve",
+      "type": "Knee",
+      "detail": "Surgery",
+      "returnDate": "2027-09-15",
+      "date": "2026-10-11T21:06Z",
+      "note": "Shesterkin will require surgery and a lengthy rehab process to address his season-ending right knee injury, Vince Z. Mercogliano of The Athletic reports Sunday."
+     },
+     {
+      "name": "Joe Veleno",
+      "pos": "C",
+      "athleteId": "4352804",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2027-01-03",
+      "date": "2026-10-10T17:18Z",
+      "note": "Veleno (lower body) was placed on long-term injured reserve Saturday, Vince Z. Mercogliano of The Athletic reports."
+     },
+     {
+      "name": "Aidan Thompson",
+      "pos": "C",
+      "athleteId": "5136624",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-13",
+      "date": "2026-09-29T16:39Z",
+      "note": "ir-nr"
+     },
+     {
+      "name": "Adam Sykora",
+      "pos": "LW",
+      "athleteId": "5080232",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2027-01-25",
+      "date": "2026-09-29T01:35Z",
+      "note": "ir"
+     }
+    ]
+   },
+   "rest": {
+    "Vancouver Canucks": {
+     "restDays": 4,
+     "b2b": false,
+     "lastGame": "2026-11-10",
+     "gamesLast7": 2
+    },
+    "New York Rangers": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-12",
+     "gamesLast7": 3
+    }
+   },
+   "weather": null,
+   "broadcast": "ESPN+",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": 1.5,
+     "spreadOdds": {
+      "home": -135,
+      "away": 114
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": -105,
+      "under": -115
+     },
+     "ml": {
+      "home": 185,
+      "away": -225
+     },
+     "draw": null
+    },
+    "open": {
+     "spread": 1.5,
+     "spreadOdds": {
+      "home": -155,
+      "away": 130
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": 110,
+      "under": -130
+     },
+     "ml": {
+      "home": 154,
+      "away": -185
+     },
+     "draw": null
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "line": 1.5,
+    "odds": -135,
+    "fair": 0.5514
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": 1.5,
+    "odds": -155,
+    "fair": 0.5829926410466066
+   },
+   "now": {
+    "line": 1.5,
+    "odds": -135,
+    "fair": 0.551441114716549
+   },
+   "moved": "away",
+   "label": "DraftKings opened +1.5 (-155), now +1.5 (-135)"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 5,
+   "open": {
+    "line": 1.5,
+    "odds": -148
+   },
+   "now": {
+    "line": 1.5,
+    "odds": -124
+   },
+   "moved": "away",
+   "label": "The market (5 books) opened +1.5 (-148), now +1.5 (-124)"
+  },
+  "breakdown": {
+   "tier": "Medium",
+   "tierWhy": "Our probability for this side is 66.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 56.5%, so the edge is 9.7 points. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability at +1.5 is 66.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.3 for the home side). BetMGM offers -130, which implies only 56.5%. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 55.4%.",
+   "support": [
+    "Home edge +0.2 for Vancouver Canucks.",
+    "Vancouver Canucks are rested (4 days).",
+    "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3)."
+   ],
+   "risks": [
+    "Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.",
+    "New York Rangers trending: last five +0.8 vs +0.2 on the season.",
+    "Vancouver Canucks without Filip Chytil (C) (-0.1).",
+    "Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.",
+    "Projected margin -0.3 for Vancouver Canucks against +1.5."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 55.4% (-1.1 points against the best price). For reference only.",
+    "Market: DraftKings opened +1.5 (-155), now +1.5 (-135), moving against this side since the open.",
+    "Market: The market (5 books) opened +1.5 (-148), now +1.5 (-124), the consensus moving against this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Probable pitchers: Canucks Leevi Merilainen · Rangers Dylan Garand.",
+    "Records: New York Rangers 11-8-1 · Vancouver Canucks 3-16-1 · Rogers Arena, Vancouver."
+   ],
+   "verdict": "More working against this one than for it; size down."
+  },
+  "sgoEventId": "cw3b3tmVMxlfDyi6SQan",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "cw3b3tmVMxlfDyi6SQan",
+   "at": "2026-11-12T20:36:23.500Z",
+   "books": {
+    "DraftKings": -135,
+    "BetMGM": -130,
+    "Caesars": -132,
+    "FanDuel": -140,
+    "ESPN BET": -135
+   },
+   "n": 5,
+   "best": {
+    "book": "BetMGM",
+    "odds": -130
+   },
+   "fair": 0.5488,
+   "fairBooks": 5,
+   "vendor": {
+    "line": 1.5,
+    "odds": -124,
+    "fair": 0.5536,
+    "sameLine": true
+   },
+   "open": {
+    "line": 1.5,
+    "odds": -148
+   },
+   "now": {
+    "line": 1.5,
+    "odds": -124
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-12T20:36:23.500Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-12T20:36:23.500Z",
+    "fair": 0.5488,
+    "vendorFair": 0.5536,
+    "line": 1.5,
+    "odds": -124,
+    "best": -130,
+    "n": 5
+   }
+  ]
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-12",
+  "date": "2026-11-12",
+  "checkedAt": "2026-11-12T20:38:25.723Z",
+  "closedAt": "2026-11-12T20:38:25.723Z",
+  "candidates": 57,
+  "leans": 0,
+  "props": 57
  }
 ]

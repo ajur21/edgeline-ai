@@ -528,52 +528,8 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
-DTSTAMP:20261112T165325Z
-DTSTART:20261112T170000Z
-DTEND:20261112T200000Z
-SUMMARY:Lean of the day: Seattle Kraken +1.5 +100 at Bovada · Medium
-DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
- 00 PM ET\nPuck line: Seattle Kraken +1.5 at +100 (Bovada). Our probability
-  61.2% from game data\, the price implies 50.0%\, edge +11.2 pts\, EV +22.
- 3% per unit. Confidence: Medium.\nOur probability at +1.5 is 61.2%\, from 
- the game data: this season's results and margins\, recent form\, rest\, th
- e injury report and home edge (projected margin -0.6 for the home side). B
- ovada offers +100\, which implies only 50.0%. Its bar is 6.7 points: the m
- odel's own margin of error on this side\, with 16 games behind the thinner
-  team (±0.45 goals on the margin). It clears it by 4.4. Not graded agains
- t other books' prices\; for reference the market makes it 48.0%.\nWhat sup
- ports it:\n- Home edge +0.2 for Seattle Kraken.\n- Seattle Kraken are rest
- ed (5 days).\n- Carolina Hurricanes without Jordan Staal (C) (+0.1).\n- Ca
- rolina Hurricanes have William Carrier (LW) listed day-to-day or questiona
- ble.\n- A better price is now available: +105 at BetMGM.\n- A better price
-  is available now: +107 at Caesars.\nWhat could go wrong:\n- Seattle Krake
- n rate -0.1 a game over 16 (9-7)\, Carolina Hurricanes +0.7 over 19 (14-5)
- \; last season -0.5 and +0.7 a game.\n- Seattle Kraken trending: last five
-  -1.4 vs 0 on the season.\n- Carolina Hurricanes trending: last five +2.8 
- vs +1.7 on the season.\n- Carolina Hurricanes are rested (5 days).\n- Seat
- tle Kraken without Curtis Douglas (C)\, Jared McCann (LW)\, Ryan Lindgren 
- (D) (-0.1).\n- Projected margin -0.6 for Seattle Kraken against +1.5.\nVer
- dict: The game data lines up behind this side at this price.\nPrices: Caes
- ars +107\, BetMGM +105\, DraftKings +102\, Bovada +102\, ESPN BET +100 and
-  4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#
- 5a2820b80e-spreads-Seattle-Kraken
-LOCATION:Veikkaus Arena\, Helsinki
-URL:https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seat
- tle-Kraken
-CATEGORIES:NHL
-LAST-MODIFIED:20261112T165325Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Seattle Kraken +1.5 +100 at Bovada · Medium
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:parlay-2026-11-12@edgeline
-DTSTAMP:20261112T165325Z
+DTSTAMP:20261112T203623Z
 DTSTART:20261112T170000Z
 DTEND:20261113T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
@@ -584,7 +540,7 @@ DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
  ays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261112T165325Z
+LAST-MODIFIED:20261112T203623Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -594,8 +550,26 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
+DTSTAMP:20261112T203623Z
+DTSTART:20261112T170000Z
+DTEND:20261112T200000Z
+SUMMARY:Seattle Kraken +1.5 +100 at Bovada · Lost -1.00u
+DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
+ 00 PM ET\nPuck line: Seattle Kraken +1.5 at +100 (Bovada). Lost -1.00u.\nF
+ inal: 4-1\nClosing line value: -2.6 pts (closed +102\, DraftKings close (E
+ SPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai
+ /performance.html
+LOCATION:Veikkaus Arena\, Helsinki
+URL:https://ajur21.github.io/edgeline-ai/performance.html
+CATEGORIES:NHL
+LAST-MODIFIED:20261112T203623Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 UID:2df9328781-totals-Over@edgeline
-DTSTAMP:20261112T165325Z
+DTSTAMP:20261112T203623Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -610,21 +584,64 @@ DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
  s' prices\; for reference the market makes it 53.2%.\nWhat supports it:\n-
   Combined scoring 6.3 a game in Los Angeles Kings's games\, 5.9 in New Yor
  k Islanders's (league average 6.3).\n- Projected total 6.3 against 5.5.\nW
- hat could go wrong:\n- Scorers out: Kevin Fiala (LW)\, lower leg\; Jakub D
- vorak (D)\, upper body\; Matias Maccelli (LW)\, lower body and 4 more. Few
- er healthy scorers leans under.\nVerdict: The game data lines up behind th
- is side at this price.\nPrices: BetRivers -117\, PointsBet -125\, DraftKin
- gs -130\, theScore Bet -130\, Unibet -130 and 2 more.\nFull breakdown: htt
- ps://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
+ hat could go wrong:\n- At current prices our edge is 1.8 points\, under it
+ s bar of 3.0 points\; the pick stays posted and is graded at the price it 
+ was posted at.\n- Scorers out: Erik Gustafsson (D)\, undisclosed\; Jakub D
+ vorak (D)\, upper body\; Jean-Gabriel Pageau (C)\, lower body and 3 more. 
+ Fewer healthy scorers leans under.\nVerdict: The game data lines up behind
+  this side at this price.\nPrices: BetRivers -117\, Unibet -127\, theScore
+  Bet -130\, PointsBet -130\, DraftKings -135 and 2 more.\nFull breakdown: 
+ https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T165325Z
+LAST-MODIFIED:20261112T203623Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Over 5.5 -117 at BetRivers · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:069bea3694-spreads-Vancouver-Canucks@edgeline
+DTSTAMP:20261112T203623Z
+DTSTART:20261114T021000Z
+DTEND:20261114T051000Z
+SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Medium
+DESCRIPTION:NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13\, 9:1
+ 0 PM ET\nPuck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probabili
+ ty 66.2% from game data\, the price implies 56.5%\, edge +9.7 pts\, EV +17
+ .1% per unit. Confidence: Medium.\nOur probability at +1.5 is 66.2%\, from
+  the game data: this season's results and margins\, recent form\, rest\, t
+ he injury report and home edge (projected margin -0.3 for the home side). 
+ BetMGM offers -130\, which implies only 56.5%. Its bar is 6.3 points: the 
+ model's own margin of error on this side\, with 20 games behind the thinne
+ r team (±0.44 goals on the margin). It clears it by 3.4. Not graded again
+ st other books' prices\; for reference the market makes it 55.4%.\nWhat su
+ pports it:\n- Home edge +0.2 for Vancouver Canucks.\n- Vancouver Canucks a
+ re rested (4 days).\n- New York Rangers without Alberts Smits (D)\, Sean D
+ urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\nWhat could go wrong:\n-
+  Vancouver Canucks rate -0.8 a game over 20 (3-17)\, New York Rangers +0 o
+ ver 20 (11-9)\; last season -1.2 and -0.1 a game.\n- New York Rangers tren
+ ding: last five +0.8 vs +0.2 on the season.\n- Vancouver Canucks without F
+ ilip Chytil (C) (-0.1).\n- Vancouver Canucks have Tom Willander (D) listed
+  day-to-day or questionable.\n- Projected margin -0.3 for Vancouver Canuck
+ s against +1.5.\nVerdict: More working against this one than for it\; size
+  down.\nPrices: BetMGM -130\, Caesars -132\, DraftKings -135\, theScore Be
+ t -135\, ESPN BET -135 and 2 more.\nFull breakdown: https://ajur21.github.
+ io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks
+LOCATION:Rogers Arena\, Vancouver
+URL:https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vanc
+ ouver-Canucks
+CATEGORIES:NHL
+LAST-MODIFIED:20261112T203623Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vancouver Canucks +1.5 -130 at BetMGM · Medium
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
