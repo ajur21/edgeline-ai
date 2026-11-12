@@ -1792,3 +1792,135 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .nfl-parts .muted { margin: 0 0 8px; font-size: 0.85rem; }
 .nfl-parts .mono { color: var(--text); font-weight: 600; }
 @media (max-width: 720px) { .nfl-forecast { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============ Home: today's card (2026-11-11) ============
+   Owner: "make the homepage better. the UI is terrible", and the play and parlay of the day can be any play, a player
+   prop included. The play and the parlay of the day open the page; under them one ranked list of every play (game leans
+   and player props in one order), the record, three ways in, then the reference sections. Tokens only, 4px scale. */
+.today { padding-block: 40px 48px; }
+.today-in { display: flex; flex-direction: column; gap: 24px; }
+.today-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 16px 32px; align-items: end; }
+.today-title { min-width: 0; }
+.today-kick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 8px; }
+.today-kick .eyebrow { margin: 0; }
+.today-date { font-size: 0.86rem; color: var(--text-2); }
+.today h1 { max-width: none; margin: 0; font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+.today p.lead { margin: 0; max-width: 36rem; font-size: 1rem; }
+.today-head, .today .plays { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.today .plays { animation-delay: 0.12s; }
+.today-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.today-foot .hero-actions { margin: 0; }
+.today-notes { display: grid; gap: 4px; justify-items: end; font-size: 0.8rem; color: var(--text-2); text-align: right; }
+.today-notes p { margin: 0; }
+.today-notes .hero-note { font-size: inherit; }
+.today + .subnav + .section { padding-top: 48px; }
+@media (max-width: 860px) {
+  .today { padding-block: 24px 32px; }
+  .today-in { gap: 16px; }
+  /* on a phone the two cards come straight after the headline; the sentence about the rule follows them */
+  .today-head { display: contents; }
+  .today-title { order: 1; }
+  .today .plays { order: 2; }
+  .today p.lead { order: 3; font-size: 0.95rem; }
+  .today-foot { order: 4; }
+  .today-notes { justify-items: start; text-align: left; }
+  .today-notes .update-line { display: grid; gap: 4px; }
+  .today-notes .update-line > span + span::before { content: none; }
+}
+
+/* the play and the parlay of the day as a player prop, the front-runner before the lock, and a day with none */
+.potd-player { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.potd-player .face-img { width: 64px; height: 64px; }
+.potd-player .face-mono { font-size: 1.1rem; }
+.potd-player-id { display: grid; gap: 2px; min-width: 0; }
+.potd-player-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; letter-spacing: -0.01em; }
+.meta.potd-player-sub { font-size: 0.85rem; color: var(--text-2); }
+.potd-reasons { display: grid; gap: 4px; margin: 0; padding-left: 16px; font-size: 0.85rem; line-height: 1.45; color: var(--text-2); }
+.potd-lock { margin: 0; font-size: 0.82rem; line-height: 1.45; color: var(--text-2); }
+.potd-lock.is-front { padding: 8px 12px; border: 1px dashed var(--border-strong); border-radius: var(--radius); }
+.potd-lock strong { color: var(--text); }
+.card.potd-front { border-style: dashed; border-color: var(--border-strong); }
+.badge-front { background: transparent; border: 1px dashed var(--border-strong); color: var(--text); }
+.badge-kind { background: var(--accent-2-wash); color: var(--accent-2-text); }
+.potd-state { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.meta.potd-result { font-size: 0.8rem; color: var(--text-2); }
+.potd-none { justify-content: flex-start; }
+.potd-none h3 { margin: 0; font-size: 1.25rem; }
+.potd-none p { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--text-2); }
+.leg-id .face-img { width: 28px; height: 28px; border-width: 1px; }
+.leg-id .face-mono { font-size: 0.62rem; }
+.leg-prop { min-width: 0; color: inherit; }
+.leg-prop:hover { color: var(--accent-strong); }
+.leg-pick .leg-prop strong { display: block; white-space: normal; overflow: visible; }
+.ticker-item .face-img { width: 20px; height: 20px; border-width: 1px; }
+.ticker-item .face-mono { font-size: 0.5rem; }
+
+/* the ranked list: every play, a game lean or a player prop, one row each */
+.play-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.play-tab-n { margin-left: 8px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
+.play-head, .board-row.play-row { display: grid; grid-template-columns: 40px 64px minmax(0, 1fr) 184px 104px 64px; gap: 16px; align-items: center; }
+.play-head { padding: 8px 16px; border-bottom: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+.play-head > :nth-child(n+5) { text-align: right; }
+.play-row, .play-row:hover { text-decoration: none; }
+.play-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.play-rank { justify-self: start; }
+.play-av { display: grid; place-items: center; min-width: 0; }
+.play-row .board-pick .sel { white-space: normal; overflow: visible; line-height: 1.3; }
+/* the facts line may wrap: it is pulled left by one separator's width and clipped there, so a hairline never opens a line */
+.meta.play-meta { display: flex; align-items: center; row-gap: 4px; margin: 4px 0 0 -16px; clip-path: inset(0 0 0 16px); font-size: 0.8rem; color: var(--text-2); }
+.meta.play-meta > span:first-child { margin-left: 16px; }
+.plays .pick-head { flex-wrap: wrap; }
+.plays .pick-head .eyebrow { white-space: nowrap; }
+.meta.play-meta > span + span::before { margin: 0 8px; }
+.play-meta .badge { padding: 0 8px; font-size: 0.7rem; }
+.play-prob { display: grid; grid-template-columns: 5.4ch minmax(0, 1fr); gap: 8px; align-items: center; min-width: 0; }
+.play-pct { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.play-prob .prob { padding: 0; }
+.play-k { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.play-price { display: grid; justify-items: end; gap: 2px; min-width: 0; }
+.play-book { max-width: 100%; overflow: hidden; font-size: 0.72rem; color: var(--text-2); white-space: nowrap; text-overflow: ellipsis; }
+.play-board .day-divider { margin: 0; padding: 8px 16px; border-top: 0; border-bottom: 1px solid var(--border); background: var(--surface-2); font-size: 0.85rem; }
+.play-more { display: flex; justify-content: center; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.play-more:empty { display: none; }
+.play-board .board-foot { display: grid; gap: 4px; }
+.play-board .board-empty { text-wrap: balance; }
+@media (max-width: 720px) {
+  .play-head { display: none; }
+  .board-row.play-row { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-areas: "av sel price" "meta meta meta" "rank prob edge"; gap: 8px 12px; padding: 12px; }
+  .play-rank { grid-area: rank; justify-self: center; }
+  .play-av { grid-area: av; align-self: start; }
+  /* the pick's two lines become rows of the grid, so the facts line runs the full width of the row */
+  .play-row .board-pick { display: contents; }
+  .play-row .board-pick .sel { grid-area: sel; align-self: center; }
+  .meta.play-meta { grid-area: meta; margin-top: 0; }
+  /* a phone row keeps to one facts line: the pick already says what kind of bet it is */
+  .play-meta > span:has(> .play-kind) { display: none; }
+  .play-prob { grid-area: prob; }
+  .play-price { grid-area: price; align-self: start; }
+  .play-row .board-edge { grid-area: edge; }
+  .play-prob { grid-template-columns: auto minmax(0, 1fr); }
+  .play-row .play-k { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip-path: none; font-family: var(--font-body); font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+}
+
+/* the record in public, and the three ways in */
+.head-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.record-last { display: grid; gap: 4px; margin: 16px 0 0; font-size: 0.9rem; color: var(--text-2); }
+.record-last p { margin: 0; }
+.record-last strong { color: var(--text); }
+@media (max-width: 520px) {
+  .record-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .record-grid .stat { padding: 16px; }
+  .record-grid .stat-value { font-size: 1.5rem; }
+  .record-grid .stat-sub .meta { display: grid; gap: 4px; }
+  .record-grid .stat-sub .meta > span + span::before { content: none; }
+}
+.door { display: flex; flex-direction: column; gap: 8px; color: inherit; text-decoration: none; box-shadow: inset 0 3px 0 var(--accent); }
+.door:hover { color: inherit; text-decoration: none; background: var(--surface-2); }
+.door:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.door[data-door="nfl"] { box-shadow: inset 0 3px 0 var(--sport-nfl); }
+.door[data-door="props"] { box-shadow: inset 0 3px 0 var(--accent-2); }
+.door[data-door="games"] { box-shadow: inset 0 3px 0 var(--accent-3); }
+.door h3 { margin: 0; }
+.door p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--text-2); }
+.door .door-n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); }
+.door-go { align-self: flex-start; margin-top: auto; padding-top: 4px; border-bottom: 1px solid currentColor; font-size: 0.82rem; font-weight: 600; color: var(--accent-strong); }

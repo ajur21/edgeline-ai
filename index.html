@@ -54,28 +54,99 @@
 
 <div class="ticker" aria-label="Today's board, scrolling"><div class="ticker-track" id="ticker-track"></div></div>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow" data-pick="Model picks for NFL, NBA, MLB, NHL and soccer">Model leans for NFL, NBA, MLB, NHL and soccer</span>
-      <h1><span data-pick="Picks">Leans</span> from game data, <span class="hl">likeliest first.</span></h1>
-      <p class="lead">EdgeLine AI is a game-data model: results, form, rest, injuries and home edge, never other books’ prices. Its <span data-pick="picks">leans</span> are ranked by our probability, with the number behind each, and every result is graded in public.</p>
+<section class="hero today" id="plays" aria-labelledby="today-title">
+  <div class="container today-in">
+    <div class="today-head">
+      <div class="today-title">
+        <div class="today-kick"><span class="eyebrow">Today’s card</span><span class="today-date" id="today-date"></span><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
+        <h1 id="today-title"><span data-pick="Picks">Leans</span> from game data, <span class="hl">likeliest first.</span></h1>
+      </div>
+      <p class="lead">EdgeLine AI is a game-data model. Each day it names one <span data-pick="play">lean</span> and one parlay, chosen from every game <span data-pick="pick">lean</span> and every player prop: the likeliest to hit that still beats its price. Both lock at <span id="lock-clock">3:30 PM ET</span>, are never swapped, and are graded in public.</p>
+    </div>
+    <h2 class="visually-hidden" data-pick="Play of the day. Parlay of the day.">Lean of the day. Parlay lean of the day.</h2>
+    <div class="plays">
+      <div id="potd-host"></div>
+      <div id="parlay-host"></div>
+    </div>
+    <div class="today-foot">
       <div class="hero-actions">
-        <a class="btn btn-primary" href="picks.html" data-pick="See today’s picks">See today’s leans</a>
+        <a class="btn btn-primary" href="#board" data-pick="See every pick and prop">See every lean and prop</a>
         <a class="btn btn-secondary" href="performance.html">View track record</a>
       </div>
-      <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
+      <div class="today-notes">
+        <p id="board-updated"></p>
+        <p class="hero-note">Informational use only. No outcome is guaranteed. 21+ where legal.</p>
+      </div>
     </div>
-    <section class="board" id="board" aria-labelledby="board-title" data-tilt>
-      <div class="board-head"><h2 class="live board-h" id="board-title">Today’s board</h2><span class="badge badge-sample" data-sample-flag="picks">Sample data</span></div>
-      <div id="board-rows"></div>
-      <div id="board-earlier"></div>
-      <div class="board-foot" id="board-foot"></div>
-      <p class="board-updated" id="board-updated"></p>
-    </section>
   </div>
 </section>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#board">Board</a><a href="#field">Every side</a><a href="#plays" data-pick="Plays">Daily leans</a><a href="#subscribe">Subscribe</a><a href="#how">How it works</a><a href="#top-picks" data-pick="Top picks">Top leans</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#plays">Today’s card</a><a href="#board">Ranked list</a><a href="#record">Record</a><a href="#more">NFL, props, games</a><a href="#field">Every side</a><a href="#how">How it works</a><a href="#subscribe">Subscribe</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
+
+<section class="section" id="board" aria-labelledby="board-title">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <h2 id="board-title">Today’s board</h2>
+        <p class="muted how-to" id="board-how"></p>
+      </div>
+      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
+    </div>
+    <div class="board play-board">
+      <div class="play-tools" id="board-tools" hidden></div>
+      <div class="play-head" id="board-head" aria-hidden="true"><span>#</span><span></span><span data-pick="Pick or prop">Lean or prop</span><span>To hit</span><span>Best price</span><span>Edge</span></div>
+      <div id="board-rows"></div>
+      <div class="play-more" id="board-more"></div>
+      <div id="board-earlier"></div>
+      <div class="board-foot" id="board-foot"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-flush" id="record" aria-labelledby="record-title">
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        <h2 id="record-title">The record, in public</h2>
+        <p class="muted how-to">Every result is graded on the game and kept. One unit is risked on each.</p>
+      </div>
+      <div class="head-actions">
+        <span class="badge badge-sample" data-sample-flag="perf">Sample data</span>
+        <a class="btn btn-secondary btn-sm" href="performance.html">Full track record</a>
+      </div>
+    </div>
+    <div class="grid-4 record-grid" id="record-grid"></div>
+    <div class="record-last" id="record-last" hidden></div>
+  </div>
+</section>
+
+<section class="section section-flush" id="more" aria-labelledby="more-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="more-title">The rest of the board</h2>
+    </div>
+    <div class="grid-3 doors">
+      <a class="card door" data-door="nfl" data-tilt href="picks.html?sport=NFL">
+        <h3>NFL week</h3>
+        <p>Every game of the week with the model’s projected winner and score, the quarterbacks it assumed and the weather.</p>
+        <span class="door-n" id="door-nfl-n">Every game of the week</span>
+        <span class="door-go">Open the NFL week</span>
+      </a>
+      <a class="card door" data-door="props" data-tilt href="props.html">
+        <h3>Props board</h3>
+        <p>NBA and NFL player props ranked by chance to hit, each graded on the box score.</p>
+        <span class="door-n" id="door-props-n">Lines arrive with the 3:30 PM ET run</span>
+        <span class="door-go">Open the props board</span>
+      </a>
+      <a class="card door" data-door="games" data-tilt href="games.html">
+        <h3>Every game</h3>
+        <p>Each game on the board with its spread, total and moneyline: the best price, the book, our probability.</p>
+        <span class="door-n" id="door-games-n">Every side we priced</span>
+        <span class="door-go">Browse every game</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section section-flush edge-field" id="field" aria-labelledby="field-title">
   <div class="container">
     <div class="section-head row field-head">
@@ -89,60 +160,6 @@
     <div class="field-cta">
       <a class="btn btn-primary" href="picks.html#market">Open the market board</a>
       <a class="btn btn-secondary" href="#how">How the bar works</a>
-    </div>
-  </div>
-</section>
-
-<section class="section section-flush" id="plays">
-  <div class="container">
-    <div class="section-head row">
-      <div>
-        <h2 data-pick="Play of the day. Parlay of the day.">Lean of the day. Parlay lean of the day.</h2>
-        <p class="muted">Chosen once a day, locked in, and graded in public.</p>
-      </div>
-      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
-    </div>
-    <div class="plays">
-      <div id="potd-host"></div>
-      <div id="parlay-host"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-flush" id="subscribe" data-site="https://ajur21.github.io/edgeline-ai/">
-  <div class="container">
-    <div class="section-head row">
-      <div>
-        <h2 data-pick="Every pick lands in your calendar. Every grade lands in your reader.">Every lean lands in your calendar. Every grade lands in your reader.</h2>
-        <p class="muted">Subscribe once. Each <span data-pick="pick">lean</span> arrives at tip-off with the price, the book and the number behind it, and its grade is written into the same event when the game ends. On the nights we pass, you get one line saying so.</p>
-      </div>
-      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
-    </div>
-    <div class="subscribe">
-      <div class="sub-preview card" data-tilt aria-labelledby="sub-preview-title">
-        <div class="sub-preview-head"><h3 class="sub-preview-h" id="sub-preview-title">Next on your calendar</h3><span class="badge badge-strong">Rebuilt every run</span></div>
-        <div id="sub-preview-host"></div>
-      </div>
-      <div class="sub-channels">
-        <div class="sub-channel card" data-tilt>
-          <h3 data-pick="Calendar: picks at tip-off">Calendar: leans at tip-off</h3>
-          <p class="muted">Apple Calendar, Outlook and Google. One event per <span data-pick="pick">lean</span>, an alert 30 minutes before the start, the result written in after the final.</p>
-          <div class="sub-actions">
-            <a class="btn btn-primary" id="sub-webcal" href="webcal://ajur21.github.io/edgeline-ai/picks.ics">Add to calendar</a>
-            <button type="button" class="btn btn-secondary" data-copy="picks.ics">Copy calendar link</button>
-          </div>
-          <p class="sub-hint">Google Calendar: Other calendars, From URL, paste the link.</p>
-        </div>
-        <div class="sub-channel card" data-tilt>
-          <h3 data-pick="Feed: picks and grades in a reader, Slack or email">Feed: leans and grades in a reader, Slack or email</h3>
-          <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per <span data-pick="pick">lean</span>, one per grade, one per slate.</p>
-          <div class="sub-actions">
-            <a class="btn btn-primary" id="sub-rss" href="feed.xml">Open the feed</a>
-            <button type="button" class="btn btn-secondary" data-copy="feed.xml">Copy feed link</button>
-          </div>
-          <p class="sub-hint">Slack: <span class="mono">/feed subscribe</span> followed by the link.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -201,16 +218,41 @@
   </div>
 </section>
 
-<section class="section section-flush" id="top-picks">
+<section class="section section-flush" id="subscribe" data-site="https://ajur21.github.io/edgeline-ai/">
   <div class="container">
     <div class="section-head row">
       <div>
-        <h2>The likeliest leans right now</h2>
-        <p class="muted how-to">Sides with an edge over the price first, likeliest to hit on top; the rest follow. The bar on each card is our probability from the game data; the tick is what the price implies.</p>
+        <h2 data-pick="Every pick lands in your calendar. Every grade lands in your reader.">Every lean lands in your calendar. Every grade lands in your reader.</h2>
+        <p class="muted">Subscribe once. Each <span data-pick="pick">lean</span> arrives at tip-off with its price, book and number; its grade is written into the same event after the final. On a night we pass, one line says so.</p>
       </div>
-      <a class="btn btn-secondary btn-sm" href="picks.html" data-pick="All picks">All leans</a>
+      <span class="badge badge-sample" data-sample-flag="picks">Sample data</span>
     </div>
-    <div class="picks-grid" id="top-picks-grid"></div>
+    <div class="subscribe">
+      <div class="sub-preview card" data-tilt aria-labelledby="sub-preview-title">
+        <div class="sub-preview-head"><h3 class="sub-preview-h" id="sub-preview-title">Next on your calendar</h3><span class="badge badge-strong">Rebuilt every run</span></div>
+        <div id="sub-preview-host"></div>
+      </div>
+      <div class="sub-channels">
+        <div class="sub-channel card" data-tilt>
+          <h3 data-pick="Calendar: picks at tip-off">Calendar: leans at tip-off</h3>
+          <p class="muted">Apple Calendar, Outlook and Google. One event per <span data-pick="pick">lean</span>, an alert 30 minutes before the start, the result written in after the final.</p>
+          <div class="sub-actions">
+            <a class="btn btn-primary" id="sub-webcal" href="webcal://ajur21.github.io/edgeline-ai/picks.ics">Add to calendar</a>
+            <button type="button" class="btn btn-secondary" data-copy="picks.ics">Copy calendar link</button>
+          </div>
+          <p class="sub-hint">Google Calendar: Other calendars, From URL, paste the link.</p>
+        </div>
+        <div class="sub-channel card" data-tilt>
+          <h3 data-pick="Feed: picks and grades in a reader, Slack or email">Feed: leans and grades in a reader, Slack or email</h3>
+          <p class="muted">RSS for any reader, Slack’s <span class="mono">/feed</span> command, or an RSS-to-email service. One item per <span data-pick="pick">lean</span>, one per grade, one per slate.</p>
+          <div class="sub-actions">
+            <a class="btn btn-primary" id="sub-rss" href="feed.xml">Open the feed</a>
+            <button type="button" class="btn btn-secondary" data-copy="feed.xml">Copy feed link</button>
+          </div>
+          <p class="sub-hint">Slack: <span class="mono">/feed subscribe</span> followed by the link.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -272,7 +314,11 @@
       <h2>Questions people ask</h2>
     </div>
     <div class="faq">
-      <details open>
+      <details>
+        <summary data-pick="How is the play of the day chosen?">How is the lean of the day chosen?</summary>
+        <p>Everything on today’s games goes into one pool: sides, totals and moneylines from the game model, and player props. The one with the highest chance to hit that still beats its price is named. The parlay is the likeliest two from different games at one book, each beating its price there. A prop’s chance is the props board’s number, checked against how graded props have finished. Both lock with the 3:30 PM ET run, earlier if the game starts earlier, and are never swapped. A day with nothing that beats its price names none.</p>
+      </details>
+      <details>
         <summary>What does “edge” mean?</summary>
         <p>Edge is the difference between our probability for the side, from the game data (this season’s results and margins, form, rest, injuries, home edge), and the probability implied by the best available price. A +3% edge means we have the bet winning 3 percentage points more often than that price suggests, which is roughly +6% expected value at even odds if our probability is right. It is the model’s read against the price, not proof that the price is wrong. Nothing is graded against other books’ prices; the market’s own number appears on each breakdown for reference only.</p>
       </details>
@@ -307,99 +353,311 @@
 <script src="data/picks.js"></script>
 <script src="data/performance.js"></script>
 <script src="data/market.js"></script>
+<script src="data/props.js"></script>
+<script src="data/nfl-week.js"></script>
 <script src="data/teams.js"></script>
 <script src="data/faces.js"></script>
 <script src="js/teams.js"></script>
+<script src="js/props-grade.js"></script>
+<script src="js/plays.js"></script>
 <script src="js/browse.js"></script>
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA, S = window.PERF_DATA;
-  /* only games that have not started are offered; started picks move to the picks page's In progress and results (owner ask, 2026-11-05) */
-  var ranked, fallback, shown, summary, watch;
+  var PL = window.EdgeLinePlays || null, PR = window.PROPS_DATA || null, NW = window.NFL_WEEK_DATA || null;
+  /* the ranked list shows CAP rows before "Show all"; the ticker carries the first TICK */
+  var CAP = 8, TICK = 12, view = { kind: "all", sport: "all", all: false };
+  var ranked, summary, plays, listed, fallback, watch, front, check, today, nowMs, counts, pod, par, stale;
+  function isProp(x) { return x.kind === "prop"; }
+  function isLean(x) { return x.kind !== "prop"; }
+  function asPlay(p) { return { kind: "lean", id: p.id, sport: p.sport, event: p.event, pick: p.pick, market: p.market, prob: p.modelProb, odds: p.odds, book: p.book, tier: p.confidence || null, day: E.dayKey(p), commence: p.commence, src: p }; }
+  /* Every play that can still be bet: game leans and player props in one order (js/plays.js, the module the pipeline
+     chooses the play and the parlay of the day with). Only games that have not started are offered; started ones move
+     to the picks page's In progress and results (owner ask, 2026-11-05). */
   function compute() {
+    nowMs = E.now();
     ranked = E.sortByProb(E.openOnly(D.picks));
-    /* nothing clears the bar: the closest markets stand in, labelled Watch / No bet, so the page is never bare */
-    fallback = ranked.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
-    shown = ranked.length ? ranked : fallback;
     summary = E.marketSummary();
-    /* with no open lean the board lists the watchlist (one side a game, the nearest its bar, and held sides past
-       theirs) rather than the likeliest sides, some of which are No bet (2026-11-10) */
-    watch = ranked.length ? [] : E.watchlist();
+    check = PL ? PL.checkOf(PR) : null;
+    plays = PL ? PL.all(D, PR, nowMs, { check: check }) : [];
+    today = PL ? PL.dayOf(nowMs) : E.etKey(new Date(nowMs));
+    front = plays.length ? PL.frontRunner(plays, nowMs) : null;
+    /* nothing beats its price: the open leans that slipped under their bar are listed; with none of those either, the
+       watchlist or the closest markets stand in, so the page is never bare */
+    var open = PL ? PL.rank(PL.leanPlays(D, nowMs, { slipped: true })) : ranked.map(asPlay);
+    listed = plays.length ? plays : open;
+    fallback = listed.length ? [] : E.marketRows({ limit: 12, oneSidePerMarket: true });
+    watch = listed.length ? [] : E.watchlist();
+    var priced = PL ? PL.propPlays(PR, nowMs, { all: true, check: check }) : [];
+    counts = { leans: plays.filter(isLean).length, props: plays.filter(isProp).length, slipped: plays.length ? open.length - plays.filter(isLean).length : 0,
+      priced: priced.length, short: priced.filter(function (x) { return !x.worth; }).length };
+    /* the play and the parlay as the pipeline published them; an earlier day's, once finished, leave the card for the record's last line */
+    stale = { play: null, parlay: null };
+    pod = D.playOfDay || null;
+    var podDay = pod ? ((D.ofDay && D.ofDay.date) || E.dayKey(pod)) : null;
+    if (pod && podDay && podDay < today && E.gameState(pod) === "final") { stale.play = { date: podDay, pick: pod }; pod = null; }
+    par = D.parlayOfDay || null;
+    var parDay = par ? (par.date || (D.ofDay && D.ofDay.date) || (/^parlay-(\d{4}-\d{2}-\d{2})$/.exec(par.id || "") || [])[1] || null) : null;
+    if (par && parDay && parDay < today && (par.result || par.status === "graded" || par.status === "void")) { stale.parlay = { date: parDay, par: par }; par = null; }
   }
+  function sig() { return [today, front ? front.late : "", listed.map(function (x) { return x.id; }).join(","), pod ? pod.id + E.gameState(pod) : "", par ? par.id : ""].join("|"); }
+  function ofDayToday() { return D.ofDay && D.ofDay.date === today ? D.ofDay : null; }
+  function lockMs() { var o = ofDayToday(), at = o && o.lockAt ? Date.parse(o.lockAt) : NaN; return isFinite(at) ? at : front ? front.lockAt : null; }
+  function avatar(play, px) { return !T ? null : isProp(play) ? T.face(play.sportKey, play.player, px) : T.sideLogo(play.src, px); }
+  function hrefOf(play) { return isProp(play) ? E.propHref(play) : "picks.html#" + play.id; }
   function emptyText() {
     return E.playedPicks().length ? "Every " + E.word("one") + " on the board has started: the scores and results are under In progress and results. New " + E.word("many") + " are published around " + E.runClock(0) + "." : "Nothing on the board right now. Prices refresh around " + E.runClock(0) + " and " + E.runClock(1) + ".";
   }
 
-  /* ticker: every pick (or the closest markets), twice, so the loop is seamless */
+  function renderHead() {
+    document.getElementById("today-date").textContent = E.shortDate(E.keyDate(today), true);
+    document.getElementById("lock-clock").textContent = E.runClock(1);
+  }
+
+  /* ticker: the likeliest plays (or the closest markets), twice, so the loop is seamless */
   var track = document.getElementById("ticker-track");
   function renderTicker() {
+    var items = listed.length ? listed.slice(0, TICK) : fallback;
     track.textContent = "";
-    document.querySelector(".ticker").hidden = !shown.length;
+    document.querySelector(".ticker").hidden = !items.length;
     [false, true].forEach(function (dup) {
       var group = E.el("div", { class: "ticker-group" });
       if (dup) group.setAttribute("aria-hidden", "true");
-      shown.forEach(function (p) {
-        group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
+      items.forEach(function (p) {
+        group.appendChild(E.el("a", { class: "ticker-item", href: p.isMarket ? "picks.html#market" : hrefOf(p) }, [
           E.el("span", { class: "t-sport", "data-sport": p.sport, text: p.sport }),
-          T ? T.sideLogo(p, 20) : null,
+          p.isMarket ? (T ? T.sideLogo(p, 20) : null) : avatar(p, 20),
           E.el("span", { class: "t-pick", text: p.pick }),
           E.el("span", { class: "t-odds", text: E.fmtOdds(p.odds) }),
-          E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + (E.hasModel(p) ? " " + E.edgeText(p) : "") : E.edgeText(p) })
+          E.el("span", { class: "t-edge" + (p.isMarket ? " t-watch" : ""), text: p.isMarket ? E.statusLabel(p.status).toUpperCase() + (E.hasModel(p) ? " " + E.edgeText(p) : "") : E.pct(p.prob, 0) + " to hit" })
         ]));
       });
       track.appendChild(group);
     });
   }
 
-  /* hero board: four best edges, each a link to its card; or the four closest markets when nothing clears the bar */
-  var rows = document.getElementById("board-rows");
-  function renderBoard() {
-    rows.textContent = "";
-    var onWatch = !ranked.length && watch.length > 0;
-    document.getElementById("board-title").textContent = ranked.length || !summary.markets ? "Today’s board" : onWatch ? "On watch, no " + E.word("one") + " yet" : "Worth a look tonight";
-    if (!shown.length) rows.appendChild(E.el("p", { class: "board-empty", text: emptyText() }));
-    /* on watch: what each side needs to become a lean (the price that clears its bar), or why it is held and when that is decided */
-    if (onWatch) watch.slice(0, 4).forEach(function (e, i) {
-      var p = e.pick, clear = E.clearText(p);
-      rows.appendChild(E.el("a", { class: "board-row board-market board-watch", href: "picks.html#watchlist", "data-kind": e.kind }, [
-        E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
-        E.el("div", { class: "board-pick" }, [
-          E.el("div", { class: "sel", text: p.pick }),
-          E.el("div", { class: "board-game", text: p.event }),
-          E.meta([E.startLabel(p), E.statusLabel(p.status)], "ev"),
-          E.el("div", { class: "board-need", text: e.kind === "held" ? E.heldWhy(p).replace(/^./, function (c) { return c.toUpperCase(); }) + "; " + E.heldWhen(p, true) + "." : clear ? clear.replace(/^./, function (c) { return c.toUpperCase(); }) + "." : e.kind === "caps" ? "Past its bar; the caps keep it off the board." : E.barGap(p, true) + "." })
-        ]),
-        E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
-        E.el("span", { class: "board-edge board-edge-watch", text: E.edgeText(p) })
+  /* the play and the parlay of the day. Locked: as the pipeline chose them, and once their games start they show where
+     they stand. Before the lock: the front-runner so far, marked not final. A day with none says so. */
+  function noneCard(cls, eyebrow, title, text) {
+    return E.el("div", { class: "card " + cls + " potd-none" }, [E.el("span", { class: "eyebrow", text: eyebrow }), E.el("h3", { text: title }), E.el("p", { text: text })]);
+  }
+  function renderPlays() {
+    var ph = document.getElementById("potd-host"), pl = document.getElementById("parlay-host");
+    var od = ofDayToday(), at = lockMs(), closed = !!(od && od.closed);
+    ph.textContent = ""; pl.textContent = "";
+    ph.appendChild(pod ? E.potdCard(pod)
+      : closed ? noneCard("potd", E.word("ofDay"), "No " + E.word("ofDay").toLowerCase() + " today", "At the lock no game " + E.word("one") + " or player prop for today’s games beat its price, so none was named. Nothing is forced.")
+      : front && front.play ? E.potdCard(E.playAsPick(front.play, check), { front: true, lockAt: at })
+      : E.potdCard(null));
+    pl.appendChild(par ? E.parlayCard(par)
+      : closed ? noneCard("parlay", E.word("parlayOfDay"), "No parlay today", "It needs two " + E.word("many") + " or props from different games at one book, each beating its price there. Today did not have them at the lock.")
+      : front && front.parlay ? E.parlayCard(E.frontParlay(front.parlay), { front: true, lockAt: at })
+      : E.parlayCard(null));
+    E.initTilt(ph); E.initTilt(pl);
+  }
+
+  /* the ranked list: one row a play, today's games first, then the chance to hit; tabs narrow it */
+  var rows = document.getElementById("board-rows"), tools = document.getElementById("board-tools"), head = document.getElementById("board-head"), more = document.getElementById("board-more");
+  function inKind(list) { return view.kind === "all" ? list : list.filter(view.kind === "prop" ? isProp : isLean); }
+  function inSport(list) { return view.sport === "all" ? list : list.filter(function (x) { return x.sport === view.sport; }); }
+  function sportsOf(list) { var seen = []; list.forEach(function (x) { if (seen.indexOf(x.sport) < 0) seen.push(x.sport); }); return seen; }
+  function tierBadge(tier) {
+    if (!tier) return null;
+    var t = String(tier);
+    return E.el("span", { class: "badge " + (t === "Coin flip" ? "badge-flip" : "badge-conf-" + t.toLowerCase()), text: E.tierLabel(t) });
+  }
+  /* a row names its game by the two abbreviations, as the props board does: the logos or the face sit beside it */
+  function eventOf(play) {
+    var short = E.eventShort(play);
+    return short && short !== play.event ? E.el("span", { class: "play-ev", title: play.event, text: short }) : play.event;
+  }
+  function playRow(play, n) {
+    var edge = play.prob - E.impliedProb(play.odds);
+    return E.el("a", { class: "board-row play-row", href: hrefOf(play), "data-kind": play.kind, "data-sport": play.sport }, [
+      E.el("span", { class: "play-rank" }, [E.rankChip(n, true)]),
+      E.el("span", { class: "play-av" }, [avatar(play, 40)]),
+      E.el("div", { class: "board-pick" }, [
+        E.el("div", { class: "sel", text: play.pick }),
+        E.meta([E.el("span", { class: "badge badge-sport", "data-sport": play.sport, text: play.sport }), E.el("span", { class: "play-kind", text: isProp(play) ? "Player prop" : play.market || "" }), eventOf(play), E.startLabel(isProp(play) ? { commence: play.commence } : play.src), tierBadge(play.tier)], "play-meta")
+      ]),
+      E.el("div", { class: "play-prob" }, [E.el("span", { class: "play-pct" }, [E.pct(play.prob), E.el("span", { class: "play-k", text: " to hit" })]), E.probMeter(play.prob, play.odds)]),
+      E.el("div", { class: "play-price" }, [E.el("span", { class: "board-odds", text: E.fmtOdds(play.odds) }), E.el("span", { class: "play-book", text: play.book })]),
+      E.el("span", { class: "board-edge" }, [E.el("span", { class: "play-k", text: "Edge " }), E.signed(edge * 100, 1) + "%"])
+    ]);
+  }
+  /* on watch: what each side needs to become a lean (the price that clears its bar), or why it is held and when that is decided */
+  function watchRow(e, i) {
+    var p = e.pick, clear = E.clearText(p);
+    return E.el("a", { class: "board-row board-market board-watch", href: "picks.html#watchlist", "data-kind": e.kind }, [
+      E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
+      E.el("div", { class: "board-pick" }, [
+        E.el("div", { class: "sel", text: p.pick }),
+        E.el("div", { class: "board-game", text: p.event }),
+        E.meta([E.startLabel(p), E.statusLabel(p.status)], "ev"),
+        E.el("div", { class: "board-need", text: e.kind === "held" ? E.heldWhy(p).replace(/^./, function (c) { return c.toUpperCase(); }) + "; " + E.heldWhen(p, true) + "." : clear ? clear.replace(/^./, function (c) { return c.toUpperCase(); }) + "." : e.kind === "caps" ? "Past its bar; the caps keep it off the board." : E.barGap(p, true) + "." })
+      ]),
+      E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
+      E.el("span", { class: "board-edge board-edge-watch", text: E.edgeText(p) })
+    ]);
+  }
+  function marketRow(p, i) {
+    return E.el("a", { class: "board-row board-market", href: "picks.html#market" }, [
+      E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
+      E.el("div", { class: "board-pick" }, [
+        E.el("div", { class: "sel", text: p.pick }),
+        E.meta([p.event, p.market, E.statusLabel(p.status)], "ev")
+      ]),
+      E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
+      E.el("span", { class: "board-edge board-edge-watch", text: E.edgeText(p) })
+    ]);
+  }
+  /* a re-render keeps the keyboard where it was: the control or the row that had focus gets it back */
+  function focusKey() {
+    var a = document.activeElement, board = rows.parentNode;
+    if (!a || !board.contains(a)) return null;
+    if (a.hasAttribute("data-more")) return "[data-more]";
+    if (a.hasAttribute("data-kind-tab")) return '[data-kind-tab="' + a.getAttribute("data-kind-tab") + '"]';
+    if (a.hasAttribute("data-sport-chip")) return '[data-sport-chip="' + a.getAttribute("data-sport-chip") + '"]';
+    if (a.classList.contains("play-row")) return 'a.play-row[href="' + a.getAttribute("href") + '"]';
+    return null;
+  }
+  function tab(key, label, n) {
+    var b = E.el("button", { class: "props-tab", type: "button", "data-kind-tab": key, "aria-pressed": String(view.kind === key) }, [label, E.el("span", { class: "play-tab-n", text: String(n) })]);
+    b.addEventListener("click", function () { view.kind = key; view.all = false; renderBoard({ focus: '[data-kind-tab="' + key + '"]' }); });
+    return b;
+  }
+  function chip(key, label) {
+    var b = E.el("button", { class: "props-chip", type: "button", "data-sport-chip": key, "aria-pressed": String(view.sport === key), text: label });
+    b.addEventListener("click", function () { view.sport = key; view.all = false; renderBoard({ focus: '[data-sport-chip="' + key + '"]' }); });
+    return b;
+  }
+  function renderBoard(opts) {
+    var keep = (opts && opts.focus) || focusKey();
+    var has = listed.length > 0, beat = plays.length > 0, onWatch = !has && watch.length > 0;
+    var how = document.getElementById("board-how");
+    document.getElementById("board-title").textContent = beat ? "Every " + E.word("one") + " and prop, likeliest first"
+      : has ? "Open " + E.word("many") + ", likeliest first"
+      : !summary.markets ? "Today’s board" : onWatch ? "On watch, no " + E.word("one") + " yet" : "Worth a look tonight";
+    how.textContent = beat ? "Game " + E.word("many") + " and player props in one order: today’s games first, then the chance to hit. A prop’s chance is the props board’s number checked against how graded props have finished. The bar is our chance; the tick is what the price implies."
+      : has ? "These have slipped under their own bar since they were posted, so none can be the " + E.word("ofDay").toLowerCase() + ". They stay listed until their games start and are graded at the posted price."
+      : onWatch ? "Nothing beats its price yet. These are the sides nearest their own bar, and what each needs."
+      : fallback.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top. They are not " + E.word("many") + "."
+      : "";
+    how.hidden = !how.textContent;
+
+    tools.textContent = ""; rows.textContent = ""; more.textContent = "";
+    tools.hidden = !beat;
+    head.hidden = !has;
+    var shownList = listed;
+    if (beat) {
+      var sports = sportsOf(inKind(plays));
+      if (view.sport !== "all" && sports.indexOf(view.sport) < 0) view.sport = "all";
+      var bySport = inSport(plays);
+      tools.appendChild(E.el("div", { class: "props-tabs", role: "group", "aria-label": "Kind" }, [
+        tab("all", "All", bySport.length), tab("lean", "Game " + E.word("many"), bySport.filter(isLean).length), tab("prop", "Player props", bySport.filter(isProp).length)
       ]));
-    });
-    else shown.slice(0, 4).forEach(function (p, i) {
-      rows.appendChild(E.el("a", { class: "board-row" + (p.isMarket ? " board-market" : ""), href: p.isMarket ? "picks.html#market" : "picks.html#" + p.id }, [
-        E.el("span", { class: "board-sport" }, [E.rankChip(i + 1, true), T ? T.sideLogo(p, 28) : null, E.el("span", { class: "board-sport-text", text: p.sport.toUpperCase() })]),
-        E.el("div", { class: "board-pick" }, [
-          E.el("div", { class: "sel", text: p.pick }),
-          E.meta([p.event, p.market, p.isMarket ? E.statusLabel(p.status) : null], "ev")
-        ]),
-        E.el("span", { class: "board-odds", text: E.fmtOdds(p.odds) }),
-        E.el("span", { class: "board-edge" + (p.isMarket ? " board-edge-watch" : ""), text: E.edgeText(p) })
-      ]));
-    });
-    /* earlier today: the picks whose games have started, counted, with the way to their scores and results */
+      if (sports.length > 1) tools.appendChild(E.el("div", { class: "props-chips", role: "group", "aria-label": "Sport" }, [chip("all", "All sports")].concat(sports.map(function (s) { return chip(s, s); }))));
+      shownList = inKind(bySport);
+    }
+
+    if (!has) {
+      if (onWatch) watch.slice(0, 4).forEach(function (e, i) { rows.appendChild(watchRow(e, i)); });
+      else if (fallback.length) fallback.slice(0, 4).forEach(function (p, i) { rows.appendChild(marketRow(p, i)); });
+      else rows.appendChild(E.el("p", { class: "board-empty", text: emptyText() }));
+    } else if (!shownList.length) {
+      rows.appendChild(view.kind === "prop"
+        ? E.el("p", { class: "board-empty" }, ["No player prop beats its price right now. Most prop lines arrive with the " + E.runClock(1) + " run. ", E.el("a", { href: "props.html", text: "Open the props board" })])
+        : E.el("p", { class: "board-empty" }, ["No game " + E.word("one") + " is on the board right now. ", E.el("a", { href: "picks.html#watchlist", text: "See the watchlist" })]));
+    } else {
+      /* a day heading opens each day whenever the list spans more than one; the rank numbers the whole list */
+      var multi = shownList.some(function (x) { return x.day !== shownList[0].day; }), lastDay = null;
+      (view.all ? shownList : shownList.slice(0, CAP)).forEach(function (play, i) {
+        if (multi && play.day !== lastDay) rows.appendChild(E.dayDivider(play.day));
+        lastDay = play.day;
+        rows.appendChild(playRow(play, i + 1));
+      });
+      if (shownList.length > CAP) {
+        var noun = !beat || view.kind === "lean" ? E.word("many") : view.kind === "prop" ? "props" : E.word("many") + " and props";
+        var mb = E.el("button", { class: "btn btn-secondary btn-sm", type: "button", "data-more": "", "aria-expanded": String(view.all), text: view.all ? "Show the top " + CAP : "Show all " + shownList.length + " " + noun });
+        mb.addEventListener("click", function () { view.all = !view.all; renderBoard({ focus: "[data-more]" }); });
+        more.appendChild(mb);
+      }
+    }
+
+    /* earlier today: the leans whose games have started, counted, with the way to their scores and results */
     var earlier = document.getElementById("board-earlier"), ps = E.playedSummary();
     earlier.textContent = "";
-    var today = ps.list.every(function (p) { return E.dayLabel(E.dayKey(p)) === "Today"; });
-    if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: today ? "Earlier today" : "Recent games" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
+    var allToday = ps.list.every(function (p) { return E.dayLabel(E.dayKey(p)) === "Today"; });
+    if (ps.parts.length) earlier.appendChild(E.el("a", { class: "board-earlier", href: "picks.html#played" }, [E.el("span", { class: "board-earlier-k", text: allToday ? "Earlier today" : "Recent games" }), E.meta(ps.parts, "board-earlier-n"), E.el("span", { class: "board-earlier-go", text: "In progress and results" })]));
+
+    /* the foot counts what the list holds and what it leaves out, with the way to each */
     var foot = document.getElementById("board-foot");
     foot.textContent = "";
-    if (onWatch) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. " + (watch.length > 4 ? (watch.length - 4) + " more on " : "These are from "), E.el("a", { href: "picks.html#watchlist", text: "the watchlist" }), "."]));
-    else if (!ranked.length && summary.markets) foot.appendChild(E.el("span", {}, [summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]));
-    else if (!(S.record.wins + S.record.losses + S.record.pushes)) foot.appendChild(E.el("span", { text: "Results start the morning after the first " + E.word("many") + " settle." }));
-    else [["30-day record", S.record.wins + "-" + S.record.losses + "-" + S.record.pushes],
-     ["Units", E.signed(S.units, 1) + "u"],
-     ["ROI", E.signed(S.roi, 1) + "%"]].forEach(function (kv) {
-      foot.appendChild(E.el("span", {}, [kv[0] + " ", E.el("strong", { text: kv[1] })]));
-    });
+    function line(parts) { foot.appendChild(E.el("span", {}, parts)); }
+    var one = counts.short === 1;
+    var propsLine = !PL || !PR ? null
+      : counts.priced === 0 ? ["No player prop is priced right now; most prop lines arrive with the " + E.runClock(1) + " run."]
+      : counts.short > 0 ? [counts.short + (one ? " priced prop does not beat its price and is" : " priced props do not beat their price and are") + " not listed. ", E.el("a", { href: "props.html", text: "Props board" })]
+      : null;
+    if (beat) {
+      var nl = counts.leans, np = counts.props, leans = nl + " game " + (nl === 1 ? E.word("one") : E.word("many")), props = np + " player prop" + (np === 1 ? "" : "s");
+      if (nl && np) line([leans + " and " + props + " beat their price right now."]);
+      else if (nl) line([leans + (nl === 1 ? " beats its price right now." : " beat their price right now.")]);
+      else line([props + (np === 1 ? " beats its price right now." : " beat their price right now.") + " No game " + E.word("one") + " is on the board. ", E.el("a", { href: "picks.html#watchlist", text: "Watchlist" })]);
+      if (counts.slipped > 0) line([counts.slipped + " more open " + (counts.slipped === 1 ? E.word("one") + " has slipped under its bar and is" : E.word("many") + " have slipped under their bar and are") + " not listed here. ", E.el("a", { href: "picks.html", text: "All " + E.word("many") })]);
+      if (propsLine) line(propsLine);
+    } else if (has) {
+      if (propsLine) line(propsLine);
+    } else if (onWatch) line([summary.markets + " markets priced in " + summary.games + " games; none is on the board. " + (watch.length > 4 ? (watch.length - 4) + " more on " : "These are from "), E.el("a", { href: "picks.html#watchlist", text: "the watchlist" }), "."]);
+    else if (summary.markets) line([summary.markets + " markets priced in " + summary.games + " games; none is on the board. ", E.el("a", { href: "picks.html#market", text: "Market board" })]);
+    foot.hidden = !foot.childNodes.length;
+
+    if (keep) { var f = rows.parentNode.querySelector(keep); if (f) f.focus(); }
   }
+
+  /* the record: the play of the day, the parlay of the day, every lean of the last 30 days, and the graded props */
+  function wl(r) { return r.wins + "-" + r.losses + (r.pushes ? "-" + r.pushes : ""); }
+  function nOf(r) { return r.n != null ? r.n : r.wins + r.losses + r.pushes; }
+  function tile(label, value, parts) {
+    return E.el("div", { class: "card stat", "data-tilt": "" }, [E.el("div", { class: "stat-label", text: label }), E.el("div", { class: "stat-value", text: value }), E.el("div", { class: "stat-sub" }, [E.meta(parts)])]);
+  }
+  function ofDayTile(label, r) {
+    var n = r ? nOf(r) : 0;
+    return n ? tile(label, wl(r), [E.signed(r.units, 2) + "u", n + (n === 1 ? " day" : " days"), r.props ? r.props + (r.props === 1 ? " player prop" : " player props") : null])
+      : tile(label, "0-0", ["Starts with the first graded one"]);
+  }
+  function lastLine(what, date, text, r) {
+    var word = r.status === "void" ? "Void" : r.result ? E.resultWord(r) : null;
+    return E.el("p", {}, ["Last " + what.toLowerCase() + ", " + E.shortDate(E.keyDate(date), true) + ": ", E.el("strong", { text: text }),
+      word ? ", " + word.toLowerCase() + (typeof r.units === "number" ? " " + E.signed(r.units, 2) + "u" : "") + "." : ", still to finish."]);
+  }
+  function renderRecord() {
+    var grid = document.getElementById("record-grid"), last = document.getElementById("record-last");
+    grid.textContent = ""; last.textContent = "";
+    grid.appendChild(ofDayTile(E.word("ofDay"), S.potd));
+    grid.appendChild(ofDayTile(E.word("parlayOfDay"), S.parlays));
+    var r = S.record || { wins: 0, losses: 0, pushes: 0 };
+    grid.appendChild(r.wins + r.losses + r.pushes ? tile(E.word("Many") + ", last 30 days", wl(r), [E.signed(S.units, 1) + "u", "ROI " + E.signed(S.roi, 1) + "%"])
+      : tile(E.word("Many") + ", last 30 days", "0-0", ["Results start the morning after the first " + E.word("many") + " settle"]));
+    var pr = PR && PR.results && PR.results.record, pn = pr ? pr.w + pr.l : 0;
+    grid.appendChild(pn ? tile("Player props graded", pr.w + "-" + pr.l + (pr.push ? "-" + pr.push : ""), [E.pct(pr.w / pn) + " hit", PR.results.since ? "since " + E.shortDate(E.keyDate(PR.results.since)) : null])
+      : tile("Player props graded", "0-0", ["Grading starts with the first priced props"]));
+    E.initTilt(grid);
+    var was = D.ofDay && D.ofDay.last ? D.ofDay.last : {};
+    if (was.play) last.appendChild(lastLine(E.word("ofDay"), was.play.date, was.play.pick + " " + E.fmtOdds(was.play.odds), was.play));
+    else if (stale.play) last.appendChild(lastLine(E.word("ofDay"), stale.play.date, stale.play.pick.pick + " " + E.fmtOdds(stale.play.pick.odds), stale.play.pick));
+    if (was.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), was.parlay.date, was.parlay.legs + " legs at " + E.fmtOdds(was.parlay.odds), was.parlay));
+    else if (stale.parlay) last.appendChild(lastLine(E.word("parlayOfDay"), stale.parlay.date, stale.parlay.par.legs.length + " legs at " + E.fmtOdds(stale.parlay.par.odds), stale.parlay.par));
+    last.hidden = !last.childNodes.length;
+  }
+
+  /* the three ways in, each with what it holds right now */
+  function renderDoors() {
+    if (NW && NW.week) document.getElementById("door-nfl-n").textContent = NW.week.label + ", " + NW.week.games + " games";
+    document.getElementById("door-props-n").textContent = counts.priced ? counts.priced + (counts.priced === 1 ? " prop priced now" : " props priced now") : "Lines arrive with the " + E.runClock(1) + " run";
+    if (summary.markets) document.getElementById("door-games-n").textContent = summary.markets + " markets priced in " + summary.games + " games";
+  }
+
   /* subscribe: what the next calendar event looks like, built from the same data the feed is built from */
   var renderPreview = (function () {
     var sec = document.getElementById("subscribe"), host = document.getElementById("sub-preview-host");
@@ -482,32 +740,15 @@
   }
   if (window.EdgeLineField) mountField(); else window.addEventListener("DOMContentLoaded", mountField);
 
-  /* play of the day and parlay of the day, as the pipeline chose them; once their games start they show where they stand */
-  function renderPlays() {
-    var ph = document.getElementById("potd-host"), pl = document.getElementById("parlay-host");
-    ph.textContent = ""; pl.textContent = "";
-    ph.appendChild(E.potdCard(D.playOfDay || null));
-    pl.appendChild(E.parlayCard(D.parlayOfDay || null));
-    E.initTilt(ph); E.initTilt(pl);
-  }
-
-  /* top three picks by edge, or the three closest markets */
-  var grid = document.getElementById("top-picks-grid"), th = document.querySelector("#top-picks h2"), tp = document.querySelector("#top-picks .section-head p");
-  var topHow = tp ? tp.textContent : "";
-  function renderTop() {
-    grid.textContent = "";
-    if (th) th.textContent = !ranked.length && shown.length ? "The likeliest sides right now" : "The likeliest " + E.word("many") + " right now";
-    if (tp) tp.textContent = !ranked.length && shown.length ? "Nothing is on the board yet. From the last price check: sides with a positive edge first, likeliest on top, then the rest. Watch means the edge is at least halfway to its own bar. They are not " + E.word("many") + "." : topHow;
-    if (!shown.length) grid.appendChild(E.el("div", { class: "card empty", text: emptyText() }));
-    shown.slice(0, 3).forEach(function (p, i) { grid.appendChild(E.pickCard(p, { rank: i + 1 })); });
-    E.initTilt(grid);
-  }
-
-  function renderAll() { compute(); renderTicker(); renderBoard(); renderPreview(); renderPlays(); renderTop(); }
+  function renderAll() { compute(); renderHead(); renderTicker(); renderBoard(); renderRecord(); renderDoors(); renderPreview(); renderPlays(); }
   renderAll();
   E.updateLine(document.getElementById("board-updated"));
-  /* once a minute: a game that starts leaves the board, the ticker and the top three, and joins the Earlier today count */
+  /* once a minute: a game that starts leaves the list and the ticker and joins the Earlier today count. The site clock
+     watches the leans; this one also watches the props and the lock. */
   E.onStateChange(renderAll);
+  function tick() { var before = sig(); compute(); if (sig() !== before) renderAll(); }
+  setInterval(tick, 60e3);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
 
   /* edge calculator: the slider walks a list of valid American odds (no -99..+99 dead zone) */
   var ODDS = [];

@@ -1096,6 +1096,15 @@
     return (picks || []).filter(isValidPick).sort(worthFirst);
   }
   /* the rank chip: "#1 · Likeliest" on the top card, "#n" below it */
+  /* a game named by its two abbreviations ("MIA @ UTAH") where both are known; the full event otherwise */
+  function eventShort(p) {
+    if (!p) return "";
+    const who = p.player;
+    if (who && who.teamAbbr && who.oppAbbr) return who.home ? who.oppAbbr + " @ " + who.teamAbbr : who.teamAbbr + " @ " + who.oppAbbr;
+    const a = TM() ? TM().teamFor(p, "away") : null, h = TM() ? TM().teamFor(p, "home") : null;
+    if (!a || !h || !a.abbr || !h.abbr) return p.event || "";
+    return / vs\.? /.test(p.event || "") ? h.abbr + " vs. " + a.abbr : a.abbr + " @ " + h.abbr;
+  }
   function rankChip(n, short) {
     if (!n) return null;
     return el("span", { class: "rank" + (n === 1 ? " rank-top" : ""), title: n === 1 ? "Likeliest to hit on this board, by our probability from game data" : "Rank " + n + " by our probability from game data", text: n === 1 && !short ? "#1 Likeliest" : "#" + n });
@@ -1103,7 +1112,100 @@
 
   /* ---------- play of the day ---------- */
   function isPlayOfDay(id) { const d = window.PICKS_DATA; return !!(d && d.playOfDay && d.playOfDay.id === id); }
-  function potdCard(p) {
+  /* ---------- any play: a game lean or a player prop (owner ask, 2026-11-11) ----------
+     The play and the parlay of the day are chosen from every play (js/plays.js, scripts/of-day.js), so a card can be a
+     player prop: kind "prop" with player, stat, side and line. A prop has no breakdown dialog, no live score slot and no
+     slip button; it links to its player on the props board. */
+  function isPropPlay(p) { return !!p && p.kind === "prop" && !!p.player; }
+  function propHref(p) { return "props.html?p=" + encodeURIComponent(p.player.id) + (p.stat ? "&stat=" + encodeURIComponent(p.stat) : ""); }
+  function capFirst(v) { v = String(v == null ? "" : v); return v.charAt(0).toUpperCase() + v.slice(1); }
+  /* "Under 7.5 rebounds": a prop's side, line and stat, the heading under the player's name */
+  function propSel(p) { return capFirst(p.side) + " " + p.line + " " + String(p.statLabel || p.market || "").toLowerCase(); }
+  function frontBadge() { return el("span", { class: "badge badge-front", title: "The front-runner so far. The play and the parlay of the day lock at the afternoon run, once game lines and prop lines are both in.", text: "Not final" }); }
+  /* the lock under a play or parlay of the day. Before the lock run the card is the front-runner and says when it
+     locks; after it, when it locked. opts.front, opts.lockAt (ms) */
+  function lockLine(p, opts) {
+    opts = opts || {};
+    if (opts.front) {
+      const at = Number(opts.lockAt), known = Number.isFinite(at) && at > 0, due = known && now() >= at;
+      return el("p", { class: "potd-lock is-front" }, [el("strong", { text: "Front-runner, not final." }), due ? " The lock run is due: it locks when that run lands, and is never swapped after." : " It locks " + (known ? aboutET(at) : "at the " + runClock(1) + " run") + ", once game lines and prop lines are both in, and is never swapped after."]);
+    }
+    const t = Date.parse((p && p.lockedAt) || "");
+    return Number.isFinite(t) ? el("p", { class: "potd-lock", text: "Locked " + clockET(t) + ". One a day, never swapped." }) : null;
+  }
+  /* the slim bar under a play's numbers: fill = our chance, tick = what the price implies, hairline = a coin flip */
+  function probMeter(prob, odds, cls) {
+    const imp = impliedProb(odds), w = Math.max(0, Math.min(100, prob * 100)), t = Math.max(0, Math.min(100, imp * 100));
+    return el("div", { class: "prob" + (cls ? " " + cls : ""), role: "img", "aria-label": "To hit " + pct(prob) + "; the price implies " + pct(imp), title: "To hit " + pct(prob) + " · price implies " + pct(imp) + " · 50% line is a coin flip" }, [
+      el("div", { class: "prob-bar" }, [el("span", { class: "prob-fill", style: "width:" + w.toFixed(1) + "%" }), el("span", { class: "prob-tick", style: "left:" + t.toFixed(1) + "%" })])
+    ]);
+  }
+  /* a play from EdgeLinePlays (kind, prob, stated, tier, src) in the published shape the cards read: a lean is its pick
+     on the board, a prop the shape scripts/of-day.js publicProp writes. check: PROPS_DATA.results.check, when there is one */
+  function playAsPick(play, check) {
+    if (!play) return null;
+    if (play.kind !== "prop") return Object.assign({}, play.src, { kind: "lean" });
+    const PL = window.EdgeLinePlays, row = check && (check[play.league] || check.all);
+    return { kind: "prop", id: play.id, sport: play.sport, league: play.league, sportKey: play.sportKey, event: play.event, home: play.home, away: play.away, gameId: play.gameId, commence: play.commence,
+      market: play.market, pick: play.pick, odds: play.odds, book: play.book, prices: play.prices || {}, modelProb: play.prob, statedProb: play.stated,
+      keep: PL ? PL.keepFor(play.league, check) : null, checkedOn: row && row.n ? row.n : 0, ev: play.ev, confidence: play.tier, basis: "game",
+      player: play.player, stat: play.stat, statLabel: play.statLabel, statShort: play.statShort, side: play.side, line: play.line, l10: play.l10 || null, proj: play.proj == null ? null : play.proj, reasons: play.reasons || [],
+      status: "pending", started: false, result: null, units: null, actual: null, score: null };
+  }
+  /* EdgeLinePlays.parlay's answer ({ book, legs: [play, play], legPrices, odds, fairProb, ev }) in the published parlay shape */
+  function frontParlay(par) {
+    if (!par) return null;
+    return { id: "parlay-front", book: par.book, odds: par.odds, decimal: par.decimal, fairProb: par.fairProb, ev: par.ev, status: "pending", result: null, units: null,
+      legs: par.legs.map(function (x, i) {
+        const leg = { id: x.id, kind: x.kind === "prop" ? "prop" : "lean", pick: x.pick, event: x.event, sport: x.sport, price: par.legPrices[i], commence: x.commence || null, started: false, result: null };
+        if (x.kind === "prop") Object.assign(leg, { league: x.league, sportKey: x.sportKey, home: x.home, away: x.away, gameId: x.gameId, player: x.player, stat: x.stat, statShort: x.statShort, side: x.side, line: x.line, modelProb: x.prob });
+        return leg;
+      }) };
+  }
+  /* the play of the day when it is a player prop: the player, the side and line, the chance as checked against the
+     props' own graded record, and the reasons from the props board */
+  function propPlayCard(p, opts) {
+    const st = gameState(p), open = st === "upcoming" || st === "soon", pl = p.player, T = TM();
+    const prob = Number(p.modelProb), imp = impliedProb(p.odds), ev = p.ev == null ? prob * decimalOdds(p.odds) - 1 : Number(p.ev), statWord = String(p.statLabel || p.market || "").toLowerCase();
+    const stated = Number(p.statedProb), n = Number(p.checkedOn) || 0;
+    const why = !Number.isFinite(stated) || Math.abs(stated - prob) < 0.0005 ? "Graded on game data: this player's own games, never another book's price."
+      : "The props board gives this side " + pct(stated) + ". " + (n ? "Graded props have landed nearer a coin flip than the board says, so it counts here at " + pct(prob) + ", checked against " + n.toLocaleString("en-US") + " graded props." : "Props have no graded record to check against yet, so only part of that counts: " + pct(prob) + " here.");
+    const status = open ? [startLabel(p)] : [stateChip(p), st === "final"
+      ? meta([p.actual != null ? "Finished on " + p.actual + " " + statWord : null, p.status === "void" && p.voidReason ? capFirst(p.voidReason) : null, unitsText(p) || null], "potd-result")
+      : meta([Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : "Started"], "potd-result")];
+    const card = el("article", { class: "card potd potd-prop" + (opts.front ? " potd-front" : ""), "data-sport": p.sport, "data-state": st, "data-kind": "prop", "data-tilt": "" }, [
+      el("div", { class: "pick-head" }, [
+        el("span", { class: "eyebrow", text: word("ofDay") }),
+        el("span", { class: "pick-head-right" }, [opts.front ? frontBadge() : null, el("span", { class: "badge badge-kind", text: "Player prop" }), el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
+      ]),
+      el("div", { class: "potd-player" }, [
+        T ? T.face(p.sportKey, pl, 64) : null,
+        el("div", { class: "potd-player-id" }, [el("span", { class: "potd-player-name", text: pl.name }), meta([pl.teamAbbr || null, pl.pos || null, pl.oppAbbr ? (pl.home ? "vs " : "at ") + pl.oppAbbr : null], "potd-player-sub")])
+      ]),
+      el("h3", { class: "potd-selection", text: propSel(p) }),
+      el("div", { class: "potd-event", text: p.event }),
+      meta([p.statLabel || p.market, el("span", { class: "mono", text: fmtOdds(p.odds) }), p.book || null], "potd-line"),
+      el("div", { class: "pick-metrics potd-metrics" }, [
+        el("div", { class: "pick-metric", title: "The props board's chance for this side, checked against how graded props have actually finished" }, [el("div", { class: "k", text: "To hit" }), el("div", { class: "v", text: pct(prob) })]),
+        el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "Edge" }), el("div", { class: "v edge", text: signed((prob - imp) * 100, 1) + "%" })]),
+        el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "EV / unit" }), el("div", { class: "v edge", text: signed(ev * 100, 1) + "%" })])
+      ]),
+      probMeter(prob, p.odds),
+      el("p", { class: "pick-rationale", text: why }),
+      (p.reasons || []).length ? el("ul", { class: "potd-reasons" }, p.reasons.slice(0, 3).map(function (r) { return el("li", { text: String(r) }); })) : null,
+      lockLine(p, opts),
+      el("div", { class: "pick-foot" }, [
+        el("span", { class: "potd-state" }, status),
+        el("span", { class: "pick-actions" }, [el("a", { class: "flip-btn", href: propHref(p), text: "Open on the props board" })])
+      ])
+    ]);
+    /* the glow is the player's own team */
+    if (T) T.tint(card, Object.assign({}, p, { pick: pl.home ? p.home : p.away, outcome: null }));
+    return card;
+  }
+  /* opts.front: the front-runner before the lock (a "Not final" badge and the lock line); opts.lockAt: the lock, in ms */
+  function potdCard(p, opts) {
+    opts = opts || {};
     if (!p) {
       /* nothing cleared the bar: show the closest market instead, labelled as such */
       const alt = marketRows({ limit: 1, oneSidePerMarket: true, byPast: true })[0];
@@ -1114,13 +1216,14 @@
       }
       return el("div", { class: "card empty", text: "No " + word("ofDay").toLowerCase() + " yet. It is chosen at the first run with " + word("many") + ", around " + runClock(0) + "." });
     }
+    if (isPropPlay(p)) return propPlayCard(p, opts);
     const modelled = hasModel(p), st = gameState(p), open = st === "upcoming" || st === "soon";
     /* chosen once a day and kept: once its game starts it shows where it stands, never an add button */
     const status = open ? [startLabel(p)] : [stateChip(p), st === "final" ? meta([scoreText(p) ? "Final " + scoreText(p) : null, unitsText(p) || null], "potd-result") : meta([Number.isFinite(startMs(p)) ? "Started " + clockET(startMs(p)) : "Started"], "potd-result")];
-    const card = el("article", { class: "card potd", "data-sport": p.sport, "data-state": st, "data-tilt": "" }, [
+    const card = el("article", { class: "card potd" + (opts.front ? " potd-front" : ""), "data-sport": p.sport, "data-state": st, "data-kind": p.isMarket ? "market" : "lean", "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: p._eyebrow || word("ofDay") }),
-        el("span", { class: "pick-head-right" }, [p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
+        el("span", { class: "pick-head-right" }, [opts.front && !p.isMarket ? frontBadge() : null, p.isMarket ? el("span", { class: "badge badge-status badge-" + p.status, text: statusLabel(p.status) }) : null, el("span", { class: "badge badge-sport", "data-sport": p.sport, text: p.sport })])
       ]),
       TM() ? TM().matchup(p, { size: "lg" }) : null,
       el("div", { class: "potd-event", text: p.event }),
@@ -1136,6 +1239,7 @@
       barLine(p),
       flagLine(p),
       el("p", { class: "pick-rationale", text: p._note || p.rationale }),
+      p.isMarket ? null : lockLine(p, opts),
       el("div", { class: "pick-foot" }, [
         el("span", { class: "potd-state" }, status.concat([st === "final" || p.isMarket ? null : liveSlot(p.id)])),
         el("span", { class: "pick-actions" }, [!open || p.isMarket ? null : parlayButton(p.id), p.isMarket ? el("a", { class: "flip-btn", href: "picks.html#market", text: "Market board" }) : el("button", { type: "button", class: "flip-btn", "data-breakdown": p.id, text: "Full breakdown" })])
@@ -1223,17 +1327,19 @@
     if (!par) return pulseCard({ title: "No parlay yet: the market right now", emptyText: "No " + word("parlayOfDay").toLowerCase() + " yet. It needs two or more " + word("many") + " from different games, each with an edge at the same book." });
     /* each leg read from its pick on the board, so a leg whose game has started says so */
     const legPick = par.legs.map(legAsPick), begun = legPick.filter(p => !isOpen(p)).length;
-    const status = par.result ? "Result: " + par.result : begun ? (begun === par.legs.length ? "Every leg has started" : begun + " of " + par.legs.length + " legs started") : "All legs ahead";
-    return el("article", { class: "card parlay" + (begun ? " parlay-begun" : ""), "data-tilt": "" }, [
+    /* a prop leg has no pick on the board: no breakdown dialog and no place in the builder */
+    const leanIds = par.legs.filter(l => !isPropPlay(l)).map(l => l.id), hasProp = leanIds.length < par.legs.length;
+    const status = par.status === "void" ? "Void: a leg was called off" : par.result ? "Result: " + par.result : begun ? (begun === par.legs.length ? "Every leg has started" : begun + " of " + par.legs.length + " legs started") : "All legs ahead";
+    return el("article", { class: "card parlay" + (begun ? " parlay-begun" : "") + (opts.front ? " potd-front" : ""), "data-tilt": "" }, [
       el("div", { class: "pick-head" }, [
         el("span", { class: "eyebrow", text: opts.title || word("parlayOfDay") }),
-        el("span", { class: "pick-head-right" }, [opts.tag ? el("span", { class: "badge badge-potd", text: opts.tag }) : null, el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })])
+        el("span", { class: "pick-head-right" }, [opts.front ? frontBadge() : null, opts.tag ? el("span", { class: "badge badge-potd", text: opts.tag }) : null, el("span", { class: "badge badge-strong", text: par.legs.length + " legs" })])
       ]),
       el("ul", { class: "parlay-legs" }, par.legs.map(function (l, i) {
-        const lp = legPick[i], lst = gameState(lp);
-        return el("li", { "data-state": lst }, [
-          el("span", { class: "leg-id" }, [TM() ? TM().matchup(l, { size: "sm", abbr: false }) : null, el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport })]),
-          el("span", { class: "leg-pick" }, [el("strong", { text: l.pick }), el("span", { class: "leg-event", text: l.event }), lst === "final" ? null : liveSlot(l.id)]),
+        const lp = legPick[i], lst = gameState(lp), prop = isPropPlay(l);
+        return el("li", { "data-state": lst, "data-kind": prop ? "prop" : "lean" }, [
+          el("span", { class: "leg-id" }, [!TM() ? null : prop ? TM().face(l.sportKey, l.player, 28) : TM().matchup(l, { size: "sm", abbr: false }), el("span", { class: "badge badge-sport", "data-sport": l.sport, text: l.sport })]),
+          el("span", { class: "leg-pick" }, [prop ? el("a", { class: "leg-prop", href: propHref(l), title: "Open on the props board" }, [el("strong", { text: l.pick })]) : el("strong", { text: l.pick }), el("span", { class: "leg-event", text: prop ? eventShort(l) : l.event, title: prop ? l.event : null }), prop || lst === "final" ? null : liveSlot(l.id)]),
           el("span", { class: "mono leg-price", text: fmtOdds(l.price) }),
           stateChip(lp)
         ]);
@@ -1243,20 +1349,23 @@
         el("div", { class: "pick-metric", title: "The legs' probabilities from the game data, multiplied" }, [el("div", { class: "k", text: "To hit" }), el("div", { class: "v", text: pct(par.fairProb) })]),
         el("div", { class: "pick-metric" }, [el("div", { class: "k", text: "EV / unit" }), el("div", { class: "v edge", text: signed(par.ev * 100, 1) + "%" })])
       ]),
-      el("p", { class: "pick-rationale", text: "Priced as one ticket at " + par.book + ". Legs are from different games and treated as independent, each at our probability from the game data; one loss loses the ticket, a push drops out." }),
+      el("p", { class: "pick-rationale", text: "Priced as one ticket at " + par.book + ". Legs are from different games and treated as independent, each at our probability from the game data; one loss loses the ticket, a push drops out." + (hasProp ? " A prop leg counts at its checked chance; if its player does not play, the ticket is void." : "") }),
+      lockLine(par, opts),
       el("div", { class: "pick-foot" }, [
         el("span", { class: par.result ? "result result-" + par.result.toLowerCase() : "", text: status }),
         el("span", { class: "pick-actions" }, [
-          el("button", { type: "button", class: "flip-btn", "data-breakdown": par.legs.map(l => l.id).join(","), text: "Leg breakdowns" }),
-          opts.loadButton && !begun ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : begun ? el("a", { class: "flip-btn", href: "picks.html#played", text: "In progress and results" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
+          leanIds.length ? el("button", { type: "button", class: "flip-btn", "data-breakdown": leanIds.join(","), text: leanIds.length === 1 ? "Leg breakdown" : "Leg breakdowns" }) : null,
+          opts.loadButton && !begun && !hasProp ? el("button", { type: "button", class: "flip-btn", "data-load-parlay": "", text: "Load into the builder" }) : begun ? el("a", { class: "flip-btn", href: "picks.html#played", text: "In progress and results" }) : el("a", { class: "flip-btn", href: "picks.html#parlays", text: "See all the best parlays" })
         ])
       ])
     ]);
   }
   /* a parlay leg as its pick on the board (commence, sport, result), the leg's own result and started flag on top */
   function legAsPick(l) {
+    /* a prop leg has no pick on the board: its start, sides and result ride on the leg itself */
+    if (l && l.kind === "prop") return Object.assign({ id: l.id, kind: "prop", sport: l.sport, sportKey: l.sportKey, league: l.league, event: l.event, pick: l.pick, commence: l.commence, home: l.home, away: l.away }, l.result ? { result: l.result } : {}, l.void ? { status: "void" } : {}, l.started === true ? { started: true } : {});
     const p = findPick(l.id) || {};
-    return Object.assign({}, p, { id: l.id, sport: p.sport || l.sport, event: p.event || l.event, pick: p.pick || l.pick }, l.result ? { result: l.result } : {}, l.started === true ? { started: true } : {});
+    return Object.assign({}, p, { id: l.id, sport: p.sport || l.sport, event: p.event || l.event, pick: p.pick || l.pick }, !p.commence && l.commence ? { commence: l.commence } : {}, l.result ? { result: l.result } : {}, l.void ? { status: "void" } : {}, l.started === true ? { started: true } : {});
   }
 
   /* ---------- full breakdown dialog ---------- */
@@ -1414,8 +1523,8 @@
     hasOwnBar: hasOwnBar, floorBar: floorBar, barRule: barRule, watchLineOf: watchLineOf, edgeFor: edgeFor, pastOf: pastOf, pastWord: pastWord, barGap: barGap, barName: barName, barLine: barLine, barSentence: barSentence, ptsLabel: ptsLabel,
     standingOf: standingOf, standingChip: standingChip, standingLine: standingLine, rowStatus: rowStatus, rowOnBoard: rowOnBoard, barsText: barsText,
     flagOf: flagOf, flagNote: flagNote, flagChip: flagChip, flagLine: flagLine, postedKnowing: postedKnowing, heldLine: heldLine, waitingOf: waitingOf, isHeld: isHeld, heldClears: heldClears, heldWhy: heldWhy, heldWhen: heldWhen, heldNote: heldNote, heldRun: heldRun, chipStatus: chipStatus, runAfter: runAfter, nextRunFor: nextRunFor,
-    el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, rankChip: rankChip, initTilt: initTilt, animateNumber: animateNumber,
-    potdCard: potdCard, parlayCard: parlayCard, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
+    el: el, meta: meta, pickCard: pickCard, picksTable: picksTable, sortByEdge: sortByEdge, sortByProb: sortByProb, worthFirst: worthFirst, worthTier: worthTier, dayKey: dayKey, dayLabel: dayLabel, dayCmp: dayCmp, dayDivider: dayDivider, etKey: etKey, keyDate: keyDate, shortDate: shortDate, rankChip: rankChip, eventShort: eventShort, initTilt: initTilt, animateNumber: animateNumber,
+    potdCard: potdCard, parlayCard: parlayCard, isPropPlay: isPropPlay, propHref: propHref, propSel: propSel, playAsPick: playAsPick, frontParlay: frontParlay, lockLine: lockLine, probMeter: probMeter, parlayMath: parlayMath, bestParlays: bestParlays, slip: slip, parlayButton: parlayButton, pnlCalendar: pnlCalendar, openBreakdown: openBreakdown,
     lineShop: lineShop, shopSummary: shopSummary, shopChips: shopChips, shopTable: shopTable, bookAbbr: bookAbbr, liveSlot: liveSlot,
     marketData: marketData, marketRows: marketRows, watchlist: watchlist, marketSummary: marketSummary, marketTable: marketTable, pulseCard: pulseCard, statusLabel: statusLabel,
     now: now, startMs: startMs, gameState: gameState, isOpen: isOpen, openOnly: openOnly, gameHours: gameHours, resultWord: resultWord, stateKey: stateKey, stateText: stateText, stateChip: stateChip, clockET: clockET, aboutET: aboutET, startLabel: startLabel, ago: ago, scoreText: scoreText, unitsText: unitsText,
