@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-12T01:58:51.832Z",
+  "trackedAt": "2026-11-12T02:47:18.826Z",
   "playOfDay": {
     "id": "e75aa3d5c3-totals-Under",
     "sport": "NHL",
@@ -34,7 +35,7 @@ window.PICKS_DATA = {
       "ESPN BET": 120,
       "PointsBet": 115
     },
-    "pricesAt": "2026-11-12T01:58:51.832Z",
+    "pricesAt": "2026-11-12T02:47:18.826Z",
     "books": 7,
     "anchor": "Pinnacle",
     "modelProb": 0.5154,
@@ -366,7 +367,7 @@ window.PICKS_DATA = {
       "label": "The market (6 books) opened 6.5 (+105), now 7 (-122)"
     },
     "sgo": {
-      "at": "2026-11-12T01:58:51.832Z",
+      "at": "2026-11-12T02:47:18.826Z",
       "n": 6,
       "best": {
         "book": "DraftKings",
@@ -877,15 +878,15 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": 120,
         "BetRivers": 110,
-        "FanDuel": 116,
+        "FanDuel": 112,
         "Bovada": 117,
         "BetOnline.ag": 121,
         "theScore Bet": 120,
-        "Unibet": -119,
+        "Unibet": -118,
         "PointsBet": 115,
-        "ESPN BET": 120
+        "ESPN BET": 115
       },
-      "pricesAt": "2026-11-12T01:58:51.832Z",
+      "pricesAt": "2026-11-12T02:47:18.826Z",
       "books": 7,
       "anchor": "Pinnacle",
       "modelProb": 0.512,
@@ -944,7 +945,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 44.0% (-1.3 points against the best price). For reference only.",
           "Market: DraftKings opened 6.5 (-105), now 6.5 (+120), moving against this side since the open.",
-          "Market: The market (6 books) opened 7.5 (-156), now 7 (-125), the consensus moving toward this side since the open.",
+          "Market: The market (5 books) opened 7.5 (-156), now 7 (-125), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Laurent Brossoit · Predators Justus Annunen.",
           "Records: Nashville Predators 9-4-5 · Anaheim Ducks 10-7-1 · Honda Center, Anaheim."
@@ -1105,7 +1106,7 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 5,
         "open": {
           "line": 7.5,
           "odds": -156
@@ -1115,16 +1116,16 @@ window.PICKS_DATA = {
           "odds": -125
         },
         "moved": "toward",
-        "label": "The market (6 books) opened 7.5 (-156), now 7 (-125)"
+        "label": "The market (5 books) opened 7.5 (-156), now 7 (-125)"
       },
       "sgo": {
-        "at": "2026-11-12T01:58:51.832Z",
-        "n": 6,
+        "at": "2026-11-12T02:47:18.826Z",
+        "n": 5,
         "best": {
           "book": "DraftKings",
           "odds": 120
         },
-        "fair": 0.4533,
+        "fair": 0.4587,
         "vendorFair": 0.5556,
         "open": {
           "line": 7.5,
@@ -1144,6 +1145,15 @@ window.PICKS_DATA = {
           "odds": -125,
           "best": 120,
           "n": 6
+        },
+        {
+          "at": "2026-11-12T02:47:18.826Z",
+          "fair": 0.4587,
+          "vendorFair": 0.5556,
+          "line": 7,
+          "odds": -125,
+          "best": 120,
+          "n": 5
         }
       ],
       "status": "pending",
@@ -1197,7 +1207,7 @@ window.PICKS_DATA = {
         "ESPN BET": 120,
         "PointsBet": 115
       },
-      "pricesAt": "2026-11-12T01:58:51.832Z",
+      "pricesAt": "2026-11-12T02:47:18.826Z",
       "books": 7,
       "anchor": "Pinnacle",
       "modelProb": 0.5154,
@@ -1529,7 +1539,7 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened 6.5 (+105), now 7 (-122)"
       },
       "sgo": {
-        "at": "2026-11-12T01:58:51.832Z",
+        "at": "2026-11-12T02:47:18.826Z",
         "n": 6,
         "best": {
           "book": "DraftKings",

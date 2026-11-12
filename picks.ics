@@ -475,7 +475,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-11@edgeline
-DTSTAMP:20261112T015851Z
+DTSTAMP:20261112T024718Z
 DTSTART:20261112T004000Z
 DTEND:20261112T061000Z
 SUMMARY:Parlay lean of the day: 2 legs +289 at DraftKings
@@ -485,7 +485,7 @@ DESCRIPTION:All legs priced at DraftKings. Fair 29.7%\, implied 25.7%\, EV
   parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261112T015851Z
+LAST-MODIFIED:20261112T024718Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -528,7 +528,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:43a0ad5ba8-totals-Under@edgeline
-DTSTAMP:20261112T015851Z
+DTSTAMP:20261112T024718Z
 DTSTART:20261112T031000Z
 DTEND:20261112T061000Z
 SUMMARY:Under 6.5 +121 at BetOnline.ag · Medium
@@ -547,13 +547,13 @@ DESCRIPTION:NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11\, 10:1
  A.J. Greer (LW)\, upper body. Fewer healthy scorers leans under.\n- Nashvi
  lle Predators on a back-to-back\; tired legs lean under.\nVerdict: The gam
  e data lines up behind this side at this price.\nPrices: BetOnline.ag +121
- \, DraftKings +120\, theScore Bet +120\, ESPN BET +120\, Bovada +117 and 4
-  more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#43
- a0ad5ba8-totals-Under
+ \, DraftKings +120\, theScore Bet +120\, Bovada +117\, PointsBet +115 and 
+ 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#4
+ 3a0ad5ba8-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#43a0ad5ba8-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T015851Z
+LAST-MODIFIED:20261112T024718Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -564,7 +564,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e75aa3d5c3-totals-Under@edgeline
-DTSTAMP:20261112T015851Z
+DTSTAMP:20261112T024718Z
 DTSTART:20261112T031000Z
 DTEND:20261112T061000Z
 SUMMARY:Lean of the day: Under 6.5 +118 at FanDuel · Medium
@@ -590,7 +590,7 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ San Jose Sharks · Wed Nov 11\, 10
 LOCATION:SAP Center at San Jose\, San Jose
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e75aa3d5c3-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T015851Z
+LAST-MODIFIED:20261112T024718Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
