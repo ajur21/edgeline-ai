@@ -20,7 +20,7 @@ function gameId(root) {
   const out = path.join(root, 'screenshots');
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
-  const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html'].map(p => [p, p.replace('.html', '')])
+  const pages = ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html', 'about.html'].map(p => [p, p.replace('.html', '')])
     /* browse by sport and game (2026-11-08): two sport tabs, a game page and the unknown-game page */
     .concat([['picks.html?sport=NHL', 'picks-nhl'], ['picks.html?sport=NFL', 'picks-nfl'], ['game.html?id=' + encodeURIComponent(gameId(root)), 'game'], ['game.html?id=unknown', 'game-missing']]);
   const problems = [], notes = [];

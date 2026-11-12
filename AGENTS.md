@@ -4,7 +4,7 @@ Read this first. It is the hand-off document for any agent or developer working 
 
 ## What this is
 
-A static marketing and product website for an AI sports betting picks service. Three pages, no framework, no build step. Open `index.html` in a browser or serve the folder from any static host.
+A static marketing and product website for an AI sports betting picks service. Nine pages, no framework, no build step. Open `index.html` in a browser or serve the folder from any static host.
 
 "EdgeLine AI" is a placeholder brand. All copy, prices, picks and performance numbers are placeholders and are labelled "Sample data" in the UI. Do not remove those labels until real data is wired in.
 
@@ -19,6 +19,7 @@ digest.html          Daily digest: one printable page for the slate. Lede, four 
 performance.html     Stat tiles, play/parlay/CLV record tiles, profit calendar, cumulative units line chart, units by sport bars, graded results table with a CLV column
 props.html           NBA and NFL props as a ranked board (2026-11-10; the owner called the page of open player cards "terrible, looks bad, set up bad" and chose this from three layouts): league tabs, game chips and stat tabs, then Side, Sort and Search, all kept in the address (`?league=&game=&stat=&side=&q=&sort=`); one compact row per player (#board: his likeliest side on a line the books quote both ways, game day first, then To hit, with the rank chip, face, position and team, matchup and start, stat and line, the lean, the probability bar and tier, L5, L10, the best price and book; 20 rows, then "Show all"); a row opens the detail dialog (`?p=<player>&stat=<key>`: the game-by-game chart with the line across, a line box that regrades, both sides with every book's price, one Why list, the matchup, the game log); then the record by tier (#record) and In progress and results (#played), both from `PROPS_DATA.results`, No line yet (#no-line, folded: the players the board cannot rank) and How it is graded (#how). The grade is js/props-grade.js; the page only presents it (see Props research and lines)
 journal.html         Personal bet log: form with screenshots, stats, profit calendar, export/import. IndexedDB on the visitor's device only; no backend
+about.html           About (2026-11-12, the footer's About link; not in the header nav): what the site is (a game-data model, graded in public) and is not (no bets taken), the record read live from data/performance.js (leans of the last 30 days, the lean and parlay of the day, against the close) with the replay note, the rules it keeps with the day each was decided, where the numbers come from (credits and licences), and the free calendar and feed. Every fact on it is from the pipeline or a recorded owner decision: no team, quotes or invented figures. When a rule or a source changes, change it here too
 css/styles.css       ALL styles. Design tokens live in :root at the top; dark theme in the two blocks below it
 js/app.js            Loaded in <head>. Theme, nav, the clock (now, gameState, isOpen: see the pick's life on the page), odds math, pick cards/table, flip + tilt + reveal, play-of-the-day and parlay cards (a player prop as the play or a leg since 2026-11-11), the day's play and parlay as every page shows them (`ofDayView`, `dayPlayCard`, `dayParlayCard`), parlay maths + slip (localStorage), profit calendar, line shopping (lineShop, shopChips, shopTable, shopSummary), live slots. Exposes window.EdgeLine
 js/live.js           Live in-game status (index, picks, digest). Polls ESPN's public scoreboard from the browser once games start and fills every [data-live="<pick id>"] slot with score, clock and where the pick stands (college football: `football/college-football` with `&groups=80&limit=300`). Exposes window.EdgeLineLive
@@ -77,7 +78,7 @@ package.json         Dev-only: `npm run check` runs the render check; Playwright
 README.md            Human-facing overview and customisation notes
 ```
 
-The header and footer are duplicated verbatim in all eight HTML files (game.html joined on 2026-11-08). If you change one, change all eight. The header carries the Games link and the search button (`[data-search-open]`, an icon like the theme toggle; header spacing tightens between 721 and 1179px so it stays one row from 1024px).
+The header and footer are duplicated verbatim in all nine HTML files (game.html joined on 2026-11-08, about.html on 2026-11-12). If you change one, change all nine; a behaviour check fails when the footers differ. The header carries the Games link and the search button (`[data-search-open]`, an icon like the theme toggle; header spacing tightens between 721 and 1179px so it stays one row from 1024px).
 
 ## Conventions (keep these)
 
@@ -114,7 +115,7 @@ npm run check                                    # render check, writes screensh
 npm test                                         # behaviour checks (nav, filters, charts, keyboard)
 ```
 
-The render check scrolls each page first so scroll-revealed sections are in their final state, then exits non-zero on any console error or horizontal overflow (a player or club image ESPN's CDN does not have is only noted: js/teams.js puts the monogram in its place, 2026-11-12) and writes 12 full-page screenshots to `screenshots/`. The behaviour check exits non-zero on any failed assertion. Run both after any change to HTML, CSS or JS and look at the images.
+The render check scrolls each page first so scroll-revealed sections are in their final state, then exits non-zero on any console error or horizontal overflow (a player or club image ESPN's CDN does not have is only noted: js/teams.js puts the monogram in its place, 2026-11-12) and writes full-page screenshots of every page, light and dark, desktop and phone, to `screenshots/`. The behaviour check exits non-zero on any failed assertion. Run both after any change to HTML, CSS or JS and look at the images.
 
 ## Data pipeline
 
@@ -222,7 +223,7 @@ Shipped 2026-11-04 as the session's bold change (the owner asked for one that im
 - **`feed.xml`**: RSS 2.0 with an `atom:link rel="self"`. One item per board pick (`guid` = pick id, `pubDate` = `loggedAt`), one per parlay of the day, one per grade (`guid` = `<id>#graded`, a new item so readers notify), and one per full run (`guid` = `slate-<generatedAt>`, so hourly track runs do not add items). Newest first, slate first on a tie, 80 items at most. Descriptions are escaped HTML built from the same text lines (`html()`); never raw data.
 - **A player prop as the play of the day (2026-11-11).** It is never on the card, so it is written from its `type: "prop"` log entry (`propLines`): an event with its alarm, then in play, then graded (same UID), and a feed item, then a `#graded` one; its text gives our checked chance and the model's own, and says it is graded on the box score. A void one (the player did not play) is left out. A prop that is only a parlay leg is listed in the parlay, whose legs carry their own start.
 - The site: `index.html#subscribe` (after How it works) shows the next calendar event built client-side from the same data (the earliest pick on the board, or the no-play all-day event with the closest side), two channel cards with "Add to calendar" (`webcal://` link, rewritten from `location` when served over http(s), else the `data-site` attribute), "Open the feed", and copy-link buttons; every page's `<head>` has the `rel="alternate"` RSS link and the footer has a Subscribe link; the Free plan's button points at the section; the digest has a one-line pointer under its tiles. The sample badge in the section follows `data-sample-flag="picks"`.
-- Base URL: `DEFAULT_BASE` in `scripts/feeds.js` and the `data-site` / `webcal` attributes in `index.html` carry the GitHub Pages URL. Change all three when the domain changes. Calendar clients refetch on their own schedule (Apple and Outlook roughly hourly, Google up to a day), so the feed is the faster channel.
+- Base URL: `DEFAULT_BASE` in `scripts/feeds.js`, the `data-site` / `webcal` attributes in `index.html` and the calendar button in `about.html` (`#about-webcal`, rewritten from `location` when served over http(s), like the home page's) carry the GitHub Pages URL. Change all four when the domain changes. Calendar clients refetch on their own schedule (Apple and Outlook roughly hourly, Google up to a day), so the feed is the faster channel.
 
 ## Second price source: SportsGameOdds (`scripts/sgo.js`)
 

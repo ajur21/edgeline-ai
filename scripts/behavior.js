@@ -742,13 +742,26 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   await lp2.goto(url('picks.html')); await lp2.waitForTimeout(300);
   kidsOk = kidsOk && await noKids();
   check('leans: the picks page head says leans and carries the replay note under the update line', (await lp2.textContent('h1.page-title')) === 'Model leans for today’s slate' && (await lp2.textContent('#all-picks')) === 'All leans, likeliest first' && REPLAY_FIGS.test(await lp2.textContent('.page-head [data-replay]')) && (await lp2.inputValue('#f-sort')) === 'model' && (await lp2.locator('#f-sort option[value="model"]').textContent()) === 'Likeliest first', await lp2.textContent('.page-head [data-replay]'));
-  for (const pg of ['digest.html', 'games.html', 'performance.html', 'journal.html', 'props.html']) { await lp2.goto(url(pg)); await lp2.waitForTimeout(200); kidsOk = kidsOk && await noKids(); }
+  for (const pg of ['digest.html', 'games.html', 'performance.html', 'journal.html', 'props.html', 'about.html']) { await lp2.goto(url(pg)); await lp2.waitForTimeout(200); kidsOk = kidsOk && await noKids(); }
   check('leans: every data-pick element holds text only, so the switch never wipes markup', kidsOk);
   await lp2.goto(url('performance.html')); await lp2.waitForTimeout(300);
   check('leans: the performance page head gives the replay with its error and size', /these leans did not beat the closing price: NHL −4\.8% ± 3\.7 over 883, NBA −7\.9% ± 2\.3 over 2,494, NFL −9\.5% ± 7\.1 over 253 \(ROI at the close, one unit on each\)\. They become picks when the live record beats the close\./.test(await lp2.textContent('.page-head [data-replay="detail"]')), await lp2.textContent('.page-head [data-replay="detail"]'));
   await lp2.goto(url('digest.html')); await lp2.waitForTimeout(300);
   check('leans: the digest names its slate and tiles for leans and closes on the replay note', (await lp2.textContent('.digest-slate h2')) === 'Every lean, likeliest first' && REPLAY_FIGS.test(await lp2.textContent('.digest-slate [data-replay]')));
   check('leans: no page errors', leanErr.length === 0, leanErr.join(' | '));
+  /* about.html (2026-11-12): what the site is, the record read from data/performance.js, the replay, the rules on record
+     with the day each was decided, the data sources, and the About link in every page's footer (one footer, verbatim) */
+  await lp2.goto(url('about.html')); await lp2.waitForTimeout(300);
+  const ab = await lp2.evaluate(() => {
+    const S = window.PERF_DATA || {}, wl = x => x ? x.wins + '-' + x.losses + (x.pushes ? '-' + x.pushes : '') : '0-0';
+    const vals = [...document.querySelectorAll('#about-tiles .stat .stat-value')].map(v => v.textContent);
+    return { h1: document.querySelector('h1.page-title').textContent, tiles: vals.length, record: vals[0] === wl(S.record), potd: vals[1] === wl(S.potd), parlay: vals[2] === wl(S.parlays),
+      rules: [...document.querySelectorAll('.rules-list li')].filter(li => /^[A-Z][a-z]{2} \d{1,2}, \d{4}$/.test(li.querySelector('.rule-since').textContent)).length,
+      sources: document.querySelectorAll('.sources dt').length, webcal: /^webcal:\/\/.*picks\.ics$/.test(document.getElementById('about-webcal').getAttribute('href')), strip: [...document.querySelectorAll('.subnav a')].every(a => !!document.querySelector(a.getAttribute('href'))) };
+  });
+  check('about: the head, the record read from data/performance.js, the replay with its figures, six rules each with its day, six sources, the calendar button a webcal link to picks.ics, and every strip link lands on its section', ab.h1 === 'A game-data model, graded in public.' && ab.tiles === 4 && ab.record && ab.potd && ab.parlay && REPLAY_FIGS.test(await lp2.textContent('#record [data-replay]')) && ab.rules === 6 && ab.sources === 6 && ab.webcal && ab.strip, JSON.stringify(ab));
+  const footers = fs.readdirSync(root).filter(f => f.endsWith('.html')).map(f => { const s = fs.readFileSync(path.join(root, f), 'utf8'); return s.slice(s.indexOf('<footer class="site-footer">'), s.indexOf('</footer>')); });
+  check('about: every page carries the same footer, and its About link opens about.html', footers.length >= 9 && footers.every(f => f === footers[0]) && footers[0].includes('<a href="about.html">About</a>'), footers.length + ' pages');
   /* the switch: call "picks" restores the old wording everywhere, generated and static */
   await lc.route('**/data/replay.js', route => route.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(path.join(root, 'data/replay.js'), 'utf8').replace('"call": "leans"', '"call": "picks"') }));
   await lp2.goto(url('picks.html')); await lp2.waitForTimeout(300);
@@ -827,7 +840,7 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   const rp = await rctx.newPage();
   rp.on('pageerror', e => realErrors.push(e.message)); rp.on('console', m => { if (m.type() === 'error') realErrors.push(m.text()); });
   let realPicks = 0;
-  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html', 'picks.html?sport=NFL', 'picks.html?sport=NCAAF', 'game.html', 'game.html?id=' + await (async () => { const ctx = { window: {} }; try { require('vm').runInNewContext(fs.readFileSync(path.join(root, 'data/market.js'), 'utf8'), ctx); } catch (e) { /* no market file */ } const r = ((ctx.window.MARKET_DATA || {}).rows || [])[0]; return r ? encodeURIComponent(r.eventId) : 'none'; })()]) {
+  for (const p of ['index.html', 'picks.html', 'games.html', 'digest.html', 'performance.html', 'journal.html', 'props.html', 'about.html', 'picks.html?sport=NFL', 'picks.html?sport=NCAAF', 'game.html', 'game.html?id=' + await (async () => { const ctx = { window: {} }; try { require('vm').runInNewContext(fs.readFileSync(path.join(root, 'data/market.js'), 'utf8'), ctx); } catch (e) { /* no market file */ } const r = ((ctx.window.MARKET_DATA || {}).rows || [])[0]; return r ? encodeURIComponent(r.eventId) : 'none'; })()]) {
     await rp.goto(url(p)); await rp.waitForTimeout(600);
     if (p === 'picks.html') realPicks = await rp.evaluate(() => (window.PICKS_DATA && window.PICKS_DATA.picks || []).length);
   }

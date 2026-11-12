@@ -19,6 +19,7 @@ Live: https://ajur21.github.io/edgeline-ai/ (deploys from `main` via GitHub Acti
 | `props.html` | NBA and NFL props, likeliest first: a ranked board with one row per player (league tabs, game chips, stat tabs), graded on game data only (hit rate against the posted number and a projection from form, minutes or usage, matchup, rest and injuries; never against other books' prices, the best price shown only for shopping). A row opens the detail: the game-by-game chart with the line across, a box to regrade any other number, every book's price, the reasons and the game log. A record by tier and graded results follow once the pipeline writes them (stats from ESPN's public API, lines from SportsGameOdds) |
 | `js/subnav.js` | The "On this page" strip under the header on every page: section links that stick and mark the section in view |
 | `journal.html` | Your own bet log with screenshots and a profit calendar, stored on your device |
+| `about.html` | About: what EdgeLine is and is not, the live record with the replay against the close, the rules it keeps (each with the day it was decided), where the numbers come from, and the free calendar and feed |
 
 ## Structure
 

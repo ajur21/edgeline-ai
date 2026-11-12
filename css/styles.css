@@ -12,6 +12,7 @@
 /* Hallmark · waive 7b · the light theme is a daylight sky and its surfaces are white by design; the dark default tints every surface toward navy */
 /* Hallmark · note 67 · the chips that stay condensed uppercase (badges, rank, ticker, stat chips, book and team abbreviations, live clocks, field axis labels) are the locked scoreboard voice; every label, caption, table head and form label moved to the body face. "1-800-GAMBLER" is the helpline's own spelling */
 /* Hallmark · note 54 · one kicker above each page's h1 stays as the locked scoreboard voice; every section eyebrow was folded into its heading */
+/* Hallmark · page: about.html (2026-11-12) · idea: the record as it stands, over the rules it keeps, each with the day it was decided · finish-review: subagent · 8 findings · 6 resolved 2 partial (58: the middle screen holds about 148 words, the facts kept; 5: the replay note keeps a glass strip, now fitted to its sentence, for legibility over the galaxy core) · gap: none */
 /* Hallmark · note 7b · the Lost chip (.badge-lost, 2026-11-05) takes white ink on the solid loss red in light and print and dark ink in dark (--on-bad), the way button faces take --on-accent: 4.8:1 or better in every theme */
 /* ==========================================================================
    EdgeLine AI — site styles
@@ -1924,3 +1925,27 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .door p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--text-2); }
 .door .door-n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); }
 .door-go { align-self: flex-start; margin-top: auto; padding-top: 4px; border-bottom: 1px solid currentColor; font-size: 0.82rem; font-weight: 600; color: var(--accent-strong); }
+
+/* ---------- about.html (2026-11-12): the replay under the record, the rules on record, each with the day it was decided, and the data sources ---------- */
+.about-note { width: fit-content; max-width: 100%; margin-top: 16px; padding: 12px 20px; }
+.about-note .replay-note { margin: 0; }
+.rules-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border-strong); }
+.rules-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.rule-text { font-size: 1.05rem; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+.rule-since { font-size: 0.85rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .rules-list li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+/* each "is" sits level with its "is not": the two columns share the rows (subgrid); on a phone they stack, list after list */
+.isnot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 16px 32px; border-top: 1px solid var(--border-strong); padding-top: 28px; }
+.isnot > div { display: grid; grid-row: span 3; grid-template-rows: subgrid; }
+.isnot h3 { margin: 0 0 4px; }
+.isnot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-row: span 2; grid-template-rows: subgrid; }
+.isnot li { line-height: 1.55; color: var(--text-2); text-wrap: pretty; }
+.isnot strong { color: var(--text); }
+@media (max-width: 720px) { .isnot { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 24px; } .isnot > div, .isnot ul { grid-row: auto; grid-template-rows: none; } .isnot > div { gap: 12px; } }
+.sources { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; padding: 24px; }
+.sources > div { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 16px; }
+.sources dt { font-size: 0.9rem; color: var(--muted); }
+.sources dd { margin: 0; line-height: 1.5; color: var(--text-2); text-wrap: pretty; }
+.sources a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 720px) { .sources { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .sources > div { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
