@@ -492,24 +492,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:43a0ad5ba8-totals-Under@edgeline
-DTSTAMP:20261112T063202Z
-DTSTART:20261112T031000Z
-DTEND:20261112T061000Z
-SUMMARY:Under 6.5 +121 at BetOnline.ag · Won +1.21u
-DESCRIPTION:NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11\, 10:1
- 0 PM ET\nTotal: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.\nFinal: 4-2\
- nClosing line value: -2.5 pts (closed +124\, DraftKings close (ESPN)).\nRe
- cord and every graded lean: https://ajur21.github.io/edgeline-ai/performan
- ce.html
-LOCATION:Honda Center\, Anaheim
-URL:https://ajur21.github.io/edgeline-ai/performance.html
-CATEGORIES:NHL
-LAST-MODIFIED:20261112T063202Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
 UID:e75aa3d5c3-totals-Under@edgeline
 DTSTAMP:20261112T063202Z
 DTSTART:20261112T031000Z
@@ -528,8 +510,26 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:43a0ad5ba8-totals-Under@edgeline
+DTSTAMP:20261112T063202Z
+DTSTART:20261112T031000Z
+DTEND:20261112T061000Z
+SUMMARY:Under 6.5 +121 at BetOnline.ag · Won +1.21u
+DESCRIPTION:NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11\, 10:1
+ 0 PM ET\nTotal: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.\nFinal: 4-2\
+ nClosing line value: -2.5 pts (closed +124\, DraftKings close (ESPN)).\nRe
+ cord and every graded lean: https://ajur21.github.io/edgeline-ai/performan
+ ce.html
+LOCATION:Honda Center\, Anaheim
+URL:https://ajur21.github.io/edgeline-ai/performance.html
+CATEGORIES:NHL
+LAST-MODIFIED:20261112T063202Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 UID:parlay-2026-11-12@edgeline
-DTSTAMP:20261112T203623Z
+DTSTAMP:20261112T214723Z
 DTSTART:20261112T170000Z
 DTEND:20261113T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
@@ -540,7 +540,7 @@ DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
  ays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261112T203623Z
+LAST-MODIFIED:20261112T214723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -569,7 +569,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2df9328781-totals-Over@edgeline
-DTSTAMP:20261112T203623Z
+DTSTAMP:20261112T214723Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -595,7 +595,7 @@ DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T203623Z
+LAST-MODIFIED:20261112T214723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

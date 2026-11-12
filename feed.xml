@@ -5,7 +5,7 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Thu, 12 Nov 2026 20:36:23 GMT</lastBuildDate>
+<lastBuildDate>Thu, 12 Nov 2026 21:47:23 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
@@ -41,14 +41,6 @@
 <description>&lt;p&gt;All legs priced at BetRivers. Fair 35.4%, implied 27.6%, EV +28.1% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Seattle Kraken +1.5 -105 · Carolina Hurricanes @ Seattle Kraken&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -117 · New York Islanders @ Los Angeles Kings&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
 </item>
 <item>
-<title>Graded: Under 6.5 +121 · Won +1.21u</title>
-<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
-<guid isPermaLink="false">43a0ad5ba8-totals-Under#graded</guid>
-<pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.&lt;/p&gt;&lt;p&gt;Final: 4-2&lt;/p&gt;&lt;p&gt;Closing line value: -2.5 pts (closed +124, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
 <title>Graded: Under 6.5 +118 · Won +1.18u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">e75aa3d5c3-totals-Under#graded</guid>
@@ -63,6 +55,14 @@
 <pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · New York Rangers @ Calgary Flames · Wed Nov 11, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -120 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 3-1&lt;/p&gt;&lt;p&gt;Closing line value: -1.3 pts (closed -125, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 6.5 +121 · Won +1.21u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">43a0ad5ba8-totals-Under#graded</guid>
+<pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.&lt;/p&gt;&lt;p&gt;Final: 4-2&lt;/p&gt;&lt;p&gt;Closing line value: -2.5 pts (closed +124, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>NHL: Over 5.5 -117 at BetRivers (Low, +3.9 pts)</title>
