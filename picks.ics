@@ -529,10 +529,10 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
-DTSTAMP:20261112T063202Z
+DTSTAMP:20261112T140832Z
 DTSTART:20261112T170000Z
 DTEND:20261112T200000Z
-SUMMARY:Seattle Kraken +1.5 +100 at Bovada · Medium
+SUMMARY:Lean of the day: Seattle Kraken +1.5 +100 at Bovada · Medium
 DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
  00 PM ET\nPuck line: Seattle Kraken +1.5 at +100 (Bovada). Our probability
   61.2% from game data\, the price implies 50.0%\, edge +11.2 pts\, EV +22.
@@ -546,33 +546,56 @@ DESCRIPTION:NHL · Carolina Hurricanes @ Seattle Kraken · Thu Nov 12\, 12:
  ports it:\n- Home edge +0.2 for Seattle Kraken.\n- Seattle Kraken are rest
  ed (5 days).\n- Carolina Hurricanes without Jordan Staal (C) (+0.1).\n- Ca
  rolina Hurricanes have William Carrier (LW) listed day-to-day or questiona
- ble.\nWhat could go wrong:\n- Seattle Kraken rate -0.1 a game over 16 (9-7
- )\, Carolina Hurricanes +0.7 over 19 (14-5)\; last season -0.5 and +0.7 a 
- game.\n- Seattle Kraken trending: last five -1.4 vs 0 on the season.\n- Ca
- rolina Hurricanes trending: last five +2.8 vs +1.7 on the season.\n- Carol
- ina Hurricanes are rested (5 days).\n- Seattle Kraken without Curtis Dougl
- as (C)\, Jared McCann (LW)\, Ryan Lindgren (D) (-0.1).\n- Projected margin
-  -0.6 for Seattle Kraken against +1.5.\nVerdict: More working against this
-  one than for it\; size down.\nPrices: Bovada +100\, ESPN BET +100\, Draft
- Kings -102\, Caesars -102\, BetRivers -105 and 4 more.\nFull breakdown: ht
- tps://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seattle-K
- raken
+ ble.\n- A better price is now available: +105 at BetMGM.\n- A better price
+  is available now: +105 at BetMGM.\nWhat could go wrong:\n- Seattle Kraken
+  rate -0.1 a game over 16 (9-7)\, Carolina Hurricanes +0.7 over 19 (14-5)\
+ ; last season -0.5 and +0.7 a game.\n- Seattle Kraken trending: last five 
+ -1.4 vs 0 on the season.\n- Carolina Hurricanes trending: last five +2.8 v
+ s +1.7 on the season.\n- Carolina Hurricanes are rested (5 days).\n- Seatt
+ le Kraken without Curtis Douglas (C)\, Jared McCann (LW)\, Ryan Lindgren (
+ D) (-0.1).\n- Projected margin -0.6 for Seattle Kraken against +1.5.\nVerd
+ ict: The game data lines up behind this side at this price.\nPrices: Bovad
+ a +105\, BetMGM +105\, ESPN BET +100\, DraftKings -102\, Caesars -103 and 
+ 4 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#5
+ a2820b80e-spreads-Seattle-Kraken
 LOCATION:Veikkaus Arena\, Helsinki
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5a2820b80e-spreads-Seat
  tle-Kraken
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T063202Z
+LAST-MODIFIED:20261112T140832Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Seattle Kraken +1.5 +100 at Bovada · Medium
+DESCRIPTION:Lean of the day: Seattle Kraken +1.5 +100 at Bovada · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-12@edgeline
+DTSTAMP:20261112T140832Z
+DTSTART:20261112T170000Z
+DTEND:20261113T060000Z
+SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
+DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
+ 28.1% per unit.\n- NHL: Seattle Kraken +1.5 -105 · Carolina Hurricanes @ 
+ Seattle Kraken\n- NHL: Over 5.5 -117 · New York Islanders @ Los Angeles K
+ ings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parl
+ ays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261112T140832Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +262 at BetRivers
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2df9328781-totals-Over@edgeline
-DTSTAMP:20261112T015851Z
+DTSTAMP:20261112T140832Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -586,18 +609,17 @@ DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
  error here is smaller). It clears it by 0.9. Not graded against other book
  s' prices\; for reference the market makes it 53.2%.\nWhat supports it:\n-
   Combined scoring 6.3 a game in Los Angeles Kings's games\, 5.9 in New Yor
- k Islanders's (league average 6.3).\n- Projected total 6.3 against 5.5.\n-
-  A better price is available now: -116 at Unibet.\nWhat could go wrong:\n-
-  Scorers out: Kevin Fiala (LW)\, lower leg\; Jakub Dvorak (D)\, upper body
- \; Matias Maccelli (LW)\, lower body and 4 more. Fewer healthy scorers lea
- ns under.\nVerdict: The game data lines up behind this side at this price.
- \nPrices: Unibet -116\, BetRivers -117\, FanDuel -128\, DraftKings -130\, 
- theScore Bet -130 and 1 more.\nFull breakdown: https://ajur21.github.io/ed
- geline-ai/picks.html#2df9328781-totals-Over
+ k Islanders's (league average 6.3).\n- Projected total 6.3 against 5.5.\nW
+ hat could go wrong:\n- Scorers out: Kevin Fiala (LW)\, lower leg\; Jakub D
+ vorak (D)\, upper body\; Matias Maccelli (LW)\, lower body and 4 more. Few
+ er healthy scorers leans under.\nVerdict: The game data lines up behind th
+ is side at this price.\nPrices: BetRivers -117\, Unibet -118\, PointsBet -
+ 125\, DraftKings -130\, theScore Bet -130 and 2 more.\nFull breakdown: htt
+ ps://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T015851Z
+LAST-MODIFIED:20261112T140832Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
