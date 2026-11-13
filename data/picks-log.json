@@ -13186,8 +13186,8 @@
    "Edge 3.9 points over the price, 0.9 past its bar of 3.0",
    "Market reference 53.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.85,
   "loggedAt": "2026-11-12T01:58:51.832Z",
   "availability": null,
   "current": {
@@ -13543,14 +13543,37 @@
      "fair": 0.5469
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "5-2",
+  "finalScore": {
+   "home": 2,
+   "away": 5
+  },
+  "gradedAt": "2026-11-13T14:16:38.400Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892705",
+   "line": 5.5,
+   "odds": -135,
+   "fair": 0.5514,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -112,
+    "fair": 0.5043
+   },
+   "samples": 3
+  },
+  "clv": 0.0122,
+  "lineMove": null
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-12",
   "date": "2026-11-12",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-12T14:08:32.813Z",
   "book": "BetRivers",
   "legs": [
@@ -13564,7 +13587,9 @@
   "decimal": 3.6211,
   "odds": 262,
   "fairProb": 0.3536,
-  "ev": 0.2805
+  "ev": 0.2805,
+  "gradedAt": "2026-11-13T14:16:38.400Z",
+  "result": "Loss"
  },
  {
   "key": "069bea369487ef0cd3017c9ceea68817|spreads|Vancouver Canucks|1.5",
@@ -13595,7 +13620,8 @@
    "FanDuel": -140,
    "theScore Bet": -135,
    "Caesars": -132,
-   "ESPN BET": -135
+   "ESPN BET": -130,
+   "Bovada": -135
   },
   "books": 6,
   "anchor": "Pinnacle",
@@ -13905,17 +13931,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 5,
+   "n": 6,
    "open": {
     "line": 1.5,
     "odds": -148
    },
    "now": {
     "line": 1.5,
-    "odds": -124
+    "odds": -123
    },
    "moved": "away",
-   "label": "The market (5 books) opened +1.5 (-148), now +1.5 (-124)"
+   "label": "The market (6 books) opened +1.5 (-148), now +1.5 (-123)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -13936,7 +13962,7 @@
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 55.4% (-1.1 points against the best price). For reference only.",
     "Market: DraftKings opened +1.5 (-155), now +1.5 (-135), moving against this side since the open.",
-    "Market: The market (5 books) opened +1.5 (-148), now +1.5 (-124), the consensus moving against this side since the open.",
+    "Market: The market (6 books) opened +1.5 (-148), now +1.5 (-123), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Canucks Leevi Merilainen · Rangers Dylan Garand.",
     "Records: New York Rangers 11-8-1 · Vancouver Canucks 3-16-1 · Rogers Arena, Vancouver."
@@ -13947,25 +13973,26 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "cw3b3tmVMxlfDyi6SQan",
-   "at": "2026-11-12T20:36:23.500Z",
+   "at": "2026-11-13T14:16:38.400Z",
    "books": {
     "DraftKings": -135,
     "BetMGM": -130,
     "Caesars": -132,
     "FanDuel": -140,
-    "ESPN BET": -135
+    "ESPN BET": -130,
+    "Bovada": -135
    },
-   "n": 5,
+   "n": 6,
    "best": {
     "book": "BetMGM",
     "odds": -130
    },
-   "fair": 0.5488,
-   "fairBooks": 5,
+   "fair": 0.5478,
+   "fairBooks": 6,
    "vendor": {
     "line": 1.5,
-    "odds": -124,
-    "fair": 0.5536,
+    "odds": -123,
+    "fair": 0.5516,
     "sameLine": true
    },
    "open": {
@@ -13974,12 +14001,12 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -124
+    "odds": -123
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T20:36:23.500Z",
+  "pricesAt": "2026-11-13T14:16:38.400Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T20:36:23.500Z",
@@ -13989,6 +14016,15 @@
     "odds": -124,
     "best": -130,
     "n": 5
+   },
+   {
+    "at": "2026-11-13T14:16:38.400Z",
+    "fair": 0.5478,
+    "vendorFair": 0.5516,
+    "line": 1.5,
+    "odds": -123,
+    "best": -130,
+    "n": 6
    }
   ]
  },

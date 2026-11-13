@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 13 Nov 2026 05:51:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Nov 2026 14:16:38 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Graded: Over 5.5 -117 · Won +0.85u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">2df9328781-totals-Over#graded</guid>
+<pubDate>Fri, 13 Nov 2026 14:16:38 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetRivers). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 5-2&lt;/p&gt;&lt;p&gt;Closing line value: +1.2 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
 <item>
 <title>Thu Nov 12 slate: 2 leans tonight from 102 priced sides</title>
 <link>https://ajur21.github.io/edgeline-ai/digest.html</link>
@@ -22,7 +30,7 @@
 <guid isPermaLink="false">069bea3694-spreads-Vancouver-Canucks</guid>
 <pubDate>Thu, 12 Nov 2026 20:36:23 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probability 66.2% from game data, the price implies 56.5%, edge +9.7 pts, EV +17.1% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 66.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.3 for the home side). BetMGM offers -130, which implies only 56.5%. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 55.4%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Vancouver Canucks.&lt;/li&gt;&lt;li&gt;Vancouver Canucks are rested (4 days).&lt;/li&gt;&lt;li&gt;New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.&lt;/li&gt;&lt;li&gt;New York Rangers trending: last five +0.8 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Filip Chytil (C) (-0.1).&lt;/li&gt;&lt;li&gt;Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin -0.3 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetMGM -130, Caesars -132, DraftKings -135, theScore Bet -135, ESPN BET -135 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probability 66.2% from game data, the price implies 56.5%, edge +9.7 pts, EV +17.1% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 66.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.3 for the home side). BetMGM offers -130, which implies only 56.5%. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 55.4%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Vancouver Canucks.&lt;/li&gt;&lt;li&gt;Vancouver Canucks are rested (4 days).&lt;/li&gt;&lt;li&gt;New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.&lt;/li&gt;&lt;li&gt;New York Rangers trending: last five +0.8 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Filip Chytil (C) (-0.1).&lt;/li&gt;&lt;li&gt;Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin -0.3 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetMGM -130, ESPN BET -130, Caesars -132, DraftKings -135, theScore Bet -135 and 3 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Seattle Kraken +1.5 +100 · Lost -1.00u</title>
@@ -55,14 +63,6 @@
 <pubDate>Thu, 12 Nov 2026 06:32:02 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Nashville Predators @ Anaheim Ducks · Wed Nov 11, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +121 (BetOnline.ag). Won +1.21u.&lt;/p&gt;&lt;p&gt;Final: 4-2&lt;/p&gt;&lt;p&gt;Closing line value: -2.5 pts (closed +124, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 5.5 -117 at BetRivers (Low, +3.9 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over</link>
-<guid isPermaLink="false">2df9328781-totals-Over</guid>
-<pubDate>Thu, 12 Nov 2026 01:58:51 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetRivers). Our probability 57.8% from game data, the price implies 53.9%, edge +3.9 pts, EV +7.2% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 57.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetRivers offers -117, which implies only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.9. Not graded against other books' prices; for reference the market makes it 53.2%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in New York Islanders's (league average 6.3).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;At current prices our edge is 1.8 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.&lt;/li&gt;&lt;li&gt;Scorers out: Erik Gustafsson (D), undisclosed; Jakub Dvorak (D), upper body; Jean-Gabriel Pageau (C), lower body and 3 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetRivers -117, Unibet -127, theScore Bet -130, PointsBet -130, FanDuel -134 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Columbus Blue Jackets ML +107 · Lost -1.00u</title>

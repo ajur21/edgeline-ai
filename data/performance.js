@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-12",
+  "asOf": "2026-11-13",
   "windowDays": 30,
   "record": {
-    "wins": 15,
+    "wins": 16,
     "losses": 15,
     "pushes": 0
   },
-  "units": -2.86,
-  "roi": -9.5,
-  "avgEdge": 9.6,
-  "graded": 30,
+  "units": -2.01,
+  "roi": -6.5,
+  "avgEdge": 9.4,
+  "graded": 31,
   "daily": [
     {
       "date": "2026-11-05",
@@ -40,14 +40,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-12",
-      "units": -2.86
+      "units": -2.01
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -0.73,
-      "record": "10-9"
+      "units": 0.12,
+      "record": "11-9"
     },
     {
       "sport": "NBA",
@@ -61,6 +61,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-12",
+      "sport": "NHL",
+      "event": "New York Islanders @ Los Angeles Kings",
+      "pick": "Over 5.5",
+      "odds": -117,
+      "result": "Win",
+      "units": 0.85,
+      "clv": 0.0122,
+      "closeOdds": -135,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-12",
       "sport": "NHL",
@@ -225,21 +240,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": "toward",
       "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "Soccer",
-      "event": "Ipswich Town vs. Bournemouth",
-      "pick": "Ipswich Town ML",
-      "odds": 308,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0209,
-      "closeOdds": 260,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -287,8 +287,8 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-12",
-      "units": -1,
-      "wins": 0,
+      "units": -0.15,
+      "wins": 1,
       "losses": 1,
       "pushes": 0
     }
@@ -375,31 +375,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 0,
-    "losses": 6,
+    "losses": 7,
     "pushes": 0,
-    "units": -6,
-    "n": 6
+    "units": -7,
+    "n": 7
   },
   "clv": {
-    "n": 24,
-    "avg": -1.71,
-    "beat": 4,
-    "beatPct": 16.7,
-    "graded": 30,
+    "n": 25,
+    "avg": -1.59,
+    "beat": 5,
+    "beatPct": 20,
+    "graded": 31,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 30,
+    "espnCloses": 31,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 15,
+      "wins": 16,
       "losses": 15,
       "pushes": 0,
-      "units": -2.86,
-      "n": 30,
-      "roi": -9.5,
-      "pending": 2,
+      "units": -2.01,
+      "n": 31,
+      "roi": -6.5,
+      "pending": 1,
       "since": "2026-11-05"
     },
     "price": {
