@@ -31,8 +31,9 @@
     "model": "nflverse",
     "marginSd": 4.06
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-13T01:15Z"
   },
   "401873053": {
    "id": "401873053",

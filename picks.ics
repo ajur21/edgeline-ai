@@ -529,7 +529,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-12@edgeline
-DTSTAMP:20261112T214723Z
+DTSTAMP:20261113T022930Z
 DTSTART:20261112T170000Z
 DTEND:20261113T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
@@ -540,7 +540,7 @@ DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
  ays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261112T214723Z
+LAST-MODIFIED:20261113T022930Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -569,7 +569,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2df9328781-totals-Over@edgeline
-DTSTAMP:20261112T214723Z
+DTSTAMP:20261113T022930Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -590,12 +590,12 @@ DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
  vorak (D)\, upper body\; Jean-Gabriel Pageau (C)\, lower body and 3 more. 
  Fewer healthy scorers leans under.\nVerdict: The game data lines up behind
   this side at this price.\nPrices: BetRivers -117\, Unibet -127\, theScore
-  Bet -130\, PointsBet -130\, DraftKings -135 and 2 more.\nFull breakdown: 
- https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
+  Bet -130\, PointsBet -130\, FanDuel -134 and 2 more.\nFull breakdown: htt
+ ps://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2df9328781-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261112T214723Z
+LAST-MODIFIED:20261113T022930Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

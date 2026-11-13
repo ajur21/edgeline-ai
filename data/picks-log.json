@@ -13122,7 +13122,7 @@
   "odds": -117,
   "book": "BetRivers",
   "prices": {
-   "FanDuel": -140,
+   "FanDuel": -134,
    "DraftKings": -135,
    "BetRivers": -117,
    "theScore Bet": -130,
@@ -13438,9 +13438,9 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "x1vTmnEgDjSV3MKkhakz",
-   "at": "2026-11-12T21:47:23.150Z",
+   "at": "2026-11-13T02:29:30.244Z",
    "books": {
-    "FanDuel": -140,
+    "FanDuel": -134,
     "DraftKings": -135,
     "Unibet": -127,
     "ESPN BET": -135,
@@ -13451,7 +13451,7 @@
     "book": "Unibet",
     "odds": -127
    },
-   "fair": 0.546,
+   "fair": 0.5447,
    "fairBooks": 5,
    "vendor": {
     "line": 6,
@@ -13470,7 +13470,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-12T21:47:23.150Z",
+  "pricesAt": "2026-11-13T02:29:30.244Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T01:58:51.832Z",
@@ -13502,6 +13502,15 @@
    {
     "at": "2026-11-12T20:36:23.500Z",
     "fair": 0.546,
+    "vendorFair": 0.4975,
+    "line": 6,
+    "odds": 101,
+    "best": -127,
+    "n": 5
+   },
+   {
+    "at": "2026-11-13T02:29:30.244Z",
+    "fair": 0.5447,
     "vendorFair": 0.4975,
     "line": 6,
     "odds": 101,

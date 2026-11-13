@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-12T20:36:23.500Z",
-  "trackedAt": "2026-11-12T21:47:23.150Z",
+  "trackedAt": "2026-11-13T02:29:30.244Z",
   "playOfDay": {
     "id": "5a2820b80e-spreads-Seattle-Kraken",
     "sport": "NHL",
@@ -935,7 +935,7 @@ window.PICKS_DATA = {
       "odds": -117,
       "book": "BetRivers",
       "prices": {
-        "FanDuel": -140,
+        "FanDuel": -134,
         "DraftKings": -135,
         "BetRivers": -117,
         "theScore Bet": -130,
@@ -943,7 +943,7 @@ window.PICKS_DATA = {
         "ESPN BET": -135,
         "PointsBet": -130
       },
-      "pricesAt": "2026-11-12T21:47:23.150Z",
+      "pricesAt": "2026-11-13T02:29:30.244Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.5782,
@@ -1233,13 +1233,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 5.5 (+100), now 6 (+101)"
       },
       "sgo": {
-        "at": "2026-11-12T21:47:23.150Z",
+        "at": "2026-11-13T02:29:30.244Z",
         "n": 5,
         "best": {
           "book": "Unibet",
           "odds": -127
         },
-        "fair": 0.546,
+        "fair": 0.5447,
         "vendorFair": 0.4975,
         "open": {
           "line": 5.5,
@@ -1281,6 +1281,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-12T20:36:23.500Z",
           "fair": 0.546,
+          "vendorFair": 0.4975,
+          "line": 6,
+          "odds": 101,
+          "best": -127,
+          "n": 5
+        },
+        {
+          "at": "2026-11-13T02:29:30.244Z",
+          "fair": 0.5447,
           "vendorFair": 0.4975,
           "line": 6,
           "odds": 101,

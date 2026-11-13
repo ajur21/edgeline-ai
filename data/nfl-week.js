@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-12T20:37:09.551Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-13T02:29:37.345Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -80,10 +80,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-13T01:15Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/12 - 8:15 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "1:06 - 2nd",
+   "score": {
+    "home": 7,
+    "away": 3
+   },
    "home": {
     "id": "19",
     "abbr": "NYG",
@@ -110,7 +113,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-12T20:37:09.551Z",
-    "locked": false,
+    "locked": true,
     "margin": 1.98,
     "total": 45.2,
     "marginSd": 4.06,
@@ -243,30 +246,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-12T20:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.5546,
-     "bar": 0.1099,
-     "price": 125
-    },
-    "away": {
-     "prob": 0.4454,
-     "bar": 0.1099,
-     "price": 199
-    }
-   },
-   "board": {
-    "eventId": "74d39e19225caf211ad2c8eb4110179f",
-    "pricedAt": "2026-11-12T20:36:23.500Z",
-    "home": {
-     "odds": -125,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": 112,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
