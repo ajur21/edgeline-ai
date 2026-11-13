@@ -528,28 +528,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-12@edgeline
-DTSTAMP:20261113T022930Z
-DTSTART:20261112T170000Z
-DTEND:20261113T060000Z
-SUMMARY:Parlay lean of the day: 2 legs +262 at BetRivers
-DESCRIPTION:All legs priced at BetRivers. Fair 35.4%\, implied 27.6%\, EV +
- 28.1% per unit.\n- NHL: Seattle Kraken +1.5 -105 · Carolina Hurricanes @ 
- Seattle Kraken\n- NHL: Over 5.5 -117 · New York Islanders @ Los Angeles K
- ings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parl
- ays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261113T022930Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +262 at BetRivers
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:5a2820b80e-spreads-Seattle-Kraken@edgeline
 DTSTAMP:20261112T203623Z
 DTSTART:20261112T170000Z
@@ -572,7 +550,7 @@ UID:2df9328781-totals-Over@edgeline
 DTSTAMP:20261113T022930Z
 DTSTART:20261113T030000Z
 DTEND:20261113T060000Z
-SUMMARY:Over 5.5 -117 at BetRivers · Low
+SUMMARY:Over 5.5 -117 at BetRivers · in play
 DESCRIPTION:NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12\, 1
  0:00 PM ET\nTotal: Over 5.5 at -117 (BetRivers). Our probability 57.8% fro
  m game data\, the price implies 53.9%\, edge +3.9 pts\, EV +7.2% per unit.
@@ -598,11 +576,6 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261113T022930Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -117 at BetRivers · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:069bea3694-spreads-Vancouver-Canucks@edgeline

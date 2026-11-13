@@ -32,7 +32,13 @@
     "marginSd": 4.06
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 21,
+    "away": 24,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-13T05:51:02.161Z"
+   },
    "lockedAt": "2026-11-13T01:15Z"
   },
   "401873053": {
