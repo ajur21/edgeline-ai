@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 13 Nov 2026 14:16:38 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Nov 2026 14:55:33 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Fri Nov 13 slate: 1 lean tonight from 12 priced sides</title>
+<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
+<guid isPermaLink="false">slate-2026-11-13T14:55:33.222Z</guid>
+<pubDate>Fri, 13 Nov 2026 14:55:33 GMT</pubDate>
+<category>Slate</category>
+<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Vancouver Canucks ML +195 at Bovada (+11.2 pts against a bar of +7.2 pts) · New York Rangers @ Vancouver Canucks&lt;/li&gt;&lt;li&gt;NHL: Over 6.5 +115 at theScore Bet (+0.1 pts against a bar of +3.0 pts) · Nashville Predators @ Vegas Golden Knights&lt;/li&gt;&lt;li&gt;NHL: Under 6.5 -112 at BetOnline.ag (-1.2 pts against a bar of +3.0 pts) · New York Rangers @ Vancouver Canucks&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+</item>
 <item>
 <title>Graded: Over 5.5 -117 · Won +0.85u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
@@ -15,14 +23,6 @@
 <pubDate>Fri, 13 Nov 2026 14:16:38 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetRivers). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 5-2&lt;/p&gt;&lt;p&gt;Closing line value: +1.2 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Thu Nov 12 slate: 2 leans tonight from 102 priced sides</title>
-<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
-<guid isPermaLink="false">slate-2026-11-12T20:36:23.500Z</guid>
-<pubDate>Thu, 12 Nov 2026 20:36:23 GMT</pubDate>
-<category>Slate</category>
-<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Vancouver Canucks ML +189 at BetOnline.ag (+10.4 pts against a bar of +7.2 pts) · New York Rangers @ Vancouver Canucks&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -130 at FanDuel (+2.6 pts against a bar of +3.0 pts) · St Louis Blues @ Utah Mammoth&lt;/li&gt;&lt;li&gt;NBA: Toronto Raptors ML +230 at FanDuel (+13.3 pts against a bar of +13.8 pts) · Toronto Raptors @ Philadelphia 76ers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
 </item>
 <item>
 <title>NHL: Vancouver Canucks +1.5 -130 at BetMGM (Medium, +9.7 pts)</title>

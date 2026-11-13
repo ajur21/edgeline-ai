@@ -13691,10 +13691,10 @@
   "loggedAt": "2026-11-12T20:36:23.500Z",
   "availability": null,
   "current": {
-   "at": "2026-11-12T20:36:23.500Z",
+   "at": "2026-11-13T14:55:33.222Z",
    "odds": -130,
    "book": "BetMGM",
-   "fair": 0.5541,
+   "fair": 0.5525,
    "edge": 0.0968,
    "modelProb": 0.662,
    "bar": 0.0626
@@ -13704,6 +13704,11 @@
     "at": "2026-11-12T20:36:23.500Z",
     "odds": -130,
     "fair": 0.5541
+   },
+   {
+    "at": "2026-11-13T14:55:33.222Z",
+    "odds": -130,
+    "fair": 0.5525
    }
   ],
   "context": {
@@ -13834,7 +13839,7 @@
       "status": "Injured Reserve",
       "type": "Undisclosed",
       "detail": "Not Specified",
-      "returnDate": "2026-11-13",
+      "returnDate": "2026-11-30",
       "date": "2026-09-29T16:39Z",
       "note": "ir-nr"
      },
@@ -13973,7 +13978,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "cw3b3tmVMxlfDyi6SQan",
-   "at": "2026-11-13T14:16:38.400Z",
+   "at": "2026-11-13T14:55:33.222Z",
    "books": {
     "DraftKings": -135,
     "BetMGM": -130,
@@ -14006,7 +14011,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-13T14:16:38.400Z",
+  "pricesAt": "2026-11-13T14:55:33.222Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T20:36:23.500Z",
@@ -14026,7 +14031,28 @@
     "best": -130,
     "n": 6
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": -130,
+   "loggedFair": 0.662,
+   "currentOdds": -130,
+   "currentBook": "BetMGM",
+   "currentFair": 0.5525,
+   "currentEdge": 0.0968,
+   "checkedAt": "2026-11-13T14:55:33.222Z",
+   "history": [
+    {
+     "at": "2026-11-12T20:36:23.500Z",
+     "odds": -130,
+     "fair": 0.5541
+    },
+    {
+     "at": "2026-11-13T14:55:33.222Z",
+     "odds": -130,
+     "fair": 0.5525
+    }
+   ]
+  }
  },
  {
   "type": "day",
@@ -14037,5 +14063,15 @@
   "candidates": 57,
   "leans": 0,
   "props": 57
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-13",
+  "date": "2026-11-13",
+  "checkedAt": "2026-11-13T14:56:58.021Z",
+  "closedAt": null,
+  "candidates": 1,
+  "leans": 1,
+  "props": 0
  }
 ]

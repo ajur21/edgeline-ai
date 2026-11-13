@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-12T20:36:23.500Z",
-  "trackedAt": "2026-11-13T14:16:38.400Z",
+  "generatedAt": "2026-11-13T14:55:33.222Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-13T14:56:58.021Z",
     "last": {
       "play": {
         "date": "2026-11-12",
@@ -65,7 +64,7 @@ window.PICKS_DATA = {
         "ESPN BET": -130,
         "Bovada": -135
       },
-      "pricesAt": "2026-11-13T14:16:38.400Z",
+      "pricesAt": "2026-11-13T14:55:33.222Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.662,
@@ -271,7 +270,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Undisclosed",
               "detail": "Not Specified",
-              "returnDate": "2026-11-13",
+              "returnDate": "2026-11-30",
               "date": "2026-09-29T16:39Z",
               "note": "ir-nr"
             },
@@ -343,7 +342,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -130,
+        "loggedFair": 0.662,
+        "currentOdds": -130,
+        "currentBook": "BetMGM",
+        "currentFair": 0.5525,
+        "currentEdge": 0.0968,
+        "checkedAt": "2026-11-13T14:55:33.222Z",
+        "history": [
+          {
+            "at": "2026-11-12T20:36:23.500Z",
+            "odds": -130,
+            "fair": 0.5541
+          },
+          {
+            "at": "2026-11-13T14:55:33.222Z",
+            "odds": -130,
+            "fair": 0.5525
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -382,7 +401,7 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-148), now +1.5 (-123)"
       },
       "sgo": {
-        "at": "2026-11-13T14:16:38.400Z",
+        "at": "2026-11-13T14:55:33.222Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
@@ -435,8 +454,15 @@ window.PICKS_DATA = {
         "gp": 20,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-13T14:55:33.222Z",
+        "odds": -130,
+        "book": "BetMGM",
+        "modelProb": 0.662,
+        "edge": 0.0968,
+        "bar": 0.0626
+      },
+      "standing": "clears",
       "availability": null
     },
     {
