@@ -13619,7 +13619,7 @@
    "BetRivers": -143,
    "FanDuel": -140,
    "theScore Bet": -135,
-   "Caesars": -128,
+   "Caesars": -133,
    "ESPN BET": -135,
    "Bovada": -137
   },
@@ -13948,8 +13948,7 @@
    "support": [
     "Home edge +0.2 for Vancouver Canucks.",
     "Vancouver Canucks are rested (4 days).",
-    "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3).",
-    "A better price is available now: -128 at Caesars."
+    "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3)."
    ],
    "risks": [
     "Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.",
@@ -13972,11 +13971,11 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "cw3b3tmVMxlfDyi6SQan",
-   "at": "2026-11-13T20:36:49.267Z",
+   "at": "2026-11-13T21:20:03.887Z",
    "books": {
     "DraftKings": -135,
     "BetMGM": -135,
-    "Caesars": -128,
+    "Caesars": -133,
     "FanDuel": -140,
     "ESPN BET": -135,
     "Bovada": -137
@@ -13984,9 +13983,9 @@
    "n": 6,
    "best": {
     "book": "Caesars",
-    "odds": -128
+    "odds": -133
    },
-   "fair": 0.55,
+   "fair": 0.5515,
    "fairBooks": 6,
    "vendor": {
     "line": 1.5,
@@ -14005,7 +14004,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-13T20:36:49.267Z",
+  "pricesAt": "2026-11-13T21:20:03.887Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T20:36:23.500Z",
@@ -14032,6 +14031,15 @@
     "line": 1.5,
     "odds": -124,
     "best": -128,
+    "n": 6
+   },
+   {
+    "at": "2026-11-13T21:20:03.887Z",
+    "fair": 0.5515,
+    "vendorFair": 0.5536,
+    "line": 1.5,
+    "odds": -124,
+    "best": -133,
     "n": 6
    }
   ],
@@ -14111,7 +14119,7 @@
    "theScore Bet": -280,
    "Bovada": -260,
    "BetRivers": -275,
-   "BetMGM": -275,
+   "BetMGM": -295,
    "PointsBet": -278,
    "Unibet": -270,
    "Caesars": -300,
@@ -14387,7 +14395,14 @@
    "note": null,
    "swing": null,
    "changes": [],
-   "checkedAt": null
+   "checkedAt": "2026-11-13T21:20:03.887Z",
+   "read": {
+    "at": "2026-11-13T21:20:03.887Z",
+    "report": {
+     "label": "4:15 PM ET",
+     "at": "2026-11-13T21:15:00.000Z"
+    }
+   }
   },
   "current": {
    "at": "2026-11-13T20:36:49.267Z",
@@ -14555,10 +14570,10 @@
    "odds": {
     "provider": "DraftKings",
     "now": {
-     "spread": 6.5,
+     "spread": 7.5,
      "spreadOdds": {
-      "home": -103,
-      "away": -117
+      "home": -118,
+      "away": -103
      },
      "total": 245.5,
      "totalOdds": {
@@ -14622,10 +14637,10 @@
    },
    "now": {
     "line": null,
-    "odds": -235
+    "odds": -237
    },
    "moved": "toward",
-   "label": "The market (8 books) opened -163, now -235"
+   "label": "The market (8 books) opened -163, now -237"
   },
   "breakdown": {
    "tier": "Medium",
@@ -14646,7 +14661,7 @@
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 69.7% (-2.5 points against the best price). For reference only.",
     "Market: DraftKings opened -263, now -277, moving toward this side since the open.",
-    "Market: The market (8 books) opened -163, now -235, the consensus moving toward this side since the open.",
+    "Market: The market (8 books) opened -163, now -237, the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Atlanta Hawks 7-5 · Chicago Bulls 1-9 · United Center, Chicago."
    ],
@@ -14656,7 +14671,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "9IxK1AcvzWqxZYa4ChWM",
-   "at": "2026-11-13T20:36:49.267Z",
+   "at": "2026-11-13T21:20:03.887Z",
    "books": {
     "FanDuel": -275,
     "PointsBet": -278,
@@ -14665,19 +14680,19 @@
     "DraftKings": -277,
     "ESPN BET": -280,
     "Bovada": -260,
-    "BetMGM": -275
+    "BetMGM": -295
    },
    "n": 8,
    "best": {
     "book": "Bovada",
     "odds": -260
    },
-   "fair": 0.7044,
+   "fair": 0.7053,
    "fairBooks": 8,
    "vendor": {
     "line": null,
-    "odds": -235,
-    "fair": 0.7015,
+    "odds": -237,
+    "fair": 0.7033,
     "sameLine": true
    },
    "open": {
@@ -14686,12 +14701,12 @@
    },
    "now": {
     "line": null,
-    "odds": -235
+    "odds": -237
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-13T20:36:49.267Z",
+  "pricesAt": "2026-11-13T21:20:03.887Z",
   "sgoHistory": [
    {
     "at": "2026-11-13T20:36:49.267Z",
@@ -14699,6 +14714,15 @@
     "vendorFair": 0.7015,
     "line": null,
     "odds": -235,
+    "best": -260,
+    "n": 8
+   },
+   {
+    "at": "2026-11-13T21:20:03.887Z",
+    "fair": 0.7053,
+    "vendorFair": 0.7033,
+    "line": null,
+    "odds": -237,
     "best": -260,
     "n": 8
    }
@@ -15813,12 +15837,12 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -118,
-      "under": -102
+      "over": -122,
+      "under": 102
      },
      "ml": {
-      "home": -180,
-      "away": 150
+      "home": -175,
+      "away": 145
      },
      "draw": null
     },
@@ -15847,6 +15871,12 @@
     "line": 5.5,
     "odds": -118,
     "fair": 0.5174
+   },
+   {
+    "at": "2026-11-13T21:20:03.887Z",
+    "line": 5.5,
+    "odds": -122,
+    "fair": 0.5261
    }
   ],
   "dk": {
@@ -15858,11 +15888,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -118,
-    "fair": 0.5173641257162701
+    "odds": -122,
+    "fair": 0.5260865852617197
    },
-   "moved": null,
-   "label": "DraftKings opened 5.5 (-118), now 5.5 (-118)"
+   "moved": "toward",
+   "label": "DraftKings opened 5.5 (-118), now 5.5 (-122)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -15891,6 +15921,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 52.1% (-2.0 points against the best price). For reference only.",
+    "Market: DraftKings opened 5.5 (-118), now 5.5 (-122), moving toward this side since the open.",
     "Market: The market (5 books) opened 6.5 (+123), now 6 (+119), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Kings Darcy Kuemper · Flames Dustin Wolf.",

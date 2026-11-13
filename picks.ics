@@ -565,7 +565,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:80ffc963f8-h2h-Atlanta-Hawks@edgeline
-DTSTAMP:20261113T203649Z
+DTSTAMP:20261113T212003Z
 DTSTART:20261114T011000Z
 DTEND:20261114T041000Z
 SUMMARY:Lean of the day: Atlanta Hawks ML -260 at Bovada · Medium
@@ -590,13 +590,13 @@ DESCRIPTION:NBA · Atlanta Hawks @ Chicago Bulls · Fri Nov 13\, 8:10 PM ET
  \n- Atlanta Hawks have Kingston Flemings (G) questionable per the 3:30 PM 
  ET official report.\nVerdict: The game data lines up behind this side at t
  his price.\nPrices: Bovada -260\, Unibet -270\, FanDuel -275\, BetRivers -
- 275\, BetMGM -275 and 6 more.\nFull breakdown: https://ajur21.github.io/ed
- geline-ai/picks.html#80ffc963f8-h2h-Atlanta-Hawks
+ 275\, DraftKings -277 and 6 more.\nFull breakdown: https://ajur21.github.i
+ o/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-Hawks
 LOCATION:United Center\, Chicago
 URL:https://ajur21.github.io/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-
  Hawks
 CATEGORIES:NBA
-LAST-MODIFIED:20261113T203649Z
+LAST-MODIFIED:20261113T212003Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -607,7 +607,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-13@edgeline
-DTSTAMP:20261113T203649Z
+DTSTAMP:20261113T212003Z
 DTSTART:20261114T011000Z
 DTEND:20261114T051000Z
 SUMMARY:Parlay lean of the day: 2 legs +140 at Bovada
@@ -618,7 +618,7 @@ DESCRIPTION:All legs priced at Bovada. Fair 56.3%\, implied 41.7%\, EV +34.
  ys
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261113T203649Z
+LAST-MODIFIED:20261113T212003Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -629,7 +629,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:069bea3694-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261113T203649Z
+DTSTAMP:20261113T212003Z
 DTSTART:20261114T021000Z
 DTEND:20261114T051000Z
 SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Medium
@@ -645,22 +645,21 @@ DESCRIPTION:NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13\, 9:1
  st other books' prices\; for reference the market makes it 55.4%.\nWhat su
  pports it:\n- Home edge +0.2 for Vancouver Canucks.\n- Vancouver Canucks a
  re rested (4 days).\n- New York Rangers without Alberts Smits (D)\, Sean D
- urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\n- A better price is ava
- ilable now: -128 at Caesars.\nWhat could go wrong:\n- Vancouver Canucks ra
- te -0.8 a game over 20 (3-17)\, New York Rangers +0 over 20 (11-9)\; last 
- season -1.2 and -0.1 a game.\n- New York Rangers trending: last five +0.8 
- vs +0.2 on the season.\n- Vancouver Canucks without Filip Chytil (C) (-0.1
- ).\n- Vancouver Canucks have Tom Willander (D) listed day-to-day or questi
- onable.\n- Projected margin -0.3 for Vancouver Canucks against +1.5.\nVerd
- ict: More working against this one than for it\; size down.\nPrices: Caesa
- rs -128\, DraftKings -135\, BetMGM -135\, theScore Bet -135\, ESPN BET -13
- 5 and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.
- html#069bea3694-spreads-Vancouver-Canucks
+ urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\nWhat could go wrong:\n-
+  Vancouver Canucks rate -0.8 a game over 20 (3-17)\, New York Rangers +0 o
+ ver 20 (11-9)\; last season -1.2 and -0.1 a game.\n- New York Rangers tren
+ ding: last five +0.8 vs +0.2 on the season.\n- Vancouver Canucks without F
+ ilip Chytil (C) (-0.1).\n- Vancouver Canucks have Tom Willander (D) listed
+  day-to-day or questionable.\n- Projected margin -0.3 for Vancouver Canuck
+ s against +1.5.\nVerdict: More working against this one than for it\; size
+  down.\nPrices: Caesars -133\, DraftKings -135\, BetMGM -135\, theScore Be
+ t -135\, ESPN BET -135 and 3 more.\nFull breakdown: https://ajur21.github.
+ io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks
 LOCATION:Rogers Arena\, Vancouver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261113T203649Z
+LAST-MODIFIED:20261113T212003Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
