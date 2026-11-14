@@ -601,7 +601,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7f07a205e3-totals-Under@edgeline
-DTSTAMP:20261114T194952Z
+DTSTAMP:20261114T203657Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
 SUMMARY:Under 6.5 +120 at BetRivers · Low
@@ -620,12 +620,12 @@ DESCRIPTION:NHL · Edmonton Oilers @ Toronto Maple Leafs · Sat Nov 14\, 7:
  r body\; Miles Wood (LW)\, undisclosed and 11 more. Fewer healthy scorers 
  leans under.\nVerdict: The game data lines up behind this side at this pri
  ce.\nPrices: BetRivers +120\, theScore Bet +120\, Bovada +120\, Caesars +1
- 18\, PointsBet +115 and 5 more.\nFull breakdown: https://ajur21.github.io/
- edgeline-ai/picks.html#7f07a205e3-totals-Under
+ 18\, ESPN BET +115 and 5 more.\nFull breakdown: https://ajur21.github.io/e
+ dgeline-ai/picks.html#7f07a205e3-totals-Under
 LOCATION:Scotiabank Arena\, Toronto
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7f07a205e3-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T194952Z
+LAST-MODIFIED:20261114T203657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -636,7 +636,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:f3b622fed3-totals-Over@edgeline
-DTSTAMP:20261114T194952Z
+DTSTAMP:20261114T203657Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
 SUMMARY:Over 5.5 -110 at BetOnline.ag · Low
@@ -651,16 +651,17 @@ DESCRIPTION:NHL · Philadelphia Flyers @ Columbus Blue Jackets · Sat Nov 1
  other books' prices\; for reference the market makes it 52.1%.\nWhat suppo
  rts it:\n- Combined scoring 5.6 a game in Columbus Blue Jackets's games\, 
  5.5 in Philadelphia Flyers's (league average 6.3).\n- Projected total 6.2 
- against 5.5.\nWhat could go wrong:\n- Scorers out: Nikita Grebenkin (RW)\,
-  back. Fewer healthy scorers leans under.\nVerdict: The game data lines up
-  behind this side at this price.\nPrices: BetOnline.ag -110\, DraftKings -
- 118\, BetMGM -118\, FanDuel -120\, theScore Bet -120 and 6 more.\nFull bre
- akdown: https://ajur21.github.io/edgeline-ai/picks.html#f3b622fed3-totals-
- Over
+ against 5.5.\nWhat could go wrong:\n- At current prices our edge is 2.4 po
+ ints\, under its bar of 3.0 points\; the pick stays posted and is graded a
+ t the price it was posted at.\n- Scorers out: Nikita Grebenkin (RW)\, back
+ . Fewer healthy scorers leans under.\nVerdict: The game data lines up behi
+ nd this side at this price.\nPrices: BetOnline.ag -110\, DraftKings -118\,
+  BetMGM -118\, FanDuel -120\, theScore Bet -120 and 6 more.\nFull breakdow
+ n: https://ajur21.github.io/edgeline-ai/picks.html#f3b622fed3-totals-Over
 LOCATION:Nationwide Arena\, Columbus
 URL:https://ajur21.github.io/edgeline-ai/picks.html#f3b622fed3-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T194952Z
+LAST-MODIFIED:20261114T203657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -670,8 +671,75 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:5773e80d52-h2h-Minnesota-Timberwolves@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261115T011000Z
+DTEND:20261115T041000Z
+SUMMARY:Lean of the day: Minnesota Timberwolves ML -950 at FanDuel · Mediu
+ m
+DESCRIPTION:NBA · Chicago Bulls @ Minnesota Timberwolves · Sat Nov 14\, 8
+ :10 PM ET\nMoneyline: Minnesota Timberwolves ML at -950 (FanDuel). Our pro
+ bability 96.5% from game data\, the price implies 90.5%\, edge +6.0 pts\, 
+ EV +6.6% per unit. Confidence: Medium.\nOur probability is 96.5%\, from th
+ e game data: this season's results and margins\, recent form\, rest\, the 
+ injury report and home edge (projected margin +22.9 for the home side). Fa
+ nDuel offers -950\, which implies only 90.5%. Its bar is 3.0 points (the f
+ loor: the model's own margin of error here is smaller). It clears it by 3.
+ 0. Not graded against other books' prices\; for reference the market makes
+  it 87.8%.\nWhat supports it:\n- Minnesota Timberwolves rate +8.4 a game o
+ ver 12 (9-3)\, Chicago Bulls -8.3 over 11 (2-9)\; last season +3.4 and -5.
+ 2 a game.\n- Home edge +1.9 for Minnesota Timberwolves.\n- Chicago Bulls a
+ re on the second night of a back-to-back.\n- Chicago Bulls without Tobe Aw
+ aka (F)\, Jaylin Sellers (G)\, Caleb Wilson (F) (+4.1)\, out per the 3:30 
+ PM ET official report.\n- Chicago Bulls have Nic Claxton (C) questionable\
+ , Norman Powell (G) questionable\, Jalen Smith (F) questionable per the 3:
+ 30 PM ET official report.\n- Projected margin +22.9 for Minnesota Timberwo
+ lves.\n- A better price is available now: -900 at Caesars.\nWhat could go 
+ wrong:\n- Minnesota Timberwolves without Anthony Edwards (G) (-1.3)\, out 
+ per the 3:30 PM ET official report.\nVerdict: The game data lines up behin
+ d this side at this price.\nPrices: Caesars -900\, FanDuel -950\, Bovada -
+ 1000\, PointsBet -1000\, DraftKings -1080 and 6 more.\nFull breakdown: htt
+ ps://ajur21.github.io/edgeline-ai/picks.html#5773e80d52-h2h-Minnesota-Timb
+ erwolves
+LOCATION:Target Center\, Minneapolis
+URL:https://ajur21.github.io/edgeline-ai/picks.html#5773e80d52-h2h-Minnesot
+ a-Timberwolves
+CATEGORIES:NBA
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lean of the day: Minnesota Timberwolves ML -950 at FanDuel · M
+ edium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-14@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261115T011000Z
+DTEND:20261115T061000Z
+SUMMARY:Parlay lean of the day: 2 legs +106 at PointsBet
+DESCRIPTION:All legs priced at PointsBet. Fair 55.8%\, implied 48.5%\, EV +
+ 14.8% per unit.\n- NBA: Minnesota Timberwolves ML -1000 · Chicago Bulls @
+  Minnesota Timberwolves\n- NHL: Over 5.5 -115 · Calgary Flames @ Los Ange
+ les Kings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html
+ #parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +106 at PointsBet
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:e7f30a1c54-h2h-San-Jose-Sharks@edgeline
-DTSTAMP:20261114T194952Z
+DTSTAMP:20261114T203657Z
 DTSTART:20261115T021000Z
 DTEND:20261115T051000Z
 SUMMARY:San Jose Sharks ML +180 at BetRivers · Low
@@ -695,14 +763,14 @@ DESCRIPTION:NHL · San Jose Sharks @ Utah Mammoth · Sat Nov 14\, 9:10 PM E
  moth.\n- San Jose Sharks without Igor Chernyshov (LW) (+0.1).\n- Projected
   margin -0.3 for San Jose Sharks.\nVerdict: More working against this one 
  than for it\; size down.\nPrices: BetRivers +180\, BetOnline.ag +171\, the
- Score Bet +170\, Bovada +158\, ESPN BET +155 and 5 more.\nFull breakdown: 
+ Score Bet +170\, ESPN BET +155\, Bovada +155 and 5 more.\nFull breakdown: 
  https://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose-Sh
  arks
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose
  -Sharks
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T194952Z
+LAST-MODIFIED:20261114T203657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -713,7 +781,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:4d5a1a7211-totals-Over@edgeline
-DTSTAMP:20261114T194952Z
+DTSTAMP:20261114T203657Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Over 5.5 -118 at DraftKings · Low
@@ -728,18 +796,18 @@ DESCRIPTION:NHL · Calgary Flames @ Los Angeles Kings · Sat Nov 14\, 10:10
   prices\; for reference the market makes it 52.2%.\nWhat supports it:\n- C
  ombined scoring 6.3 a game in Los Angeles Kings's games\, 5.9 in Calgary F
  lames's (league average 6.3).\n- Projected total 6.3 against 5.5.\n- A bet
- ter price is now available: -117 at Bovada.\n- A better price is available
-  now: -110 at BetMGM.\nWhat could go wrong:\n- Scorers out: Jakub Dvorak (
- D)\, upper body\; Jonathan Huberdeau (LW)\, hip\; Kevin Bahl (D)\, achille
- s and 1 more. Fewer healthy scorers leans under.\nVerdict: The game data l
- ines up behind this side at this price.\nPrices: BetMGM -110\, FanDuel -11
- 2\, DraftKings -115\, ESPN BET -115\, PointsBet -115 and 5 more.\nFull bre
- akdown: https://ajur21.github.io/edgeline-ai/picks.html#4d5a1a7211-totals-
- Over
+ ter price is now available: -106 at BetOnline.ag.\n- A better price is ava
+ ilable now: -115 at DraftKings.\nWhat could go wrong:\n- Scorers out: Arte
+ mi Panarin (LW)\, personal\; Jakub Dvorak (D)\, upper body\; Jonathan Hube
+ rdeau (LW)\, hip and 2 more. Fewer healthy scorers leans under.\nVerdict: 
+ The game data lines up behind this side at this price.\nPrices: DraftKings
+  -115\, ESPN BET -115\, BetMGM -115\, PointsBet -115\, Bovada -117 and 5 m
+ ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#4d5a
+ 1a7211-totals-Over
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#4d5a1a7211-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T194952Z
+LAST-MODIFIED:20261114T203657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -750,7 +818,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce4dd515ea-totals-Under@edgeline
-DTSTAMP:20261114T194952Z
+DTSTAMP:20261114T203657Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Under 6.5 +110 at BetOnline.ag · Low
@@ -765,22 +833,221 @@ DESCRIPTION:NHL · New York Islanders @ Anaheim Ducks · Sat Nov 14\, 10:10
  ooks' prices\; for reference the market makes it 47.2%.\nWhat supports it:
  \n- Combined scoring 7.4 a game in Anaheim Ducks's games\, 6 in New York I
  slanders's (league average 6.3).\n- Projected total 6.4 against 6.5.\n- A 
- better price is available now: +115 at ESPN BET.\n- Scorers out: Ryan Poeh
- ling (C)\, knee\; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, upper bod
- y and 3 more. Fewer healthy scorers leans under.\nVerdict: The game data l
- ines up behind this side at this price.\nPrices: ESPN BET +115\, Bovada +1
- 15\, PointsBet +115\, DraftKings +114\, FanDuel +114 and 6 more.\nFull bre
- akdown: https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-
- Under
+ better price is now available: +115 at theScore Bet.\n- A better price is 
+ available now: +115 at ESPN BET.\n- Scorers out: Ryan Poehling (C)\, knee\
+ ; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, upper body and 2 more. Fe
+ wer healthy scorers leans under.\nVerdict: The game data lines up behind t
+ his side at this price.\nPrices: ESPN BET +115\, Bovada +115\, PointsBet +
+ 115\, DraftKings +114\, FanDuel +114 and 6 more.\nFull breakdown: https://
+ ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T194952Z
+LAST-MODIFIED:20261114T203657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Under 6.5 +110 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b5700b4d93-h2h-Miami-Dolphins@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261115T180000Z
+DTEND:20261115T210000Z
+SUMMARY:Miami Dolphins ML +180 at DraftKings · Medium
+DESCRIPTION:NFL · Miami Dolphins @ Indianapolis Colts · Sun Nov 15\, 1:00
+  PM ET\nMoneyline: Miami Dolphins ML at +180 (DraftKings). Our probability
+  50.5% from game data\, the price implies 35.7%\, edge +14.8 pts\, EV +41.
+ 3% per unit. Confidence: Medium.\nOur probability is 50.5%\, from the game
+  data: this season's results and margins\, recent form\, rest\, the injury
+  report and home edge (projected margin -0.2 for the home side). DraftKing
+ s offers +180\, which implies only 35.7%. Its bar is 11.3 points: the mode
+ l's own margin of error on this side\, with 8 games behind the thinner tea
+ m (±4.12 points on the margin). It clears it by 3.5. Not graded against o
+ ther books' prices\; for reference the market makes it 34.9%.\nWhat suppor
+ ts it:\n- Tua Tagovailoa starts for Miami Dolphins (Malik Willis is listed
+  out): +0.07 EPA a dropback against -0.01 behind their numbers (+2.6 point
+ s).\n- Indianapolis Colts without Akeem Davis-Gaither (LB)\, Mo Alie-Cox (
+ TE)\, Will Mallory (TE) and 5 more (-3.1).\n- Projected margin +0.2 for Mi
+ ami Dolphins.\nWhat could go wrong:\n- Indianapolis Colts rate -2.1 and Mi
+ ami Dolphins -4.2 points a game against their schedules (this season's res
+ ults\, last season carried over)\; EPA a play -0.08 and -0.07 net of defen
+ ce (nflverse).\n- Home edge +2.1 for Indianapolis Colts.\n- Miami Dolphins
+  without Aaron Brewer (C)\, Jared Wayne (WR)\, Chris Bell (WR) and 1 more 
+ (+1.6).\nVerdict: The game data lines up behind this side at this price.\n
+ Prices: DraftKings +180\, BetOnline.ag +180\, FanDuel +176\, BetRivers +17
+ 5\, BetMGM +175 and 6 more.\nFull breakdown: https://ajur21.github.io/edge
+ line-ai/picks.html#b5700b4d93-h2h-Miami-Dolphins
+LOCATION:Lucas Oil Stadium\, Indianapolis
+URL:https://ajur21.github.io/edgeline-ai/picks.html#b5700b4d93-h2h-Miami-Do
+ lphins
+CATEGORIES:NFL
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Miami Dolphins ML +180 at DraftKings · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:be0e03cc42-h2h-Cleveland-Browns@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261115T180000Z
+DTEND:20261115T210000Z
+SUMMARY:Cleveland Browns ML +195 at theScore Bet · Low
+DESCRIPTION:NFL · Houston Texans @ Cleveland Browns · Sun Nov 15\, 1:00 P
+ M ET\nMoneyline: Cleveland Browns ML at +195 (theScore Bet). Our probabili
+ ty 45.3% from game data\, the price implies 33.9%\, edge +11.4 pts\, EV +3
+ 3.7% per unit. Confidence: Lean.\nOur probability is 45.3%\, from the game
+  data: this season's results and margins\, recent form\, rest\, the injury
+  report and home edge (projected margin -1.7 for the home side). theScore 
+ Bet offers +195\, which implies only 33.9%. Its bar is 11.2 points: the mo
+ del's own margin of error on this side\, with 8 games behind the thinner t
+ eam (±4.12 points on the margin). It clears it by 0.3. Not graded against
+  other books' prices\; for reference the market makes it 32.8%.\nWhat supp
+ orts it:\n- Deshaun Watson starts for Cleveland Browns: -0.03 EPA a dropba
+ ck against -0.08 behind their numbers (+1.5 points).\n- Home edge +2.1 for
+  Cleveland Browns.\n- Houston Texans without David Montgomery (RB)\, Keyla
+ n Rutledge (G)\, Danielle Hunter (DE) and 4 more (+3.3).\nWhat could go wr
+ ong:\n- Cleveland Browns rate -3.2 and Houston Texans +2.1 points a game a
+ gainst their schedules (this season's results\, last season carried over)\
+ ; EPA a play -0.08 and +0.04 net of defence (nflverse).\n- C.J. Stroud sta
+ rts for Houston Texans: +0.03 EPA a dropback against +0.01 behind their nu
+ mbers (+0.6 points).\n- Cleveland Browns without Michael Burton (FB)\, Ron
+ nie Hickman (S) (-1.2).\n- Projected margin -1.7 for Cleveland Browns.\nVe
+ rdict: More working against this one than for it\; size down.\nPrices: the
+ Score Bet +195\, ESPN BET +195\, BetOnline.ag +192\, Caesars +192\, BetRiv
+ ers +190 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
+ /picks.html#be0e03cc42-h2h-Cleveland-Browns
+LOCATION:Huntington Bank Field\, Cleveland
+URL:https://ajur21.github.io/edgeline-ai/picks.html#be0e03cc42-h2h-Clevelan
+ d-Browns
+CATEGORIES:NFL
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Cleveland Browns ML +195 at theScore Bet · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6c932a9651-h2h-Arizona-Cardinals@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261115T210500Z
+DTEND:20261116T000500Z
+SUMMARY:Arizona Cardinals ML +400 at FanDuel · Medium
+DESCRIPTION:NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15\, 4:0
+ 5 PM ET\nMoneyline: Arizona Cardinals ML at +400 (FanDuel). Our probabilit
+ y 33.4% from game data\, the price implies 20.0%\, edge +13.4 pts\, EV +67
+ .0% per unit. Confidence: Medium.\nOur probability is 33.4%\, from the gam
+ e data: this season's results and margins\, recent form\, rest\, the injur
+ y report and home edge (projected margin -6.2 for the home side). FanDuel 
+ offers +400\, which implies only 20.0%. Its bar is 9.9 points: the model's
+  own margin of error on this side\, with 9 games behind the thinner team (
+ ±3.97 points on the margin). It clears it by 3.5. Not graded against othe
+ r books' prices\; for reference the market makes it 21.3%.\nWhat supports 
+ it:\n- Home edge +2.1 for Arizona Cardinals.\n- Los Angeles Rams without S
+ teve Avila (G)\, Puka Nacua (WR)\, Davante Adams (WR) and 2 more (+2.7).\n
+ What could go wrong:\n- Arizona Cardinals rate -3.8 and Los Angeles Rams +
+ 3.4 points a game against their schedules (this season's results\, last se
+ ason carried over)\; EPA a play -0.04 and +0.08 net of defence (nflverse).
+ \n- Arizona Cardinals without Jon Gaines II (G)\, Hjalte Froholdt (C)\, Hu
+ nter Long (TE) and 1 more (-2.4).\n- Projected margin -6.2 for Arizona Car
+ dinals.\nVerdict: More working against this one than for it\; size down.\n
+ Prices: FanDuel +400\, DraftKings +380\, BetMGM +375\, PointsBet +375\, th
+ eScore Bet +360 and 6 more.\nFull breakdown: https://ajur21.github.io/edge
+ line-ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
+LOCATION:State Farm Stadium\, Glendale
+URL:https://ajur21.github.io/edgeline-ai/picks.html#6c932a9651-h2h-Arizona-
+ Cardinals
+CATEGORIES:NFL
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Arizona Cardinals ML +400 at FanDuel · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:539a387d9f-totals-Under@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261116T011000Z
+DTEND:20261116T041000Z
+SUMMARY:Under 6.5 +114 at DraftKings · Low
+DESCRIPTION:NHL · Calgary Flames @ Anaheim Ducks · Sun Nov 15\, 8:10 PM E
+ T\nTotal: Under 6.5 at +114 (DraftKings). Our probability 51.2% from game 
+ data\, the price implies 46.7%\, edge +4.5 pts\, EV +9.6% per unit. Confid
+ ence: Lean.\nOur probability at 6.5 is 51.2%\, from the game data: this se
+ ason's results and margins\, recent form\, rest\, the injury report and ho
+ me edge (projected total 6.4). DraftKings offers +114\, which implies only
+  46.7%. Its bar is 3.0 points (the floor: the model's own margin of error 
+ here is smaller). It clears it by 1.5. Not graded against other books' pri
+ ces\; for reference the market makes it 45.7%.\nWhat supports it:\n- Combi
+ ned scoring 7.4 a game in Anaheim Ducks's games\, 5.9 in Calgary Flames's 
+ (league average 6.3).\n- Projected total 6.4 against 6.5.\n- Scorers out: 
+ Ryan Poehling (C)\, knee\; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, 
+ upper body and 3 more. Fewer healthy scorers leans under.\nVerdict: The ga
+ me data lines up behind this side at this price.\nPrices: DraftKings +114\
+ , Caesars +111\, theScore Bet +110\, BetMGM +110\, ESPN BET +110 and 3 mor
+ e.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#539a38
+ 7d9f-totals-Under
+LOCATION:Honda Center\, Anaheim
+URL:https://ajur21.github.io/edgeline-ai/picks.html#539a387d9f-totals-Under
+CATEGORIES:NHL
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Under 6.5 +114 at DraftKings · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c4ac537963-spreads-Vancouver-Canucks@edgeline
+DTSTAMP:20261114T203657Z
+DTSTART:20261116T021000Z
+DTEND:20261116T051000Z
+SUMMARY:Vancouver Canucks +1.5 +140 at DraftKings · Medium
+DESCRIPTION:NHL · Vancouver Canucks @ Vegas Golden Knights · Sun Nov 15\,
+  9:10 PM ET\nPuck line: Vancouver Canucks +1.5 at +140 (DraftKings). Our p
+ robability 51.0% from game data\, the price implies 41.7%\, edge +9.3 pts\
+ , EV +22.4% per unit. Confidence: Medium.\nOur probability at +1.5 is 51.0
+ %\, from the game data: this season's results and margins\, recent form\, 
+ rest\, the injury report and home edge (projected margin +1.3 for the home
+  side). DraftKings offers +140\, which implies only 41.7%. Its bar is 7.0 
+ points: the model's own margin of error on this side\, with 21 games behin
+ d the thinner team (±0.43 goals on the margin). It clears it by 2.3. Not 
+ graded against other books' prices\; for reference the market makes it 40.
+ 0%.\nWhat supports it:\n- Vegas Golden Knights without Noah Hanifin (D) (-
+ 0.1).\nWhat could go wrong:\n- Vegas Golden Knights rate +0.3 a game over 
+ 21 (13-8)\, Vancouver Canucks -0.9 over 21 (3-18)\; last season +0.2 and -
+ 1.2 a game.\n- Vancouver Canucks trending: last five -2.6 vs -1.8 on the s
+ eason.\n- Home edge +0.2 for Vegas Golden Knights.\n- Vancouver Canucks wi
+ thout Guillaume Brisebois (D) (+0).\n- Projected margin -1.3 for Vancouver
+  Canucks against +1.5.\nVerdict: More working against this one than for it
+ \; size down.\nPrices: DraftKings +140\, BetRivers +138\, FanDuel +136.\nF
+ ull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#c4ac537963-
+ spreads-Vancouver-Canucks
+LOCATION:T-Mobile Arena\, Las Vegas
+URL:https://ajur21.github.io/edgeline-ai/picks.html#c4ac537963-spreads-Vanc
+ ouver-Canucks
+CATEGORIES:NHL
+LAST-MODIFIED:20261114T203657Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vancouver Canucks +1.5 +140 at DraftKings · Medium
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
