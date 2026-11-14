@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-13T20:36:49.267Z",
-  "trackedAt": "2026-11-14T05:40:10.520Z",
+  "trackedAt": "2026-11-14T13:13:53.002Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -299,13 +299,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 120,
-              "away": -142
+              "home": 124,
+              "away": -148
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 105,
-              "under": -125
+              "over": 110,
+              "under": -130
             },
             "ml": {
               "home": -205,
@@ -441,13 +441,16 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": 114,
         "BetRivers": 120,
-        "FanDuel": 116,
+        "FanDuel": 112,
         "theScore Bet": 120,
-        "Caesars": 116,
-        "Unibet": -110,
-        "ESPN BET": 120
+        "Caesars": 112,
+        "Unibet": -114,
+        "ESPN BET": 115,
+        "BetMGM": 105,
+        "Bovada": 115,
+        "PointsBet": 115
       },
-      "pricesAt": "2026-11-13T20:36:49.267Z",
+      "pricesAt": "2026-11-14T13:13:53.002Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.503,
@@ -505,7 +508,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 43.9% (-1.6 points against the best price). For reference only.",
           "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-          "Market: The market (5 books) opened 6.5 (+130), now 7 (-125), the consensus moving against this side since the open.",
+          "Market: The market (8 books) opened 6.5 (+130), now 6.5 (+122), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Leafs Sergei Bobrovsky · Oilers Devon Levi.",
           "Records: Edmonton Oilers 14-3-3 · Toronto Maple Leafs 8-11-2 · Scotiabank Arena, Toronto."
@@ -798,34 +801,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 8,
         "open": {
           "line": 6.5,
           "odds": 130
         },
         "now": {
-          "line": 7,
-          "odds": -125
+          "line": 6.5,
+          "odds": 122
         },
-        "moved": "away",
-        "label": "The market (5 books) opened 6.5 (+130), now 7 (-125)"
+        "moved": "toward",
+        "label": "The market (8 books) opened 6.5 (+130), now 6.5 (+122)"
       },
       "sgo": {
-        "at": "2026-11-13T20:36:49.267Z",
-        "n": 5,
+        "at": "2026-11-14T13:13:53.002Z",
+        "n": 8,
         "best": {
           "book": "ESPN BET",
-          "odds": 120
+          "odds": 115
         },
-        "fair": 0.4524,
-        "vendorFair": 0.5556,
+        "fair": 0.4572,
+        "vendorFair": 0.4505,
         "open": {
           "line": 6.5,
           "odds": 130
         },
         "now": {
-          "line": 7,
-          "odds": -125
+          "line": 6.5,
+          "odds": 122
         }
       },
       "sgoHistory": [
@@ -837,6 +840,15 @@ window.PICKS_DATA = {
           "odds": -125,
           "best": 120,
           "n": 5
+        },
+        {
+          "at": "2026-11-14T13:13:53.002Z",
+          "fair": 0.4572,
+          "vendorFair": 0.4505,
+          "line": 6.5,
+          "odds": 122,
+          "best": 115,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -945,7 +957,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 52.1% (-2.0 points against the best price). For reference only.",
-          "Market: DraftKings opened 5.5 (-118), now 5.5 (-125), moving toward this side since the open.",
+          "Market: DraftKings opened 5.5 (-118), now 5.5 (-120), moving toward this side since the open.",
           "Market: The market (5 books) opened 6.5 (+123), now 6 (+119), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Kings Darcy Kuemper · Flames Dustin Wolf.",
@@ -1065,8 +1077,8 @@ window.PICKS_DATA = {
             },
             "total": 5.5,
             "totalOdds": {
-              "over": -125,
-              "under": 105
+              "over": -120,
+              "under": 100
             },
             "ml": {
               "home": -175,
@@ -1103,11 +1115,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 5.5,
-          "odds": -125,
-          "fair": 0.5324675324675325
+          "odds": -120,
+          "fair": 0.5217391304347826
         },
         "moved": "toward",
-        "label": "DraftKings opened 5.5 (-118), now 5.5 (-125)"
+        "label": "DraftKings opened 5.5 (-118), now 5.5 (-120)"
       },
       "dkHistory": [
         {
@@ -1127,6 +1139,12 @@ window.PICKS_DATA = {
           "line": 5.5,
           "odds": -125,
           "fair": 0.5325
+        },
+        {
+          "at": "2026-11-14T13:13:53.002Z",
+          "line": 5.5,
+          "odds": -120,
+          "fair": 0.5217
         }
       ],
       "mkt": {
@@ -1214,14 +1232,17 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": -118,
         "BetRivers": -129,
-        "FanDuel": -122,
+        "FanDuel": -118,
         "BetOnline.ag": -110,
         "theScore Bet": -120,
-        "Unibet": -128,
-        "Caesars": -125,
-        "ESPN BET": -120
+        "Unibet": -130,
+        "Caesars": -120,
+        "ESPN BET": -120,
+        "BetMGM": -115,
+        "Bovada": -117,
+        "PointsBet": -120
       },
-      "pricesAt": "2026-11-13T20:36:49.267Z",
+      "pricesAt": "2026-11-14T13:13:53.002Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.5612,
@@ -1280,7 +1301,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 52.1% (-0.3 points against the best price). For reference only.",
           "Market: DraftKings opened 5.5 (-130), now 5.5 (-118), moving against this side since the open.",
-          "Market: The market (5 books) opened 6.5 (+149), now 6 (+114), the consensus moving against this side since the open.",
+          "Market: The market (8 books) opened 6.5 (+149), now 6 (+119), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Jackets Jet Greaves · Flyers Dan Vladar.",
           "Records: Philadelphia Flyers 5-10-6 · Columbus Blue Jackets 7-10-0 · Nationwide Arena, Columbus."
@@ -1357,8 +1378,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 180,
-              "away": -218
+              "home": 190,
+              "away": -230
             },
             "total": 5.5,
             "totalOdds": {
@@ -1416,34 +1437,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 8,
         "open": {
           "line": 6.5,
           "odds": 149
         },
         "now": {
           "line": 6,
-          "odds": 114
+          "odds": 119
         },
         "moved": "away",
-        "label": "The market (5 books) opened 6.5 (+149), now 6 (+114)"
+        "label": "The market (8 books) opened 6.5 (+149), now 6 (+119)"
       },
       "sgo": {
-        "at": "2026-11-13T20:36:49.267Z",
-        "n": 5,
+        "at": "2026-11-14T13:13:53.002Z",
+        "n": 8,
         "best": {
-          "book": "DraftKings",
-          "odds": -118
+          "book": "BetMGM",
+          "odds": -115
         },
-        "fair": 0.5246,
-        "vendorFair": 0.4673,
+        "fair": 0.5194,
+        "vendorFair": 0.4566,
         "open": {
           "line": 6.5,
           "odds": 149
         },
         "now": {
           "line": 6,
-          "odds": 114
+          "odds": 119
         }
       },
       "sgoHistory": [
@@ -1455,6 +1476,15 @@ window.PICKS_DATA = {
           "odds": 114,
           "best": -118,
           "n": 5
+        },
+        {
+          "at": "2026-11-14T13:13:53.002Z",
+          "fair": 0.5194,
+          "vendorFair": 0.4566,
+          "line": 6,
+          "odds": 119,
+          "best": -115,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -1702,8 +1732,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 205,
-              "away": -250
+              "home": 210,
+              "away": -258
             },
             "total": 6.5,
             "totalOdds": {
