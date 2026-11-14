@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-14T20:36:57.263Z",
+  "trackedAt": "2026-11-14T23:46:57.593Z",
   "playOfDay": {
     "id": "5773e80d52-h2h-Minnesota-Timberwolves",
     "sport": "NBA",
@@ -23,19 +24,19 @@ window.PICKS_DATA = {
     "odds": -950,
     "book": "FanDuel",
     "prices": {
-      "FanDuel": -950,
+      "FanDuel": -1200,
       "BetRivers": -1250,
       "theScore Bet": -1600,
       "BetMGM": -1100,
       "DraftKings": -1080,
       "BetOnline.ag": -1100,
-      "Bovada": -1000,
+      "Bovada": -1100,
       "PointsBet": -1000,
-      "Unibet": -1250,
-      "Caesars": -900,
-      "ESPN BET": -1600
+      "Unibet": -1429,
+      "Caesars": -1000,
+      "ESPN BET": -1400
     },
-    "pricesAt": "2026-11-14T20:36:57.263Z",
+    "pricesAt": "2026-11-14T23:46:57.593Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.9646,
@@ -97,7 +98,7 @@ window.PICKS_DATA = {
         "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report.",
         "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report.",
         "Projected margin +22.9 for Minnesota Timberwolves.",
-        "A better price is available now: -900 at Caesars."
+        "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET."
       ],
       "risks": [
         "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report."
@@ -105,7 +106,7 @@ window.PICKS_DATA = {
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 87.8% (-2.7 points against the best price). For reference only.",
         "Market: DraftKings opened -840, now -1080, moving toward this side since the open.",
-        "Market: The market (8 books) opened -170, now -709, the consensus moving toward this side since the open.",
+        "Market: The market (8 books) opened -170, now -734, the consensus moving toward this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Records: Chicago Bulls 2-9 · Minnesota Timberwolves 9-3 · Target Center, Minneapolis."
       ],
@@ -237,15 +238,15 @@ window.PICKS_DATA = {
       "odds": {
         "provider": "DraftKings",
         "now": {
-          "spread": -15.5,
+          "spread": -16.5,
           "spreadOdds": {
-            "home": -112,
-            "away": -108
+            "home": -104,
+            "away": -116
           },
-          "total": 234.5,
+          "total": 236.5,
           "totalOdds": {
-            "over": -115,
-            "under": -105
+            "over": -107,
+            "under": -113
           },
           "ml": {
             "home": -1080,
@@ -305,27 +306,27 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": -709
+        "odds": -734
       },
       "moved": "toward",
-      "label": "The market (8 books) opened -170, now -709"
+      "label": "The market (8 books) opened -170, now -734"
     },
     "sgo": {
-      "at": "2026-11-14T20:36:57.263Z",
+      "at": "2026-11-14T23:46:57.593Z",
       "n": 8,
       "best": {
-        "book": "Caesars",
-        "odds": -900
+        "book": "PointsBet",
+        "odds": -1000
       },
-      "fair": 0.8744,
-      "vendorFair": 0.8764,
+      "fair": 0.8785,
+      "vendorFair": 0.8801,
       "open": {
         "line": null,
         "odds": -170
       },
       "now": {
         "line": null,
-        "odds": -709
+        "odds": -734
       }
     },
     "sgoHistory": [
@@ -336,6 +337,15 @@ window.PICKS_DATA = {
         "line": null,
         "odds": -709,
         "best": -900,
+        "n": 8
+      },
+      {
+        "at": "2026-11-14T23:46:57.593Z",
+        "fair": 0.8785,
+        "vendorFair": 0.8801,
+        "line": null,
+        "odds": -734,
+        "best": -1000,
         "n": 8
       }
     ],
@@ -358,11 +368,36 @@ window.PICKS_DATA = {
     "now": null,
     "standing": null,
     "availability": {
-      "changed": false,
-      "note": null,
-      "swing": null,
-      "changes": [],
-      "checkedAt": null,
+      "changed": true,
+      "note": "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET",
+      "swing": 0.04,
+      "changes": [
+        {
+          "side": "away",
+          "name": "Norman Powell",
+          "from": "Questionable",
+          "to": "Available",
+          "fromMiss": 0.42,
+          "toMiss": 0,
+          "delta": -0.86,
+          "at": "2026-11-14T23:45:00.000Z",
+          "source": "official",
+          "report": "6:45 PM ET"
+        },
+        {
+          "side": "away",
+          "name": "Jalen Smith",
+          "from": "Questionable",
+          "to": "Out",
+          "fromMiss": 0.42,
+          "toMiss": 1,
+          "delta": 0.9,
+          "at": "2026-11-14T23:45:00.000Z",
+          "source": "official",
+          "report": "6:45 PM ET"
+        }
+      ],
+      "checkedAt": "2026-11-14T23:46:57.593Z",
       "posted": {
         "read": "2026-11-14T20:36:57.263Z",
         "report": {
@@ -1063,7 +1098,6 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 21.3% (+1.3 points against the best price). For reference only.",
-          "Market: DraftKings opened +400, now +380, moving toward this side since the open.",
           "Market: The market (8 books) opened +356, now +383, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Los Angeles Rams 5-4 · Arizona Cardinals 3-6 · State Farm Stadium, Glendale."
@@ -1367,8 +1401,8 @@ window.PICKS_DATA = {
               "under": -112
             },
             "ml": {
-              "home": 380,
-              "away": -500
+              "home": 400,
+              "away": -535
             },
             "draw": null
           },
@@ -1401,11 +1435,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 380,
-          "fair": 0.19999999999999998
+          "odds": 400,
+          "fair": 0.19184290030211482
         },
-        "moved": "toward",
-        "label": "DraftKings opened +400, now +380"
+        "moved": null,
+        "label": "DraftKings opened +400, now +400"
       },
       "dkHistory": [
         {
@@ -1413,6 +1447,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 380,
           "fair": 0.2
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "line": null,
+          "odds": 400,
+          "fair": 0.1918
         }
       ],
       "mkt": {
@@ -2034,7 +2074,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 3 books makes this side 40.1% (-1.6 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (+136), now +1.5 (+140), moving against this side since the open.",
+          "Market: DraftKings opened +1.5 (+136), now +1.5 (+124), moving toward this side since the open.",
           "Market: The market (2 books) opened 0 (+322), now +2.5 (-114), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Knights Carter Hart · Canucks Leevi Merilainen.",
@@ -2137,8 +2177,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": -166,
-              "away": 140
+              "home": -148,
+              "away": 124
             },
             "total": 6.5,
             "totalOdds": {
@@ -2180,11 +2220,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": 140,
-          "fair": 0.4003612281757977
+          "odds": 124,
+          "fair": 0.42794036443953615
         },
-        "moved": "away",
-        "label": "DraftKings opened +1.5 (+136), now +1.5 (+140)"
+        "moved": "toward",
+        "label": "DraftKings opened +1.5 (+136), now +1.5 (+124)"
       },
       "dkHistory": [
         {
@@ -2192,6 +2232,12 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": 140,
           "fair": 0.4004
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "line": 1.5,
+          "odds": 124,
+          "fair": 0.4279
         }
       ],
       "mkt": {
@@ -2279,16 +2325,16 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": 154,
         "BetRivers": 180,
-        "FanDuel": 146,
+        "FanDuel": 155,
         "BetOnline.ag": 171,
         "theScore Bet": 170,
         "Caesars": 150,
-        "ESPN BET": 155,
-        "BetMGM": 150,
-        "Bovada": 155,
+        "ESPN BET": 150,
+        "BetMGM": 155,
+        "Bovada": 158,
         "PointsBet": 150
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.4486,
@@ -2362,7 +2408,7 @@ window.PICKS_DATA = {
           "Where the market sits: Pinnacle's de-vigged price makes this side 35.0% (-0.7 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (35.0% → 37.8%).",
           "Market: DraftKings opened +180, now +154, moving toward this side since the open.",
-          "Market: The market (7 books) opened +171, now +165, the consensus moving toward this side since the open.",
+          "Market: The market (7 books) opened +171, now +166, the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Karel Vejmelka · Sharks Yaroslav Askarov.",
           "Records: San Jose Sharks 8-11-2 · Utah Mammoth 10-8-2 · Delta Center, Salt Lake City."
@@ -2633,27 +2679,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 165
+          "odds": 166
         },
         "moved": "toward",
-        "label": "The market (7 books) opened +171, now +165"
+        "label": "The market (7 books) opened +171, now +166"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 7,
         "best": {
-          "book": "ESPN BET",
-          "odds": 155
+          "book": "Bovada",
+          "odds": 158
         },
-        "fair": 0.3809,
-        "vendorFair": 0.3774,
+        "fair": 0.3789,
+        "vendorFair": 0.3759,
         "open": {
           "line": null,
           "odds": 171
         },
         "now": {
           "line": null,
-          "odds": 165
+          "odds": 166
         }
       },
       "sgoHistory": [
@@ -2691,6 +2737,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 165,
           "best": 155,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.3789,
+          "vendorFair": 0.3759,
+          "line": null,
+          "odds": 166,
+          "best": 158,
           "n": 7
         }
       ],
@@ -2741,19 +2796,19 @@ window.PICKS_DATA = {
       "odds": -950,
       "book": "FanDuel",
       "prices": {
-        "FanDuel": -950,
+        "FanDuel": -1200,
         "BetRivers": -1250,
         "theScore Bet": -1600,
         "BetMGM": -1100,
         "DraftKings": -1080,
         "BetOnline.ag": -1100,
-        "Bovada": -1000,
+        "Bovada": -1100,
         "PointsBet": -1000,
-        "Unibet": -1250,
-        "Caesars": -900,
-        "ESPN BET": -1600
+        "Unibet": -1429,
+        "Caesars": -1000,
+        "ESPN BET": -1400
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.9646,
@@ -2815,7 +2870,7 @@ window.PICKS_DATA = {
           "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report.",
           "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report.",
           "Projected margin +22.9 for Minnesota Timberwolves.",
-          "A better price is available now: -900 at Caesars."
+          "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET."
         ],
         "risks": [
           "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report."
@@ -2823,7 +2878,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 87.8% (-2.7 points against the best price). For reference only.",
           "Market: DraftKings opened -840, now -1080, moving toward this side since the open.",
-          "Market: The market (8 books) opened -170, now -709, the consensus moving toward this side since the open.",
+          "Market: The market (8 books) opened -170, now -734, the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Chicago Bulls 2-9 · Minnesota Timberwolves 9-3 · Target Center, Minneapolis."
         ],
@@ -2955,15 +3010,15 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": -15.5,
+            "spread": -16.5,
             "spreadOdds": {
-              "home": -112,
-              "away": -108
+              "home": -104,
+              "away": -116
             },
-            "total": 234.5,
+            "total": 236.5,
             "totalOdds": {
-              "over": -115,
-              "under": -105
+              "over": -107,
+              "under": -113
             },
             "ml": {
               "home": -1080,
@@ -3023,27 +3078,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -709
+          "odds": -734
         },
         "moved": "toward",
-        "label": "The market (8 books) opened -170, now -709"
+        "label": "The market (8 books) opened -170, now -734"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 8,
         "best": {
-          "book": "Caesars",
-          "odds": -900
+          "book": "PointsBet",
+          "odds": -1000
         },
-        "fair": 0.8744,
-        "vendorFair": 0.8764,
+        "fair": 0.8785,
+        "vendorFair": 0.8801,
         "open": {
           "line": null,
           "odds": -170
         },
         "now": {
           "line": null,
-          "odds": -709
+          "odds": -734
         }
       },
       "sgoHistory": [
@@ -3054,6 +3109,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": -709,
           "best": -900,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.8785,
+          "vendorFair": 0.8801,
+          "line": null,
+          "odds": -734,
+          "best": -1000,
           "n": 8
         }
       ],
@@ -3076,11 +3140,36 @@ window.PICKS_DATA = {
       "now": null,
       "standing": null,
       "availability": {
-        "changed": false,
-        "note": null,
-        "swing": null,
-        "changes": [],
-        "checkedAt": null,
+        "changed": true,
+        "note": "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET",
+        "swing": 0.04,
+        "changes": [
+          {
+            "side": "away",
+            "name": "Norman Powell",
+            "from": "Questionable",
+            "to": "Available",
+            "fromMiss": 0.42,
+            "toMiss": 0,
+            "delta": -0.86,
+            "at": "2026-11-14T23:45:00.000Z",
+            "source": "official",
+            "report": "6:45 PM ET"
+          },
+          {
+            "side": "away",
+            "name": "Jalen Smith",
+            "from": "Questionable",
+            "to": "Out",
+            "fromMiss": 0.42,
+            "toMiss": 1,
+            "delta": 0.9,
+            "at": "2026-11-14T23:45:00.000Z",
+            "source": "official",
+            "report": "6:45 PM ET"
+          }
+        ],
+        "checkedAt": "2026-11-14T23:46:57.593Z",
         "posted": {
           "read": "2026-11-14T20:36:57.263Z",
           "report": {
@@ -3177,18 +3266,18 @@ window.PICKS_DATA = {
       "odds": 120,
       "book": "BetRivers",
       "prices": {
-        "DraftKings": 114,
+        "DraftKings": 105,
         "BetRivers": 120,
-        "FanDuel": 110,
+        "FanDuel": 102,
         "theScore Bet": 120,
-        "Caesars": 118,
-        "Unibet": -116,
-        "ESPN BET": 115,
+        "Caesars": 100,
+        "Unibet": -115,
+        "ESPN BET": 105,
         "BetMGM": 110,
-        "Bovada": 120,
-        "PointsBet": 115
+        "Bovada": 107,
+        "PointsBet": 105
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.503,
@@ -3245,8 +3334,8 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 43.9% (-1.6 points against the best price). For reference only.",
-          "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-          "Market: The market (8 books) opened 6.5 (+130), now 7 (-129), the consensus moving against this side since the open.",
+          "Market: DraftKings opened 6.5 (-105), now 6.5 (+105), moving against this side since the open.",
+          "Market: The market (8 books) opened 6.5 (+130), now 6.5 (+114), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Leafs Anthony Stolarz · Oilers Devon Levi.",
           "Records: Edmonton Oilers 14-3-3 · Toronto Maple Leafs 8-11-2 · Scotiabank Arena, Toronto."
@@ -3485,12 +3574,12 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -135,
-              "under": 114
+              "over": -125,
+              "under": 105
             },
             "ml": {
-              "home": 124,
-              "away": -148
+              "home": 130,
+              "away": -155
             },
             "draw": null
           },
@@ -3548,11 +3637,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 105,
+          "fair": 0.4675324675324675
         },
         "moved": "away",
-        "label": "DraftKings opened 6.5 (-105), now 6.5 (+114)"
+        "label": "DraftKings opened 6.5 (-105), now 6.5 (+105)"
       },
       "dkHistory": [
         {
@@ -3560,6 +3649,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "line": 6.5,
+          "odds": 105,
+          "fair": 0.4675
         }
       ],
       "mkt": {
@@ -3570,28 +3665,28 @@ window.PICKS_DATA = {
           "odds": 130
         },
         "now": {
-          "line": 7,
-          "odds": -129
+          "line": 6.5,
+          "odds": 114
         },
-        "moved": "away",
-        "label": "The market (8 books) opened 6.5 (+130), now 7 (-129)"
+        "moved": "toward",
+        "label": "The market (8 books) opened 6.5 (+130), now 6.5 (+114)"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 8,
         "best": {
-          "book": "Bovada",
-          "odds": 120
+          "book": "BetMGM",
+          "odds": 110
         },
-        "fair": 0.4545,
-        "vendorFair": 0.5633,
+        "fair": 0.4719,
+        "vendorFair": 0.4673,
         "open": {
           "line": 6.5,
           "odds": 130
         },
         "now": {
-          "line": 7,
-          "odds": -129
+          "line": 6.5,
+          "odds": 114
         }
       },
       "sgoHistory": [
@@ -3629,6 +3724,15 @@ window.PICKS_DATA = {
           "line": 7,
           "odds": -129,
           "best": 120,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.4719,
+          "vendorFair": 0.4673,
+          "line": 6.5,
+          "odds": 114,
+          "best": 110,
           "n": 8
         }
       ],
@@ -4022,7 +4126,7 @@ window.PICKS_DATA = {
         "Bovada": -117,
         "PointsBet": -115
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.5788,
@@ -4331,13 +4435,13 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 6.5 (+123), now 6 (+120)"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 8,
         "best": {
           "book": "DraftKings",
           "odds": -115
         },
-        "fair": 0.513,
+        "fair": 0.5129,
         "vendorFair": 0.4545,
         "open": {
           "line": 6.5,
@@ -4379,6 +4483,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-14T20:36:57.263Z",
           "fair": 0.513,
+          "vendorFair": 0.4545,
+          "line": 6,
+          "odds": 120,
+          "best": -115,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.5129,
           "vendorFair": 0.4545,
           "line": 6,
           "odds": 120,
@@ -4435,17 +4548,17 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": -118,
         "BetRivers": -129,
-        "FanDuel": -120,
+        "FanDuel": -118,
         "BetOnline.ag": -110,
         "theScore Bet": -120,
         "Unibet": -128,
         "Caesars": -120,
         "ESPN BET": -120,
-        "BetMGM": -118,
+        "BetMGM": -115,
         "Bovada": -120,
         "PointsBet": -120
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.5612,
@@ -4667,13 +4780,13 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 6.5 (+149), now 6 (+119)"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 8,
         "best": {
-          "book": "DraftKings",
-          "odds": -118
+          "book": "BetMGM",
+          "odds": -115
         },
-        "fair": 0.5212,
+        "fair": 0.5199,
         "vendorFair": 0.4566,
         "open": {
           "line": 6.5,
@@ -4710,6 +4823,15 @@ window.PICKS_DATA = {
           "line": 6,
           "odds": 119,
           "best": -118,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.5199,
+          "vendorFair": 0.4566,
+          "line": 6,
+          "odds": 119,
+          "best": -115,
           "n": 8
         }
       ],
@@ -4766,13 +4888,13 @@ window.PICKS_DATA = {
         "FanDuel": 114,
         "theScore Bet": 105,
         "Caesars": 111,
-        "Unibet": -123,
+        "Unibet": -111,
         "ESPN BET": 115,
         "BetMGM": 105,
-        "Bovada": 115,
+        "Bovada": 120,
         "PointsBet": 115
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-14T23:46:57.593Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.5102,
@@ -4825,7 +4947,7 @@ window.PICKS_DATA = {
           "Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3).",
           "Projected total 6.4 against 6.5.",
           "A better price is now available: +115 at theScore Bet.",
-          "A better price is available now: +115 at ESPN BET.",
+          "A better price is available now: +120 at Bovada.",
           "Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 2 more. Fewer healthy scorers leans under."
         ],
         "risks": [],
@@ -4833,7 +4955,7 @@ window.PICKS_DATA = {
           "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (47.2% → 44.6%).",
           "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-          "Market: The market (7 books) opened 6.5 (-105), now 6.5 (+122), the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened 6.5 (-105), now 7 (-129), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Lukas Dostal · Islanders Semyon Varlamov.",
           "Records: New York Islanders 8-6-4 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
@@ -5061,28 +5183,28 @@ window.PICKS_DATA = {
           "odds": -105
         },
         "now": {
-          "line": 6.5,
-          "odds": 122
+          "line": 7,
+          "odds": -129
         },
         "moved": "away",
-        "label": "The market (7 books) opened 6.5 (-105), now 6.5 (+122)"
+        "label": "The market (7 books) opened 6.5 (-105), now 7 (-129)"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
+        "at": "2026-11-14T23:46:57.593Z",
         "n": 7,
         "best": {
-          "book": "ESPN BET",
-          "odds": 115
+          "book": "Bovada",
+          "odds": 120
         },
-        "fair": 0.4585,
-        "vendorFair": 0.4505,
+        "fair": 0.4537,
+        "vendorFair": 0.5633,
         "open": {
           "line": 6.5,
           "odds": -105
         },
         "now": {
-          "line": 6.5,
-          "odds": 122
+          "line": 7,
+          "odds": -129
         }
       },
       "sgoHistory": [
@@ -5120,6 +5242,15 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 122,
           "best": 115,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.4537,
+          "vendorFair": 0.5633,
+          "line": 7,
+          "odds": -129,
+          "best": 120,
           "n": 7
         }
       ],
