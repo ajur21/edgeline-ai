@@ -564,105 +564,40 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-13@edgeline
-DTSTAMP:20261114T020735Z
-DTSTART:20261114T011000Z
-DTEND:20261114T051000Z
-SUMMARY:Parlay lean of the day: 2 legs +140 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 56.3%\, implied 41.7%\, EV +34.
- 9% per unit.\n- NBA: Atlanta Hawks ML -260 · Atlanta Hawks @ Chicago Bull
- s\n- NHL: Vancouver Canucks +1.5 -137 · New York Rangers @ Vancouver Canu
- cks\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parla
- ys
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261114T020735Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +140 at Bovada
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:80ffc963f8-h2h-Atlanta-Hawks@edgeline
-DTSTAMP:20261113T212003Z
+DTSTAMP:20261114T054010Z
 DTSTART:20261114T011000Z
 DTEND:20261114T041000Z
-SUMMARY:Atlanta Hawks ML -260 at Bovada · in play
+SUMMARY:Atlanta Hawks ML -260 at Bovada · Lost -1.00u
 DESCRIPTION:NBA · Atlanta Hawks @ Chicago Bulls · Fri Nov 13\, 8:10 PM ET
- \nMoneyline: Atlanta Hawks ML at -260 (Bovada). Our probability 85.1% from
-  game data\, the price implies 72.2%\, edge +12.9 pts\, EV +17.8% per unit
- . Confidence: Medium.\nOur probability is 85.1%\, from the game data: this
-  season's results and margins\, recent form\, rest\, the injury report and
-  home edge (projected margin -12.7 for the home side). Bovada offers -260\
- , which implies only 72.2%. Its bar is 8.1 points: the model's own margin 
- of error on this side\, with 10 games behind the thinner team (±4.42 poin
- ts on the margin). It clears it by 4.7. Not graded against other books' pr
- ices\; for reference the market makes it 69.7%.\nWhat supports it:\n- Chic
- ago Bulls rate -9.3 a game over 10 (1-9)\, Atlanta Hawks +1.9 over 12 (7-5
- )\; last season -5.2 and +2.4 a game.\n- Atlanta Hawks are rested (4 days)
- .\n- Chicago Bulls without Tobe Awaka (F)\, Jaylin Sellers (G)\, Caleb Wil
- son (F) (-3.5)\, out per the 3:30 PM ET official report.\n- Chicago Bulls 
- have Norman Powell (G) questionable\, Dailyn Swain (G) questionable per th
- e 3:30 PM ET official report.\n- Projected margin +12.7 for Atlanta Hawks.
- \nWhat could go wrong:\n- Home edge +1.9 for Chicago Bulls.\n- Atlanta Haw
- ks without Asa Newell (F) (+0.6)\, out per the 3:30 PM ET official report.
- \n- Atlanta Hawks have Kingston Flemings (G) questionable per the 3:30 PM 
- ET official report.\nVerdict: The game data lines up behind this side at t
- his price.\nPrices: Bovada -260\, Unibet -270\, FanDuel -275\, BetRivers -
- 275\, DraftKings -277 and 6 more.\nFull breakdown: https://ajur21.github.i
- o/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-Hawks
+ \nMoneyline: Atlanta Hawks ML at -260 (Bovada). Lost -1.00u.\nFinal: 117-1
+ 25\nClosing line value: -3.1 pts (closed -257\, DraftKings close (ESPN)).\
+ nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perfor
+ mance.html
 LOCATION:United Center\, Chicago
-URL:https://ajur21.github.io/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-
- Hawks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA
-LAST-MODIFIED:20261113T212003Z
+LAST-MODIFIED:20261114T054010Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:069bea3694-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261114T020735Z
+DTSTAMP:20261114T054010Z
 DTSTART:20261114T021000Z
 DTEND:20261114T051000Z
-SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Medium
+SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Lost -1.00u
 DESCRIPTION:NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13\, 9:1
- 0 PM ET\nPuck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probabili
- ty 66.2% from game data\, the price implies 56.5%\, edge +9.7 pts\, EV +17
- .1% per unit. Confidence: Medium.\nOur probability at +1.5 is 66.2%\, from
-  the game data: this season's results and margins\, recent form\, rest\, t
- he injury report and home edge (projected margin -0.3 for the home side). 
- BetMGM offers -130\, which implies only 56.5%. Its bar is 6.3 points: the 
- model's own margin of error on this side\, with 20 games behind the thinne
- r team (±0.44 goals on the margin). It clears it by 3.4. Not graded again
- st other books' prices\; for reference the market makes it 55.4%.\nWhat su
- pports it:\n- Home edge +0.2 for Vancouver Canucks.\n- Vancouver Canucks a
- re rested (4 days).\n- New York Rangers without Alberts Smits (D)\, Sean D
- urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\n- A better price is ava
- ilable now: -127 at Caesars.\nWhat could go wrong:\n- Vancouver Canucks ra
- te -0.8 a game over 20 (3-17)\, New York Rangers +0 over 20 (11-9)\; last 
- season -1.2 and -0.1 a game.\n- New York Rangers trending: last five +0.8 
- vs +0.2 on the season.\n- Vancouver Canucks without Filip Chytil (C) (-0.1
- ).\n- Vancouver Canucks have Tom Willander (D) listed day-to-day or questi
- onable.\n- Projected margin -0.3 for Vancouver Canucks against +1.5.\nVerd
- ict: More working against this one than for it\; size down.\nPrices: Caesa
- rs -127\, Bovada -133\, DraftKings -135\, theScore Bet -135\, BetMGM -140 
- and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.ht
- ml#069bea3694-spreads-Vancouver-Canucks
+ 0 PM ET\nPuck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.\
+ nFinal: 5-1\nClosing line value: -1.4 pts (closed -135\, DraftKings close 
+ (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-
+ ai/performance.html
 LOCATION:Rogers Arena\, Vancouver
-URL:https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vanc
- ouver-Canucks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T020735Z
+LAST-MODIFIED:20261114T054010Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Vancouver Canucks +1.5 -130 at BetMGM · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7f07a205e3-totals-Under@edgeline

@@ -13686,8 +13686,8 @@
    "Edge 9.7 points over the price, 3.4 past its bar of 6.3",
    "Market reference 55.4%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-12T20:36:23.500Z",
   "availability": null,
   "current": {
@@ -14078,7 +14078,30 @@
      "fair": 0.5564
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "5-1",
+  "finalScore": {
+   "home": 1,
+   "away": 5
+  },
+  "gradedAt": "2026-11-14T05:40:10.520Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892706",
+   "line": 1.5,
+   "odds": -135,
+   "fair": 0.5514,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": -155,
+    "fair": 0.583
+   },
+   "samples": 3
+  },
+  "clv": -0.0138,
+  "lineMove": null
  },
  {
   "type": "day",
@@ -14198,8 +14221,8 @@
    "Edge 12.9 points over the price, 4.7 past its bar of 8.1",
    "Market reference 69.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-13T20:36:49.267Z",
   "availability": {
    "posted": {
@@ -14738,7 +14761,30 @@
    }
   ],
   "potd": "2026-11-13",
-  "potdAt": "2026-11-13T20:39:41.747Z"
+  "potdAt": "2026-11-13T20:39:41.747Z",
+  "result": "Loss",
+  "score": "117-125",
+  "finalScore": {
+   "home": 125,
+   "away": 117
+  },
+  "gradedAt": "2026-11-14T05:40:10.520Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401909299",
+   "line": null,
+   "odds": -257,
+   "fair": 0.6912,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -263,
+    "fair": 0.696
+   },
+   "samples": 1
+  },
+  "clv": -0.031,
+  "lineMove": null
  },
  {
   "key": "e7f30a1c549ae1d91aac850b81bad637|h2h|San Jose Sharks|null",
@@ -15010,8 +15056,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 114,
-      "away": -135
+      "home": 120,
+      "away": -142
      },
      "total": 6.5,
      "totalOdds": {
@@ -15842,8 +15888,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 142,
-      "away": -170
+      "home": 150,
+      "away": -180
      },
      "total": 5.5,
      "totalOdds": {
@@ -16556,8 +16602,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -130,
+      "under": 110
      },
      "ml": {
       "home": -115,
@@ -16590,6 +16636,12 @@
     "line": 6.5,
     "odds": 102,
     "fair": 0.4739
+   },
+   {
+    "at": "2026-11-14T05:40:10.520Z",
+    "line": 6.5,
+    "odds": 110,
+    "fair": 0.4573
    }
   ],
   "dk": {
@@ -16601,11 +16653,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 102,
-    "fair": 0.4739134147382802
+    "odds": 110,
+    "fair": 0.4572564612326044
    },
    "moved": "away",
-   "label": "DraftKings opened 6.5 (-105), now 6.5 (+102)"
+   "label": "DraftKings opened 6.5 (-105), now 6.5 (+110)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -16633,7 +16685,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
-    "Market: DraftKings opened 6.5 (-105), now 6.5 (+102), moving against this side since the open.",
+    "Market: DraftKings opened 6.5 (-105), now 6.5 (+110), moving against this side since the open.",
     "Market: The market (5 books) opened 6.5 (-105), now 6.5 (+110), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Laurent Brossoit · Islanders Ilya Sorokin.",
@@ -16694,8 +16746,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-13",
   "date": "2026-11-13",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-13T20:39:41.747Z",
   "book": "Bovada",
   "legs": [
@@ -16709,6 +16761,8 @@
   "decimal": 2.3953,
   "odds": 140,
   "fairProb": 0.5632,
-  "ev": 0.3491
+  "ev": 0.3491,
+  "gradedAt": "2026-11-14T05:40:10.520Z",
+  "result": "Loss"
  }
 ]

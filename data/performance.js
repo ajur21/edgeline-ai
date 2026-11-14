@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-13",
+  "asOf": "2026-11-14",
   "windowDays": 30,
   "record": {
     "wins": 16,
-    "losses": 15,
+    "losses": 17,
     "pushes": 0
   },
-  "units": -2.01,
-  "roi": -6.5,
-  "avgEdge": 9.4,
-  "graded": 31,
+  "units": -4.01,
+  "roi": -12.2,
+  "avgEdge": 9.5,
+  "graded": 33,
   "daily": [
     {
       "date": "2026-11-05",
@@ -41,18 +41,22 @@ window.PERF_DATA = {
     {
       "date": "2026-11-12",
       "units": -2.01
+    },
+    {
+      "date": "2026-11-13",
+      "units": -4.01
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 0.12,
-      "record": "11-9"
+      "units": -0.88,
+      "record": "11-10"
     },
     {
       "sport": "NBA",
-      "units": -0.8,
-      "record": "1-1"
+      "units": -1.8,
+      "record": "1-2"
     },
     {
       "sport": "Soccer",
@@ -61,6 +65,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-13",
+      "sport": "NHL",
+      "event": "New York Rangers @ Vancouver Canucks",
+      "pick": "Vancouver Canucks +1.5",
+      "odds": -130,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0138,
+      "closeOdds": -135,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-13",
+      "sport": "NBA",
+      "event": "Atlanta Hawks @ Chicago Bulls",
+      "pick": "Atlanta Hawks ML",
+      "odds": -260,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.031,
+      "closeOdds": -257,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-12",
       "sport": "NHL",
@@ -210,36 +244,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "Soccer",
-      "event": "Manchester United vs. Aston Villa",
-      "pick": "Under 3 goals",
-      "odds": -115,
-      "result": "Loss",
-      "units": -1,
-      "clv": null,
-      "closeOdds": -135,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "away",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "Soccer",
-      "event": "Brighton and Hove Albion vs. Brentford",
-      "pick": "Under 3 goals",
-      "odds": -112,
-      "result": "Win",
-      "units": 0.89,
-      "clv": null,
-      "closeOdds": 120,
-      "closeLine": 2.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "toward",
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -291,16 +295,33 @@ window.PERF_DATA = {
       "wins": 1,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-13",
+      "units": -2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 2,
-    "losses": 5,
+    "losses": 6,
     "pushes": 0,
-    "units": -3.05,
-    "n": 7,
+    "units": -4.05,
+    "n": 8,
     "props": 0,
     "recent": [
+      {
+        "date": "2026-11-13",
+        "kind": "lean",
+        "sport": "NBA",
+        "event": "Atlanta Hawks @ Chicago Bulls",
+        "pick": "Atlanta Hawks ML",
+        "odds": -260,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-12",
         "kind": "lean",
@@ -375,31 +396,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 0,
-    "losses": 7,
+    "losses": 8,
     "pushes": 0,
-    "units": -7,
-    "n": 7
+    "units": -8,
+    "n": 8
   },
   "clv": {
-    "n": 25,
-    "avg": -1.59,
+    "n": 27,
+    "avg": -1.64,
     "beat": 5,
-    "beatPct": 20,
-    "graded": 31,
+    "beatPct": 18.5,
+    "graded": 33,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 31,
+    "espnCloses": 33,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 16,
-      "losses": 15,
+      "losses": 17,
       "pushes": 0,
-      "units": -2.01,
-      "n": 31,
-      "roi": -6.5,
-      "pending": 7,
+      "units": -4.01,
+      "n": 33,
+      "roi": -12.2,
+      "pending": 5,
       "since": "2026-11-05"
     },
     "price": {

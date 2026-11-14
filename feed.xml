@@ -5,16 +5,24 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Sat, 14 Nov 2026 02:07:35 GMT</lastBuildDate>
+<lastBuildDate>Sat, 14 Nov 2026 05:40:10 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>Parlay lean of the day: 2 legs +140 at Bovada</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
-<guid isPermaLink="false">parlay-2026-11-13</guid>
-<pubDate>Fri, 13 Nov 2026 20:39:41 GMT</pubDate>
-<category>Parlay</category>
-<description>&lt;p&gt;All legs priced at Bovada. Fair 56.3%, implied 41.7%, EV +34.9% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NBA: Atlanta Hawks ML -260 · Atlanta Hawks @ Chicago Bulls&lt;/li&gt;&lt;li&gt;NHL: Vancouver Canucks +1.5 -137 · New York Rangers @ Vancouver Canucks&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
+<title>Graded: Atlanta Hawks ML -260 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">80ffc963f8-h2h-Atlanta-Hawks#graded</guid>
+<pubDate>Sat, 14 Nov 2026 05:40:10 GMT</pubDate>
+<category>NBA</category>
+<description>&lt;p&gt;NBA · Atlanta Hawks @ Chicago Bulls · Fri Nov 13, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Atlanta Hawks ML at -260 (Bovada). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 117-125&lt;/p&gt;&lt;p&gt;Closing line value: -3.1 pts (closed -257, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Vancouver Canucks +1.5 -130 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">069bea3694-spreads-Vancouver-Canucks#graded</guid>
+<pubDate>Sat, 14 Nov 2026 05:40:10 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 5-1&lt;/p&gt;&lt;p&gt;Closing line value: -1.4 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Fri Nov 13 slate: 7 leans tonight from 504 priced sides</title>
@@ -65,28 +73,12 @@
 <description>&lt;p&gt;NHL · New York Islanders @ Anaheim Ducks · Sat Nov 14, 10:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 6.5 at +110 (BetOnline.ag). Our probability 51.0% from game data, the price implies 47.6%, edge +3.4 pts, EV +7.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 6.5 is 51.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +110, which implies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.2%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3).&lt;/li&gt;&lt;li&gt;Projected total 6.4 against 6.5.&lt;/li&gt;&lt;li&gt;Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 3 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag +110, theScore Bet +105, ESPN BET +105, FanDuel +104, DraftKings +102 and 3 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under&lt;/p&gt;</description>
 </item>
 <item>
-<title>Lean of the day: Atlanta Hawks ML -260 at Bovada (Medium, +12.9 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-Hawks</link>
-<guid isPermaLink="false">80ffc963f8-h2h-Atlanta-Hawks</guid>
-<pubDate>Fri, 13 Nov 2026 20:36:49 GMT</pubDate>
-<category>NBA</category>
-<description>&lt;p&gt;NBA · Atlanta Hawks @ Chicago Bulls · Fri Nov 13, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Atlanta Hawks ML at -260 (Bovada). Our probability 85.1% from game data, the price implies 72.2%, edge +12.9 pts, EV +17.8% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability is 85.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -12.7 for the home side). Bovada offers -260, which implies only 72.2%. Its bar is 8.1 points: the model's own margin of error on this side, with 10 games behind the thinner team (±4.42 points on the margin). It clears it by 4.7. Not graded against other books' prices; for reference the market makes it 69.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Chicago Bulls rate -9.3 a game over 10 (1-9), Atlanta Hawks +1.9 over 12 (7-5); last season -5.2 and +2.4 a game.&lt;/li&gt;&lt;li&gt;Atlanta Hawks are rested (4 days).&lt;/li&gt;&lt;li&gt;Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (-3.5), out per the 3:30 PM ET official report.&lt;/li&gt;&lt;li&gt;Chicago Bulls have Norman Powell (G) questionable, Dailyn Swain (G) questionable per the 3:30 PM ET official report.&lt;/li&gt;&lt;li&gt;Projected margin +12.7 for Atlanta Hawks.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +1.9 for Chicago Bulls.&lt;/li&gt;&lt;li&gt;Atlanta Hawks without Asa Newell (F) (+0.6), out per the 3:30 PM ET official report.&lt;/li&gt;&lt;li&gt;Atlanta Hawks have Kingston Flemings (G) questionable per the 3:30 PM ET official report.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Bovada -260, Unibet -270, FanDuel -275, BetRivers -275, DraftKings -277 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#80ffc963f8-h2h-Atlanta-Hawks&lt;/p&gt;</description>
-</item>
-<item>
 <title>Graded: Over 5.5 -117 · Won +0.85u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">2df9328781-totals-Over#graded</guid>
 <pubDate>Fri, 13 Nov 2026 14:16:38 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · New York Islanders @ Los Angeles Kings · Thu Nov 12, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetRivers). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 5-2&lt;/p&gt;&lt;p&gt;Closing line value: +1.2 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Vancouver Canucks +1.5 -130 at BetMGM (Medium, +9.7 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks</link>
-<guid isPermaLink="false">069bea3694-spreads-Vancouver-Canucks</guid>
-<pubDate>Thu, 12 Nov 2026 20:36:23 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13, 9:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Our probability 66.2% from game data, the price implies 56.5%, edge +9.7 pts, EV +17.1% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 66.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.3 for the home side). BetMGM offers -130, which implies only 56.5%. Its bar is 6.3 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 3.4. Not graded against other books' prices; for reference the market makes it 55.4%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +0.2 for Vancouver Canucks.&lt;/li&gt;&lt;li&gt;Vancouver Canucks are rested (4 days).&lt;/li&gt;&lt;li&gt;New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3).&lt;/li&gt;&lt;li&gt;A better price is available now: -127 at Caesars.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.&lt;/li&gt;&lt;li&gt;New York Rangers trending: last five +0.8 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Filip Chytil (C) (-0.1).&lt;/li&gt;&lt;li&gt;Vancouver Canucks have Tom Willander (D) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;Projected margin -0.3 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: Caesars -127, Bovada -133, DraftKings -135, theScore Bet -135, BetMGM -140 and 3 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Seattle Kraken +1.5 +100 · Lost -1.00u</title>
