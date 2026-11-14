@@ -13615,13 +13615,13 @@
   "book": "BetMGM",
   "prices": {
    "DraftKings": -135,
-   "BetMGM": -135,
+   "BetMGM": -140,
    "BetRivers": -143,
-   "FanDuel": -140,
+   "FanDuel": -142,
    "theScore Bet": -135,
-   "Caesars": -133,
-   "ESPN BET": -135,
-   "Bovada": -137
+   "Caesars": -127,
+   "ESPN BET": -145,
+   "Bovada": -133
   },
   "books": 6,
   "anchor": "Pinnacle",
@@ -13876,12 +13876,12 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -105,
-      "under": -115
+      "over": -102,
+      "under": -118
      },
      "ml": {
-      "home": 185,
-      "away": -225
+      "home": 170,
+      "away": -205
      },
      "draw": null
     },
@@ -13948,7 +13948,8 @@
    "support": [
     "Home edge +0.2 for Vancouver Canucks.",
     "Vancouver Canucks are rested (4 days).",
-    "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3)."
+    "New York Rangers without Alberts Smits (D), Sean Durzi (D), Igor Shesterkin (G) and 1 more (+0.3).",
+    "A better price is available now: -127 at Caesars."
    ],
    "risks": [
     "Vancouver Canucks rate -0.8 a game over 20 (3-17), New York Rangers +0 over 20 (11-9); last season -1.2 and -0.1 a game.",
@@ -13971,21 +13972,21 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "cw3b3tmVMxlfDyi6SQan",
-   "at": "2026-11-13T21:20:03.887Z",
+   "at": "2026-11-14T02:07:35.255Z",
    "books": {
     "DraftKings": -135,
-    "BetMGM": -135,
-    "Caesars": -133,
-    "FanDuel": -140,
-    "ESPN BET": -135,
-    "Bovada": -137
+    "BetMGM": -140,
+    "Caesars": -127,
+    "FanDuel": -142,
+    "ESPN BET": -145,
+    "Bovada": -133
    },
    "n": 6,
    "best": {
     "book": "Caesars",
-    "odds": -133
+    "odds": -127
    },
-   "fair": 0.5515,
+   "fair": 0.5528,
    "fairBooks": 6,
    "vendor": {
     "line": 1.5,
@@ -14004,7 +14005,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-13T21:20:03.887Z",
+  "pricesAt": "2026-11-14T02:07:35.255Z",
   "sgoHistory": [
    {
     "at": "2026-11-12T20:36:23.500Z",
@@ -14040,6 +14041,15 @@
     "line": 1.5,
     "odds": -124,
     "best": -133,
+    "n": 6
+   },
+   {
+    "at": "2026-11-14T02:07:35.255Z",
+    "fair": 0.5528,
+    "vendorFair": 0.5536,
+    "line": 1.5,
+    "odds": -124,
+    "best": -127,
     "n": 6
    }
   ],
@@ -15000,13 +15010,13 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 120,
-      "away": -142
+      "home": 114,
+      "away": -135
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -105,
-      "under": -115
+      "over": 105,
+      "under": -125
      },
      "ml": {
       "home": -205,
@@ -15837,8 +15847,8 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -125,
+      "under": 105
      },
      "ml": {
       "home": -175,
@@ -15877,6 +15887,12 @@
     "line": 5.5,
     "odds": -122,
     "fair": 0.5261
+   },
+   {
+    "at": "2026-11-14T02:07:35.255Z",
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
    }
   ],
   "dk": {
@@ -15888,11 +15904,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -122,
-    "fair": 0.5260865852617197
+    "odds": -125,
+    "fair": 0.5324675324675325
    },
    "moved": "toward",
-   "label": "DraftKings opened 5.5 (-118), now 5.5 (-122)"
+   "label": "DraftKings opened 5.5 (-118), now 5.5 (-125)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -15921,7 +15937,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 52.1% (-2.0 points against the best price). For reference only.",
-    "Market: DraftKings opened 5.5 (-118), now 5.5 (-122), moving toward this side since the open.",
+    "Market: DraftKings opened 5.5 (-118), now 5.5 (-125), moving toward this side since the open.",
     "Market: The market (5 books) opened 6.5 (+123), now 6 (+119), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Kings Darcy Kuemper · Flames Dustin Wolf.",
@@ -16165,8 +16181,8 @@
       "under": -102
      },
      "ml": {
-      "home": -142,
-      "away": 120
+      "home": -135,
+      "away": 114
      },
      "draw": null
     },

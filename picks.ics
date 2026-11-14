@@ -564,11 +564,33 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-13@edgeline
+DTSTAMP:20261114T020735Z
+DTSTART:20261114T011000Z
+DTEND:20261114T051000Z
+SUMMARY:Parlay lean of the day: 2 legs +140 at Bovada
+DESCRIPTION:All legs priced at Bovada. Fair 56.3%\, implied 41.7%\, EV +34.
+ 9% per unit.\n- NBA: Atlanta Hawks ML -260 · Atlanta Hawks @ Chicago Bull
+ s\n- NHL: Vancouver Canucks +1.5 -137 · New York Rangers @ Vancouver Canu
+ cks\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parla
+ ys
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261114T020735Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +140 at Bovada
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:80ffc963f8-h2h-Atlanta-Hawks@edgeline
 DTSTAMP:20261113T212003Z
 DTSTART:20261114T011000Z
 DTEND:20261114T041000Z
-SUMMARY:Lean of the day: Atlanta Hawks ML -260 at Bovada · Medium
+SUMMARY:Atlanta Hawks ML -260 at Bovada · in play
 DESCRIPTION:NBA · Atlanta Hawks @ Chicago Bulls · Fri Nov 13\, 8:10 PM ET
  \nMoneyline: Atlanta Hawks ML at -260 (Bovada). Our probability 85.1% from
   game data\, the price implies 72.2%\, edge +12.9 pts\, EV +17.8% per unit
@@ -599,37 +621,10 @@ CATEGORIES:NBA
 LAST-MODIFIED:20261113T212003Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Atlanta Hawks ML -260 at Bovada · Medium
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-13@edgeline
-DTSTAMP:20261113T212003Z
-DTSTART:20261114T011000Z
-DTEND:20261114T051000Z
-SUMMARY:Parlay lean of the day: 2 legs +140 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 56.3%\, implied 41.7%\, EV +34.
- 9% per unit.\n- NBA: Atlanta Hawks ML -260 · Atlanta Hawks @ Chicago Bull
- s\n- NHL: Vancouver Canucks +1.5 -137 · New York Rangers @ Vancouver Canu
- cks\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parla
- ys
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261113T212003Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +140 at Bovada
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:069bea3694-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261113T212003Z
+DTSTAMP:20261114T020735Z
 DTSTART:20261114T021000Z
 DTEND:20261114T051000Z
 SUMMARY:Vancouver Canucks +1.5 -130 at BetMGM · Medium
@@ -645,21 +640,22 @@ DESCRIPTION:NHL · New York Rangers @ Vancouver Canucks · Fri Nov 13\, 9:1
  st other books' prices\; for reference the market makes it 55.4%.\nWhat su
  pports it:\n- Home edge +0.2 for Vancouver Canucks.\n- Vancouver Canucks a
  re rested (4 days).\n- New York Rangers without Alberts Smits (D)\, Sean D
- urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\nWhat could go wrong:\n-
-  Vancouver Canucks rate -0.8 a game over 20 (3-17)\, New York Rangers +0 o
- ver 20 (11-9)\; last season -1.2 and -0.1 a game.\n- New York Rangers tren
- ding: last five +0.8 vs +0.2 on the season.\n- Vancouver Canucks without F
- ilip Chytil (C) (-0.1).\n- Vancouver Canucks have Tom Willander (D) listed
-  day-to-day or questionable.\n- Projected margin -0.3 for Vancouver Canuck
- s against +1.5.\nVerdict: More working against this one than for it\; size
-  down.\nPrices: Caesars -133\, DraftKings -135\, BetMGM -135\, theScore Be
- t -135\, ESPN BET -135 and 3 more.\nFull breakdown: https://ajur21.github.
- io/edgeline-ai/picks.html#069bea3694-spreads-Vancouver-Canucks
+ urzi (D)\, Igor Shesterkin (G) and 1 more (+0.3).\n- A better price is ava
+ ilable now: -127 at Caesars.\nWhat could go wrong:\n- Vancouver Canucks ra
+ te -0.8 a game over 20 (3-17)\, New York Rangers +0 over 20 (11-9)\; last 
+ season -1.2 and -0.1 a game.\n- New York Rangers trending: last five +0.8 
+ vs +0.2 on the season.\n- Vancouver Canucks without Filip Chytil (C) (-0.1
+ ).\n- Vancouver Canucks have Tom Willander (D) listed day-to-day or questi
+ onable.\n- Projected margin -0.3 for Vancouver Canucks against +1.5.\nVerd
+ ict: More working against this one than for it\; size down.\nPrices: Caesa
+ rs -127\, Bovada -133\, DraftKings -135\, theScore Bet -135\, BetMGM -140 
+ and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.ht
+ ml#069bea3694-spreads-Vancouver-Canucks
 LOCATION:Rogers Arena\, Vancouver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#069bea3694-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261113T212003Z
+LAST-MODIFIED:20261114T020735Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
