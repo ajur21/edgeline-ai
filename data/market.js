@@ -3,7 +3,7 @@ window.MARKET_DATA = {
  "sample": false,
  "source": "The Odds API",
  "basis": "game",
- "generatedAt": "2026-11-13T20:36:49.267Z",
+ "generatedAt": "2026-11-14T14:06:52.310Z",
  "threshold": 0.03,
  "watch": 0.015,
  "barRule": {
@@ -19,22 +19,16 @@ window.MARKET_DATA = {
    "median": 0.03,
    "max": 0.1585
   },
-  "NBA": {
-   "min": 0.03,
-   "median": 0.03,
-   "max": 0.1392
-  },
   "NHL": {
    "min": 0.03,
-   "median": 0.0637,
+   "median": 0.0638,
    "max": 0.0733
   }
  },
- "games": 84,
- "modelled": 83,
+ "games": 70,
+ "modelled": 70,
  "sports": [
   "NCAAF",
-  "NBA",
   "NHL"
  ],
  "rows": [
@@ -85,60 +79,8 @@ window.MARKET_DATA = {
    "past": 0.011,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Atlanta Hawks",
-    "point": null
-   },
-   "pick": "Atlanta Hawks ML",
-   "odds": -260,
-   "book": "Bovada",
-   "prices": {
-    "FanDuel": -275,
-    "BetOnline.ag": -280,
-    "DraftKings": -277,
-    "theScore Bet": -280,
-    "Bovada": -260,
-    "BetRivers": -275,
-    "BetMGM": -275,
-    "PointsBet": -278,
-    "Unibet": -270,
-    "Caesars": -300,
-    "ESPN BET": -280
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.8508,
-   "edge": 0.1286,
-   "ev": 0.178,
-   "marketFair": 0.6969,
-   "marketEdge": -0.0254,
-   "modelled": true,
-   "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
-    "thin": false
-   },
-   "bar": 0.0814,
-   "past": 0.0472,
-   "waiting": null,
-   "pickId": "80ffc963f8-h2h-Atlanta-Hawks",
-   "status": "pick"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -187,7 +129,8 @@ window.MARKET_DATA = {
    "past": -0.0344,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -236,7 +179,8 @@ window.MARKET_DATA = {
    "past": -0.0377,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -285,7 +229,8 @@ window.MARKET_DATA = {
    "past": -0.0397,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -334,105 +279,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Memphis Grizzlies",
-    "point": null
-   },
-   "pick": "Memphis Grizzlies ML",
-   "odds": -155,
-   "book": "BetOnline.ag",
-   "prices": {
-    "FanDuel": -158,
-    "BetOnline.ag": -155,
-    "BetRivers": -162,
-    "theScore Bet": -165,
-    "DraftKings": -162,
-    "Bovada": -160,
-    "BetMGM": -160
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7206,
-   "edge": 0.1128,
-   "ev": 0.1855,
-   "marketFair": 0.59,
-   "marketEdge": -0.0178,
-   "modelled": true,
-   "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1168,
-   "past": -0.004,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
-  },
-  {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Vancouver Canucks",
-    "point": null
-   },
-   "pick": "Vancouver Canucks ML",
-   "odds": 185,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 185,
-    "BetOnline.ag": 179,
-    "BetMGM": 180,
-    "BetRivers": 185,
-    "FanDuel": 172,
-    "theScore Bet": 175,
-    "Bovada": 178
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4584,
-   "edge": 0.1075,
-   "ev": 0.3064,
-   "marketFair": 0.3481,
-   "marketEdge": -0.0028,
-   "modelled": true,
-   "model": {
-    "margin": -0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0723,
-   "past": 0.0352,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a21a2f1087d443fa1a1c71e1a03a0fe0",
@@ -481,7 +329,8 @@ window.MARKET_DATA = {
    "past": -0.0503,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8ad669f4c9b70f38fdb057c114588776",
@@ -529,7 +378,8 @@ window.MARKET_DATA = {
    "past": -0.059,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77380a347bae20671e1f8cec27ce658b",
@@ -578,105 +428,55 @@ window.MARKET_DATA = {
    "past": -0.0295,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
-    "name": "Vancouver Canucks",
+    "name": "Seattle Kraken",
     "point": 1.5
    },
-   "pick": "Vancouver Canucks +1.5",
-   "odds": -135,
-   "book": "DraftKings",
+   "pick": "Seattle Kraken +1.5",
+   "odds": 137,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -135,
-    "BetOnline.ag": -137,
-    "BetMGM": -135,
-    "BetRivers": -137,
-    "FanDuel": -140,
-    "theScore Bet": -135,
-    "Bovada": -137
+    "BetRivers": 125,
+    "DraftKings": 136,
+    "FanDuel": 128,
+    "BetOnline.ag": 137,
+    "Bovada": 133
    },
-   "books": 8,
-   "anchor": "Pinnacle",
+   "books": 5,
+   "anchor": null,
    "anchorShift": 0,
-   "modelProb": 0.6688,
-   "edge": 0.0943,
-   "ev": 0.1642,
-   "marketFair": 0.5564,
-   "marketEdge": -0.0181,
+   "modelProb": 0.5139,
+   "edge": 0.092,
+   "ev": 0.2179,
+   "marketFair": 0.4137,
+   "marketEdge": -0.0082,
    "modelled": true,
    "model": {
-    "margin": -0.3,
+    "margin": 1.3,
     "total": 6.4,
-    "gp": 20,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.0621,
-   "past": 0.0322,
+   "bar": 0.0711,
+   "past": 0.0209,
    "waiting": null,
-   "pickId": "069bea3694-spreads-Vancouver-Canucks",
-   "status": "pick"
-  },
-  {
-   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "San Jose Sharks @ Utah Mammoth",
-   "home": "Utah Mammoth",
-   "away": "San Jose Sharks",
-   "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "San Jose Sharks",
-    "point": null
-   },
-   "pick": "San Jose Sharks ML",
-   "odds": 180,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": 170,
-    "BetRivers": 180,
-    "FanDuel": 172,
-    "BetOnline.ag": 171,
-    "theScore Bet": 170,
-    "Caesars": 160,
-    "ESPN BET": 170
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4486,
-   "edge": 0.0915,
-   "ev": 0.2561,
-   "marketFair": 0.3502,
-   "marketEdge": -0.007,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0718,
-   "past": 0.0197,
-   "waiting": null,
-   "pickId": "e7f30a1c54-h2h-San-Jose-Sharks",
-   "status": "pick"
+   "pickId": null,
+   "status": "watch"
   },
   {
    "eventId": "8a0a3acc1b435727e1e571600aecb68f",
@@ -725,56 +525,8 @@ window.MARKET_DATA = {
    "past": -0.0638,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Golden State Warriors",
-    "point": null
-   },
-   "pick": "Golden State Warriors ML",
-   "odds": 500,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": 487,
-    "BetOnline.ag": 476,
-    "FanDuel": 480,
-    "theScore Bet": 500,
-    "Bovada": 450,
-    "BetRivers": 430,
-    "BetMGM": 500
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.2517,
-   "edge": 0.085,
-   "ev": 0.5102,
-   "marketFair": 0.1686,
-   "marketEdge": 0.0019,
-   "modelled": true,
-   "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.1099,
-   "past": -0.0249,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -823,7 +575,57 @@ window.MARKET_DATA = {
    "past": -0.0742,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "San Jose Sharks @ Utah Mammoth",
+   "home": "Utah Mammoth",
+   "away": "San Jose Sharks",
+   "commence": "2026-11-15T02:10:00Z",
+   "start": "Today 9:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "San Jose Sharks",
+    "point": null
+   },
+   "pick": "San Jose Sharks ML",
+   "odds": 170,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": 170,
+    "BetRivers": 165,
+    "FanDuel": 164,
+    "BetOnline.ag": 170,
+    "theScore Bet": 165,
+    "BetMGM": 165,
+    "Bovada": 170
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4523,
+   "edge": 0.0819,
+   "ev": 0.2212,
+   "marketFair": 0.3545,
+   "marketEdge": -0.0159,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.4,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.0719,
+   "past": 0.01,
+   "waiting": null,
+   "pickId": "e7f30a1c54-h2h-San-Jose-Sharks",
+   "status": "pick"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -872,7 +674,8 @@ window.MARKET_DATA = {
    "past": -0.0685,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "65104e496f8e5c0208eb59dd0c946475",
@@ -921,7 +724,8 @@ window.MARKET_DATA = {
    "past": -0.0684,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -970,56 +774,8 @@ window.MARKET_DATA = {
    "past": -0.0658,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Illinois Fighting Illini",
-    "point": null
-   },
-   "pick": "Illinois Fighting Illini ML",
-   "odds": 325,
-   "book": "Bovada",
-   "prices": {
-    "DraftKings": 310,
-    "FanDuel": 310,
-    "BetMGM": 320,
-    "BetRivers": 295,
-    "BetOnline.ag": 310,
-    "theScore Bet": 320,
-    "Bovada": 325
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3148,
-   "edge": 0.0795,
-   "ev": 0.3379,
-   "marketFair": 0.2219,
-   "marketEdge": -0.0134,
-   "modelled": true,
-   "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.142,
-   "past": -0.0625,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "e7f30a1c549ae1d91aac850b81bad637",
@@ -1030,7 +786,7 @@ window.MARKET_DATA = {
    "home": "Utah Mammoth",
    "away": "San Jose Sharks",
    "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
+   "start": "Today 9:10 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
@@ -1039,21 +795,24 @@ window.MARKET_DATA = {
    },
    "pick": "San Jose Sharks +1.5",
    "odds": -140,
-   "book": "FanDuel",
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -142,
-    "BetRivers": -148,
-    "FanDuel": -140,
-    "theScore Bet": -145
+    "DraftKings": -148,
+    "BetRivers": -159,
+    "FanDuel": -142,
+    "BetOnline.ag": -140,
+    "theScore Bet": -150,
+    "BetMGM": -140,
+    "Bovada": -145
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.6604,
-   "edge": 0.0771,
-   "ev": 0.1321,
-   "marketFair": 0.5686,
-   "marketEdge": -0.0147,
+   "modelProb": 0.6636,
+   "edge": 0.0803,
+   "ev": 0.1376,
+   "marketFair": 0.5708,
+   "marketEdge": -0.0125,
    "modelled": true,
    "model": {
     "margin": 0.3,
@@ -1061,8 +820,57 @@ window.MARKET_DATA = {
     "gp": 20,
     "thin": false
    },
-   "bar": 0.0625,
-   "past": 0.0146,
+   "bar": 0.0622,
+   "past": 0.0181,
+   "waiting": null,
+   "pickId": null,
+   "status": "watch"
+  },
+  {
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Pittsburgh Penguins",
+    "point": null
+   },
+   "pick": "Pittsburgh Penguins ML",
+   "odds": 115,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": 110,
+    "BetRivers": 110,
+    "FanDuel": 106,
+    "BetOnline.ag": 115,
+    "theScore Bet": 110,
+    "BetMGM": 110,
+    "Bovada": 112
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5414,
+   "edge": 0.0763,
+   "ev": 0.164,
+   "marketFair": 0.45,
+   "marketEdge": -0.0152,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0726,
+   "past": 0.0037,
    "waiting": null,
    "pickId": null,
    "status": "watch"
@@ -1114,7 +922,8 @@ window.MARKET_DATA = {
    "past": -0.0655,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d9bfb4f5e7ba909febe2a83fc04d4f15",
@@ -1163,7 +972,8 @@ window.MARKET_DATA = {
    "past": -0.0641,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -1212,7 +1022,8 @@ window.MARKET_DATA = {
    "past": -0.0572,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d6d167714ff638b23e84d757ff522414",
@@ -1261,7 +1072,106 @@ window.MARKET_DATA = {
    "past": -0.0958,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Pittsburgh Penguins",
+    "point": 1.5
+   },
+   "pick": "Pittsburgh Penguins +1.5",
+   "odds": -210,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -238,
+    "BetRivers": -245,
+    "FanDuel": -235,
+    "BetOnline.ag": -230,
+    "theScore Bet": -225,
+    "BetMGM": -210,
+    "Bovada": -225
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.7368,
+   "edge": 0.0594,
+   "ev": 0.0877,
+   "marketFair": 0.6667,
+   "marketEdge": -0.0107,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0567,
+   "past": 0.0027,
+   "waiting": null,
+   "pickId": null,
+   "status": "watch"
+  },
+  {
+   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Winnipeg Jets @ Chicago Blackhawks",
+   "home": "Chicago Blackhawks",
+   "away": "Winnipeg Jets",
+   "commence": "2026-11-14T20:40:00Z",
+   "start": "Today 3:40 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Chicago Blackhawks",
+    "point": null
+   },
+   "pick": "Chicago Blackhawks ML",
+   "odds": 143,
+   "book": "BetRivers",
+   "prices": {
+    "DraftKings": 136,
+    "BetRivers": 143,
+    "FanDuel": 136,
+    "BetOnline.ag": 137,
+    "theScore Bet": 135,
+    "BetMGM": 135,
+    "Bovada": 137
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4698,
+   "edge": 0.0583,
+   "ev": 0.1416,
+   "marketFair": 0.4029,
+   "marketEdge": -0.0086,
+   "modelled": true,
+   "model": {
+    "margin": -0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0727,
+   "past": -0.0144,
+   "waiting": null,
+   "pickId": null,
+   "status": "watch"
   },
   {
    "eventId": "862cc541ca98da17b20a964513c18435",
@@ -1310,7 +1220,57 @@ window.MARKET_DATA = {
    "past": -0.0824,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Seattle Kraken",
+    "point": null
+   },
+   "pick": "Seattle Kraken ML",
+   "odds": 321,
+   "book": "BetOnline.ag",
+   "prices": {
+    "BetRivers": 320,
+    "DraftKings": 310,
+    "FanDuel": 300,
+    "BetOnline.ag": 321,
+    "theScore Bet": 320,
+    "BetMGM": 310,
+    "Bovada": 310
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.2956,
+   "edge": 0.0581,
+   "ev": 0.2445,
+   "marketFair": 0.226,
+   "marketEdge": -0.0115,
+   "modelled": true,
+   "model": {
+    "margin": 1.3,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.0669,
+   "past": -0.0088,
+   "waiting": null,
+   "pickId": null,
+   "status": "watch"
   },
   {
    "eventId": "6f50a1eb0425d8adc1f4914bf27289d0",
@@ -1359,54 +1319,8 @@ window.MARKET_DATA = {
    "past": -0.0947,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Pittsburgh Penguins",
-    "point": null
-   },
-   "pick": "Pittsburgh Penguins ML",
-   "odds": 106,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": 105,
-    "BetRivers": 100,
-    "FanDuel": 106,
-    "BetOnline.ag": 104,
-    "theScore Bet": 105
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5414,
-   "edge": 0.056,
-   "ev": 0.1153,
-   "marketFair": 0.4624,
-   "marketEdge": -0.023,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0726,
-   "past": -0.0166,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -1455,7 +1369,8 @@ window.MARKET_DATA = {
    "past": -0.0776,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -1504,198 +1419,8 @@ window.MARKET_DATA = {
    "past": -0.1049,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Cleveland Cavaliers",
-    "point": null
-   },
-   "pick": "Cleveland Cavaliers ML",
-   "odds": 120,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": 114,
-    "BetOnline.ag": 115,
-    "DraftKings": 114,
-    "theScore Bet": 120,
-    "BetRivers": 112,
-    "Bovada": 120,
-    "BetMGM": 118
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5073,
-   "edge": 0.0528,
-   "ev": 0.1161,
-   "marketFair": 0.4477,
-   "marketEdge": -0.0069,
-   "modelled": true,
-   "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1392,
-   "past": -0.0864,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Seattle Kraken",
-    "point": 1.5
-   },
-   "pick": "Seattle Kraken +1.5",
-   "odds": 115,
-   "book": "theScore Bet",
-   "prices": {
-    "BetRivers": 110,
-    "DraftKings": 114,
-    "FanDuel": 112,
-    "theScore Bet": 115
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5139,
-   "edge": 0.0488,
-   "ev": 0.1049,
-   "marketFair": 0.447,
-   "marketEdge": -0.0181,
-   "modelled": true,
-   "model": {
-    "margin": 1.3,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0711,
-   "past": -0.0223,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
-  },
-  {
-   "eventId": "7f07a205e325038963274f255cb856cc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Edmonton Oilers @ Toronto Maple Leafs",
-   "home": "Toronto Maple Leafs",
-   "away": "Edmonton Oilers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": 120,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": 114,
-    "BetRivers": 120,
-    "FanDuel": 116,
-    "theScore Bet": 120,
-    "Caesars": 116,
-    "Unibet": -110,
-    "ESPN BET": 120
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.503,
-   "edge": 0.0485,
-   "ev": 0.1066,
-   "marketFair": 0.4391,
-   "marketEdge": -0.0155,
-   "modelled": true,
-   "model": {
-    "margin": -0.7,
-    "total": 6.5,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": 0.0185,
-   "waiting": null,
-   "pickId": "7f07a205e3-totals-Under",
-   "status": "pick"
-  },
-  {
-   "eventId": "c3f43b11aaf8ba26496727f557330d72",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Winnipeg Jets @ Chicago Blackhawks",
-   "home": "Chicago Blackhawks",
-   "away": "Winnipeg Jets",
-   "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Chicago Blackhawks",
-    "point": null
-   },
-   "pick": "Chicago Blackhawks ML",
-   "odds": 136,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": 130,
-    "BetRivers": 128,
-    "FanDuel": 136,
-    "BetOnline.ag": 130,
-    "theScore Bet": 125
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4698,
-   "edge": 0.0461,
-   "ev": 0.1087,
-   "marketFair": 0.4204,
-   "marketEdge": -0.0033,
-   "modelled": true,
-   "model": {
-    "margin": -0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0727,
-   "past": -0.0266,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "82eed9ad82fa12a1ace084358d3fd32d",
@@ -1744,7 +1469,8 @@ window.MARKET_DATA = {
    "past": -0.0723,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5f45291a1a5e01525b2e3aebe791c436",
@@ -1793,7 +1519,8 @@ window.MARKET_DATA = {
    "past": -0.1111,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -1842,7 +1569,8 @@ window.MARKET_DATA = {
    "past": -0.1095,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "462e4e8a99f44d5c64f36987e966cd13",
@@ -1891,51 +1619,54 @@ window.MARKET_DATA = {
    "past": -0.0764,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "event": "Calgary Flames @ Los Angeles Kings",
+   "home": "Los Angeles Kings",
+   "away": "Calgary Flames",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
-    "name": "Boston Bruins",
+    "name": "Calgary Flames",
     "point": null
    },
-   "pick": "Boston Bruins ML",
-   "odds": 106,
-   "book": "BetRivers",
+   "pick": "Calgary Flames ML",
+   "odds": 153,
+   "book": "Bovada",
    "prices": {
-    "DraftKings": 102,
-    "BetRivers": 106,
-    "FanDuel": 100,
-    "BetOnline.ag": 103,
-    "theScore Bet": 100
+    "DraftKings": 145,
+    "BetRivers": 145,
+    "BetOnline.ag": 149,
+    "FanDuel": 146,
+    "theScore Bet": 150,
+    "BetMGM": 145,
+    "Bovada": 153
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5282,
-   "edge": 0.0428,
-   "ev": 0.0881,
-   "marketFair": 0.4718,
-   "marketEdge": -0.0136,
+   "modelProb": 0.4391,
+   "edge": 0.0438,
+   "ev": 0.1109,
+   "marketFair": 0.3837,
+   "marketEdge": -0.0116,
    "modelled": true,
    "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
+    "margin": 0.4,
+    "total": 6.3,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.0724,
-   "past": -0.0296,
+   "bar": 0.0732,
+   "past": -0.0294,
    "waiting": null,
    "pickId": null,
    "status": "watch"
@@ -1987,100 +1718,8 @@ window.MARKET_DATA = {
    "past": -0.1152,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Pittsburgh Penguins",
-    "point": 1.5
-   },
-   "pick": "Pittsburgh Penguins +1.5",
-   "odds": -230,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -238,
-    "BetRivers": -265,
-    "FanDuel": -230,
-    "theScore Bet": -235
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7368,
-   "edge": 0.0398,
-   "ev": 0.0571,
-   "marketFair": 0.6741,
-   "marketEdge": -0.0229,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0567,
-   "past": -0.0169,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
-  },
-  {
-   "eventId": "fa960f164539f05a9e76c85f358b93a6",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New Jersey Devils @ Washington Capitals",
-   "home": "Washington Capitals",
-   "away": "New Jersey Devils",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Washington Capitals",
-    "point": null
-   },
-   "pick": "Washington Capitals ML",
-   "odds": 104,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": 100,
-    "BetRivers": -103,
-    "FanDuel": 104,
-    "BetOnline.ag": 104,
-    "theScore Bet": -105
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5299,
-   "edge": 0.0397,
-   "ev": 0.081,
-   "marketFair": 0.4839,
-   "marketEdge": -0.0062,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0733,
-   "past": -0.0336,
-   "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f9b805187f3809fdadddfa08dfa2a089",
@@ -2129,7 +1768,8 @@ window.MARKET_DATA = {
    "past": -0.0757,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4d5a1a721175165a7fc09cc39fd19214",
@@ -2140,31 +1780,33 @@ window.MARKET_DATA = {
    "home": "Los Angeles Kings",
    "away": "Calgary Flames",
    "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Calgary Flames",
-    "point": null
+    "name": "Over",
+    "point": 5.5
    },
-   "pick": "Calgary Flames ML",
-   "odds": 150,
-   "book": "BetRivers",
+   "pick": "Over 5.5",
+   "odds": -117,
+   "book": "Bovada",
    "prices": {
-    "DraftKings": 145,
-    "BetRivers": 150,
-    "BetOnline.ag": 149,
-    "FanDuel": 140,
-    "theScore Bet": 140
+    "DraftKings": -120,
+    "BetRivers": -122,
+    "BetOnline.ag": -120,
+    "FanDuel": -124,
+    "theScore Bet": -125,
+    "BetMGM": -120,
+    "Bovada": -117
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4391,
-   "edge": 0.0391,
-   "ev": 0.0978,
-   "marketFair": 0.3975,
-   "marketEdge": -0.0025,
+   "modelProb": 0.5781,
+   "edge": 0.0389,
+   "ev": 0.0722,
+   "marketFair": 0.526,
+   "marketEdge": -0.0132,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -2172,11 +1814,59 @@ window.MARKET_DATA = {
     "gp": 17,
     "thin": false
    },
-   "bar": 0.0732,
-   "past": -0.0341,
+   "bar": 0.03,
+   "past": 0.0089,
    "waiting": null,
-   "pickId": null,
-   "status": "watch"
+   "pickId": "4d5a1a7211-totals-Over",
+   "status": "pick"
+  },
+  {
+   "eventId": "7f07a205e325038963274f255cb856cc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Edmonton Oilers @ Toronto Maple Leafs",
+   "home": "Toronto Maple Leafs",
+   "away": "Edmonton Oilers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": 115,
+   "book": "theScore Bet",
+   "prices": {
+    "DraftKings": 114,
+    "BetRivers": 112,
+    "FanDuel": 112,
+    "theScore Bet": 115,
+    "BetMGM": 105,
+    "Bovada": 115
+   },
+   "books": 6,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.5037,
+   "edge": 0.0386,
+   "ev": 0.083,
+   "marketFair": 0.4503,
+   "marketEdge": -0.0149,
+   "modelled": true,
+   "model": {
+    "margin": -0.7,
+    "total": 6.5,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": 0.0086,
+   "waiting": null,
+   "pickId": "7f07a205e3-totals-Under",
+   "status": "pick"
   },
   {
    "eventId": "8982b0a852d112b25310aa03f0f104b6",
@@ -2225,56 +1915,8 @@ window.MARKET_DATA = {
    "past": -0.0756,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Calgary Flames @ Los Angeles Kings",
-   "home": "Los Angeles Kings",
-   "away": "Calgary Flames",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 5.5
-   },
-   "pick": "Over 5.5",
-   "odds": -118,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -118,
-    "BetRivers": -121,
-    "FanDuel": -124,
-    "theScore Bet": -120,
-    "Unibet": -120,
-    "Caesars": -125,
-    "ESPN BET": -120
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5788,
-   "edge": 0.0375,
-   "ev": 0.0693,
-   "marketFair": 0.5215,
-   "marketEdge": -0.0198,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": 0.0075,
-   "waiting": null,
-   "pickId": "4d5a1a7211-totals-Over",
-   "status": "pick"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f3b622fed365136e09be1f7b53052543",
@@ -2285,7 +1927,7 @@ window.MARKET_DATA = {
    "home": "Columbus Blue Jackets",
    "away": "Philadelphia Flyers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "totals",
    "market": "Total",
    "outcome": {
@@ -2297,22 +1939,21 @@ window.MARKET_DATA = {
    "book": "BetOnline.ag",
    "prices": {
     "DraftKings": -118,
-    "BetRivers": -129,
-    "FanDuel": -122,
+    "BetRivers": -130,
+    "FanDuel": -118,
     "BetOnline.ag": -110,
     "theScore Bet": -120,
-    "Unibet": -128,
-    "Caesars": -125,
-    "ESPN BET": -120
+    "BetMGM": -115,
+    "Bovada": -117
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5612,
-   "edge": 0.0374,
-   "ev": 0.0714,
-   "marketFair": 0.5213,
-   "marketEdge": -0.0025,
+   "modelProb": 0.5605,
+   "edge": 0.0367,
+   "ev": 0.07,
+   "marketFair": 0.5148,
+   "marketEdge": -0.009,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -2321,106 +1962,106 @@ window.MARKET_DATA = {
     "thin": false
    },
    "bar": 0.03,
-   "past": 0.0074,
+   "past": 0.0067,
    "waiting": null,
    "pickId": "f3b622fed3-totals-Over",
    "status": "pick"
   },
   {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
+   "eventId": "c3f43b11aaf8ba26496727f557330d72",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "event": "Winnipeg Jets @ Chicago Blackhawks",
+   "home": "Chicago Blackhawks",
+   "away": "Winnipeg Jets",
+   "commence": "2026-11-14T20:40:00Z",
+   "start": "Today 3:40 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Seattle Kraken",
-    "point": null
+    "name": "Chicago Blackhawks",
+    "point": 1.5
    },
-   "pick": "Seattle Kraken ML",
-   "odds": 285,
-   "book": "BetRivers",
+   "pick": "Chicago Blackhawks +1.5",
+   "odds": -180,
+   "book": "FanDuel",
    "prices": {
-    "BetRivers": 285,
-    "DraftKings": 270,
-    "FanDuel": 260,
-    "BetOnline.ag": 268,
-    "theScore Bet": 280
+    "DraftKings": -185,
+    "BetRivers": -182,
+    "FanDuel": -180,
+    "BetOnline.ag": -185,
+    "theScore Bet": -180,
+    "BetMGM": -185,
+    "Bovada": -185
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.2956,
-   "edge": 0.0359,
-   "ev": 0.1381,
-   "marketFair": 0.2443,
-   "marketEdge": -0.0154,
+   "modelProb": 0.6785,
+   "edge": 0.0356,
+   "ev": 0.0554,
+   "marketFair": 0.6266,
+   "marketEdge": -0.0163,
    "modelled": true,
    "model": {
-    "margin": 1.3,
+    "margin": -0.2,
     "total": 6.4,
-    "gp": 17,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.0669,
-   "past": -0.031,
+   "bar": 0.0616,
+   "past": -0.026,
    "waiting": null,
    "pickId": null,
    "status": "watch"
   },
   {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
+   "eventId": "fa960f164539f05a9e76c85f358b93a6",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New Jersey Devils @ Washington Capitals",
+   "home": "Washington Capitals",
+   "away": "New Jersey Devils",
+   "commence": "2026-11-15T00:10:00Z",
    "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
-    "name": "Milwaukee Bucks",
+    "name": "Washington Capitals",
     "point": null
    },
-   "pick": "Milwaukee Bucks ML",
-   "odds": 316,
-   "book": "BetOnline.ag",
+   "pick": "Washington Capitals ML",
+   "odds": 102,
+   "book": "BetRivers",
    "prices": {
-    "FanDuel": 310,
-    "BetOnline.ag": 316,
-    "BetRivers": 295,
-    "theScore Bet": 300,
-    "DraftKings": 312,
-    "Bovada": 295,
-    "BetMGM": 310
+    "DraftKings": 100,
+    "BetRivers": 102,
+    "FanDuel": 100,
+    "BetOnline.ag": 102,
+    "theScore Bet": 100,
+    "BetMGM": 100,
+    "Bovada": 100
    },
    "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.2746,
-   "edge": 0.0342,
-   "ev": 0.1423,
-   "marketFair": 0.2352,
-   "marketEdge": -0.0052,
+   "modelProb": 0.5299,
+   "edge": 0.0349,
+   "ev": 0.0704,
+   "marketFair": 0.4804,
+   "marketEdge": -0.0146,
    "modelled": true,
    "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.1163,
-   "past": -0.0821,
-   "waiting": [
-    "report not in for both clubs"
-   ],
+   "bar": 0.0733,
+   "past": -0.0384,
+   "waiting": null,
    "pickId": null,
    "status": "none"
   },
@@ -2433,7 +2074,7 @@ window.MARKET_DATA = {
    "home": "Anaheim Ducks",
    "away": "New York Islanders",
    "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
+   "start": "Today 10:10 PM ET",
    "marketKey": "totals",
    "market": "Total",
    "outcome": {
@@ -2442,25 +2083,24 @@ window.MARKET_DATA = {
    },
    "pick": "Under 6.5",
    "odds": 110,
-   "book": "BetOnline.ag",
+   "book": "DraftKings",
    "prices": {
-    "DraftKings": 102,
-    "BetRivers": -105,
+    "DraftKings": 110,
+    "BetRivers": -106,
     "BetOnline.ag": 110,
     "FanDuel": 104,
-    "theScore Bet": 105,
-    "Caesars": 100,
-    "Unibet": -137,
-    "ESPN BET": 105
+    "theScore Bet": 110,
+    "BetMGM": 105,
+    "Bovada": 107
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5102,
-   "edge": 0.034,
-   "ev": 0.0714,
-   "marketFair": 0.4721,
-   "marketEdge": -0.0041,
+   "modelProb": 0.5109,
+   "edge": 0.0347,
+   "ev": 0.0729,
+   "marketFair": 0.4612,
+   "marketEdge": -0.0149,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -2469,7 +2109,7 @@ window.MARKET_DATA = {
     "thin": false
    },
    "bar": 0.03,
-   "past": 0.004,
+   "past": 0.0047,
    "waiting": null,
    "pickId": "ce4dd515ea-totals-Under",
    "status": "pick"
@@ -2521,7 +2161,8 @@ window.MARKET_DATA = {
    "past": -0.1217,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -2570,7 +2211,8 @@ window.MARKET_DATA = {
    "past": -0.0643,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c3c46d55350226dd82d83ecf0b52891a",
@@ -2619,50 +2261,54 @@ window.MARKET_DATA = {
    "past": -0.1058,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Winnipeg Jets @ Chicago Blackhawks",
-   "home": "Chicago Blackhawks",
-   "away": "Winnipeg Jets",
-   "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
    "outcome": {
-    "name": "Chicago Blackhawks",
-    "point": 1.5
+    "name": "Boston Bruins",
+    "point": null
    },
-   "pick": "Chicago Blackhawks +1.5",
-   "odds": -184,
-   "book": "FanDuel",
+   "pick": "Boston Bruins ML",
+   "odds": 101,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -192,
-    "BetRivers": -205,
-    "FanDuel": -184,
-    "theScore Bet": -190
+    "DraftKings": -102,
+    "BetRivers": 100,
+    "FanDuel": -102,
+    "BetOnline.ag": 101,
+    "theScore Bet": 100,
+    "BetMGM": -102,
+    "Bovada": -103
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.6785,
-   "edge": 0.0306,
-   "ev": 0.0473,
-   "marketFair": 0.6408,
-   "marketEdge": -0.007,
+   "modelProb": 0.5282,
+   "edge": 0.0307,
+   "ev": 0.0617,
+   "marketFair": 0.4838,
+   "marketEdge": -0.0138,
    "modelled": true,
    "model": {
-    "margin": -0.2,
-    "total": 6.4,
+    "margin": 0.2,
+    "total": 6.2,
     "gp": 19,
     "thin": false
    },
-   "bar": 0.0616,
-   "past": -0.031,
+   "bar": 0.0724,
+   "past": -0.0417,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -2714,6 +2360,56 @@ window.MARKET_DATA = {
    "past": -0.121,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Calgary Flames @ Los Angeles Kings",
+   "home": "Los Angeles Kings",
+   "away": "Calgary Flames",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Calgary Flames",
+    "point": 1.5
+   },
+   "pick": "Calgary Flames +1.5",
+   "odds": -165,
+   "book": "theScore Bet",
+   "prices": {
+    "DraftKings": -180,
+    "BetRivers": -190,
+    "BetOnline.ag": -175,
+    "FanDuel": -178,
+    "theScore Bet": -165,
+    "BetMGM": -165,
+    "Bovada": -170
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.6521,
+   "edge": 0.0295,
+   "ev": 0.0473,
+   "marketFair": 0.6071,
+   "marketEdge": -0.0156,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.3,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.0643,
+   "past": -0.0348,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -2725,7 +2421,7 @@ window.MARKET_DATA = {
    "home": "Anaheim Ducks",
    "away": "New York Islanders",
    "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
+   "start": "Today 10:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -2739,17 +2435,19 @@ window.MARKET_DATA = {
     "DraftKings": -115,
     "BetRivers": -118,
     "BetOnline.ag": -114,
-    "FanDuel": -118,
-    "theScore Bet": -120
+    "FanDuel": -115,
+    "theScore Bet": -115,
+    "BetMGM": -115,
+    "Bovada": -117
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.5614,
    "edge": 0.0287,
    "ev": 0.0539,
-   "marketFair": 0.5193,
-   "marketEdge": -0.0134,
+   "marketFair": 0.5185,
+   "marketEdge": -0.0142,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -2810,53 +2508,201 @@ window.MARKET_DATA = {
    "past": -0.1273,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "eventId": "fa960f164539f05a9e76c85f358b93a6",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New Jersey Devils @ Washington Capitals",
+   "home": "Washington Capitals",
+   "away": "New Jersey Devils",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Florida State Seminoles",
-    "point": null
+    "name": "Washington Capitals",
+    "point": 1.5
    },
-   "pick": "Florida State Seminoles ML",
-   "odds": 150,
-   "book": "FanDuel",
+   "pick": "Washington Capitals +1.5",
+   "odds": -235,
+   "book": "BetMGM",
    "prices": {
-    "FanDuel": 150,
-    "DraftKings": 142,
-    "BetRivers": 133,
-    "BetOnline.ag": 146,
-    "theScore Bet": 140,
-    "BetMGM": 145,
-    "Bovada": 148
+    "DraftKings": -250,
+    "BetRivers": -265,
+    "FanDuel": -250,
+    "BetOnline.ag": -250,
+    "theScore Bet": -265,
+    "BetMGM": -235,
+    "Bovada": -250
    },
    "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.426,
-   "edge": 0.026,
-   "ev": 0.065,
-   "marketFair": 0.3901,
-   "marketEdge": -0.0099,
+   "modelProb": 0.7278,
+   "edge": 0.0263,
+   "ev": 0.0375,
+   "marketFair": 0.6886,
+   "marketEdge": -0.0129,
    "modelled": true,
    "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.1558,
-   "past": -0.1298,
+   "bar": 0.0581,
+   "past": -0.0318,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "ce4dd515ea49344d4707778f27669fec",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New York Islanders @ Anaheim Ducks",
+   "home": "Anaheim Ducks",
+   "away": "New York Islanders",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Anaheim Ducks",
+    "point": -1.5
+   },
+   "pick": "Anaheim Ducks -1.5",
+   "odds": 210,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": 210,
+    "BetRivers": 205,
+    "BetOnline.ag": 207,
+    "FanDuel": 198,
+    "theScore Bet": 190,
+    "BetMGM": 195,
+    "Bovada": 210
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.3483,
+   "edge": 0.0257,
+   "ev": 0.0797,
+   "marketFair": 0.3126,
+   "marketEdge": -0.01,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.4,
+    "gp": 18,
+    "thin": false
+   },
+   "bar": 0.0642,
+   "past": -0.0385,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "7f07a205e325038963274f255cb856cc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Edmonton Oilers @ Toronto Maple Leafs",
+   "home": "Toronto Maple Leafs",
+   "away": "Edmonton Oilers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Edmonton Oilers",
+    "point": null
+   },
+   "pick": "Edmonton Oilers ML",
+   "odds": -142,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": -148,
+    "BetRivers": -152,
+    "FanDuel": -156,
+    "BetOnline.ag": -142,
+    "theScore Bet": -150,
+    "BetMGM": -150,
+    "Bovada": -147
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.6118,
+   "edge": 0.025,
+   "ev": 0.0426,
+   "marketFair": 0.574,
+   "marketEdge": -0.0127,
+   "modelled": true,
+   "model": {
+    "margin": -0.7,
+    "total": 6.5,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.0704,
+   "past": -0.0454,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Boston Bruins",
+    "point": 1.5
+   },
+   "pick": "Boston Bruins +1.5",
+   "odds": -235,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -258,
+    "BetRivers": -275,
+    "FanDuel": -260,
+    "BetOnline.ag": -254,
+    "theScore Bet": -275,
+    "BetMGM": -235,
+    "Bovada": -260
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.7264,
+   "edge": 0.0249,
+   "ev": 0.0355,
+   "marketFair": 0.6982,
+   "marketEdge": -0.0033,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.2,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0575,
+   "past": -0.0326,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -2908,54 +2754,8 @@ window.MARKET_DATA = {
    "past": -0.1149,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Florida Panthers @ St Louis Blues",
-   "home": "St Louis Blues",
-   "away": "Florida Panthers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "St Louis Blues",
-    "point": null
-   },
-   "pick": "St Louis Blues ML",
-   "odds": 102,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -105,
-    "BetRivers": -108,
-    "FanDuel": 102,
-    "BetOnline.ag": 101,
-    "theScore Bet": -105
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5194,
-   "edge": 0.0244,
-   "ev": 0.0492,
-   "marketFair": 0.4829,
-   "marketEdge": -0.0121,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0727,
-   "past": -0.0483,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "107b8f81458dc555f99db1e929276a13",
@@ -3004,53 +2804,8 @@ window.MARKET_DATA = {
    "past": -0.082,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Calgary Flames @ Los Angeles Kings",
-   "home": "Los Angeles Kings",
-   "away": "Calgary Flames",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Calgary Flames",
-    "point": 1.5
-   },
-   "pick": "Calgary Flames +1.5",
-   "odds": -170,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -170,
-    "BetRivers": -175,
-    "FanDuel": -170,
-    "theScore Bet": -180
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6521,
-   "edge": 0.0225,
-   "ev": 0.0357,
-   "marketFair": 0.6183,
-   "marketEdge": -0.0113,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0643,
-   "past": -0.0418,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -3099,100 +2854,8 @@ window.MARKET_DATA = {
    "past": -0.135,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ce4dd515ea49344d4707778f27669fec",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Islanders @ Anaheim Ducks",
-   "home": "Anaheim Ducks",
-   "away": "New York Islanders",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Anaheim Ducks",
-    "point": -1.5
-   },
-   "pick": "Anaheim Ducks -1.5",
-   "odds": 205,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 205,
-    "BetRivers": 205,
-    "FanDuel": 198,
-    "theScore Bet": 185
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3483,
-   "edge": 0.0204,
-   "ev": 0.0623,
-   "marketFair": 0.3139,
-   "marketEdge": -0.0139,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.4,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.0642,
-   "past": -0.0438,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f07a205e325038963274f255cb856cc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Edmonton Oilers @ Toronto Maple Leafs",
-   "home": "Toronto Maple Leafs",
-   "away": "Edmonton Oilers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Edmonton Oilers",
-    "point": null
-   },
-   "pick": "Edmonton Oilers ML",
-   "odds": -145,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -155,
-    "BetRivers": -162,
-    "FanDuel": -162,
-    "BetOnline.ag": -145,
-    "theScore Bet": -155
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6118,
-   "edge": 0.02,
-   "ev": 0.0337,
-   "marketFair": 0.5778,
-   "marketEdge": -0.014,
-   "modelled": true,
-   "model": {
-    "margin": -0.7,
-    "total": 6.5,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0704,
-   "past": -0.0504,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c15d7c4261fa1d8b75615a46d4d2ea7",
@@ -3241,6 +2904,56 @@ window.MARKET_DATA = {
    "past": -0.1364,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Florida Panthers @ St Louis Blues",
+   "home": "St Louis Blues",
+   "away": "Florida Panthers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "St Louis Blues",
+    "point": null
+   },
+   "pick": "St Louis Blues ML",
+   "odds": 100,
+   "book": "FanDuel",
+   "prices": {
+    "DraftKings": -105,
+    "BetRivers": -107,
+    "FanDuel": 100,
+    "BetOnline.ag": 100,
+    "theScore Bet": -105,
+    "BetMGM": -102,
+    "Bovada": -103
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5194,
+   "edge": 0.0194,
+   "ev": 0.0388,
+   "marketFair": 0.4827,
+   "marketEdge": -0.0173,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.3,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0727,
+   "past": -0.0533,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -3252,31 +2965,33 @@ window.MARKET_DATA = {
    "home": "St Louis Blues",
    "away": "Florida Panthers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Over",
-    "point": 5.5
+    "name": "St Louis Blues",
+    "point": 1.5
    },
-   "pick": "Over 5.5",
-   "odds": -125,
-   "book": "DraftKings",
+   "pick": "St Louis Blues +1.5",
+   "odds": -235,
+   "book": "BetMGM",
    "prices": {
-    "DraftKings": -125,
-    "BetRivers": -134,
-    "FanDuel": -132,
-    "BetOnline.ag": -127,
-    "theScore Bet": -130
+    "DraftKings": -270,
+    "BetRivers": -295,
+    "FanDuel": -265,
+    "BetOnline.ag": -270,
+    "theScore Bet": -275,
+    "BetMGM": -235,
+    "Bovada": -260
    },
-   "books": 5,
-   "anchor": null,
+   "books": 8,
+   "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5746,
-   "edge": 0.019,
-   "ev": 0.0343,
-   "marketFair": 0.5402,
-   "marketEdge": -0.0154,
+   "modelProb": 0.7194,
+   "edge": 0.0179,
+   "ev": 0.0255,
+   "marketFair": 0.6975,
+   "marketEdge": -0.004,
    "modelled": true,
    "model": {
     "margin": 0.1,
@@ -3284,11 +2999,11 @@ window.MARKET_DATA = {
     "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.011,
+   "bar": 0.0583,
+   "past": -0.0404,
    "waiting": null,
    "pickId": null,
-   "status": "watch"
+   "status": "none"
   },
   {
    "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
@@ -3299,7 +3014,7 @@ window.MARKET_DATA = {
    "home": "Tampa Bay Lightning",
    "away": "Detroit Red Wings",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -3312,18 +3027,20 @@ window.MARKET_DATA = {
    "prices": {
     "DraftKings": 185,
     "BetRivers": 188,
-    "FanDuel": 180,
-    "BetOnline.ag": 187,
-    "theScore Bet": 175
+    "FanDuel": 184,
+    "BetOnline.ag": 183,
+    "theScore Bet": 175,
+    "BetMGM": 180,
+    "Bovada": 185
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.365,
    "edge": 0.0178,
    "ev": 0.0512,
-   "marketFair": 0.334,
-   "marketEdge": -0.0132,
+   "marketFair": 0.3349,
+   "marketEdge": -0.0123,
    "modelled": true,
    "model": {
     "margin": 0.8,
@@ -3333,52 +3050,6 @@ window.MARKET_DATA = {
    },
    "bar": 0.0701,
    "past": -0.0523,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "fa960f164539f05a9e76c85f358b93a6",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New Jersey Devils @ Washington Capitals",
-   "home": "Washington Capitals",
-   "away": "New Jersey Devils",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Washington Capitals",
-    "point": 1.5
-   },
-   "pick": "Washington Capitals +1.5",
-   "odds": -245,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -250,
-    "BetRivers": -265,
-    "FanDuel": -245,
-    "theScore Bet": -265
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7278,
-   "edge": 0.0177,
-   "ev": 0.0249,
-   "marketFair": 0.6942,
-   "marketEdge": -0.0159,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0581,
-   "past": -0.0404,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -3430,50 +3101,54 @@ window.MARKET_DATA = {
    "past": -0.0601,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "eventId": "7f07a205e325038963274f255cb856cc",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
+   "event": "Edmonton Oilers @ Toronto Maple Leafs",
+   "home": "Toronto Maple Leafs",
+   "away": "Edmonton Oilers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
-    "name": "Boston Bruins",
-    "point": 1.5
+    "name": "Edmonton Oilers",
+    "point": -1.5
    },
-   "pick": "Boston Bruins +1.5",
-   "odds": -245,
-   "book": "FanDuel",
+   "pick": "Edmonton Oilers -1.5",
+   "odds": 165,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -250,
-    "BetRivers": -250,
-    "FanDuel": -245,
-    "theScore Bet": -265
+    "DraftKings": 154,
+    "BetRivers": 155,
+    "FanDuel": 156,
+    "BetOnline.ag": 165,
+    "theScore Bet": 150,
+    "BetMGM": 150,
+    "Bovada": 163
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.7264,
-   "edge": 0.0163,
-   "ev": 0.0229,
-   "marketFair": 0.6891,
-   "marketEdge": -0.021,
+   "modelProb": 0.394,
+   "edge": 0.0166,
+   "ev": 0.0441,
+   "marketFair": 0.3672,
+   "marketEdge": -0.0102,
    "modelled": true,
    "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
+    "margin": -0.7,
+    "total": 6.5,
+    "gp": 20,
     "thin": false
    },
-   "bar": 0.0575,
-   "past": -0.0412,
+   "bar": 0.0659,
+   "past": -0.0493,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -3525,151 +3200,8 @@ window.MARKET_DATA = {
    "past": -0.1385,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Houston Cougars",
-    "point": null
-   },
-   "pick": "Houston Cougars ML",
-   "odds": -315,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -325,
-    "FanDuel": -315,
-    "BetRivers": -335,
-    "BetOnline.ag": -315,
-    "theScore Bet": -320,
-    "BetMGM": -325,
-    "Bovada": -320
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7738,
-   "edge": 0.0148,
-   "ev": 0.0195,
-   "marketFair": 0.7316,
-   "marketEdge": -0.0274,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.1213,
-   "past": -0.1065,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Nashville Predators",
-    "point": null
-   },
-   "pick": "Nashville Predators ML",
-   "odds": 138,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": 136,
-    "BetOnline.ag": 133,
-    "BetMGM": 135,
-    "BetRivers": 138,
-    "FanDuel": 132,
-    "theScore Bet": 135,
-    "Bovada": 133
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4349,
-   "edge": 0.0147,
-   "ev": 0.0351,
-   "marketFair": 0.4133,
-   "marketEdge": -0.0069,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0722,
-   "past": -0.0575,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Detroit Red Wings @ Tampa Bay Lightning",
-   "home": "Tampa Bay Lightning",
-   "away": "Detroit Red Wings",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 115,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": 114,
-    "BetRivers": 110,
-    "FanDuel": 110,
-    "theScore Bet": 115
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4798,
-   "edge": 0.0147,
-   "ev": 0.0316,
-   "marketFair": 0.4506,
-   "marketEdge": -0.0145,
-   "modelled": true,
-   "model": {
-    "margin": 0.8,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0153,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -3716,6 +3248,53 @@ window.MARKET_DATA = {
    },
    "bar": 0.1054,
    "past": -0.0913,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Detroit Red Wings @ Tampa Bay Lightning",
+   "home": "Tampa Bay Lightning",
+   "away": "Detroit Red Wings",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 115,
+   "book": "theScore Bet",
+   "prices": {
+    "DraftKings": 114,
+    "BetRivers": 107,
+    "FanDuel": 112,
+    "theScore Bet": 115
+   },
+   "books": 4,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.479,
+   "edge": 0.0139,
+   "ev": 0.0298,
+   "marketFair": 0.4509,
+   "marketEdge": -0.0142,
+   "modelled": true,
+   "model": {
+    "margin": 0.8,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0161,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -3767,7 +3346,8 @@ window.MARKET_DATA = {
    "past": -0.0581,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -3813,7 +3393,8 @@ window.MARKET_DATA = {
    "past": -0.0178,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -3857,6 +3438,55 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0178,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 107,
+   "book": "BetOnline.ag",
+   "prices": {
+    "FanDuel": 102,
+    "DraftKings": -102,
+    "BetRivers": 102,
+    "theScore Bet": 100,
+    "Bovada": 105,
+    "BetOnline.ag": 107
+   },
+   "books": 7,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4944,
+   "edge": 0.0113,
+   "ev": 0.0234,
+   "marketFair": 0.474,
+   "marketEdge": -0.0091,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0187,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -3908,6 +3538,56 @@ window.MARKET_DATA = {
    "past": -0.1483,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "f3b622fed365136e09be1f7b53052543",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
+   "home": "Columbus Blue Jackets",
+   "away": "Philadelphia Flyers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Columbus Blue Jackets",
+    "point": -1.5
+   },
+   "pick": "Columbus Blue Jackets -1.5",
+   "odds": 194,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": 190,
+    "BetRivers": 180,
+    "FanDuel": 184,
+    "BetOnline.ag": 194,
+    "theScore Bet": 175,
+    "BetMGM": 180,
+    "Bovada": 190
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.3497,
+   "edge": 0.0096,
+   "ev": 0.0281,
+   "marketFair": 0.3308,
+   "marketEdge": -0.0093,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.2,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.064,
+   "past": -0.0544,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -3957,7 +3637,8 @@ window.MARKET_DATA = {
    "past": -0.1429,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
@@ -3968,7 +3649,7 @@ window.MARKET_DATA = {
    "home": "Tampa Bay Lightning",
    "away": "Detroit Red Wings",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
@@ -3977,21 +3658,24 @@ window.MARKET_DATA = {
    },
    "pick": "Detroit Red Wings +1.5",
    "odds": -135,
-   "book": "DraftKings",
+   "book": "theScore Bet",
    "prices": {
-    "DraftKings": -135,
-    "BetRivers": -143,
+    "DraftKings": -142,
+    "BetRivers": -141,
     "FanDuel": -140,
-    "theScore Bet": -135
+    "BetOnline.ag": -140,
+    "theScore Bet": -135,
+    "BetMGM": -135,
+    "Bovada": -140
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.5839,
    "edge": 0.0094,
    "ev": 0.0164,
-   "marketFair": 0.5579,
-   "marketEdge": -0.0165,
+   "marketFair": 0.562,
+   "marketEdge": -0.0124,
    "modelled": true,
    "model": {
     "margin": 0.8,
@@ -4001,6 +3685,52 @@ window.MARKET_DATA = {
    },
    "bar": 0.0676,
    "past": -0.0582,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Florida Panthers @ St Louis Blues",
+   "home": "St Louis Blues",
+   "away": "Florida Panthers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 5.5
+   },
+   "pick": "Over 5.5",
+   "odds": -130,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": -130,
+    "BetRivers": -130,
+    "FanDuel": -140,
+    "theScore Bet": -135
+   },
+   "books": 4,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.5738,
+   "edge": 0.0086,
+   "ev": 0.0152,
+   "marketFair": 0.5468,
+   "marketEdge": -0.0184,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.3,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0214,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -4049,7 +3779,8 @@ window.MARKET_DATA = {
    "past": -0.0222,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "fe42d22bafb7d5f406317697dff44ee6",
@@ -4096,54 +3827,8 @@ window.MARKET_DATA = {
    "past": -0.0227,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "c3f43b11aaf8ba26496727f557330d72",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Winnipeg Jets @ Chicago Blackhawks",
-   "home": "Chicago Blackhawks",
-   "away": "Winnipeg Jets",
-   "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 112,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": 110,
-    "BetRivers": 112,
-    "FanDuel": 108,
-    "BetOnline.ag": 109,
-    "theScore Bet": 110
-   },
-   "books": 5,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4788,
-   "edge": 0.0071,
-   "ev": 0.0151,
-   "marketFair": 0.4566,
-   "marketEdge": -0.0151,
-   "modelled": true,
-   "model": {
-    "margin": -0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0229,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -4192,199 +3877,8 @@ window.MARKET_DATA = {
    "past": -0.1185,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Nashville Predators",
-    "point": 1.5
-   },
-   "pick": "Nashville Predators +1.5",
-   "odds": -180,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -180,
-    "BetOnline.ag": -183,
-    "BetMGM": -180,
-    "BetRivers": -200,
-    "FanDuel": -192,
-    "theScore Bet": -180,
-    "Bovada": -180
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6484,
-   "edge": 0.0055,
-   "ev": 0.0086,
-   "marketFair": 0.6225,
-   "marketEdge": -0.0204,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0637,
-   "past": -0.0582,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "New York Knicks",
-    "point": null
-   },
-   "pick": "New York Knicks ML",
-   "odds": -320,
-   "book": "Bovada",
-   "prices": {
-    "DraftKings": -337,
-    "BetOnline.ag": -335,
-    "FanDuel": -335,
-    "theScore Bet": -340,
-    "BetRivers": -335,
-    "Bovada": -320,
-    "BetMGM": -325
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.767,
-   "edge": 0.0051,
-   "ev": 0.0067,
-   "marketFair": 0.7367,
-   "marketEdge": -0.0252,
-   "modelled": true,
-   "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1061,
-   "past": -0.101,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Florida Panthers @ St Louis Blues",
-   "home": "St Louis Blues",
-   "away": "Florida Panthers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "St Louis Blues",
-    "point": 1.5
-   },
-   "pick": "St Louis Blues +1.5",
-   "odds": -250,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -270,
-    "BetRivers": -295,
-    "FanDuel": -250,
-    "theScore Bet": -275
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7194,
-   "edge": 0.0051,
-   "ev": 0.0072,
-   "marketFair": 0.7008,
-   "marketEdge": -0.0135,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0583,
-   "past": -0.0532,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 104,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": 104,
-    "DraftKings": 100,
-    "BetRivers": -103,
-    "theScore Bet": 100
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4952,
-   "edge": 0.005,
-   "ev": 0.0102,
-   "marketFair": 0.4759,
-   "marketEdge": -0.0143,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.5,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.025,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "462e4e8a99f44d5c64f36987e966cd13",
@@ -4430,7 +3924,8 @@ window.MARKET_DATA = {
    "past": -0.0251,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -4478,53 +3973,98 @@ window.MARKET_DATA = {
    "past": -0.148,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "San Jose Sharks @ Utah Mammoth",
+   "home": "Utah Mammoth",
+   "away": "San Jose Sharks",
+   "commence": "2026-11-15T02:10:00Z",
+   "start": "Today 9:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 110,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": 110,
+    "BetRivers": -103,
+    "FanDuel": 106,
+    "theScore Bet": 110
+   },
+   "books": 4,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.4784,
+   "edge": 0.0022,
+   "ev": 0.0046,
+   "marketFair": 0.4642,
+   "marketEdge": -0.012,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.4,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0278,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Winnipeg Jets @ Chicago Blackhawks",
+   "home": "Chicago Blackhawks",
+   "away": "Winnipeg Jets",
+   "commence": "2026-11-14T20:40:00Z",
+   "start": "Today 3:40 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Houston Rockets",
-    "point": null
+    "name": "Over",
+    "point": 6.5
    },
-   "pick": "Houston Rockets ML",
-   "odds": -1100,
-   "book": "FanDuel",
+   "pick": "Over 6.5",
+   "odds": 110,
+   "book": "DraftKings",
    "prices": {
-    "FanDuel": -1100,
-    "BetOnline.ag": -1200,
-    "BetRivers": -1250,
-    "DraftKings": -1180,
-    "theScore Bet": -1600,
-    "Bovada": -1200,
-    "BetMGM": -1200
+    "DraftKings": 110,
+    "BetRivers": 110,
+    "FanDuel": 104,
+    "theScore Bet": 110,
+    "BetMGM": 100
    },
-   "books": 8,
-   "anchor": "Pinnacle",
+   "books": 5,
+   "anchor": null,
    "anchorShift": 0,
-   "modelProb": 0.9185,
+   "modelProb": 0.478,
    "edge": 0.0018,
-   "ev": 0.002,
-   "marketFair": 0.8911,
-   "marketEdge": -0.0255,
+   "ev": 0.0038,
+   "marketFair": 0.4623,
+   "marketEdge": -0.0139,
    "modelled": true,
    "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
+    "margin": -0.2,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.0518,
-   "past": -0.05,
+   "bar": 0.03,
+   "past": -0.0282,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -4576,6 +4116,55 @@ window.MARKET_DATA = {
    "past": -0.1098,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "fa960f164539f05a9e76c85f358b93a6",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New Jersey Devils @ Washington Capitals",
+   "home": "Washington Capitals",
+   "away": "New Jersey Devils",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 106,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": 102,
+    "BetRivers": 100,
+    "FanDuel": 102,
+    "BetOnline.ag": 106,
+    "theScore Bet": 105,
+    "Bovada": 102
+   },
+   "books": 7,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4866,
+   "edge": 0.0012,
+   "ev": 0.0024,
+   "marketFair": 0.4784,
+   "marketEdge": -0.007,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0288,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -4624,194 +4213,54 @@ window.MARKET_DATA = {
    "past": -0.0293,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
+   "eventId": "624643d0e1445dfdb95d86127440548a",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
    "outcome": {
-    "name": "Over",
-    "point": 6.5
+    "name": "Colorado Avalanche",
+    "point": null
    },
-   "pick": "Over 6.5",
-   "odds": 105,
-   "book": "theScore Bet",
+   "pick": "Colorado Avalanche ML",
+   "odds": 110,
+   "book": "BetOnline.ag",
    "prices": {
-    "BetRivers": 102,
-    "DraftKings": -102,
-    "FanDuel": -102,
-    "BetOnline.ag": 104,
-    "theScore Bet": 105
+    "FanDuel": 104,
+    "DraftKings": 102,
+    "BetRivers": 104,
+    "theScore Bet": 105,
+    "BetMGM": 105,
+    "Bovada": 105,
+    "BetOnline.ag": 110
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4883,
-   "edge": 0.0005,
-   "ev": 0.001,
-   "marketFair": 0.4743,
-   "marketEdge": -0.0135,
-   "modelled": true,
-   "model": {
-    "margin": 1.3,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0295,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f07a205e325038963274f255cb856cc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Edmonton Oilers @ Toronto Maple Leafs",
-   "home": "Toronto Maple Leafs",
-   "away": "Edmonton Oilers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Edmonton Oilers",
-    "point": -1.5
-   },
-   "pick": "Edmonton Oilers -1.5",
-   "odds": 154,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 154,
-    "BetRivers": 143,
-    "FanDuel": 148,
-    "theScore Bet": 145
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.394,
-   "edge": 0.0003,
-   "ev": 0.0008,
-   "marketFair": 0.3712,
-   "marketEdge": -0.0225,
-   "modelled": true,
-   "model": {
-    "margin": -0.7,
-    "total": 6.5,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0659,
-   "past": -0.0656,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 219.5
-   },
-   "pick": "Over 219.5",
-   "odds": 100,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -107,
-    "BetOnline.ag": -110,
-    "FanDuel": -104,
-    "theScore Bet": 100,
-    "BetMGM": -110
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.5001,
-   "edge": 0.0001,
-   "ev": 0.0002,
-   "marketFair": 0.4952,
-   "marketEdge": -0.0048,
-   "modelled": true,
-   "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0299,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "UCLA Bruins",
-    "point": -10.5
-   },
-   "pick": "UCLA Bruins -10.5",
-   "odds": 100,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -108,
-    "FanDuel": 100,
-    "BetRivers": -110,
-    "BetOnline.ag": -107,
-    "theScore Bet": -105,
-    "Bovada": -105
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
+   "modelProb": 0.4762,
    "edge": 0,
    "ev": 0,
-   "marketFair": 0.4908,
-   "marketEdge": -0.0092,
+   "marketFair": 0.4673,
+   "marketEdge": -0.0089,
    "modelled": true,
    "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.03,
+   "bar": 0.0728,
+   "past": -0.0728,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -4861,7 +4310,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "54769e255d6ea468fa2d12ed744eb6f2",
@@ -4906,7 +4356,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8a0a3acc1b435727e1e571600aecb68f",
@@ -4954,7 +4405,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -5003,7 +4455,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0327c5775ed8cc9854411f8e077af93",
@@ -5049,7 +4502,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "018349e41d033e3b1fdbc14ce9b09325",
@@ -5096,7 +4550,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "65104e496f8e5c0208eb59dd0c946475",
@@ -5145,7 +4600,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a21a2f1087d443fa1a1c71e1a03a0fe0",
@@ -5192,7 +4648,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -5237,7 +4694,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f9b805187f3809fdadddfa08dfa2a089",
@@ -5284,7 +4742,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c113a0bd62980b8ec1ce85b27292f699",
@@ -5331,7 +4790,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d466840e3c50d2fdad6fd7e799fdf921",
@@ -5376,7 +4836,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -5424,7 +4885,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8982b0a852d112b25310aa03f0f104b6",
@@ -5472,7 +4934,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -5521,7 +4984,8 @@ window.MARKET_DATA = {
    "past": -0.03,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "21c985dda7b6b34cc9820a76dfad6172",
@@ -5567,6 +5031,56 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.03,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 105,
+   "book": "theScore Bet",
+   "prices": {
+    "BetRivers": 100,
+    "DraftKings": 102,
+    "FanDuel": -104,
+    "BetOnline.ag": 104,
+    "theScore Bet": 105,
+    "BetMGM": 100,
+    "Bovada": 100
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4876,
+   "edge": -0.0002,
+   "ev": -0.0004,
+   "marketFair": 0.4807,
+   "marketEdge": -0.0071,
+   "modelled": true,
+   "model": {
+    "margin": 1.3,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0302,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -5617,7 +5131,8 @@ window.MARKET_DATA = {
    "past": -0.0305,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -5666,99 +5181,8 @@ window.MARKET_DATA = {
    "past": -0.0305,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 114,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 114,
-    "BetRivers": 108,
-    "FanDuel": 112,
-    "theScore Bet": 110
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4666,
-   "edge": -0.0007,
-   "ev": -0.0015,
-   "marketFair": 0.4523,
-   "marketEdge": -0.015,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0307,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 52.5
-   },
-   "pick": "Over 52.5",
-   "odds": -105,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -105,
-    "DraftKings": -105,
-    "theScore Bet": -105,
-    "Bovada": -108
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5115,
-   "edge": -0.0007,
-   "ev": -0.0014,
-   "marketFair": 0.4908,
-   "marketEdge": -0.0214,
-   "modelled": true,
-   "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0307,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -5805,142 +5229,54 @@ window.MARKET_DATA = {
    "past": -0.0309,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "eventId": "f3b622fed365136e09be1f7b53052543",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
+   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
+   "home": "Columbus Blue Jackets",
+   "away": "Philadelphia Flyers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 5.5
-   },
-   "pick": "Over 5.5",
-   "odds": -132,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -135,
-    "FanDuel": -132,
-    "theScore Bet": -135
-   },
-   "books": 3,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5677,
-   "edge": -0.0013,
-   "ev": -0.0022,
-   "marketFair": 0.5487,
-   "marketEdge": -0.0203,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0313,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Montréal Canadiens",
-    "point": -1.5
-   },
-   "pick": "Montréal Canadiens -1.5",
-   "odds": 215,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": 210,
-    "DraftKings": 205,
-    "BetRivers": 215,
-    "theScore Bet": 200
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.316,
-   "edge": -0.0015,
-   "ev": -0.0046,
-   "marketFair": 0.3091,
-   "marketEdge": -0.0084,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.5,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0612,
-   "past": -0.0627,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
-    "name": "Buffalo Sabres",
+    "name": "Columbus Blue Jackets",
     "point": null
    },
-   "pick": "Buffalo Sabres ML",
-   "odds": 125,
-   "book": "BetRivers",
+   "pick": "Columbus Blue Jackets ML",
+   "odds": -130,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": 120,
-    "BetRivers": 125,
-    "FanDuel": 114,
-    "BetOnline.ag": 122,
-    "theScore Bet": 120
+    "DraftKings": -135,
+    "BetRivers": -141,
+    "FanDuel": -134,
+    "BetOnline.ag": -130,
+    "theScore Bet": -140,
+    "BetMGM": -135,
+    "Bovada": -135
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4428,
-   "edge": -0.0016,
-   "ev": -0.0037,
-   "marketFair": 0.4372,
-   "marketEdge": -0.0072,
+   "modelProb": 0.5629,
+   "edge": -0.0023,
+   "ev": -0.0041,
+   "marketFair": 0.552,
+   "marketEdge": -0.0132,
    "modelled": true,
    "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
+    "margin": 0.4,
+    "total": 6.2,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.0729,
-   "past": -0.0745,
+   "bar": 0.0726,
+   "past": -0.0749,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -5991,56 +5327,8 @@ window.MARKET_DATA = {
    "past": -0.0324,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Sacramento Kings",
-    "point": null
-   },
-   "pick": "Sacramento Kings ML",
-   "odds": 370,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": 370,
-    "BetOnline.ag": 354,
-    "DraftKings": 361,
-    "theScore Bet": 360,
-    "Bovada": 345,
-    "BetRivers": 340,
-    "BetMGM": 350
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.2101,
-   "edge": -0.0027,
-   "ev": -0.0125,
-   "marketFair": 0.2081,
-   "marketEdge": -0.0047,
-   "modelled": true,
-   "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1011,
-   "past": -0.1038,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -6085,7 +5373,8 @@ window.MARKET_DATA = {
    "past": -0.0327,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "21c985dda7b6b34cc9820a76dfad6172",
@@ -6133,7 +5422,8 @@ window.MARKET_DATA = {
    "past": -0.0328,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -6182,48 +5472,54 @@ window.MARKET_DATA = {
    "past": -0.0328,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Over",
-    "point": 218.5
+    "name": "Colorado Avalanche",
+    "point": 1.5
    },
-   "pick": "Over 218.5",
-   "odds": -105,
-   "book": "DraftKings",
+   "pick": "Colorado Avalanche +1.5",
+   "odds": -220,
+   "book": "BetMGM",
    "prices": {
-    "DraftKings": -105,
-    "BetRivers": -112
+    "FanDuel": -235,
+    "DraftKings": -245,
+    "BetRivers": -265,
+    "theScore Bet": -250,
+    "BetMGM": -220,
+    "Bovada": -245,
+    "BetOnline.ag": -245
    },
-   "books": 3,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5089,
-   "edge": -0.0033,
-   "ev": -0.0064,
-   "marketFair": 0.4932,
-   "marketEdge": -0.019,
+   "modelProb": 0.684,
+   "edge": -0.0035,
+   "ev": -0.0051,
+   "marketFair": 0.6864,
+   "marketEdge": -0.0011,
    "modelled": true,
    "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0333,
+   "bar": 0.0612,
+   "past": -0.0647,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -6274,7 +5570,8 @@ window.MARKET_DATA = {
    "past": -0.0336,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d9bfb4f5e7ba909febe2a83fc04d4f15",
@@ -6319,7 +5616,8 @@ window.MARKET_DATA = {
    "past": -0.0338,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -6366,56 +5664,8 @@ window.MARKET_DATA = {
    "past": -0.0342,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Pittsburgh Panthers",
-    "point": -3.5
-   },
-   "pick": "Pittsburgh Panthers -3.5",
-   "odds": -102,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": -115,
-    "DraftKings": -102,
-    "BetRivers": -106,
-    "BetOnline.ag": -104,
-    "theScore Bet": -105,
-    "BetMGM": -108,
-    "Bovada": -108
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
-   "edge": -0.005,
-   "ev": -0.0098,
-   "marketFair": 0.4954,
-   "marketEdge": -0.0095,
-   "modelled": true,
-   "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.035,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8ad669f4c9b70f38fdb057c114588776",
@@ -6460,101 +5710,8 @@ window.MARKET_DATA = {
    "past": -0.035,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "fa960f164539f05a9e76c85f358b93a6",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New Jersey Devils @ Washington Capitals",
-   "home": "Washington Capitals",
-   "away": "New Jersey Devils",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 103,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": 102,
-    "BetRivers": 100,
-    "FanDuel": 100,
-    "BetOnline.ag": 103,
-    "theScore Bet": 100
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4874,
-   "edge": -0.0052,
-   "ev": -0.0106,
-   "marketFair": 0.4787,
-   "marketEdge": -0.0139,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0352,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "San Jose Sharks @ Utah Mammoth",
-   "home": "Utah Mammoth",
-   "away": "San Jose Sharks",
-   "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -111,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -115,
-    "BetRivers": -112,
-    "FanDuel": -114,
-    "BetOnline.ag": -111,
-    "theScore Bet": -115
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5209,
-   "edge": -0.0052,
-   "ev": -0.0098,
-   "marketFair": 0.5023,
-   "marketEdge": -0.0238,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0352,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -6602,7 +5759,8 @@ window.MARKET_DATA = {
    "past": -0.0353,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "862cc541ca98da17b20a964513c18435",
@@ -6648,52 +5806,54 @@ window.MARKET_DATA = {
    "past": -0.0355,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
    "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Under",
-    "point": 245.5
+    "name": "Dallas Stars",
+    "point": -1.5
    },
-   "pick": "Under 245.5",
-   "odds": -105,
-   "book": "BetMGM",
+   "pick": "Dallas Stars -1.5",
+   "odds": 185,
+   "book": "Bovada",
    "prices": {
-    "BetOnline.ag": -110,
-    "DraftKings": -108,
-    "theScore Bet": -110,
-    "Bovada": -110,
-    "BetRivers": -110,
-    "BetMGM": -105
+    "DraftKings": 180,
+    "BetRivers": 175,
+    "FanDuel": 180,
+    "BetOnline.ag": 183,
+    "theScore Bet": 170,
+    "BetMGM": 165,
+    "Bovada": 185
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.5061,
-   "edge": -0.0061,
-   "ev": -0.0119,
-   "marketFair": 0.5041,
-   "marketEdge": -0.0081,
+   "anchorShift": 0,
+   "modelProb": 0.3447,
+   "edge": -0.0062,
+   "ev": -0.0176,
+   "marketFair": 0.3343,
+   "marketEdge": -0.0165,
    "modelled": true,
    "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0361,
+   "bar": 0.0638,
+   "past": -0.07,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -6743,53 +5903,8 @@ window.MARKET_DATA = {
    "past": -0.0366,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Montréal Canadiens",
-    "point": null
-   },
-   "pick": "Montréal Canadiens ML",
-   "odds": -113,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": -114,
-    "DraftKings": -118,
-    "BetRivers": -113,
-    "theScore Bet": -115
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5238,
-   "edge": -0.0067,
-   "ev": -0.0127,
-   "marketFair": 0.5114,
-   "marketEdge": -0.0191,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.5,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0728,
-   "past": -0.0795,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -6838,7 +5953,8 @@ window.MARKET_DATA = {
    "past": -0.1599,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -6885,7 +6001,8 @@ window.MARKET_DATA = {
    "past": -0.0372,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "54769e255d6ea468fa2d12ed744eb6f2",
@@ -6934,7 +6051,8 @@ window.MARKET_DATA = {
    "past": -0.1445,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -6983,101 +6101,8 @@ window.MARKET_DATA = {
    "past": -0.1509,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Memphis Grizzlies",
-    "point": -3.5
-   },
-   "pick": "Memphis Grizzlies -3.5",
-   "odds": -105,
-   "book": "Bovada",
-   "prices": {
-    "FanDuel": -108,
-    "BetRivers": -109,
-    "theScore Bet": -110,
-    "DraftKings": -108,
-    "Bovada": -105,
-    "BetMGM": -105
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5048,
-   "edge": -0.0074,
-   "ev": -0.0144,
-   "marketFair": 0.4919,
-   "marketEdge": -0.0203,
-   "modelled": true,
-   "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0374,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "f3b622fed365136e09be1f7b53052543",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
-   "home": "Columbus Blue Jackets",
-   "away": "Philadelphia Flyers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Columbus Blue Jackets",
-    "point": -1.5
-   },
-   "pick": "Columbus Blue Jackets -1.5",
-   "odds": 180,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 180,
-    "BetRivers": 180,
-    "FanDuel": 176,
-    "theScore Bet": 170
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3497,
-   "edge": -0.0074,
-   "ev": -0.0208,
-   "marketFair": 0.3371,
-   "marketEdge": -0.02,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.2,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.064,
-   "past": -0.0714,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c83b81cc8d2110c8e4a39eefea4bdc72",
@@ -7125,7 +6150,8 @@ window.MARKET_DATA = {
    "past": -0.0375,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "558ce811ad052f49918a2855f3777baf",
@@ -7173,53 +6199,8 @@ window.MARKET_DATA = {
    "past": -0.038,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 110,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 110,
-    "BetRivers": 107,
-    "FanDuel": 110,
-    "theScore Bet": 110
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4679,
-   "edge": -0.0083,
-   "ev": -0.0174,
-   "marketFair": 0.4565,
-   "marketEdge": -0.0197,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0383,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -7268,7 +6249,8 @@ window.MARKET_DATA = {
    "past": -0.1523,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a195a61a5f2a3c5c0ed7ba7b313572e5",
@@ -7317,7 +6299,8 @@ window.MARKET_DATA = {
    "past": -0.1155,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "018349e41d033e3b1fdbc14ce9b09325",
@@ -7364,6 +6347,56 @@ window.MARKET_DATA = {
    },
    "bar": 0.1448,
    "past": -0.1537,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -112,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": -112,
+    "BetRivers": -118,
+    "FanDuel": -118,
+    "BetOnline.ag": -112,
+    "theScore Bet": -115,
+    "BetMGM": -115,
+    "Bovada": -112
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5193,
+   "edge": -0.009,
+   "ev": -0.017,
+   "marketFair": 0.5138,
+   "marketEdge": -0.0145,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.039,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -7415,6 +6448,54 @@ window.MARKET_DATA = {
    "past": -0.1338,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
+   "start": "Today 8:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": 110,
+   "book": "theScore Bet",
+   "prices": {
+    "DraftKings": 105,
+    "BetRivers": 105,
+    "FanDuel": 104,
+    "theScore Bet": 110,
+    "BetMGM": 100
+   },
+   "books": 5,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.4671,
+   "edge": -0.0091,
+   "ev": -0.0191,
+   "marketFair": 0.4665,
+   "marketEdge": -0.0097,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0391,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -7463,148 +6544,8 @@ window.MARKET_DATA = {
    "past": -0.0391,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 51.5
-   },
-   "pick": "Under 51.5",
-   "odds": -108,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -108,
-    "FanDuel": -110,
-    "BetRivers": -108,
-    "theScore Bet": -110,
-    "BetMGM": -108,
-    "Bovada": -112
-   },
-   "books": 6,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.51,
-   "edge": -0.0092,
-   "ev": -0.0178,
-   "marketFair": 0.498,
-   "marketEdge": -0.0212,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0392,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Houston Rockets",
-    "point": -15.5
-   },
-   "pick": "Houston Rockets -15.5",
-   "odds": -105,
-   "book": "BetMGM",
-   "prices": {
-    "FanDuel": -110,
-    "BetRivers": -107,
-    "DraftKings": -108,
-    "theScore Bet": -110,
-    "BetMGM": -105
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5029,
-   "edge": -0.0093,
-   "ev": -0.0181,
-   "marketFair": 0.4976,
-   "marketEdge": -0.0146,
-   "modelled": true,
-   "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0393,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 48.5
-   },
-   "pick": "Over 48.5",
-   "odds": -105,
-   "book": "BetMGM",
-   "prices": {
-    "FanDuel": -110,
-    "BetMGM": -105,
-    "BetOnline.ag": -106,
-    "theScore Bet": -110
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5029,
-   "edge": -0.0093,
-   "ev": -0.0181,
-   "marketFair": 0.4959,
-   "marketEdge": -0.0163,
-   "modelled": true,
-   "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0393,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -7650,151 +6591,50 @@ window.MARKET_DATA = {
    "past": -0.0393,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Milwaukee Bucks",
-    "point": 9.5
-   },
-   "pick": "Milwaukee Bucks +9.5",
-   "odds": -105,
-   "book": "BetOnline.ag",
-   "prices": {
-    "FanDuel": -110,
-    "BetOnline.ag": -105,
-    "BetRivers": -107,
-    "theScore Bet": -110,
-    "DraftKings": -108,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5027,
-   "edge": -0.0095,
-   "ev": -0.0185,
-   "marketFair": 0.5046,
-   "marketEdge": -0.0075,
-   "modelled": true,
-   "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0395,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -111,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -115,
-    "BetOnline.ag": -111,
-    "BetMGM": -115,
-    "BetRivers": -120,
-    "FanDuel": -118,
-    "theScore Bet": -120,
-    "Bovada": -115
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5163,
-   "edge": -0.0098,
-   "ev": -0.0186,
-   "marketFair": 0.5171,
-   "marketEdge": -0.009,
-   "modelled": true,
-   "model": {
-    "margin": -0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0398,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "totals",
    "market": "Total",
    "outcome": {
-    "name": "Under",
-    "point": 6.5
+    "name": "Over",
+    "point": 6
    },
-   "pick": "Under 6.5",
-   "odds": -112,
-   "book": "DraftKings",
+   "pick": "Over 6",
+   "odds": -110,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -112,
-    "BetRivers": -117,
-    "FanDuel": -114,
-    "BetOnline.ag": -112,
-    "theScore Bet": -115
+    "BetOnline.ag": -110,
+    "BetMGM": -110,
+    "Bovada": -110
    },
-   "books": 6,
+   "books": 4,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5185,
-   "edge": -0.0098,
-   "ev": -0.0186,
-   "marketFair": 0.5123,
-   "marketEdge": -0.016,
+   "modelProb": 0.5139,
+   "edge": -0.0099,
+   "ev": -0.0189,
+   "marketFair": 0.4954,
+   "marketEdge": -0.0284,
    "modelled": true,
    "model": {
     "margin": 0.2,
-    "total": 6.4,
+    "total": 6.2,
     "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0398,
+   "bar": 0.0314,
+   "past": -0.0413,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -7844,52 +6684,8 @@ window.MARKET_DATA = {
    "past": -0.04,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 235.5
-   },
-   "pick": "Under 235.5",
-   "odds": -105,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": -110,
-    "theScore Bet": -105,
-    "BetMGM": -105
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5019,
-   "edge": -0.0103,
-   "ev": -0.0201,
-   "marketFair": 0.493,
-   "marketEdge": -0.0192,
-   "modelled": true,
-   "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0403,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -7936,7 +6732,8 @@ window.MARKET_DATA = {
    "past": -0.0403,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0431ccbcda08ef99781fee8c341c8932",
@@ -7981,7 +6778,8 @@ window.MARKET_DATA = {
    "past": -0.0405,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -8028,7 +6826,8 @@ window.MARKET_DATA = {
    "past": -0.0406,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -8074,7 +6873,8 @@ window.MARKET_DATA = {
    "past": -0.0407,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8a0a3acc1b435727e1e571600aecb68f",
@@ -8119,95 +6919,54 @@ window.MARKET_DATA = {
    "past": -0.0408,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
+   "start": "Today 8:10 PM ET",
    "marketKey": "spreads",
-   "market": "Spread",
+   "market": "Puck line",
    "outcome": {
-    "name": "Portland Trail Blazers",
-    "point": -10.5
+    "name": "Buffalo Sabres",
+    "point": 1.5
    },
-   "pick": "Portland Trail Blazers -10.5",
-   "odds": -104,
-   "book": "FanDuel",
+   "pick": "Buffalo Sabres +1.5",
+   "odds": -200,
+   "book": "BetMGM",
    "prices": {
-    "FanDuel": -104,
-    "DraftKings": -105
+    "DraftKings": -218,
+    "BetRivers": -225,
+    "FanDuel": -225,
+    "BetOnline.ag": -215,
+    "theScore Bet": -215,
+    "BetMGM": -200,
+    "Bovada": -225
    },
-   "books": 3,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4989,
-   "edge": -0.0109,
-   "ev": -0.0214,
-   "marketFair": 0.4861,
-   "marketEdge": -0.0238,
+   "modelProb": 0.6553,
+   "edge": -0.0114,
+   "ev": -0.0171,
+   "marketFair": 0.6657,
+   "marketEdge": -0.001,
    "modelled": true,
    "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0409,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 229.5
-   },
-   "pick": "Over 229.5",
-   "odds": -105,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -105,
-    "DraftKings": -110,
-    "theScore Bet": -110,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.5009,
-   "edge": -0.0113,
-   "ev": -0.0221,
-   "marketFair": 0.5076,
-   "marketEdge": -0.0046,
-   "modelled": true,
-   "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0413,
+   "bar": 0.0639,
+   "past": -0.0753,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -8258,7 +7017,8 @@ window.MARKET_DATA = {
    "past": -0.0414,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "107b8f81458dc555f99db1e929276a13",
@@ -8306,7 +7066,8 @@ window.MARKET_DATA = {
    "past": -0.0415,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -8355,54 +7116,8 @@ window.MARKET_DATA = {
    "past": -0.1645,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "f3b622fed365136e09be1f7b53052543",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
-   "home": "Columbus Blue Jackets",
-   "away": "Philadelphia Flyers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Columbus Blue Jackets",
-    "point": null
-   },
-   "pick": "Columbus Blue Jackets ML",
-   "odds": -135,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -142,
-    "BetRivers": -143,
-    "FanDuel": -138,
-    "BetOnline.ag": -135,
-    "theScore Bet": -140
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5629,
-   "edge": -0.0116,
-   "ev": -0.0201,
-   "marketFair": 0.5609,
-   "marketEdge": -0.0135,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.2,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0726,
-   "past": -0.0842,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -8449,55 +7164,104 @@ window.MARKET_DATA = {
    "past": -0.0416,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
+   "start": "Today 8:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Buffalo Sabres",
+    "point": null
+   },
+   "pick": "Buffalo Sabres ML",
+   "odds": 120,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": 120,
+    "BetRivers": 117,
+    "FanDuel": 114,
+    "BetOnline.ag": 117,
+    "theScore Bet": 120,
+    "BetMGM": 115,
+    "Bovada": 112
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4428,
+   "edge": -0.0117,
+   "ev": -0.0258,
+   "marketFair": 0.45,
+   "marketEdge": -0.0046,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
+    "thin": false
+   },
+   "bar": 0.0729,
+   "past": -0.0846,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
+   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
    "marketKey": "spreads",
-   "market": "Spread",
+   "market": "Puck line",
    "outcome": {
-    "name": "New York Knicks",
-    "point": -8.5
+    "name": "Montréal Canadiens",
+    "point": -1.5
    },
-   "pick": "New York Knicks -8.5",
-   "odds": -105,
-   "book": "DraftKings",
+   "pick": "Montréal Canadiens -1.5",
+   "odds": 205,
+   "book": "BetRivers",
    "prices": {
-    "DraftKings": -105,
-    "FanDuel": -110,
-    "theScore Bet": -105,
-    "BetRivers": -112,
-    "Bovada": -105,
-    "BetMGM": -110
+    "FanDuel": 186,
+    "DraftKings": 200,
+    "BetRivers": 205,
+    "theScore Bet": 185,
+    "BetMGM": 180,
+    "Bovada": 205,
+    "BetOnline.ag": 203
    },
-   "books": 7,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5003,
+   "modelProb": 0.316,
    "edge": -0.0119,
-   "ev": -0.0232,
-   "marketFair": 0.493,
-   "marketEdge": -0.0192,
+   "ev": -0.0362,
+   "marketFair": 0.3136,
+   "marketEdge": -0.0143,
    "modelled": true,
    "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0419,
-   "waiting": [
-    "report not in for both clubs"
-   ],
+   "bar": 0.0612,
+   "past": -0.0731,
+   "waiting": null,
    "pickId": null,
    "status": "none"
   },
@@ -8544,150 +7308,8 @@ window.MARKET_DATA = {
    "past": -0.0421,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 235.5
-   },
-   "pick": "Over 235.5",
-   "odds": -105,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": -110,
-    "theScore Bet": -105,
-    "DraftKings": -105,
-    "BetMGM": -110
-   },
-   "books": 4,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5,
-   "edge": -0.0122,
-   "ev": -0.0238,
-   "marketFair": 0.4987,
-   "marketEdge": -0.0135,
-   "modelled": true,
-   "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0422,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Florida State Seminoles",
-    "point": 3.5
-   },
-   "pick": "Florida State Seminoles +3.5",
-   "odds": -105,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -105,
-    "DraftKings": -118,
-    "BetRivers": -118,
-    "BetOnline.ag": -116,
-    "theScore Bet": -115,
-    "BetMGM": -110,
-    "Bovada": -112
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
-   "edge": -0.0122,
-   "ev": -0.0238,
-   "marketFair": 0.5046,
-   "marketEdge": -0.0076,
-   "modelled": true,
-   "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0422,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Colorado Buffaloes",
-    "point": 7.5
-   },
-   "pick": "Colorado Buffaloes +7.5",
-   "odds": -105,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -110,
-    "BetRivers": -108,
-    "BetOnline.ag": -110,
-    "theScore Bet": -105,
-    "BetMGM": -108,
-    "Bovada": -112
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
-   "edge": -0.0122,
-   "ev": -0.0238,
-   "marketFair": 0.5092,
-   "marketEdge": -0.003,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0422,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0431ccbcda08ef99781fee8c341c8932",
@@ -8734,7 +7356,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a195a61a5f2a3c5c0ed7ba7b313572e5",
@@ -8782,7 +7405,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -8828,7 +7452,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "462e4e8a99f44d5c64f36987e966cd13",
@@ -8874,7 +7499,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "82eed9ad82fa12a1ace084358d3fd32d",
@@ -8920,7 +7546,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -8966,7 +7593,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "fe42d22bafb7d5f406317697dff44ee6",
@@ -9015,7 +7643,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "72e1af72402c489444f89a8600abb23f",
@@ -9064,7 +7693,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -9108,7 +7738,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "6f50a1eb0425d8adc1f4914bf27289d0",
@@ -9156,7 +7787,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "6f50a1eb0425d8adc1f4914bf27289d0",
@@ -9204,7 +7836,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -9253,7 +7886,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c15d7c4261fa1d8b75615a46d4d2ea7",
@@ -9301,7 +7935,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "109bd435222562d833efa2a511f9b79e",
@@ -9348,7 +7983,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1daaf8ba9d71d56b9657b450f3df7861",
@@ -9394,7 +8030,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "107b8f81458dc555f99db1e929276a13",
@@ -9438,7 +8075,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -9486,7 +8124,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "aa1c9ee516cf122de53e75ffec017edd",
@@ -9535,7 +8174,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -9581,7 +8221,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c113a0bd62980b8ec1ce85b27292f699",
@@ -9630,7 +8271,8 @@ window.MARKET_DATA = {
    "past": -0.1676,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -9679,7 +8321,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -9728,7 +8371,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c83b81cc8d2110c8e4a39eefea4bdc72",
@@ -9774,7 +8418,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "7b3c2958dadc616a19ce7b9b1dd2a7e4",
@@ -9822,7 +8467,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5f45291a1a5e01525b2e3aebe791c436",
@@ -9869,7 +8515,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77380a347bae20671e1f8cec27ce658b",
@@ -9917,7 +8564,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -9963,7 +8611,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "320a213c475110f032710dcd06c94e8e",
@@ -10011,53 +8660,8 @@ window.MARKET_DATA = {
    "past": -0.0422,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Dallas Stars",
-    "point": -1.5
-   },
-   "pick": "Dallas Stars -1.5",
-   "odds": 180,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 180,
-    "BetRivers": 165,
-    "FanDuel": 172,
-    "theScore Bet": 170
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3447,
-   "edge": -0.0124,
-   "ev": -0.0348,
-   "marketFair": 0.3422,
-   "marketEdge": -0.0149,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.0638,
-   "past": -0.0762,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "82eed9ad82fa12a1ace084358d3fd32d",
@@ -10102,6 +8706,54 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0424,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
+   "start": "Today 8:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -120,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -125,
+    "BetRivers": -130,
+    "FanDuel": -128,
+    "theScore Bet": -130,
+    "BetMGM": -120
+   },
+   "books": 5,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.5329,
+   "edge": -0.0126,
+   "ev": -0.023,
+   "marketFair": 0.5335,
+   "marketEdge": -0.0119,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0426,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -10149,7 +8801,8 @@ window.MARKET_DATA = {
    "past": -0.0428,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0327c5775ed8cc9854411f8e077af93",
@@ -10195,7 +8848,8 @@ window.MARKET_DATA = {
    "past": -0.0428,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -10242,7 +8896,8 @@ window.MARKET_DATA = {
    "past": -0.0428,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "7b3c2958dadc616a19ce7b9b1dd2a7e4",
@@ -10291,7 +8946,8 @@ window.MARKET_DATA = {
    "past": -0.0428,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -10337,7 +8993,8 @@ window.MARKET_DATA = {
    "past": -0.043,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -10386,7 +9043,8 @@ window.MARKET_DATA = {
    "past": -0.0957,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -10432,7 +9090,8 @@ window.MARKET_DATA = {
    "past": -0.0433,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -10481,52 +9140,55 @@ window.MARKET_DATA = {
    "past": -0.1416,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Buffalo Sabres @ Dallas Stars",
+   "home": "Dallas Stars",
+   "away": "Buffalo Sabres",
+   "commence": "2026-11-15T01:10:00Z",
+   "start": "Today 8:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
    "outcome": {
-    "name": "Under",
-    "point": 223.5
+    "name": "Dallas Stars",
+    "point": null
    },
-   "pick": "Under 223.5",
-   "odds": -105,
-   "book": "theScore Bet",
+   "pick": "Dallas Stars ML",
+   "odds": -133,
+   "book": "BetOnline.ag",
    "prices": {
-    "FanDuel": -106,
-    "theScore Bet": -105,
-    "BetMGM": -110
+    "DraftKings": -142,
+    "BetRivers": -139,
+    "FanDuel": -137,
+    "BetOnline.ag": -133,
+    "theScore Bet": -140,
+    "BetMGM": -140,
+    "Bovada": -133
    },
-   "books": 3,
+   "books": 8,
    "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.4985,
-   "edge": -0.0137,
-   "ev": -0.0267,
-   "marketFair": 0.5024,
-   "marketEdge": -0.0098,
+   "anchorShift": 0,
+   "modelProb": 0.5572,
+   "edge": -0.0136,
+   "ev": -0.0239,
+   "marketFair": 0.55,
+   "marketEdge": -0.0208,
    "modelled": true,
    "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
+    "margin": 0.3,
+    "total": 6.3,
+    "gp": 18,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0437,
-   "waiting": [
-    "report not in for both clubs"
-   ],
+   "bar": 0.073,
+   "past": -0.0866,
+   "waiting": null,
    "pickId": null,
    "status": "none"
   },
@@ -10573,7 +9235,8 @@ window.MARKET_DATA = {
    "past": -0.0438,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d6d167714ff638b23e84d757ff522414",
@@ -10621,52 +9284,8 @@ window.MARKET_DATA = {
    "past": -0.0439,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 220.5
-   },
-   "pick": "Under 220.5",
-   "odds": -105,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -105,
-    "BetRivers": -110,
-    "theScore Bet": -105
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.4977,
-   "edge": -0.0145,
-   "ev": -0.0283,
-   "marketFair": 0.4953,
-   "marketEdge": -0.0169,
-   "modelled": true,
-   "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0445,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1daaf8ba9d71d56b9657b450f3df7861",
@@ -10714,7 +9333,8 @@ window.MARKET_DATA = {
    "past": -0.0449,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5f45291a1a5e01525b2e3aebe791c436",
@@ -10762,7 +9382,8 @@ window.MARKET_DATA = {
    "past": -0.0452,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a21a2f1087d443fa1a1c71e1a03a0fe0",
@@ -10809,7 +9430,8 @@ window.MARKET_DATA = {
    "past": -0.0454,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -10857,7 +9479,8 @@ window.MARKET_DATA = {
    "past": -0.0456,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -10906,53 +9529,8 @@ window.MARKET_DATA = {
    "past": -0.144,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Chicago Bulls",
-    "point": 6.5
-   },
-   "pick": "Chicago Bulls +6.5",
-   "odds": -103,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -103,
-    "Bovada": -105,
-    "BetRivers": -105,
-    "BetMGM": -105
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4913,
-   "edge": -0.0161,
-   "ev": -0.0317,
-   "marketFair": 0.4908,
-   "marketEdge": -0.0166,
-   "modelled": true,
-   "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0461,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -10998,56 +9576,8 @@ window.MARKET_DATA = {
    "past": -0.0461,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": 100,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -105,
-    "BetOnline.ag": -105,
-    "BetMGM": -105,
-    "BetRivers": -105,
-    "FanDuel": -104,
-    "theScore Bet": 100,
-    "Bovada": -105
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4837,
-   "edge": -0.0163,
-   "ev": -0.0326,
-   "marketFair": 0.4829,
-   "marketEdge": -0.0171,
-   "modelled": true,
-   "model": {
-    "margin": -0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0463,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -11092,7 +9622,8 @@ window.MARKET_DATA = {
    "past": -0.0463,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -11141,7 +9672,8 @@ window.MARKET_DATA = {
    "past": -0.0467,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "6f50a1eb0425d8adc1f4914bf27289d0",
@@ -11190,7 +9722,8 @@ window.MARKET_DATA = {
    "past": -0.0467,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -11235,7 +9768,8 @@ window.MARKET_DATA = {
    "past": -0.0469,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "558ce811ad052f49918a2855f3777baf",
@@ -11283,7 +9817,8 @@ window.MARKET_DATA = {
    "past": -0.0469,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c83b81cc8d2110c8e4a39eefea4bdc72",
@@ -11331,7 +9866,8 @@ window.MARKET_DATA = {
    "past": -0.0469,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -11380,7 +9916,8 @@ window.MARKET_DATA = {
    "past": -0.047,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -11428,7 +9965,8 @@ window.MARKET_DATA = {
    "past": -0.047,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1daaf8ba9d71d56b9657b450f3df7861",
@@ -11475,7 +10013,8 @@ window.MARKET_DATA = {
    "past": -0.0473,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f3b622fed365136e09be1f7b53052543",
@@ -11486,7 +10025,7 @@ window.MARKET_DATA = {
    "home": "Columbus Blue Jackets",
    "away": "Philadelphia Flyers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -11495,22 +10034,24 @@ window.MARKET_DATA = {
    },
    "pick": "Philadelphia Flyers ML",
    "odds": 120,
-   "book": "DraftKings",
+   "book": "BetRivers",
    "prices": {
-    "DraftKings": 120,
+    "DraftKings": 114,
     "BetRivers": 120,
-    "FanDuel": 115,
-    "BetOnline.ag": 119,
-    "theScore Bet": 120
+    "FanDuel": 112,
+    "BetOnline.ag": 115,
+    "theScore Bet": 120,
+    "BetMGM": 110,
+    "Bovada": 115
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.4371,
    "edge": -0.0174,
    "ev": -0.0384,
-   "marketFair": 0.4391,
-   "marketEdge": -0.0155,
+   "marketFair": 0.448,
+   "marketEdge": -0.0066,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -11570,7 +10111,8 @@ window.MARKET_DATA = {
    "past": -0.0474,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d466840e3c50d2fdad6fd7e799fdf921",
@@ -11619,102 +10161,8 @@ window.MARKET_DATA = {
    "past": -0.1424,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "San Antonio Spurs",
-    "point": -12.5
-   },
-   "pick": "San Antonio Spurs -12.5",
-   "odds": -105,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -105,
-    "theScore Bet": -105,
-    "Bovada": -105,
-    "BetMGM": -105
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4943,
-   "edge": -0.0179,
-   "ev": -0.0349,
-   "marketFair": 0.493,
-   "marketEdge": -0.0192,
-   "modelled": true,
-   "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0479,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Miami Heat",
-    "point": -2.5
-   },
-   "pick": "Miami Heat -2.5",
-   "odds": -106,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -106,
-    "BetOnline.ag": -108,
-    "DraftKings": -108,
-    "theScore Bet": -110,
-    "BetRivers": -106,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4965,
-   "edge": -0.0181,
-   "ev": -0.0351,
-   "marketFair": 0.493,
-   "marketEdge": -0.0215,
-   "modelled": true,
-   "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0481,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -11763,7 +10211,8 @@ window.MARKET_DATA = {
    "past": -0.1008,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "873a763cc258ad94bac35324c66e361c",
@@ -11811,7 +10260,8 @@ window.MARKET_DATA = {
    "past": -0.0483,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a195a61a5f2a3c5c0ed7ba7b313572e5",
@@ -11860,7 +10310,8 @@ window.MARKET_DATA = {
    "past": -0.0485,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -11905,7 +10356,8 @@ window.MARKET_DATA = {
    "past": -0.0487,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c113a0bd62980b8ec1ce85b27292f699",
@@ -11954,55 +10406,8 @@ window.MARKET_DATA = {
    "past": -0.1741,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Houston Cougars",
-    "point": -7.5
-   },
-   "pick": "Houston Cougars -7.5",
-   "odds": -108,
-   "book": "Bovada",
-   "prices": {
-    "DraftKings": -110,
-    "BetRivers": -115,
-    "BetOnline.ag": -110,
-    "theScore Bet": -115,
-    "BetMGM": -110,
-    "Bovada": -108
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
-   "edge": -0.0192,
-   "ev": -0.037,
-   "marketFair": 0.4908,
-   "marketEdge": -0.0284,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0492,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "83b67813ba763c65142b4238e3c44270",
@@ -12047,7 +10452,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "862cc541ca98da17b20a964513c18435",
@@ -12092,7 +10498,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "82eed9ad82fa12a1ace084358d3fd32d",
@@ -12138,7 +10545,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "fe42d22bafb7d5f406317697dff44ee6",
@@ -12187,7 +10595,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "72e1af72402c489444f89a8600abb23f",
@@ -12236,7 +10645,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -12282,7 +10692,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -12326,7 +10737,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "018349e41d033e3b1fdbc14ce9b09325",
@@ -12371,7 +10783,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -12416,7 +10829,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -12461,7 +10875,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -12506,7 +10921,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "873a763cc258ad94bac35324c66e361c",
@@ -12552,7 +10968,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "873a763cc258ad94bac35324c66e361c",
@@ -12598,7 +11015,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -12646,7 +11064,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -12692,7 +11111,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c2ccf2d604c3a791b12d26ccaaf65c70",
@@ -12738,7 +11158,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "558ce811ad052f49918a2855f3777baf",
@@ -12786,7 +11207,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c113a0bd62980b8ec1ce85b27292f699",
@@ -12833,7 +11255,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d9bfb4f5e7ba909febe2a83fc04d4f15",
@@ -12879,7 +11302,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d466840e3c50d2fdad6fd7e799fdf921",
@@ -12927,7 +11351,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d466840e3c50d2fdad6fd7e799fdf921",
@@ -12975,7 +11400,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c83b81cc8d2110c8e4a39eefea4bdc72",
@@ -13021,7 +11447,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5f45291a1a5e01525b2e3aebe791c436",
@@ -13068,7 +11495,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77380a347bae20671e1f8cec27ce658b",
@@ -13116,7 +11544,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -13165,7 +11594,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "21c985dda7b6b34cc9820a76dfad6172",
@@ -13213,7 +11643,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c3c46d55350226dd82d83ecf0b52891a",
@@ -13259,7 +11690,8 @@ window.MARKET_DATA = {
    "past": -0.0492,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "018349e41d033e3b1fdbc14ce9b09325",
@@ -13308,7 +11740,8 @@ window.MARKET_DATA = {
    "past": -0.1642,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -13353,7 +11786,8 @@ window.MARKET_DATA = {
    "past": -0.0497,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -13398,7 +11832,8 @@ window.MARKET_DATA = {
    "past": -0.0497,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a195a61a5f2a3c5c0ed7ba7b313572e5",
@@ -13447,7 +11882,8 @@ window.MARKET_DATA = {
    "past": -0.0499,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "72e1af72402c489444f89a8600abb23f",
@@ -13492,56 +11928,8 @@ window.MARKET_DATA = {
    "past": -0.0499,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Cleveland Cavaliers",
-    "point": 2.5
-   },
-   "pick": "Cleveland Cavaliers +2.5",
-   "odds": -110,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": -114,
-    "BetOnline.ag": -112,
-    "DraftKings": -112,
-    "theScore Bet": -110,
-    "BetRivers": -117,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5035,
-   "edge": -0.0203,
-   "ev": -0.0388,
-   "marketFair": 0.507,
-   "marketEdge": -0.0168,
-   "modelled": true,
-   "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0503,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -13589,7 +11977,8 @@ window.MARKET_DATA = {
    "past": -0.0505,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -13637,7 +12026,8 @@ window.MARKET_DATA = {
    "past": -0.1728,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "65104e496f8e5c0208eb59dd0c946475",
@@ -13683,7 +12073,8 @@ window.MARKET_DATA = {
    "past": -0.0507,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0327c5775ed8cc9854411f8e077af93",
@@ -13729,54 +12120,8 @@ window.MARKET_DATA = {
    "past": -0.0508,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Dallas Stars",
-    "point": null
-   },
-   "pick": "Dallas Stars ML",
-   "odds": -137,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -142,
-    "BetRivers": -150,
-    "FanDuel": -137,
-    "BetOnline.ag": -138,
-    "theScore Bet": -140
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5572,
-   "edge": -0.0209,
-   "ev": -0.0361,
-   "marketFair": 0.5628,
-   "marketEdge": -0.0153,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.073,
-   "past": -0.0939,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -13823,7 +12168,8 @@ window.MARKET_DATA = {
    "past": -0.0511,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1daaf8ba9d71d56b9657b450f3df7861",
@@ -13871,7 +12217,8 @@ window.MARKET_DATA = {
    "past": -0.0511,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -13920,7 +12267,8 @@ window.MARKET_DATA = {
    "past": -0.0515,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f9b805187f3809fdadddfa08dfa2a089",
@@ -13967,7 +12315,8 @@ window.MARKET_DATA = {
    "past": -0.0515,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -14015,7 +12364,8 @@ window.MARKET_DATA = {
    "past": -0.0515,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "107b8f81458dc555f99db1e929276a13",
@@ -14063,7 +12413,8 @@ window.MARKET_DATA = {
    "past": -0.0518,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8982b0a852d112b25310aa03f0f104b6",
@@ -14111,53 +12462,8 @@ window.MARKET_DATA = {
    "past": -0.052,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Buffalo Sabres",
-    "point": 1.5
-   },
-   "pick": "Buffalo Sabres +1.5",
-   "odds": -210,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -218,
-    "BetRivers": -210,
-    "FanDuel": -215,
-    "theScore Bet": -215
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6553,
-   "edge": -0.0221,
-   "ev": -0.0327,
-   "marketFair": 0.6578,
-   "marketEdge": -0.0197,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.0639,
-   "past": -0.086,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c113a0bd62980b8ec1ce85b27292f699",
@@ -14202,54 +12508,8 @@ window.MARKET_DATA = {
    "past": -0.0522,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 223.5
-   },
-   "pick": "Over 223.5",
-   "odds": -110,
-   "book": "BetMGM",
-   "prices": {
-    "FanDuel": -114,
-    "theScore Bet": -115,
-    "BetMGM": -110
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5015,
-   "edge": -0.0223,
-   "ev": -0.0426,
-   "marketFair": 0.4976,
-   "marketEdge": -0.0262,
-   "modelled": true,
-   "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0523,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "65104e496f8e5c0208eb59dd0c946475",
@@ -14295,7 +12555,8 @@ window.MARKET_DATA = {
    "past": -0.0523,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "873a763cc258ad94bac35324c66e361c",
@@ -14343,7 +12604,8 @@ window.MARKET_DATA = {
    "past": -0.0524,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -14391,7 +12653,8 @@ window.MARKET_DATA = {
    "past": -0.0525,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "7b3c2958dadc616a19ce7b9b1dd2a7e4",
@@ -14440,7 +12703,8 @@ window.MARKET_DATA = {
    "past": -0.0532,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5f45291a1a5e01525b2e3aebe791c436",
@@ -14486,6 +12750,54 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0532,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Winnipeg Jets @ Chicago Blackhawks",
+   "home": "Chicago Blackhawks",
+   "away": "Winnipeg Jets",
+   "commence": "2026-11-14T20:40:00Z",
+   "start": "Today 3:40 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -120,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -130,
+    "BetRivers": -136,
+    "FanDuel": -128,
+    "theScore Bet": -130,
+    "BetMGM": -120
+   },
+   "books": 5,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.522,
+   "edge": -0.0235,
+   "ev": -0.043,
+   "marketFair": 0.5377,
+   "marketEdge": -0.0077,
+   "modelled": true,
+   "model": {
+    "margin": -0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0535,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -14535,53 +12847,8 @@ window.MARKET_DATA = {
    "past": -0.0536,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 235.5
-   },
-   "pick": "Under 235.5",
-   "odds": -110,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -110,
-    "theScore Bet": -115,
-    "DraftKings": -115,
-    "BetMGM": -110
-   },
-   "books": 4,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5,
-   "edge": -0.0238,
-   "ev": -0.0455,
-   "marketFair": 0.5013,
-   "marketEdge": -0.0225,
-   "modelled": true,
-   "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0538,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0431ccbcda08ef99781fee8c341c8932",
@@ -14628,7 +12895,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a195a61a5f2a3c5c0ed7ba7b313572e5",
@@ -14676,7 +12944,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "83b67813ba763c65142b4238e3c44270",
@@ -14721,7 +12990,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "862cc541ca98da17b20a964513c18435",
@@ -14766,7 +13036,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -14812,7 +13083,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "462e4e8a99f44d5c64f36987e966cd13",
@@ -14858,7 +13130,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -14903,7 +13176,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -14949,7 +13223,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -14998,7 +13273,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -15042,7 +13318,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8a0a3acc1b435727e1e571600aecb68f",
@@ -15090,7 +13367,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c15d7c4261fa1d8b75615a46d4d2ea7",
@@ -15138,7 +13416,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1daaf8ba9d71d56b9657b450f3df7861",
@@ -15184,7 +13463,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0327c5775ed8cc9854411f8e077af93",
@@ -15230,7 +13510,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "018349e41d033e3b1fdbc14ce9b09325",
@@ -15275,7 +13556,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "107b8f81458dc555f99db1e929276a13",
@@ -15319,7 +13601,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -15364,7 +13647,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "65104e496f8e5c0208eb59dd0c946475",
@@ -15413,7 +13697,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "aa1c9ee516cf122de53e75ffec017edd",
@@ -15462,7 +13747,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d9bfb4f5e7ba909febe2a83fc04d4f15",
@@ -15508,7 +13794,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "7b3c2958dadc616a19ce7b9b1dd2a7e4",
@@ -15556,7 +13843,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8982b0a852d112b25310aa03f0f104b6",
@@ -15604,7 +13892,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -15650,7 +13939,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c3c46d55350226dd82d83ecf0b52891a",
@@ -15696,56 +13986,8 @@ window.MARKET_DATA = {
    "past": -0.0538,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 219.5
-   },
-   "pick": "Under 219.5",
-   "odds": -110,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -113,
-    "BetOnline.ag": -110,
-    "FanDuel": -118,
-    "theScore Bet": -120,
-    "BetMGM": -110
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.4999,
-   "edge": -0.0239,
-   "ev": -0.0456,
-   "marketFair": 0.5048,
-   "marketEdge": -0.019,
-   "modelled": true,
-   "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0539,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "f9b805187f3809fdadddfa08dfa2a089",
@@ -15790,57 +14032,8 @@ window.MARKET_DATA = {
    "past": -0.0539,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Indiana Pacers",
-    "point": 8.5
-   },
-   "pick": "Indiana Pacers +8.5",
-   "odds": -110,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -115,
-    "FanDuel": -110,
-    "theScore Bet": -115,
-    "BetRivers": -110,
-    "Bovada": -115,
-    "BetMGM": -110
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4997,
-   "edge": -0.0241,
-   "ev": -0.046,
-   "marketFair": 0.507,
-   "marketEdge": -0.0168,
-   "modelled": true,
-   "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0541,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "54769e255d6ea468fa2d12ed744eb6f2",
@@ -15889,7 +14082,8 @@ window.MARKET_DATA = {
    "past": -0.1619,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77380a347bae20671e1f8cec27ce658b",
@@ -15937,54 +14131,8 @@ window.MARKET_DATA = {
    "past": -0.0546,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 229.5
-   },
-   "pick": "Under 229.5",
-   "odds": -110,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": -115,
-    "DraftKings": -110,
-    "theScore Bet": -110,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.4991,
-   "edge": -0.0247,
-   "ev": -0.0472,
-   "marketFair": 0.4924,
-   "marketEdge": -0.0314,
-   "modelled": true,
-   "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0547,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0da9451fe176ce110bdcf79c077bb223",
@@ -16032,7 +14180,8 @@ window.MARKET_DATA = {
    "past": -0.0551,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -16079,7 +14228,8 @@ window.MARKET_DATA = {
    "past": -0.0554,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0431ccbcda08ef99781fee8c341c8932",
@@ -16124,7 +14274,8 @@ window.MARKET_DATA = {
    "past": -0.0555,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "54769e255d6ea468fa2d12ed744eb6f2",
@@ -16172,94 +14323,54 @@ window.MARKET_DATA = {
    "past": -0.0556,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
    "outcome": {
-    "name": "Over",
-    "point": 235.5
+    "name": "Montréal Canadiens",
+    "point": null
    },
-   "pick": "Over 235.5",
-   "odds": -110,
-   "book": "FanDuel",
+   "pick": "Montréal Canadiens ML",
+   "odds": -122,
+   "book": "DraftKings",
    "prices": {
-    "FanDuel": -110,
-    "theScore Bet": -115,
-    "BetMGM": -115
+    "FanDuel": -125,
+    "DraftKings": -122,
+    "BetRivers": -122,
+    "theScore Bet": -125,
+    "BetMGM": -125,
+    "Bovada": -125,
+    "BetOnline.ag": -125
    },
-   "books": 3,
+   "books": 8,
    "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.4981,
+   "anchorShift": 0,
+   "modelProb": 0.5238,
    "edge": -0.0257,
-   "ev": -0.0491,
-   "marketFair": 0.507,
+   "ev": -0.0469,
+   "marketFair": 0.5327,
    "marketEdge": -0.0168,
    "modelled": true,
    "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0557,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 220.5
-   },
-   "pick": "Over 220.5",
-   "odds": -112,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": -115,
-    "BetRivers": -112,
-    "theScore Bet": -115
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.5023,
-   "edge": -0.026,
-   "ev": -0.0492,
-   "marketFair": 0.5047,
-   "marketEdge": -0.0236,
-   "modelled": true,
-   "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.056,
+   "bar": 0.0728,
+   "past": -0.0985,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -16311,7 +14422,8 @@ window.MARKET_DATA = {
    "past": -0.1325,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8ad669f4c9b70f38fdb057c114588776",
@@ -16358,7 +14470,8 @@ window.MARKET_DATA = {
    "past": -0.056,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -16406,7 +14519,8 @@ window.MARKET_DATA = {
    "past": -0.056,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -16454,53 +14568,8 @@ window.MARKET_DATA = {
    "past": -0.0561,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Atlanta Hawks",
-    "point": -6.5
-   },
-   "pick": "Atlanta Hawks -6.5",
-   "odds": -115,
-   "book": "Bovada",
-   "prices": {
-    "DraftKings": -117,
-    "Bovada": -115,
-    "BetRivers": -118,
-    "BetMGM": -115
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5087,
-   "edge": -0.0262,
-   "ev": -0.049,
-   "marketFair": 0.5092,
-   "marketEdge": -0.0257,
-   "modelled": true,
-   "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0562,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "6f50a1eb0425d8adc1f4914bf27289d0",
@@ -16549,7 +14618,8 @@ window.MARKET_DATA = {
    "past": -0.0563,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "21c985dda7b6b34cc9820a76dfad6172",
@@ -16597,151 +14667,8 @@ window.MARKET_DATA = {
    "past": -0.0563,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Orlando Magic",
-    "point": -9.5
-   },
-   "pick": "Orlando Magic -9.5",
-   "odds": -110,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -110,
-    "BetOnline.ag": -115,
-    "BetRivers": -115,
-    "theScore Bet": -110,
-    "DraftKings": -112,
-    "Bovada": -110,
-    "BetMGM": -110
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4973,
-   "edge": -0.0265,
-   "ev": -0.0506,
-   "marketFair": 0.4954,
-   "marketEdge": -0.0285,
-   "modelled": true,
-   "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0565,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Utah Jazz",
-    "point": 15.5
-   },
-   "pick": "Utah Jazz +15.5",
-   "odds": -110,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -110,
-    "BetRivers": -115,
-    "DraftKings": -112,
-    "theScore Bet": -110,
-    "BetMGM": -115
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": 0.4971,
-   "edge": -0.0267,
-   "ev": -0.051,
-   "marketFair": 0.5024,
-   "marketEdge": -0.0214,
-   "modelled": true,
-   "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0567,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 48.5
-   },
-   "pick": "Under 48.5",
-   "odds": -110,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -110,
-    "BetMGM": -112,
-    "BetOnline.ag": -114,
-    "theScore Bet": -110
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4971,
-   "edge": -0.0267,
-   "ev": -0.051,
-   "marketFair": 0.5041,
-   "marketEdge": -0.0197,
-   "modelled": true,
-   "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0567,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "3b677ea4fddccce26e4468faf7079768",
@@ -16787,7 +14714,8 @@ window.MARKET_DATA = {
    "past": -0.0567,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77dfcbc978ae3818dc04d2434342bc48",
@@ -16798,7 +14726,7 @@ window.MARKET_DATA = {
    "home": "St Louis Blues",
    "away": "Florida Panthers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
@@ -16811,17 +14739,20 @@ window.MARKET_DATA = {
    "prices": {
     "DraftKings": 220,
     "BetRivers": 225,
-    "FanDuel": 198,
-    "theScore Bet": 200
+    "FanDuel": 210,
+    "BetOnline.ag": 222,
+    "theScore Bet": 200,
+    "BetMGM": 195,
+    "Bovada": 215
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.2806,
    "edge": -0.0271,
    "ev": -0.088,
-   "marketFair": 0.2992,
-   "marketEdge": -0.0085,
+   "marketFair": 0.3025,
+   "marketEdge": -0.0052,
    "modelled": true,
    "model": {
     "margin": 0.1,
@@ -16878,7 +14809,8 @@ window.MARKET_DATA = {
    "past": -0.0571,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "72e1af72402c489444f89a8600abb23f",
@@ -16923,7 +14855,8 @@ window.MARKET_DATA = {
    "past": -0.0572,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -16970,7 +14903,8 @@ window.MARKET_DATA = {
    "past": -0.0572,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -17016,7 +14950,8 @@ window.MARKET_DATA = {
    "past": -0.0575,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a21a2f1087d443fa1a1c71e1a03a0fe0",
@@ -17063,7 +14998,8 @@ window.MARKET_DATA = {
    "past": -0.0576,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0327c5775ed8cc9854411f8e077af93",
@@ -17110,6 +15046,53 @@ window.MARKET_DATA = {
    },
    "bar": 0.1116,
    "past": -0.1394,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "San Jose Sharks @ Utah Mammoth",
+   "home": "Utah Mammoth",
+   "away": "San Jose Sharks",
+   "commence": "2026-11-15T02:10:00Z",
+   "start": "Today 9:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -122,
+   "book": "BetRivers",
+   "prices": {
+    "DraftKings": -130,
+    "BetRivers": -122,
+    "FanDuel": -130,
+    "theScore Bet": -130
+   },
+   "books": 4,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.5216,
+   "edge": -0.0279,
+   "ev": -0.0509,
+   "marketFair": 0.5358,
+   "marketEdge": -0.0137,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.4,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0579,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -17160,102 +15143,8 @@ window.MARKET_DATA = {
    "past": -0.058,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": -104,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -108,
-    "BetRivers": -107,
-    "FanDuel": -106,
-    "BetOnline.ag": -104,
-    "theScore Bet": -105
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4815,
-   "edge": -0.0283,
-   "ev": -0.0555,
-   "marketFair": 0.4877,
-   "marketEdge": -0.0221,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0583,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Illinois Fighting Illini",
-    "point": 10.5
-   },
-   "pick": "Illinois Fighting Illini +10.5",
-   "odds": -112,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -112,
-    "FanDuel": -120,
-    "BetRivers": -113,
-    "BetOnline.ag": -113,
-    "theScore Bet": -115,
-    "Bovada": -115
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5,
-   "edge": -0.0283,
-   "ev": -0.0536,
-   "marketFair": 0.5092,
-   "marketEdge": -0.0191,
-   "modelled": true,
-   "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0583,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -17301,7 +15190,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "54769e255d6ea468fa2d12ed744eb6f2",
@@ -17346,7 +15236,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "109bd435222562d833efa2a511f9b79e",
@@ -17393,7 +15284,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "a21a2f1087d443fa1a1c71e1a03a0fe0",
@@ -17440,7 +15332,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8ad669f4c9b70f38fdb057c114588776",
@@ -17485,7 +15378,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1ce059ad7e592e033a7efe38d7bc7352",
@@ -17531,7 +15425,8 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "320a213c475110f032710dcd06c94e8e",
@@ -17579,98 +15474,148 @@ window.MARKET_DATA = {
    "past": -0.0583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "New Orleans Pelicans",
-    "point": 3.5
+    "name": "Under",
+    "point": 6
    },
-   "pick": "New Orleans Pelicans +3.5",
-   "odds": -110,
-   "book": "theScore Bet",
+   "pick": "Under 6",
+   "odds": -106,
+   "book": "BetOnline.ag",
    "prices": {
-    "FanDuel": -112,
-    "BetRivers": -113,
-    "theScore Bet": -110,
-    "DraftKings": -112,
-    "Bovada": -115,
-    "BetMGM": -115
+    "BetOnline.ag": -106,
+    "BetMGM": -110,
+    "Bovada": -110
    },
-   "books": 7,
+   "books": 4,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4952,
-   "edge": -0.0286,
-   "ev": -0.0546,
-   "marketFair": 0.5081,
-   "marketEdge": -0.0157,
+   "modelProb": 0.4861,
+   "edge": -0.0285,
+   "ev": -0.0553,
+   "marketFair": 0.5046,
+   "marketEdge": -0.01,
    "modelled": true,
    "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
+    "margin": 0.2,
+    "total": 6.2,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.0586,
+   "bar": 0.0314,
+   "past": -0.0599,
    "waiting": null,
    "pickId": null,
    "status": "none"
   },
   {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Colorado Avalanche",
-    "point": null
+    "name": "Under",
+    "point": 6.5
    },
-   "pick": "Colorado Avalanche ML",
-   "odds": -102,
-   "book": "DraftKings",
+   "pick": "Under 6.5",
+   "odds": -118,
+   "book": "FanDuel",
    "prices": {
-    "FanDuel": -105,
-    "DraftKings": -102,
-    "BetRivers": -106,
-    "theScore Bet": -105
+    "BetRivers": -122,
+    "DraftKings": -122,
+    "FanDuel": -118,
+    "BetOnline.ag": -120,
+    "theScore Bet": -125,
+    "BetMGM": -120,
+    "Bovada": -120
    },
-   "books": 4,
-   "anchor": null,
+   "books": 8,
+   "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4762,
-   "edge": -0.0288,
-   "ev": -0.0569,
-   "marketFair": 0.4886,
-   "marketEdge": -0.0164,
+   "modelProb": 0.5124,
+   "edge": -0.0289,
+   "ev": -0.0534,
+   "marketFair": 0.5193,
+   "marketEdge": -0.0219,
    "modelled": true,
    "model": {
-    "margin": 0.1,
-    "total": 6.5,
+    "margin": 1.3,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0589,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": -104,
+   "book": "FanDuel",
+   "prices": {
+    "DraftKings": -108,
+    "BetRivers": -106,
+    "FanDuel": -104,
+    "BetOnline.ag": -104,
+    "theScore Bet": -105,
+    "BetMGM": -105,
+    "Bovada": -108
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4807,
+   "edge": -0.0291,
+   "ev": -0.0571,
+   "marketFair": 0.4862,
+   "marketEdge": -0.0236,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
     "gp": 19,
     "thin": false
    },
-   "bar": 0.0728,
-   "past": -0.1016,
+   "bar": 0.03,
+   "past": -0.0591,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -17721,197 +15666,8 @@ window.MARKET_DATA = {
    "past": -0.0591,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Golden State Warriors",
-    "point": 12.5
-   },
-   "pick": "Golden State Warriors +12.5",
-   "odds": -115,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -115,
-    "theScore Bet": -115,
-    "Bovada": -115,
-    "BetMGM": -115
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5057,
-   "edge": -0.0292,
-   "ev": -0.0546,
-   "marketFair": 0.507,
-   "marketEdge": -0.0279,
-   "modelled": true,
-   "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0592,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 51.5
-   },
-   "pick": "Over 51.5",
-   "odds": -108,
-   "book": "Bovada",
-   "prices": {
-    "DraftKings": -112,
-    "FanDuel": -110,
-    "BetRivers": -115,
-    "theScore Bet": -110,
-    "BetMGM": -112,
-    "Bovada": -108
-   },
-   "books": 6,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.49,
-   "edge": -0.0292,
-   "ev": -0.0563,
-   "marketFair": 0.502,
-   "marketEdge": -0.0173,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0592,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "d04acca7f0f369fc53bf04cd3357cb0d",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Utah Jazz @ Houston Rockets",
-   "home": "Houston Rockets",
-   "away": "Utah Jazz",
-   "commence": "2026-11-14T01:40:00Z",
-   "start": "Today 8:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Utah Jazz",
-    "point": null
-   },
-   "pick": "Utah Jazz ML",
-   "odds": 800,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": 700,
-    "BetOnline.ag": 754,
-    "BetRivers": 700,
-    "DraftKings": 740,
-    "theScore Bet": 800,
-    "Bovada": 700,
-    "BetMGM": 725
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.0815,
-   "edge": -0.0296,
-   "ev": -0.2665,
-   "marketFair": 0.1089,
-   "marketEdge": -0.0022,
-   "modelled": true,
-   "model": {
-    "margin": 17.6,
-    "total": 223.3,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.0519,
-   "past": -0.0815,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -118,
-   "book": "DraftKings",
-   "prices": {
-    "BetRivers": -127,
-    "DraftKings": -118,
-    "FanDuel": -120,
-    "BetOnline.ag": -120,
-    "theScore Bet": -125
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5117,
-   "edge": -0.0296,
-   "ev": -0.0547,
-   "marketFair": 0.5257,
-   "marketEdge": -0.0156,
-   "modelled": true,
-   "model": {
-    "margin": 1.3,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0596,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -17957,7 +15713,8 @@ window.MARKET_DATA = {
    "past": -0.0597,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "109bd435222562d833efa2a511f9b79e",
@@ -18005,104 +15762,8 @@ window.MARKET_DATA = {
    "past": -0.0598,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 245.5
-   },
-   "pick": "Over 245.5",
-   "odds": -110,
-   "book": "BetOnline.ag",
-   "prices": {
-    "BetOnline.ag": -110,
-    "DraftKings": -111,
-    "theScore Bet": -110,
-    "Bovada": -110,
-    "BetRivers": -112,
-    "BetMGM": -115
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 1,
-   "modelProb": 0.4939,
-   "edge": -0.0299,
-   "ev": -0.0571,
-   "marketFair": 0.4959,
-   "marketEdge": -0.0279,
-   "modelled": true,
-   "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0599,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Portland Trail Blazers",
-    "point": null
-   },
-   "pick": "Portland Trail Blazers ML",
-   "odds": -455,
-   "book": "BetOnline.ag",
-   "prices": {
-    "FanDuel": -480,
-    "BetOnline.ag": -455,
-    "DraftKings": -468,
-    "theScore Bet": -500,
-    "Bovada": -470,
-    "BetRivers": -455,
-    "BetMGM": -475
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7899,
-   "edge": -0.0299,
-   "ev": -0.0365,
-   "marketFair": 0.7919,
-   "marketEdge": -0.0279,
-   "modelled": true,
-   "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1011,
-   "past": -0.131,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c15d7c4261fa1d8b75615a46d4d2ea7",
@@ -18151,99 +15812,8 @@ window.MARKET_DATA = {
    "past": -0.1863,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Colorado Avalanche",
-    "point": 1.5
-   },
-   "pick": "Colorado Avalanche +1.5",
-   "odds": -250,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": -265,
-    "DraftKings": -250,
-    "BetRivers": -278,
-    "theScore Bet": -275
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.684,
-   "edge": -0.0303,
-   "ev": -0.0424,
-   "marketFair": 0.6909,
-   "marketEdge": -0.0233,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.5,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0612,
-   "past": -0.0915,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f07a205e325038963274f255cb856cc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Edmonton Oilers @ Toronto Maple Leafs",
-   "home": "Toronto Maple Leafs",
-   "away": "Edmonton Oilers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Toronto Maple Leafs",
-    "point": 1.5
-   },
-   "pick": "Toronto Maple Leafs +1.5",
-   "odds": -175,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -185,
-    "BetRivers": -180,
-    "FanDuel": -188,
-    "theScore Bet": -175
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.606,
-   "edge": -0.0304,
-   "ev": -0.0477,
-   "marketFair": 0.6288,
-   "marketEdge": -0.0075,
-   "modelled": true,
-   "model": {
-    "margin": -0.7,
-    "total": 6.5,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0659,
-   "past": -0.0963,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "862cc541ca98da17b20a964513c18435",
@@ -18289,54 +15859,8 @@ window.MARKET_DATA = {
    "past": -0.0605,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "fa960f164539f05a9e76c85f358b93a6",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New Jersey Devils @ Washington Capitals",
-   "home": "Washington Capitals",
-   "away": "New Jersey Devils",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -119,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -122,
-    "BetRivers": -122,
-    "FanDuel": -122,
-    "BetOnline.ag": -119,
-    "theScore Bet": -120
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5126,
-   "edge": -0.0308,
-   "ev": -0.0566,
-   "marketFair": 0.5213,
-   "marketEdge": -0.022,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0608,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d9bfb4f5e7ba909febe2a83fc04d4f15",
@@ -18381,7 +15905,8 @@ window.MARKET_DATA = {
    "past": -0.0611,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -18428,7 +15953,8 @@ window.MARKET_DATA = {
    "past": -0.0612,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -18477,7 +16003,8 @@ window.MARKET_DATA = {
    "past": -0.1888,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "aa1c9ee516cf122de53e75ffec017edd",
@@ -18523,53 +16050,8 @@ window.MARKET_DATA = {
    "past": -0.0616,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -130,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -135,
-    "BetRivers": -136,
-    "FanDuel": -138,
-    "theScore Bet": -130
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5334,
-   "edge": -0.0318,
-   "ev": -0.0563,
-   "marketFair": 0.5477,
-   "marketEdge": -0.0175,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0618,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -18618,53 +16100,8 @@ window.MARKET_DATA = {
    "past": -0.1373,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "f3b622fed365136e09be1f7b53052543",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
-   "home": "Columbus Blue Jackets",
-   "away": "Philadelphia Flyers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Philadelphia Flyers",
-    "point": 1.5
-   },
-   "pick": "Philadelphia Flyers +1.5",
-   "odds": -215,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -218,
-    "BetRivers": -230,
-    "FanDuel": -220,
-    "theScore Bet": -215
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6503,
-   "edge": -0.0322,
-   "ev": -0.0472,
-   "marketFair": 0.6629,
-   "marketEdge": -0.0197,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.2,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0639,
-   "past": -0.0961,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "320a213c475110f032710dcd06c94e8e",
@@ -18712,238 +16149,8 @@ window.MARKET_DATA = {
    "past": -0.0624,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 218.5
-   },
-   "pick": "Under 218.5",
-   "odds": -110,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -115,
-    "BetRivers": -110
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4911,
-   "edge": -0.0327,
-   "ev": -0.0624,
-   "marketFair": 0.5068,
-   "marketEdge": -0.017,
-   "modelled": true,
-   "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0627,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 5.5
-   },
-   "pick": "Under 5.5",
-   "odds": 115,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": 114,
-    "FanDuel": 108,
-    "theScore Bet": 115
-   },
-   "books": 3,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4323,
-   "edge": -0.0328,
-   "ev": -0.0706,
-   "marketFair": 0.4513,
-   "marketEdge": -0.0138,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0628,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Vegas Golden Knights",
-    "point": -1.5
-   },
-   "pick": "Vegas Golden Knights -1.5",
-   "odds": 160,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": 150,
-    "BetOnline.ag": 160,
-    "BetMGM": 145,
-    "BetRivers": 155,
-    "FanDuel": 154,
-    "theScore Bet": 150,
-    "Bovada": 155
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3516,
-   "edge": -0.033,
-   "ev": -0.0858,
-   "marketFair": 0.3775,
-   "marketEdge": -0.0071,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0638,
-   "past": -0.0968,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f213f5d9c0852282bcf4d2c8c2bae9b",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Buffalo Sabres @ Dallas Stars",
-   "home": "Dallas Stars",
-   "away": "Buffalo Sabres",
-   "commence": "2026-11-15T01:10:00Z",
-   "start": "Tomorrow 8:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -130,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -130,
-    "BetRivers": -134,
-    "FanDuel": -134,
-    "theScore Bet": -130
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5321,
-   "edge": -0.0331,
-   "ev": -0.0586,
-   "marketFair": 0.5435,
-   "marketEdge": -0.0217,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.3,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0631,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "San Jose Sharks @ Utah Mammoth",
-   "home": "Utah Mammoth",
-   "away": "San Jose Sharks",
-   "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": -105,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -105,
-    "BetRivers": -112,
-    "FanDuel": -106,
-    "BetOnline.ag": -105,
-    "theScore Bet": -105
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4791,
-   "edge": -0.0331,
-   "ev": -0.0646,
-   "marketFair": 0.4977,
-   "marketEdge": -0.0145,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0631,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -18992,51 +16199,8 @@ window.MARKET_DATA = {
    "past": -0.0633,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "a51c350318d7570c2b74af08eedb9fcd",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Portland Trail Blazers @ Sacramento Kings",
-   "home": "Sacramento Kings",
-   "away": "Portland Trail Blazers",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Sacramento Kings",
-    "point": 10.5
-   },
-   "pick": "Sacramento Kings +10.5",
-   "odds": -115,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": -118,
-    "DraftKings": -115
-   },
-   "books": 3,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5011,
-   "edge": -0.0338,
-   "ev": -0.0632,
-   "marketFair": 0.5139,
-   "marketEdge": -0.0209,
-   "modelled": true,
-   "model": {
-    "margin": -9.7,
-    "total": 230.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0638,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "c3c46d55350226dd82d83ecf0b52891a",
@@ -19084,54 +16248,8 @@ window.MARKET_DATA = {
    "past": -0.0639,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "c3f43b11aaf8ba26496727f557330d72",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Winnipeg Jets @ Chicago Blackhawks",
-   "home": "Chicago Blackhawks",
-   "away": "Winnipeg Jets",
-   "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -125,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -130,
-    "BetRivers": -139,
-    "FanDuel": -132,
-    "BetOnline.ag": -125,
-    "theScore Bet": -130
-   },
-   "books": 5,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5212,
-   "edge": -0.0344,
-   "ev": -0.0618,
-   "marketFair": 0.5434,
-   "marketEdge": -0.0122,
-   "modelled": true,
-   "model": {
-    "margin": -0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0644,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d6d167714ff638b23e84d757ff522414",
@@ -19178,7 +16296,8 @@ window.MARKET_DATA = {
    "past": -0.0649,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -19222,7 +16341,8 @@ window.MARKET_DATA = {
    "past": -0.0649,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4ff5dc819e70afa47904e5b901e4f8bc",
@@ -19267,7 +16387,8 @@ window.MARKET_DATA = {
    "past": -0.0649,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -19313,7 +16434,8 @@ window.MARKET_DATA = {
    "past": -0.0649,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "01787a755109adbf19adf48ca4d60ddb",
@@ -19360,7 +16482,8 @@ window.MARKET_DATA = {
    "past": -0.0651,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "83b67813ba763c65142b4238e3c44270",
@@ -19408,7 +16531,8 @@ window.MARKET_DATA = {
    "past": -0.0655,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -19455,6 +16579,55 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0656,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "624643d0e1445dfdb95d86127440548a",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Colorado Avalanche @ Montréal Canadiens",
+   "home": "Montréal Canadiens",
+   "away": "Colorado Avalanche",
+   "commence": "2026-11-15T00:09:00Z",
+   "start": "Today 7:09 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -118,
+   "book": "DraftKings",
+   "prices": {
+    "FanDuel": -124,
+    "DraftKings": -118,
+    "BetRivers": -125,
+    "theScore Bet": -120,
+    "Bovada": -125,
+    "BetOnline.ag": -123
+   },
+   "books": 7,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5056,
+   "edge": -0.0357,
+   "ev": -0.0659,
+   "marketFair": 0.526,
+   "marketEdge": -0.0153,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0657,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -19506,7 +16679,8 @@ window.MARKET_DATA = {
    "past": -0.1756,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "4c76e6c2d67084d144ebe452d7d608a0",
@@ -19555,7 +16729,8 @@ window.MARKET_DATA = {
    "past": -0.1601,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d466840e3c50d2fdad6fd7e799fdf921",
@@ -19598,6 +16773,55 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.066,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "fa960f164539f05a9e76c85f358b93a6",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New Jersey Devils @ Washington Capitals",
+   "home": "Washington Capitals",
+   "away": "New Jersey Devils",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 6.5
+   },
+   "pick": "Under 6.5",
+   "odds": -122,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": -122,
+    "BetRivers": -122,
+    "FanDuel": -124,
+    "BetOnline.ag": -122,
+    "theScore Bet": -125,
+    "Bovada": -122
+   },
+   "books": 7,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5134,
+   "edge": -0.0361,
+   "ev": -0.0658,
+   "marketFair": 0.5216,
+   "marketEdge": -0.028,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0661,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -19646,7 +16870,8 @@ window.MARKET_DATA = {
    "past": -0.0663,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8a0a3acc1b435727e1e571600aecb68f",
@@ -19691,7 +16916,8 @@ window.MARKET_DATA = {
    "past": -0.0663,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "109bd435222562d833efa2a511f9b79e",
@@ -19740,107 +16966,8 @@ window.MARKET_DATA = {
    "past": -0.1888,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "6669b911691463c669a5c10574742e8e",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "New York Knicks @ Indiana Pacers",
-   "home": "Indiana Pacers",
-   "away": "New York Knicks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Indiana Pacers",
-    "point": null
-   },
-   "pick": "Indiana Pacers ML",
-   "odds": 271,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 271,
-    "BetOnline.ag": 270,
-    "FanDuel": 270,
-    "theScore Bet": 270,
-    "BetRivers": 260,
-    "Bovada": 260,
-    "BetMGM": 260
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.233,
-   "edge": -0.0365,
-   "ev": -0.1356,
-   "marketFair": 0.2633,
-   "marketEdge": -0.0063,
-   "modelled": true,
-   "model": {
-    "margin": -8.7,
-    "total": 219.7,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1061,
-   "past": -0.1426,
-   "waiting": [
-    "report not in for both clubs"
-   ],
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "21cd36d8c877a851efe2016178ff0bd1",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Nashville Predators @ Vegas Golden Knights",
-   "home": "Vegas Golden Knights",
-   "away": "Nashville Predators",
-   "commence": "2026-11-14T03:10:00Z",
-   "start": "Today 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Vegas Golden Knights",
-    "point": null
-   },
-   "pick": "Vegas Golden Knights ML",
-   "odds": -151,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -162,
-    "BetOnline.ag": -151,
-    "BetMGM": -160,
-    "BetRivers": -165,
-    "FanDuel": -160,
-    "theScore Bet": -155,
-    "Bovada": -155
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5651,
-   "edge": -0.0365,
-   "ev": -0.0607,
-   "marketFair": 0.5867,
-   "marketEdge": -0.0149,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0722,
-   "past": -0.1087,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "7f07a205e325038963274f255cb856cc",
@@ -19851,31 +16978,33 @@ window.MARKET_DATA = {
    "home": "Toronto Maple Leafs",
    "away": "Edmonton Oilers",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
     "name": "Toronto Maple Leafs",
-    "point": null
+    "point": 1.5
    },
-   "pick": "Toronto Maple Leafs ML",
-   "odds": 135,
-   "book": "BetRivers",
+   "pick": "Toronto Maple Leafs +1.5",
+   "odds": -180,
+   "book": "theScore Bet",
    "prices": {
-    "DraftKings": 130,
-    "BetRivers": 135,
-    "FanDuel": 134,
-    "BetOnline.ag": 128,
-    "theScore Bet": 135
+    "DraftKings": -185,
+    "BetRivers": -195,
+    "FanDuel": -194,
+    "BetOnline.ag": -190,
+    "theScore Bet": -180,
+    "BetMGM": -185,
+    "Bovada": -190
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.3882,
-   "edge": -0.0373,
-   "ev": -0.0877,
-   "marketFair": 0.4222,
-   "marketEdge": -0.0034,
+   "modelProb": 0.606,
+   "edge": -0.0369,
+   "ev": -0.0573,
+   "marketFair": 0.6328,
+   "marketEdge": -0.0101,
    "modelled": true,
    "model": {
     "margin": -0.7,
@@ -19883,8 +17012,57 @@ window.MARKET_DATA = {
     "gp": 20,
     "thin": false
    },
-   "bar": 0.0704,
-   "past": -0.1077,
+   "bar": 0.0659,
+   "past": -0.1028,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "f3b622fed365136e09be1f7b53052543",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
+   "home": "Columbus Blue Jackets",
+   "away": "Philadelphia Flyers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Philadelphia Flyers",
+    "point": 1.5
+   },
+   "pick": "Philadelphia Flyers +1.5",
+   "odds": -220,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -230,
+    "BetRivers": -230,
+    "FanDuel": -230,
+    "BetOnline.ag": -233,
+    "theScore Bet": -225,
+    "BetMGM": -220,
+    "Bovada": -230
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.6503,
+   "edge": -0.0372,
+   "ev": -0.0541,
+   "marketFair": 0.6692,
+   "marketEdge": -0.0183,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.2,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.0639,
+   "past": -0.1011,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -19936,7 +17114,8 @@ window.MARKET_DATA = {
    "past": -0.1084,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ac00a0cc63f0020c5d00d412dd706834",
@@ -19979,6 +17158,56 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0678,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Detroit Red Wings @ Tampa Bay Lightning",
+   "home": "Tampa Bay Lightning",
+   "away": "Detroit Red Wings",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Tampa Bay Lightning",
+    "point": -1.5
+   },
+   "pick": "Tampa Bay Lightning -1.5",
+   "odds": 120,
+   "book": "DraftKings",
+   "prices": {
+    "DraftKings": 120,
+    "BetRivers": 114,
+    "FanDuel": 114,
+    "BetOnline.ag": 120,
+    "theScore Bet": 115,
+    "BetMGM": 110,
+    "Bovada": 120
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4161,
+   "edge": -0.0384,
+   "ev": -0.0846,
+   "marketFair": 0.438,
+   "marketEdge": -0.0166,
+   "modelled": true,
+   "model": {
+    "margin": 0.8,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0676,
+   "past": -0.106,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -20026,6 +17255,53 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0684,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Florida Panthers @ St Louis Blues",
+   "home": "St Louis Blues",
+   "away": "Florida Panthers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 5.5
+   },
+   "pick": "Under 5.5",
+   "odds": 115,
+   "book": "theScore Bet",
+   "prices": {
+    "DraftKings": 110,
+    "BetRivers": 105,
+    "FanDuel": 114,
+    "theScore Bet": 115
+   },
+   "books": 4,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.4262,
+   "edge": -0.0389,
+   "ev": -0.0837,
+   "marketFair": 0.4532,
+   "marketEdge": -0.0119,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.3,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0689,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -20077,53 +17353,8 @@ window.MARKET_DATA = {
    "past": -0.1948,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 52.5
-   },
-   "pick": "Under 52.5",
-   "odds": -112,
-   "book": "Bovada",
-   "prices": {
-    "FanDuel": -115,
-    "DraftKings": -115,
-    "theScore Bet": -115,
-    "Bovada": -112
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4885,
-   "edge": -0.0398,
-   "ev": -0.0753,
-   "marketFair": 0.5092,
-   "marketEdge": -0.0191,
-   "modelled": true,
-   "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0698,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "558ce811ad052f49918a2855f3777baf",
@@ -20172,7 +17403,8 @@ window.MARKET_DATA = {
    "past": -0.1985,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "0431ccbcda08ef99781fee8c341c8932",
@@ -20221,53 +17453,8 @@ window.MARKET_DATA = {
    "past": -0.1941,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "624643d0e1445dfdb95d86127440548a",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Colorado Avalanche @ Montréal Canadiens",
-   "home": "Montréal Canadiens",
-   "away": "Colorado Avalanche",
-   "commence": "2026-11-15T00:09:00Z",
-   "start": "Tomorrow 7:09 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -120,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": -128,
-    "DraftKings": -120,
-    "BetRivers": -121,
-    "theScore Bet": -120
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5048,
-   "edge": -0.0407,
-   "ev": -0.0745,
-   "marketFair": 0.5241,
-   "marketEdge": -0.0214,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.5,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0707,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -20313,7 +17500,8 @@ window.MARKET_DATA = {
    "past": -0.0713,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
@@ -20324,7 +17512,7 @@ window.MARKET_DATA = {
    "home": "Tampa Bay Lightning",
    "away": "Detroit Red Wings",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -20333,22 +17521,24 @@ window.MARKET_DATA = {
    },
    "pick": "Tampa Bay Lightning ML",
    "odds": -210,
-   "book": "theScore Bet",
+   "book": "BetOnline.ag",
    "prices": {
     "DraftKings": -225,
     "BetRivers": -230,
-    "FanDuel": -220,
-    "BetOnline.ag": -215,
-    "theScore Bet": -210
+    "FanDuel": -225,
+    "BetOnline.ag": -210,
+    "theScore Bet": -210,
+    "BetMGM": -220,
+    "Bovada": -225
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.635,
    "edge": -0.0424,
    "ev": -0.0626,
-   "marketFair": 0.666,
-   "marketEdge": -0.0114,
+   "marketFair": 0.6651,
+   "marketEdge": -0.0123,
    "modelled": true,
    "model": {
     "margin": 0.8,
@@ -20409,54 +17599,8 @@ window.MARKET_DATA = {
    "past": -0.12,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Florida Panthers @ St Louis Blues",
-   "home": "St Louis Blues",
-   "away": "Florida Panthers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Florida Panthers",
-    "point": null
-   },
-   "pick": "Florida Panthers ML",
-   "odds": -110,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -115,
-    "BetRivers": -110,
-    "FanDuel": -122,
-    "BetOnline.ag": -115,
-    "theScore Bet": -115
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4806,
-   "edge": -0.0432,
-   "ev": -0.0825,
-   "marketFair": 0.5171,
-   "marketEdge": -0.0067,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0728,
-   "past": -0.116,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "fe42d22bafb7d5f406317697dff44ee6",
@@ -20501,6 +17645,203 @@ window.MARKET_DATA = {
    },
    "bar": 0.03,
    "past": -0.0733,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Minnesota Wild",
+    "point": -1.5
+   },
+   "pick": "Minnesota Wild -1.5",
+   "odds": 215,
+   "book": "Bovada",
+   "prices": {
+    "DraftKings": 210,
+    "BetRivers": 210,
+    "FanDuel": 205,
+    "BetOnline.ag": 210,
+    "theScore Bet": 200,
+    "BetMGM": 195,
+    "Bovada": 215
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.2736,
+   "edge": -0.0439,
+   "ev": -0.1382,
+   "marketFair": 0.3018,
+   "marketEdge": -0.0157,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.2,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0575,
+   "past": -0.1014,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "7f07a205e325038963274f255cb856cc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Edmonton Oilers @ Toronto Maple Leafs",
+   "home": "Toronto Maple Leafs",
+   "away": "Edmonton Oilers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Toronto Maple Leafs",
+    "point": null
+   },
+   "pick": "Toronto Maple Leafs ML",
+   "odds": 130,
+   "book": "FanDuel",
+   "prices": {
+    "DraftKings": 124,
+    "BetRivers": 128,
+    "FanDuel": 130,
+    "BetOnline.ag": 125,
+    "theScore Bet": 130,
+    "BetMGM": 125,
+    "Bovada": 127
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.3882,
+   "edge": -0.0466,
+   "ev": -0.1071,
+   "marketFair": 0.426,
+   "marketEdge": -0.0088,
+   "modelled": true,
+   "model": {
+    "margin": -0.7,
+    "total": 6.5,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.0704,
+   "past": -0.117,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Calgary Flames @ Los Angeles Kings",
+   "home": "Los Angeles Kings",
+   "away": "Calgary Flames",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Los Angeles Kings",
+    "point": -1.5
+   },
+   "pick": "Los Angeles Kings -1.5",
+   "odds": 153,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": 150,
+    "BetRivers": 150,
+    "BetOnline.ag": 153,
+    "FanDuel": 144,
+    "theScore Bet": 140,
+    "BetMGM": 135,
+    "Bovada": 145
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.3479,
+   "edge": -0.0474,
+   "ev": -0.1198,
+   "marketFair": 0.3929,
+   "marketEdge": -0.0023,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.3,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.0643,
+   "past": -0.1117,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Florida Panthers @ St Louis Blues",
+   "home": "St Louis Blues",
+   "away": "Florida Panthers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Florida Panthers",
+    "point": null
+   },
+   "pick": "Florida Panthers ML",
+   "odds": -112,
+   "book": "BetRivers",
+   "prices": {
+    "DraftKings": -115,
+    "BetRivers": -112,
+    "FanDuel": -120,
+    "BetOnline.ag": -114,
+    "theScore Bet": -115,
+    "BetMGM": -118,
+    "Bovada": -117
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4806,
+   "edge": -0.0477,
+   "ev": -0.0903,
+   "marketFair": 0.5173,
+   "marketEdge": -0.011,
+   "modelled": true,
+   "model": {
+    "margin": 0.1,
+    "total": 6.3,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0728,
+   "past": -0.1205,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -20552,103 +17893,8 @@ window.MARKET_DATA = {
    "past": -0.199,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "77dfcbc978ae3818dc04d2434342bc48",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Florida Panthers @ St Louis Blues",
-   "home": "St Louis Blues",
-   "away": "Florida Panthers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 5.5
-   },
-   "pick": "Under 5.5",
-   "odds": 111,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": 105,
-    "BetRivers": 107,
-    "FanDuel": 108,
-    "BetOnline.ag": 111,
-    "theScore Bet": 110
-   },
-   "books": 5,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4254,
-   "edge": -0.0485,
-   "ev": -0.1024,
-   "marketFair": 0.4598,
-   "marketEdge": -0.0141,
-   "modelled": true,
-   "model": {
-    "margin": 0.1,
-    "total": 6.3,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0785,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "eff5d01c8683ed700c896743f0490989",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Florida State Seminoles @ Pittsburgh Panthers",
-   "home": "Pittsburgh Panthers",
-   "away": "Florida State Seminoles",
-   "commence": "2026-11-14T00:00:00Z",
-   "start": "Today 7:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Pittsburgh Panthers",
-    "point": null
-   },
-   "pick": "Pittsburgh Panthers ML",
-   "odds": -165,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": -178,
-    "DraftKings": -170,
-    "BetRivers": -167,
-    "BetOnline.ag": -166,
-    "theScore Bet": -165,
-    "BetMGM": -175,
-    "Bovada": -173
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.574,
-   "edge": -0.0486,
-   "ev": -0.0781,
-   "marketFair": 0.6099,
-   "marketEdge": -0.0127,
-   "modelled": true,
-   "model": {
-    "margin": 3,
-    "total": 56.7,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.1558,
-   "past": -0.2044,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
@@ -20659,30 +17905,30 @@ window.MARKET_DATA = {
    "home": "Tampa Bay Lightning",
    "away": "Detroit Red Wings",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Tampa Bay Lightning",
-    "point": -1.5
+    "name": "Under",
+    "point": 6.5
    },
-   "pick": "Tampa Bay Lightning -1.5",
-   "odds": 115,
+   "pick": "Under 6.5",
+   "odds": -132,
    "book": "BetRivers",
    "prices": {
-    "DraftKings": 114,
-    "BetRivers": 115,
-    "FanDuel": 112,
-    "theScore Bet": 115
+    "DraftKings": -135,
+    "BetRivers": -132,
+    "FanDuel": -138,
+    "theScore Bet": -135
    },
-   "books": 5,
-   "anchor": "Pinnacle",
+   "books": 4,
+   "anchor": null,
    "anchorShift": 0,
-   "modelProb": 0.4161,
-   "edge": -0.049,
-   "ev": -0.1054,
-   "marketFair": 0.4421,
-   "marketEdge": -0.023,
+   "modelProb": 0.521,
+   "edge": -0.048,
+   "ev": -0.0843,
+   "marketFair": 0.5491,
+   "marketEdge": -0.0199,
    "modelled": true,
    "model": {
     "margin": 0.8,
@@ -20690,8 +17936,57 @@ window.MARKET_DATA = {
     "gp": 19,
     "thin": false
    },
-   "bar": 0.0676,
-   "past": -0.1166,
+   "bar": 0.03,
+   "past": -0.078,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "f3b622fed365136e09be1f7b53052543",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
+   "home": "Columbus Blue Jackets",
+   "away": "Philadelphia Flyers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Under",
+    "point": 5.5
+   },
+   "pick": "Under 5.5",
+   "odds": 105,
+   "book": "BetRivers",
+   "prices": {
+    "DraftKings": -102,
+    "BetRivers": 105,
+    "FanDuel": -104,
+    "BetOnline.ag": -106,
+    "theScore Bet": 100,
+    "BetMGM": -105,
+    "Bovada": -103
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4395,
+   "edge": -0.0483,
+   "ev": -0.099,
+   "marketFair": 0.4852,
+   "marketEdge": -0.0026,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.2,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0783,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -20743,6 +18038,56 @@ window.MARKET_DATA = {
    "past": -0.2042,
    "waiting": null,
    "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "ce4dd515ea49344d4707778f27669fec",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New York Islanders @ Anaheim Ducks",
+   "home": "Anaheim Ducks",
+   "away": "New York Islanders",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "New York Islanders",
+    "point": 1.5
+   },
+   "pick": "New York Islanders +1.5",
+   "odds": -235,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -258,
+    "BetRivers": -265,
+    "BetOnline.ag": -250,
+    "FanDuel": -250,
+    "theScore Bet": -265,
+    "BetMGM": -235,
+    "Bovada": -250
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.6517,
+   "edge": -0.0498,
+   "ev": -0.071,
+   "marketFair": 0.6874,
+   "marketEdge": -0.0141,
+   "modelled": true,
+   "model": {
+    "margin": 0.4,
+    "total": 6.4,
+    "gp": 18,
+    "thin": false
+   },
+   "bar": 0.0641,
+   "past": -0.1139,
+   "waiting": null,
+   "pickId": null,
    "status": "none"
   },
   {
@@ -20754,7 +18099,7 @@ window.MARKET_DATA = {
    "home": "Washington Capitals",
    "away": "New Jersey Devils",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
@@ -20763,21 +18108,24 @@ window.MARKET_DATA = {
    },
    "pick": "New Jersey Devils -1.5",
    "odds": 210,
-   "book": "BetRivers",
+   "book": "Bovada",
    "prices": {
     "DraftKings": 205,
-    "BetRivers": 210,
-    "FanDuel": 194,
-    "theScore Bet": 190
+    "BetRivers": 205,
+    "FanDuel": 198,
+    "BetOnline.ag": 207,
+    "theScore Bet": 190,
+    "BetMGM": 190,
+    "Bovada": 210
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.2722,
    "edge": -0.0504,
    "ev": -0.1562,
-   "marketFair": 0.3058,
-   "marketEdge": -0.0168,
+   "marketFair": 0.3114,
+   "marketEdge": -0.0112,
    "modelled": true,
    "model": {
     "margin": 0.2,
@@ -20792,142 +18140,50 @@ window.MARKET_DATA = {
    "status": "none"
   },
   {
-   "eventId": "73d83d88b3a35eeb4bcf8462ff2070b2",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Houston Cougars @ Colorado Buffaloes",
-   "home": "Colorado Buffaloes",
-   "away": "Houston Cougars",
-   "commence": "2026-11-14T03:15:00Z",
-   "start": "Today 10:15 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "eventId": "ce4dd515ea49344d4707778f27669fec",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "New York Islanders @ Anaheim Ducks",
+   "home": "Anaheim Ducks",
+   "away": "New York Islanders",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Colorado Buffaloes",
-    "point": null
+    "name": "Over",
+    "point": 6.5
    },
-   "pick": "Colorado Buffaloes ML",
-   "odds": 260,
-   "book": "DraftKings",
+   "pick": "Over 6.5",
+   "odds": -118,
+   "book": "BetRivers",
    "prices": {
-    "DraftKings": 260,
-    "FanDuel": 255,
-    "BetRivers": 255,
-    "BetOnline.ag": 256,
-    "theScore Bet": 260,
-    "BetMGM": 260,
-    "Bovada": 260
+    "DraftKings": -130,
+    "BetRivers": -118,
+    "BetOnline.ag": -126,
+    "FanDuel": -128,
+    "theScore Bet": -130,
+    "BetMGM": -130,
+    "Bovada": -128
    },
    "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.2262,
-   "edge": -0.0516,
-   "ev": -0.1857,
-   "marketFair": 0.2684,
-   "marketEdge": -0.0094,
-   "modelled": true,
-   "model": {
-    "margin": -12,
-    "total": 47.9,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.1213,
-   "past": -0.1729,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Calgary Flames @ Los Angeles Kings",
-   "home": "Los Angeles Kings",
-   "away": "Calgary Flames",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Los Angeles Kings",
-    "point": -1.5
-   },
-   "pick": "Los Angeles Kings -1.5",
-   "odds": 150,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": 142,
-    "BetRivers": 140,
-    "FanDuel": 138,
-    "theScore Bet": 150
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3479,
-   "edge": -0.0521,
-   "ev": -0.1302,
-   "marketFair": 0.3817,
-   "marketEdge": -0.0183,
+   "modelProb": 0.4891,
+   "edge": -0.0522,
+   "ev": -0.0964,
+   "marketFair": 0.5388,
+   "marketEdge": -0.0025,
    "modelled": true,
    "model": {
     "margin": 0.4,
-    "total": 6.3,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0643,
-   "past": -0.1164,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "9df5283f800c7d4c2d0bd38b7c5f4846",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Detroit Red Wings @ Tampa Bay Lightning",
-   "home": "Tampa Bay Lightning",
-   "away": "Detroit Red Wings",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 6.5
-   },
-   "pick": "Under 6.5",
-   "odds": -134,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -135,
-    "BetRivers": -136,
-    "FanDuel": -134,
-    "theScore Bet": -135
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.5202,
-   "edge": -0.0524,
-   "ev": -0.0916,
-   "marketFair": 0.5494,
-   "marketEdge": -0.0233,
-   "modelled": true,
-   "model": {
-    "margin": 0.8,
     "total": 6.4,
-    "gp": 19,
+    "gp": 18,
     "thin": false
    },
    "bar": 0.03,
-   "past": -0.0824,
+   "past": -0.0822,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -20979,100 +18235,8 @@ window.MARKET_DATA = {
    "past": -0.1583,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Minnesota Wild",
-    "point": -1.5
-   },
-   "pick": "Minnesota Wild -1.5",
-   "odds": 205,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": 205,
-    "BetRivers": 195,
-    "FanDuel": 194,
-    "theScore Bet": 190
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.2736,
-   "edge": -0.0543,
-   "ev": -0.1655,
-   "marketFair": 0.3109,
-   "marketEdge": -0.017,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0575,
-   "past": -0.1118,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Carolina Hurricanes",
-    "point": null
-   },
-   "pick": "Carolina Hurricanes ML",
-   "odds": -315,
-   "book": "BetOnline.ag",
-   "prices": {
-    "BetRivers": -360,
-    "DraftKings": -340,
-    "FanDuel": -330,
-    "BetOnline.ag": -315,
-    "theScore Bet": -360
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7044,
-   "edge": -0.0546,
-   "ev": -0.072,
-   "marketFair": 0.7557,
-   "marketEdge": -0.0033,
-   "modelled": true,
-   "model": {
-    "margin": 1.3,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0669,
-   "past": -0.1215,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "13916d6f26b193abfc3367d80f27e64c",
@@ -21121,101 +18285,8 @@ window.MARKET_DATA = {
    "past": -0.1524,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ce4dd515ea49344d4707778f27669fec",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Islanders @ Anaheim Ducks",
-   "home": "Anaheim Ducks",
-   "away": "New York Islanders",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 6.5
-   },
-   "pick": "Over 6.5",
-   "odds": -120,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -122,
-    "BetRivers": -120,
-    "BetOnline.ag": -126,
-    "FanDuel": -128,
-    "theScore Bet": -125
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4898,
-   "edge": -0.0557,
-   "ev": -0.102,
-   "marketFair": 0.5279,
-   "marketEdge": -0.0176,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.4,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0857,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "f3b622fed365136e09be1f7b53052543",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Philadelphia Flyers @ Columbus Blue Jackets",
-   "home": "Columbus Blue Jackets",
-   "away": "Philadelphia Flyers",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 5.5
-   },
-   "pick": "Under 5.5",
-   "odds": 102,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -102,
-    "BetRivers": 102,
-    "FanDuel": 100,
-    "BetOnline.ag": -106,
-    "theScore Bet": 100
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4388,
-   "edge": -0.0562,
-   "ev": -0.1136,
-   "marketFair": 0.4787,
-   "marketEdge": -0.0164,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.2,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.0862,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ee91eb14cc4d725be5df58f3285bdaa6",
@@ -21264,7 +18335,8 @@ window.MARKET_DATA = {
    "past": -0.2103,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8982b0a852d112b25310aa03f0f104b6",
@@ -21313,7 +18385,8 @@ window.MARKET_DATA = {
    "past": -0.1718,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "72e1af72402c489444f89a8600abb23f",
@@ -21362,7 +18435,8 @@ window.MARKET_DATA = {
    "past": -0.2153,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce4dd515ea49344d4707778f27669fec",
@@ -21373,7 +18447,7 @@ window.MARKET_DATA = {
    "home": "Anaheim Ducks",
    "away": "New York Islanders",
    "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
+   "start": "Today 10:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -21382,22 +18456,24 @@ window.MARKET_DATA = {
    },
    "pick": "New York Islanders ML",
    "odds": 100,
-   "book": "BetOnline.ag",
+   "book": "BetRivers",
    "prices": {
     "DraftKings": -105,
-    "BetRivers": -103,
+    "BetRivers": 100,
     "BetOnline.ag": 100,
-    "FanDuel": -102,
-    "theScore Bet": 100
+    "FanDuel": -104,
+    "theScore Bet": -105,
+    "BetMGM": -105,
+    "Bovada": -103
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.4386,
    "edge": -0.0614,
    "ev": -0.1228,
-   "marketFair": 0.4807,
-   "marketEdge": -0.0193,
+   "marketFair": 0.4815,
+   "marketEdge": -0.0185,
    "modelled": true,
    "model": {
     "margin": 0.4,
@@ -21420,31 +18496,33 @@ window.MARKET_DATA = {
    "home": "Chicago Blackhawks",
    "away": "Winnipeg Jets",
    "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
+   "start": "Today 3:40 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
     "name": "Winnipeg Jets",
-    "point": null
+    "point": -1.5
    },
-   "pick": "Winnipeg Jets ML",
-   "odds": -145,
-   "book": "theScore Bet",
+   "pick": "Winnipeg Jets -1.5",
+   "odds": 161,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -155,
-    "BetRivers": -152,
-    "FanDuel": -164,
-    "BetOnline.ag": -148,
-    "theScore Bet": -145
+    "DraftKings": 154,
+    "BetRivers": 145,
+    "FanDuel": 146,
+    "BetOnline.ag": 161,
+    "theScore Bet": 150,
+    "BetMGM": 150,
+    "Bovada": 160
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.5302,
+   "modelProb": 0.3215,
    "edge": -0.0616,
-   "ev": -0.1041,
-   "marketFair": 0.5796,
-   "marketEdge": -0.0123,
+   "ev": -0.1609,
+   "marketFair": 0.3734,
+   "marketEdge": -0.0097,
    "modelled": true,
    "model": {
     "margin": -0.2,
@@ -21452,101 +18530,8 @@ window.MARKET_DATA = {
     "gp": 19,
     "thin": false
    },
-   "bar": 0.0727,
-   "past": -0.1343,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Calgary Flames @ Los Angeles Kings",
-   "home": "Los Angeles Kings",
-   "away": "Calgary Flames",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Los Angeles Kings",
-    "point": null
-   },
-   "pick": "Los Angeles Kings ML",
-   "odds": -165,
-   "book": "theScore Bet",
-   "prices": {
-    "DraftKings": -175,
-    "BetRivers": -182,
-    "BetOnline.ag": -170,
-    "FanDuel": -170,
-    "theScore Bet": -165
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5609,
-   "edge": -0.0617,
-   "ev": -0.0992,
-   "marketFair": 0.6025,
-   "marketEdge": -0.0201,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0732,
-   "past": -0.1349,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ce4dd515ea49344d4707778f27669fec",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Islanders @ Anaheim Ducks",
-   "home": "Anaheim Ducks",
-   "away": "New York Islanders",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "New York Islanders",
-    "point": 1.5
-   },
-   "pick": "New York Islanders +1.5",
-   "odds": -250,
-   "book": "DraftKings",
-   "prices": {
-    "DraftKings": -250,
-    "BetRivers": -265,
-    "FanDuel": -250,
-    "theScore Bet": -250
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6517,
-   "edge": -0.0626,
-   "ev": -0.0876,
-   "marketFair": 0.6861,
-   "marketEdge": -0.0282,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.4,
-    "gp": 18,
-    "thin": false
-   },
-   "bar": 0.0641,
-   "past": -0.1267,
+   "bar": 0.0616,
+   "past": -0.1232,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -21598,50 +18583,54 @@ window.MARKET_DATA = {
    "past": -0.2012,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Winnipeg Jets @ Chicago Blackhawks",
-   "home": "Chicago Blackhawks",
-   "away": "Winnipeg Jets",
-   "commence": "2026-11-14T20:40:00Z",
-   "start": "Tomorrow 3:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
+   "event": "Minnesota Wild @ Boston Bruins",
+   "home": "Boston Bruins",
+   "away": "Minnesota Wild",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
    "outcome": {
-    "name": "Winnipeg Jets",
-    "point": -1.5
+    "name": "Minnesota Wild",
+    "point": null
    },
-   "pick": "Winnipeg Jets -1.5",
-   "odds": 160,
-   "book": "DraftKings",
+   "pick": "Minnesota Wild ML",
+   "odds": -115,
+   "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": 160,
-    "BetRivers": 160,
-    "FanDuel": 148,
-    "theScore Bet": 160
+    "DraftKings": -118,
+    "BetRivers": -118,
+    "FanDuel": -118,
+    "BetOnline.ag": -115,
+    "theScore Bet": -120,
+    "BetMGM": -118,
+    "Bovada": -117
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.3215,
+   "modelProb": 0.4718,
    "edge": -0.0631,
-   "ev": -0.1641,
-   "marketFair": 0.3592,
-   "marketEdge": -0.0255,
+   "ev": -0.1179,
+   "marketFair": 0.5162,
+   "marketEdge": -0.0186,
    "modelled": true,
    "model": {
-    "margin": -0.2,
-    "total": 6.4,
+    "margin": 0.2,
+    "total": 6.2,
     "gp": 19,
     "thin": false
    },
-   "bar": 0.0616,
-   "past": -0.1247,
+   "bar": 0.0724,
+   "past": -0.1355,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -21693,7 +18682,8 @@ window.MARKET_DATA = {
    "past": -0.1789,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "b7d77aed1f8f75da7679a059e627dfee",
@@ -21742,50 +18732,54 @@ window.MARKET_DATA = {
    "past": -0.2222,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
+   "event": "Calgary Flames @ Los Angeles Kings",
+   "home": "Los Angeles Kings",
+   "away": "Calgary Flames",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
    "outcome": {
-    "name": "Ottawa Senators",
-    "point": -1.5
+    "name": "Under",
+    "point": 5.5
    },
-   "pick": "Ottawa Senators -1.5",
-   "odds": 205,
-   "book": "BetRivers",
+   "pick": "Under 5.5",
+   "odds": 105,
+   "book": "theScore Bet",
    "prices": {
-    "DraftKings": 195,
-    "BetRivers": 205,
-    "FanDuel": 184,
-    "theScore Bet": 180
+    "DraftKings": 100,
+    "BetRivers": -103,
+    "BetOnline.ag": 104,
+    "FanDuel": 102,
+    "theScore Bet": 105,
+    "BetMGM": 100,
+    "Bovada": -103
    },
-   "books": 5,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.2632,
-   "edge": -0.0647,
-   "ev": -0.1972,
-   "marketFair": 0.3259,
-   "marketEdge": -0.002,
+   "modelProb": 0.4219,
+   "edge": -0.0659,
+   "ev": -0.1351,
+   "marketFair": 0.474,
+   "marketEdge": -0.0138,
    "modelled": true,
    "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 19,
+    "margin": 0.4,
+    "total": 6.3,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.0567,
-   "past": -0.1214,
+   "bar": 0.03,
+   "past": -0.0959,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -21799,7 +18793,7 @@ window.MARKET_DATA = {
    "home": "Washington Capitals",
    "away": "New Jersey Devils",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "start": "Today 7:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
@@ -21807,23 +18801,25 @@ window.MARKET_DATA = {
     "point": null
    },
    "pick": "New Jersey Devils ML",
-   "odds": -115,
-   "book": "theScore Bet",
+   "odds": -116,
+   "book": "BetOnline.ag",
    "prices": {
     "DraftKings": -120,
-    "BetRivers": -117,
-    "FanDuel": -125,
-    "BetOnline.ag": -118,
-    "theScore Bet": -115
+    "BetRivers": -121,
+    "FanDuel": -120,
+    "BetOnline.ag": -116,
+    "theScore Bet": -120,
+    "BetMGM": -120,
+    "Bovada": -120
    },
-   "books": 6,
+   "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
    "modelProb": 0.4701,
-   "edge": -0.0648,
-   "ev": -0.1211,
-   "marketFair": 0.5161,
-   "marketEdge": -0.0188,
+   "edge": -0.0669,
+   "ev": -0.1246,
+   "marketFair": 0.5196,
+   "marketEdge": -0.0175,
    "modelled": true,
    "model": {
     "margin": 0.2,
@@ -21832,7 +18828,7 @@ window.MARKET_DATA = {
     "thin": false
    },
    "bar": 0.0733,
-   "past": -0.1381,
+   "past": -0.1402,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -21884,103 +18880,55 @@ window.MARKET_DATA = {
    "past": -0.2234,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "20f100d5b4c8ce5d8c868f34ea7bddbf",
+   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Minnesota Wild @ Boston Bruins",
-   "home": "Boston Bruins",
-   "away": "Minnesota Wild",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
+   "event": "Calgary Flames @ Los Angeles Kings",
+   "home": "Los Angeles Kings",
+   "away": "Calgary Flames",
+   "commence": "2026-11-15T03:10:00Z",
+   "start": "Today 10:10 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
-    "name": "Minnesota Wild",
+    "name": "Los Angeles Kings",
     "point": null
    },
-   "pick": "Minnesota Wild ML",
-   "odds": -117,
+   "pick": "Los Angeles Kings ML",
+   "odds": -170,
    "book": "BetOnline.ag",
    "prices": {
-    "DraftKings": -122,
-    "BetRivers": -125,
-    "FanDuel": -120,
-    "BetOnline.ag": -117,
-    "theScore Bet": -120
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4718,
-   "edge": -0.0674,
-   "ev": -0.125,
-   "marketFair": 0.5282,
-   "marketEdge": -0.011,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.2,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0724,
-   "past": -0.1398,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "76416359b5453c01968e94702a375f16",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Milwaukee Bucks @ Orlando Magic",
-   "home": "Orlando Magic",
-   "away": "Milwaukee Bucks",
-   "commence": "2026-11-14T00:10:00Z",
-   "start": "Today 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Orlando Magic",
-    "point": null
-   },
-   "pick": "Orlando Magic ML",
-   "odds": -385,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": -390,
-    "BetOnline.ag": -400,
-    "BetRivers": -385,
-    "theScore Bet": -400,
-    "DraftKings": -395,
-    "Bovada": -390,
-    "BetMGM": -400
+    "DraftKings": -175,
+    "BetRivers": -175,
+    "BetOnline.ag": -170,
+    "FanDuel": -176,
+    "theScore Bet": -175,
+    "BetMGM": -180,
+    "Bovada": -177
    },
    "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.7254,
-   "edge": -0.0684,
-   "ev": -0.0862,
-   "marketFair": 0.7648,
-   "marketEdge": -0.029,
+   "modelProb": 0.5609,
+   "edge": -0.0687,
+   "ev": -0.1092,
+   "marketFair": 0.6163,
+   "marketEdge": -0.0133,
    "modelled": true,
    "model": {
-    "margin": 7.6,
-    "total": 225.3,
-    "gp": 11,
+    "margin": 0.4,
+    "total": 6.3,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.1163,
-   "past": -0.1847,
-   "waiting": [
-    "report not in for both clubs"
-   ],
+   "bar": 0.0732,
+   "past": -0.1419,
+   "waiting": null,
    "pickId": null,
    "status": "none"
   },
@@ -22029,6 +18977,55 @@ window.MARKET_DATA = {
    },
    "bar": 0.1202,
    "past": -0.1889,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "7f07a205e325038963274f255cb856cc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Edmonton Oilers @ Toronto Maple Leafs",
+   "home": "Toronto Maple Leafs",
+   "away": "Edmonton Oilers",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "totals",
+   "market": "Total",
+   "outcome": {
+    "name": "Over",
+    "point": 6.5
+   },
+   "pick": "Over 6.5",
+   "odds": -130,
+   "book": "BetMGM",
+   "prices": {
+    "DraftKings": -135,
+    "BetRivers": -141,
+    "FanDuel": -138,
+    "theScore Bet": -135,
+    "BetMGM": -130,
+    "Bovada": -135
+   },
+   "books": 6,
+   "anchor": null,
+   "anchorShift": 0,
+   "modelProb": 0.4963,
+   "edge": -0.0689,
+   "ev": -0.1219,
+   "marketFair": 0.5497,
+   "marketEdge": -0.0155,
+   "modelled": true,
+   "model": {
+    "margin": -0.7,
+    "total": 6.5,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.03,
+   "past": -0.0989,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -22080,96 +19077,54 @@ window.MARKET_DATA = {
    "past": -0.2109,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "4d5a1a721175165a7fc09cc39fd19214",
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "Calgary Flames @ Los Angeles Kings",
-   "home": "Los Angeles Kings",
-   "away": "Calgary Flames",
-   "commence": "2026-11-15T03:10:00Z",
-   "start": "Tomorrow 10:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 5.5
-   },
-   "pick": "Under 5.5",
-   "odds": 102,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -102,
-    "BetRivers": -103,
-    "FanDuel": 102,
-    "theScore Bet": 100
-   },
-   "books": 4,
-   "anchor": null,
-   "anchorShift": 0,
-   "modelProb": 0.4212,
-   "edge": -0.0738,
-   "ev": -0.1492,
-   "marketFair": 0.4785,
-   "marketEdge": -0.0166,
-   "modelled": true,
-   "model": {
-    "margin": 0.4,
-    "total": 6.3,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.03,
-   "past": -0.1038,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "7f07a205e325038963274f255cb856cc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Edmonton Oilers @ Toronto Maple Leafs",
-   "home": "Toronto Maple Leafs",
-   "away": "Edmonton Oilers",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
    "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
    "outcome": {
-    "name": "Over",
-    "point": 6.5
+    "name": "Ottawa Senators",
+    "point": -1.5
    },
-   "pick": "Over 6.5",
-   "odds": -135,
+   "pick": "Ottawa Senators -1.5",
+   "odds": 195,
    "book": "DraftKings",
    "prices": {
-    "DraftKings": -135,
-    "BetRivers": -148,
-    "FanDuel": -142,
-    "theScore Bet": -145
+    "DraftKings": 195,
+    "BetRivers": 190,
+    "FanDuel": 186,
+    "BetOnline.ag": 192,
+    "theScore Bet": 175,
+    "BetMGM": 170,
+    "Bovada": 185
    },
-   "books": 4,
-   "anchor": null,
+   "books": 8,
+   "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.497,
-   "edge": -0.0775,
-   "ev": -0.1349,
-   "marketFair": 0.5609,
-   "marketEdge": -0.0136,
+   "modelProb": 0.2632,
+   "edge": -0.0758,
+   "ev": -0.2236,
+   "marketFair": 0.3333,
+   "marketEdge": -0.0057,
    "modelled": true,
    "model": {
-    "margin": -0.7,
-    "total": 6.5,
-    "gp": 20,
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.03,
-   "past": -0.1075,
+   "bar": 0.0567,
+   "past": -0.1325,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -22221,53 +19176,54 @@ window.MARKET_DATA = {
    "past": -0.1957,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "58b860d500be69ebf853926aa1ac8271",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Cleveland Cavaliers @ Miami Heat",
-   "home": "Miami Heat",
-   "away": "Cleveland Cavaliers",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
+   "eventId": "c3f43b11aaf8ba26496727f557330d72",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Winnipeg Jets @ Chicago Blackhawks",
+   "home": "Chicago Blackhawks",
+   "away": "Winnipeg Jets",
+   "commence": "2026-11-14T20:40:00Z",
+   "start": "Today 3:40 PM ET",
    "marketKey": "h2h",
    "market": "Moneyline",
    "outcome": {
-    "name": "Miami Heat",
+    "name": "Winnipeg Jets",
     "point": null
    },
-   "pick": "Miami Heat ML",
-   "odds": -134,
-   "book": "FanDuel",
+   "pick": "Winnipeg Jets ML",
+   "odds": -155,
+   "book": "theScore Bet",
    "prices": {
-    "FanDuel": -134,
-    "BetOnline.ag": -135,
-    "DraftKings": -135,
-    "theScore Bet": -140,
-    "BetRivers": -136,
-    "Bovada": -140,
-    "BetMGM": -145
+    "DraftKings": -162,
+    "BetRivers": -175,
+    "FanDuel": -164,
+    "BetOnline.ag": -156,
+    "theScore Bet": -155,
+    "BetMGM": -160,
+    "Bovada": -163
    },
    "books": 8,
    "anchor": "Pinnacle",
    "anchorShift": 0,
-   "modelProb": 0.4927,
-   "edge": -0.0799,
-   "ev": -0.1396,
-   "marketFair": 0.5523,
-   "marketEdge": -0.0203,
+   "modelProb": 0.5302,
+   "edge": -0.0776,
+   "ev": -0.1277,
+   "marketFair": 0.5971,
+   "marketEdge": -0.0107,
    "modelled": true,
    "model": {
-    "margin": 0,
-    "total": 233.2,
-    "gp": 11,
+    "margin": -0.2,
+    "total": 6.4,
+    "gp": 19,
     "thin": false
    },
-   "bar": 0.1392,
-   "past": -0.2191,
+   "bar": 0.0727,
+   "past": -0.1503,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -22319,7 +19275,8 @@ window.MARKET_DATA = {
    "past": -0.2326,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "28a08b75e830f2fbaaeaa3b42c2ebb63",
@@ -22368,54 +19325,8 @@ window.MARKET_DATA = {
    "past": -0.2139,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Ottawa Senators @ Pittsburgh Penguins",
-   "home": "Pittsburgh Penguins",
-   "away": "Ottawa Senators",
-   "commence": "2026-11-15T00:10:00Z",
-   "start": "Tomorrow 7:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Ottawa Senators",
-    "point": null
-   },
-   "pick": "Ottawa Senators ML",
-   "odds": -118,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -125,
-    "BetRivers": -120,
-    "FanDuel": -128,
-    "BetOnline.ag": -118,
-    "theScore Bet": -125
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4586,
-   "edge": -0.0827,
-   "ev": -0.1528,
-   "marketFair": 0.5376,
-   "marketEdge": -0.0037,
-   "modelled": true,
-   "model": {
-    "margin": 0.2,
-    "total": 6.4,
-    "gp": 19,
-    "thin": false
-   },
-   "bar": 0.0725,
-   "past": -0.1552,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "83b67813ba763c65142b4238e3c44270",
@@ -22464,7 +19375,8 @@ window.MARKET_DATA = {
    "past": -0.2158,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "1742500c43d25085db47873b82f15459",
@@ -22513,53 +19425,8 @@ window.MARKET_DATA = {
    "past": -0.2082,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "Seattle Kraken @ Carolina Hurricanes",
-   "home": "Carolina Hurricanes",
-   "away": "Seattle Kraken",
-   "commence": "2026-11-14T18:00:00Z",
-   "start": "Tomorrow 1:00 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "Carolina Hurricanes",
-    "point": -1.5
-   },
-   "pick": "Carolina Hurricanes -1.5",
-   "odds": -135,
-   "book": "DraftKings",
-   "prices": {
-    "BetRivers": -137,
-    "DraftKings": -135,
-    "FanDuel": -140,
-    "theScore Bet": -135
-   },
-   "books": 5,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.4861,
-   "edge": -0.0884,
-   "ev": -0.1538,
-   "marketFair": 0.553,
-   "marketEdge": -0.0215,
-   "modelled": true,
-   "model": {
-    "margin": 1.3,
-    "total": 6.4,
-    "gp": 17,
-    "thin": false
-   },
-   "bar": 0.0711,
-   "past": -0.1595,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d6d167714ff638b23e84d757ff522414",
@@ -22606,6 +19473,56 @@ window.MARKET_DATA = {
    },
    "bar": 0.1585,
    "past": -0.2472,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Carolina Hurricanes",
+    "point": null
+   },
+   "pick": "Carolina Hurricanes ML",
+   "odds": -385,
+   "book": "FanDuel",
+   "prices": {
+    "BetRivers": -420,
+    "DraftKings": -395,
+    "FanDuel": -385,
+    "BetOnline.ag": -385,
+    "theScore Bet": -425,
+    "BetMGM": -400,
+    "Bovada": -415
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.7044,
+   "edge": -0.0894,
+   "ev": -0.1126,
+   "marketFair": 0.774,
+   "marketEdge": -0.0198,
+   "modelled": true,
+   "model": {
+    "margin": 1.3,
+    "total": 6.4,
+    "gp": 17,
+    "thin": false
+   },
+   "bar": 0.0669,
+   "past": -0.1563,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -22657,7 +19574,8 @@ window.MARKET_DATA = {
    "past": -0.2187,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d0cebc10547e648dd7988b83f58081cf",
@@ -22706,7 +19624,8 @@ window.MARKET_DATA = {
    "past": -0.2365,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "5b6989e8ecca343c4de3e7d285b70aa3",
@@ -22753,6 +19672,105 @@ window.MARKET_DATA = {
    },
    "bar": 0.1501,
    "past": -0.2507,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "San Jose Sharks @ Utah Mammoth",
+   "home": "Utah Mammoth",
+   "away": "San Jose Sharks",
+   "commence": "2026-11-15T02:10:00Z",
+   "start": "Today 9:10 PM ET",
+   "marketKey": "spreads",
+   "market": "Puck line",
+   "outcome": {
+    "name": "Utah Mammoth",
+    "point": -1.5
+   },
+   "pick": "Utah Mammoth -1.5",
+   "odds": 128,
+   "book": "BetRivers",
+   "prices": {
+    "DraftKings": 124,
+    "BetRivers": 128,
+    "FanDuel": 116,
+    "BetOnline.ag": 120,
+    "theScore Bet": 125,
+    "BetMGM": 115,
+    "Bovada": 125
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.3364,
+   "edge": -0.1022,
+   "ev": -0.233,
+   "marketFair": 0.4292,
+   "marketEdge": -0.0094,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.4,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.0622,
+   "past": -0.1644,
+   "waiting": null,
+   "pickId": null,
+   "status": "none"
+  },
+  {
+   "eventId": "13ccf67b4b7c472d4e05fdda2b440b42",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "Ottawa Senators @ Pittsburgh Penguins",
+   "home": "Pittsburgh Penguins",
+   "away": "Ottawa Senators",
+   "commence": "2026-11-15T00:10:00Z",
+   "start": "Today 7:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Ottawa Senators",
+    "point": null
+   },
+   "pick": "Ottawa Senators ML",
+   "odds": -128,
+   "book": "FanDuel",
+   "prices": {
+    "DraftKings": -130,
+    "BetRivers": -130,
+    "FanDuel": -128,
+    "BetOnline.ag": -130,
+    "theScore Bet": -130,
+    "BetMGM": -135,
+    "Bovada": -133
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.4586,
+   "edge": -0.1028,
+   "ev": -0.1831,
+   "marketFair": 0.55,
+   "marketEdge": -0.0114,
+   "modelled": true,
+   "model": {
+    "margin": 0.2,
+    "total": 6.4,
+    "gp": 19,
+    "thin": false
+   },
+   "bar": 0.0725,
+   "past": -0.1753,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -22804,7 +19822,8 @@ window.MARKET_DATA = {
    "past": -0.2539,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ece9b1bb56a95381f1c485d22bd36dd8",
@@ -22853,152 +19872,8 @@ window.MARKET_DATA = {
    "past": -0.264,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "1fae7f34ec6035dffa74feb148ee26c7",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Golden State Warriors @ San Antonio Spurs",
-   "home": "San Antonio Spurs",
-   "away": "Golden State Warriors",
-   "commence": "2026-11-14T02:40:00Z",
-   "start": "Today 9:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "San Antonio Spurs",
-    "point": null
-   },
-   "pick": "San Antonio Spurs ML",
-   "odds": -590,
-   "book": "BetRivers",
-   "prices": {
-    "DraftKings": -670,
-    "BetOnline.ag": -650,
-    "FanDuel": -650,
-    "theScore Bet": -800,
-    "Bovada": -650,
-    "BetRivers": -590,
-    "BetMGM": -700
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.7483,
-   "edge": -0.1068,
-   "ev": -0.1249,
-   "marketFair": 0.8314,
-   "marketEdge": -0.0237,
-   "modelled": true,
-   "model": {
-    "margin": 8.4,
-    "total": 229,
-    "gp": 12,
-    "thin": false
-   },
-   "bar": 0.1099,
-   "past": -0.2167,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "bc528be865b10cd4a63a9e642c90d554",
-   "sport": "NCAAF",
-   "league": "NCAAF",
-   "sportKey": "americanfootball_ncaaf",
-   "event": "Illinois Fighting Illini @ UCLA Bruins",
-   "home": "UCLA Bruins",
-   "away": "Illinois Fighting Illini",
-   "commence": "2026-11-14T02:00:00Z",
-   "start": "Today 9:00 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "UCLA Bruins",
-    "point": null
-   },
-   "pick": "UCLA Bruins ML",
-   "odds": -385,
-   "book": "FanDuel",
-   "prices": {
-    "DraftKings": -395,
-    "FanDuel": -385,
-    "BetMGM": -400,
-    "BetRivers": -400,
-    "BetOnline.ag": -390,
-    "theScore Bet": -425,
-    "Bovada": -425
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.6852,
-   "edge": -0.1086,
-   "ev": -0.1368,
-   "marketFair": 0.7781,
-   "marketEdge": -0.0157,
-   "modelled": true,
-   "model": {
-    "margin": 7.7,
-    "total": 49.5,
-    "gp": 9,
-    "thin": false
-   },
-   "bar": 0.142,
-   "past": -0.2506,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "San Jose Sharks @ Utah Mammoth",
-   "home": "Utah Mammoth",
-   "away": "San Jose Sharks",
-   "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Utah Mammoth",
-    "point": null
-   },
-   "pick": "Utah Mammoth ML",
-   "odds": -195,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -205,
-    "BetRivers": -220,
-    "FanDuel": -210,
-    "BetOnline.ag": -195,
-    "theScore Bet": -200
-   },
-   "books": 6,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5514,
-   "edge": -0.1096,
-   "ev": -0.1658,
-   "marketFair": 0.6498,
-   "marketEdge": -0.0112,
-   "modelled": true,
-   "model": {
-    "margin": 0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0718,
-   "past": -0.1814,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "77380a347bae20671e1f8cec27ce658b",
@@ -23045,6 +19920,56 @@ window.MARKET_DATA = {
    },
    "bar": 0.1246,
    "past": -0.2361,
+   "waiting": null,
+   "pickId": null,
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
+  },
+  {
+   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "sport": "NHL",
+   "league": "NHL",
+   "sportKey": "icehockey_nhl",
+   "event": "San Jose Sharks @ Utah Mammoth",
+   "home": "Utah Mammoth",
+   "away": "San Jose Sharks",
+   "commence": "2026-11-15T02:10:00Z",
+   "start": "Today 9:10 PM ET",
+   "marketKey": "h2h",
+   "market": "Moneyline",
+   "outcome": {
+    "name": "Utah Mammoth",
+    "point": null
+   },
+   "pick": "Utah Mammoth ML",
+   "odds": -194,
+   "book": "BetOnline.ag",
+   "prices": {
+    "DraftKings": -205,
+    "BetRivers": -200,
+    "FanDuel": -200,
+    "BetOnline.ag": -194,
+    "theScore Bet": -195,
+    "BetMGM": -200,
+    "Bovada": -200
+   },
+   "books": 8,
+   "anchor": "Pinnacle",
+   "anchorShift": 0,
+   "modelProb": 0.5477,
+   "edge": -0.1122,
+   "ev": -0.17,
+   "marketFair": 0.6455,
+   "marketEdge": -0.0144,
+   "modelled": true,
+   "model": {
+    "margin": 0.3,
+    "total": 6.4,
+    "gp": 20,
+    "thin": false
+   },
+   "bar": 0.0719,
+   "past": -0.1841,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -23096,7 +20021,8 @@ window.MARKET_DATA = {
    "past": -0.2649,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "8ad669f4c9b70f38fdb057c114588776",
@@ -23144,148 +20070,52 @@ window.MARKET_DATA = {
    "past": -0.2686,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
-   "eventId": "e7f30a1c549ae1d91aac850b81bad637",
+   "eventId": "ccdee466b63a2accb1d804d5ca9e4bdc",
    "sport": "NHL",
    "league": "NHL",
    "sportKey": "icehockey_nhl",
-   "event": "San Jose Sharks @ Utah Mammoth",
-   "home": "Utah Mammoth",
-   "away": "San Jose Sharks",
-   "commence": "2026-11-15T02:10:00Z",
-   "start": "Tomorrow 9:10 PM ET",
+   "event": "Seattle Kraken @ Carolina Hurricanes",
+   "home": "Carolina Hurricanes",
+   "away": "Seattle Kraken",
+   "commence": "2026-11-14T18:00:00Z",
+   "start": "Today 1:00 PM ET",
    "marketKey": "spreads",
    "market": "Puck line",
    "outcome": {
-    "name": "Utah Mammoth",
+    "name": "Carolina Hurricanes",
     "point": -1.5
    },
-   "pick": "Utah Mammoth -1.5",
-   "odds": 120,
-   "book": "DraftKings",
+   "pick": "Carolina Hurricanes -1.5",
+   "odds": -155,
+   "book": "BetRivers",
    "prices": {
-    "DraftKings": 120,
-    "BetRivers": 118,
-    "FanDuel": 114,
-    "theScore Bet": 120
+    "BetRivers": -155,
+    "DraftKings": -162,
+    "FanDuel": -158,
+    "BetOnline.ag": -157,
+    "Bovada": -155
    },
    "books": 5,
-   "anchor": "Pinnacle",
+   "anchor": null,
    "anchorShift": 0,
-   "modelProb": 0.3396,
-   "edge": -0.1149,
-   "ev": -0.2529,
-   "marketFair": 0.4314,
-   "marketEdge": -0.0232,
+   "modelProb": 0.4861,
+   "edge": -0.1217,
+   "ev": -0.2003,
+   "marketFair": 0.5863,
+   "marketEdge": -0.0216,
    "modelled": true,
    "model": {
-    "margin": 0.3,
+    "margin": 1.3,
     "total": 6.4,
-    "gp": 20,
+    "gp": 17,
     "thin": false
    },
-   "bar": 0.0625,
-   "past": -0.1774,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
-   "marketKey": "spreads",
-   "market": "Puck line",
-   "outcome": {
-    "name": "New York Rangers",
-    "point": -1.5
-   },
-   "pick": "New York Rangers -1.5",
-   "odds": 117,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": 114,
-    "BetOnline.ag": 117,
-    "BetMGM": 110,
-    "BetRivers": 110,
-    "FanDuel": 114,
-    "theScore Bet": 115,
-    "Bovada": 117
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.3312,
-   "edge": -0.1296,
-   "ev": -0.2813,
-   "marketFair": 0.4436,
-   "marketEdge": -0.0172,
-   "modelled": true,
-   "model": {
-    "margin": -0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0621,
-   "past": -0.1917,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "069bea369487ef0cd3017c9ceea68817",
-   "sport": "NHL",
-   "league": "NHL",
-   "sportKey": "icehockey_nhl",
-   "event": "New York Rangers @ Vancouver Canucks",
-   "home": "Vancouver Canucks",
-   "away": "New York Rangers",
-   "commence": "2026-11-14T02:10:00Z",
-   "start": "Today 9:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "New York Rangers",
-    "point": null
-   },
-   "pick": "New York Rangers ML",
-   "odds": -205,
-   "book": "BetOnline.ag",
-   "prices": {
-    "DraftKings": -225,
-    "BetOnline.ag": -205,
-    "BetMGM": -220,
-    "BetRivers": -225,
-    "FanDuel": -210,
-    "theScore Bet": -210,
-    "Bovada": -215
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.5416,
-   "edge": -0.1305,
-   "ev": -0.1942,
-   "marketFair": 0.6519,
-   "marketEdge": -0.0202,
-   "modelled": true,
-   "model": {
-    "margin": -0.3,
-    "total": 6.4,
-    "gp": 20,
-    "thin": false
-   },
-   "bar": 0.0722,
-   "past": -0.2027,
+   "bar": 0.0711,
+   "past": -0.1928,
    "waiting": null,
    "pickId": null,
    "status": "none"
@@ -23337,7 +20167,8 @@ window.MARKET_DATA = {
    "past": -0.2812,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "ce88da9d6fd67bac81c1e4a70545de29",
@@ -23386,7 +20217,8 @@ window.MARKET_DATA = {
    "past": -0.2918,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "cf67bd8ed20036fea0a72f8a0d5836e7",
@@ -23435,56 +20267,8 @@ window.MARKET_DATA = {
    "past": -0.294,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "8a40b260e8fa0d67c1f2bc2b39a24982",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Memphis Grizzlies @ New Orleans Pelicans",
-   "home": "New Orleans Pelicans",
-   "away": "Memphis Grizzlies",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "New Orleans Pelicans",
-    "point": null
-   },
-   "pick": "New Orleans Pelicans ML",
-   "odds": 140,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": 134,
-    "BetOnline.ag": 135,
-    "BetRivers": 132,
-    "theScore Bet": 140,
-    "DraftKings": 136,
-    "Bovada": 135,
-    "BetMGM": 135
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.2794,
-   "edge": -0.1373,
-   "ev": -0.3294,
-   "marketFair": 0.41,
-   "marketEdge": -0.0067,
-   "modelled": true,
-   "model": {
-    "margin": -7,
-    "total": 235.5,
-    "gp": 11,
-    "thin": false
-   },
-   "bar": 0.1168,
-   "past": -0.2541,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "67a73e38d3fd93df27dcca8160f796c3",
@@ -23533,7 +20317,8 @@ window.MARKET_DATA = {
    "past": -0.297,
    "waiting": null,
    "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "d03caba2636ec407098ec3e1fe18fcf7",
@@ -23582,56 +20367,8 @@ window.MARKET_DATA = {
    "past": -0.3029,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "80ffc963f864f3d4fcefa82fd02b7d7b",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Atlanta Hawks @ Chicago Bulls",
-   "home": "Chicago Bulls",
-   "away": "Atlanta Hawks",
-   "commence": "2026-11-14T01:10:00Z",
-   "start": "Today 8:10 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Chicago Bulls",
-    "point": null
-   },
-   "pick": "Chicago Bulls ML",
-   "odds": 230,
-   "book": "BetOnline.ag",
-   "prices": {
-    "FanDuel": 225,
-    "BetOnline.ag": 230,
-    "DraftKings": 227,
-    "theScore Bet": 230,
-    "Bovada": 215,
-    "BetRivers": 215,
-    "BetMGM": 225
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": 0.1492,
-   "edge": -0.1538,
-   "ev": -0.5076,
-   "marketFair": 0.3031,
-   "marketEdge": 0.0001,
-   "modelled": true,
-   "model": {
-    "margin": -12.7,
-    "total": 238.3,
-    "gp": 10,
-    "thin": false
-   },
-   "bar": 0.0814,
-   "past": -0.2352,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   },
   {
    "eventId": "320a213c475110f032710dcd06c94e8e",
@@ -23680,263 +20417,8 @@ window.MARKET_DATA = {
    "past": -0.3429,
    "waiting": null,
    "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Los Angeles Clippers",
-    "point": null
-   },
-   "pick": "Los Angeles Clippers ML",
-   "odds": 231,
-   "book": "DraftKings",
-   "prices": {
-    "FanDuel": 225,
-    "BetOnline.ag": 226,
-    "theScore Bet": 230,
-    "DraftKings": 231,
-    "Bovada": 230,
-    "BetRivers": 210,
-    "BetMGM": 230
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.2885,
-   "marketEdge": -0.0136,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "h2h",
-   "market": "Moneyline",
-   "outcome": {
-    "name": "Oklahoma City Thunder",
-    "point": null
-   },
-   "pick": "Oklahoma City Thunder ML",
-   "odds": -265,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": -275,
-    "BetOnline.ag": -275,
-    "theScore Bet": -280,
-    "DraftKings": -283,
-    "Bovada": -280,
-    "BetRivers": -265,
-    "BetMGM": -285
-   },
-   "books": 8,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.7115,
-   "marketEdge": -0.0145,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Los Angeles Clippers",
-    "point": 7.5
-   },
-   "pick": "Los Angeles Clippers +7.5",
-   "odds": -110,
-   "book": "theScore Bet",
-   "prices": {
-    "FanDuel": -112,
-    "theScore Bet": -110,
-    "DraftKings": -112,
-    "BetMGM": -115
-   },
-   "books": 4,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.507,
-   "marketEdge": -0.0168,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "spreads",
-   "market": "Spread",
-   "outcome": {
-    "name": "Oklahoma City Thunder",
-    "point": -7.5
-   },
-   "pick": "Oklahoma City Thunder -7.5",
-   "odds": -105,
-   "book": "BetMGM",
-   "prices": {
-    "FanDuel": -108,
-    "theScore Bet": -110,
-    "DraftKings": -107,
-    "BetMGM": -105
-   },
-   "books": 4,
-   "anchor": "Pinnacle",
-   "anchorShift": 0.5,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.493,
-   "marketEdge": -0.0192,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Over",
-    "point": 222.5
-   },
-   "pick": "Over 222.5",
-   "odds": -109,
-   "book": "BetRivers",
-   "prices": {
-    "FanDuel": -112,
-    "BetOnline.ag": -110,
-    "theScore Bet": -110,
-    "DraftKings": -112,
-    "BetRivers": -109,
-    "BetMGM": -110
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.5138,
-   "marketEdge": -0.0078,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
-  },
-  {
-   "eventId": "5344669fd560d317ffaee0a1d16be7c8",
-   "sport": "NBA",
-   "league": "NBA",
-   "sportKey": "basketball_nba",
-   "event": "Oklahoma City Thunder @ Los Angeles Clippers",
-   "home": "Los Angeles Clippers",
-   "away": "Oklahoma City Thunder",
-   "commence": "2026-11-14T03:40:00Z",
-   "start": "Today 10:40 PM ET",
-   "marketKey": "totals",
-   "market": "Total",
-   "outcome": {
-    "name": "Under",
-    "point": 222.5
-   },
-   "pick": "Under 222.5",
-   "odds": -108,
-   "book": "FanDuel",
-   "prices": {
-    "FanDuel": -108,
-    "BetOnline.ag": -110,
-    "theScore Bet": -110,
-    "DraftKings": -108,
-    "BetRivers": -113,
-    "BetMGM": -110
-   },
-   "books": 7,
-   "anchor": "Pinnacle",
-   "anchorShift": 0,
-   "modelProb": null,
-   "edge": null,
-   "ev": null,
-   "marketFair": 0.4862,
-   "marketEdge": -0.033,
-   "modelled": false,
-   "model": null,
-   "bar": null,
-   "past": null,
-   "waiting": null,
-   "pickId": null,
-   "status": "none"
+   "status": "none",
+   "pricedAt": "2026-11-13T20:36:49.267Z"
   }
  ]
 };
