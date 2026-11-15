@@ -523,7 +523,14 @@
   function recText(r) { return (Number(r.w) || 0) + "-" + (Number(r.l) || 0) + (Number(r.push) ? "-" + Number(r.push) : ""); }
   /* wins over wins and losses; a push is neither */
   function hitRate(r) { var d = (Number(r.w) || 0) + (Number(r.l) || 0); return d ? E.pct((Number(r.w) || 0) / d) : ""; }
-  function recPart(label, r) { return el("span", { class: "props-rec-part" }, [label + " ", el("strong", { class: "mono", text: recText(r) }), hitRate(r) ? " (" + hitRate(r) + ")" : ""]); }
+  /* units (2026-11-14): one unit a prop at the best price when it locked, over the props that carry one (`priced`) */
+  function unitsIn(r) { return r && Number(r.priced) > 0 && Number.isFinite(Number(r.units)) ? Number(r.units) : null; }
+  function roiText(r) { var u = unitsIn(r); return u == null ? "" : E.signed(100 * u / Number(r.priced), 1) + "%"; }
+  function unitsChip(r) { var u = unitsIn(r); return el("span", { class: "mono props-rec-units" + (u > 0 ? " pos" : u < 0 ? " neg" : ""), text: E.signed(u, 1) + "u" }); }
+  function recPart(label, r) {
+    var u = unitsIn(r);
+    return el("span", { class: "props-rec-part" }, [label + " ", el("strong", { class: "mono", text: recText(r) }), hitRate(r) ? " (" + hitRate(r) + ")" : ""].concat(u == null ? [] : [", ", unitsChip(r), " (" + roiText(r) + " ROI)"]));
+  }
   function lowerDay(label) { return /^(Today|Tomorrow|Yesterday)$/.test(label) ? label.toLowerCase() : label; }
   /* what a tier claims, read from the grade's own thresholds: "70% or better", "62% to 70%", "Under 56%" */
   function tierClaim(tier) {
@@ -544,14 +551,20 @@
     var tiers = G.GRADES.map(function (g) { return g[3]; }).concat(["Coin flip"]);
     tiers = tiers.concat(Object.keys(byTier).filter(function (t) { return tiers.indexOf(t) === -1; })).filter(function (t) { return recN(byTier[t]); });
     box.appendChild(el("h2", { class: "props-rec-h", id: "record-h", text: "Record" }));
-    box.appendChild(el("p", { class: "how-to muted", text: "Every prop the board ranked, graded from the box score at its posted line" + (Number.isFinite(asOf) ? ", through " + E.clockET(asOf) : "") + ". No price takes part. A tier is honest when its hit rate lands in the range it claims." }));
+    var priced = unitsIn(R) != null, partial = priced && Number(R.priced) < recN(R);
+    box.appendChild(el("p", { class: "how-to muted", text: "Every prop the board ranked, graded from the box score at its posted line" + (Number.isFinite(asOf) ? ", through " + E.clockET(asOf) : "") + ". No price takes part in the grade." +
+      (priced ? " Units are one unit a prop at the best price when it locked: a win pays at that price, a loss costs the unit" + (partial ? "; they count the " + R.priced + " of " + recN(R) + " props that kept a price" : "") + "." : "") +
+      " A tier is honest when its hit rate lands in the range it claims" + (priced ? ", and only a positive return beats the price" : "") + "." }));
     box.appendChild(E.meta(lead, "props-rec-lead"));
     if (tiers.length) {
-      var heads = ["Tier", "Record", "Hit rate", "The tier claims"];
+      var heads = ["Tier", "Record", "Hit rate"].concat(priced ? ["Units (ROI)"] : []).concat(["The tier claims"]), nums = priced ? 4 : 3;
       box.appendChild(el("div", { class: "table-wrap props-rec-table" }, [el("table", { class: "data", "aria-label": "Record by tier" }, [
-        el("thead", {}, [el("tr", {}, heads.map(function (h, i) { return el("th", { scope: "col", class: i === 1 || i === 2 ? "num" : null, text: h }); }))]),
+        el("thead", {}, [el("tr", {}, heads.map(function (h, i) { return el("th", { scope: "col", class: i >= 1 && i < nums ? "num" : null, text: h }); }))]),
         el("tbody", {}, tiers.map(function (t) {
-          return el("tr", { "data-tier": t }, [el("td", {}, [tierBadge(t)]), el("td", { class: "num", text: recText(byTier[t]) }), el("td", { class: "num", text: hitRate(byTier[t]) || "No decision yet" }), el("td", { class: "props-rec-claim", text: tierClaim(t) })]);
+          var r = byTier[t], u = unitsIn(r);
+          return el("tr", { "data-tier": t }, [el("td", {}, [tierBadge(t)]), el("td", { class: "num", text: recText(r) }), el("td", { class: "num", text: hitRate(r) || "No decision yet" })]
+            .concat(priced ? [el("td", { class: "num" }, u == null ? ["No price"] : [unitsChip(r), " (" + roiText(r) + ")"])] : [])
+            .concat([el("td", { class: "props-rec-claim", text: tierClaim(t) })]));
         }))
       ])]));
     }

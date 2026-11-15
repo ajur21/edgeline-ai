@@ -1632,6 +1632,9 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .props-rec .how-to { margin: 0; font-size: 0.88rem; }
 .meta.props-rec-lead { display: flex; font-size: 0.92rem; color: var(--text-2); }
 .props-rec-part strong { color: var(--text); font-weight: 600; }
+.props-rec-units { font-weight: 600; color: var(--text); }
+.props-rec-units.pos { color: var(--good-text); }
+.props-rec-units.neg { color: var(--bad); }
 .props-rec-table { max-width: 560px; }
 .props-rec-table table.data th, .props-rec-table table.data td { padding: 7px 10px; font-size: 0.85rem; white-space: normal; }
 .props-rec-claim { color: var(--text-2); }
