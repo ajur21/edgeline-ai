@@ -1722,7 +1722,10 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   /* a meta line that would wrap is stacked, one part a line, so no line starts on a hairline */
   .meta.pd-meta, .page-head .props-meta .meta { display: grid; gap: 1px; }
   .meta.pd-meta > span + span::before, .page-head .props-meta .meta > span + span::before { display: none; }
-  .props-rec-table table.data th, .props-rec-table table.data td { padding: 6px 8px; }
+  .props-rec-table table.data th, .props-rec-table table.data td { padding: 6px 5px; font-size: 0.8rem; }
+  .props-rec-table .badge { font-size: 0.68rem; }
+  .props-rec-table table.data td.num { white-space: nowrap; }
+  .props-rec-roi { display: block; }
   /* the game log keeps every column on screen: tighter cells, heads that may wrap, the final score left to wider screens */
   .pd-log table.data th, .pd-log table.data td { padding: 5px 4px; font-size: 0.74rem; }
   .pd-log table.data th { white-space: normal; }

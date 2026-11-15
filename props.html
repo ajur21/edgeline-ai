@@ -563,7 +563,7 @@
         el("tbody", {}, tiers.map(function (t) {
           var r = byTier[t], u = unitsIn(r);
           return el("tr", { "data-tier": t }, [el("td", {}, [tierBadge(t)]), el("td", { class: "num", text: recText(r) }), el("td", { class: "num", text: hitRate(r) || "No decision yet" })]
-            .concat(priced ? [el("td", { class: "num" }, u == null ? ["No price"] : [unitsChip(r), " (" + roiText(r) + ")"])] : [])
+            .concat(priced ? [el("td", { class: "num" }, u == null ? ["No price"] : [unitsChip(r), el("span", { class: "props-rec-roi", text: " (" + roiText(r) + ")" })])] : [])
             .concat([el("td", { class: "props-rec-claim", text: tierClaim(t) })]));
         }))
       ])]));
