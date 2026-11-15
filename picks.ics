@@ -709,7 +709,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-15@edgeline
-DTSTAMP:20261115T201541Z
+DTSTAMP:20261115T203550Z
 DTSTART:20261115T180000Z
 DTEND:20261116T000500Z
 SUMMARY:Parlay lean of the day: 2 legs +228 at DraftKings
@@ -720,7 +720,7 @@ DESCRIPTION:All legs priced at DraftKings. Fair 40.6%\, implied 30.5%\, EV
  https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261115T201541Z
+LAST-MODIFIED:20261115T203550Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -810,7 +810,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:6c932a9651-h2h-Arizona-Cardinals@edgeline
-DTSTAMP:20261115T201541Z
+DTSTAMP:20261115T203550Z
 DTSTART:20261115T210500Z
 DTEND:20261116T000500Z
 SUMMARY:Arizona Cardinals ML +400 at FanDuel · Medium
@@ -826,20 +826,22 @@ DESCRIPTION:NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15\, 4:0
  r books' prices\; for reference the market makes it 21.3%.\nWhat supports 
  it:\n- Home edge +2.1 for Arizona Cardinals.\n- Los Angeles Rams without S
  teve Avila (G)\, Puka Nacua (WR)\, Davante Adams (WR) and 2 more (+2.7).\n
- What could go wrong:\n- Arizona Cardinals rate -3.8 and Los Angeles Rams +
- 3.4 points a game against their schedules (this season's results\, last se
- ason carried over)\; EPA a play -0.04 and +0.08 net of defence (nflverse).
- \n- Arizona Cardinals without Jon Gaines II (G)\, Hjalte Froholdt (C)\, Hu
- nter Long (TE) and 1 more (-2.4).\n- Projected margin -6.2 for Arizona Car
- dinals.\nVerdict: More working against this one than for it\; size down.\n
- Prices: FanDuel +390\, DraftKings +380\, BetMGM +380\, ESPN BET +380\, Poi
- ntsBet +375 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
+ - A better price is now available: +410 at DraftKings.\n- A better price i
+ s available now: +410 at DraftKings.\nWhat could go wrong:\n- Arizona Card
+ inals rate -3.8 and Los Angeles Rams +3.4 points a game against their sche
+ dules (this season's results\, last season carried over)\; EPA a play -0.0
+ 4 and +0.08 net of defence (nflverse).\n- Arizona Cardinals without Jon Ga
+ ines II (G)\, Hjalte Froholdt (C)\, Hunter Long (TE) and 1 more (-2.4).\n-
+  Projected margin -6.2 for Arizona Cardinals.\nVerdict: The game data line
+ s up behind this side at this price.\nPrices: DraftKings +410\, PointsBet 
+ +400\, FanDuel +390\, Caesars +390\, BetMGM +380 and 6 more.\nFull breakdo
+ wn: https://ajur21.github.io/edgeline-ai/picks.html#6c932a9651-h2h-Arizona
+ -Cardinals
 LOCATION:State Farm Stadium\, Glendale
 URL:https://ajur21.github.io/edgeline-ai/picks.html#6c932a9651-h2h-Arizona-
  Cardinals
 CATEGORIES:NFL
-LAST-MODIFIED:20261115T201541Z
+LAST-MODIFIED:20261115T203550Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -877,7 +879,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:539a387d9f-totals-Under@edgeline
-DTSTAMP:20261115T201541Z
+DTSTAMP:20261115T203550Z
 DTSTART:20261116T011000Z
 DTEND:20261116T041000Z
 SUMMARY:Under 6.5 +114 at DraftKings · Low
@@ -904,7 +906,7 @@ DESCRIPTION:NHL · Calgary Flames @ Anaheim Ducks · Sun Nov 15\, 8:10 PM E
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#539a387d9f-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T201541Z
+LAST-MODIFIED:20261115T203550Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -915,7 +917,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:c4ac537963-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261115T201541Z
+DTSTAMP:20261115T203550Z
 DTSTART:20261116T021000Z
 DTEND:20261116T051000Z
 SUMMARY:Vancouver Canucks +1.5 +140 at DraftKings · Medium
@@ -936,19 +938,61 @@ DESCRIPTION:NHL · Vancouver Canucks @ Vegas Golden Knights · Sun Nov 15\,
  eason.\n- Home edge +0.2 for Vegas Golden Knights.\n- Vancouver Canucks wi
  thout Guillaume Brisebois (D) (+0).\n- Projected margin -1.3 for Vancouver
   Canucks against +1.5.\nVerdict: More working against this one than for it
- \; size down.\nPrices: Caesars +140\, BetRivers +138\, Bovada +135\, FanDu
- el +128\, DraftKings +124.\nFull breakdown: https://ajur21.github.io/edgel
+ \; size down.\nPrices: Caesars +140\, BetRivers +138\, Bovada +135\, Draft
+ Kings +130\, FanDuel +128.\nFull breakdown: https://ajur21.github.io/edgel
  ine-ai/picks.html#c4ac537963-spreads-Vancouver-Canucks
 LOCATION:T-Mobile Arena\, Las Vegas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#c4ac537963-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T201541Z
+LAST-MODIFIED:20261115T203550Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Vancouver Canucks +1.5 +140 at DraftKings · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f597347519-spreads-Vancouver-Canucks@edgeline
+DTSTAMP:20261115T203550Z
+DTSTART:20261117T023000Z
+DTEND:20261117T053000Z
+SUMMARY:Vancouver Canucks +1.5 +116 at FanDuel · High
+DESCRIPTION:NHL · Vancouver Canucks @ Utah Mammoth · Mon Nov 16\, 9:30 PM
+  ET\nPuck line: Vancouver Canucks +1.5 at +116 (FanDuel). Our probability 
+ 61.6% from game data\, the price implies 46.3%\, edge +15.3 pts\, EV +33.1
+ % per unit. Confidence: High.\nOur probability at +1.5 is 61.6%\, from the
+  game data: this season's results and margins\, recent form\, rest\, the i
+ njury report and home edge (projected margin +0.6 for the home side). FanD
+ uel offers +116\, which implies only 46.3%. Its bar is 6.5 points: the mod
+ el's own margin of error on this side\, with 21 games behind the thinner t
+ eam (±0.43 goals on the margin). It clears it by 8.8. Not graded against 
+ other books' prices\; for reference the market makes it 45.0%.\nWhat suppo
+ rts it:\n- Utah Mammoth trending: last five -1.4 vs -0.2 on the season.\n-
+  Vancouver Canucks are rested (3 days).\n- Utah Mammoth without Nick Schma
+ ltz (C)\, Nate Schmidt (D)\, Dylan Guenther (RW) and 1 more (-0.4).\n- Uta
+ h Mammoth have Logan Cooley (C) listed day-to-day or questionable.\nWhat c
+ ould go wrong:\n- Utah Mammoth rate -0.1 a game over 21 (10-11)\, Vancouve
+ r Canucks -0.9 over 21 (3-18)\; last season +0.3 and -1.2 a game.\n- Vanco
+ uver Canucks trending: last five -2.6 vs -1.8 on the season.\n- Home edge 
+ +0.2 for Utah Mammoth.\n- Vancouver Canucks without Guillaume Brisebois (D
+ ) (+0).\n- Projected margin -0.6 for Vancouver Canucks against +1.5.\nVerd
+ ict: More working against this one than for it\; size down.\nPrices: FanDu
+ el +116\, Caesars +116\, theScore Bet +115\, Bovada +115\, ESPN BET +115 a
+ nd 2 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.htm
+ l#f597347519-spreads-Vancouver-Canucks
+LOCATION:Delta Center\, Salt Lake City
+URL:https://ajur21.github.io/edgeline-ai/picks.html#f597347519-spreads-Vanc
+ ouver-Canucks
+CATEGORIES:NHL
+LAST-MODIFIED:20261115T203550Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vancouver Canucks +1.5 +116 at FanDuel · High
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT

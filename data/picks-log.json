@@ -17912,16 +17912,16 @@
   "odds": 400,
   "book": "FanDuel",
   "prices": {
-   "DraftKings": 380,
+   "DraftKings": 410,
    "FanDuel": 390,
    "BetOnline.ag": 350,
    "BetRivers": 340,
    "BetMGM": 380,
    "theScore Bet": 360,
    "Bovada": 365,
-   "Caesars": 360,
-   "Unibet": 360,
-   "PointsBet": 375,
+   "Caesars": 390,
+   "Unibet": 330,
+   "PointsBet": 400,
    "ESPN BET": 380
   },
   "books": 8,
@@ -17997,13 +17997,13 @@
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
-   "at": "2026-11-15T14:06:57.194Z",
-   "odds": 400,
-   "book": "BetMGM",
-   "fair": 0.2033,
-   "edge": 0.1369,
-   "modelProb": 0.3369,
-   "bar": 0.0993
+   "at": "2026-11-15T20:35:50.992Z",
+   "odds": 410,
+   "book": "DraftKings",
+   "fair": 0.2025,
+   "edge": 0.1507,
+   "modelProb": 0.3468,
+   "bar": 0.1004
   },
   "history": [
    {
@@ -18015,6 +18015,11 @@
     "at": "2026-11-15T14:06:57.194Z",
     "odds": 400,
     "fair": 0.2033
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "odds": 410,
+    "fair": 0.2025
    }
   ],
   "context": {
@@ -18037,6 +18042,78 @@
    "injuries": {
     "Arizona Cardinals": [
      {
+      "name": "Jayden Williams",
+      "pos": "OT",
+      "athleteId": "4709718",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4709718.png",
+      "status": "Out",
+      "type": "Knee",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T20:26Z",
+      "note": "Williams (knee) has been ruled out for Sunday's game against the Rams, Darren Urban of the Cardinals' official site reports."
+     },
+     {
+      "name": "Joey Aguilar",
+      "pos": "QB",
+      "athleteId": "5151948",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/5151948.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T19:51Z",
+      "note": "Aguilar (coach's decision) is inactive but will serve as the emergency third quarterback against the Rams on Sunday, Darren Urban of the Cardinals' official sit"
+     },
+     {
+      "name": "Starling Thomas V",
+      "pos": "CB",
+      "athleteId": "4363408",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4363408.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T19:37Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Eku Leota",
+      "pos": "LB",
+      "athleteId": "4361272",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4361272.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T19:37Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Hjalte Froholdt",
+      "pos": "C",
+      "athleteId": "3886633",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3886633.png",
+      "status": "Out",
+      "type": "Concussion",
+      "detail": "Concussion",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T19:37Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Jon Gaines II",
+      "pos": "G",
+      "athleteId": "4367199",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4367199.png",
+      "status": "Out",
+      "type": "Ankle",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-22",
+      "date": "2026-11-15T19:37Z",
+      "note": "inactive"
+     },
+     {
       "name": "Gardner Minshew II",
       "pos": "QB",
       "athleteId": "4038524",
@@ -18049,30 +18126,6 @@
       "note": "Minshew suffered a torn UCL in his right throwing elbow last Sunday at Seattle and is slated to undergo season-ending surgery, Adam Schefter of ESPN reports."
      },
      {
-      "name": "Hunter Long",
-      "pos": "TE",
-      "athleteId": "4239944",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4239944.png",
-      "status": "Questionable",
-      "type": "Knee",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T23:13Z",
-      "note": "Arizona activated Long (knee) from injured reserve Saturday, and he remains questionable for Sunday's battle against the Rams."
-     },
-     {
-      "name": "Jayden Williams",
-      "pos": "OT",
-      "athleteId": "4709718",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4709718.png",
-      "status": "Questionable",
-      "type": "Knee",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T02:25Z",
-      "note": "Williams (knee) is listed as questionable for Sunday's game against the Rams, Zach Gershman of the Cardinals' official site reports."
-     },
-     {
       "name": "Zachary Carter",
       "pos": "DT",
       "athleteId": "4240619",
@@ -18083,66 +18136,6 @@
       "returnDate": "2026-11-22",
       "date": "2026-11-14T02:22Z",
       "note": "Carter (knee) has been ruled out ahead of Sunday's game against the Rams, Zach Gershman of the Cardinals' official site reports."
-     },
-     {
-      "name": "Jon Gaines II",
-      "pos": "G",
-      "athleteId": "4367199",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4367199.png",
-      "status": "Out",
-      "type": "Ankle",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-22",
-      "date": "2026-11-14T01:35Z",
-      "note": "Gaines (ankle) has been ruled out ahead of Sunday's game against the Rams, Bo Brack of GoPHNX.com reports."
-     },
-     {
-      "name": "Hjalte Froholdt",
-      "pos": "C",
-      "athleteId": "3886633",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3886633.png",
-      "status": "Out",
-      "type": "Concussion",
-      "detail": "Concussion",
-      "returnDate": "2026-11-22",
-      "date": "2026-11-14T01:31Z",
-      "note": "Froholdt (concussion) has been ruled out ahead of Sunday's game against the Rams, Bo Brack of GoPHNX.com reports."
-     },
-     {
-      "name": "Andrew Wingard",
-      "pos": "S",
-      "athleteId": "3918331",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3918331.png",
-      "status": "Questionable",
-      "type": "Groin",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T00:58Z",
-      "note": "Wingard (groin) is listed as questionable for Sunday's game against the Rams, Zach Gershman of the Cardinals' official site reports."
-     },
-     {
-      "name": "Darius Robinson",
-      "pos": "DE",
-      "athleteId": "4569480",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4569480.png",
-      "status": "Questionable",
-      "type": "Wrist",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-13T00:28Z",
-      "note": "questionable"
-     },
-     {
-      "name": "Max Melton",
-      "pos": "CB",
-      "athleteId": "4698113",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4698113.png",
-      "status": "Questionable",
-      "type": "Knee",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-12T00:14Z",
-      "note": "questionable"
      },
      {
       "name": "Michael Wilson",
@@ -18159,6 +18152,78 @@
     ],
     "Los Angeles Rams": [
      {
+      "name": "Ty Simpson",
+      "pos": "QB",
+      "athleteId": "4685522",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685522.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T20:04Z",
+      "note": "Simpson (coach's decision) is inactive but will serve as the Rams' emergency third quarterback in Sunday's game against the Cardinals."
+     },
+     {
+      "name": "Keagen Trost",
+      "pos": "OT",
+      "athleteId": "4575003",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4575003.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Darryl Peterson III",
+      "pos": "LB",
+      "athleteId": "4598574",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4598574.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Maximus Pulley",
+      "pos": "S",
+      "athleteId": "5082391",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/5082391.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Desjuan Johnson",
+      "pos": "DE",
+      "athleteId": "4362294",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362294.png",
+      "status": "Out",
+      "type": "Coach's Decision",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
+     },
+     {
+      "name": "Joe Cardona",
+      "pos": "LS",
+      "athleteId": "2575907",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2575907.png",
+      "status": "Out",
+      "type": "Ankle",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
+     },
+     {
       "name": "Steve Avila",
       "pos": "G",
       "athleteId": "4362474",
@@ -18167,68 +18232,8 @@
       "type": "Hamstring",
       "detail": "Not Specified",
       "returnDate": "2026-11-25",
-      "date": "2026-11-14T02:16Z",
-      "note": "Avila (hamstring) has been ruled out for Sunday's game against the Cardinals, Sarah Barshop of ESPN.com reports."
-     },
-     {
-      "name": "Trent McDuffie",
-      "pos": "CB",
-      "athleteId": "4426405",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426405.png",
-      "status": "Questionable",
-      "type": "Back",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T00:23Z",
-      "note": "McDuffie (back) is listed as questionable for Sunday's game against the Cardinals, Sarah Barshop of ESPN.com reports."
-     },
-     {
-      "name": "Kam Curl",
-      "pos": "S",
-      "athleteId": "4242154",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4242154.png",
-      "status": "Questionable",
-      "type": "Toe",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T00:21Z",
-      "note": "Head coach Sean McVay told reporters Friday that he is optimistic that Curl (toe) will be available for Sunday's game against the Cardinals, Adam Grosbard of Th"
-     },
-     {
-      "name": "Davis Allen",
-      "pos": "TE",
-      "athleteId": "4426553",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426553.png",
-      "status": "Questionable",
-      "type": "Oblique",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-14T00:18Z",
-      "note": "Allen (oblique) is questionable for Sunday's game against Arizona, Sarah Barshop of ESPN.com reports."
-     },
-     {
-      "name": "Myles Garrett",
-      "pos": "DE",
-      "athleteId": "3122132",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3122132.png",
-      "status": "Questionable",
-      "type": "Knee",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-13T19:22Z",
-      "note": "Head coach Sean McVay said Friday that Garrett (knee) will be listed as questionable for Sunday's game at Arizona but is expected to play, Sarah Barshop of ESPN"
-     },
-     {
-      "name": "Puka Nacua",
-      "pos": "WR",
-      "athleteId": "4426515",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426515.png",
-      "status": "Injured Reserve",
-      "type": "Knee - MCL",
-      "detail": "Sprain",
-      "returnDate": "2026-12-20",
-      "date": "2026-11-13T00:39Z",
-      "note": "The Rams placed Nacua (knee) on injured reserve Thursday."
+      "date": "2026-11-15T19:44Z",
+      "note": "inactive"
      },
      {
       "name": "Davante Adams",
@@ -18239,8 +18244,20 @@
       "type": "Hamstring",
       "detail": "Surgery",
       "returnDate": "2026-11-25",
-      "date": "2026-11-11T21:05Z",
-      "note": "Head coach Sean McVay said Wednesday that Adams (hamstring) returning after the Nov. 25 against the Packers \"is a realistic timeline for us,\" Greg Beacham of th"
+      "date": "2026-11-15T16:06Z",
+      "note": "According to Ian Rapoport of NFL Network and ESPN,  Adams (hamstring) is believed to be targeting a return to action Nov. 25 against the Packers."
+     },
+     {
+      "name": "Puka Nacua",
+      "pos": "WR",
+      "athleteId": "4426515",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426515.png",
+      "status": "Injured Reserve",
+      "type": "Knee - MCL",
+      "detail": "Sprain",
+      "returnDate": "2026-12-20",
+      "date": "2026-11-15T16:00Z",
+      "note": "Nacua (knee/toe) has an expected return date of \"mid-December,\" Ian Rapoport of NFL Network reports."
      },
      {
       "name": "Jordan Whittington",
@@ -18253,18 +18270,6 @@
       "returnDate": "2026-12-20",
       "date": "2026-11-11T00:38Z",
       "note": "Whittington (back) was placed on injured reserve Tuesday."
-     },
-     {
-      "name": "Joe Cardona",
-      "pos": "LS",
-      "athleteId": "2575907",
-      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2575907.png",
-      "status": "Questionable",
-      "type": "Ankle",
-      "detail": "Not Specified",
-      "returnDate": "2026-11-15",
-      "date": "2026-11-10T15:44Z",
-      "note": "questionable"
      },
      {
       "name": "Terrance Ferguson",
@@ -18296,7 +18301,7 @@
    },
    "weather": {
     "summary": "Mostly sunny",
-    "tempF": 75,
+    "tempF": 74,
     "source": "ESPN"
    },
    "broadcast": "CBS",
@@ -18394,10 +18399,10 @@
    },
    "now": {
     "line": null,
-    "odds": 399
+    "odds": 400
    },
    "moved": "away",
-   "label": "The market (8 books) opened +356, now +399"
+   "label": "The market (8 books) opened +356, now +400"
   },
   "breakdown": {
    "tier": "Medium",
@@ -18405,7 +18410,9 @@
    "price": "Our probability is 33.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.2 for the home side). FanDuel offers +400, which implies only 20.0%. Its bar is 9.9 points: the model's own margin of error on this side, with 9 games behind the thinner team (±3.97 points on the margin). It clears it by 3.5. Not graded against other books' prices; for reference the market makes it 21.3%.",
    "support": [
     "Home edge +2.1 for Arizona Cardinals.",
-    "Los Angeles Rams without Steve Avila (G), Puka Nacua (WR), Davante Adams (WR) and 2 more (+2.7)."
+    "Los Angeles Rams without Steve Avila (G), Puka Nacua (WR), Davante Adams (WR) and 2 more (+2.7).",
+    "A better price is now available: +410 at DraftKings.",
+    "A better price is available now: +410 at DraftKings."
    ],
    "risks": [
     "Arizona Cardinals rate -3.8 and Los Angeles Rams +3.4 points a game against their schedules (this season's results, last season carried over); EPA a play -0.04 and +0.08 net of defence (nflverse).",
@@ -18414,39 +18421,40 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 21.3% (+1.3 points against the best price). For reference only.",
+    "Market: the sharp line has moved away since it was logged (21.3% → 20.3%).",
     "Market: DraftKings opened +400, now +380, moving toward this side since the open.",
-    "Market: The market (8 books) opened +356, now +399, the consensus moving against this side since the open.",
+    "Market: The market (8 books) opened +356, now +400, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Los Angeles Rams 5-4 · Arizona Cardinals 3-6 · State Farm Stadium, Glendale."
    ],
-   "verdict": "More working against this one than for it; size down."
+   "verdict": "The game data lines up behind this side at this price."
   },
   "sgoEventId": "nZ9k7Rh6gfRot7jQBruR",
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "nZ9k7Rh6gfRot7jQBruR",
-   "at": "2026-11-15T20:15:41.972Z",
+   "at": "2026-11-15T20:35:50.992Z",
    "books": {
-    "DraftKings": 380,
-    "Caesars": 360,
+    "DraftKings": 410,
+    "Caesars": 390,
     "FanDuel": 390,
-    "Unibet": 360,
-    "PointsBet": 375,
+    "Unibet": 330,
+    "PointsBet": 400,
     "BetMGM": 380,
     "ESPN BET": 380,
     "Bovada": 365
    },
    "n": 8,
    "best": {
-    "book": "FanDuel",
-    "odds": 390
+    "book": "DraftKings",
+    "odds": 410
    },
-   "fair": 0.2021,
+   "fair": 0.1996,
    "fairBooks": 8,
    "vendor": {
     "line": null,
-    "odds": 399,
-    "fair": 0.2004,
+    "odds": 400,
+    "fair": 0.2,
     "sameLine": true
    },
    "open": {
@@ -18455,12 +18463,12 @@
    },
    "now": {
     "line": null,
-    "odds": 399
+    "odds": 400
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:15:41.972Z",
+  "pricesAt": "2026-11-15T20:35:50.992Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -18488,16 +18496,25 @@
     "odds": 399,
     "best": 390,
     "n": 8
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "fair": 0.1996,
+    "vendorFair": 0.2,
+    "line": null,
+    "odds": 400,
+    "best": 410,
+    "n": 8
    }
   ],
   "movement": {
    "loggedOdds": 400,
    "loggedFair": 0.3341,
-   "currentOdds": 400,
-   "currentBook": "BetMGM",
-   "currentFair": 0.2033,
-   "currentEdge": 0.1369,
-   "checkedAt": "2026-11-15T14:06:57.194Z",
+   "currentOdds": 410,
+   "currentBook": "DraftKings",
+   "currentFair": 0.2025,
+   "currentEdge": 0.1507,
+   "checkedAt": "2026-11-15T20:35:50.992Z",
    "history": [
     {
      "at": "2026-11-14T20:36:57.263Z",
@@ -18508,6 +18525,11 @@
      "at": "2026-11-15T14:06:57.194Z",
      "odds": 400,
      "fair": 0.2033
+    },
+    {
+     "at": "2026-11-15T20:35:50.992Z",
+     "odds": 410,
+     "fair": 0.2025
     }
    ]
   }
@@ -19165,7 +19187,7 @@
   "odds": 140,
   "book": "DraftKings",
   "prices": {
-   "DraftKings": 124,
+   "DraftKings": 130,
    "FanDuel": 128,
    "BetRivers": 138,
    "Bovada": 135,
@@ -19237,11 +19259,11 @@
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
-   "at": "2026-11-15T14:06:57.194Z",
-   "odds": 134,
+   "at": "2026-11-15T20:35:50.992Z",
+   "odds": 135,
    "book": "BetOnline.ag",
-   "fair": 0.4175,
-   "edge": 0.0824,
+   "fair": 0.4141,
+   "edge": 0.0843,
    "modelProb": 0.5098,
    "bar": 0.0697
   },
@@ -19255,6 +19277,11 @@
     "at": "2026-11-15T14:06:57.194Z",
     "odds": 134,
     "fair": 0.4175
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "odds": 135,
+    "fair": 0.4141
    }
   ],
   "context": {
@@ -19352,8 +19379,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": -148,
-      "away": 124
+      "home": -155,
+      "away": 130
      },
      "total": 6.5,
      "totalOdds": {
@@ -19397,6 +19424,12 @@
     "line": 1.5,
     "odds": 124,
     "fair": 0.4279
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "line": 1.5,
+    "odds": 130,
+    "fair": 0.417
    }
   ],
   "dk": {
@@ -19408,11 +19441,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 124,
-    "fair": 0.42794036443953615
+    "odds": 130,
+    "fair": 0.4170073589533933
    },
    "moved": "toward",
-   "label": "DraftKings opened +1.5 (+136), now +1.5 (+124)"
+   "label": "DraftKings opened +1.5 (+136), now +1.5 (+130)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -19444,8 +19477,8 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 3 books makes this side 40.1% (-1.6 points against the best price). For reference only.",
-    "Market: the sharp line has moved toward this side since it was logged (40.1% → 41.8%).",
-    "Market: DraftKings opened +1.5 (+136), now +1.5 (+124), moving toward this side since the open.",
+    "Market: the sharp line has moved toward this side since it was logged (40.1% → 41.4%).",
+    "Market: DraftKings opened +1.5 (+136), now +1.5 (+130), moving toward this side since the open.",
     "Market: The market (4 books) opened 0 (+322), now +2.5 (-115), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Knights Carter Hart · Canucks Leevi Merilainen.",
@@ -19457,9 +19490,9 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "YdP4xKXlYDGfk21uXJ1B",
-   "at": "2026-11-15T20:15:41.972Z",
+   "at": "2026-11-15T20:35:50.992Z",
    "books": {
-    "DraftKings": 124,
+    "DraftKings": 130,
     "Caesars": 140,
     "FanDuel": 128,
     "Bovada": 135
@@ -19469,7 +19502,7 @@
     "book": "Caesars",
     "odds": 140
    },
-   "fair": 0.4128,
+   "fair": 0.41,
    "fairBooks": 4,
    "vendor": {
     "line": 2.5,
@@ -19488,7 +19521,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:15:41.972Z",
+  "pricesAt": "2026-11-15T20:35:50.992Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19516,16 +19549,25 @@
     "odds": -115,
     "best": 140,
     "n": 4
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "fair": 0.41,
+    "vendorFair": 0.5349,
+    "line": 2.5,
+    "odds": -115,
+    "best": 140,
+    "n": 4
    }
   ],
   "movement": {
    "loggedOdds": 140,
    "loggedFair": 0.5098,
-   "currentOdds": 134,
+   "currentOdds": 135,
    "currentBook": "BetOnline.ag",
-   "currentFair": 0.4175,
-   "currentEdge": 0.0824,
-   "checkedAt": "2026-11-15T14:06:57.194Z",
+   "currentFair": 0.4141,
+   "currentEdge": 0.0843,
+   "checkedAt": "2026-11-15T20:35:50.992Z",
    "history": [
     {
      "at": "2026-11-14T20:36:57.263Z",
@@ -19536,6 +19578,11 @@
      "at": "2026-11-15T14:06:57.194Z",
      "odds": 134,
      "fair": 0.4175
+    },
+    {
+     "at": "2026-11-15T20:35:50.992Z",
+     "odds": 135,
+     "fair": 0.4141
     }
    ]
   }
@@ -19635,10 +19682,10 @@
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
-   "at": "2026-11-15T14:06:57.194Z",
+   "at": "2026-11-15T20:35:50.992Z",
    "odds": 105,
    "book": "DraftKings",
-   "fair": 0.469,
+   "fair": 0.4697,
    "edge": 0.0257,
    "modelProb": 0.5135,
    "bar": 0.03
@@ -19653,6 +19700,11 @@
     "at": "2026-11-15T14:06:57.194Z",
     "odds": 105,
     "fair": 0.469
+   },
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "odds": 105,
+    "fair": 0.4697
    }
   ],
   "context": {
@@ -19709,7 +19761,7 @@
       "status": "Injured Reserve",
       "type": "Upper Body",
       "detail": "",
-      "returnDate": "2026-11-15",
+      "returnDate": "2026-11-28",
       "date": "2026-11-02T18:46Z",
       "note": "Greer (upper body) was placed on injured reserve Monday."
      }
@@ -19871,7 +19923,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 45.7% (-1.0 points against the best price). For reference only.",
-    "Market: the sharp line has moved toward this side since it was logged (45.7% → 46.9%).",
+    "Market: the sharp line has moved toward this side since it was logged (45.7% → 47.0%).",
     "Market: DraftKings opened 6.5 (+114), now 6.5 (+105), moving toward this side since the open.",
     "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+110), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
@@ -19884,7 +19936,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "oNFl8YlKC8KbIFnxX2ut",
-   "at": "2026-11-15T20:15:41.972Z",
+   "at": "2026-11-15T20:35:50.992Z",
    "books": {
     "DraftKings": 105,
     "ESPN BET": 105,
@@ -19919,7 +19971,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:15:41.972Z",
+  "pricesAt": "2026-11-15T20:35:50.992Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19954,9 +20006,9 @@
    "loggedFair": 0.5121,
    "currentOdds": 105,
    "currentBook": "DraftKings",
-   "currentFair": 0.469,
+   "currentFair": 0.4697,
    "currentEdge": 0.0257,
-   "checkedAt": "2026-11-15T14:06:57.194Z",
+   "checkedAt": "2026-11-15T20:35:50.992Z",
    "history": [
     {
      "at": "2026-11-14T20:36:57.263Z",
@@ -19967,6 +20019,11 @@
      "at": "2026-11-15T14:06:57.194Z",
      "odds": 105,
      "fair": 0.469
+    },
+    {
+     "at": "2026-11-15T20:35:50.992Z",
+     "odds": 105,
+     "fair": 0.4697
     }
    ]
   }
@@ -20679,10 +20736,426 @@
   "type": "day",
   "id": "day-2026-11-15",
   "date": "2026-11-15",
-  "checkedAt": "2026-11-15T14:10:05.204Z",
-  "closedAt": null,
-  "candidates": 139,
-  "leans": 3,
-  "props": 136
+  "checkedAt": "2026-11-15T20:38:45.491Z",
+  "closedAt": "2026-11-15T20:38:45.491Z",
+  "candidates": 122,
+  "leans": 2,
+  "props": 120
+ },
+ {
+  "key": "f5973475196770206d4e81300ca54634|spreads|Vancouver Canucks|1.5",
+  "id": "f597347519-spreads-Vancouver-Canucks",
+  "date": "2026-11-16",
+  "commence": "2026-11-17T02:30:00Z",
+  "sport": "NHL",
+  "league": "NHL",
+  "sportKey": "icehockey_nhl",
+  "eventId": "f5973475196770206d4e81300ca54634",
+  "home": "Utah Mammoth",
+  "away": "Vancouver Canucks",
+  "event": "Vancouver Canucks @ Utah Mammoth",
+  "market": "Puck line",
+  "marketKey": "spreads",
+  "outcome": {
+   "name": "Vancouver Canucks",
+   "point": 1.5
+  },
+  "threeWay": false,
+  "pick": "Vancouver Canucks +1.5",
+  "odds": 116,
+  "book": "FanDuel",
+  "prices": {
+   "FanDuel": 116,
+   "DraftKings": 114,
+   "theScore Bet": 115,
+   "BetRivers": 105,
+   "Bovada": 115,
+   "Caesars": 116,
+   "ESPN BET": 115
+  },
+  "books": 5,
+  "anchor": null,
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.6161,
+  "edge": 0.1531,
+  "ev": 0.3308,
+  "confidence": "High",
+  "bar": 0.065,
+  "past": 0.0881,
+  "barParts": {
+   "error": 0.065,
+   "units": 0.43,
+   "unit": "goals",
+   "gp": 21,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": 0.6,
+   "total": 6.5,
+   "sd": 2.4,
+   "sdTotal": 2.3,
+   "gp": 21,
+   "gpHome": 21,
+   "gpAway": 21,
+   "thin": false,
+   "parts": {
+    "ratingHome": -0.1,
+    "ratingAway": -0.9,
+    "lastHome": 0.3,
+    "lastAway": -1.2,
+    "homeEdge": 0.24,
+    "rest": 0,
+    "injuriesHome": -0.4,
+    "injuriesAway": 0,
+    "scoringOut": 0,
+    "pace": 7.1
+   },
+   "reasons": {
+    "for": [
+     "Utah Mammoth trending: last five -1.4 vs -0.2 on the season",
+     "Vancouver Canucks are rested (3 days)",
+     "Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4)",
+     "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable"
+    ],
+    "against": [
+     "Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game",
+     "Vancouver Canucks trending: last five -2.6 vs -1.8 on the season",
+     "Home edge +0.2 for Utah Mammoth",
+     "Vancouver Canucks without Guillaume Brisebois (D) (+0)",
+     "Projected margin -0.6 for Vancouver Canucks against +1.5"
+    ]
+   }
+  },
+  "marketFair": 0.4495,
+  "marketEdge": -0.0134,
+  "rationale": "Our probability at +1.5 is 61.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). FanDuel offers +116, which implies only 46.3%. Its bar is 6.5 points: the model's own margin of error on this side, with 21 games behind the thinner team (±0.43 goals on the margin). It clears it by 8.8. Not graded against other books' prices; for reference the market makes it 45.0%.",
+  "factors": [
+   "Best price +116 at FanDuel",
+   "Probability 61.6% from game data, not other books",
+   "Edge 15.3 points over the price, 8.8 past its bar of 6.5",
+   "Market reference 45.0%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-15T20:35:50.992Z",
+  "availability": null,
+  "current": {
+   "at": "2026-11-15T20:35:50.992Z",
+   "odds": 116,
+   "book": "FanDuel",
+   "fair": 0.4495,
+   "edge": 0.1531,
+   "modelProb": 0.6161,
+   "bar": 0.065
+  },
+  "history": [
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "odds": 116,
+    "fair": 0.4495
+   }
+  ],
+  "context": {
+   "espnEventId": "401892727",
+   "venue": "Delta Center, Salt Lake City",
+   "indoor": true,
+   "records": {
+    "Utah Mammoth": {
+     "overall": "10-8-3",
+     "home": "4-2-2",
+     "away": "6-6-1"
+    },
+    "Vancouver Canucks": {
+     "overall": "3-17-1",
+     "home": "1-9-0",
+     "away": "2-8-1"
+    }
+   },
+   "probables": {
+    "Utah Mammoth": "Karel Vejmelka",
+    "Vancouver Canucks": "Kevin Lankinen"
+   },
+   "injuries": {
+    "Utah Mammoth": [
+     {
+      "name": "Logan Cooley",
+      "pos": "C",
+      "athleteId": "5080143",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080143.png",
+      "status": "Day-To-Day",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-11-16",
+      "date": "2026-11-15T14:13Z",
+      "note": "day-to-day"
+     },
+     {
+      "name": "Nick Schmaltz",
+      "pos": "C",
+      "athleteId": "3114770",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3114770.png",
+      "status": "Out",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-21",
+      "date": "2026-11-14T18:48Z",
+      "note": "Schmaltz (lower body) isn't expected to play against San Jose on Saturday, and it's unclear when he will be ready to return, Brogan Houston of the Deseret News "
+     },
+     {
+      "name": "Nate Schmidt",
+      "pos": "D",
+      "athleteId": "3024798",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3024798.png",
+      "status": "Injured Reserve",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-11-21",
+      "date": "2026-11-12T19:30Z",
+      "note": "The Mammoth announced Thursday that Schmidt (upper body) is considered week-to-week, Cole Bagley of KSL Sports reports."
+     },
+     {
+      "name": "Dylan Guenther",
+      "pos": "RW",
+      "athleteId": "4874723",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874723.png",
+      "status": "Injured Reserve",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-12-05",
+      "date": "2026-11-12T01:21Z",
+      "note": "ir"
+     },
+     {
+      "name": "John Marino",
+      "pos": "D",
+      "athleteId": "3941974",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3941974.png",
+      "status": "Injured Reserve",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-12-03",
+      "date": "2026-11-01T20:27Z",
+      "note": "ir"
+     },
+     {
+      "name": "Maveric Lamoureux",
+      "pos": "D",
+      "athleteId": "5080177",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080177.png",
+      "status": "Injured Reserve",
+      "type": "Shoulder",
+      "detail": "",
+      "returnDate": "2027-02-12",
+      "date": "2026-09-28T21:02Z",
+      "note": "ir"
+     }
+    ],
+    "Vancouver Canucks": [
+     {
+      "name": "Guillaume Brisebois",
+      "pos": "D",
+      "athleteId": "3942866",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3942866.png",
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-19",
+      "date": "2026-11-13T22:59Z",
+      "note": "ir"
+     },
+     {
+      "name": "Mackenzie MacEachern",
+      "pos": "LW",
+      "athleteId": "3069342",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069342.png",
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-29",
+      "date": "2026-09-29T17:03Z",
+      "note": "ir-nr"
+     },
+     {
+      "name": "Thatcher Demko",
+      "pos": "G",
+      "athleteId": "3096217",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3096217.png",
+      "status": "Injured Reserve",
+      "type": "Hip",
+      "detail": "Surgery",
+      "returnDate": "2026-12-21",
+      "date": "2026-09-28T17:58Z",
+      "note": "Co-president of hockey operations Henrik Sedin said Monday that he hopes Demko (hip) will be ready to return before Christmas, Kevin Woodley of NHL.com reports."
+     }
+    ]
+   },
+   "rest": {
+    "Utah Mammoth": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-15",
+     "gamesLast7": 3
+    },
+    "Vancouver Canucks": {
+     "restDays": 3,
+     "b2b": false,
+     "lastGame": "2026-11-14",
+     "gamesLast7": 2
+    }
+   },
+   "weather": null,
+   "broadcast": "ESPN+",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": -1.5,
+     "spreadOdds": {
+      "home": -135,
+      "away": 114
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": -105,
+      "under": -115
+     },
+     "ml": {
+      "home": -340,
+      "away": 270
+     },
+     "draw": null
+    },
+    "open": {
+     "spread": -1.5,
+     "spreadOdds": {
+      "home": -142,
+      "away": 120
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": -105,
+      "under": -115
+     },
+     "ml": {
+      "home": -360,
+      "away": 285
+     },
+     "draw": null
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "line": 1.5,
+    "odds": 114,
+    "fair": 0.4486
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": 1.5,
+    "odds": 120,
+    "fair": 0.43650793650793646
+   },
+   "now": {
+    "line": 1.5,
+    "odds": 114,
+    "fair": 0.448558885283451
+   },
+   "moved": "toward",
+   "label": "DraftKings opened +1.5 (+120), now +1.5 (+114)"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 5,
+   "open": {
+    "line": 5,
+    "odds": 100
+   },
+   "now": {
+    "line": 1.5,
+    "odds": 124
+   },
+   "moved": "toward",
+   "label": "The market (5 books) opened +5 (+100), now +1.5 (+124)"
+  },
+  "breakdown": {
+   "tier": "High",
+   "tierWhy": "Our probability for this side is 61.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 46.3%, so the edge is 15.3 points. Its bar is 6.5 points: the model's own margin of error on this side, with 21 games behind the thinner team (±0.43 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 8.8 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability at +1.5 is 61.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). FanDuel offers +116, which implies only 46.3%. Its bar is 6.5 points: the model's own margin of error on this side, with 21 games behind the thinner team (±0.43 goals on the margin). It clears it by 8.8. Not graded against other books' prices; for reference the market makes it 45.0%.",
+   "support": [
+    "Utah Mammoth trending: last five -1.4 vs -0.2 on the season.",
+    "Vancouver Canucks are rested (3 days).",
+    "Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).",
+    "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable."
+   ],
+   "risks": [
+    "Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.",
+    "Vancouver Canucks trending: last five -2.6 vs -1.8 on the season.",
+    "Home edge +0.2 for Utah Mammoth.",
+    "Vancouver Canucks without Guillaume Brisebois (D) (+0).",
+    "Projected margin -0.6 for Vancouver Canucks against +1.5."
+   ],
+   "notes": [
+    "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
+    "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
+    "Market: The market (5 books) opened +5 (+100), now +1.5 (+124), the consensus moving toward this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Probable pitchers: Mammoth Karel Vejmelka · Canucks Kevin Lankinen.",
+    "Records: Vancouver Canucks 3-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
+   ],
+   "verdict": "More working against this one than for it; size down."
+  },
+  "sgoEventId": "1zPBxiVhVBMEjr0JbkcI",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "1zPBxiVhVBMEjr0JbkcI",
+   "at": "2026-11-15T20:35:50.992Z",
+   "books": {
+    "FanDuel": 116,
+    "DraftKings": 114,
+    "Caesars": 116,
+    "ESPN BET": 115,
+    "Bovada": 115
+   },
+   "n": 5,
+   "best": {
+    "book": "FanDuel",
+    "odds": 116
+   },
+   "fair": 0.4458,
+   "fairBooks": 5,
+   "vendor": {
+    "line": 1.5,
+    "odds": 124,
+    "fair": 0.4464,
+    "sameLine": true
+   },
+   "open": {
+    "line": 5,
+    "odds": 100
+   },
+   "now": {
+    "line": 1.5,
+    "odds": 124
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-15T20:35:50.992Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-15T20:35:50.992Z",
+    "fair": 0.4458,
+    "vendorFair": 0.4464,
+    "line": 1.5,
+    "odds": 124,
+    "best": 116,
+    "n": 5
+   }
+  ]
  }
 ]
