@@ -83,6 +83,11 @@ jobs:
       # SportsGameOdds entity (a game the odds run above has priced is read from data/ on disk). Never fails the job.
       - name: Project the NFL week (ESPN and the National Weather Service, no key)
         run: node scripts/nfl-week.js || echo "::warning::NFL week refresh failed; keeping the previous data/nfl-week.js"
+      # Early lines (scripts/early-line.js, 2026-11-15; owner: "tracked live first"): every NFL and FBS game's number locked
+      # when DraftKings first posts a moneyline on ESPN's scoreboard, more than 36 hours out, then graded at that price.
+      # Not leans. ESPN only: no Odds API credit, no SportsGameOdds entity. Never fails the job.
+      - name: Lock early NFL and college football numbers (ESPN, no key)
+        run: node scripts/early-line.js || echo "::warning::early lines failed; keeping the previous data/early-line.js"
       # Lines ride along from SportsGameOdds (one entity per game). The NBA's (about 14 a night) come on the afternoon
       # run and manual runs. The NFL's come on the morning run too (--lines nfl): Sunday's 9:30 AM and 1 PM kickoffs are
       # gone by the afternoon run. The NFL call is ESPN-gated inside the script: only on an NFL game day, only for the
