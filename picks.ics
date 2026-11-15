@@ -601,174 +601,82 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7f07a205e3-totals-Under@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T053856Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
-SUMMARY:Under 6.5 +120 at BetRivers · in play
+SUMMARY:Under 6.5 +120 at BetRivers · Won +1.20u
 DESCRIPTION:NHL · Edmonton Oilers @ Toronto Maple Leafs · Sat Nov 14\, 7:
- 10 PM ET\nTotal: Under 6.5 at +120 (BetRivers). Our probability 50.3% from
-  game data\, the price implies 45.5%\, edge +4.8 pts\, EV +10.7% per unit.
-  Confidence: Lean.\nOur probability at 6.5 is 50.3%\, from the game data: 
- this season's results and margins\, recent form\, rest\, the injury report
-  and home edge (projected total 6.5). BetRivers offers +120\, which implie
- s only 45.5%. Its bar is 3.0 points (the floor: the model's own margin of 
- error here is smaller). It clears it by 1.8. Not graded against other book
- s' prices\; for reference the market makes it 43.9%.\nWhat supports it:\n-
-  Combined scoring 6.9 a game in Toronto Maple Leafs's games\, 7 in Edmonto
- n Oilers's (league average 6.3).\n- Projected total 6.46 against 6.5.\n- S
- corers out: Colton Sissons (C)\, lower body\; Kirill Marchenko (RW)\, lowe
- r body\; Miles Wood (LW)\, undisclosed and 11 more. Fewer healthy scorers 
- leans under.\nVerdict: The game data lines up behind this side at this pri
- ce.\nPrices: BetRivers +120\, theScore Bet +120\, BetMGM +110\, Bovada +10
- 7\, DraftKings +105 and 5 more.\nFull breakdown: https://ajur21.github.io/
- edgeline-ai/picks.html#7f07a205e3-totals-Under
+ 10 PM ET\nTotal: Under 6.5 at +120 (BetRivers). Won +1.20u.\nFinal: 1-0\nC
+ losing line value: +1.3 pts (closed +105\, DraftKings close (ESPN)).\nReco
+ rd and every graded lean: https://ajur21.github.io/edgeline-ai/performance
+ .html
 LOCATION:Scotiabank Arena\, Toronto
-URL:https://ajur21.github.io/edgeline-ai/picks.html#7f07a205e3-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T053856Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f3b622fed3-totals-Over@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T053856Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
-SUMMARY:Over 5.5 -110 at BetOnline.ag · in play
+SUMMARY:Over 5.5 -110 at BetOnline.ag · Won +0.91u
 DESCRIPTION:NHL · Philadelphia Flyers @ Columbus Blue Jackets · Sat Nov 1
- 4\, 7:10 PM ET\nTotal: Over 5.5 at -110 (BetOnline.ag). Our probability 56
- .1% from game data\, the price implies 52.4%\, edge +3.7 pts\, EV +7.1% pe
- r unit. Confidence: Lean.\nOur probability at 5.5 is 56.1%\, from the game
-  data: this season's results and margins\, recent form\, rest\, the injury
-  report and home edge (projected total 6.2). BetOnline.ag offers -110\, wh
- ich implies only 52.4%. Its bar is 3.0 points (the floor: the model's own 
- margin of error here is smaller). It clears it by 0.7. Not graded against 
- other books' prices\; for reference the market makes it 52.1%.\nWhat suppo
- rts it:\n- Combined scoring 5.6 a game in Columbus Blue Jackets's games\, 
- 5.5 in Philadelphia Flyers's (league average 6.3).\n- Projected total 6.2 
- against 5.5.\nWhat could go wrong:\n- At current prices our edge is 2.4 po
- ints\, under its bar of 3.0 points\; the pick stays posted and is graded a
- t the price it was posted at.\n- Scorers out: Nikita Grebenkin (RW)\, back
- . Fewer healthy scorers leans under.\nVerdict: The game data lines up behi
- nd this side at this price.\nPrices: BetOnline.ag -110\, BetMGM -115\, Dra
- ftKings -118\, FanDuel -118\, theScore Bet -120 and 6 more.\nFull breakdow
- n: https://ajur21.github.io/edgeline-ai/picks.html#f3b622fed3-totals-Over
+ 4\, 7:10 PM ET\nTotal: Over 5.5 at -110 (BetOnline.ag). Won +0.91u.\nFinal
+ : 4-3\nClosing line value: -0.6 pts (closed -118\, DraftKings close (ESPN)
+ ).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/per
+ formance.html
 LOCATION:Nationwide Arena\, Columbus
-URL:https://ajur21.github.io/edgeline-ai/picks.html#f3b622fed3-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T053856Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-14@edgeline
-DTSTAMP:20261115T014723Z
-DTSTART:20261115T011000Z
-DTEND:20261115T061000Z
-SUMMARY:Parlay lean of the day: 2 legs +106 at PointsBet
-DESCRIPTION:All legs priced at PointsBet. Fair 55.8%\, implied 48.5%\, EV +
- 14.8% per unit.\n- NBA: Minnesota Timberwolves ML -1000 · Chicago Bulls @
-  Minnesota Timberwolves\n- NHL: Over 5.5 -115 · Calgary Flames @ Los Ange
- les Kings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html
- #parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261115T014723Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +106 at PointsBet
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5773e80d52-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261115T010714Z
+DTSTAMP:20261115T053856Z
 DTSTART:20261115T011000Z
 DTEND:20261115T041000Z
-SUMMARY:Minnesota Timberwolves ML -950 at FanDuel · in play
+SUMMARY:Minnesota Timberwolves ML -950 at FanDuel · Lost -1.00u
 DESCRIPTION:NBA · Chicago Bulls @ Minnesota Timberwolves · Sat Nov 14\, 8
- :10 PM ET\nMoneyline: Minnesota Timberwolves ML at -950 (FanDuel). Our pro
- bability 96.5% from game data\, the price implies 90.5%\, edge +6.0 pts\, 
- EV +6.6% per unit. Confidence: Medium.\nOur probability is 96.5%\, from th
- e game data: this season's results and margins\, recent form\, rest\, the 
- injury report and home edge (projected margin +22.9 for the home side). Fa
- nDuel offers -950\, which implies only 90.5%. Its bar is 3.0 points (the f
- loor: the model's own margin of error here is smaller). It clears it by 3.
- 0. Not graded against other books' prices\; for reference the market makes
-  it 87.8%.\nWhat supports it:\n- Minnesota Timberwolves rate +8.4 a game o
- ver 12 (9-3)\, Chicago Bulls -8.3 over 11 (2-9)\; last season +3.4 and -5.
- 2 a game.\n- Home edge +1.9 for Minnesota Timberwolves.\n- Chicago Bulls a
- re on the second night of a back-to-back.\n- Chicago Bulls without Tobe Aw
- aka (F)\, Jaylin Sellers (G)\, Caleb Wilson (F) (+4.1)\, out per the 3:30 
- PM ET official report.\n- Chicago Bulls have Nic Claxton (C) questionable\
- , Norman Powell (G) questionable\, Jalen Smith (F) questionable per the 3:
- 30 PM ET official report.\n- Projected margin +22.9 for Minnesota Timberwo
- lves.\n- Norman Powell cleared to play at 6:45 PM ET (official report)\; J
- alen Smith ruled out at 6:45 PM ET (official report)\, after this lean was
-  posted at 3:36 PM ET.\nWhat could go wrong:\n- Minnesota Timberwolves wit
- hout Anthony Edwards (G) (-1.3)\, out per the 3:30 PM ET official report.\
- nVerdict: The game data lines up behind this side at this price.\nPrices: 
- Bovada -1000\, PointsBet -1000\, DraftKings -1080\, BetMGM -1100\, BetOnli
- ne.ag -1100 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#5773e80d52-h2h-Minnesota-Timberwolves
+ :10 PM ET\nMoneyline: Minnesota Timberwolves ML at -950 (FanDuel). Lost -1
+ .00u.\nFinal: 117-106\nClosing line value: -2.6 pts (closed -1080\, DraftK
+ ings close (ESPN)).\nRecord and every graded lean: https://ajur21.github.i
+ o/edgeline-ai/performance.html
 LOCATION:Target Center\, Minneapolis
-URL:https://ajur21.github.io/edgeline-ai/picks.html#5773e80d52-h2h-Minnesot
- a-Timberwolves
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA
-LAST-MODIFIED:20261115T010714Z
+LAST-MODIFIED:20261115T053856Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e7f30a1c54-h2h-San-Jose-Sharks@edgeline
-DTSTAMP:20261115T014723Z
+DTSTAMP:20261115T053856Z
 DTSTART:20261115T021000Z
 DTEND:20261115T051000Z
-SUMMARY:San Jose Sharks ML +180 at BetRivers · Low
+SUMMARY:San Jose Sharks ML +180 at BetRivers · Won +1.80u
 DESCRIPTION:NHL · San Jose Sharks @ Utah Mammoth · Sat Nov 14\, 9:10 PM E
- T\nMoneyline: San Jose Sharks ML at +180 (BetRivers). Our probability 44.9
- % from game data\, the price implies 35.7%\, edge +9.1 pts\, EV +25.6% per
-  unit. Confidence: Lean.\nOur probability is 44.9%\, from the game data: t
- his season's results and margins\, recent form\, rest\, the injury report 
- and home edge (projected margin +0.3 for the home side). BetRivers offers 
- +180\, which implies only 35.7%. Its bar is 7.2 points: the model's own ma
- rgin of error on this side\, with 20 games behind the thinner team (±0.44
-  goals on the margin). It clears it by 2.0. Not graded against other books
- ' prices\; for reference the market makes it 35.0%.\nWhat supports it:\n- 
- Utah Mammoth trending: last five -1 vs -0.1 on the season.\n- San Jose Sha
- rks are rested (3 days).\n- Utah Mammoth without Nate Schmidt (D)\, Dylan 
- Guenther (RW)\, John Marino (D) (-0.4).\n- Utah Mammoth have Nick Schmaltz
-  (C)\, Logan Cooley (C) listed day-to-day or questionable.\nWhat could go 
- wrong:\n- Utah Mammoth rate 0 a game over 20 (10-10)\, San Jose Sharks -0.
- 5 over 21 (8-13)\; last season +0.3 and -0.5 a game.\n- San Jose Sharks tr
- ending: last five -1.8 vs -1 on the season.\n- Home edge +0.2 for Utah Mam
- moth.\n- San Jose Sharks without Igor Chernyshov (LW) (+0.1).\n- Projected
-  margin -0.3 for San Jose Sharks.\nVerdict: More working against this one 
- than for it\; size down.\nPrices: BetRivers +180\, BetOnline.ag +171\, the
- Score Bet +170\, Bovada +158\, BetMGM +155 and 5 more.\nFull breakdown: ht
- tps://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose-Shar
- ks
+ T\nMoneyline: San Jose Sharks ML at +180 (BetRivers). Won +1.80u.\nFinal: 
+ 6-5\nClosing line value: +2.0 pts (closed +154\, DraftKings close (ESPN)).
+ \nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perfo
+ rmance.html
 LOCATION:Delta Center\, Salt Lake City
-URL:https://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose
- -Sharks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T014723Z
+LAST-MODIFIED:20261115T053856Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:San Jose Sharks ML +180 at BetRivers · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:4d5a1a7211-totals-Over@edgeline
 DTSTAMP:20261115T014723Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
-SUMMARY:Over 5.5 -118 at DraftKings · Low
+SUMMARY:Over 5.5 -118 at DraftKings · in play
 DESCRIPTION:NHL · Calgary Flames @ Los Angeles Kings · Sat Nov 14\, 10:10
   PM ET\nTotal: Over 5.5 at -118 (DraftKings). Our probability 57.9% from g
  ame data\, the price implies 54.1%\, edge +3.8 pts\, EV +6.9% per unit. Co
@@ -794,47 +702,24 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261115T014723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -118 at DraftKings · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce4dd515ea-totals-Under@edgeline
-DTSTAMP:20261115T014723Z
+DTSTAMP:20261115T053856Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
-SUMMARY:Under 6.5 +110 at BetOnline.ag · Low
+SUMMARY:Under 6.5 +110 at BetOnline.ag · Lost -1.00u
 DESCRIPTION:NHL · New York Islanders @ Anaheim Ducks · Sat Nov 14\, 10:10
-  PM ET\nTotal: Under 6.5 at +110 (BetOnline.ag). Our probability 51.0% fro
- m game data\, the price implies 47.6%\, edge +3.4 pts\, EV +7.1% per unit.
-  Confidence: Lean.\nOur probability at 6.5 is 51.0%\, from the game data: 
- this season's results and margins\, recent form\, rest\, the injury report
-  and home edge (projected total 6.4). BetOnline.ag offers +110\, which imp
- lies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin 
- of error here is smaller). It clears it by 0.4. Not graded against other b
- ooks' prices\; for reference the market makes it 47.2%.\nWhat supports it:
- \n- Combined scoring 7.4 a game in Anaheim Ducks's games\, 6 in New York I
- slanders's (league average 6.3).\n- Projected total 6.4 against 6.5.\n- A 
- better price is now available: +115 at theScore Bet.\n- A better price is 
- available now: +120 at ESPN BET.\n- Scorers out: Ryan Poehling (C)\, knee\
- ; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, upper body and 2 more. Fe
- wer healthy scorers leans under.\nVerdict: The game data lines up behind t
- his side at this price.\nPrices: ESPN BET +120\, Bovada +120\, FanDuel +11
- 6\, PointsBet +115\, DraftKings +114 and 6 more.\nFull breakdown: https://
- ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
+  PM ET\nTotal: Under 6.5 at +110 (BetOnline.ag). Lost -1.00u.\nFinal: 6-2\
+ nClosing line value: -2.8 pts (closed +114\, DraftKings close (ESPN)).\nRe
+ cord and every graded lean: https://ajur21.github.io/edgeline-ai/performan
+ ce.html
 LOCATION:Honda Center\, Anaheim
-URL:https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T014723Z
+LAST-MODIFIED:20261115T053856Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +110 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b5700b4d93-h2h-Miami-Dolphins@edgeline

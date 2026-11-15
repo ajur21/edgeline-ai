@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-14",
+  "asOf": "2026-11-15",
   "windowDays": 30,
   "record": {
-    "wins": 16,
-    "losses": 17,
+    "wins": 19,
+    "losses": 19,
     "pushes": 0
   },
-  "units": -4.01,
-  "roi": -12.2,
-  "avgEdge": 9.5,
-  "graded": 33,
+  "units": -2.1,
+  "roi": -5.5,
+  "avgEdge": 9,
+  "graded": 38,
   "daily": [
     {
       "date": "2026-11-05",
@@ -45,18 +45,22 @@ window.PERF_DATA = {
     {
       "date": "2026-11-13",
       "units": -4.01
+    },
+    {
+      "date": "2026-11-14",
+      "units": -2.1
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": -0.88,
-      "record": "11-10"
+      "units": 2.03,
+      "record": "14-11"
     },
     {
       "sport": "NBA",
-      "units": -1.8,
-      "record": "1-2"
+      "units": -2.8,
+      "record": "1-3"
     },
     {
       "sport": "Soccer",
@@ -65,6 +69,81 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-14",
+      "sport": "NHL",
+      "event": "New York Islanders @ Anaheim Ducks",
+      "pick": "Under 6.5",
+      "odds": 110,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0276,
+      "closeOdds": 114,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-14",
+      "sport": "NHL",
+      "event": "San Jose Sharks @ Utah Mammoth",
+      "pick": "San Jose Sharks ML",
+      "odds": 180,
+      "result": "Win",
+      "units": 1.8,
+      "clv": 0.0204,
+      "closeOdds": 154,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-14",
+      "sport": "NBA",
+      "event": "Chicago Bulls @ Minnesota Timberwolves",
+      "pick": "Minnesota Timberwolves ML",
+      "odds": -950,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0263,
+      "closeOdds": -1080,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-14",
+      "sport": "NHL",
+      "event": "Philadelphia Flyers @ Columbus Blue Jackets",
+      "pick": "Over 5.5",
+      "odds": -110,
+      "result": "Win",
+      "units": 0.91,
+      "clv": -0.0064,
+      "closeOdds": -118,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-14",
+      "sport": "NHL",
+      "event": "Edmonton Oilers @ Toronto Maple Leafs",
+      "pick": "Under 6.5",
+      "odds": 120,
+      "result": "Win",
+      "units": 1.2,
+      "clv": 0.013,
+      "closeOdds": 105,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-13",
       "sport": "NHL",
@@ -169,81 +248,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-10",
-      "sport": "NHL",
-      "event": "Florida Panthers @ Columbus Blue Jackets",
-      "pick": "Columbus Blue Jackets ML",
-      "odds": 107,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0156,
-      "closeOdds": 105,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "NHL",
-      "event": "Pittsburgh Penguins @ Anaheim Ducks",
-      "pick": "Under 6.5",
-      "odds": 122,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0439,
-      "closeOdds": 136,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "NHL",
-      "event": "Philadelphia Flyers @ Calgary Flames",
-      "pick": "Over 5.5",
-      "odds": -120,
-      "result": "Win",
-      "units": 0.83,
-      "clv": -0.0281,
-      "closeOdds": -118,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "NBA",
-      "event": "Utah Jazz @ Minnesota Timberwolves",
-      "pick": "Minnesota Timberwolves ML",
-      "odds": -500,
-      "result": "Win",
-      "units": 0.2,
-      "clv": 0.0076,
-      "closeOdds": -700,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-08",
-      "sport": "NHL",
-      "event": "Florida Panthers @ Boston Bruins",
-      "pick": "Boston Bruins ML",
-      "odds": -130,
-      "result": "Win",
-      "units": 0.77,
-      "clv": 0.0178,
-      "closeOdds": -155,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -302,16 +306,33 @@ window.PERF_DATA = {
       "wins": 0,
       "losses": 2,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-14",
+      "units": 1.91,
+      "wins": 3,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 2,
-    "losses": 6,
+    "losses": 7,
     "pushes": 0,
-    "units": -4.05,
-    "n": 8,
+    "units": -5.05,
+    "n": 9,
     "props": 0,
     "recent": [
+      {
+        "date": "2026-11-14",
+        "kind": "lean",
+        "sport": "NBA",
+        "event": "Chicago Bulls @ Minnesota Timberwolves",
+        "pick": "Minnesota Timberwolves ML",
+        "odds": -950,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-13",
         "kind": "lean",
@@ -402,25 +423,25 @@ window.PERF_DATA = {
     "n": 8
   },
   "clv": {
-    "n": 27,
-    "avg": -1.64,
-    "beat": 5,
-    "beatPct": 18.5,
-    "graded": 33,
+    "n": 32,
+    "avg": -1.47,
+    "beat": 7,
+    "beatPct": 21.9,
+    "graded": 38,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 33,
+    "espnCloses": 38,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 16,
-      "losses": 17,
+      "wins": 19,
+      "losses": 19,
       "pushes": 0,
-      "units": -4.01,
-      "n": 33,
-      "roi": -12.2,
-      "pending": 11,
+      "units": -2.1,
+      "n": 38,
+      "roi": -5.5,
+      "pending": 6,
       "since": "2026-11-05"
     },
     "price": {

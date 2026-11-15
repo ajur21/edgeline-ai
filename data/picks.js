@@ -3,553 +3,35 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-14T20:36:57.263Z",
-  "trackedAt": "2026-11-15T01:47:23.394Z",
-  "playOfDay": {
-    "id": "5773e80d52-h2h-Minnesota-Timberwolves",
-    "sport": "NBA",
-    "league": "NBA",
-    "sportKey": "basketball_nba",
-    "event": "Chicago Bulls @ Minnesota Timberwolves",
-    "home": "Minnesota Timberwolves",
-    "away": "Chicago Bulls",
-    "marketKey": "h2h",
-    "outcome": {
-      "name": "Minnesota Timberwolves",
-      "point": null
-    },
-    "commence": "2026-11-15T01:10:00Z",
-    "start": "Today 8:10 PM ET",
-    "market": "Moneyline",
-    "pick": "Minnesota Timberwolves ML",
-    "odds": -950,
-    "book": "FanDuel",
-    "prices": {
-      "FanDuel": -1150,
-      "BetRivers": -1250,
-      "theScore Bet": -1600,
-      "BetMGM": -1100,
-      "DraftKings": -1080,
-      "BetOnline.ag": -1100,
-      "Bovada": -1000,
-      "PointsBet": -1000,
-      "Unibet": -1429,
-      "Caesars": -1200,
-      "ESPN BET": -1200
-    },
-    "pricesAt": "2026-11-15T01:07:14.678Z",
-    "books": 8,
-    "anchor": "Pinnacle",
-    "modelProb": 0.9646,
-    "ev": 0.0661,
-    "confidence": "Medium",
-    "basis": "game",
-    "model": {
-      "margin": 22.9,
-      "total": 233.7,
-      "sd": 14.3,
-      "sdTotal": 19,
-      "gp": 11,
-      "gpHome": 12,
-      "gpAway": 11,
-      "thin": false,
-      "parts": {
-        "ratingHome": 8.4,
-        "ratingAway": -8.3,
-        "lastHome": 3.4,
-        "lastAway": -5.2,
-        "homeEdge": 1.9,
-        "rest": 1.5,
-        "injuriesHome": -1.3,
-        "injuriesAway": 4.1,
-        "scoringOut": 0,
-        "pace": 233.7
-      },
-      "reasons": {
-        "for": [
-          "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game",
-          "Home edge +1.9 for Minnesota Timberwolves",
-          "Chicago Bulls are on the second night of a back-to-back",
-          "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report",
-          "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report",
-          "Projected margin +22.9 for Minnesota Timberwolves"
-        ],
-        "against": [
-          "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report"
-        ]
-      }
-    },
-    "marketFair": 0.8779,
-    "marketEdge": -0.0269,
-    "rationale": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
-    "factors": [
-      "Best price -950 at FanDuel",
-      "Probability 96.5% from game data, not other books",
-      "Edge 6.0 points over the price, 3.0 past its bar of 3.0",
-      "Market reference 87.8%"
-    ],
-    "breakdown": {
-      "tier": "Medium",
-      "tierWhy": "Our probability for this side is 96.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 90.5%, so the edge is 6.0 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 3.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-      "price": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
-      "support": [
-        "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game.",
-        "Home edge +1.9 for Minnesota Timberwolves.",
-        "Chicago Bulls are on the second night of a back-to-back.",
-        "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report.",
-        "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report.",
-        "Projected margin +22.9 for Minnesota Timberwolves.",
-        "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET."
-      ],
-      "risks": [
-        "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report."
-      ],
-      "notes": [
-        "Where the market sits: Pinnacle's de-vigged price makes this side 87.8% (-2.7 points against the best price). For reference only.",
-        "Market: DraftKings opened -840, now -1080, moving toward this side since the open.",
-        "Market: The market (8 books) opened -170, now -734, the consensus moving toward this side since the open.",
-        "Indoor venue; weather is not a factor.",
-        "Records: Chicago Bulls 2-9 · Minnesota Timberwolves 9-3 · Target Center, Minneapolis."
-      ],
-      "verdict": "The game data lines up behind this side at this price."
-    },
-    "context": {
-      "espnEventId": "401909984",
-      "venue": "Target Center, Minneapolis",
-      "indoor": true,
-      "records": {
-        "Minnesota Timberwolves": {
-          "overall": "9-3",
-          "home": "5-1",
-          "away": "4-2"
-        },
-        "Chicago Bulls": {
-          "overall": "2-9",
-          "home": "1-4",
-          "away": "1-5"
-        }
-      },
-      "probables": {},
-      "injuries": {
-        "Minnesota Timberwolves": [
-          {
-            "name": "Anthony Edwards",
-            "pos": "G",
-            "athleteId": "4594268",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4594268.png",
-            "status": "Out",
-            "type": "Knee",
-            "detail": "Surgery",
-            "returnDate": "2026-12-21",
-            "date": "2026-10-29T18:33Z",
-            "note": "Edwards underwent a successful arthroscopic procedure on his right knee Thursday, the Timberwolves announced."
-          },
-          {
-            "name": "Donte DiVincenzo",
-            "pos": "G",
-            "athleteId": "3934673",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934673.png",
-            "status": "Out",
-            "type": "Achilles",
-            "detail": "Surgery",
-            "returnDate": "2027-04-02",
-            "date": "2026-10-05T20:53Z",
-            "note": "DiVincenzo (Achilles) remains confident that he'll return during the 2026-27 season, Jon Krawczynski of The Athletic reports."
-          }
-        ],
-        "Chicago Bulls": [
-          {
-            "name": "Tobe Awaka",
-            "pos": "F",
-            "athleteId": "5105555",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105555.png",
-            "status": "Out",
-            "type": "Back",
-            "detail": "",
-            "returnDate": "2026-11-16",
-            "date": "2026-11-14T18:10Z",
-            "note": "Awaka has been ruled out for Saturday's game against the Timberwolves."
-          },
-          {
-            "name": "Nic Claxton",
-            "pos": "C",
-            "athleteId": "4278067",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4278067.png",
-            "status": "Day-To-Day",
-            "type": "Hamstring",
-            "detail": "",
-            "returnDate": "2026-11-14",
-            "date": "2026-11-14T18:08Z",
-            "note": "Claxton (hamstring) is listed as questionable for Saturday's game against the Timberwolves."
-          },
-          {
-            "name": "Jalen Smith",
-            "pos": "F",
-            "athleteId": "4397189",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4397189.png",
-            "status": "Day-To-Day",
-            "type": "Finger",
-            "detail": "Sprain",
-            "returnDate": "2026-11-14",
-            "date": "2026-11-14T18:00Z",
-            "note": "Smith (finger) is listed as questionable for Saturday's game at Minnesota."
-          },
-          {
-            "name": "Norman Powell",
-            "pos": "G",
-            "athleteId": "2595516",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2595516.png",
-            "status": "Day-To-Day",
-            "type": "Back",
-            "detail": "",
-            "returnDate": "2026-11-14",
-            "date": "2026-11-14T17:57Z",
-            "note": "Powell (back) is listed as questionable for Saturday's game against Minnesota."
-          },
-          {
-            "name": "Caleb Wilson",
-            "pos": "F",
-            "athleteId": "5095151",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5095151.png",
-            "status": "Out",
-            "type": "Hand",
-            "detail": "",
-            "returnDate": "2026-12-13",
-            "date": "2026-11-12T21:35Z",
-            "note": "Wilson (hand) is expected to miss four to six weeks, Shams Charania of ESPN reports."
-          }
-        ]
-      },
-      "rest": {
-        "Minnesota Timberwolves": {
-          "restDays": 2,
-          "b2b": false,
-          "lastGame": "2026-11-13",
-          "gamesLast7": 2
-        },
-        "Chicago Bulls": {
-          "restDays": 1,
-          "b2b": true,
-          "lastGame": "2026-11-14",
-          "gamesLast7": 3
-        }
-      },
-      "weather": null,
-      "broadcast": "DAZN MIN",
-      "odds": {
-        "provider": "DraftKings",
-        "now": {
-          "spread": -16.5,
-          "spreadOdds": {
-            "home": -104,
-            "away": -116
-          },
-          "total": 237.5,
-          "totalOdds": {
-            "over": -114,
-            "under": -106
-          },
-          "ml": {
-            "home": -1080,
-            "away": 690
-          },
-          "draw": null
-        },
-        "open": {
-          "spread": -14.5,
-          "spreadOdds": {
-            "home": -105,
-            "away": -115
-          },
-          "total": 236.5,
-          "totalOdds": {
-            "over": -108,
-            "under": -112
-          },
-          "ml": {
-            "home": -840,
-            "away": 580
-          },
-          "draw": null
-        }
-      }
-    },
-    "movement": null,
-    "dk": {
-      "book": "DraftKings",
-      "open": {
-        "line": null,
-        "odds": -840,
-        "fair": 0.8586891160553217
-      },
-      "now": {
-        "line": null,
-        "odds": -1080,
-        "fair": 0.878500823723229
-      },
-      "moved": "toward",
-      "label": "DraftKings opened -840, now -1080"
-    },
-    "dkHistory": [
-      {
-        "at": "2026-11-14T20:36:57.263Z",
-        "line": null,
-        "odds": -1080,
-        "fair": 0.8785
-      }
-    ],
-    "mkt": {
-      "book": "Market consensus",
-      "n": 8,
-      "open": {
-        "line": null,
-        "odds": -170
-      },
-      "now": {
-        "line": null,
-        "odds": -734
-      },
-      "moved": "toward",
-      "label": "The market (8 books) opened -170, now -734"
-    },
-    "sgo": {
-      "at": "2026-11-15T01:07:14.678Z",
-      "n": 8,
-      "best": {
-        "book": "PointsBet",
-        "odds": -1000
-      },
-      "fair": 0.8778,
-      "vendorFair": 0.8801,
-      "open": {
-        "line": null,
-        "odds": -170
-      },
-      "now": {
-        "line": null,
-        "odds": -734
-      }
-    },
-    "sgoHistory": [
-      {
-        "at": "2026-11-14T20:36:57.263Z",
-        "fair": 0.8744,
-        "vendorFair": 0.8764,
-        "line": null,
-        "odds": -709,
-        "best": -900,
-        "n": 8
-      },
-      {
-        "at": "2026-11-14T23:46:57.593Z",
-        "fair": 0.8785,
-        "vendorFair": 0.8801,
-        "line": null,
-        "odds": -734,
-        "best": -1000,
-        "n": 8
-      },
-      {
-        "at": "2026-11-15T01:07:14.678Z",
-        "fair": 0.8778,
-        "vendorFair": 0.8801,
-        "line": null,
-        "odds": -734,
-        "best": -1000,
-        "n": 8
-      }
-    ],
-    "status": "pending",
-    "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
-    "loggedAt": "2026-11-14T20:36:57.263Z",
-    "valueTo": -1429,
-    "bar": 0.03,
-    "past": 0.0298,
-    "barParts": {
-      "error": 0.0273,
-      "units": 4.36,
-      "unit": "points",
-      "gp": 11,
-      "floor": 0.03
-    },
-    "now": null,
-    "standing": null,
-    "availability": {
-      "changed": true,
-      "note": "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET",
-      "swing": 0.04,
-      "changes": [
-        {
-          "side": "away",
-          "name": "Norman Powell",
-          "from": "Questionable",
-          "to": "Available",
-          "fromMiss": 0.42,
-          "toMiss": 0,
-          "delta": -0.86,
-          "at": "2026-11-14T23:45:00.000Z",
-          "source": "official",
-          "report": "8:00 PM ET"
-        },
-        {
-          "side": "away",
-          "name": "Jalen Smith",
-          "from": "Questionable",
-          "to": "Out",
-          "fromMiss": 0.42,
-          "toMiss": 1,
-          "delta": 0.9,
-          "at": "2026-11-14T23:45:00.000Z",
-          "source": "official",
-          "report": "8:00 PM ET"
-        }
-      ],
-      "checkedAt": "2026-11-15T01:07:14.678Z",
-      "posted": {
-        "read": "2026-11-14T20:36:57.263Z",
-        "report": {
-          "source": "NBA official injury report",
-          "label": "3:30 PM ET",
-          "at": "2026-11-14T20:30:00.000Z",
-          "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-14_03_30PM.pdf"
-        },
-        "players": [
-          {
-            "side": "home",
-            "name": "Donte DiVincenzo",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "home",
-            "name": "Anthony Edwards",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Tobe Awaka",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Nic Claxton",
-            "status": "Questionable",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Norman Powell",
-            "status": "Questionable",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Jaylin Sellers",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Jalen Smith",
-            "status": "Questionable",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Dailyn Swain",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Caleb Wilson",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-14T20:30:00.000Z"
-          }
-        ]
-      }
-    },
-    "kind": "lean",
-    "lockedAt": "2026-11-14T20:39:48.808Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-14",
-    "date": "2026-11-14",
-    "book": "PointsBet",
-    "odds": 106,
-    "decimal": 2.0565,
-    "fairProb": 0.5583,
-    "ev": 0.1482,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-14T20:39:48.808Z",
-    "legs": [
-      {
-        "id": "5773e80d52-h2h-Minnesota-Timberwolves",
-        "kind": "lean",
-        "pick": "Minnesota Timberwolves ML",
-        "event": "Chicago Bulls @ Minnesota Timberwolves",
-        "sport": "NBA",
-        "price": -1000,
-        "commence": "2026-11-15T01:10:00Z",
-        "started": true,
-        "result": null,
-        "void": false
-      },
-      {
-        "id": "4d5a1a7211-totals-Over",
-        "kind": "lean",
-        "pick": "Over 5.5",
-        "event": "Calgary Flames @ Los Angeles Kings",
-        "sport": "NHL",
-        "price": -115,
-        "commence": "2026-11-15T03:10:00Z",
-        "started": false,
-        "result": null,
-        "void": false
-      }
-    ]
-  },
+  "trackedAt": "2026-11-15T05:38:56.895Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-14",
-    "lockAt": "2026-11-14T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-14T20:39:48.808Z",
+    "date": "2026-11-15",
+    "lockAt": "2026-11-15T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "kind": "lean",
         "sport": "NBA",
-        "event": "Atlanta Hawks @ Chicago Bulls",
-        "pick": "Atlanta Hawks ML",
-        "odds": -260,
+        "event": "Chicago Bulls @ Minnesota Timberwolves",
+        "pick": "Minnesota Timberwolves ML",
+        "odds": -950,
         "status": "graded",
         "result": "Loss",
         "units": -1
       },
       "parlay": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "legs": 2,
-        "odds": 140,
-        "status": "graded",
-        "result": "Loss",
-        "units": -1
+        "odds": 106,
+        "status": "pending",
+        "result": null,
+        "units": null
       }
     }
   },
@@ -568,7 +50,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-15T18:00:00Z",
-      "start": "Tomorrow 1:00 PM ET",
+      "start": "Today 1:00 PM ET",
       "market": "Moneyline",
       "pick": "Miami Dolphins ML",
       "odds": 180,
@@ -1017,7 +499,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-15T21:05:00Z",
-      "start": "Tomorrow 4:05 PM ET",
+      "start": "Today 4:05 PM ET",
       "market": "Moneyline",
       "pick": "Arizona Cardinals ML",
       "odds": 400,
@@ -1107,6 +589,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 21.3% (+1.3 points against the best price). For reference only.",
+          "Market: DraftKings opened +400, now +390, moving toward this side since the open.",
           "Market: The market (8 books) opened +356, now +383, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Los Angeles Rams 5-4 · Arizona Cardinals 3-6 · State Farm Stadium, Glendale."
@@ -1404,14 +887,14 @@ window.PICKS_DATA = {
               "home": -108,
               "away": -112
             },
-            "total": 39.5,
+            "total": 38.5,
             "totalOdds": {
-              "over": -108,
-              "under": -112
+              "over": -118,
+              "under": -102
             },
             "ml": {
-              "home": 400,
-              "away": -535
+              "home": 390,
+              "away": -520
             },
             "draw": null
           },
@@ -1444,11 +927,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 400,
-          "fair": 0.19184290030211482
+          "odds": 390,
+          "fair": 0.19570707070707072
         },
-        "moved": null,
-        "label": "DraftKings opened +400, now +400"
+        "moved": "toward",
+        "label": "DraftKings opened +400, now +390"
       },
       "dkHistory": [
         {
@@ -1462,6 +945,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 400,
           "fair": 0.1918
+        },
+        {
+          "at": "2026-11-15T05:38:56.895Z",
+          "line": null,
+          "odds": 390,
+          "fair": 0.1957
         }
       ],
       "mkt": {
@@ -1541,7 +1030,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-15T18:00:00Z",
-      "start": "Tomorrow 1:00 PM ET",
+      "start": "Today 1:00 PM ET",
       "market": "Moneyline",
       "pick": "Cleveland Browns ML",
       "odds": 195,
@@ -2007,7 +1496,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-16T02:10:00Z",
-      "start": "Tomorrow 9:10 PM ET",
+      "start": "Today 9:10 PM ET",
       "market": "Puck line",
       "pick": "Vancouver Canucks +1.5",
       "odds": 140,
@@ -2313,497 +1802,6 @@ window.PICKS_DATA = {
       "availability": null
     },
     {
-      "id": "e7f30a1c54-h2h-San-Jose-Sharks",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "San Jose Sharks @ Utah Mammoth",
-      "home": "Utah Mammoth",
-      "away": "San Jose Sharks",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "San Jose Sharks",
-        "point": null
-      },
-      "commence": "2026-11-15T02:10:00Z",
-      "start": "Today 9:10 PM ET",
-      "market": "Moneyline",
-      "pick": "San Jose Sharks ML",
-      "odds": 180,
-      "book": "BetRivers",
-      "prices": {
-        "DraftKings": 154,
-        "BetRivers": 180,
-        "FanDuel": 152,
-        "BetOnline.ag": 171,
-        "theScore Bet": 170,
-        "Caesars": 150,
-        "ESPN BET": 150,
-        "BetMGM": 155,
-        "Bovada": 158,
-        "PointsBet": 150
-      },
-      "pricesAt": "2026-11-15T01:47:23.394Z",
-      "books": 6,
-      "anchor": "Pinnacle",
-      "modelProb": 0.4486,
-      "ev": 0.2561,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.3,
-        "total": 6.4,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 20,
-        "gpHome": 20,
-        "gpAway": 21,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0,
-          "ratingAway": -0.5,
-          "lastHome": 0.3,
-          "lastAway": -0.5,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.4,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 6.4
-        },
-        "reasons": {
-          "for": [
-            "Utah Mammoth trending: last five -1 vs -0.1 on the season",
-            "San Jose Sharks are rested (3 days)",
-            "Utah Mammoth without Nate Schmidt (D), Dylan Guenther (RW), John Marino (D) (-0.4)",
-            "Utah Mammoth have Nick Schmaltz (C), Logan Cooley (C) listed day-to-day or questionable"
-          ],
-          "against": [
-            "Utah Mammoth rate 0 a game over 20 (10-10), San Jose Sharks -0.5 over 21 (8-13); last season +0.3 and -0.5 a game",
-            "San Jose Sharks trending: last five -1.8 vs -1 on the season",
-            "Home edge +0.2 for Utah Mammoth",
-            "San Jose Sharks without Igor Chernyshov (LW) (+0.1)",
-            "Projected margin -0.3 for San Jose Sharks"
-          ]
-        }
-      },
-      "marketFair": 0.3502,
-      "marketEdge": -0.007,
-      "rationale": "Our probability is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetRivers offers +180, which implies only 35.7%. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 2.0. Not graded against other books' prices; for reference the market makes it 35.0%.",
-      "factors": [
-        "Best price +180 at BetRivers",
-        "Probability 44.9% from game data, not other books",
-        "Edge 9.1 points over the price, 2.0 past its bar of 7.2",
-        "Market reference 35.0%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 44.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 35.7%, so the edge is 9.2 points. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 2.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetRivers offers +180, which implies only 35.7%. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 2.0. Not graded against other books' prices; for reference the market makes it 35.0%.",
-        "support": [
-          "Utah Mammoth trending: last five -1 vs -0.1 on the season.",
-          "San Jose Sharks are rested (3 days).",
-          "Utah Mammoth without Nate Schmidt (D), Dylan Guenther (RW), John Marino (D) (-0.4).",
-          "Utah Mammoth have Nick Schmaltz (C), Logan Cooley (C) listed day-to-day or questionable."
-        ],
-        "risks": [
-          "Utah Mammoth rate 0 a game over 20 (10-10), San Jose Sharks -0.5 over 21 (8-13); last season +0.3 and -0.5 a game.",
-          "San Jose Sharks trending: last five -1.8 vs -1 on the season.",
-          "Home edge +0.2 for Utah Mammoth.",
-          "San Jose Sharks without Igor Chernyshov (LW) (+0.1).",
-          "Projected margin -0.3 for San Jose Sharks."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 35.0% (-0.7 points against the best price). For reference only.",
-          "Market: the sharp line has moved toward this side since it was logged (35.0% → 37.8%).",
-          "Market: DraftKings opened +180, now +154, moving toward this side since the open.",
-          "Market: The market (7 books) opened +171, now +165, the consensus moving toward this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Mammoth Karel Vejmelka · Sharks Yaroslav Askarov.",
-          "Records: San Jose Sharks 8-11-2 · Utah Mammoth 10-8-2 · Delta Center, Salt Lake City."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401892718",
-        "venue": "Delta Center, Salt Lake City",
-        "indoor": true,
-        "records": {
-          "Utah Mammoth": {
-            "overall": "10-8-2",
-            "home": "4-2-1",
-            "away": "6-6-1"
-          },
-          "San Jose Sharks": {
-            "overall": "8-11-2",
-            "home": "4-5-1",
-            "away": "4-6-1"
-          }
-        },
-        "probables": {
-          "Utah Mammoth": "Karel Vejmelka",
-          "San Jose Sharks": "Yaroslav Askarov"
-        },
-        "injuries": {
-          "Utah Mammoth": [
-            {
-              "name": "Nick Schmaltz",
-              "pos": "C",
-              "athleteId": "3114770",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3114770.png",
-              "status": "Out",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-21",
-              "date": "2026-11-14T18:48Z",
-              "note": "Schmaltz (lower body) isn't expected to play against San Jose on Saturday, and it's unclear when he will be ready to return, Brogan Houston of the Deseret News "
-            },
-            {
-              "name": "Logan Cooley",
-              "pos": "C",
-              "athleteId": "5080143",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080143.png",
-              "status": "Out",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-16",
-              "date": "2026-11-13T23:19Z",
-              "note": "out"
-            },
-            {
-              "name": "Nate Schmidt",
-              "pos": "D",
-              "athleteId": "3024798",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3024798.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-21",
-              "date": "2026-11-12T19:30Z",
-              "note": "The Mammoth announced Thursday that Schmidt (upper body) is considered week-to-week, Cole Bagley of KSL Sports reports."
-            },
-            {
-              "name": "Dylan Guenther",
-              "pos": "RW",
-              "athleteId": "4874723",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874723.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-12-05",
-              "date": "2026-11-12T01:21Z",
-              "note": "ir"
-            },
-            {
-              "name": "John Marino",
-              "pos": "D",
-              "athleteId": "3941974",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3941974.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-12-03",
-              "date": "2026-11-01T20:27Z",
-              "note": "ir"
-            },
-            {
-              "name": "Maveric Lamoureux",
-              "pos": "D",
-              "athleteId": "5080177",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080177.png",
-              "status": "Injured Reserve",
-              "type": "Shoulder",
-              "detail": "",
-              "returnDate": "2027-02-12",
-              "date": "2026-09-28T21:02Z",
-              "note": "ir"
-            }
-          ],
-          "San Jose Sharks": [
-            {
-              "name": "Alexander Wennberg",
-              "pos": "C",
-              "athleteId": "3042017",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042017.png",
-              "status": "Out",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-14T19:54Z",
-              "note": "out"
-            },
-            {
-              "name": "Igor Chernyshov",
-              "pos": "LW",
-              "athleteId": "5216907",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216907.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-28",
-              "date": "2026-10-28T16:49Z",
-              "note": "ir"
-            },
-            {
-              "name": "Quentin Musty",
-              "pos": "LW",
-              "athleteId": "5149209",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149209.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-12-01",
-              "date": "2026-09-28T22:20Z",
-              "note": "Musty (upper body) was put on non-roster injured reserve Monday, according to Curtis Pashelka of The San Jose Mercury News."
-            },
-            {
-              "name": "Kyle Keyser",
-              "pos": "G",
-              "athleteId": "4329962",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4329962.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-12-01",
-              "date": "2026-09-28T22:10Z",
-              "note": "Keyser (upper body) was placed on non-roster injured reserve by the Sharks on Monday, Curtis Pashelka of The San Jose Mercury News reports."
-            }
-          ]
-        },
-        "rest": {
-          "Utah Mammoth": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-13",
-            "gamesLast7": 2
-          },
-          "San Jose Sharks": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-12",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 130,
-              "away": -155
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": 105,
-              "under": -125
-            },
-            "ml": {
-              "home": -185,
-              "away": 154
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 110,
-              "away": -130
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -105,
-              "under": -115
-            },
-            "ml": {
-              "home": -218,
-              "away": 180
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 180,
-        "loggedFair": 0.4486,
-        "currentOdds": 165,
-        "currentBook": "BetRivers",
-        "currentFair": 0.378,
-        "currentEdge": 0.0791,
-        "checkedAt": "2026-11-14T20:36:57.263Z",
-        "history": [
-          {
-            "at": "2026-11-13T20:36:49.267Z",
-            "odds": 180,
-            "fair": 0.3502
-          },
-          {
-            "at": "2026-11-14T14:06:52.310Z",
-            "odds": 170,
-            "fair": 0.3545
-          },
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": 165,
-            "fair": 0.378
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 180,
-          "fair": 0.34252477380439467
-        },
-        "now": {
-          "line": null,
-          "odds": 154,
-          "fair": 0.3775334481388264
-        },
-        "moved": "toward",
-        "label": "DraftKings opened +180, now +154"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "line": null,
-          "odds": 170,
-          "fair": 0.3553
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "line": null,
-          "odds": 154,
-          "fair": 0.3775
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 7,
-        "open": {
-          "line": null,
-          "odds": 171
-        },
-        "now": {
-          "line": null,
-          "odds": 165
-        },
-        "moved": "toward",
-        "label": "The market (7 books) opened +171, now +165"
-      },
-      "sgo": {
-        "at": "2026-11-15T01:47:23.394Z",
-        "n": 7,
-        "best": {
-          "book": "Bovada",
-          "odds": 158
-        },
-        "fair": 0.3795,
-        "vendorFair": 0.3774,
-        "open": {
-          "line": null,
-          "odds": 171
-        },
-        "now": {
-          "line": null,
-          "odds": 165
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "fair": 0.3575,
-          "vendorFair": 0.3559,
-          "line": null,
-          "odds": 181,
-          "best": 172,
-          "n": 4
-        },
-        {
-          "at": "2026-11-14T14:06:52.310Z",
-          "fair": 0.3593,
-          "vendorFair": 0.361,
-          "line": null,
-          "odds": 177,
-          "best": 175,
-          "n": 7
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "fair": 0.3782,
-          "vendorFair": 0.3759,
-          "line": null,
-          "odds": 166,
-          "best": 158,
-          "n": 7
-        },
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.3809,
-          "vendorFair": 0.3774,
-          "line": null,
-          "odds": 165,
-          "best": 155,
-          "n": 7
-        },
-        {
-          "at": "2026-11-14T23:46:57.593Z",
-          "fair": 0.3789,
-          "vendorFair": 0.3759,
-          "line": null,
-          "odds": 166,
-          "best": 158,
-          "n": 7
-        },
-        {
-          "at": "2026-11-15T01:07:14.678Z",
-          "fair": 0.3794,
-          "vendorFair": 0.3759,
-          "line": null,
-          "odds": 166,
-          "best": 155,
-          "n": 7
-        },
-        {
-          "at": "2026-11-15T01:47:23.394Z",
-          "fair": 0.3795,
-          "vendorFair": 0.3774,
-          "line": null,
-          "odds": 165,
-          "best": 158,
-          "n": 7
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-13T20:36:49.267Z",
-      "valueTo": 166,
-      "bar": 0.0718,
-      "past": 0.0197,
-      "barParts": {
-        "error": 0.0718,
-        "units": 0.44,
-        "unit": "goals",
-        "gp": 20,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-14T20:36:57.263Z",
-        "odds": 165,
-        "book": "BetRivers",
-        "modelProb": 0.4565,
-        "edge": 0.0791,
-        "bar": 0.072
-      },
-      "standing": "clears",
-      "availability": null
-    },
-    {
       "id": "539a387d9f-totals-Under",
       "sport": "NHL",
       "league": "NHL",
@@ -2817,7 +1815,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-16T01:10:00Z",
-      "start": "Tomorrow 8:10 PM ET",
+      "start": "Today 8:10 PM ET",
       "market": "Total",
       "pick": "Under 6.5",
       "odds": 114,
@@ -2889,6 +1887,7 @@ window.PICKS_DATA = {
         "risks": [],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 45.7% (-1.0 points against the best price). For reference only.",
+          "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
           "Market: The market (6 books) opened 7.5 (-166), now 6.5 (+116), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Ville Husso · Flames Devin Cooley.",
@@ -3020,8 +2019,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -135,
-              "under": 114
+              "over": -130,
+              "under": 110
             },
             "ml": {
               "home": -155,
@@ -3058,11 +2057,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 110,
+          "fair": 0.4572564612326044
         },
-        "moved": null,
-        "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
+        "moved": "toward",
+        "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
       },
       "dkHistory": [
         {
@@ -3070,6 +2069,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-15T05:38:56.895Z",
+          "line": 6.5,
+          "odds": 110,
+          "fair": 0.4573
         }
       ],
       "mkt": {
@@ -3136,883 +2141,6 @@ window.PICKS_DATA = {
       "availability": null
     },
     {
-      "id": "4d5a1a7211-totals-Over",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Calgary Flames @ Los Angeles Kings",
-      "home": "Los Angeles Kings",
-      "away": "Calgary Flames",
-      "marketKey": "totals",
-      "outcome": {
-        "name": "Over",
-        "point": 5.5
-      },
-      "commence": "2026-11-15T03:10:00Z",
-      "start": "Today 10:10 PM ET",
-      "market": "Total",
-      "pick": "Over 5.5",
-      "odds": -118,
-      "book": "DraftKings",
-      "prices": {
-        "DraftKings": -115,
-        "BetRivers": -121,
-        "FanDuel": -118,
-        "theScore Bet": -120,
-        "Unibet": -120,
-        "Caesars": -118,
-        "ESPN BET": -115,
-        "BetMGM": -115,
-        "Bovada": -117,
-        "PointsBet": -115
-      },
-      "pricesAt": "2026-11-15T01:47:23.394Z",
-      "books": 4,
-      "anchor": null,
-      "modelProb": 0.5788,
-      "ev": 0.0693,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.4,
-        "total": 6.3,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 17,
-        "gpHome": 17,
-        "gpAway": 19,
-        "thin": false,
-        "parts": {
-          "ratingHome": -0.3,
-          "ratingAway": -0.4,
-          "lastHome": -0.3,
-          "lastAway": -0.6,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.1,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 6.1
-        },
-        "reasons": {
-          "for": [
-            "Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in Calgary Flames's (league average 6.3)",
-            "Projected total 6.3 against 5.5"
-          ],
-          "against": []
-        }
-      },
-      "marketFair": 0.5215,
-      "marketEdge": -0.0198,
-      "rationale": "Our probability at 5.5 is 57.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -118, which implies only 54.1%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.8. Not graded against other books' prices; for reference the market makes it 52.2%.",
-      "factors": [
-        "Best price -118 at DraftKings",
-        "Probability 57.9% from game data, not other books",
-        "Edge 3.8 points over the price, 0.8 past its bar of 3.0",
-        "Market reference 52.2%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 57.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 54.1%, so the edge is 3.8 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.8 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 5.5 is 57.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -118, which implies only 54.1%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.8. Not graded against other books' prices; for reference the market makes it 52.2%.",
-        "support": [
-          "Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in Calgary Flames's (league average 6.3).",
-          "Projected total 6.3 against 5.5.",
-          "A better price is now available: -106 at BetOnline.ag.",
-          "A better price is available now: -115 at DraftKings."
-        ],
-        "risks": [
-          "Scorers out: Artemi Panarin (LW), personal; Jakub Dvorak (D), upper body; Jonathan Huberdeau (LW), hip and 2 more. Fewer healthy scorers leans under."
-        ],
-        "notes": [
-          "Where the market sits: the de-vigged consensus of 4 books makes this side 52.1% (-2.0 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (52.1% → 50.7%).",
-          "Market: DraftKings opened 5.5 (-118), now 5.5 (-115), moving against this side since the open.",
-          "Market: The market (8 books) opened 6.5 (+123), now 6 (+121), the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Kings Anton Forsberg · Flames Dustin Wolf.",
-          "Records: Calgary Flames 8-10-1 · Los Angeles Kings 5-10-2 · crypto.com Arena, Los Angeles."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892720",
-        "venue": "crypto.com Arena, Los Angeles",
-        "indoor": true,
-        "records": {
-          "Los Angeles Kings": {
-            "overall": "5-10-2",
-            "home": "2-7-0",
-            "away": "3-3-2"
-          },
-          "Calgary Flames": {
-            "overall": "8-10-1",
-            "home": "6-5-0",
-            "away": "2-5-1"
-          }
-        },
-        "probables": {
-          "Los Angeles Kings": "Anton Forsberg",
-          "Calgary Flames": "Dustin Wolf"
-        },
-        "injuries": {
-          "Los Angeles Kings": [
-            {
-              "name": "Artemi Panarin",
-              "pos": "LW",
-              "athleteId": "3891952",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3891952.png",
-              "status": "Out",
-              "type": "Personal",
-              "detail": "",
-              "returnDate": "2026-11-17",
-              "date": "2026-11-14T19:34Z",
-              "note": "out"
-            },
-            {
-              "name": "Erik Gustafsson",
-              "pos": "D",
-              "athleteId": "5774",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5774.png",
-              "status": "Day-To-Day",
-              "type": "Undisclosed",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-14",
-              "date": "2026-11-13T13:57Z",
-              "note": "day-to-day"
-            },
-            {
-              "name": "Jakub Dvorak",
-              "pos": "D",
-              "athleteId": "5149241",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149241.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-28",
-              "date": "2026-09-24T19:49Z",
-              "note": "ir-nr"
-            }
-          ],
-          "Calgary Flames": [
-            {
-              "name": "Jonathan Huberdeau",
-              "pos": "LW",
-              "athleteId": "2562606",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562606.png",
-              "status": "Injured Reserve",
-              "type": "Hip",
-              "detail": "Surgery",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-13T17:38Z",
-              "note": "Huberdeau (hip) won't travel with the Flames during their upcoming three-game road trip, Pat Steinberg of QR Calgary 770 AM reports Friday."
-            },
-            {
-              "name": "Kevin Bahl",
-              "pos": "D",
-              "athleteId": "4378686",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
-              "status": "Injured Reserve",
-              "type": "Achilles",
-              "detail": "Surgery",
-              "returnDate": "2027-09-15",
-              "date": "2026-11-08T16:17Z",
-              "note": "Bahl will undergo surgery for a ruptured Achilles tendon and won't play again in the 2026-27 season, the Flames announced Sunday."
-            },
-            {
-              "name": "Connor Zary",
-              "pos": "C",
-              "athleteId": "4697407",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697407.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Surgery",
-              "returnDate": "2026-11-28",
-              "date": "2026-10-30T16:44Z",
-              "note": "out"
-            }
-          ]
-        },
-        "rest": {
-          "Los Angeles Kings": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-13",
-            "gamesLast7": 2
-          },
-          "Calgary Flames": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-12",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 150,
-              "away": -180
-            },
-            "total": 5.5,
-            "totalOdds": {
-              "over": -115,
-              "under": -105
-            },
-            "ml": {
-              "home": -175,
-              "away": 145
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 136,
-              "away": -162
-            },
-            "total": 5.5,
-            "totalOdds": {
-              "over": -118,
-              "under": -102
-            },
-            "ml": {
-              "home": -185,
-              "away": 154
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": -118,
-        "loggedFair": 0.5788,
-        "currentOdds": -106,
-        "currentBook": "BetOnline.ag",
-        "currentFair": 0.5069,
-        "currentEdge": 0.0635,
-        "checkedAt": "2026-11-14T20:36:57.263Z",
-        "history": [
-          {
-            "at": "2026-11-13T20:36:49.267Z",
-            "odds": -118,
-            "fair": 0.5215
-          },
-          {
-            "at": "2026-11-14T14:06:52.310Z",
-            "odds": -117,
-            "fair": 0.526
-          },
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": -106,
-            "fair": 0.5069
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 5.5,
-          "odds": -118,
-          "fair": 0.5173641257162701
-        },
-        "now": {
-          "line": 5.5,
-          "odds": -115,
-          "fair": 0.5108342361863488
-        },
-        "moved": "away",
-        "label": "DraftKings opened 5.5 (-118), now 5.5 (-115)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "line": 5.5,
-          "odds": -118,
-          "fair": 0.5174
-        },
-        {
-          "at": "2026-11-13T21:20:03.887Z",
-          "line": 5.5,
-          "odds": -122,
-          "fair": 0.5261
-        },
-        {
-          "at": "2026-11-14T02:07:35.255Z",
-          "line": 5.5,
-          "odds": -125,
-          "fair": 0.5325
-        },
-        {
-          "at": "2026-11-14T13:13:53.002Z",
-          "line": 5.5,
-          "odds": -120,
-          "fair": 0.5217
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "line": 5.5,
-          "odds": -115,
-          "fair": 0.5108
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": 6.5,
-          "odds": 123
-        },
-        "now": {
-          "line": 6,
-          "odds": 121
-        },
-        "moved": "away",
-        "label": "The market (8 books) opened 6.5 (+123), now 6 (+121)"
-      },
-      "sgo": {
-        "at": "2026-11-15T01:47:23.394Z",
-        "n": 8,
-        "best": {
-          "book": "DraftKings",
-          "odds": -115
-        },
-        "fair": 0.5129,
-        "vendorFair": 0.4525,
-        "open": {
-          "line": 6.5,
-          "odds": 123
-        },
-        "now": {
-          "line": 6,
-          "odds": 121
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "fair": 0.523,
-          "vendorFair": 0.4566,
-          "line": 6,
-          "odds": 119,
-          "best": -118,
-          "n": 5
-        },
-        {
-          "at": "2026-11-14T14:06:52.310Z",
-          "fair": 0.5249,
-          "vendorFair": 0.4695,
-          "line": 6,
-          "odds": 113,
-          "best": -117,
-          "n": 8
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "fair": 0.5106,
-          "vendorFair": 0.4484,
-          "line": 6,
-          "odds": 123,
-          "best": -110,
-          "n": 8
-        },
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.513,
-          "vendorFair": 0.4545,
-          "line": 6,
-          "odds": 120,
-          "best": -115,
-          "n": 8
-        },
-        {
-          "at": "2026-11-14T23:46:57.593Z",
-          "fair": 0.5129,
-          "vendorFair": 0.4545,
-          "line": 6,
-          "odds": 120,
-          "best": -115,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T01:07:14.678Z",
-          "fair": 0.5129,
-          "vendorFair": 0.4525,
-          "line": 6,
-          "odds": 121,
-          "best": -115,
-          "n": 8
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-13T20:36:49.267Z",
-      "valueTo": -121,
-      "bar": 0.03,
-      "past": 0.0075,
-      "barParts": {
-        "error": 0.0275,
-        "units": 0.16,
-        "unit": "goals",
-        "gp": 17,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-14T20:36:57.263Z",
-        "odds": -106,
-        "book": "BetOnline.ag",
-        "modelProb": 0.5781,
-        "edge": 0.0635,
-        "bar": 0.03
-      },
-      "standing": "clears",
-      "availability": null
-    },
-    {
-      "id": "ce4dd515ea-totals-Under",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "New York Islanders @ Anaheim Ducks",
-      "home": "Anaheim Ducks",
-      "away": "New York Islanders",
-      "marketKey": "totals",
-      "outcome": {
-        "name": "Under",
-        "point": 6.5
-      },
-      "commence": "2026-11-15T03:10:00Z",
-      "start": "Today 10:10 PM ET",
-      "market": "Total",
-      "pick": "Under 6.5",
-      "odds": 110,
-      "book": "BetOnline.ag",
-      "prices": {
-        "DraftKings": 114,
-        "BetRivers": -105,
-        "BetOnline.ag": 110,
-        "FanDuel": 116,
-        "theScore Bet": 105,
-        "Caesars": 111,
-        "Unibet": -111,
-        "ESPN BET": 120,
-        "BetMGM": 105,
-        "Bovada": 120,
-        "PointsBet": 115
-      },
-      "pricesAt": "2026-11-15T01:47:23.394Z",
-      "books": 6,
-      "anchor": "Pinnacle",
-      "modelProb": 0.5102,
-      "ev": 0.0714,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.4,
-        "total": 6.4,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 18,
-        "gpHome": 19,
-        "gpAway": 18,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0,
-          "ratingAway": 0,
-          "lastHome": -0.2,
-          "lastAway": -0.1,
-          "homeEdge": 0.24,
-          "rest": 0.1,
-          "injuriesHome": -0.1,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 6.7
-        },
-        "reasons": {
-          "for": [
-            "Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3)",
-            "Projected total 6.4 against 6.5"
-          ],
-          "against": []
-        }
-      },
-      "marketFair": 0.4721,
-      "marketEdge": -0.0041,
-      "rationale": "Our probability at 6.5 is 51.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +110, which implies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.2%.",
-      "factors": [
-        "Best price +110 at BetOnline.ag",
-        "Probability 51.0% from game data, not other books",
-        "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
-        "Market reference 47.2%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 51.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 47.6%, so the edge is 3.4 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 6.5 is 51.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +110, which implies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.2%.",
-        "support": [
-          "Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3).",
-          "Projected total 6.4 against 6.5.",
-          "A better price is now available: +115 at theScore Bet.",
-          "A better price is available now: +120 at ESPN BET.",
-          "Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 2 more. Fewer healthy scorers leans under."
-        ],
-        "risks": [],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (47.2% → 44.6%).",
-          "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-          "Market: The market (6 books) opened 6.5 (-105), now 7 (-127), the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Ducks Lukas Dostal · Islanders Semyon Varlamov.",
-          "Records: New York Islanders 8-6-4 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892719",
-        "venue": "Honda Center, Anaheim",
-        "indoor": true,
-        "records": {
-          "Anaheim Ducks": {
-            "overall": "10-8-1",
-            "home": "3-5-1",
-            "away": "7-3-0"
-          },
-          "New York Islanders": {
-            "overall": "8-6-4",
-            "home": "4-3-2",
-            "away": "4-3-2"
-          }
-        },
-        "probables": {
-          "Anaheim Ducks": "Lukas Dostal",
-          "New York Islanders": "Semyon Varlamov"
-        },
-        "injuries": {
-          "Anaheim Ducks": [
-            {
-              "name": "Ryan Poehling",
-              "pos": "C",
-              "athleteId": "4233668",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233668.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2026-12-06",
-              "date": "2026-11-11T22:59Z",
-              "note": "Poehling (lower body) was placed on long-term injured reserve by the Ducks on Wednesday."
-            },
-            {
-              "name": "Ian Moore",
-              "pos": "D",
-              "athleteId": "5188523",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188523.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-11T18:59Z",
-              "note": "Moore (lower body) might be an option to play by the end of the week, Derek Lee of The Hockey News reports Wednesday."
-            },
-            {
-              "name": "A.J. Greer",
-              "pos": "LW",
-              "athleteId": "3648015",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3648015.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-02T18:46Z",
-              "note": "Greer (upper body) was placed on injured reserve Monday."
-            }
-          ],
-          "New York Islanders": [
-            {
-              "name": "Jean-Gabriel Pageau",
-              "pos": "C",
-              "athleteId": "2593131",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2593131.png",
-              "status": "Day-To-Day",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-14",
-              "date": "2026-11-13T13:57Z",
-              "note": "day-to-day"
-            },
-            {
-              "name": "Calum Ritchie",
-              "pos": "C",
-              "athleteId": "5149210",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149210.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-12-01",
-              "date": "2026-10-26T17:28Z",
-              "note": "ir"
-            },
-            {
-              "name": "Alexander Romanov",
-              "pos": "D",
-              "athleteId": "4587854",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4587854.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Surgery",
-              "returnDate": "2027-04-08",
-              "date": "2026-10-19T13:56Z",
-              "note": "ir"
-            }
-          ]
-        },
-        "rest": {
-          "Anaheim Ducks": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-12",
-            "gamesLast7": 2
-          },
-          "New York Islanders": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-13",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -278,
-              "away": 225
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -135,
-              "under": 114
-            },
-            "ml": {
-              "home": -108,
-              "away": -112
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 190,
-              "away": -230
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -115,
-              "under": -105
-            },
-            "ml": {
-              "home": -122,
-              "away": 102
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 110,
-        "loggedFair": 0.5102,
-        "currentOdds": 115,
-        "currentBook": "theScore Bet",
-        "currentFair": 0.4456,
-        "currentEdge": 0.0458,
-        "checkedAt": "2026-11-14T20:36:57.263Z",
-        "history": [
-          {
-            "at": "2026-11-13T20:36:49.267Z",
-            "odds": 110,
-            "fair": 0.4721
-          },
-          {
-            "at": "2026-11-14T14:06:52.310Z",
-            "odds": 110,
-            "fair": 0.4612
-          },
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": 115,
-            "fair": 0.4456
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 6.5,
-          "odds": -105,
-          "fair": 0.4891657638136511
-        },
-        "now": {
-          "line": 6.5,
-          "odds": 114,
-          "fair": 0.448558885283451
-        },
-        "moved": "away",
-        "label": "DraftKings opened 6.5 (-105), now 6.5 (+114)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "line": 6.5,
-          "odds": 102,
-          "fair": 0.4739
-        },
-        {
-          "at": "2026-11-14T05:40:10.520Z",
-          "line": 6.5,
-          "odds": 110,
-          "fair": 0.4573
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "line": 6.5,
-          "odds": 114,
-          "fair": 0.4486
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 6,
-        "open": {
-          "line": 6.5,
-          "odds": -105
-        },
-        "now": {
-          "line": 7,
-          "odds": -127
-        },
-        "moved": "away",
-        "label": "The market (6 books) opened 6.5 (-105), now 7 (-127)"
-      },
-      "sgo": {
-        "at": "2026-11-15T01:47:23.394Z",
-        "n": 6,
-        "best": {
-          "book": "ESPN BET",
-          "odds": 120
-        },
-        "fair": 0.4516,
-        "vendorFair": 0.5595,
-        "open": {
-          "line": 6.5,
-          "odds": -105
-        },
-        "now": {
-          "line": 7,
-          "odds": -127
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-13T20:36:49.267Z",
-          "fair": 0.4869,
-          "vendorFair": 0.4762,
-          "line": 6.5,
-          "odds": 110,
-          "best": 105,
-          "n": 5
-        },
-        {
-          "at": "2026-11-14T14:06:52.310Z",
-          "fair": 0.4732,
-          "vendorFair": 0.4673,
-          "line": 6.5,
-          "odds": 114,
-          "best": 110,
-          "n": 8
-        },
-        {
-          "at": "2026-11-14T19:49:52.324Z",
-          "fair": 0.4591,
-          "vendorFair": 0.4545,
-          "line": 6.5,
-          "odds": 120,
-          "best": 115,
-          "n": 7
-        },
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.4585,
-          "vendorFair": 0.4505,
-          "line": 6.5,
-          "odds": 122,
-          "best": 115,
-          "n": 7
-        },
-        {
-          "at": "2026-11-14T23:46:57.593Z",
-          "fair": 0.4537,
-          "vendorFair": 0.5633,
-          "line": 7,
-          "odds": -129,
-          "best": 120,
-          "n": 7
-        },
-        {
-          "at": "2026-11-15T01:07:14.678Z",
-          "fair": 0.4513,
-          "vendorFair": 0.5633,
-          "line": 7,
-          "odds": -129,
-          "best": 120,
-          "n": 7
-        },
-        {
-          "at": "2026-11-15T01:47:23.394Z",
-          "fair": 0.4516,
-          "vendorFair": 0.5595,
-          "line": 7,
-          "odds": -127,
-          "best": 120,
-          "n": 6
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-13T20:36:49.267Z",
-      "valueTo": 109,
-      "bar": 0.03,
-      "past": 0.004,
-      "barParts": {
-        "error": 0.0282,
-        "units": 0.16,
-        "unit": "goals",
-        "gp": 18,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-14T20:36:57.263Z",
-        "odds": 115,
-        "book": "theScore Bet",
-        "modelProb": 0.5109,
-        "edge": 0.0458,
-        "bar": 0.03
-      },
-      "standing": "clears",
-      "availability": null
-    },
-    {
       "id": "7f07a205e3-totals-Under",
       "sport": "NHL",
       "league": "NHL",
@@ -4026,7 +2154,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-15T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Total",
       "pick": "Under 6.5",
       "odds": 120,
@@ -4502,11 +2630,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 1.2,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "loggedAt": "2026-11-13T20:36:49.267Z",
       "valueTo": 112,
       "bar": 0.03,
@@ -4543,7 +2674,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-15T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -110,
@@ -4838,11 +2969,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.91,
+      "score": {
+        "home": 3,
+        "away": 4
+      },
       "loggedAt": "2026-11-13T20:36:49.267Z",
       "valueTo": -113,
       "bar": 0.03,
@@ -4879,7 +3013,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-15T01:10:00Z",
-      "start": "Today 8:10 PM ET",
+      "start": "Yesterday 8:10 PM ET",
       "market": "Moneyline",
       "pick": "Minnesota Timberwolves ML",
       "odds": -950,
@@ -5219,11 +3353,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 106,
+        "away": 117
+      },
       "loggedAt": "2026-11-14T20:36:57.263Z",
       "valueTo": -1429,
       "bar": 0.03,
@@ -5343,6 +3480,1380 @@ window.PICKS_DATA = {
           ]
         }
       }
+    },
+    {
+      "id": "e7f30a1c54-h2h-San-Jose-Sharks",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "San Jose Sharks @ Utah Mammoth",
+      "home": "Utah Mammoth",
+      "away": "San Jose Sharks",
+      "marketKey": "h2h",
+      "outcome": {
+        "name": "San Jose Sharks",
+        "point": null
+      },
+      "commence": "2026-11-15T02:10:00Z",
+      "start": "Yesterday 9:10 PM ET",
+      "market": "Moneyline",
+      "pick": "San Jose Sharks ML",
+      "odds": 180,
+      "book": "BetRivers",
+      "prices": {
+        "DraftKings": 154,
+        "BetRivers": 180,
+        "FanDuel": 152,
+        "BetOnline.ag": 171,
+        "theScore Bet": 170,
+        "Caesars": 150,
+        "ESPN BET": 150,
+        "BetMGM": 155,
+        "Bovada": 158,
+        "PointsBet": 150
+      },
+      "pricesAt": "2026-11-15T01:47:23.394Z",
+      "books": 6,
+      "anchor": "Pinnacle",
+      "modelProb": 0.4486,
+      "ev": 0.2561,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.3,
+        "total": 6.4,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 20,
+        "gpHome": 20,
+        "gpAway": 21,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0,
+          "ratingAway": -0.5,
+          "lastHome": 0.3,
+          "lastAway": -0.5,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": -0.4,
+          "injuriesAway": 0.1,
+          "scoringOut": 0,
+          "pace": 6.4
+        },
+        "reasons": {
+          "for": [
+            "Utah Mammoth trending: last five -1 vs -0.1 on the season",
+            "San Jose Sharks are rested (3 days)",
+            "Utah Mammoth without Nate Schmidt (D), Dylan Guenther (RW), John Marino (D) (-0.4)",
+            "Utah Mammoth have Nick Schmaltz (C), Logan Cooley (C) listed day-to-day or questionable"
+          ],
+          "against": [
+            "Utah Mammoth rate 0 a game over 20 (10-10), San Jose Sharks -0.5 over 21 (8-13); last season +0.3 and -0.5 a game",
+            "San Jose Sharks trending: last five -1.8 vs -1 on the season",
+            "Home edge +0.2 for Utah Mammoth",
+            "San Jose Sharks without Igor Chernyshov (LW) (+0.1)",
+            "Projected margin -0.3 for San Jose Sharks"
+          ]
+        }
+      },
+      "marketFair": 0.3502,
+      "marketEdge": -0.007,
+      "rationale": "Our probability is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetRivers offers +180, which implies only 35.7%. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 2.0. Not graded against other books' prices; for reference the market makes it 35.0%.",
+      "factors": [
+        "Best price +180 at BetRivers",
+        "Probability 44.9% from game data, not other books",
+        "Edge 9.1 points over the price, 2.0 past its bar of 7.2",
+        "Market reference 35.0%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 44.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 35.7%, so the edge is 9.2 points. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 2.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 44.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetRivers offers +180, which implies only 35.7%. Its bar is 7.2 points: the model's own margin of error on this side, with 20 games behind the thinner team (±0.44 goals on the margin). It clears it by 2.0. Not graded against other books' prices; for reference the market makes it 35.0%.",
+        "support": [
+          "Utah Mammoth trending: last five -1 vs -0.1 on the season.",
+          "San Jose Sharks are rested (3 days).",
+          "Utah Mammoth without Nate Schmidt (D), Dylan Guenther (RW), John Marino (D) (-0.4).",
+          "Utah Mammoth have Nick Schmaltz (C), Logan Cooley (C) listed day-to-day or questionable."
+        ],
+        "risks": [
+          "Utah Mammoth rate 0 a game over 20 (10-10), San Jose Sharks -0.5 over 21 (8-13); last season +0.3 and -0.5 a game.",
+          "San Jose Sharks trending: last five -1.8 vs -1 on the season.",
+          "Home edge +0.2 for Utah Mammoth.",
+          "San Jose Sharks without Igor Chernyshov (LW) (+0.1).",
+          "Projected margin -0.3 for San Jose Sharks."
+        ],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 35.0% (-0.7 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (35.0% → 37.8%).",
+          "Market: DraftKings opened +180, now +154, moving toward this side since the open.",
+          "Market: The market (7 books) opened +171, now +165, the consensus moving toward this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Mammoth Karel Vejmelka · Sharks Yaroslav Askarov.",
+          "Records: San Jose Sharks 8-11-2 · Utah Mammoth 10-8-2 · Delta Center, Salt Lake City."
+        ],
+        "verdict": "More working against this one than for it; size down."
+      },
+      "context": {
+        "espnEventId": "401892718",
+        "venue": "Delta Center, Salt Lake City",
+        "indoor": true,
+        "records": {
+          "Utah Mammoth": {
+            "overall": "10-8-2",
+            "home": "4-2-1",
+            "away": "6-6-1"
+          },
+          "San Jose Sharks": {
+            "overall": "8-11-2",
+            "home": "4-5-1",
+            "away": "4-6-1"
+          }
+        },
+        "probables": {
+          "Utah Mammoth": "Karel Vejmelka",
+          "San Jose Sharks": "Yaroslav Askarov"
+        },
+        "injuries": {
+          "Utah Mammoth": [
+            {
+              "name": "Nick Schmaltz",
+              "pos": "C",
+              "athleteId": "3114770",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3114770.png",
+              "status": "Out",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-11-21",
+              "date": "2026-11-14T18:48Z",
+              "note": "Schmaltz (lower body) isn't expected to play against San Jose on Saturday, and it's unclear when he will be ready to return, Brogan Houston of the Deseret News "
+            },
+            {
+              "name": "Logan Cooley",
+              "pos": "C",
+              "athleteId": "5080143",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080143.png",
+              "status": "Out",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-16",
+              "date": "2026-11-13T23:19Z",
+              "note": "out"
+            },
+            {
+              "name": "Nate Schmidt",
+              "pos": "D",
+              "athleteId": "3024798",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3024798.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-21",
+              "date": "2026-11-12T19:30Z",
+              "note": "The Mammoth announced Thursday that Schmidt (upper body) is considered week-to-week, Cole Bagley of KSL Sports reports."
+            },
+            {
+              "name": "Dylan Guenther",
+              "pos": "RW",
+              "athleteId": "4874723",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874723.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-12-05",
+              "date": "2026-11-12T01:21Z",
+              "note": "ir"
+            },
+            {
+              "name": "John Marino",
+              "pos": "D",
+              "athleteId": "3941974",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3941974.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-12-03",
+              "date": "2026-11-01T20:27Z",
+              "note": "ir"
+            },
+            {
+              "name": "Maveric Lamoureux",
+              "pos": "D",
+              "athleteId": "5080177",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080177.png",
+              "status": "Injured Reserve",
+              "type": "Shoulder",
+              "detail": "",
+              "returnDate": "2027-02-12",
+              "date": "2026-09-28T21:02Z",
+              "note": "ir"
+            }
+          ],
+          "San Jose Sharks": [
+            {
+              "name": "Alexander Wennberg",
+              "pos": "C",
+              "athleteId": "3042017",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042017.png",
+              "status": "Out",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-14T19:54Z",
+              "note": "out"
+            },
+            {
+              "name": "Igor Chernyshov",
+              "pos": "LW",
+              "athleteId": "5216907",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216907.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-28",
+              "date": "2026-10-28T16:49Z",
+              "note": "ir"
+            },
+            {
+              "name": "Quentin Musty",
+              "pos": "LW",
+              "athleteId": "5149209",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149209.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-12-01",
+              "date": "2026-09-28T22:20Z",
+              "note": "Musty (upper body) was put on non-roster injured reserve Monday, according to Curtis Pashelka of The San Jose Mercury News."
+            },
+            {
+              "name": "Kyle Keyser",
+              "pos": "G",
+              "athleteId": "4329962",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4329962.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-12-01",
+              "date": "2026-09-28T22:10Z",
+              "note": "Keyser (upper body) was placed on non-roster injured reserve by the Sharks on Monday, Curtis Pashelka of The San Jose Mercury News reports."
+            }
+          ]
+        },
+        "rest": {
+          "Utah Mammoth": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-13",
+            "gamesLast7": 2
+          },
+          "San Jose Sharks": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-12",
+            "gamesLast7": 2
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN+",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 130,
+              "away": -155
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": 105,
+              "under": -125
+            },
+            "ml": {
+              "home": -185,
+              "away": 154
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 110,
+              "away": -130
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -105,
+              "under": -115
+            },
+            "ml": {
+              "home": -218,
+              "away": 180
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": {
+        "loggedOdds": 180,
+        "loggedFair": 0.4486,
+        "currentOdds": 165,
+        "currentBook": "BetRivers",
+        "currentFair": 0.378,
+        "currentEdge": 0.0791,
+        "checkedAt": "2026-11-14T20:36:57.263Z",
+        "history": [
+          {
+            "at": "2026-11-13T20:36:49.267Z",
+            "odds": 180,
+            "fair": 0.3502
+          },
+          {
+            "at": "2026-11-14T14:06:52.310Z",
+            "odds": 170,
+            "fair": 0.3545
+          },
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 165,
+            "fair": 0.378
+          }
+        ]
+      },
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": null,
+          "odds": 180,
+          "fair": 0.34252477380439467
+        },
+        "now": {
+          "line": null,
+          "odds": 154,
+          "fair": 0.3775334481388264
+        },
+        "moved": "toward",
+        "label": "DraftKings opened +180, now +154"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "line": null,
+          "odds": 170,
+          "fair": 0.3553
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "line": null,
+          "odds": 154,
+          "fair": 0.3775
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": null,
+          "odds": 171
+        },
+        "now": {
+          "line": null,
+          "odds": 165
+        },
+        "moved": "toward",
+        "label": "The market (7 books) opened +171, now +165"
+      },
+      "sgo": {
+        "at": "2026-11-15T01:47:23.394Z",
+        "n": 7,
+        "best": {
+          "book": "Bovada",
+          "odds": 158
+        },
+        "fair": 0.3795,
+        "vendorFair": 0.3774,
+        "open": {
+          "line": null,
+          "odds": 171
+        },
+        "now": {
+          "line": null,
+          "odds": 165
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "fair": 0.3575,
+          "vendorFair": 0.3559,
+          "line": null,
+          "odds": 181,
+          "best": 172,
+          "n": 4
+        },
+        {
+          "at": "2026-11-14T14:06:52.310Z",
+          "fair": 0.3593,
+          "vendorFair": 0.361,
+          "line": null,
+          "odds": 177,
+          "best": 175,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "fair": 0.3782,
+          "vendorFair": 0.3759,
+          "line": null,
+          "odds": 166,
+          "best": 158,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T20:36:57.263Z",
+          "fair": 0.3809,
+          "vendorFair": 0.3774,
+          "line": null,
+          "odds": 165,
+          "best": 155,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.3789,
+          "vendorFair": 0.3759,
+          "line": null,
+          "odds": 166,
+          "best": 158,
+          "n": 7
+        },
+        {
+          "at": "2026-11-15T01:07:14.678Z",
+          "fair": 0.3794,
+          "vendorFair": 0.3759,
+          "line": null,
+          "odds": 166,
+          "best": 155,
+          "n": 7
+        },
+        {
+          "at": "2026-11-15T01:47:23.394Z",
+          "fair": 0.3795,
+          "vendorFair": 0.3774,
+          "line": null,
+          "odds": 165,
+          "best": 158,
+          "n": 7
+        }
+      ],
+      "status": "graded",
+      "started": true,
+      "result": "Win",
+      "units": 1.8,
+      "score": {
+        "home": 5,
+        "away": 6
+      },
+      "loggedAt": "2026-11-13T20:36:49.267Z",
+      "valueTo": 166,
+      "bar": 0.0718,
+      "past": 0.0197,
+      "barParts": {
+        "error": 0.0718,
+        "units": 0.44,
+        "unit": "goals",
+        "gp": 20,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-14T20:36:57.263Z",
+        "odds": 165,
+        "book": "BetRivers",
+        "modelProb": 0.4565,
+        "edge": 0.0791,
+        "bar": 0.072
+      },
+      "standing": "clears",
+      "availability": null
+    },
+    {
+      "id": "4d5a1a7211-totals-Over",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "Calgary Flames @ Los Angeles Kings",
+      "home": "Los Angeles Kings",
+      "away": "Calgary Flames",
+      "marketKey": "totals",
+      "outcome": {
+        "name": "Over",
+        "point": 5.5
+      },
+      "commence": "2026-11-15T03:10:00Z",
+      "start": "Yesterday 10:10 PM ET",
+      "market": "Total",
+      "pick": "Over 5.5",
+      "odds": -118,
+      "book": "DraftKings",
+      "prices": {
+        "DraftKings": -115,
+        "BetRivers": -121,
+        "FanDuel": -118,
+        "theScore Bet": -120,
+        "Unibet": -120,
+        "Caesars": -118,
+        "ESPN BET": -115,
+        "BetMGM": -115,
+        "Bovada": -117,
+        "PointsBet": -115
+      },
+      "pricesAt": "2026-11-15T01:47:23.394Z",
+      "books": 4,
+      "anchor": null,
+      "modelProb": 0.5788,
+      "ev": 0.0693,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.4,
+        "total": 6.3,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 17,
+        "gpHome": 17,
+        "gpAway": 19,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.3,
+          "ratingAway": -0.4,
+          "lastHome": -0.3,
+          "lastAway": -0.6,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": -0.1,
+          "injuriesAway": 0.1,
+          "scoringOut": 0,
+          "pace": 6.1
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in Calgary Flames's (league average 6.3)",
+            "Projected total 6.3 against 5.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.5215,
+      "marketEdge": -0.0198,
+      "rationale": "Our probability at 5.5 is 57.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -118, which implies only 54.1%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.8. Not graded against other books' prices; for reference the market makes it 52.2%.",
+      "factors": [
+        "Best price -118 at DraftKings",
+        "Probability 57.9% from game data, not other books",
+        "Edge 3.8 points over the price, 0.8 past its bar of 3.0",
+        "Market reference 52.2%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 57.9%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 54.1%, so the edge is 3.8 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.8 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 5.5 is 57.9%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -118, which implies only 54.1%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.8. Not graded against other books' prices; for reference the market makes it 52.2%.",
+        "support": [
+          "Combined scoring 6.3 a game in Los Angeles Kings's games, 5.9 in Calgary Flames's (league average 6.3).",
+          "Projected total 6.3 against 5.5.",
+          "A better price is now available: -106 at BetOnline.ag.",
+          "A better price is available now: -115 at DraftKings."
+        ],
+        "risks": [
+          "Scorers out: Artemi Panarin (LW), personal; Jakub Dvorak (D), upper body; Jonathan Huberdeau (LW), hip and 2 more. Fewer healthy scorers leans under."
+        ],
+        "notes": [
+          "Where the market sits: the de-vigged consensus of 4 books makes this side 52.1% (-2.0 points against the best price). For reference only.",
+          "Market: the sharp line has moved away since it was logged (52.1% → 50.7%).",
+          "Market: DraftKings opened 5.5 (-118), now 5.5 (-115), moving against this side since the open.",
+          "Market: The market (8 books) opened 6.5 (+123), now 6 (+121), the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Kings Anton Forsberg · Flames Dustin Wolf.",
+          "Records: Calgary Flames 8-10-1 · Los Angeles Kings 5-10-2 · crypto.com Arena, Los Angeles."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892720",
+        "venue": "crypto.com Arena, Los Angeles",
+        "indoor": true,
+        "records": {
+          "Los Angeles Kings": {
+            "overall": "5-10-2",
+            "home": "2-7-0",
+            "away": "3-3-2"
+          },
+          "Calgary Flames": {
+            "overall": "8-10-1",
+            "home": "6-5-0",
+            "away": "2-5-1"
+          }
+        },
+        "probables": {
+          "Los Angeles Kings": "Anton Forsberg",
+          "Calgary Flames": "Dustin Wolf"
+        },
+        "injuries": {
+          "Los Angeles Kings": [
+            {
+              "name": "Artemi Panarin",
+              "pos": "LW",
+              "athleteId": "3891952",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3891952.png",
+              "status": "Out",
+              "type": "Personal",
+              "detail": "",
+              "returnDate": "2026-11-17",
+              "date": "2026-11-14T19:34Z",
+              "note": "out"
+            },
+            {
+              "name": "Erik Gustafsson",
+              "pos": "D",
+              "athleteId": "5774",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5774.png",
+              "status": "Day-To-Day",
+              "type": "Undisclosed",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-14",
+              "date": "2026-11-13T13:57Z",
+              "note": "day-to-day"
+            },
+            {
+              "name": "Jakub Dvorak",
+              "pos": "D",
+              "athleteId": "5149241",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149241.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-28",
+              "date": "2026-09-24T19:49Z",
+              "note": "ir-nr"
+            }
+          ],
+          "Calgary Flames": [
+            {
+              "name": "Jonathan Huberdeau",
+              "pos": "LW",
+              "athleteId": "2562606",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562606.png",
+              "status": "Injured Reserve",
+              "type": "Hip",
+              "detail": "Surgery",
+              "returnDate": "2026-11-19",
+              "date": "2026-11-13T17:38Z",
+              "note": "Huberdeau (hip) won't travel with the Flames during their upcoming three-game road trip, Pat Steinberg of QR Calgary 770 AM reports Friday."
+            },
+            {
+              "name": "Kevin Bahl",
+              "pos": "D",
+              "athleteId": "4378686",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
+              "status": "Injured Reserve",
+              "type": "Achilles",
+              "detail": "Surgery",
+              "returnDate": "2027-09-15",
+              "date": "2026-11-08T16:17Z",
+              "note": "Bahl will undergo surgery for a ruptured Achilles tendon and won't play again in the 2026-27 season, the Flames announced Sunday."
+            },
+            {
+              "name": "Connor Zary",
+              "pos": "C",
+              "athleteId": "4697407",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697407.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Surgery",
+              "returnDate": "2026-11-28",
+              "date": "2026-10-30T16:44Z",
+              "note": "out"
+            }
+          ]
+        },
+        "rest": {
+          "Los Angeles Kings": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-13",
+            "gamesLast7": 2
+          },
+          "Calgary Flames": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-12",
+            "gamesLast7": 2
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN+",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 150,
+              "away": -180
+            },
+            "total": 5.5,
+            "totalOdds": {
+              "over": -115,
+              "under": -105
+            },
+            "ml": {
+              "home": -175,
+              "away": 145
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 136,
+              "away": -162
+            },
+            "total": 5.5,
+            "totalOdds": {
+              "over": -118,
+              "under": -102
+            },
+            "ml": {
+              "home": -185,
+              "away": 154
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": {
+        "loggedOdds": -118,
+        "loggedFair": 0.5788,
+        "currentOdds": -106,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.5069,
+        "currentEdge": 0.0635,
+        "checkedAt": "2026-11-14T20:36:57.263Z",
+        "history": [
+          {
+            "at": "2026-11-13T20:36:49.267Z",
+            "odds": -118,
+            "fair": 0.5215
+          },
+          {
+            "at": "2026-11-14T14:06:52.310Z",
+            "odds": -117,
+            "fair": 0.526
+          },
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": -106,
+            "fair": 0.5069
+          }
+        ]
+      },
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": 5.5,
+          "odds": -118,
+          "fair": 0.5173641257162701
+        },
+        "now": {
+          "line": 5.5,
+          "odds": -115,
+          "fair": 0.5108342361863488
+        },
+        "moved": "away",
+        "label": "DraftKings opened 5.5 (-118), now 5.5 (-115)"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "line": 5.5,
+          "odds": -118,
+          "fair": 0.5174
+        },
+        {
+          "at": "2026-11-13T21:20:03.887Z",
+          "line": 5.5,
+          "odds": -122,
+          "fair": 0.5261
+        },
+        {
+          "at": "2026-11-14T02:07:35.255Z",
+          "line": 5.5,
+          "odds": -125,
+          "fair": 0.5325
+        },
+        {
+          "at": "2026-11-14T13:13:53.002Z",
+          "line": 5.5,
+          "odds": -120,
+          "fair": 0.5217
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "line": 5.5,
+          "odds": -115,
+          "fair": 0.5108
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 8,
+        "open": {
+          "line": 6.5,
+          "odds": 123
+        },
+        "now": {
+          "line": 6,
+          "odds": 121
+        },
+        "moved": "away",
+        "label": "The market (8 books) opened 6.5 (+123), now 6 (+121)"
+      },
+      "sgo": {
+        "at": "2026-11-15T01:47:23.394Z",
+        "n": 8,
+        "best": {
+          "book": "DraftKings",
+          "odds": -115
+        },
+        "fair": 0.5129,
+        "vendorFair": 0.4525,
+        "open": {
+          "line": 6.5,
+          "odds": 123
+        },
+        "now": {
+          "line": 6,
+          "odds": 121
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "fair": 0.523,
+          "vendorFair": 0.4566,
+          "line": 6,
+          "odds": 119,
+          "best": -118,
+          "n": 5
+        },
+        {
+          "at": "2026-11-14T14:06:52.310Z",
+          "fair": 0.5249,
+          "vendorFair": 0.4695,
+          "line": 6,
+          "odds": 113,
+          "best": -117,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "fair": 0.5106,
+          "vendorFair": 0.4484,
+          "line": 6,
+          "odds": 123,
+          "best": -110,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T20:36:57.263Z",
+          "fair": 0.513,
+          "vendorFair": 0.4545,
+          "line": 6,
+          "odds": 120,
+          "best": -115,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.5129,
+          "vendorFair": 0.4545,
+          "line": 6,
+          "odds": 120,
+          "best": -115,
+          "n": 8
+        },
+        {
+          "at": "2026-11-15T01:07:14.678Z",
+          "fair": 0.5129,
+          "vendorFair": 0.4525,
+          "line": 6,
+          "odds": 121,
+          "best": -115,
+          "n": 8
+        }
+      ],
+      "status": "pending",
+      "started": true,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-13T20:36:49.267Z",
+      "valueTo": -121,
+      "bar": 0.03,
+      "past": 0.0075,
+      "barParts": {
+        "error": 0.0275,
+        "units": 0.16,
+        "unit": "goals",
+        "gp": 17,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-14T20:36:57.263Z",
+        "odds": -106,
+        "book": "BetOnline.ag",
+        "modelProb": 0.5781,
+        "edge": 0.0635,
+        "bar": 0.03
+      },
+      "standing": "clears",
+      "availability": null
+    },
+    {
+      "id": "ce4dd515ea-totals-Under",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "New York Islanders @ Anaheim Ducks",
+      "home": "Anaheim Ducks",
+      "away": "New York Islanders",
+      "marketKey": "totals",
+      "outcome": {
+        "name": "Under",
+        "point": 6.5
+      },
+      "commence": "2026-11-15T03:10:00Z",
+      "start": "Yesterday 10:10 PM ET",
+      "market": "Total",
+      "pick": "Under 6.5",
+      "odds": 110,
+      "book": "BetOnline.ag",
+      "prices": {
+        "DraftKings": 114,
+        "BetRivers": -105,
+        "BetOnline.ag": 110,
+        "FanDuel": 116,
+        "theScore Bet": 105,
+        "Caesars": 111,
+        "Unibet": -111,
+        "ESPN BET": 120,
+        "BetMGM": 105,
+        "Bovada": 120,
+        "PointsBet": 115
+      },
+      "pricesAt": "2026-11-15T01:47:23.394Z",
+      "books": 6,
+      "anchor": "Pinnacle",
+      "modelProb": 0.5102,
+      "ev": 0.0714,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.4,
+        "total": 6.4,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 18,
+        "gpHome": 19,
+        "gpAway": 18,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0,
+          "ratingAway": 0,
+          "lastHome": -0.2,
+          "lastAway": -0.1,
+          "homeEdge": 0.24,
+          "rest": 0.1,
+          "injuriesHome": -0.1,
+          "injuriesAway": 0.1,
+          "scoringOut": 0,
+          "pace": 6.7
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3)",
+            "Projected total 6.4 against 6.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.4721,
+      "marketEdge": -0.0041,
+      "rationale": "Our probability at 6.5 is 51.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +110, which implies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.2%.",
+      "factors": [
+        "Best price +110 at BetOnline.ag",
+        "Probability 51.0% from game data, not other books",
+        "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
+        "Market reference 47.2%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 51.0%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 47.6%, so the edge is 3.4 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 6.5 is 51.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). BetOnline.ag offers +110, which implies only 47.6%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.2%.",
+        "support": [
+          "Combined scoring 7.4 a game in Anaheim Ducks's games, 6 in New York Islanders's (league average 6.3).",
+          "Projected total 6.4 against 6.5.",
+          "A better price is now available: +115 at theScore Bet.",
+          "A better price is available now: +120 at ESPN BET.",
+          "Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 2 more. Fewer healthy scorers leans under."
+        ],
+        "risks": [],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
+          "Market: the sharp line has moved away since it was logged (47.2% → 44.6%).",
+          "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
+          "Market: The market (6 books) opened 6.5 (-105), now 7 (-127), the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Ducks Lukas Dostal · Islanders Semyon Varlamov.",
+          "Records: New York Islanders 8-6-4 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892719",
+        "venue": "Honda Center, Anaheim",
+        "indoor": true,
+        "records": {
+          "Anaheim Ducks": {
+            "overall": "10-8-1",
+            "home": "3-5-1",
+            "away": "7-3-0"
+          },
+          "New York Islanders": {
+            "overall": "8-6-4",
+            "home": "4-3-2",
+            "away": "4-3-2"
+          }
+        },
+        "probables": {
+          "Anaheim Ducks": "Lukas Dostal",
+          "New York Islanders": "Semyon Varlamov"
+        },
+        "injuries": {
+          "Anaheim Ducks": [
+            {
+              "name": "Ryan Poehling",
+              "pos": "C",
+              "athleteId": "4233668",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233668.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "",
+              "returnDate": "2026-12-06",
+              "date": "2026-11-11T22:59Z",
+              "note": "Poehling (lower body) was placed on long-term injured reserve by the Ducks on Wednesday."
+            },
+            {
+              "name": "Ian Moore",
+              "pos": "D",
+              "athleteId": "5188523",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5188523.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-11T18:59Z",
+              "note": "Moore (lower body) might be an option to play by the end of the week, Derek Lee of The Hockey News reports Wednesday."
+            },
+            {
+              "name": "A.J. Greer",
+              "pos": "LW",
+              "athleteId": "3648015",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3648015.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-02T18:46Z",
+              "note": "Greer (upper body) was placed on injured reserve Monday."
+            }
+          ],
+          "New York Islanders": [
+            {
+              "name": "Jean-Gabriel Pageau",
+              "pos": "C",
+              "athleteId": "2593131",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2593131.png",
+              "status": "Day-To-Day",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-11-14",
+              "date": "2026-11-13T13:57Z",
+              "note": "day-to-day"
+            },
+            {
+              "name": "Calum Ritchie",
+              "pos": "C",
+              "athleteId": "5149210",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149210.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-12-01",
+              "date": "2026-10-26T17:28Z",
+              "note": "ir"
+            },
+            {
+              "name": "Alexander Romanov",
+              "pos": "D",
+              "athleteId": "4587854",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4587854.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "Surgery",
+              "returnDate": "2027-04-08",
+              "date": "2026-10-19T13:56Z",
+              "note": "ir"
+            }
+          ]
+        },
+        "rest": {
+          "Anaheim Ducks": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-12",
+            "gamesLast7": 2
+          },
+          "New York Islanders": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-13",
+            "gamesLast7": 2
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN+",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": 1.5,
+            "spreadOdds": {
+              "home": -278,
+              "away": 225
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -135,
+              "under": 114
+            },
+            "ml": {
+              "home": -108,
+              "away": -112
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 190,
+              "away": -230
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -115,
+              "under": -105
+            },
+            "ml": {
+              "home": -122,
+              "away": 102
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": {
+        "loggedOdds": 110,
+        "loggedFair": 0.5102,
+        "currentOdds": 115,
+        "currentBook": "theScore Bet",
+        "currentFair": 0.4456,
+        "currentEdge": 0.0458,
+        "checkedAt": "2026-11-14T20:36:57.263Z",
+        "history": [
+          {
+            "at": "2026-11-13T20:36:49.267Z",
+            "odds": 110,
+            "fair": 0.4721
+          },
+          {
+            "at": "2026-11-14T14:06:52.310Z",
+            "odds": 110,
+            "fair": 0.4612
+          },
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 115,
+            "fair": 0.4456
+          }
+        ]
+      },
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": 6.5,
+          "odds": -105,
+          "fair": 0.4891657638136511
+        },
+        "now": {
+          "line": 6.5,
+          "odds": 114,
+          "fair": 0.448558885283451
+        },
+        "moved": "away",
+        "label": "DraftKings opened 6.5 (-105), now 6.5 (+114)"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "line": 6.5,
+          "odds": 102,
+          "fair": 0.4739
+        },
+        {
+          "at": "2026-11-14T05:40:10.520Z",
+          "line": 6.5,
+          "odds": 110,
+          "fair": 0.4573
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "line": 6.5,
+          "odds": 114,
+          "fair": 0.4486
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 6,
+        "open": {
+          "line": 6.5,
+          "odds": -105
+        },
+        "now": {
+          "line": 7,
+          "odds": -127
+        },
+        "moved": "away",
+        "label": "The market (6 books) opened 6.5 (-105), now 7 (-127)"
+      },
+      "sgo": {
+        "at": "2026-11-15T01:47:23.394Z",
+        "n": 6,
+        "best": {
+          "book": "ESPN BET",
+          "odds": 120
+        },
+        "fair": 0.4516,
+        "vendorFair": 0.5595,
+        "open": {
+          "line": 6.5,
+          "odds": -105
+        },
+        "now": {
+          "line": 7,
+          "odds": -127
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-13T20:36:49.267Z",
+          "fair": 0.4869,
+          "vendorFair": 0.4762,
+          "line": 6.5,
+          "odds": 110,
+          "best": 105,
+          "n": 5
+        },
+        {
+          "at": "2026-11-14T14:06:52.310Z",
+          "fair": 0.4732,
+          "vendorFair": 0.4673,
+          "line": 6.5,
+          "odds": 114,
+          "best": 110,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T19:49:52.324Z",
+          "fair": 0.4591,
+          "vendorFair": 0.4545,
+          "line": 6.5,
+          "odds": 120,
+          "best": 115,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T20:36:57.263Z",
+          "fair": 0.4585,
+          "vendorFair": 0.4505,
+          "line": 6.5,
+          "odds": 122,
+          "best": 115,
+          "n": 7
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.4537,
+          "vendorFair": 0.5633,
+          "line": 7,
+          "odds": -129,
+          "best": 120,
+          "n": 7
+        },
+        {
+          "at": "2026-11-15T01:07:14.678Z",
+          "fair": 0.4513,
+          "vendorFair": 0.5633,
+          "line": 7,
+          "odds": -129,
+          "best": 120,
+          "n": 7
+        },
+        {
+          "at": "2026-11-15T01:47:23.394Z",
+          "fair": 0.4516,
+          "vendorFair": 0.5595,
+          "line": 7,
+          "odds": -127,
+          "best": 120,
+          "n": 6
+        }
+      ],
+      "status": "graded",
+      "started": true,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 2,
+        "away": 6
+      },
+      "loggedAt": "2026-11-13T20:36:49.267Z",
+      "valueTo": 109,
+      "bar": 0.03,
+      "past": 0.004,
+      "barParts": {
+        "error": 0.0282,
+        "units": 0.16,
+        "unit": "goals",
+        "gp": 18,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-14T20:36:57.263Z",
+        "odds": 115,
+        "book": "theScore Bet",
+        "modelProb": 0.5109,
+        "edge": 0.0458,
+        "bar": 0.03
+      },
+      "standing": "clears",
+      "availability": null
     }
   ]
 };
