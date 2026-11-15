@@ -673,33 +673,19 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:4d5a1a7211-totals-Over@edgeline
-DTSTAMP:20261115T014723Z
+DTSTAMP:20261115T134150Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
-SUMMARY:Over 5.5 -118 at DraftKings · in play
+SUMMARY:Over 5.5 -118 at DraftKings · Lost -1.00u
 DESCRIPTION:NHL · Calgary Flames @ Los Angeles Kings · Sat Nov 14\, 10:10
-  PM ET\nTotal: Over 5.5 at -118 (DraftKings). Our probability 57.9% from g
- ame data\, the price implies 54.1%\, edge +3.8 pts\, EV +6.9% per unit. Co
- nfidence: Lean.\nOur probability at 5.5 is 57.9%\, from the game data: thi
- s season's results and margins\, recent form\, rest\, the injury report an
- d home edge (projected total 6.3). DraftKings offers -118\, which implies 
- only 54.1%. Its bar is 3.0 points (the floor: the model's own margin of er
- ror here is smaller). It clears it by 0.8. Not graded against other books'
-  prices\; for reference the market makes it 52.2%.\nWhat supports it:\n- C
- ombined scoring 6.3 a game in Los Angeles Kings's games\, 5.9 in Calgary F
- lames's (league average 6.3).\n- Projected total 6.3 against 5.5.\n- A bet
- ter price is now available: -106 at BetOnline.ag.\n- A better price is ava
- ilable now: -115 at DraftKings.\nWhat could go wrong:\n- Scorers out: Arte
- mi Panarin (LW)\, personal\; Jakub Dvorak (D)\, upper body\; Jonathan Hube
- rdeau (LW)\, hip and 2 more. Fewer healthy scorers leans under.\nVerdict: 
- The game data lines up behind this side at this price.\nPrices: DraftKings
-  -115\, ESPN BET -115\, BetMGM -115\, PointsBet -115\, Bovada -117 and 5 m
- ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#4d5a
- 1a7211-totals-Over
+  PM ET\nTotal: Over 5.5 at -118 (DraftKings). Lost -1.00u.\nFinal: 3-2\nCl
+ osing line value: -3.0 pts (closed -115\, DraftKings close (ESPN)).\nRecor
+ d and every graded lean: https://ajur21.github.io/edgeline-ai/performance.
+ html
 LOCATION:crypto.com Arena\, Los Angeles
-URL:https://ajur21.github.io/edgeline-ai/picks.html#4d5a1a7211-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T014723Z
+LAST-MODIFIED:20261115T134150Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -723,7 +709,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:b5700b4d93-h2h-Miami-Dolphins@edgeline
-DTSTAMP:20261114T203657Z
+DTSTAMP:20261115T134150Z
 DTSTART:20261115T180000Z
 DTEND:20261115T210000Z
 SUMMARY:Miami Dolphins ML +180 at DraftKings · Medium
@@ -741,20 +727,21 @@ DESCRIPTION:NFL · Miami Dolphins @ Indianapolis Colts · Sun Nov 15\, 1:00
   out): +0.07 EPA a dropback against -0.01 behind their numbers (+2.6 point
  s).\n- Indianapolis Colts without Akeem Davis-Gaither (LB)\, Mo Alie-Cox (
  TE)\, Will Mallory (TE) and 5 more (-3.1).\n- Projected margin +0.2 for Mi
- ami Dolphins.\nWhat could go wrong:\n- Indianapolis Colts rate -2.1 and Mi
- ami Dolphins -4.2 points a game against their schedules (this season's res
- ults\, last season carried over)\; EPA a play -0.08 and -0.07 net of defen
- ce (nflverse).\n- Home edge +2.1 for Indianapolis Colts.\n- Miami Dolphins
-  without Aaron Brewer (C)\, Jared Wayne (WR)\, Chris Bell (WR) and 1 more 
- (+1.6).\nVerdict: The game data lines up behind this side at this price.\n
- Prices: DraftKings +180\, BetOnline.ag +180\, FanDuel +176\, BetRivers +17
- 5\, BetMGM +175 and 6 more.\nFull breakdown: https://ajur21.github.io/edge
- line-ai/picks.html#b5700b4d93-h2h-Miami-Dolphins
+ ami Dolphins.\n- A better price is available now: +185 at DraftKings.\nWha
+ t could go wrong:\n- Indianapolis Colts rate -2.1 and Miami Dolphins -4.2 
+ points a game against their schedules (this season's results\, last season
+  carried over)\; EPA a play -0.08 and -0.07 net of defence (nflverse).\n- 
+ Home edge +2.1 for Indianapolis Colts.\n- Miami Dolphins without Aaron Bre
+ wer (C)\, Jared Wayne (WR)\, Chris Bell (WR) and 1 more (+1.6).\nVerdict: 
+ The game data lines up behind this side at this price.\nPrices: DraftKings
+  +185\, PointsBet +185\, BetOnline.ag +180\, BetMGM +180\, FanDuel +176 an
+ d 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html
+ #b5700b4d93-h2h-Miami-Dolphins
 LOCATION:Lucas Oil Stadium\, Indianapolis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b5700b4d93-h2h-Miami-Do
  lphins
 CATEGORIES:NFL
-LAST-MODIFIED:20261114T203657Z
+LAST-MODIFIED:20261115T134150Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -765,7 +752,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:be0e03cc42-h2h-Cleveland-Browns@edgeline
-DTSTAMP:20261114T203657Z
+DTSTAMP:20261115T134150Z
 DTSTART:20261115T180000Z
 DTEND:20261115T210000Z
 SUMMARY:Cleveland Browns ML +195 at theScore Bet · Low
@@ -790,14 +777,14 @@ DESCRIPTION:NFL · Houston Texans @ Cleveland Browns · Sun Nov 15\, 1:00 P
  mbers (+0.6 points).\n- Cleveland Browns without Michael Burton (FB)\, Ron
  nie Hickman (S) (-1.2).\n- Projected margin -1.7 for Cleveland Browns.\nVe
  rdict: More working against this one than for it\; size down.\nPrices: the
- Score Bet +195\, ESPN BET +195\, BetOnline.ag +192\, Caesars +192\, BetRiv
- ers +190 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
- /picks.html#be0e03cc42-h2h-Cleveland-Browns
+ Score Bet +195\, BetOnline.ag +192\, Caesars +192\, FanDuel +190\, BetRive
+ rs +190 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
+ picks.html#be0e03cc42-h2h-Cleveland-Browns
 LOCATION:Huntington Bank Field\, Cleveland
 URL:https://ajur21.github.io/edgeline-ai/picks.html#be0e03cc42-h2h-Clevelan
  d-Browns
 CATEGORIES:NFL
-LAST-MODIFIED:20261114T203657Z
+LAST-MODIFIED:20261115T134150Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -808,7 +795,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6c932a9651-h2h-Arizona-Cardinals@edgeline
-DTSTAMP:20261114T203657Z
+DTSTAMP:20261115T134150Z
 DTSTART:20261115T210500Z
 DTEND:20261116T000500Z
 SUMMARY:Arizona Cardinals ML +400 at FanDuel · Medium
@@ -830,14 +817,14 @@ DESCRIPTION:NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15\, 4:0
  \n- Arizona Cardinals without Jon Gaines II (G)\, Hjalte Froholdt (C)\, Hu
  nter Long (TE) and 1 more (-2.4).\n- Projected margin -6.2 for Arizona Car
  dinals.\nVerdict: More working against this one than for it\; size down.\n
- Prices: FanDuel +400\, DraftKings +380\, BetMGM +375\, PointsBet +375\, th
- eScore Bet +360 and 6 more.\nFull breakdown: https://ajur21.github.io/edge
- line-ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
+ Prices: BetMGM +400\, FanDuel +385\, PointsBet +375\, DraftKings +370\, Ca
+ esars +370 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-
+ ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
 LOCATION:State Farm Stadium\, Glendale
 URL:https://ajur21.github.io/edgeline-ai/picks.html#6c932a9651-h2h-Arizona-
  Cardinals
 CATEGORIES:NFL
-LAST-MODIFIED:20261114T203657Z
+LAST-MODIFIED:20261115T134150Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -848,7 +835,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:539a387d9f-totals-Under@edgeline
-DTSTAMP:20261114T203657Z
+DTSTAMP:20261115T134150Z
 DTSTART:20261116T011000Z
 DTEND:20261116T041000Z
 SUMMARY:Under 6.5 +114 at DraftKings · Low
@@ -865,14 +852,14 @@ DESCRIPTION:NHL · Calgary Flames @ Anaheim Ducks · Sun Nov 15\, 8:10 PM E
  (league average 6.3).\n- Projected total 6.4 against 6.5.\n- Scorers out: 
  Ryan Poehling (C)\, knee\; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, 
  upper body and 3 more. Fewer healthy scorers leans under.\nVerdict: The ga
- me data lines up behind this side at this price.\nPrices: DraftKings +114\
- , Caesars +111\, theScore Bet +110\, BetMGM +110\, ESPN BET +110 and 3 mor
- e.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#539a38
- 7d9f-totals-Under
+ me data lines up behind this side at this price.\nPrices: theScore Bet +11
+ 0\, BetRivers +106\, Caesars +106\, DraftKings +105\, BetMGM +105 and 5 mo
+ re.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#539a3
+ 87d9f-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#539a387d9f-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T203657Z
+LAST-MODIFIED:20261115T134150Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

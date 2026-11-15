@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 19,
-    "losses": 19,
+    "losses": 20,
     "pushes": 0
   },
-  "units": -2.1,
-  "roi": -5.5,
-  "avgEdge": 9,
-  "graded": 38,
+  "units": -3.1,
+  "roi": -7.9,
+  "avgEdge": 8.9,
+  "graded": 39,
   "daily": [
     {
       "date": "2026-11-05",
@@ -48,14 +48,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-14",
-      "units": -2.1
+      "units": -3.1
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 2.03,
-      "record": "14-11"
+      "units": 1.03,
+      "record": "14-12"
     },
     {
       "sport": "NBA",
@@ -80,6 +80,21 @@ window.PERF_DATA = {
       "clv": -0.0276,
       "closeOdds": 114,
       "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-14",
+      "sport": "NHL",
+      "event": "Calgary Flames @ Los Angeles Kings",
+      "pick": "Over 5.5",
+      "odds": -118,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0305,
+      "closeOdds": -115,
+      "closeLine": 5.5,
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
@@ -233,21 +248,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-11",
-      "sport": "NHL",
-      "event": "New York Rangers @ Calgary Flames",
-      "pick": "Over 5.5",
-      "odds": -120,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.013,
-      "closeOdds": -125,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -309,9 +309,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-14",
-      "units": 1.91,
+      "units": 0.91,
       "wins": 3,
-      "losses": 2,
+      "losses": 3,
       "pushes": 0
     }
   ],
@@ -417,31 +417,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 0,
-    "losses": 8,
+    "losses": 9,
     "pushes": 0,
-    "units": -8,
-    "n": 8
+    "units": -9,
+    "n": 9
   },
   "clv": {
-    "n": 32,
-    "avg": -1.47,
+    "n": 33,
+    "avg": -1.51,
     "beat": 7,
-    "beatPct": 21.9,
-    "graded": 38,
+    "beatPct": 21.2,
+    "graded": 39,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 38,
+    "espnCloses": 39,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 19,
-      "losses": 19,
+      "losses": 20,
       "pushes": 0,
-      "units": -2.1,
-      "n": 38,
-      "roi": -5.5,
-      "pending": 6,
+      "units": -3.1,
+      "n": 39,
+      "roi": -7.9,
+      "pending": 5,
       "since": "2026-11-05"
     },
     "price": {
