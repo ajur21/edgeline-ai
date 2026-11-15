@@ -14811,13 +14811,13 @@
   "prices": {
    "DraftKings": 154,
    "BetRivers": 180,
-   "FanDuel": 155,
+   "FanDuel": 152,
    "BetOnline.ag": 171,
    "theScore Bet": 170,
    "Caesars": 150,
    "ESPN BET": 150,
    "BetMGM": 155,
-   "Bovada": 155,
+   "Bovada": 158,
    "PointsBet": 150
   },
   "books": 6,
@@ -15152,10 +15152,10 @@
    },
    "now": {
     "line": null,
-    "odds": 166
+    "odds": 165
    },
    "moved": "toward",
-   "label": "The market (7 books) opened +171, now +166"
+   "label": "The market (7 books) opened +171, now +165"
   },
   "breakdown": {
    "tier": "Lean",
@@ -15178,7 +15178,7 @@
     "Where the market sits: Pinnacle's de-vigged price makes this side 35.0% (-0.7 points against the best price). For reference only.",
     "Market: the sharp line has moved toward this side since it was logged (35.0% → 37.8%).",
     "Market: DraftKings opened +180, now +154, moving toward this side since the open.",
-    "Market: The market (7 books) opened +171, now +166, the consensus moving toward this side since the open.",
+    "Market: The market (7 books) opened +171, now +165, the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Mammoth Karel Vejmelka · Sharks Yaroslav Askarov.",
     "Records: San Jose Sharks 8-11-2 · Utah Mammoth 10-8-2 · Delta Center, Salt Lake City."
@@ -15189,27 +15189,27 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "x0QRGoDlVox2ryTKz8el",
-   "at": "2026-11-15T01:07:14.678Z",
+   "at": "2026-11-15T01:47:23.394Z",
    "books": {
-    "FanDuel": 155,
+    "FanDuel": 152,
     "DraftKings": 154,
     "Caesars": 150,
     "ESPN BET": 150,
     "BetMGM": 155,
-    "Bovada": 155,
+    "Bovada": 158,
     "PointsBet": 150
    },
    "n": 7,
    "best": {
-    "book": "FanDuel",
-    "odds": 155
+    "book": "Bovada",
+    "odds": 158
    },
-   "fair": 0.3794,
+   "fair": 0.3795,
    "fairBooks": 7,
    "vendor": {
     "line": null,
-    "odds": 166,
-    "fair": 0.3759,
+    "odds": 165,
+    "fair": 0.3774,
     "sameLine": true
    },
    "open": {
@@ -15218,12 +15218,12 @@
    },
    "now": {
     "line": null,
-    "odds": 166
+    "odds": 165
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T01:07:14.678Z",
+  "pricesAt": "2026-11-15T01:47:23.394Z",
   "sgoHistory": [
    {
     "at": "2026-11-13T20:36:49.267Z",
@@ -15277,6 +15277,15 @@
     "line": null,
     "odds": 166,
     "best": 155,
+    "n": 7
+   },
+   {
+    "at": "2026-11-15T01:47:23.394Z",
+    "fair": 0.3795,
+    "vendorFair": 0.3774,
+    "line": null,
+    "odds": 165,
+    "best": 158,
     "n": 7
    }
   ],
@@ -16225,7 +16234,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "W1XbYuPDnwzLQqGcY6Lp",
-   "at": "2026-11-15T01:07:14.678Z",
+   "at": "2026-11-15T01:47:23.394Z",
    "books": {
     "FanDuel": -118,
     "DraftKings": -115,
@@ -16260,7 +16269,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T01:07:14.678Z",
+  "pricesAt": "2026-11-15T01:47:23.394Z",
   "sgoHistory": [
    {
     "at": "2026-11-13T20:36:49.267Z",
@@ -17030,17 +17039,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 7,
+   "n": 6,
    "open": {
     "line": 6.5,
     "odds": -105
    },
    "now": {
     "line": 7,
-    "odds": -129
+    "odds": -127
    },
    "moved": "away",
-   "label": "The market (7 books) opened 6.5 (-105), now 7 (-129)"
+   "label": "The market (6 books) opened 6.5 (-105), now 7 (-127)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -17058,7 +17067,7 @@
     "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (47.2% → 44.6%).",
     "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-    "Market: The market (7 books) opened 6.5 (-105), now 7 (-129), the consensus moving against this side since the open.",
+    "Market: The market (6 books) opened 6.5 (-105), now 7 (-127), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Lukas Dostal · Islanders Semyon Varlamov.",
     "Records: New York Islanders 8-6-4 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
@@ -17069,27 +17078,26 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "eA86F7tghZ63bWRLaoKG",
-   "at": "2026-11-15T01:07:14.678Z",
+   "at": "2026-11-15T01:47:23.394Z",
    "books": {
     "FanDuel": 116,
     "DraftKings": 114,
-    "Caesars": 111,
     "Unibet": -111,
     "ESPN BET": 120,
     "Bovada": 120,
     "PointsBet": 115
    },
-   "n": 7,
+   "n": 6,
    "best": {
     "book": "ESPN BET",
     "odds": 120
    },
-   "fair": 0.4513,
-   "fairBooks": 7,
+   "fair": 0.4516,
+   "fairBooks": 6,
    "vendor": {
     "line": 7,
-    "odds": -129,
-    "fair": 0.5633,
+    "odds": -127,
+    "fair": 0.5595,
     "sameLine": false
    },
    "open": {
@@ -17098,12 +17106,12 @@
    },
    "now": {
     "line": 7,
-    "odds": -129
+    "odds": -127
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T01:07:14.678Z",
+  "pricesAt": "2026-11-15T01:47:23.394Z",
   "sgoHistory": [
    {
     "at": "2026-11-13T20:36:49.267Z",
@@ -17158,6 +17166,15 @@
     "odds": -129,
     "best": 120,
     "n": 7
+   },
+   {
+    "at": "2026-11-15T01:47:23.394Z",
+    "fair": 0.4516,
+    "vendorFair": 0.5595,
+    "line": 7,
+    "odds": -127,
+    "best": 120,
+    "n": 6
    }
   ],
   "movement": {

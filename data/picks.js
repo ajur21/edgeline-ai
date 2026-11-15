@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-14T20:36:57.263Z",
-  "trackedAt": "2026-11-15T01:07:14.678Z",
+  "trackedAt": "2026-11-15T01:47:23.394Z",
   "playOfDay": {
     "id": "5773e80d52-h2h-Minnesota-Timberwolves",
     "sport": "NBA",
@@ -359,7 +359,7 @@ window.PICKS_DATA = {
       }
     ],
     "status": "pending",
-    "started": false,
+    "started": true,
     "result": null,
     "units": null,
     "score": null,
@@ -506,7 +506,7 @@ window.PICKS_DATA = {
         "sport": "NBA",
         "price": -1000,
         "commence": "2026-11-15T01:10:00Z",
-        "started": false,
+        "started": true,
         "result": null,
         "void": false
       },
@@ -2334,16 +2334,16 @@ window.PICKS_DATA = {
       "prices": {
         "DraftKings": 154,
         "BetRivers": 180,
-        "FanDuel": 155,
+        "FanDuel": 152,
         "BetOnline.ag": 171,
         "theScore Bet": 170,
         "Caesars": 150,
         "ESPN BET": 150,
         "BetMGM": 155,
-        "Bovada": 155,
+        "Bovada": 158,
         "PointsBet": 150
       },
-      "pricesAt": "2026-11-15T01:07:14.678Z",
+      "pricesAt": "2026-11-15T01:47:23.394Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.4486,
@@ -2417,7 +2417,7 @@ window.PICKS_DATA = {
           "Where the market sits: Pinnacle's de-vigged price makes this side 35.0% (-0.7 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (35.0% → 37.8%).",
           "Market: DraftKings opened +180, now +154, moving toward this side since the open.",
-          "Market: The market (7 books) opened +171, now +166, the consensus moving toward this side since the open.",
+          "Market: The market (7 books) opened +171, now +165, the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Karel Vejmelka · Sharks Yaroslav Askarov.",
           "Records: San Jose Sharks 8-11-2 · Utah Mammoth 10-8-2 · Delta Center, Salt Lake City."
@@ -2688,27 +2688,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 166
+          "odds": 165
         },
         "moved": "toward",
-        "label": "The market (7 books) opened +171, now +166"
+        "label": "The market (7 books) opened +171, now +165"
       },
       "sgo": {
-        "at": "2026-11-15T01:07:14.678Z",
+        "at": "2026-11-15T01:47:23.394Z",
         "n": 7,
         "best": {
-          "book": "FanDuel",
-          "odds": 155
+          "book": "Bovada",
+          "odds": 158
         },
-        "fair": 0.3794,
-        "vendorFair": 0.3759,
+        "fair": 0.3795,
+        "vendorFair": 0.3774,
         "open": {
           "line": null,
           "odds": 171
         },
         "now": {
           "line": null,
-          "odds": 166
+          "odds": 165
         }
       },
       "sgoHistory": [
@@ -2765,6 +2765,15 @@ window.PICKS_DATA = {
           "odds": 166,
           "best": 155,
           "n": 7
+        },
+        {
+          "at": "2026-11-15T01:47:23.394Z",
+          "fair": 0.3795,
+          "vendorFair": 0.3774,
+          "line": null,
+          "odds": 165,
+          "best": 158,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -2793,485 +2802,6 @@ window.PICKS_DATA = {
       },
       "standing": "clears",
       "availability": null
-    },
-    {
-      "id": "5773e80d52-h2h-Minnesota-Timberwolves",
-      "sport": "NBA",
-      "league": "NBA",
-      "sportKey": "basketball_nba",
-      "event": "Chicago Bulls @ Minnesota Timberwolves",
-      "home": "Minnesota Timberwolves",
-      "away": "Chicago Bulls",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Minnesota Timberwolves",
-        "point": null
-      },
-      "commence": "2026-11-15T01:10:00Z",
-      "start": "Today 8:10 PM ET",
-      "market": "Moneyline",
-      "pick": "Minnesota Timberwolves ML",
-      "odds": -950,
-      "book": "FanDuel",
-      "prices": {
-        "FanDuel": -1150,
-        "BetRivers": -1250,
-        "theScore Bet": -1600,
-        "BetMGM": -1100,
-        "DraftKings": -1080,
-        "BetOnline.ag": -1100,
-        "Bovada": -1000,
-        "PointsBet": -1000,
-        "Unibet": -1429,
-        "Caesars": -1200,
-        "ESPN BET": -1200
-      },
-      "pricesAt": "2026-11-15T01:07:14.678Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.9646,
-      "ev": 0.0661,
-      "confidence": "Medium",
-      "basis": "game",
-      "model": {
-        "margin": 22.9,
-        "total": 233.7,
-        "sd": 14.3,
-        "sdTotal": 19,
-        "gp": 11,
-        "gpHome": 12,
-        "gpAway": 11,
-        "thin": false,
-        "parts": {
-          "ratingHome": 8.4,
-          "ratingAway": -8.3,
-          "lastHome": 3.4,
-          "lastAway": -5.2,
-          "homeEdge": 1.9,
-          "rest": 1.5,
-          "injuriesHome": -1.3,
-          "injuriesAway": 4.1,
-          "scoringOut": 0,
-          "pace": 233.7
-        },
-        "reasons": {
-          "for": [
-            "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game",
-            "Home edge +1.9 for Minnesota Timberwolves",
-            "Chicago Bulls are on the second night of a back-to-back",
-            "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report",
-            "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report",
-            "Projected margin +22.9 for Minnesota Timberwolves"
-          ],
-          "against": [
-            "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report"
-          ]
-        }
-      },
-      "marketFair": 0.8779,
-      "marketEdge": -0.0269,
-      "rationale": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
-      "factors": [
-        "Best price -950 at FanDuel",
-        "Probability 96.5% from game data, not other books",
-        "Edge 6.0 points over the price, 3.0 past its bar of 3.0",
-        "Market reference 87.8%"
-      ],
-      "breakdown": {
-        "tier": "Medium",
-        "tierWhy": "Our probability for this side is 96.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 90.5%, so the edge is 6.0 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 3.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
-        "support": [
-          "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game.",
-          "Home edge +1.9 for Minnesota Timberwolves.",
-          "Chicago Bulls are on the second night of a back-to-back.",
-          "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report.",
-          "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report.",
-          "Projected margin +22.9 for Minnesota Timberwolves.",
-          "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET."
-        ],
-        "risks": [
-          "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 87.8% (-2.7 points against the best price). For reference only.",
-          "Market: DraftKings opened -840, now -1080, moving toward this side since the open.",
-          "Market: The market (8 books) opened -170, now -734, the consensus moving toward this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Records: Chicago Bulls 2-9 · Minnesota Timberwolves 9-3 · Target Center, Minneapolis."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401909984",
-        "venue": "Target Center, Minneapolis",
-        "indoor": true,
-        "records": {
-          "Minnesota Timberwolves": {
-            "overall": "9-3",
-            "home": "5-1",
-            "away": "4-2"
-          },
-          "Chicago Bulls": {
-            "overall": "2-9",
-            "home": "1-4",
-            "away": "1-5"
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Minnesota Timberwolves": [
-            {
-              "name": "Anthony Edwards",
-              "pos": "G",
-              "athleteId": "4594268",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4594268.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Surgery",
-              "returnDate": "2026-12-21",
-              "date": "2026-10-29T18:33Z",
-              "note": "Edwards underwent a successful arthroscopic procedure on his right knee Thursday, the Timberwolves announced."
-            },
-            {
-              "name": "Donte DiVincenzo",
-              "pos": "G",
-              "athleteId": "3934673",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934673.png",
-              "status": "Out",
-              "type": "Achilles",
-              "detail": "Surgery",
-              "returnDate": "2027-04-02",
-              "date": "2026-10-05T20:53Z",
-              "note": "DiVincenzo (Achilles) remains confident that he'll return during the 2026-27 season, Jon Krawczynski of The Athletic reports."
-            }
-          ],
-          "Chicago Bulls": [
-            {
-              "name": "Tobe Awaka",
-              "pos": "F",
-              "athleteId": "5105555",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105555.png",
-              "status": "Out",
-              "type": "Back",
-              "detail": "",
-              "returnDate": "2026-11-16",
-              "date": "2026-11-14T18:10Z",
-              "note": "Awaka has been ruled out for Saturday's game against the Timberwolves."
-            },
-            {
-              "name": "Nic Claxton",
-              "pos": "C",
-              "athleteId": "4278067",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4278067.png",
-              "status": "Day-To-Day",
-              "type": "Hamstring",
-              "detail": "",
-              "returnDate": "2026-11-14",
-              "date": "2026-11-14T18:08Z",
-              "note": "Claxton (hamstring) is listed as questionable for Saturday's game against the Timberwolves."
-            },
-            {
-              "name": "Jalen Smith",
-              "pos": "F",
-              "athleteId": "4397189",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4397189.png",
-              "status": "Day-To-Day",
-              "type": "Finger",
-              "detail": "Sprain",
-              "returnDate": "2026-11-14",
-              "date": "2026-11-14T18:00Z",
-              "note": "Smith (finger) is listed as questionable for Saturday's game at Minnesota."
-            },
-            {
-              "name": "Norman Powell",
-              "pos": "G",
-              "athleteId": "2595516",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2595516.png",
-              "status": "Day-To-Day",
-              "type": "Back",
-              "detail": "",
-              "returnDate": "2026-11-14",
-              "date": "2026-11-14T17:57Z",
-              "note": "Powell (back) is listed as questionable for Saturday's game against Minnesota."
-            },
-            {
-              "name": "Caleb Wilson",
-              "pos": "F",
-              "athleteId": "5095151",
-              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5095151.png",
-              "status": "Out",
-              "type": "Hand",
-              "detail": "",
-              "returnDate": "2026-12-13",
-              "date": "2026-11-12T21:35Z",
-              "note": "Wilson (hand) is expected to miss four to six weeks, Shams Charania of ESPN reports."
-            }
-          ]
-        },
-        "rest": {
-          "Minnesota Timberwolves": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-13",
-            "gamesLast7": 2
-          },
-          "Chicago Bulls": {
-            "restDays": 1,
-            "b2b": true,
-            "lastGame": "2026-11-14",
-            "gamesLast7": 3
-          }
-        },
-        "weather": null,
-        "broadcast": "DAZN MIN",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -16.5,
-            "spreadOdds": {
-              "home": -104,
-              "away": -116
-            },
-            "total": 237.5,
-            "totalOdds": {
-              "over": -114,
-              "under": -106
-            },
-            "ml": {
-              "home": -1080,
-              "away": 690
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -14.5,
-            "spreadOdds": {
-              "home": -105,
-              "away": -115
-            },
-            "total": 236.5,
-            "totalOdds": {
-              "over": -108,
-              "under": -112
-            },
-            "ml": {
-              "home": -840,
-              "away": 580
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": -840,
-          "fair": 0.8586891160553217
-        },
-        "now": {
-          "line": null,
-          "odds": -1080,
-          "fair": 0.878500823723229
-        },
-        "moved": "toward",
-        "label": "DraftKings opened -840, now -1080"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "line": null,
-          "odds": -1080,
-          "fair": 0.8785
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": null,
-          "odds": -170
-        },
-        "now": {
-          "line": null,
-          "odds": -734
-        },
-        "moved": "toward",
-        "label": "The market (8 books) opened -170, now -734"
-      },
-      "sgo": {
-        "at": "2026-11-15T01:07:14.678Z",
-        "n": 8,
-        "best": {
-          "book": "PointsBet",
-          "odds": -1000
-        },
-        "fair": 0.8778,
-        "vendorFair": 0.8801,
-        "open": {
-          "line": null,
-          "odds": -170
-        },
-        "now": {
-          "line": null,
-          "odds": -734
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.8744,
-          "vendorFair": 0.8764,
-          "line": null,
-          "odds": -709,
-          "best": -900,
-          "n": 8
-        },
-        {
-          "at": "2026-11-14T23:46:57.593Z",
-          "fair": 0.8785,
-          "vendorFair": 0.8801,
-          "line": null,
-          "odds": -734,
-          "best": -1000,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T01:07:14.678Z",
-          "fair": 0.8778,
-          "vendorFair": 0.8801,
-          "line": null,
-          "odds": -734,
-          "best": -1000,
-          "n": 8
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-14T20:36:57.263Z",
-      "valueTo": -1429,
-      "bar": 0.03,
-      "past": 0.0298,
-      "barParts": {
-        "error": 0.0273,
-        "units": 4.36,
-        "unit": "points",
-        "gp": 11,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
-      "availability": {
-        "changed": true,
-        "note": "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET",
-        "swing": 0.04,
-        "changes": [
-          {
-            "side": "away",
-            "name": "Norman Powell",
-            "from": "Questionable",
-            "to": "Available",
-            "fromMiss": 0.42,
-            "toMiss": 0,
-            "delta": -0.86,
-            "at": "2026-11-14T23:45:00.000Z",
-            "source": "official",
-            "report": "8:00 PM ET"
-          },
-          {
-            "side": "away",
-            "name": "Jalen Smith",
-            "from": "Questionable",
-            "to": "Out",
-            "fromMiss": 0.42,
-            "toMiss": 1,
-            "delta": 0.9,
-            "at": "2026-11-14T23:45:00.000Z",
-            "source": "official",
-            "report": "8:00 PM ET"
-          }
-        ],
-        "checkedAt": "2026-11-15T01:07:14.678Z",
-        "posted": {
-          "read": "2026-11-14T20:36:57.263Z",
-          "report": {
-            "source": "NBA official injury report",
-            "label": "3:30 PM ET",
-            "at": "2026-11-14T20:30:00.000Z",
-            "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-14_03_30PM.pdf"
-          },
-          "players": [
-            {
-              "side": "home",
-              "name": "Donte DiVincenzo",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "home",
-              "name": "Anthony Edwards",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Tobe Awaka",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Nic Claxton",
-              "status": "Questionable",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Norman Powell",
-              "status": "Questionable",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Jaylin Sellers",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Jalen Smith",
-              "status": "Questionable",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Dailyn Swain",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            },
-            {
-              "side": "away",
-              "name": "Caleb Wilson",
-              "status": "Out",
-              "source": "official",
-              "at": "2026-11-14T20:30:00.000Z"
-            }
-          ]
-        }
-      }
     },
     {
       "id": "539a387d9f-totals-Under",
@@ -3636,7 +3166,7 @@ window.PICKS_DATA = {
         "Bovada": -117,
         "PointsBet": -115
       },
-      "pricesAt": "2026-11-15T01:07:14.678Z",
+      "pricesAt": "2026-11-15T01:47:23.394Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.5788,
@@ -3945,7 +3475,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 6.5 (+123), now 6 (+121)"
       },
       "sgo": {
-        "at": "2026-11-15T01:07:14.678Z",
+        "at": "2026-11-15T01:47:23.394Z",
         "n": 8,
         "best": {
           "book": "DraftKings",
@@ -4077,7 +3607,7 @@ window.PICKS_DATA = {
         "Bovada": 120,
         "PointsBet": 115
       },
-      "pricesAt": "2026-11-15T01:07:14.678Z",
+      "pricesAt": "2026-11-15T01:47:23.394Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.5102,
@@ -4138,7 +3668,7 @@ window.PICKS_DATA = {
           "Where the market sits: Pinnacle's de-vigged price makes this side 47.2% (-0.4 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (47.2% → 44.6%).",
           "Market: DraftKings opened 6.5 (-105), now 6.5 (+114), moving against this side since the open.",
-          "Market: The market (7 books) opened 6.5 (-105), now 7 (-129), the consensus moving against this side since the open.",
+          "Market: The market (6 books) opened 6.5 (-105), now 7 (-127), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Lukas Dostal · Islanders Semyon Varlamov.",
           "Records: New York Islanders 8-6-4 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
@@ -4360,34 +3890,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 7,
+        "n": 6,
         "open": {
           "line": 6.5,
           "odds": -105
         },
         "now": {
           "line": 7,
-          "odds": -129
+          "odds": -127
         },
         "moved": "away",
-        "label": "The market (7 books) opened 6.5 (-105), now 7 (-129)"
+        "label": "The market (6 books) opened 6.5 (-105), now 7 (-127)"
       },
       "sgo": {
-        "at": "2026-11-15T01:07:14.678Z",
-        "n": 7,
+        "at": "2026-11-15T01:47:23.394Z",
+        "n": 6,
         "best": {
           "book": "ESPN BET",
           "odds": 120
         },
-        "fair": 0.4513,
-        "vendorFair": 0.5633,
+        "fair": 0.4516,
+        "vendorFair": 0.5595,
         "open": {
           "line": 6.5,
           "odds": -105
         },
         "now": {
           "line": 7,
-          "odds": -129
+          "odds": -127
         }
       },
       "sgoHistory": [
@@ -4444,6 +3974,15 @@ window.PICKS_DATA = {
           "odds": -129,
           "best": 120,
           "n": 7
+        },
+        {
+          "at": "2026-11-15T01:47:23.394Z",
+          "fair": 0.4516,
+          "vendorFair": 0.5595,
+          "line": 7,
+          "odds": -127,
+          "best": 120,
+          "n": 6
         }
       ],
       "status": "pending",
@@ -5325,6 +4864,485 @@ window.PICKS_DATA = {
       },
       "standing": "below",
       "availability": null
+    },
+    {
+      "id": "5773e80d52-h2h-Minnesota-Timberwolves",
+      "sport": "NBA",
+      "league": "NBA",
+      "sportKey": "basketball_nba",
+      "event": "Chicago Bulls @ Minnesota Timberwolves",
+      "home": "Minnesota Timberwolves",
+      "away": "Chicago Bulls",
+      "marketKey": "h2h",
+      "outcome": {
+        "name": "Minnesota Timberwolves",
+        "point": null
+      },
+      "commence": "2026-11-15T01:10:00Z",
+      "start": "Today 8:10 PM ET",
+      "market": "Moneyline",
+      "pick": "Minnesota Timberwolves ML",
+      "odds": -950,
+      "book": "FanDuel",
+      "prices": {
+        "FanDuel": -1150,
+        "BetRivers": -1250,
+        "theScore Bet": -1600,
+        "BetMGM": -1100,
+        "DraftKings": -1080,
+        "BetOnline.ag": -1100,
+        "Bovada": -1000,
+        "PointsBet": -1000,
+        "Unibet": -1429,
+        "Caesars": -1200,
+        "ESPN BET": -1200
+      },
+      "pricesAt": "2026-11-15T01:07:14.678Z",
+      "books": 8,
+      "anchor": "Pinnacle",
+      "modelProb": 0.9646,
+      "ev": 0.0661,
+      "confidence": "Medium",
+      "basis": "game",
+      "model": {
+        "margin": 22.9,
+        "total": 233.7,
+        "sd": 14.3,
+        "sdTotal": 19,
+        "gp": 11,
+        "gpHome": 12,
+        "gpAway": 11,
+        "thin": false,
+        "parts": {
+          "ratingHome": 8.4,
+          "ratingAway": -8.3,
+          "lastHome": 3.4,
+          "lastAway": -5.2,
+          "homeEdge": 1.9,
+          "rest": 1.5,
+          "injuriesHome": -1.3,
+          "injuriesAway": 4.1,
+          "scoringOut": 0,
+          "pace": 233.7
+        },
+        "reasons": {
+          "for": [
+            "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game",
+            "Home edge +1.9 for Minnesota Timberwolves",
+            "Chicago Bulls are on the second night of a back-to-back",
+            "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report",
+            "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report",
+            "Projected margin +22.9 for Minnesota Timberwolves"
+          ],
+          "against": [
+            "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report"
+          ]
+        }
+      },
+      "marketFair": 0.8779,
+      "marketEdge": -0.0269,
+      "rationale": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
+      "factors": [
+        "Best price -950 at FanDuel",
+        "Probability 96.5% from game data, not other books",
+        "Edge 6.0 points over the price, 3.0 past its bar of 3.0",
+        "Market reference 87.8%"
+      ],
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Our probability for this side is 96.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 90.5%, so the edge is 6.0 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 3.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 96.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +22.9 for the home side). FanDuel offers -950, which implies only 90.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 3.0. Not graded against other books' prices; for reference the market makes it 87.8%.",
+        "support": [
+          "Minnesota Timberwolves rate +8.4 a game over 12 (9-3), Chicago Bulls -8.3 over 11 (2-9); last season +3.4 and -5.2 a game.",
+          "Home edge +1.9 for Minnesota Timberwolves.",
+          "Chicago Bulls are on the second night of a back-to-back.",
+          "Chicago Bulls without Tobe Awaka (F), Jaylin Sellers (G), Caleb Wilson (F) (+4.1), out per the 3:30 PM ET official report.",
+          "Chicago Bulls have Nic Claxton (C) questionable, Norman Powell (G) questionable, Jalen Smith (F) questionable per the 3:30 PM ET official report.",
+          "Projected margin +22.9 for Minnesota Timberwolves.",
+          "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET."
+        ],
+        "risks": [
+          "Minnesota Timberwolves without Anthony Edwards (G) (-1.3), out per the 3:30 PM ET official report."
+        ],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 87.8% (-2.7 points against the best price). For reference only.",
+          "Market: DraftKings opened -840, now -1080, moving toward this side since the open.",
+          "Market: The market (8 books) opened -170, now -734, the consensus moving toward this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Records: Chicago Bulls 2-9 · Minnesota Timberwolves 9-3 · Target Center, Minneapolis."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401909984",
+        "venue": "Target Center, Minneapolis",
+        "indoor": true,
+        "records": {
+          "Minnesota Timberwolves": {
+            "overall": "9-3",
+            "home": "5-1",
+            "away": "4-2"
+          },
+          "Chicago Bulls": {
+            "overall": "2-9",
+            "home": "1-4",
+            "away": "1-5"
+          }
+        },
+        "probables": {},
+        "injuries": {
+          "Minnesota Timberwolves": [
+            {
+              "name": "Anthony Edwards",
+              "pos": "G",
+              "athleteId": "4594268",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4594268.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Surgery",
+              "returnDate": "2026-12-21",
+              "date": "2026-10-29T18:33Z",
+              "note": "Edwards underwent a successful arthroscopic procedure on his right knee Thursday, the Timberwolves announced."
+            },
+            {
+              "name": "Donte DiVincenzo",
+              "pos": "G",
+              "athleteId": "3934673",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934673.png",
+              "status": "Out",
+              "type": "Achilles",
+              "detail": "Surgery",
+              "returnDate": "2027-04-02",
+              "date": "2026-10-05T20:53Z",
+              "note": "DiVincenzo (Achilles) remains confident that he'll return during the 2026-27 season, Jon Krawczynski of The Athletic reports."
+            }
+          ],
+          "Chicago Bulls": [
+            {
+              "name": "Tobe Awaka",
+              "pos": "F",
+              "athleteId": "5105555",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105555.png",
+              "status": "Out",
+              "type": "Back",
+              "detail": "",
+              "returnDate": "2026-11-16",
+              "date": "2026-11-14T18:10Z",
+              "note": "Awaka has been ruled out for Saturday's game against the Timberwolves."
+            },
+            {
+              "name": "Nic Claxton",
+              "pos": "C",
+              "athleteId": "4278067",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4278067.png",
+              "status": "Day-To-Day",
+              "type": "Hamstring",
+              "detail": "",
+              "returnDate": "2026-11-14",
+              "date": "2026-11-14T18:08Z",
+              "note": "Claxton (hamstring) is listed as questionable for Saturday's game against the Timberwolves."
+            },
+            {
+              "name": "Jalen Smith",
+              "pos": "F",
+              "athleteId": "4397189",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4397189.png",
+              "status": "Day-To-Day",
+              "type": "Finger",
+              "detail": "Sprain",
+              "returnDate": "2026-11-14",
+              "date": "2026-11-14T18:00Z",
+              "note": "Smith (finger) is listed as questionable for Saturday's game at Minnesota."
+            },
+            {
+              "name": "Norman Powell",
+              "pos": "G",
+              "athleteId": "2595516",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2595516.png",
+              "status": "Day-To-Day",
+              "type": "Back",
+              "detail": "",
+              "returnDate": "2026-11-14",
+              "date": "2026-11-14T17:57Z",
+              "note": "Powell (back) is listed as questionable for Saturday's game against Minnesota."
+            },
+            {
+              "name": "Caleb Wilson",
+              "pos": "F",
+              "athleteId": "5095151",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5095151.png",
+              "status": "Out",
+              "type": "Hand",
+              "detail": "",
+              "returnDate": "2026-12-13",
+              "date": "2026-11-12T21:35Z",
+              "note": "Wilson (hand) is expected to miss four to six weeks, Shams Charania of ESPN reports."
+            }
+          ]
+        },
+        "rest": {
+          "Minnesota Timberwolves": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-13",
+            "gamesLast7": 2
+          },
+          "Chicago Bulls": {
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-14",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "DAZN MIN",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": -16.5,
+            "spreadOdds": {
+              "home": -104,
+              "away": -116
+            },
+            "total": 237.5,
+            "totalOdds": {
+              "over": -114,
+              "under": -106
+            },
+            "ml": {
+              "home": -1080,
+              "away": 690
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -14.5,
+            "spreadOdds": {
+              "home": -105,
+              "away": -115
+            },
+            "total": 236.5,
+            "totalOdds": {
+              "over": -108,
+              "under": -112
+            },
+            "ml": {
+              "home": -840,
+              "away": 580
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": null,
+          "odds": -840,
+          "fair": 0.8586891160553217
+        },
+        "now": {
+          "line": null,
+          "odds": -1080,
+          "fair": 0.878500823723229
+        },
+        "moved": "toward",
+        "label": "DraftKings opened -840, now -1080"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-14T20:36:57.263Z",
+          "line": null,
+          "odds": -1080,
+          "fair": 0.8785
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 8,
+        "open": {
+          "line": null,
+          "odds": -170
+        },
+        "now": {
+          "line": null,
+          "odds": -734
+        },
+        "moved": "toward",
+        "label": "The market (8 books) opened -170, now -734"
+      },
+      "sgo": {
+        "at": "2026-11-15T01:07:14.678Z",
+        "n": 8,
+        "best": {
+          "book": "PointsBet",
+          "odds": -1000
+        },
+        "fair": 0.8778,
+        "vendorFair": 0.8801,
+        "open": {
+          "line": null,
+          "odds": -170
+        },
+        "now": {
+          "line": null,
+          "odds": -734
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-14T20:36:57.263Z",
+          "fair": 0.8744,
+          "vendorFair": 0.8764,
+          "line": null,
+          "odds": -709,
+          "best": -900,
+          "n": 8
+        },
+        {
+          "at": "2026-11-14T23:46:57.593Z",
+          "fair": 0.8785,
+          "vendorFair": 0.8801,
+          "line": null,
+          "odds": -734,
+          "best": -1000,
+          "n": 8
+        },
+        {
+          "at": "2026-11-15T01:07:14.678Z",
+          "fair": 0.8778,
+          "vendorFair": 0.8801,
+          "line": null,
+          "odds": -734,
+          "best": -1000,
+          "n": 8
+        }
+      ],
+      "status": "pending",
+      "started": true,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-14T20:36:57.263Z",
+      "valueTo": -1429,
+      "bar": 0.03,
+      "past": 0.0298,
+      "barParts": {
+        "error": 0.0273,
+        "units": 4.36,
+        "unit": "points",
+        "gp": 11,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null,
+      "availability": {
+        "changed": true,
+        "note": "Norman Powell cleared to play at 6:45 PM ET (official report); Jalen Smith ruled out at 6:45 PM ET (official report), after this lean was posted at 3:36 PM ET",
+        "swing": 0.04,
+        "changes": [
+          {
+            "side": "away",
+            "name": "Norman Powell",
+            "from": "Questionable",
+            "to": "Available",
+            "fromMiss": 0.42,
+            "toMiss": 0,
+            "delta": -0.86,
+            "at": "2026-11-14T23:45:00.000Z",
+            "source": "official",
+            "report": "8:00 PM ET"
+          },
+          {
+            "side": "away",
+            "name": "Jalen Smith",
+            "from": "Questionable",
+            "to": "Out",
+            "fromMiss": 0.42,
+            "toMiss": 1,
+            "delta": 0.9,
+            "at": "2026-11-14T23:45:00.000Z",
+            "source": "official",
+            "report": "8:00 PM ET"
+          }
+        ],
+        "checkedAt": "2026-11-15T01:07:14.678Z",
+        "posted": {
+          "read": "2026-11-14T20:36:57.263Z",
+          "report": {
+            "source": "NBA official injury report",
+            "label": "3:30 PM ET",
+            "at": "2026-11-14T20:30:00.000Z",
+            "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-14_03_30PM.pdf"
+          },
+          "players": [
+            {
+              "side": "home",
+              "name": "Donte DiVincenzo",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "home",
+              "name": "Anthony Edwards",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Tobe Awaka",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Nic Claxton",
+              "status": "Questionable",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Norman Powell",
+              "status": "Questionable",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Jaylin Sellers",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Jalen Smith",
+              "status": "Questionable",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Dailyn Swain",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            },
+            {
+              "side": "away",
+              "name": "Caleb Wilson",
+              "status": "Out",
+              "source": "official",
+              "at": "2026-11-14T20:30:00.000Z"
+            }
+          ]
+        }
+      }
     }
   ]
 };

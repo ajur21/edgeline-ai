@@ -661,12 +661,33 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-14@edgeline
+DTSTAMP:20261115T014723Z
+DTSTART:20261115T011000Z
+DTEND:20261115T061000Z
+SUMMARY:Parlay lean of the day: 2 legs +106 at PointsBet
+DESCRIPTION:All legs priced at PointsBet. Fair 55.8%\, implied 48.5%\, EV +
+ 14.8% per unit.\n- NBA: Minnesota Timberwolves ML -1000 · Chicago Bulls @
+  Minnesota Timberwolves\n- NHL: Over 5.5 -115 · Calgary Flames @ Los Ange
+ les Kings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html
+ #parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261115T014723Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +106 at PointsBet
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:5773e80d52-h2h-Minnesota-Timberwolves@edgeline
 DTSTAMP:20261115T010714Z
 DTSTART:20261115T011000Z
 DTEND:20261115T041000Z
-SUMMARY:Lean of the day: Minnesota Timberwolves ML -950 at FanDuel · Mediu
- m
+SUMMARY:Minnesota Timberwolves ML -950 at FanDuel · in play
 DESCRIPTION:NBA · Chicago Bulls @ Minnesota Timberwolves · Sat Nov 14\, 8
  :10 PM ET\nMoneyline: Minnesota Timberwolves ML at -950 (FanDuel). Our pro
  bability 96.5% from game data\, the price implies 90.5%\, edge +6.0 pts\, 
@@ -699,38 +720,10 @@ CATEGORIES:NBA
 LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Minnesota Timberwolves ML -950 at FanDuel · M
- edium
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-14@edgeline
-DTSTAMP:20261115T010714Z
-DTSTART:20261115T011000Z
-DTEND:20261115T061000Z
-SUMMARY:Parlay lean of the day: 2 legs +106 at PointsBet
-DESCRIPTION:All legs priced at PointsBet. Fair 55.8%\, implied 48.5%\, EV +
- 14.8% per unit.\n- NBA: Minnesota Timberwolves ML -1000 · Chicago Bulls @
-  Minnesota Timberwolves\n- NHL: Over 5.5 -115 · Calgary Flames @ Los Ange
- les Kings\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html
- #parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261115T010714Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +106 at PointsBet
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e7f30a1c54-h2h-San-Jose-Sharks@edgeline
-DTSTAMP:20261115T010714Z
+DTSTAMP:20261115T014723Z
 DTSTART:20261115T021000Z
 DTEND:20261115T051000Z
 SUMMARY:San Jose Sharks ML +180 at BetRivers · Low
@@ -754,14 +747,14 @@ DESCRIPTION:NHL · San Jose Sharks @ Utah Mammoth · Sat Nov 14\, 9:10 PM E
  moth.\n- San Jose Sharks without Igor Chernyshov (LW) (+0.1).\n- Projected
   margin -0.3 for San Jose Sharks.\nVerdict: More working against this one 
  than for it\; size down.\nPrices: BetRivers +180\, BetOnline.ag +171\, the
- Score Bet +170\, FanDuel +155\, BetMGM +155 and 5 more.\nFull breakdown: h
- ttps://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose-Sha
- rks
+ Score Bet +170\, Bovada +158\, BetMGM +155 and 5 more.\nFull breakdown: ht
+ tps://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose-Shar
+ ks
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose
  -Sharks
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T010714Z
+LAST-MODIFIED:20261115T014723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -772,7 +765,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:4d5a1a7211-totals-Over@edgeline
-DTSTAMP:20261115T010714Z
+DTSTAMP:20261115T014723Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Over 5.5 -118 at DraftKings · Low
@@ -798,7 +791,7 @@ DESCRIPTION:NHL · Calgary Flames @ Los Angeles Kings · Sat Nov 14\, 10:10
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#4d5a1a7211-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T010714Z
+LAST-MODIFIED:20261115T014723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -809,7 +802,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce4dd515ea-totals-Under@edgeline
-DTSTAMP:20261115T010714Z
+DTSTAMP:20261115T014723Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Under 6.5 +110 at BetOnline.ag · Low
@@ -834,7 +827,7 @@ DESCRIPTION:NHL · New York Islanders @ Anaheim Ducks · Sat Nov 14\, 10:10
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T010714Z
+LAST-MODIFIED:20261115T014723Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
