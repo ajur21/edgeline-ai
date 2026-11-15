@@ -604,7 +604,7 @@ UID:7f07a205e3-totals-Under@edgeline
 DTSTAMP:20261114T234657Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
-SUMMARY:Under 6.5 +120 at BetRivers · Low
+SUMMARY:Under 6.5 +120 at BetRivers · in play
 DESCRIPTION:NHL · Edmonton Oilers @ Toronto Maple Leafs · Sat Nov 14\, 7:
  10 PM ET\nTotal: Under 6.5 at +120 (BetRivers). Our probability 50.3% from
   game data\, the price implies 45.5%\, edge +4.8 pts\, EV +10.7% per unit.
@@ -628,18 +628,13 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261114T234657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +120 at BetRivers · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:f3b622fed3-totals-Over@edgeline
 DTSTAMP:20261114T234657Z
 DTSTART:20261115T001000Z
 DTEND:20261115T031000Z
-SUMMARY:Over 5.5 -110 at BetOnline.ag · Low
+SUMMARY:Over 5.5 -110 at BetOnline.ag · in play
 DESCRIPTION:NHL · Philadelphia Flyers @ Columbus Blue Jackets · Sat Nov 1
  4\, 7:10 PM ET\nTotal: Over 5.5 at -110 (BetOnline.ag). Our probability 56
  .1% from game data\, the price implies 52.4%\, edge +3.7 pts\, EV +7.1% pe
@@ -664,15 +659,10 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261114T234657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -110 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5773e80d52-h2h-Minnesota-Timberwolves@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T010714Z
 DTSTART:20261115T011000Z
 DTEND:20261115T041000Z
 SUMMARY:Lean of the day: Minnesota Timberwolves ML -950 at FanDuel · Mediu
@@ -699,14 +689,14 @@ DESCRIPTION:NBA · Chicago Bulls @ Minnesota Timberwolves · Sat Nov 14\, 8
   posted at 3:36 PM ET.\nWhat could go wrong:\n- Minnesota Timberwolves wit
  hout Anthony Edwards (G) (-1.3)\, out per the 3:30 PM ET official report.\
  nVerdict: The game data lines up behind this side at this price.\nPrices: 
- PointsBet -1000\, Caesars -1000\, DraftKings -1080\, BetMGM -1100\, BetOnl
- ine.ag -1100 and 6 more.\nFull breakdown: https://ajur21.github.io/edgelin
- e-ai/picks.html#5773e80d52-h2h-Minnesota-Timberwolves
+ Bovada -1000\, PointsBet -1000\, DraftKings -1080\, BetMGM -1100\, BetOnli
+ ne.ag -1100 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
+ -ai/picks.html#5773e80d52-h2h-Minnesota-Timberwolves
 LOCATION:Target Center\, Minneapolis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5773e80d52-h2h-Minnesot
  a-Timberwolves
 CATEGORIES:NBA
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -718,7 +708,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-14@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T010714Z
 DTSTART:20261115T011000Z
 DTEND:20261115T061000Z
 SUMMARY:Parlay lean of the day: 2 legs +106 at PointsBet
@@ -729,7 +719,7 @@ DESCRIPTION:All legs priced at PointsBet. Fair 55.8%\, implied 48.5%\, EV +
  #parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -740,7 +730,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e7f30a1c54-h2h-San-Jose-Sharks@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T010714Z
 DTSTART:20261115T021000Z
 DTEND:20261115T051000Z
 SUMMARY:San Jose Sharks ML +180 at BetRivers · Low
@@ -764,14 +754,14 @@ DESCRIPTION:NHL · San Jose Sharks @ Utah Mammoth · Sat Nov 14\, 9:10 PM E
  moth.\n- San Jose Sharks without Igor Chernyshov (LW) (+0.1).\n- Projected
   margin -0.3 for San Jose Sharks.\nVerdict: More working against this one 
  than for it\; size down.\nPrices: BetRivers +180\, BetOnline.ag +171\, the
- Score Bet +170\, Bovada +158\, FanDuel +155 and 5 more.\nFull breakdown: h
+ Score Bet +170\, FanDuel +155\, BetMGM +155 and 5 more.\nFull breakdown: h
  ttps://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose-Sha
  rks
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e7f30a1c54-h2h-San-Jose
  -Sharks
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -782,7 +772,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:4d5a1a7211-totals-Over@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T010714Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Over 5.5 -118 at DraftKings · Low
@@ -808,7 +798,7 @@ DESCRIPTION:NHL · Calgary Flames @ Los Angeles Kings · Sat Nov 14\, 10:10
 LOCATION:crypto.com Arena\, Los Angeles
 URL:https://ajur21.github.io/edgeline-ai/picks.html#4d5a1a7211-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -819,7 +809,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce4dd515ea-totals-Under@edgeline
-DTSTAMP:20261114T234657Z
+DTSTAMP:20261115T010714Z
 DTSTART:20261115T031000Z
 DTEND:20261115T061000Z
 SUMMARY:Under 6.5 +110 at BetOnline.ag · Low
@@ -835,16 +825,16 @@ DESCRIPTION:NHL · New York Islanders @ Anaheim Ducks · Sat Nov 14\, 10:10
  \n- Combined scoring 7.4 a game in Anaheim Ducks's games\, 6 in New York I
  slanders's (league average 6.3).\n- Projected total 6.4 against 6.5.\n- A 
  better price is now available: +115 at theScore Bet.\n- A better price is 
- available now: +120 at Bovada.\n- Scorers out: Ryan Poehling (C)\, knee\; 
- Ian Moore (D)\, lower body\; A.J. Greer (LW)\, upper body and 2 more. Fewe
- r healthy scorers leans under.\nVerdict: The game data lines up behind thi
- s side at this price.\nPrices: Bovada +120\, ESPN BET +115\, PointsBet +11
- 5\, DraftKings +114\, FanDuel +114 and 6 more.\nFull breakdown: https://aj
- ur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
+ available now: +120 at ESPN BET.\n- Scorers out: Ryan Poehling (C)\, knee\
+ ; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, upper body and 2 more. Fe
+ wer healthy scorers leans under.\nVerdict: The game data lines up behind t
+ his side at this price.\nPrices: ESPN BET +120\, Bovada +120\, FanDuel +11
+ 6\, PointsBet +115\, DraftKings +114 and 6 more.\nFull breakdown: https://
+ ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#ce4dd515ea-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261114T234657Z
+LAST-MODIFIED:20261115T010714Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
