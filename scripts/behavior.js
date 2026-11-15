@@ -18,6 +18,8 @@ const server = http.createServer((req, res) => {
   if (useSample && rel === 'data/faces.js') rel = 'scripts/fixtures/sample-faces.js';
   /* the NFL week hub (js/nfl.js, 2026-11-10) reads data/nfl-week.js. The sample suite serves no week, so every page is
      as it was before the hub; scripts/nfl-hub-checks.js routes its own file (scripts/fixtures/sample-nfl-week.js) */
+  /* early lines (js/early.js, 2026-11-15): the sample suite serves none, so picks.html is as it was; scripts/early-checks.js routes its own */
+  if (useSample && rel === 'data/early-line.js') { res.writeHead(200, { 'Content-Type': 'text/javascript', 'Cache-Control': 'no-store' }); res.end('/* no early lines in the sample suite */\n'); return; }
   if (useSample && rel === 'data/nfl-week.js') { res.writeHead(200, { 'Content-Type': 'text/javascript', 'Cache-Control': 'no-store' }); res.end('/* no NFL week in the sample suite */\n'); return; }
   const file = path.join(root, rel);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end('not found'); return; }
@@ -824,6 +826,8 @@ const pinClock = (pg, at) => pg.addInitScript(t => { window.EDGELINE_NOW = t; },
   /* the NFL week hub (2026-11-10): the forecasts on the NFL tab and on an NFL game's page, their order, a started game,
      finals, the record, and the page without the file: scripts/nfl-hub-checks.js, on the same server, clock and counter */
   await require('./nfl-hub-checks.js').run({ browser, url, check, pinClock, root, FIXTURE_NOW, sampleSrc });
+  /* early lines on picks.html (js/early.js, 2026-11-15): scripts/early-checks.js, on the same server, clock and counter */
+  await require('./early-checks.js').run({ browser, url, check, pinClock, FIXTURE_NOW });
 
   /* the home page as today's card: the play and the parlay of the day from every play, locked or front-running, and the
      one ranked list (2026-11-11) */

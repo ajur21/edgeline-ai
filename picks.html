@@ -51,7 +51,7 @@
 </header>
 <main id="main">
 <noscript><div class="container"><p class="notice">This site needs JavaScript to show the board and results.</p></div></noscript>
-<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks" data-pick="All picks">All leans</a><a href="#watchlist">Watchlist</a><a href="#played">In progress and results</a><a href="#market">Market board</a></div></nav>
+<nav class="subnav" aria-label="On this page"><div class="container subnav-in"><a href="#parlays">Best parlays</a><a href="#all-picks" data-pick="All picks">All leans</a><a href="#watchlist">Watchlist</a><a href="#played">In progress and results</a><a href="#early" hidden>Early lines</a><a href="#market">Market board</a></div></nav>
 
 <section class="section-tight">
   <div class="container">
@@ -148,6 +148,16 @@
     </div>
     <div class="played-wrap" id="played-host"></div>
 
+    <div class="early-sec" id="early-sec" hidden>
+      <div class="section-head row early-head">
+        <div>
+          <h2 id="early">Early lines: NFL and college football</h2>
+          <p class="muted how-to">Our number for every NFL and FBS college game, locked the first time DraftKings posts a moneyline and more than 36 hours before kickoff, days before the board prices the game. These are tracked, not <span data-pick="picks">leans</span>: none is a bet we recommend, none goes on a ticket and none can be the <span data-pick="pick">lean</span> of the day. They test one question: does the line move toward our number by kickoff? Each game is graded straight up at the DraftKings price it locked at, with DraftKings’ closing line. Past its bar marks the ones that would have been <span data-pick="picks">leans</span>. Locked games come first by game day, then likeliest; graded ones newest first.</p>
+        </div>
+      </div>
+      <div id="early-host"></div>
+    </div>
+
     <div class="section-head row market-head" id="market">
       <div>
         <h2>Every market we priced</h2>
@@ -197,6 +207,8 @@
 <script src="data/nfl-week.js"></script>
 <script src="js/nfl.js"></script>
 <script src="js/browse.js"></script>
+<script src="data/early-line.js"></script>
+<script src="js/early.js"></script>
 <script>
 (function () {
   var T = window.EdgeLineTeams, E = window.EdgeLine, D = window.PICKS_DATA, P = D.picks;

@@ -1955,3 +1955,38 @@ a.browse-game:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .sources a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 720px) { .sources { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) { .sources > div { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+/* ---------- Early lines (picks.html #early-sec, js/early.js, 2026-11-15; owner: "tracked live first") ----------
+   NFL and college football numbers locked when DraftKings first posts a line; tracked, not leans. Tokens only. */
+.early-sec { margin-top: 44px; }
+.early-head { margin-bottom: 8px; }
+.early-record { margin: 0 0 12px; font-size: 0.92rem; color: var(--text-2); }
+.early-h { margin: 18px 0 8px; font-size: 1.05rem; }
+.early-table table.data th, .early-table table.data td { padding: 8px 10px; font-size: 0.85rem; white-space: nowrap; vertical-align: middle; }
+.early-game { display: flex; align-items: center; gap: 8px; }
+.early-game-text { display: grid; gap: 2px; min-width: 0; }
+.early-event { white-space: normal; }
+.meta.early-start { font-size: 0.75rem; color: var(--muted); }
+.early-sub { display: block; font-size: 0.75rem; color: var(--text-2); white-space: normal; }
+.early-table td.num .early-sub { white-space: nowrap; }
+.early-past { margin-left: 8px; background: transparent; border: 1px solid var(--accent-3); color: var(--text); }
+.early-row.is-past td { background: color-mix(in srgb, var(--accent-3) 8%, transparent); }
+.early-now.is-toward { color: var(--good-text); }
+.early-now.is-away { color: var(--text-2); }
+.early-table td.pos { color: var(--good-text); }
+.early-table td.neg { color: var(--bad); }
+.early-table td[data-label]::before { display: none; }
+.early-table tr.day-divider td { padding: 12px 8px 6px; font-size: 0.92rem; font-weight: 600; color: var(--text); background: transparent; border-top: 1px dashed var(--border-strong); white-space: normal; }
+@media (max-width: 720px) {
+  .early-table table.data, .early-table tbody, .early-table tr, .early-table td { display: block; }
+  .early-table thead { display: none; }
+  .early-table table.data { background: transparent; border: 0; }
+  /* a divided list, not boxed cards: these are tracked numbers, not the board's offers */
+  .early-table tr.early-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 12px; padding: 12px 4px; border-bottom: 1px solid var(--border); }
+  .early-table tr.early-row.is-past { background: color-mix(in srgb, var(--accent-3) 8%, transparent); }
+  .early-table tr.early-row td { padding: 0; border: 0; white-space: normal; background: transparent; }
+  .early-table table.data td.num { text-align: left; }
+  .early-table td[data-label="Game"], .early-table td[data-label="Our side"] { grid-column: 1 / -1; }
+  .early-table td[data-label]:not([data-label="Game"]):not([data-label="Our side"]):not([data-label="Rank"])::before { content: attr(data-label); display: block; font-size: 0.72rem; color: var(--muted); }
+  .early-table tr.day-divider td { padding: 8px 0 4px; }
+}
