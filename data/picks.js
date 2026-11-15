@@ -2,17 +2,162 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-14T20:36:57.263Z",
-  "trackedAt": "2026-11-15T13:41:50.578Z",
-  "playOfDay": null,
-  "parlayOfDay": null,
+  "generatedAt": "2026-11-15T14:06:57.194Z",
+  "playOfDay": {
+    "kind": "prop",
+    "id": "prop-NFL-401873061-4710855-rec-under-2.5",
+    "sport": "NFL",
+    "league": "NFL",
+    "sportKey": "americanfootball_nfl",
+    "event": "Los Angeles Rams @ Arizona Cardinals",
+    "home": "Arizona Cardinals",
+    "away": "Los Angeles Rams",
+    "gameId": "401873061",
+    "commence": "2026-11-15T21:05:00.000Z",
+    "start": "Today 4:05 PM ET",
+    "market": "Receptions",
+    "pick": "Konata Mumpfield under 2.5 receptions",
+    "odds": -135,
+    "book": "BetMGM",
+    "prices": {
+      "FanDuel": -152,
+      "Caesars": -150,
+      "DraftKings": -142,
+      "Bovada": -145,
+      "ESPN BET": -150,
+      "BetMGM": -135
+    },
+    "pricesAt": "2026-11-15T14:09:02.602Z",
+    "modelProb": 0.6418,
+    "statedProb": 0.7991,
+    "keep": 0.4742,
+    "checkedOn": 89,
+    "ev": 0.1173,
+    "confidence": "High",
+    "basis": "game",
+    "player": {
+      "id": "4710855",
+      "name": "Konata Mumpfield",
+      "pos": "WR",
+      "teamId": "14",
+      "teamAbbr": "LAR",
+      "oppAbbr": "ARI",
+      "home": false,
+      "headshot": null
+    },
+    "stat": "rec",
+    "statLabel": "Receptions",
+    "statShort": "REC",
+    "side": "under",
+    "line": 2.5,
+    "l10": [
+      7,
+      8
+    ],
+    "proj": 1.2,
+    "reasons": [
+      "Stayed under 2.5 in 7 of the last 8",
+      "Projects 1.2 (2.8 targets a game, 50% caught, -3% on the road; season 1.4)",
+      "ARI allows 10 catches to wide receivers a game, 7th fewest (-3%)"
+    ],
+    "status": "pending",
+    "started": false,
+    "result": null,
+    "units": null,
+    "actual": null,
+    "voidReason": null,
+    "score": null,
+    "loggedAt": "2026-11-15T14:10:05.204Z",
+    "lockedAt": "2026-11-15T14:10:05.204Z"
+  },
+  "parlayOfDay": {
+    "id": "parlay-2026-11-15",
+    "date": "2026-11-15",
+    "book": "DraftKings",
+    "odds": 228,
+    "decimal": 3.2822,
+    "fairProb": 0.4063,
+    "ev": 0.3334,
+    "status": "pending",
+    "result": null,
+    "units": null,
+    "lockedAt": "2026-11-15T14:10:05.204Z",
+    "legs": [
+      {
+        "id": "prop-NFL-401873061-4710855-rec-under-2.5",
+        "kind": "prop",
+        "pick": "Konata Mumpfield under 2.5 receptions",
+        "event": "Los Angeles Rams @ Arizona Cardinals",
+        "sport": "NFL",
+        "price": -142,
+        "commence": "2026-11-15T21:05:00.000Z",
+        "started": false,
+        "result": null,
+        "void": false,
+        "league": "NFL",
+        "sportKey": "americanfootball_nfl",
+        "home": "Arizona Cardinals",
+        "away": "Los Angeles Rams",
+        "gameId": "401873061",
+        "player": {
+          "id": "4710855",
+          "name": "Konata Mumpfield",
+          "pos": "WR",
+          "teamId": "14",
+          "teamAbbr": "LAR",
+          "oppAbbr": "ARI",
+          "home": false,
+          "headshot": null
+        },
+        "stat": "rec",
+        "statShort": "REC",
+        "side": "under",
+        "line": 2.5,
+        "modelProb": 0.6418,
+        "actual": null
+      },
+      {
+        "id": "prop-NFL-401873055-4567096-recYds-over-7.5",
+        "kind": "prop",
+        "pick": "John Metchie III over 7.5 receiving yards",
+        "event": "Carolina Panthers @ New Orleans Saints",
+        "sport": "NFL",
+        "price": -108,
+        "commence": "2026-11-15T18:00:00.000Z",
+        "started": false,
+        "result": null,
+        "void": false,
+        "league": "NFL",
+        "sportKey": "americanfootball_nfl",
+        "home": "New Orleans Saints",
+        "away": "Carolina Panthers",
+        "gameId": "401873055",
+        "player": {
+          "id": "4567096",
+          "name": "John Metchie III",
+          "pos": "WR",
+          "teamId": "29",
+          "teamAbbr": "CAR",
+          "oppAbbr": "NO",
+          "home": false,
+          "headshot": null
+        },
+        "stat": "recYds",
+        "statShort": "REC YDS",
+        "side": "over",
+        "line": 7.5,
+        "modelProb": 0.633,
+        "actual": null
+      }
+    ]
+  },
   "ofDay": {
     "date": "2026-11-15",
     "lockAt": "2026-11-15T20:30:00.000Z",
-    "playLocked": false,
-    "parlayLocked": false,
+    "playLocked": true,
+    "parlayLocked": true,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-15T14:10:05.204Z",
     "last": {
       "play": {
         "date": "2026-11-14",
@@ -68,7 +213,7 @@ window.PICKS_DATA = {
         "PointsBet": 185,
         "ESPN BET": 175
       },
-      "pricesAt": "2026-11-15T13:41:50.578Z",
+      "pricesAt": "2026-11-15T14:06:57.194Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5047,
@@ -134,6 +279,7 @@ window.PICKS_DATA = {
           "Tua Tagovailoa starts for Miami Dolphins (Malik Willis is listed out): +0.07 EPA a dropback against -0.01 behind their numbers (+2.6 points).",
           "Indianapolis Colts without Akeem Davis-Gaither (LB), Mo Alie-Cox (TE), Will Mallory (TE) and 5 more (-3.1).",
           "Projected margin +0.2 for Miami Dolphins.",
+          "A better price is now available: +185 at DraftKings.",
           "A better price is available now: +185 at DraftKings."
         ],
         "risks": [
@@ -144,7 +290,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 34.9% (-0.9 points against the best price). For reference only.",
           "Market: DraftKings opened +235, now +185, moving toward this side since the open.",
-          "Market: The market (8 books) opened +265, now +189, the consensus moving toward this side since the open.",
+          "Market: The market (8 books) opened +265, now +188, the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Miami Dolphins 1-7 · Indianapolis Colts 2-7 · Lucas Oil Stadium, Indianapolis."
         ],
@@ -268,6 +414,18 @@ window.PICKS_DATA = {
           ],
           "Miami Dolphins": [
             {
+              "name": "Darrell Baker Jr.",
+              "pos": "CB",
+              "athleteId": "4036660",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4036660.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-22",
+              "date": "2026-11-15T00:25Z",
+              "note": "Baker (knee) was not activated from the reserve/PUP list ahead of Sunday's clash against Indianapolis."
+            },
+            {
               "name": "Aaron Brewer",
               "pos": "C",
               "athleteId": "4040537",
@@ -302,18 +460,6 @@ window.PICKS_DATA = {
               "returnDate": "2026-11-15",
               "date": "2026-11-13T22:10Z",
               "note": "Bell (knee) is listed as doubtful for Sunday's game against the Colts."
-            },
-            {
-              "name": "Darrell Baker Jr.",
-              "pos": "CB",
-              "athleteId": "4036660",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4036660.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-12T01:05Z",
-              "note": "The Dolphins designated Baker (knee) for return to practice from the reserve/PUP list Wednesday, Barry Jackson of the Miami Herald reports."
             },
             {
               "name": "Malik Willis",
@@ -356,7 +502,7 @@ window.PICKS_DATA = {
           }
         },
         "weather": {
-          "summary": "Cloudy",
+          "summary": "Mostly cloudy",
           "tempF": 47,
           "source": "ESPN"
         },
@@ -399,7 +545,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 180,
+        "loggedFair": 0.5047,
+        "currentOdds": 185,
+        "currentBook": "DraftKings",
+        "currentFair": 0.3454,
+        "currentEdge": 0.1538,
+        "checkedAt": "2026-11-15T14:06:57.194Z",
+        "history": [
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 180,
+            "fair": 0.3486
+          },
+          {
+            "at": "2026-11-15T14:06:57.194Z",
+            "odds": 185,
+            "fair": 0.3454
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -438,27 +604,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 189
+          "odds": 188
         },
         "moved": "toward",
-        "label": "The market (8 books) opened +265, now +189"
+        "label": "The market (8 books) opened +265, now +188"
       },
       "sgo": {
-        "at": "2026-11-15T13:41:50.578Z",
+        "at": "2026-11-15T14:06:57.194Z",
         "n": 8,
         "best": {
           "book": "DraftKings",
           "odds": 185
         },
         "fair": 0.3469,
-        "vendorFair": 0.346,
+        "vendorFair": 0.3472,
         "open": {
           "line": null,
           "odds": 265
         },
         "now": {
           "line": null,
-          "odds": 189
+          "odds": 188
         }
       },
       "sgoHistory": [
@@ -479,6 +645,15 @@ window.PICKS_DATA = {
           "odds": 189,
           "best": 185,
           "n": 8
+        },
+        {
+          "at": "2026-11-15T14:06:57.194Z",
+          "fair": 0.3469,
+          "vendorFair": 0.3472,
+          "line": null,
+          "odds": 188,
+          "best": 185,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -497,8 +672,15 @@ window.PICKS_DATA = {
         "gp": 8,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-15T14:06:57.194Z",
+        "odds": 185,
+        "book": "DraftKings",
+        "modelProb": 0.5047,
+        "edge": 0.1538,
+        "bar": 0.1125
+      },
+      "standing": "clears",
       "availability": null
     },
     {
@@ -533,7 +715,7 @@ window.PICKS_DATA = {
         "PointsBet": 375,
         "ESPN BET": 360
       },
-      "pricesAt": "2026-11-15T13:41:50.578Z",
+      "pricesAt": "2026-11-15T14:06:57.194Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.3341,
@@ -632,6 +814,30 @@ window.PICKS_DATA = {
         "injuries": {
           "Arizona Cardinals": [
             {
+              "name": "Gardner Minshew II",
+              "pos": "QB",
+              "athleteId": "4038524",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4038524.png",
+              "status": "Injured Reserve",
+              "type": "Elbow",
+              "detail": "Surgery",
+              "returnDate": "2027-02-15",
+              "date": "2026-11-15T12:49Z",
+              "note": "Minshew suffered a torn UCL in his right throwing elbow last Sunday at Seattle and is slated to undergo season-ending surgery, Adam Schefter of ESPN reports."
+            },
+            {
+              "name": "Hunter Long",
+              "pos": "TE",
+              "athleteId": "4239944",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4239944.png",
+              "status": "Questionable",
+              "type": "Knee",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-14T23:13Z",
+              "note": "Arizona activated Long (knee) from injured reserve Saturday, and he remains questionable for Sunday's battle against the Rams."
+            },
+            {
               "name": "Jayden Williams",
               "pos": "OT",
               "athleteId": "4709718",
@@ -714,30 +920,6 @@ window.PICKS_DATA = {
               "returnDate": "2026-11-15",
               "date": "2026-11-12T00:14Z",
               "note": "questionable"
-            },
-            {
-              "name": "Hunter Long",
-              "pos": "TE",
-              "athleteId": "4239944",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4239944.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-11T22:25Z",
-              "note": "The Cardinals designated Long (knee) for return from injured reserve Wednesday."
-            },
-            {
-              "name": "Gardner Minshew II",
-              "pos": "QB",
-              "athleteId": "4038524",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4038524.png",
-              "status": "Injured Reserve",
-              "type": "Elbow",
-              "detail": "Not Specified",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-11T20:33Z",
-              "note": "Minshew (elbow) will undergo UCL surgery and is out for the season, Theo Mackie of AzCentral reports."
             },
             {
               "name": "Michael Wilson",
@@ -933,7 +1115,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 400,
+        "loggedFair": 0.3341,
+        "currentOdds": 400,
+        "currentBook": "BetMGM",
+        "currentFair": 0.2033,
+        "currentEdge": 0.1369,
+        "checkedAt": "2026-11-15T14:06:57.194Z",
+        "history": [
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 400,
+            "fair": 0.2128
+          },
+          {
+            "at": "2026-11-15T14:06:57.194Z",
+            "odds": 400,
+            "fair": 0.2033
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -990,7 +1192,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened +356, now +396"
       },
       "sgo": {
-        "at": "2026-11-15T13:41:50.578Z",
+        "at": "2026-11-15T14:06:57.194Z",
         "n": 8,
         "best": {
           "book": "BetMGM",
@@ -1043,8 +1245,15 @@ window.PICKS_DATA = {
         "gp": 9,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-15T14:06:57.194Z",
+        "odds": 400,
+        "book": "BetMGM",
+        "modelProb": 0.3369,
+        "edge": 0.1369,
+        "bar": 0.0993
+      },
+      "standing": "clears",
       "availability": null
     },
     {
@@ -1079,7 +1288,7 @@ window.PICKS_DATA = {
         "PointsBet": 185,
         "ESPN BET": 190
       },
-      "pricesAt": "2026-11-15T13:41:50.578Z",
+      "pricesAt": "2026-11-15T14:06:57.194Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.4533,
@@ -1151,13 +1360,14 @@ window.PICKS_DATA = {
           "Cleveland Browns rate -3.2 and Houston Texans +2.1 points a game against their schedules (this season's results, last season carried over); EPA a play -0.08 and +0.04 net of defence (nflverse).",
           "C.J. Stroud starts for Houston Texans: +0.03 EPA a dropback against +0.01 behind their numbers (+0.6 points).",
           "Cleveland Browns without Michael Burton (FB), Ronnie Hickman (S) (-1.2).",
-          "Projected margin -1.7 for Cleveland Browns."
+          "Projected margin -1.7 for Cleveland Browns.",
+          "At current prices our edge is 10.8 points, under its bar of 11.2 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 32.8% (-1.1 points against the best price). For reference only.",
           "Market: DraftKings opened +180, now +185, moving against this side since the open.",
           "Market: The market (8 books) opened +176, now +199, the consensus moving against this side since the open.",
-          "Weather at kickoff: Overcast, 44°F, wind 13 mph, 6% rain.",
+          "Weather at kickoff: Drizzle, 44°F, wind 14 mph, 4% rain.",
           "Records: Houston Texans 3-5 · Cleveland Browns 5-4 · Huntington Bank Field, Cleveland."
         ],
         "verdict": "More working against this one than for it; size down."
@@ -1182,6 +1392,18 @@ window.PICKS_DATA = {
         "injuries": {
           "Cleveland Browns": [
             {
+              "name": "Denzel Boston",
+              "pos": "WR",
+              "athleteId": "4832800",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4832800.png",
+              "status": "Questionable",
+              "type": "Toe",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-15T12:12Z",
+              "note": "Boston (toe), who is listed as questionable for Sunday's game against the Texans, is expected to play barring a surprise, Jeremy Fowler of ESPN reports."
+            },
+            {
               "name": "Michael Burton",
               "pos": "FB",
               "athleteId": "2515270",
@@ -1204,21 +1426,21 @@ window.PICKS_DATA = {
               "returnDate": "2026-11-29",
               "date": "2026-11-13T23:04Z",
               "note": "Hickman (concussion) has been ruled out for Sunday's game against the Texans, Daniel Oyefusi of ESPN.com reports."
-            },
-            {
-              "name": "Denzel Boston",
-              "pos": "WR",
-              "athleteId": "4832800",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4832800.png",
-              "status": "Questionable",
-              "type": "Toe",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-13T18:34Z",
-              "note": "Boston (toe), who is listed as questionable for Sunday's game against the Texans, per Daniel Oyefusi of ESPN,  is trending in the right direction ahead of the c"
             }
           ],
           "Houston Texans": [
+            {
+              "name": "Will Anderson Jr.",
+              "pos": "DE",
+              "athleteId": "4685724",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685724.png",
+              "status": "Questionable",
+              "type": "Ankle",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-15",
+              "date": "2026-11-15T12:29Z",
+              "note": "Anderson (ankle) \"should be OK\" to play Sunday against the Browns, according to Jeremy Fowler of ESPN.com."
+            },
             {
               "name": "Jake Hummel",
               "pos": "LB",
@@ -1242,18 +1464,6 @@ window.PICKS_DATA = {
               "returnDate": "2026-11-15",
               "date": "2026-11-14T19:25Z",
               "note": "Smith is now questionable for Sunday's game against the Browns due to an illness."
-            },
-            {
-              "name": "Will Anderson Jr.",
-              "pos": "DE",
-              "athleteId": "4685724",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685724.png",
-              "status": "Questionable",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-14T18:33Z",
-              "note": "Anderson (ankle), who is listed as questionable, is planning to suit up Sunday against the Browns, Aaron Wilson of KPRC 2 Houston reports."
             },
             {
               "name": "David Montgomery",
@@ -1380,12 +1590,12 @@ window.PICKS_DATA = {
           }
         },
         "weather": {
-          "summary": "Overcast",
+          "summary": "Drizzle",
           "tempF": 44,
           "source": "Open-Meteo",
           "city": "Cleveland, OH, USA",
-          "windMph": 13,
-          "precipPct": 6
+          "windMph": 14,
+          "precipPct": 4
         },
         "broadcast": "Fox",
         "odds": {
@@ -1426,7 +1636,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 195,
+        "loggedFair": 0.4533,
+        "currentOdds": 190,
+        "currentBook": "FanDuel",
+        "currentFair": 0.331,
+        "currentEdge": 0.1085,
+        "checkedAt": "2026-11-15T14:06:57.194Z",
+        "history": [
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 195,
+            "fair": 0.3284
+          },
+          {
+            "at": "2026-11-15T14:06:57.194Z",
+            "odds": 190,
+            "fair": 0.331
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -1465,7 +1695,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened +176, now +199"
       },
       "sgo": {
-        "at": "2026-11-15T13:41:50.578Z",
+        "at": "2026-11-15T14:06:57.194Z",
         "n": 8,
         "best": {
           "book": "Caesars",
@@ -1518,8 +1748,15 @@ window.PICKS_DATA = {
         "gp": 8,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-15T14:06:57.194Z",
+        "odds": 190,
+        "book": "FanDuel",
+        "modelProb": 0.4533,
+        "edge": 0.1085,
+        "bar": 0.1117
+      },
+      "standing": "below",
       "availability": null
     },
     {
@@ -1542,11 +1779,12 @@ window.PICKS_DATA = {
       "odds": 140,
       "book": "DraftKings",
       "prices": {
-        "DraftKings": 140,
-        "FanDuel": 136,
-        "BetRivers": 138
+        "DraftKings": 124,
+        "FanDuel": 126,
+        "BetRivers": 138,
+        "Bovada": 133
       },
-      "pricesAt": "2026-11-14T20:36:57.263Z",
+      "pricesAt": "2026-11-15T14:06:57.194Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.5098,
@@ -1612,8 +1850,9 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 3 books makes this side 40.1% (-1.6 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (40.1% → 41.8%).",
           "Market: DraftKings opened +1.5 (+136), now +1.5 (+124), moving toward this side since the open.",
-          "Market: The market (2 books) opened 0 (+322), now +2.5 (-114), the consensus moving against this side since the open.",
+          "Market: The market (3 books) opened 0 (+322), now +2.5 (-119), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Knights Carter Hart · Canucks Leevi Merilainen.",
           "Records: Vancouver Canucks 3-17-1 · Vegas Golden Knights 13-5-3 · T-Mobile Arena, Las Vegas."
@@ -1748,7 +1987,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 140,
+        "loggedFair": 0.5098,
+        "currentOdds": 134,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.4175,
+        "currentEdge": 0.0824,
+        "checkedAt": "2026-11-15T14:06:57.194Z",
+        "history": [
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 140,
+            "fair": 0.4005
+          },
+          {
+            "at": "2026-11-15T14:06:57.194Z",
+            "odds": 134,
+            "fair": 0.4175
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -1780,34 +2039,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 2,
+        "n": 3,
         "open": {
           "line": 0,
           "odds": 322
         },
         "now": {
           "line": 2.5,
-          "odds": -114
+          "odds": -119
         },
         "moved": "away",
-        "label": "The market (2 books) opened 0 (+322), now +2.5 (-114)"
+        "label": "The market (3 books) opened 0 (+322), now +2.5 (-119)"
       },
       "sgo": {
-        "at": "2026-11-14T20:36:57.263Z",
-        "n": 2,
+        "at": "2026-11-15T14:06:57.194Z",
+        "n": 3,
         "best": {
-          "book": "DraftKings",
-          "odds": 140
+          "book": "Bovada",
+          "odds": 133
         },
-        "fair": 0.4018,
-        "vendorFair": 0.5327,
+        "fair": 0.4204,
+        "vendorFair": 0.5434,
         "open": {
           "line": 0,
           "odds": 322
         },
         "now": {
           "line": 2.5,
-          "odds": -114
+          "odds": -119
         }
       },
       "sgoHistory": [
@@ -1819,6 +2078,15 @@ window.PICKS_DATA = {
           "odds": -114,
           "best": 140,
           "n": 2
+        },
+        {
+          "at": "2026-11-15T14:06:57.194Z",
+          "fair": 0.4204,
+          "vendorFair": 0.5434,
+          "line": 2.5,
+          "odds": -119,
+          "best": 133,
+          "n": 3
         }
       ],
       "status": "pending",
@@ -1837,8 +2105,15 @@ window.PICKS_DATA = {
         "gp": 21,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-15T14:06:57.194Z",
+        "odds": 134,
+        "book": "BetOnline.ag",
+        "modelProb": 0.5098,
+        "edge": 0.0824,
+        "bar": 0.0697
+      },
+      "standing": "clears",
       "availability": null
     },
     {
@@ -1872,7 +2147,7 @@ window.PICKS_DATA = {
         "Bovada": 105,
         "PointsBet": 105
       },
-      "pricesAt": "2026-11-15T13:41:50.578Z",
+      "pricesAt": "2026-11-15T14:06:57.194Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.5121,
@@ -1924,16 +2199,20 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 7.4 a game in Anaheim Ducks's games, 5.9 in Calgary Flames's (league average 6.3).",
           "Projected total 6.4 against 6.5.",
-          "Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 3 more. Fewer healthy scorers leans under."
+          "Scorers out: Ryan Poehling (C), knee; Ian Moore (D), lower body; A.J. Greer (LW), upper body and 3 more. Fewer healthy scorers leans under.",
+          "Anaheim Ducks and Calgary Flames on a back-to-back; tired legs lean under."
         ],
-        "risks": [],
+        "risks": [
+          "At current prices our edge is 2.6 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at."
+        ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 45.7% (-1.0 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (45.7% → 46.9%).",
           "Market: DraftKings opened 6.5 (+114), now 6.5 (+105), moving toward this side since the open.",
           "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+111), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Ducks Ville Husso · Flames Devin Cooley.",
-          "Records: Calgary Flames 8-10-1 · Anaheim Ducks 10-8-1 · Honda Center, Anaheim."
+          "Records: Calgary Flames 9-10-1 · Anaheim Ducks 10-9-1 · Honda Center, Anaheim."
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
@@ -1943,14 +2222,14 @@ window.PICKS_DATA = {
         "indoor": true,
         "records": {
           "Anaheim Ducks": {
-            "overall": "10-8-1",
-            "home": "3-5-1",
+            "overall": "10-9-1",
+            "home": "3-6-1",
             "away": "7-3-0"
           },
           "Calgary Flames": {
-            "overall": "8-10-1",
+            "overall": "9-10-1",
             "home": "6-5-0",
-            "away": "2-5-1"
+            "away": "3-5-1"
           }
         },
         "probables": {
@@ -2037,16 +2316,16 @@ window.PICKS_DATA = {
         },
         "rest": {
           "Anaheim Ducks": {
-            "restDays": 4,
-            "b2b": false,
-            "lastGame": "2026-11-12",
-            "gamesLast7": 1
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-15",
+            "gamesLast7": 2
           },
           "Calgary Flames": {
-            "restDays": 4,
-            "b2b": false,
-            "lastGame": "2026-11-12",
-            "gamesLast7": 1
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-15",
+            "gamesLast7": 2
           }
         },
         "weather": null,
@@ -2089,7 +2368,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 114,
+        "loggedFair": 0.5121,
+        "currentOdds": 105,
+        "currentBook": "DraftKings",
+        "currentFair": 0.469,
+        "currentEdge": 0.0257,
+        "checkedAt": "2026-11-15T14:06:57.194Z",
+        "history": [
+          {
+            "at": "2026-11-14T20:36:57.263Z",
+            "odds": 114,
+            "fair": 0.4571
+          },
+          {
+            "at": "2026-11-15T14:06:57.194Z",
+            "odds": 105,
+            "fair": 0.469
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -2140,7 +2439,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 7.5 (-166), now 6.5 (+111)"
       },
       "sgo": {
-        "at": "2026-11-15T13:41:50.578Z",
+        "at": "2026-11-15T14:06:57.194Z",
         "n": 8,
         "best": {
           "book": "Caesars",
@@ -2193,8 +2492,15 @@ window.PICKS_DATA = {
         "gp": 19,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-15T14:06:57.194Z",
+        "odds": 105,
+        "book": "DraftKings",
+        "modelProb": 0.5135,
+        "edge": 0.0257,
+        "bar": 0.03
+      },
+      "standing": "below",
       "availability": null
     },
     {
