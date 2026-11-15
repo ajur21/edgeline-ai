@@ -8,15 +8,22 @@
    What is graded: one prop per player per game, the side the board ranked for
    him, which is bestSide(p, { ctx }) of js/props-grade.js (required here, so
    the pipeline and the page use the same maths) on the last lines read before
-   his game started, at that posted line, against the box score. Never a price:
-   a line is only the number to clear, and no price is read or stored here.
+   his game started, at that posted line, against the box score. The price
+   takes no part in any of that: a line is only the number to clear. Since
+   2026-11-14 each prop also keeps the best price on its side at that line
+   when it locked (`odds`, `book`), and a graded prop its `units` (one unit
+   staked, a win paid at that price), so the record says what it would have
+   returned as well as how often it hit. Owner, 2026-11-14: yes to "save the
+   price on every prop and keep the record in units"; a hit rate alone had made
+   54.5% NBA unders look like an edge their prices had already taken away.
 
    - lock(log, data, at): every player whose game is still to start at `at`
      gets (or replaces) his pending prop from the file as it stands; one the
      board no longer ranks is taken back out. Nothing is done for a game that
      has started: a run after the start cannot create, change or remove its
      props, so a prop once locked never changes side or line, and nothing is
-     ever locked on lines read after a start.
+     ever locked on lines read after a start. The price kept is the side's
+     best price on that line in the same file (js/props-grade.js sideFor).
    - grade(log, now, opts): a locked prop whose game has had time to end is
      settled from ESPN's box score (free, no key): the NBA's game summary, the
      NFL's cached box scores in data/nfl-games.json (else the summary). Win,
@@ -24,7 +31,8 @@
      was called off). A prop that cannot be settled within a week is dropped.
    - results(log, data): PROPS_DATA.results, the page's contract (CLAUDE.md,
      Props research and lines): { since, asOf, record, byLeague, byGrade,
-     slates, recent, check }. `check` (2026-11-11) is the record set against
+     slates, recent, check }; each tally also carries `priced` (decided props
+     with a price) and `units` (their return), each row `odds` and `units`. `check` (2026-11-11) is the record set against
      what the board stated: each day's tally also carries `stated`, the sum of
      the stated chances of its props decided win or loss, and js/plays.js
      checkFrom turns the sums into how much of a stated edge to keep. The play
@@ -58,13 +66,21 @@ const RULES = {
 };
 const TIERS = ["High", "Medium", "Lean", "Coin flip"];
 const LEAGUES = ["NFL", "NBA"];
-const NOTE = "Pipeline state for scripts/props-log.js: one prop per player per game, the side the board ranked on the last lines read before the start, graded from the box score. Never a price. Not loaded by the site.";
+const NOTE = "Pipeline state for scripts/props-log.js: one prop per player per game, the side the board ranked on the last lines read before the start, graded from the box score. The best price when it locked is kept for the record in units and takes no part in the side, the line or the result. Not loaded by the site.";
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function round(n, d) { const m = Math.pow(10, d == null ? 4 : d); return Math.round(n * m) / m; }
 function keyOf(e) { return e.league + "|" + e.gameId + "|" + e.playerId; }
 function dayKey(e) { return e.league + "|" + e.date; }
 function tally() { return { w: 0, l: 0, push: 0 }; }
+/* decimal odds of an American price; null when it is not one */
+function decimalOf(a) { a = Number(a); return !Number.isFinite(a) || (a > -100 && a < 100) ? null : a > 0 ? 1 + a / 100 : 1 + 100 / -a; }
+/* one unit staked at the price kept when the prop locked: a win pays the profit, a loss costs the unit, a push or a void
+   returns it. null when the prop has no price (one locked before prices were kept and not found in the history) */
+function unitsOf(result, odds) {
+  const d = decimalOf(odds); if (d == null || !result) return null;
+  return result === "Win" ? round(d - 1, 4) : result === "Loss" ? -1 : 0;
+}
 function decided(r) { return r.w + r.l + r.push; }
 
 /* ---------- the file ---------- */
@@ -82,6 +98,7 @@ function serialise(log) {
   const days = Object.keys(log.days).sort();
   const head = { note: log.note || NOTE, version: log.version || 1, asOf: log.asOf || null };
   if (log.seed) head.seed = log.seed;
+  if (log.prices) head.prices = log.prices; /* how the prices of props locked before 2026-11-14 were found (the backfill) */
   const lines = Object.keys(head).map(k => " " + JSON.stringify(k) + ": " + JSON.stringify(head[k]));
   lines.push(" \"days\": {" + (days.length ? "\n" + days.map(k => "  " + JSON.stringify(k) + ": " + JSON.stringify(log.days[k])).join(",\n") + "\n " : "") + "}");
   lines.push(" \"props\": [" + (props.length ? "\n" + props.map(e => "  " + JSON.stringify(e)).join(",\n") + "\n " : "") + "]");
@@ -108,7 +125,8 @@ function entryFrom(s, data, ctx) {
     name: p.name, teamAbbr: p.teamAbbr || null, oppAbbr: p.oppAbbr || null, home: !!p.home, start: new Date(Date.parse(start)).toISOString(),
     stat: s.k, side: s.side, line: s.line, prob: round(s.prob, 4), grade: s.grade.tier,
     l10: round(s.l10, 4), n: s.hit.l10[1], /* the board's tie-breaks after the probability: the raw hit rate, then the longer sample */
-    linesAt: linesReadAt(p, data), status: "pending", actual: null, result: null
+    odds: s.odds != null ? s.odds : null, book: s.book || null, /* the best price on this side at this line, for the record in units only */
+    linesAt: linesReadAt(p, data), status: "pending", actual: null, result: null, units: null
   };
 }
 /* at: the clock of the run that wrote (or last refreshed) this file, in ms. Returns { added, moved, removed, changed } */
@@ -261,7 +279,7 @@ async function grade(log, now, opts) {
   const due = log.props.filter(e => e.status === "pending" && isDue(e, t));
   const drop = {};
   await settleDue(due, t, src, opts, function (e, actual) {
-    e.actual = actual == null ? null : actual; e.result = resultOf(e.side, e.line, e.actual); e.status = "graded";
+    e.actual = actual == null ? null : actual; e.result = resultOf(e.side, e.line, e.actual); e.status = "graded"; e.units = unitsOf(e.result, e.odds);
     if (e.result === "Void") out.voided++; else out.graded++;
   }, function (list) { list.forEach(e => { drop[keyOf(e)] = true; }); out.dropped += list.length; }, out);
   if (out.dropped) log.props = log.props.filter(e => !drop[keyOf(e)]);
@@ -293,18 +311,21 @@ function rebuildDays(log, now) {
   const before = JSON.stringify(log.days) + "|" + log.props.length, fresh = {};
   log.props.forEach(function (e) {
     if (e.status !== "graded") return;
-    const d = fresh[dayKey(e)] || (fresh[dayKey(e)] = Object.assign({ league: e.league, date: e.date }, tally(), { void: 0, stated: 0, byGrade: {} }));
+    const d = fresh[dayKey(e)] || (fresh[dayKey(e)] = Object.assign({ league: e.league, date: e.date }, tally(), { void: 0, stated: 0, priced: 0, units: 0, byGrade: {} }));
     if (e.result === "Void") { d.void++; return; }
-    const f = e.result === "Win" ? "w" : e.result === "Loss" ? "l" : "push", g = d.byGrade[e.grade] || (d.byGrade[e.grade] = tally());
+    const f = e.result === "Win" ? "w" : e.result === "Loss" ? "l" : "push", g = d.byGrade[e.grade] || (d.byGrade[e.grade] = Object.assign(tally(), { priced: 0, units: 0 }));
     d[f]++; g[f]++;
     if (f !== "push" && Number.isFinite(Number(e.prob))) d.stated += Number(e.prob);
+    const u = typeof e.units === "number" ? e.units : unitsOf(e.result, e.odds);
+    if (u != null) { d.priced++; d.units += u; g.priced++; g.units += u; }
   });
   /* the tiers in one fixed order, whatever order the props are held in (a run's new props come last, the file's are
      sorted), so the same props always write the same bytes */
   Object.keys(fresh).forEach(function (k) {
     const d = fresh[k], by = {};
     TIERS.concat(Object.keys(d.byGrade).sort()).forEach(tier => { if (d.byGrade[tier] && !by[tier]) by[tier] = d.byGrade[tier]; });
-    d.byGrade = by; d.stated = round(d.stated, 4); log.days[k] = d;
+    Object.keys(by).forEach(tier => { by[tier].units = round(by[tier].units, 4); });
+    d.byGrade = by; d.stated = round(d.stated, 4); d.units = round(d.units, 4); log.days[k] = d;
   });
   if (now) {
     const cut = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(now.getTime() - RULES.keepDays * 864e5));
@@ -316,15 +337,17 @@ function rebuildDays(log, now) {
 /* ---------- PROPS_DATA.results: the page's contract ---------- */
 function results(log, data) {
   const days = Object.keys(log.days).map(k => log.days[k]).filter(d => decided(d) > 0);
-  const add = (a, b) => { a.w += b.w || 0; a.l += b.l || 0; a.push += b.push || 0; return a; };
-  const record = tally(), byLeague = {}, byGrade = {};
-  TIERS.forEach(tier => { byGrade[tier] = tally(); });
+  /* priced and units: a day tallied before prices were kept adds nothing to them, so units always cover `priced` props */
+  const sum = () => Object.assign(tally(), { priced: 0, units: 0 });
+  const add = (a, b) => { a.w += b.w || 0; a.l += b.l || 0; a.push += b.push || 0; a.priced += b.priced || 0; a.units = round(a.units + (b.units || 0), 4); return a; };
+  const record = sum(), byLeague = {}, byGrade = {};
+  TIERS.forEach(tier => { byGrade[tier] = sum(); });
   days.forEach(function (d) {
-    add(record, d); add(byLeague[d.league] || (byLeague[d.league] = tally()), d);
-    Object.keys(d.byGrade || {}).forEach(tier => add(byGrade[tier] || (byGrade[tier] = tally()), d.byGrade[tier]));
+    add(record, d); add(byLeague[d.league] || (byLeague[d.league] = sum()), d);
+    Object.keys(d.byGrade || {}).forEach(tier => add(byGrade[tier] || (byGrade[tier] = sum()), d.byGrade[tier]));
   });
   const lgOrder = lg => { const i = LEAGUES.indexOf(lg); return i === -1 ? LEAGUES.length : i; };
-  const slates = days.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || lgOrder(a.league) - lgOrder(b.league)).map(d => ({ league: d.league, date: d.date, w: d.w, l: d.l, push: d.push }));
+  const slates = days.slice().sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || lgOrder(a.league) - lgOrder(b.league)).map(d => ({ league: d.league, date: d.date, w: d.w, l: d.l, push: d.push, priced: d.priced || 0, units: round(d.units || 0, 4) }));
   /* a prop's rank: its place on its league's board for that game day, every prop of the day at the line it locked on,
      in the board's own order (js/props-grade.js better) */
   const boards = {}, ranks = {};
@@ -336,7 +359,7 @@ function results(log, data) {
   ((data && data.games) || []).forEach(g => { inFile[G.leagueOf(g) + "|" + g.id] = true; });
   const recent = log.props.filter(e => e.status === "graded" && (e.date === last[e.league] || inFile[e.league + "|" + e.gameId]))
     .sort((a, b) => lgOrder(a.league) - lgOrder(b.league) || (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || ranks[keyOf(a)] - ranks[keyOf(b)])
-    .map(e => ({ league: e.league, date: e.date, gameId: e.gameId, playerId: e.playerId, name: e.name, teamAbbr: e.teamAbbr, oppAbbr: e.oppAbbr, home: e.home, stat: e.stat, side: e.side, line: e.line, prob: e.prob, grade: e.grade, rank: ranks[keyOf(e)] || null, actual: e.actual, result: e.result }));
+    .map(e => ({ league: e.league, date: e.date, gameId: e.gameId, playerId: e.playerId, name: e.name, teamAbbr: e.teamAbbr, oppAbbr: e.oppAbbr, home: e.home, stat: e.stat, side: e.side, line: e.line, prob: e.prob, grade: e.grade, rank: ranks[keyOf(e)] || null, actual: e.actual, result: e.result, odds: e.odds != null ? e.odds : null, units: typeof e.units === "number" ? e.units : null }));
   const since = slates.length ? slates.map(s => s.date).sort()[0] : null;
   return { since: since, asOf: log.asOf || null, record: record, byLeague: byLeague, byGrade: byGrade, slates: slates, recent: recent, check: checkOf(log) };
 }
@@ -354,4 +377,4 @@ function checkOf(log) {
 /* how many props are locked and waiting for their game */
 function pending(log, now) { const t = now.getTime(); return { open: log.props.filter(e => e.status === "pending" && Date.parse(e.start) > t).length, locked: log.props.filter(e => e.status === "pending" && Date.parse(e.start) <= t).length }; }
 
-module.exports = { RULES, TIERS, NOTE, emptyLog, readLog, writeLog, serialise, lock, grade, results, rebuildDays, pending, resultOf, nbaBox, nbaActual, nflBox, playedFromRoster, liveSource, fixtureSource, keyOf, linesReadAt, gradeEntries, checkOf, isDue };
+module.exports = { RULES, TIERS, NOTE, unitsOf, decimalOf, emptyLog, readLog, writeLog, serialise, lock, grade, results, rebuildDays, pending, resultOf, nbaBox, nbaActual, nflBox, playedFromRoster, liveSource, fixtureSource, keyOf, linesReadAt, gradeEntries, checkOf, isDue };
