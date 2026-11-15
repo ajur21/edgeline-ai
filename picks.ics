@@ -708,11 +708,33 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-15@edgeline
+DTSTAMP:20261115T201541Z
+DTSTART:20261115T180000Z
+DTEND:20261116T000500Z
+SUMMARY:Parlay lean of the day: 2 legs +228 at DraftKings
+DESCRIPTION:All legs priced at DraftKings. Fair 40.6%\, implied 30.5%\, EV 
+ +33.3% per unit.\n- NFL: Konata Mumpfield under 2.5 receptions -142 · Los
+  Angeles Rams @ Arizona Cardinals\n- NFL: John Metchie III over 7.5 receiv
+ ing yards -108 · Carolina Panthers @ New Orleans Saints\n\nEvery parlay: 
+ https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261115T201541Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +228 at DraftKings
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:b5700b4d93-h2h-Miami-Dolphins@edgeline
 DTSTAMP:20261115T140657Z
 DTSTART:20261115T180000Z
 DTEND:20261115T210000Z
-SUMMARY:Miami Dolphins ML +180 at DraftKings · Medium
+SUMMARY:Miami Dolphins ML +180 at DraftKings · in play
 DESCRIPTION:NFL · Miami Dolphins @ Indianapolis Colts · Sun Nov 15\, 1:00
   PM ET\nMoneyline: Miami Dolphins ML at +180 (DraftKings). Our probability
   50.5% from game data\, the price implies 35.7%\, edge +14.8 pts\, EV +41.
@@ -745,18 +767,13 @@ CATEGORIES:NFL
 LAST-MODIFIED:20261115T140657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Miami Dolphins ML +180 at DraftKings · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:be0e03cc42-h2h-Cleveland-Browns@edgeline
 DTSTAMP:20261115T140657Z
 DTSTART:20261115T180000Z
 DTEND:20261115T210000Z
-SUMMARY:Cleveland Browns ML +195 at theScore Bet · Low
+SUMMARY:Cleveland Browns ML +195 at theScore Bet · in play
 DESCRIPTION:NFL · Houston Texans @ Cleveland Browns · Sun Nov 15\, 1:00 P
  M ET\nMoneyline: Cleveland Browns ML at +195 (theScore Bet). Our probabili
  ty 45.3% from game data\, the price implies 33.9%\, edge +11.4 pts\, EV +3
@@ -790,37 +807,10 @@ CATEGORIES:NFL
 LAST-MODIFIED:20261115T140657Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Cleveland Browns ML +195 at theScore Bet · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-15@edgeline
-DTSTAMP:20261115T140657Z
-DTSTART:20261115T180000Z
-DTEND:20261116T000500Z
-SUMMARY:Parlay lean of the day: 2 legs +228 at DraftKings
-DESCRIPTION:All legs priced at DraftKings. Fair 40.6%\, implied 30.5%\, EV 
- +33.3% per unit.\n- NFL: Konata Mumpfield under 2.5 receptions -142 · Los
-  Angeles Rams @ Arizona Cardinals\n- NFL: John Metchie III over 7.5 receiv
- ing yards -108 · Carolina Panthers @ New Orleans Saints\n\nEvery parlay: 
- https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261115T140657Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +228 at DraftKings
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6c932a9651-h2h-Arizona-Cardinals@edgeline
-DTSTAMP:20261115T140657Z
+DTSTAMP:20261115T201541Z
 DTSTART:20261115T210500Z
 DTEND:20261116T000500Z
 SUMMARY:Arizona Cardinals ML +400 at FanDuel · Medium
@@ -842,14 +832,14 @@ DESCRIPTION:NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15\, 4:0
  \n- Arizona Cardinals without Jon Gaines II (G)\, Hjalte Froholdt (C)\, Hu
  nter Long (TE) and 1 more (-2.4).\n- Projected margin -6.2 for Arizona Car
  dinals.\nVerdict: More working against this one than for it\; size down.\n
- Prices: BetMGM +400\, FanDuel +385\, PointsBet +375\, DraftKings +370\, Ca
- esars +370 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-
- ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
+ Prices: FanDuel +390\, DraftKings +380\, BetMGM +380\, ESPN BET +380\, Poi
+ ntsBet +375 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline
+ -ai/picks.html#6c932a9651-h2h-Arizona-Cardinals
 LOCATION:State Farm Stadium\, Glendale
 URL:https://ajur21.github.io/edgeline-ai/picks.html#6c932a9651-h2h-Arizona-
  Cardinals
 CATEGORIES:NFL
-LAST-MODIFIED:20261115T140657Z
+LAST-MODIFIED:20261115T201541Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -887,7 +877,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:539a387d9f-totals-Under@edgeline
-DTSTAMP:20261115T140657Z
+DTSTAMP:20261115T201541Z
 DTSTART:20261116T011000Z
 DTEND:20261116T041000Z
 SUMMARY:Under 6.5 +114 at DraftKings · Low
@@ -909,12 +899,12 @@ DESCRIPTION:NHL · Calgary Flames @ Anaheim Ducks · Sun Nov 15\, 8:10 PM E
  3.0 points\; the pick stays posted and is graded at the price it was poste
  d at.\nVerdict: The game data lines up behind this side at this price.\nPr
  ices: theScore Bet +110\, BetRivers +106\, Caesars +106\, DraftKings +105\
- , BetMGM +105 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeli
- ne-ai/picks.html#539a387d9f-totals-Under
+ , ESPN BET +105 and 5 more.\nFull breakdown: https://ajur21.github.io/edge
+ line-ai/picks.html#539a387d9f-totals-Under
 LOCATION:Honda Center\, Anaheim
 URL:https://ajur21.github.io/edgeline-ai/picks.html#539a387d9f-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T140657Z
+LAST-MODIFIED:20261115T201541Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -925,7 +915,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:c4ac537963-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261115T140657Z
+DTSTAMP:20261115T201541Z
 DTSTART:20261116T021000Z
 DTEND:20261116T051000Z
 SUMMARY:Vancouver Canucks +1.5 +140 at DraftKings · Medium
@@ -946,14 +936,14 @@ DESCRIPTION:NHL · Vancouver Canucks @ Vegas Golden Knights · Sun Nov 15\,
  eason.\n- Home edge +0.2 for Vegas Golden Knights.\n- Vancouver Canucks wi
  thout Guillaume Brisebois (D) (+0).\n- Projected margin -1.3 for Vancouver
   Canucks against +1.5.\nVerdict: More working against this one than for it
- \; size down.\nPrices: BetRivers +138\, Bovada +133\, FanDuel +126\, Draft
- Kings +124.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.ht
- ml#c4ac537963-spreads-Vancouver-Canucks
+ \; size down.\nPrices: Caesars +140\, BetRivers +138\, Bovada +135\, FanDu
+ el +128\, DraftKings +124.\nFull breakdown: https://ajur21.github.io/edgel
+ ine-ai/picks.html#c4ac537963-spreads-Vancouver-Canucks
 LOCATION:T-Mobile Arena\, Las Vegas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#c4ac537963-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261115T140657Z
+LAST-MODIFIED:20261115T201541Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

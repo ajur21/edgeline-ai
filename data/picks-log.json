@@ -17912,17 +17912,17 @@
   "odds": 400,
   "book": "FanDuel",
   "prices": {
-   "DraftKings": 370,
-   "FanDuel": 385,
+   "DraftKings": 380,
+   "FanDuel": 390,
    "BetOnline.ag": 350,
    "BetRivers": 340,
-   "BetMGM": 400,
+   "BetMGM": 380,
    "theScore Bet": 360,
    "Bovada": 365,
-   "Caesars": 370,
+   "Caesars": 360,
    "Unibet": 360,
    "PointsBet": 375,
-   "ESPN BET": 360
+   "ESPN BET": 380
   },
   "books": 8,
   "anchor": "Pinnacle",
@@ -18314,8 +18314,8 @@
       "under": -112
      },
      "ml": {
-      "home": 370,
-      "away": -485
+      "home": 380,
+      "away": -500
      },
      "draw": null
     },
@@ -18362,6 +18362,12 @@
     "line": null,
     "odds": 370,
     "fair": 0.2042
+   },
+   {
+    "at": "2026-11-15T20:15:41.972Z",
+    "line": null,
+    "odds": 380,
+    "fair": 0.2
    }
   ],
   "dk": {
@@ -18373,11 +18379,11 @@
    },
    "now": {
     "line": null,
-    "odds": 370,
-    "fair": 0.2042241228835748
+    "odds": 380,
+    "fair": 0.19999999999999998
    },
    "moved": "toward",
-   "label": "DraftKings opened +400, now +370"
+   "label": "DraftKings opened +400, now +380"
   },
   "mkt": {
    "book": "Market consensus",
@@ -18388,10 +18394,10 @@
    },
    "now": {
     "line": null,
-    "odds": 396
+    "odds": 399
    },
    "moved": "away",
-   "label": "The market (8 books) opened +356, now +396"
+   "label": "The market (8 books) opened +356, now +399"
   },
   "breakdown": {
    "tier": "Medium",
@@ -18408,8 +18414,8 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 21.3% (+1.3 points against the best price). For reference only.",
-    "Market: DraftKings opened +400, now +370, moving toward this side since the open.",
-    "Market: The market (8 books) opened +356, now +396, the consensus moving against this side since the open.",
+    "Market: DraftKings opened +400, now +380, moving toward this side since the open.",
+    "Market: The market (8 books) opened +356, now +399, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Los Angeles Rams 5-4 · Arizona Cardinals 3-6 · State Farm Stadium, Glendale."
    ],
@@ -18419,28 +18425,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "nZ9k7Rh6gfRot7jQBruR",
-   "at": "2026-11-15T14:06:57.194Z",
+   "at": "2026-11-15T20:15:41.972Z",
    "books": {
-    "DraftKings": 370,
-    "Caesars": 370,
-    "FanDuel": 385,
+    "DraftKings": 380,
+    "Caesars": 360,
+    "FanDuel": 390,
     "Unibet": 360,
     "PointsBet": 375,
-    "BetMGM": 400,
-    "ESPN BET": 360,
+    "BetMGM": 380,
+    "ESPN BET": 380,
     "Bovada": 365
    },
    "n": 8,
    "best": {
-    "book": "BetMGM",
-    "odds": 400
+    "book": "FanDuel",
+    "odds": 390
    },
-   "fair": 0.2026,
+   "fair": 0.2021,
    "fairBooks": 8,
    "vendor": {
     "line": null,
-    "odds": 396,
-    "fair": 0.2016,
+    "odds": 399,
+    "fair": 0.2004,
     "sameLine": true
    },
    "open": {
@@ -18449,12 +18455,12 @@
    },
    "now": {
     "line": null,
-    "odds": 396
+    "odds": 399
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T14:06:57.194Z",
+  "pricesAt": "2026-11-15T20:15:41.972Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -18472,6 +18478,15 @@
     "line": null,
     "odds": 396,
     "best": 400,
+    "n": 8
+   },
+   {
+    "at": "2026-11-15T20:15:41.972Z",
+    "fair": 0.2021,
+    "vendorFair": 0.2004,
+    "line": null,
+    "odds": 399,
+    "best": 390,
     "n": 8
    }
   ],
@@ -19151,9 +19166,10 @@
   "book": "DraftKings",
   "prices": {
    "DraftKings": 124,
-   "FanDuel": 126,
+   "FanDuel": 128,
    "BetRivers": 138,
-   "Bovada": 133
+   "Bovada": 135,
+   "Caesars": 140
   },
   "books": 3,
   "anchor": null,
@@ -19400,17 +19416,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 3,
+   "n": 4,
    "open": {
     "line": 0,
     "odds": 322
    },
    "now": {
     "line": 2.5,
-    "odds": -119
+    "odds": -115
    },
    "moved": "away",
-   "label": "The market (3 books) opened 0 (+322), now +2.5 (-119)"
+   "label": "The market (4 books) opened 0 (+322), now +2.5 (-115)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -19430,7 +19446,7 @@
     "Where the market sits: the de-vigged consensus of 3 books makes this side 40.1% (-1.6 points against the best price). For reference only.",
     "Market: the sharp line has moved toward this side since it was logged (40.1% → 41.8%).",
     "Market: DraftKings opened +1.5 (+136), now +1.5 (+124), moving toward this side since the open.",
-    "Market: The market (3 books) opened 0 (+322), now +2.5 (-119), the consensus moving against this side since the open.",
+    "Market: The market (4 books) opened 0 (+322), now +2.5 (-115), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Knights Carter Hart · Canucks Leevi Merilainen.",
     "Records: Vancouver Canucks 3-17-1 · Vegas Golden Knights 13-5-3 · T-Mobile Arena, Las Vegas."
@@ -19441,23 +19457,24 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "YdP4xKXlYDGfk21uXJ1B",
-   "at": "2026-11-15T14:06:57.194Z",
+   "at": "2026-11-15T20:15:41.972Z",
    "books": {
     "DraftKings": 124,
-    "FanDuel": 126,
-    "Bovada": 133
+    "Caesars": 140,
+    "FanDuel": 128,
+    "Bovada": 135
    },
-   "n": 3,
+   "n": 4,
    "best": {
-    "book": "Bovada",
-    "odds": 133
+    "book": "Caesars",
+    "odds": 140
    },
-   "fair": 0.4204,
-   "fairBooks": 3,
+   "fair": 0.4128,
+   "fairBooks": 4,
    "vendor": {
     "line": 2.5,
-    "odds": -119,
-    "fair": 0.5434,
+    "odds": -115,
+    "fair": 0.5349,
     "sameLine": false
    },
    "open": {
@@ -19466,12 +19483,12 @@
    },
    "now": {
     "line": 2.5,
-    "odds": -119
+    "odds": -115
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T14:06:57.194Z",
+  "pricesAt": "2026-11-15T20:15:41.972Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19490,6 +19507,15 @@
     "odds": -119,
     "best": 133,
     "n": 3
+   },
+   {
+    "at": "2026-11-15T20:15:41.972Z",
+    "fair": 0.4128,
+    "vendorFair": 0.5349,
+    "line": 2.5,
+    "odds": -115,
+    "best": 140,
+    "n": 4
    }
   ],
   "movement": {
@@ -19540,7 +19566,7 @@
    "DraftKings": 105,
    "theScore Bet": 110,
    "FanDuel": 102,
-   "BetMGM": 105,
+   "BetMGM": 100,
    "BetRivers": 106,
    "ESPN BET": 105,
    "Caesars": 106,
@@ -19825,10 +19851,10 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 111
+    "odds": 110
    },
    "moved": "toward",
-   "label": "The market (8 books) opened 7.5 (-166), now 6.5 (+111)"
+   "label": "The market (8 books) opened 7.5 (-166), now 6.5 (+110)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -19847,7 +19873,7 @@
     "Where the market sits: the de-vigged consensus of 5 books makes this side 45.7% (-1.0 points against the best price). For reference only.",
     "Market: the sharp line has moved toward this side since it was logged (45.7% → 46.9%).",
     "Market: DraftKings opened 6.5 (+114), now 6.5 (+105), moving toward this side since the open.",
-    "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+111), the consensus moving toward this side since the open.",
+    "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+110), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Ville Husso · Flames Devin Cooley.",
     "Records: Calgary Flames 9-10-1 · Anaheim Ducks 10-9-1 · Honda Center, Anaheim."
@@ -19858,13 +19884,13 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "oNFl8YlKC8KbIFnxX2ut",
-   "at": "2026-11-15T14:06:57.194Z",
+   "at": "2026-11-15T20:15:41.972Z",
    "books": {
     "DraftKings": 105,
     "ESPN BET": 105,
     "Caesars": 106,
     "FanDuel": 102,
-    "BetMGM": 105,
+    "BetMGM": 100,
     "Unibet": -128,
     "Bovada": 105,
     "PointsBet": 105
@@ -19874,12 +19900,12 @@
     "book": "Caesars",
     "odds": 106
    },
-   "fair": 0.4752,
+   "fair": 0.477,
    "fairBooks": 8,
    "vendor": {
     "line": 6.5,
-    "odds": 111,
-    "fair": 0.4739,
+    "odds": 110,
+    "fair": 0.4762,
     "sameLine": true
    },
    "open": {
@@ -19888,12 +19914,12 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 111
+    "odds": 110
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T14:06:57.194Z",
+  "pricesAt": "2026-11-15T20:15:41.972Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19910,6 +19936,15 @@
     "vendorFair": 0.4739,
     "line": 6.5,
     "odds": 111,
+    "best": 106,
+    "n": 8
+   },
+   {
+    "at": "2026-11-15T20:15:41.972Z",
+    "fair": 0.477,
+    "vendorFair": 0.4762,
+    "line": 6.5,
+    "odds": 110,
     "best": 106,
     "n": 8
    }

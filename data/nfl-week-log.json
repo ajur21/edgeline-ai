@@ -61,8 +61,15 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": {
+    "home": 35,
+    "away": 10,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-15T20:16:13.115Z"
+   },
+   "lockedAt": "2026-11-15T14:30Z"
   },
   "401873054": {
    "id": "401873054",
@@ -84,8 +91,9 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873055": {
    "id": "401873055",
@@ -107,8 +115,9 @@
     "model": "nflverse",
     "marginSd": 4.15
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873056": {
    "id": "401873056",
@@ -130,8 +139,9 @@
     "model": "nflverse",
     "marginSd": 4.12
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873057": {
    "id": "401873057",
@@ -153,8 +163,9 @@
     "model": "nflverse",
     "marginSd": 4.15
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873058": {
    "id": "401873058",
@@ -176,8 +187,9 @@
     "model": "nflverse",
     "marginSd": 4.13
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873059": {
    "id": "401873059",
@@ -199,8 +211,9 @@
     "model": "nflverse",
     "marginSd": 4.12
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873060": {
    "id": "401873060",
@@ -222,8 +235,9 @@
     "model": "nflverse",
     "marginSd": 4.02
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-15T18:00Z"
   },
   "401873061": {
    "id": "401873061",

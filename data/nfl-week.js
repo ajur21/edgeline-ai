@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-15T14:07:55.085Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-15T20:16:13.115Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -58,20 +58,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 10",
-   "w": 0,
+   "w": 1,
    "l": 1,
    "p": 0,
-   "pending": 13,
-   "pct": 0,
-   "avgProb": 0.5546
+   "pending": 12,
+   "pct": 0.5,
+   "avgProb": 0.5401
   },
   "season": {
-   "w": 0,
+   "w": 1,
    "l": 1,
    "p": 0,
-   "pending": 13,
-   "pct": 0,
-   "avgProb": 0.5546
+   "pending": 12,
+   "pct": 0.5,
+   "avgProb": 0.5401
   }
  },
  "games": [
@@ -262,10 +262,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T14:30Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 9:30 AM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 35,
+    "away": 10
+   },
    "home": {
     "id": "8",
     "abbr": "DET",
@@ -292,7 +295,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": 0.92,
     "total": 47.8,
     "marginSd": 4.11,
@@ -422,42 +425,29 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.5256,
-     "bar": 0.1118,
-     "price": 142
-    },
-    "away": {
-     "prob": 0.4744,
-     "bar": 0.1119,
-     "price": 176
-    }
-   },
-   "board": {
-    "eventId": "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": -138,
-     "book": "FanDuel"
-    },
-    "away": {
-     "odds": 130,
-     "book": "Bovada"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 35,
+    "away": 10,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-15T20:16:13.115Z"
+   }
   },
   {
    "id": "401873054",
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "4:17 - 3rd",
+   "score": {
+    "home": 12,
+    "away": 23
+   },
    "home": {
     "id": "20",
     "abbr": "NYJ",
@@ -484,7 +474,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": -8.94,
     "total": 48.5,
     "marginSd": 4.11,
@@ -623,30 +613,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-15T13:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.2679,
-     "bar": 0.0931,
-     "price": 473
-    },
-    "away": {
-     "prob": 0.7321,
-     "bar": 0.0931,
-     "price": -177
-    }
-   },
-   "board": {
-    "eventId": "1057d50949844ddf483da9c8c20354be",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": 358,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": -450,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
@@ -655,10 +623,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "1:31 - 3rd",
+   "score": {
+    "home": 7,
+    "away": 10
+   },
    "home": {
     "id": "18",
     "abbr": "NO",
@@ -685,7 +656,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": 1.02,
     "total": 49.2,
     "marginSd": 4.15,
@@ -815,30 +786,8 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.5282,
-     "bar": 0.1131,
-     "price": 141
-    },
-    "away": {
-     "prob": 0.4718,
-     "bar": 0.113,
-     "price": 179
-    }
-   },
-   "board": {
-    "eventId": "e5aa20e1364dd639f042af1c2281bbe2",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": -108,
-     "book": "FanDuel"
-    },
-    "away": {
-     "odds": 100,
-     "book": "BetOnline.ag"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
@@ -847,10 +796,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "0:18 - 3rd",
+   "score": {
+    "home": 17,
+    "away": 17
+   },
    "home": {
     "id": "5",
     "abbr": "CLE",
@@ -877,7 +829,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": -1.69,
     "total": 45.2,
     "marginSd": 4.12,
@@ -1010,30 +962,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-15T13:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.4533,
-     "bar": 0.1117,
-     "price": 193
-    },
-    "away": {
-     "prob": 0.5467,
-     "bar": 0.1117,
-     "price": 130
-    }
-   },
-   "board": {
-    "eventId": "be0e03cc42fbc9b6962467b22c7bf9dd",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": 190,
-     "book": "FanDuel"
-    },
-    "away": {
-     "odds": -220,
-     "book": "BetOnline.ag"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": {
     "id": "be0e03cc42-h2h-Cleveland-Browns",
     "pick": "Cleveland Browns ML",
@@ -1051,10 +981,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "5:52 - 3rd",
+   "score": {
+    "home": 13,
+    "away": 23
+   },
    "home": {
     "id": "10",
     "abbr": "TEN",
@@ -1081,7 +1014,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": -14.55,
     "total": 44.3,
     "marginSd": 4.15,
@@ -1202,30 +1135,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-15T12:00:00-06:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.1562,
-     "bar": 0.0706,
-     "price": 1069
-    },
-    "away": {
-     "prob": 0.8438,
-     "bar": 0.0706,
-     "price": -340
-    }
-   },
-   "board": {
-    "eventId": "28800df7e768ecec14f116454d560f9b",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": 500,
-     "book": "DraftKings"
-    },
-    "away": {
-     "odds": -575,
-     "book": "Bovada"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
@@ -1234,10 +1145,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "15:00 - 4th",
+   "score": {
+    "home": 3,
+    "away": 21
+   },
    "home": {
     "id": "1",
     "abbr": "ATL",
@@ -1264,7 +1178,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": -6.26,
     "total": 45,
     "marginSd": 4.13,
@@ -1394,30 +1308,8 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.3324,
-     "bar": 0.1028,
-     "price": 336
-    },
-    "away": {
-     "prob": 0.6676,
-     "bar": 0.1028,
-     "price": -129
-    }
-   },
-   "board": {
-    "eventId": "3c71d515b726f1096aabb435badb83fd",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": 161,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": -172,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
@@ -1426,10 +1318,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "3:40 - 3rd",
+   "score": {
+    "home": 24,
+    "away": 16
+   },
    "home": {
     "id": "11",
     "abbr": "IND",
@@ -1456,7 +1351,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": -0.17,
     "total": 43,
     "marginSd": 4.12,
@@ -1586,30 +1481,8 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.4953,
-     "bar": 0.1125,
-     "price": 162
-    },
-    "away": {
-     "prob": 0.5047,
-     "bar": 0.1125,
-     "price": 155
-    }
-   },
-   "board": {
-    "eventId": "b5700b4d938fd94429f60d4622cc9c0a",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": -200,
-     "book": "BetRivers"
-    },
-    "away": {
-     "odds": 185,
-     "book": "DraftKings"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": {
     "id": "b5700b4d93-h2h-Miami-Dolphins",
     "pick": "Miami Dolphins ML",
@@ -1627,10 +1500,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-15T18:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 1:00 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "0:34 - 3rd",
+   "score": {
+    "home": 7,
+    "away": 20
+   },
    "home": {
     "id": "9",
     "abbr": "GB",
@@ -1657,7 +1533,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T14:07:55.085Z",
-    "locked": false,
+    "locked": true,
     "margin": 1.36,
     "total": 40.1,
     "marginSd": 4.02,
@@ -1796,30 +1672,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-15T12:00:00-06:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.5375,
-     "bar": 0.1094,
-     "price": 134
-    },
-    "away": {
-     "prob": 0.4625,
-     "bar": 0.1094,
-     "price": 184
-    }
-   },
-   "board": {
-    "eventId": "5d8d85473b87f772a979ecf294acab94",
-    "pricedAt": "2026-11-15T14:06:57.194Z",
-    "home": {
-     "odds": -144,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": 130,
-     "book": "Bovada"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
