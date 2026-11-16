@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Mon, 16 Nov 2026 05:38:25 GMT</lastBuildDate>
+<lastBuildDate>Mon, 16 Nov 2026 14:10:32 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Mon Nov 16 slate: 1 lean tonight from 18 priced sides</title>
+<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
+<guid isPermaLink="false">slate-2026-11-16T14:10:32.254Z</guid>
+<pubDate>Mon, 16 Nov 2026 14:10:32 GMT</pubDate>
+<category>Slate</category>
+<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Vancouver Canucks ML +295 at BetOnline.ag (+11.1 pts against a bar of +6.9 pts) · Vancouver Canucks @ Utah Mammoth&lt;/li&gt;&lt;li&gt;NHL: Over 6.5 +116 at FanDuel (+0.4 pts against a bar of +3.0 pts) · Montréal Canadiens @ New York Rangers&lt;/li&gt;&lt;li&gt;NHL: New York Rangers ML +102 at BetOnline.ag (+4.0 pts against a bar of +7.2 pts) · Montréal Canadiens @ New York Rangers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+</item>
 <item>
 <title>Graded: Under 6.5 +114 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
@@ -33,6 +41,14 @@
 <description>&lt;p&gt;NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15, 4:05 PM ET&lt;/p&gt;&lt;p&gt;Player prop: Konata Mumpfield under 2.5 receptions at -135 (BetMGM). Our chance 64.2% (the model's own 79.9%, cut to the 47% of an edge that graded props have borne out), the price implies 57.4%, EV +11.7% per unit. Grade: High.&lt;/p&gt;&lt;p&gt;Lost -1.00u: finished on 3 receptions, graded on the box score.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
+<title>Graded: Arizona Cardinals ML +400 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">6c932a9651-h2h-Arizona-Cardinals#graded</guid>
+<pubDate>Mon, 16 Nov 2026 00:53:27 GMT</pubDate>
+<category>NFL</category>
+<description>&lt;p&gt;NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15, 4:05 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Arizona Cardinals ML at +400 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 34-6&lt;/p&gt;&lt;p&gt;Closing line value: +1.3 pts (closed +350, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
 <title>Graded: Miami Dolphins ML +180 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
 <guid isPermaLink="false">b5700b4d93-h2h-Miami-Dolphins#graded</guid>
@@ -49,28 +65,12 @@
 <description>&lt;p&gt;NFL · Houston Texans @ Cleveland Browns · Sun Nov 15, 1:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Cleveland Browns ML at +195 (theScore Bet). Won +1.95u.&lt;/p&gt;&lt;p&gt;Final: 24-27&lt;/p&gt;&lt;p&gt;Closing line value: +1.6 pts (closed +170, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
-<title>Graded: Arizona Cardinals ML +400 · Lost -1.00u</title>
-<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
-<guid isPermaLink="false">6c932a9651-h2h-Arizona-Cardinals#graded</guid>
-<pubDate>Mon, 16 Nov 2026 00:53:27 GMT</pubDate>
-<category>NFL</category>
-<description>&lt;p&gt;NFL · Los Angeles Rams @ Arizona Cardinals · Sun Nov 15, 4:05 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Arizona Cardinals ML at +400 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 34-6&lt;/p&gt;&lt;p&gt;Closing line value: +1.3 pts (closed +350, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Sun Nov 15 slate: 4 leans tonight from 120 priced sides</title>
-<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
-<guid isPermaLink="false">slate-2026-11-15T20:35:50.992Z</guid>
-<pubDate>Sun, 15 Nov 2026 20:35:50 GMT</pubDate>
-<category>Slate</category>
-<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Vancouver Canucks ML +275 at BetRivers (+13.2 pts against a bar of +7.0 pts) · Vancouver Canucks @ Utah Mammoth&lt;/li&gt;&lt;li&gt;NHL: Vancouver Canucks ML +340 at BetRivers (+6.5 pts against a bar of +6.5 pts) · Vancouver Canucks @ Vegas Golden Knights&lt;/li&gt;&lt;li&gt;NHL: Over 6.5 +120 at theScore Bet (+1.2 pts against a bar of +3.0 pts) · Montréal Canadiens @ New York Rangers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
-</item>
-<item>
 <title>NHL: Vancouver Canucks +1.5 +116 at FanDuel (High, +15.3 pts)</title>
 <link>https://ajur21.github.io/edgeline-ai/picks.html#f597347519-spreads-Vancouver-Canucks</link>
 <guid isPermaLink="false">f597347519-spreads-Vancouver-Canucks</guid>
 <pubDate>Sun, 15 Nov 2026 20:35:50 GMT</pubDate>
 <category>NHL</category>
-<description>&lt;p&gt;NHL · Vancouver Canucks @ Utah Mammoth · Mon Nov 16, 9:30 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at +116 (FanDuel). Our probability 61.6% from game data, the price implies 46.3%, edge +15.3 pts, EV +33.1% per unit. Confidence: High.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 61.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). FanDuel offers +116, which implies only 46.3%. Its bar is 6.5 points: the model's own margin of error on this side, with 21 games behind the thinner team (±0.43 goals on the margin). It clears it by 8.8. Not graded against other books' prices; for reference the market makes it 45.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Utah Mammoth trending: last five -1.4 vs -0.2 on the season.&lt;/li&gt;&lt;li&gt;Vancouver Canucks are rested (3 days).&lt;/li&gt;&lt;li&gt;Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).&lt;/li&gt;&lt;li&gt;Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.&lt;/li&gt;&lt;li&gt;Vancouver Canucks trending: last five -2.6 vs -1.8 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Utah Mammoth.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Guillaume Brisebois (D) (+0).&lt;/li&gt;&lt;li&gt;Projected margin -0.6 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: FanDuel +116, Caesars +116, theScore Bet +115, Bovada +115, ESPN BET +115 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#f597347519-spreads-Vancouver-Canucks&lt;/p&gt;</description>
+<description>&lt;p&gt;NHL · Vancouver Canucks @ Utah Mammoth · Mon Nov 16, 9:30 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at +116 (FanDuel). Our probability 61.6% from game data, the price implies 46.3%, edge +15.3 pts, EV +33.1% per unit. Confidence: High.&lt;/p&gt;&lt;p&gt;Our probability at +1.5 is 61.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). FanDuel offers +116, which implies only 46.3%. Its bar is 6.5 points: the model's own margin of error on this side, with 21 games behind the thinner team (±0.43 goals on the margin). It clears it by 8.8. Not graded against other books' prices; for reference the market makes it 45.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Utah Mammoth trending: last five -1.4 vs -0.2 on the season.&lt;/li&gt;&lt;li&gt;Vancouver Canucks are rested (3 days).&lt;/li&gt;&lt;li&gt;Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).&lt;/li&gt;&lt;li&gt;Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable.&lt;/li&gt;&lt;li&gt;A better price is now available: +118 at BetOnline.ag.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.&lt;/li&gt;&lt;li&gt;Vancouver Canucks trending: last five -2.6 vs -1.8 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Utah Mammoth.&lt;/li&gt;&lt;li&gt;Vancouver Canucks without Guillaume Brisebois (D) (+0).&lt;/li&gt;&lt;li&gt;Projected margin -0.6 for Vancouver Canucks against +1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Caesars +116, theScore Bet +115, ESPN BET +115, FanDuel +114, DraftKings +114 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#f597347519-spreads-Vancouver-Canucks&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Over 5.5 -118 · Lost -1.00u</title>

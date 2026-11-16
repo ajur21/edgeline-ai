@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-15T20:35:50.992Z",
-  "trackedAt": "2026-11-16T05:38:25.075Z",
+  "generatedAt": "2026-11-16T14:10:32.254Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-16T14:12:07.726Z",
     "last": {
       "play": {
         "date": "2026-11-15",
@@ -56,15 +55,15 @@ window.PICKS_DATA = {
       "odds": 116,
       "book": "FanDuel",
       "prices": {
-        "FanDuel": 116,
+        "FanDuel": 114,
         "DraftKings": 114,
         "theScore Bet": 115,
         "BetRivers": 105,
-        "Bovada": 115,
+        "Bovada": 107,
         "Caesars": 116,
         "ESPN BET": 115
       },
-      "pricesAt": "2026-11-15T20:35:50.992Z",
+      "pricesAt": "2026-11-16T14:10:32.254Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.6161,
@@ -125,7 +124,8 @@ window.PICKS_DATA = {
           "Utah Mammoth trending: last five -1.4 vs -0.2 on the season.",
           "Vancouver Canucks are rested (3 days).",
           "Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).",
-          "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable."
+          "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable.",
+          "A better price is now available: +118 at BetOnline.ag."
         ],
         "risks": [
           "Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.",
@@ -136,13 +136,14 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
+          "Market: the sharp line has moved toward this side since it was logged (45.0% → 46.5%).",
           "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
-          "Market: The market (5 books) opened +5 (+100), now +1.5 (+124), the consensus moving toward this side since the open.",
+          "Market: The market (5 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Karel Vejmelka · Canucks Kevin Lankinen.",
-          "Records: Vancouver Canucks 3-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
+          "Records: Vancouver Canucks 4-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
         ],
-        "verdict": "More working against this one than for it; size down."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "context": {
         "espnEventId": "401892727",
@@ -155,9 +156,9 @@ window.PICKS_DATA = {
             "away": "6-6-1"
           },
           "Vancouver Canucks": {
-            "overall": "3-17-1",
+            "overall": "4-17-1",
             "home": "1-9-0",
-            "away": "2-8-1"
+            "away": "3-8-1"
           }
         },
         "probables": {
@@ -286,10 +287,10 @@ window.PICKS_DATA = {
             "gamesLast7": 3
           },
           "Vancouver Canucks": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-14",
-            "gamesLast7": 2
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-16",
+            "gamesLast7": 3
           }
         },
         "weather": null,
@@ -304,8 +305,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -105,
-              "under": -115
+              "over": -112,
+              "under": -108
             },
             "ml": {
               "home": -340,
@@ -332,7 +333,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 116,
+        "loggedFair": 0.6161,
+        "currentOdds": 118,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.4648,
+        "currentEdge": 0.1244,
+        "checkedAt": "2026-11-16T14:10:32.254Z",
+        "history": [
+          {
+            "at": "2026-11-15T20:35:50.992Z",
+            "odds": 116,
+            "fair": 0.4495
+          },
+          {
+            "at": "2026-11-16T14:10:32.254Z",
+            "odds": 118,
+            "fair": 0.4648
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -365,27 +386,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": 124
+          "odds": 122
         },
         "moved": "toward",
-        "label": "The market (5 books) opened +5 (+100), now +1.5 (+124)"
+        "label": "The market (5 books) opened +5 (+100), now +1.5 (+122)"
       },
       "sgo": {
-        "at": "2026-11-15T20:35:50.992Z",
+        "at": "2026-11-16T14:10:32.254Z",
         "n": 5,
         "best": {
-          "book": "FanDuel",
+          "book": "Caesars",
           "odds": 116
         },
-        "fair": 0.4458,
-        "vendorFair": 0.4464,
+        "fair": 0.4496,
+        "vendorFair": 0.4505,
         "open": {
           "line": 5,
           "odds": 100
         },
         "now": {
           "line": 1.5,
-          "odds": 124
+          "odds": 122
         }
       },
       "sgoHistory": [
@@ -395,6 +416,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.4464,
           "line": 1.5,
           "odds": 124,
+          "best": 116,
+          "n": 5
+        },
+        {
+          "at": "2026-11-16T14:10:32.254Z",
+          "fair": 0.4496,
+          "vendorFair": 0.4505,
+          "line": 1.5,
+          "odds": 122,
           "best": 116,
           "n": 5
         }
@@ -415,1019 +445,15 @@ window.PICKS_DATA = {
         "gp": 21,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
-    {
-      "id": "b5700b4d93-h2h-Miami-Dolphins",
-      "sport": "NFL",
-      "league": "NFL",
-      "sportKey": "americanfootball_nfl",
-      "event": "Miami Dolphins @ Indianapolis Colts",
-      "home": "Indianapolis Colts",
-      "away": "Miami Dolphins",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Miami Dolphins",
-        "point": null
-      },
-      "commence": "2026-11-15T18:00:00Z",
-      "start": "Yesterday 1:00 PM ET",
-      "market": "Moneyline",
-      "pick": "Miami Dolphins ML",
-      "odds": 180,
-      "book": "DraftKings",
-      "prices": {
-        "DraftKings": 185,
-        "FanDuel": 176,
-        "BetOnline.ag": 180,
-        "BetRivers": 175,
-        "BetMGM": 180,
-        "theScore Bet": 170,
-        "Bovada": 176,
-        "Caesars": 174,
-        "Unibet": 160,
-        "PointsBet": 185,
-        "ESPN BET": 175
-      },
-      "pricesAt": "2026-11-15T14:06:57.194Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.5047,
-      "ev": 0.4132,
-      "confidence": "Medium",
-      "basis": "game",
-      "model": {
-        "margin": -0.2,
-        "total": 43,
-        "sd": 13.3,
-        "sdTotal": 13.4,
-        "gp": 8,
-        "gpHome": 9,
-        "gpAway": 8,
-        "thin": false,
-        "parts": {
-          "ratingHome": -2.1,
-          "ratingAway": -4.2,
-          "lastHome": 3.2,
-          "lastAway": -4.5,
-          "homeEdge": 2.146,
-          "rest": 0,
-          "injuriesHome": -3.1,
-          "injuriesAway": 1.6,
-          "scoringOut": 2,
-          "pace": 44.4,
-          "model": "nflverse",
-          "epaHome": -0.078,
-          "epaAway": -0.069,
-          "epaPoints": -0.1,
-          "qbPoints": -2.7,
-          "qbHome": "Daniel Jones",
-          "qbAway": "Tua Tagovailoa",
-          "marginSd": 4.12
-        },
-        "reasons": {
-          "for": [
-            "Tua Tagovailoa starts for Miami Dolphins (Malik Willis is listed out): +0.07 EPA a dropback against -0.01 behind their numbers (+2.6 points)",
-            "Indianapolis Colts without Akeem Davis-Gaither (LB), Mo Alie-Cox (TE), Will Mallory (TE) and 5 more (-3.1)",
-            "Projected margin +0.2 for Miami Dolphins"
-          ],
-          "against": [
-            "Indianapolis Colts rate -2.1 and Miami Dolphins -4.2 points a game against their schedules (this season's results, last season carried over); EPA a play -0.08 and -0.07 net of defence (nflverse)",
-            "Home edge +2.1 for Indianapolis Colts",
-            "Miami Dolphins without Aaron Brewer (C), Jared Wayne (WR), Chris Bell (WR) and 1 more (+1.6)"
-          ]
-        }
-      },
-      "marketFair": 0.3486,
-      "marketEdge": -0.0085,
-      "rationale": "Our probability is 50.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.2 for the home side). DraftKings offers +180, which implies only 35.7%. Its bar is 11.3 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin). It clears it by 3.5. Not graded against other books' prices; for reference the market makes it 34.9%.",
-      "factors": [
-        "Best price +180 at DraftKings",
-        "Probability 50.5% from game data, not other books",
-        "Edge 14.8 points over the price, 3.5 past its bar of 11.3",
-        "Market reference 34.9%"
-      ],
-      "breakdown": {
-        "tier": "Medium",
-        "tierWhy": "Our probability for this side is 50.5%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at DraftKings implies 35.7%, so the edge is 14.8 points. Its bar is 11.3 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.5 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 50.5%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.2 for the home side). DraftKings offers +180, which implies only 35.7%. Its bar is 11.3 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin). It clears it by 3.5. Not graded against other books' prices; for reference the market makes it 34.9%.",
-        "support": [
-          "Tua Tagovailoa starts for Miami Dolphins (Malik Willis is listed out): +0.07 EPA a dropback against -0.01 behind their numbers (+2.6 points).",
-          "Indianapolis Colts without Akeem Davis-Gaither (LB), Mo Alie-Cox (TE), Will Mallory (TE) and 5 more (-3.1).",
-          "Projected margin +0.2 for Miami Dolphins.",
-          "A better price is now available: +185 at DraftKings.",
-          "A better price is available now: +185 at DraftKings."
-        ],
-        "risks": [
-          "Indianapolis Colts rate -2.1 and Miami Dolphins -4.2 points a game against their schedules (this season's results, last season carried over); EPA a play -0.08 and -0.07 net of defence (nflverse).",
-          "Home edge +2.1 for Indianapolis Colts.",
-          "Miami Dolphins without Aaron Brewer (C), Jared Wayne (WR), Chris Bell (WR) and 1 more (+1.6)."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 34.9% (-0.9 points against the best price). For reference only.",
-          "Market: DraftKings opened +235, now +185, moving toward this side since the open.",
-          "Market: The market (8 books) opened +265, now +188, the consensus moving toward this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Records: Miami Dolphins 1-7 · Indianapolis Colts 2-7 · Lucas Oil Stadium, Indianapolis."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401873059",
-        "venue": "Lucas Oil Stadium, Indianapolis",
-        "indoor": true,
-        "records": {
-          "Indianapolis Colts": {
-            "overall": "2-7",
-            "home": "1-3",
-            "away": "1-4"
-          },
-          "Miami Dolphins": {
-            "overall": "1-7",
-            "home": "0-4",
-            "away": "1-3"
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Indianapolis Colts": [
-            {
-              "name": "Akeem Davis-Gaither",
-              "pos": "LB",
-              "athleteId": "3917142",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3917142.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-14T17:34Z",
-              "note": "The Colts placed Davis-Gaither (knee) on injured reserve Saturday."
-            },
-            {
-              "name": "Mo Alie-Cox",
-              "pos": "TE",
-              "athleteId": "2998565",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2998565.png",
-              "status": "Injured Reserve",
-              "type": "Groin",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-14T17:24Z",
-              "note": "The Colts placed Alie-Cox (groin) on injured reserve Saturday."
-            },
-            {
-              "name": "Will Mallory",
-              "pos": "TE",
-              "athleteId": "4362523",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362523.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T17:22Z",
-              "note": "Mallory (hamstring) has been downgraded from questionable to out for Sunday's game against the Dolphins."
-            },
-            {
-              "name": "Jalen Travis",
-              "pos": "OT",
-              "athleteId": "4892240",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4892240.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T01:50Z",
-              "note": "Travis (knee) has been ruled out ahead of Sunday's game against the Dolphins, Abby Halpin of the Colts' official site reports."
-            },
-            {
-              "name": "Jaylon Carlies",
-              "pos": "LB",
-              "athleteId": "4601021",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4601021.png",
-              "status": "Out",
-              "type": "Neck",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T01:46Z",
-              "note": "Carlies (neck) has been ruled out ahead of Sunday's game against the Dolphins, Abby Halpin of the Colts' official site reports."
-            },
-            {
-              "name": "Jerry Tillery",
-              "pos": "DT",
-              "athleteId": "3863182",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3863182.png",
-              "status": "Out",
-              "type": "Calf",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T01:43Z",
-              "note": "Tillery (calf) has been ruled out for Sunday's game against Miami, Abby Halpin of the Colts' official site reports."
-            },
-            {
-              "name": "Luke Rhodes",
-              "pos": "LS",
-              "athleteId": "2566045",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2566045.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T01:38Z",
-              "note": "Rhodes (hamstring) has been ruled out for Sunday's game against the Dolphins, Abby Halpin of the Colts' official site reports."
-            },
-            {
-              "name": "Alec Pierce",
-              "pos": "WR",
-              "athleteId": "4360078",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4360078.png",
-              "status": "Injured Reserve",
-              "type": "Heel",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-11T17:38Z",
-              "note": "When asked Wednesday whether Pierce (heel) has a chance to return from IR this season, Colts head coach Shane Steichen was noncommittal, James Boyd of The Athle"
-            }
-          ],
-          "Miami Dolphins": [
-            {
-              "name": "Darrell Baker Jr.",
-              "pos": "CB",
-              "athleteId": "4036660",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4036660.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T00:25Z",
-              "note": "Baker (knee) was not activated from the reserve/PUP list ahead of Sunday's clash against Indianapolis."
-            },
-            {
-              "name": "Aaron Brewer",
-              "pos": "C",
-              "athleteId": "4040537",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4040537.png",
-              "status": "Out",
-              "type": "Concussion",
-              "detail": "Concussion",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-14T01:25Z",
-              "note": "Brewer (concussion) has been ruled out ahead of Sunday's game against the Colts, Barry Jackson of the Miami Herald reports."
-            },
-            {
-              "name": "Jared Wayne",
-              "pos": "WR",
-              "athleteId": "4430681",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4430681.png",
-              "status": "Out",
-              "type": "Quadriceps",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-14T00:09Z",
-              "note": "Wayne (quadriceps) has been ruled out for Sunday's game against the Colts, David Furones of the South Florida Sun Sentinel reports."
-            },
-            {
-              "name": "Chris Bell",
-              "pos": "WR",
-              "athleteId": "4869961",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4869961.png",
-              "status": "Doubtful",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-13T22:10Z",
-              "note": "Bell (knee) is listed as doubtful for Sunday's game against the Colts."
-            },
-            {
-              "name": "Malik Willis",
-              "pos": "QB",
-              "athleteId": "4242512",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4242512.png",
-              "status": "Injured Reserve",
-              "type": "Abdomen",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-13",
-              "date": "2026-11-11T20:15Z",
-              "note": "The Dolphins hope Willis (abdomen) will return this year but haven't ruled out season-ending surgery, Joe Schad of The Palm Beach Post reports."
-            },
-            {
-              "name": "Zach Sieler",
-              "pos": "DT",
-              "athleteId": "3057956",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3057956.png",
-              "status": "Injured Reserve",
-              "type": "Biceps",
-              "detail": "Surgery",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-11T00:23Z",
-              "note": "The Dolphins placed Sieler (biceps) on injured reserve Tuesday."
-            }
-          ]
-        },
-        "rest": {
-          "Indianapolis Colts": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 1
-          },
-          "Miami Dolphins": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 1
-          }
-        },
-        "weather": {
-          "summary": "Mostly cloudy",
-          "tempF": 47,
-          "source": "ESPN"
-        },
-        "broadcast": "CBS",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -4.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 37.5,
-            "totalOdds": {
-              "over": -110,
-              "under": -110
-            },
-            "ml": {
-              "home": -225,
-              "away": 185
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -6.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 47.5,
-            "totalOdds": {
-              "over": -110,
-              "under": -110
-            },
-            "ml": {
-              "home": -290,
-              "away": 235
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 180,
-        "loggedFair": 0.5047,
-        "currentOdds": 185,
-        "currentBook": "DraftKings",
-        "currentFair": 0.3454,
-        "currentEdge": 0.1538,
-        "checkedAt": "2026-11-15T14:06:57.194Z",
-        "history": [
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": 180,
-            "fair": 0.3486
-          },
-          {
-            "at": "2026-11-15T14:06:57.194Z",
-            "odds": 185,
-            "fair": 0.3454
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 235,
-          "fair": 0.28644876973925815
-        },
-        "now": {
-          "line": null,
-          "odds": 185,
-          "fair": 0.33635187580853815
-        },
-        "moved": "toward",
-        "label": "DraftKings opened +235, now +185"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "line": null,
-          "odds": 180,
-          "fair": 0.3425
-        },
-        {
-          "at": "2026-11-15T13:41:50.578Z",
-          "line": null,
-          "odds": 185,
-          "fair": 0.3364
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": null,
-          "odds": 265
-        },
-        "now": {
-          "line": null,
-          "odds": 188
-        },
-        "moved": "toward",
-        "label": "The market (8 books) opened +265, now +188"
-      },
-      "sgo": {
-        "at": "2026-11-15T14:06:57.194Z",
-        "n": 8,
-        "best": {
-          "book": "DraftKings",
-          "odds": 185
-        },
-        "fair": 0.3469,
-        "vendorFair": 0.3472,
-        "open": {
-          "line": null,
-          "odds": 265
-        },
-        "now": {
-          "line": null,
-          "odds": 188
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.35,
-          "vendorFair": 0.3484,
-          "line": null,
-          "odds": 187,
-          "best": 180,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T13:41:50.578Z",
-          "fair": 0.3469,
-          "vendorFair": 0.346,
-          "line": null,
-          "odds": 189,
-          "best": 185,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T14:06:57.194Z",
-          "fair": 0.3469,
-          "vendorFair": 0.3472,
-          "line": null,
-          "odds": 188,
-          "best": 185,
-          "n": 8
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Loss",
-      "units": -1,
-      "score": {
-        "home": 24,
-        "away": 22
-      },
-      "loggedAt": "2026-11-14T20:36:57.263Z",
-      "valueTo": 155,
-      "bar": 0.1125,
-      "past": 0.0351,
-      "barParts": {
-        "error": 0.1125,
-        "units": 4.12,
-        "unit": "points",
-        "gp": 8,
-        "floor": 0.03
-      },
       "now": {
-        "at": "2026-11-15T14:06:57.194Z",
-        "odds": 185,
-        "book": "DraftKings",
-        "modelProb": 0.5047,
-        "edge": 0.1538,
-        "bar": 0.1125
+        "at": "2026-11-16T14:10:32.254Z",
+        "odds": 118,
+        "book": "BetOnline.ag",
+        "modelProb": 0.5831,
+        "edge": 0.1244,
+        "bar": 0.0666
       },
       "standing": "clears",
-      "availability": null
-    },
-    {
-      "id": "be0e03cc42-h2h-Cleveland-Browns",
-      "sport": "NFL",
-      "league": "NFL",
-      "sportKey": "americanfootball_nfl",
-      "event": "Houston Texans @ Cleveland Browns",
-      "home": "Cleveland Browns",
-      "away": "Houston Texans",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Cleveland Browns",
-        "point": null
-      },
-      "commence": "2026-11-15T18:00:00Z",
-      "start": "Yesterday 1:00 PM ET",
-      "market": "Moneyline",
-      "pick": "Cleveland Browns ML",
-      "odds": 195,
-      "book": "theScore Bet",
-      "prices": {
-        "DraftKings": 185,
-        "FanDuel": 190,
-        "BetOnline.ag": 192,
-        "BetRivers": 190,
-        "BetMGM": 185,
-        "theScore Bet": 195,
-        "Bovada": 190,
-        "Caesars": 192,
-        "Unibet": 190,
-        "PointsBet": 185,
-        "ESPN BET": 190
-      },
-      "pricesAt": "2026-11-15T14:06:57.194Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.4533,
-      "ev": 0.3372,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": -1.7,
-        "total": 45.2,
-        "sd": 13.3,
-        "sdTotal": 13.4,
-        "gp": 8,
-        "gpHome": 9,
-        "gpAway": 8,
-        "thin": false,
-        "parts": {
-          "ratingHome": -3.2,
-          "ratingAway": 2.1,
-          "lastHome": -5.9,
-          "lastAway": 6.4,
-          "homeEdge": 2.146,
-          "rest": 0,
-          "injuriesHome": -1.2,
-          "injuriesAway": 3.3,
-          "scoringOut": 0,
-          "pace": 44.9,
-          "model": "nflverse",
-          "epaHome": -0.084,
-          "epaAway": 0.041,
-          "epaPoints": -1.5,
-          "qbPoints": 0.9,
-          "qbHome": "Deshaun Watson",
-          "qbAway": "C.J. Stroud",
-          "marginSd": 4.12
-        },
-        "reasons": {
-          "for": [
-            "Deshaun Watson starts for Cleveland Browns: -0.03 EPA a dropback against -0.08 behind their numbers (+1.5 points)",
-            "Home edge +2.1 for Cleveland Browns",
-            "Houston Texans without David Montgomery (RB), Keylan Rutledge (G), Danielle Hunter (DE) and 4 more (+3.3)"
-          ],
-          "against": [
-            "Cleveland Browns rate -3.2 and Houston Texans +2.1 points a game against their schedules (this season's results, last season carried over); EPA a play -0.08 and +0.04 net of defence (nflverse)",
-            "C.J. Stroud starts for Houston Texans: +0.03 EPA a dropback against +0.01 behind their numbers (+0.6 points)",
-            "Cleveland Browns without Michael Burton (FB), Ronnie Hickman (S) (-1.2)",
-            "Projected margin -1.7 for Cleveland Browns"
-          ]
-        }
-      },
-      "marketFair": 0.3284,
-      "marketEdge": -0.0106,
-      "rationale": "Our probability is 45.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -1.7 for the home side). theScore Bet offers +195, which implies only 33.9%. Its bar is 11.2 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 32.8%.",
-      "factors": [
-        "Best price +195 at theScore Bet",
-        "Probability 45.3% from game data, not other books",
-        "Edge 11.4 points over the price, 0.3 past its bar of 11.2",
-        "Market reference 32.8%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 45.3%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at theScore Bet implies 33.9%, so the edge is 11.4 points. Its bar is 11.2 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 45.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -1.7 for the home side). theScore Bet offers +195, which implies only 33.9%. Its bar is 11.2 points: the model's own margin of error on this side, with 8 games behind the thinner team (±4.12 points on the margin). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 32.8%.",
-        "support": [
-          "Deshaun Watson starts for Cleveland Browns: -0.03 EPA a dropback against -0.08 behind their numbers (+1.5 points).",
-          "Home edge +2.1 for Cleveland Browns.",
-          "Houston Texans without David Montgomery (RB), Keylan Rutledge (G), Danielle Hunter (DE) and 4 more (+3.3)."
-        ],
-        "risks": [
-          "Cleveland Browns rate -3.2 and Houston Texans +2.1 points a game against their schedules (this season's results, last season carried over); EPA a play -0.08 and +0.04 net of defence (nflverse).",
-          "C.J. Stroud starts for Houston Texans: +0.03 EPA a dropback against +0.01 behind their numbers (+0.6 points).",
-          "Cleveland Browns without Michael Burton (FB), Ronnie Hickman (S) (-1.2).",
-          "Projected margin -1.7 for Cleveland Browns.",
-          "At current prices our edge is 10.8 points, under its bar of 11.2 points; the pick stays posted and is graded at the price it was posted at."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 32.8% (-1.1 points against the best price). For reference only.",
-          "Market: DraftKings opened +180, now +185, moving against this side since the open.",
-          "Market: The market (8 books) opened +176, now +199, the consensus moving against this side since the open.",
-          "Weather at kickoff: Drizzle, 44°F, wind 14 mph, 4% rain.",
-          "Records: Houston Texans 3-5 · Cleveland Browns 5-4 · Huntington Bank Field, Cleveland."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401873056",
-        "venue": "Huntington Bank Field, Cleveland",
-        "indoor": false,
-        "records": {
-          "Cleveland Browns": {
-            "overall": "5-4",
-            "home": "3-0",
-            "away": "2-4"
-          },
-          "Houston Texans": {
-            "overall": "3-5",
-            "home": "0-4",
-            "away": "3-1"
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Cleveland Browns": [
-            {
-              "name": "Denzel Boston",
-              "pos": "WR",
-              "athleteId": "4832800",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4832800.png",
-              "status": "Questionable",
-              "type": "Toe",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-15T12:12Z",
-              "note": "Boston (toe), who is listed as questionable for Sunday's game against the Texans, is expected to play barring a surprise, Jeremy Fowler of ESPN reports."
-            },
-            {
-              "name": "Michael Burton",
-              "pos": "FB",
-              "athleteId": "2515270",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2515270.png",
-              "status": "Injured Reserve",
-              "type": "Calf",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-14T18:01Z",
-              "note": "The Browns placed Burton (calf) on injured reserve Saturday, Chris Easterling of the Akron Beacon Journal reports."
-            },
-            {
-              "name": "Ronnie Hickman",
-              "pos": "S",
-              "athleteId": "4569620",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4569620.png",
-              "status": "Out",
-              "type": "Concussion",
-              "detail": "Concussion",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-13T23:04Z",
-              "note": "Hickman (concussion) has been ruled out for Sunday's game against the Texans, Daniel Oyefusi of ESPN.com reports."
-            }
-          ],
-          "Houston Texans": [
-            {
-              "name": "Will Anderson Jr.",
-              "pos": "DE",
-              "athleteId": "4685724",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685724.png",
-              "status": "Questionable",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-15T12:29Z",
-              "note": "Anderson (ankle) \"should be OK\" to play Sunday against the Browns, according to Jeremy Fowler of ESPN.com."
-            },
-            {
-              "name": "Jake Hummel",
-              "pos": "LB",
-              "athleteId": "4241250",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4241250.png",
-              "status": "Questionable",
-              "type": "Groin",
-              "detail": "Surgery",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-14T19:27Z",
-              "note": "The Texans activated Hummel (groin) from injured reserve Saturday."
-            },
-            {
-              "name": "Braden Smith",
-              "pos": "OT",
-              "athleteId": "3121595",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3121595.png",
-              "status": "Questionable",
-              "type": "Illness",
-              "detail": "",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-14T19:25Z",
-              "note": "Smith is now questionable for Sunday's game against the Browns due to an illness."
-            },
-            {
-              "name": "David Montgomery",
-              "pos": "RB",
-              "athleteId": "4035538",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4035538.png",
-              "status": "Out",
-              "type": "Groin",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T18:18Z",
-              "note": "Montgomery (groin) has been downgraded from questionable to out for Sunday's game against the Browns."
-            },
-            {
-              "name": "Keylan Rutledge",
-              "pos": "G",
-              "athleteId": "4839498",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4839498.png",
-              "status": "Out",
-              "type": "Neck",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-14T02:08Z",
-              "note": "Rutledge (neck) has been ruled out ahead of Sunday's game against the Browns."
-            },
-            {
-              "name": "Danielle Hunter",
-              "pos": "DE",
-              "athleteId": "2976560",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2976560.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-13T23:40Z",
-              "note": "Hunter (hamstring) has been ruled out for Sunday's game against the Browns."
-            },
-            {
-              "name": "Brevin Jordan",
-              "pos": "TE",
-              "athleteId": "4362504",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362504.png",
-              "status": "Out",
-              "type": "Finger",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-13T23:36Z",
-              "note": "Jordan (finger) has been ruled out for Sunday's game against the Browns."
-            },
-            {
-              "name": "Azeez Al-Shaair",
-              "pos": "LB",
-              "athleteId": "3919117",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3919117.png",
-              "status": "Out",
-              "type": "Groin",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-13T23:32Z",
-              "note": "Al-Shaair (groin/personal) has been ruled out for Sunday's game against the Browns."
-            },
-            {
-              "name": "Wyatt Teller",
-              "pos": "G",
-              "athleteId": "3045474",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3045474.png",
-              "status": "Questionable",
-              "type": "Illness",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-13T21:36Z",
-              "note": "questionable"
-            },
-            {
-              "name": "Trent Brown",
-              "pos": "OT",
-              "athleteId": "3043109",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3043109.png",
-              "status": "Questionable",
-              "type": "Wrist",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-15",
-              "date": "2026-11-13T21:26Z",
-              "note": "questionable"
-            },
-            {
-              "name": "Marvin Harrison Jr.",
-              "pos": "WR",
-              "athleteId": "4432708",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4432708.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-13T21:13Z",
-              "note": "Harrison (hamstring) is ruled out for Sunday's game against the Browns."
-            },
-            {
-              "name": "Jaylin Smith",
-              "pos": "CB",
-              "athleteId": "4594277",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4594277.png",
-              "status": "Injured Reserve",
-              "type": "Hamstring",
-              "detail": "Strain",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-12T01:15Z",
-              "note": "The Texans designated Smith (hamstring) to return from injured reserve Wednesday."
-            }
-          ]
-        },
-        "rest": {
-          "Cleveland Browns": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 1
-          },
-          "Houston Texans": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 1
-          }
-        },
-        "weather": {
-          "summary": "Drizzle",
-          "tempF": 44,
-          "source": "Open-Meteo",
-          "city": "Cleveland, OH, USA",
-          "windMph": 14,
-          "precipPct": 4
-        },
-        "broadcast": "Fox",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 4.5,
-            "spreadOdds": {
-              "home": -108,
-              "away": -112
-            },
-            "total": 40.5,
-            "totalOdds": {
-              "over": -112,
-              "under": -108
-            },
-            "ml": {
-              "home": 185,
-              "away": -225
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": 4.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 38.5,
-            "totalOdds": {
-              "over": -110,
-              "under": -110
-            },
-            "ml": {
-              "home": 180,
-              "away": -218
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 195,
-        "loggedFair": 0.4533,
-        "currentOdds": 190,
-        "currentBook": "FanDuel",
-        "currentFair": 0.331,
-        "currentEdge": 0.1085,
-        "checkedAt": "2026-11-15T14:06:57.194Z",
-        "history": [
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": 195,
-            "fair": 0.3284
-          },
-          {
-            "at": "2026-11-15T14:06:57.194Z",
-            "odds": 190,
-            "fair": 0.331
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 180,
-          "fair": 0.34252477380439467
-        },
-        "now": {
-          "line": null,
-          "odds": 185,
-          "fair": 0.33635187580853815
-        },
-        "moved": "away",
-        "label": "DraftKings opened +180, now +185"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "line": null,
-          "odds": 185,
-          "fair": 0.3364
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": null,
-          "odds": 176
-        },
-        "now": {
-          "line": null,
-          "odds": 199
-        },
-        "moved": "away",
-        "label": "The market (8 books) opened +176, now +199"
-      },
-      "sgo": {
-        "at": "2026-11-15T14:06:57.194Z",
-        "n": 8,
-        "best": {
-          "book": "Caesars",
-          "odds": 192
-        },
-        "fair": 0.3326,
-        "vendorFair": 0.3344,
-        "open": {
-          "line": null,
-          "odds": 176
-        },
-        "now": {
-          "line": null,
-          "odds": 199
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.3335,
-          "vendorFair": 0.3333,
-          "line": null,
-          "odds": 200,
-          "best": 195,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T13:41:50.578Z",
-          "fair": 0.3326,
-          "vendorFair": 0.3344,
-          "line": null,
-          "odds": 199,
-          "best": 192,
-          "n": 8
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Win",
-      "units": 1.95,
-      "score": {
-        "home": 27,
-        "away": 24
-      },
-      "loggedAt": "2026-11-14T20:36:57.263Z",
-      "valueTo": 193,
-      "bar": 0.1117,
-      "past": 0.0026,
-      "barParts": {
-        "error": 0.1117,
-        "units": 4.12,
-        "unit": "points",
-        "gp": 8,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-15T14:06:57.194Z",
-        "odds": 190,
-        "book": "FanDuel",
-        "modelProb": 0.4533,
-        "edge": 0.1085,
-        "bar": 0.1117
-      },
-      "standing": "below",
       "availability": null
     },
     {

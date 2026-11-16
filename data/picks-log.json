@@ -20902,11 +20902,11 @@
   "odds": 116,
   "book": "FanDuel",
   "prices": {
-   "FanDuel": 116,
+   "FanDuel": 114,
    "DraftKings": 114,
    "theScore Bet": 115,
    "BetRivers": 105,
-   "Bovada": 115,
+   "Bovada": 107,
    "Caesars": 116,
    "ESPN BET": 115
   },
@@ -20979,19 +20979,24 @@
   "loggedAt": "2026-11-15T20:35:50.992Z",
   "availability": null,
   "current": {
-   "at": "2026-11-15T20:35:50.992Z",
-   "odds": 116,
-   "book": "FanDuel",
-   "fair": 0.4495,
-   "edge": 0.1531,
-   "modelProb": 0.6161,
-   "bar": 0.065
+   "at": "2026-11-16T14:10:32.254Z",
+   "odds": 118,
+   "book": "BetOnline.ag",
+   "fair": 0.4648,
+   "edge": 0.1244,
+   "modelProb": 0.5831,
+   "bar": 0.0666
   },
   "history": [
    {
     "at": "2026-11-15T20:35:50.992Z",
     "odds": 116,
     "fair": 0.4495
+   },
+   {
+    "at": "2026-11-16T14:10:32.254Z",
+    "odds": 118,
+    "fair": 0.4648
    }
   ],
   "context": {
@@ -21005,9 +21010,9 @@
      "away": "6-6-1"
     },
     "Vancouver Canucks": {
-     "overall": "3-17-1",
+     "overall": "4-17-1",
      "home": "1-9-0",
-     "away": "2-8-1"
+     "away": "3-8-1"
     }
    },
    "probables": {
@@ -21136,10 +21141,10 @@
      "gamesLast7": 3
     },
     "Vancouver Canucks": {
-     "restDays": 3,
-     "b2b": false,
-     "lastGame": "2026-11-14",
-     "gamesLast7": 2
+     "restDays": 1,
+     "b2b": true,
+     "lastGame": "2026-11-16",
+     "gamesLast7": 3
     }
    },
    "weather": null,
@@ -21154,8 +21159,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -105,
-      "under": -115
+      "over": -112,
+      "under": -108
      },
      "ml": {
       "home": -340,
@@ -21214,10 +21219,10 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 124
+    "odds": 122
    },
    "moved": "toward",
-   "label": "The market (5 books) opened +5 (+100), now +1.5 (+124)"
+   "label": "The market (5 books) opened +5 (+100), now +1.5 (+122)"
   },
   "breakdown": {
    "tier": "High",
@@ -21227,7 +21232,8 @@
     "Utah Mammoth trending: last five -1.4 vs -0.2 on the season.",
     "Vancouver Canucks are rested (3 days).",
     "Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).",
-    "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable."
+    "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable.",
+    "A better price is now available: +118 at BetOnline.ag."
    ],
    "risks": [
     "Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.",
@@ -21238,37 +21244,38 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
+    "Market: the sharp line has moved toward this side since it was logged (45.0% → 46.5%).",
     "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
-    "Market: The market (5 books) opened +5 (+100), now +1.5 (+124), the consensus moving toward this side since the open.",
+    "Market: The market (5 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Mammoth Karel Vejmelka · Canucks Kevin Lankinen.",
-    "Records: Vancouver Canucks 3-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
+    "Records: Vancouver Canucks 4-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
    ],
-   "verdict": "More working against this one than for it; size down."
+   "verdict": "The game data lines up behind this side at this price."
   },
   "sgoEventId": "1zPBxiVhVBMEjr0JbkcI",
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "1zPBxiVhVBMEjr0JbkcI",
-   "at": "2026-11-15T20:35:50.992Z",
+   "at": "2026-11-16T14:10:32.254Z",
    "books": {
-    "FanDuel": 116,
+    "FanDuel": 114,
     "DraftKings": 114,
     "Caesars": 116,
     "ESPN BET": 115,
-    "Bovada": 115
+    "Bovada": 107
    },
    "n": 5,
    "best": {
-    "book": "FanDuel",
+    "book": "Caesars",
     "odds": 116
    },
-   "fair": 0.4458,
+   "fair": 0.4496,
    "fairBooks": 5,
    "vendor": {
     "line": 1.5,
-    "odds": 124,
-    "fair": 0.4464,
+    "odds": 122,
+    "fair": 0.4505,
     "sameLine": true
    },
    "open": {
@@ -21277,12 +21284,12 @@
    },
    "now": {
     "line": 1.5,
-    "odds": 124
+    "odds": 122
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:35:50.992Z",
+  "pricesAt": "2026-11-16T14:10:32.254Z",
   "sgoHistory": [
    {
     "at": "2026-11-15T20:35:50.992Z",
@@ -21292,7 +21299,47 @@
     "odds": 124,
     "best": 116,
     "n": 5
+   },
+   {
+    "at": "2026-11-16T14:10:32.254Z",
+    "fair": 0.4496,
+    "vendorFair": 0.4505,
+    "line": 1.5,
+    "odds": 122,
+    "best": 116,
+    "n": 5
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": 116,
+   "loggedFair": 0.6161,
+   "currentOdds": 118,
+   "currentBook": "BetOnline.ag",
+   "currentFair": 0.4648,
+   "currentEdge": 0.1244,
+   "checkedAt": "2026-11-16T14:10:32.254Z",
+   "history": [
+    {
+     "at": "2026-11-15T20:35:50.992Z",
+     "odds": 116,
+     "fair": 0.4495
+    },
+    {
+     "at": "2026-11-16T14:10:32.254Z",
+     "odds": 118,
+     "fair": 0.4648
+    }
+   ]
+  }
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-16",
+  "date": "2026-11-16",
+  "checkedAt": "2026-11-16T14:12:07.726Z",
+  "closedAt": null,
+  "candidates": 10,
+  "leans": 1,
+  "props": 9
  }
 ]
