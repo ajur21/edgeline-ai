@@ -17456,8 +17456,8 @@
    "Edge 14.8 points over the price, 3.5 past its bar of 11.3",
    "Market reference 34.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
@@ -17887,7 +17887,30 @@
      "fair": 0.3454
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "22-24",
+  "finalScore": {
+   "home": 24,
+   "away": 22
+  },
+  "gradedAt": "2026-11-16T00:53:27.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873059",
+   "line": null,
+   "odds": 195,
+   "fair": 0.325,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 235,
+    "fair": 0.2864
+   },
+   "samples": 2
+  },
+  "clv": -0.0321,
+  "lineMove": null
  },
  {
   "key": "6c932a965110f3f89ec4a5f1a6ac256e|h2h|Arizona Cardinals|null",
@@ -17992,8 +18015,8 @@
    "Edge 13.4 points over the price, 3.5 past its bar of 9.9",
    "Market reference 21.3%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
@@ -18532,7 +18555,30 @@
      "fair": 0.2025
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "34-6",
+  "finalScore": {
+   "home": 6,
+   "away": 34
+  },
+  "gradedAt": "2026-11-16T00:53:27.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873061",
+   "line": null,
+   "odds": 350,
+   "fair": 0.2133,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 400,
+    "fair": 0.1918
+   },
+   "samples": 3
+  },
+  "clv": 0.0133,
+  "lineMove": null
  },
  {
   "key": "5773e80d52d3fba36b11be38ded62790|h2h|Minnesota Timberwolves|null",
@@ -19190,7 +19236,7 @@
    "DraftKings": 130,
    "FanDuel": 128,
    "BetRivers": 138,
-   "Bovada": 135,
+   "Bovada": 140,
    "Caesars": 140
   },
   "books": 3,
@@ -19490,19 +19536,19 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "YdP4xKXlYDGfk21uXJ1B",
-   "at": "2026-11-15T20:35:50.992Z",
+   "at": "2026-11-16T00:53:27.850Z",
    "books": {
     "DraftKings": 130,
     "Caesars": 140,
     "FanDuel": 128,
-    "Bovada": 135
+    "Bovada": 140
    },
    "n": 4,
    "best": {
     "book": "Caesars",
     "odds": 140
    },
-   "fair": 0.41,
+   "fair": 0.4081,
    "fairBooks": 4,
    "vendor": {
     "line": 2.5,
@@ -19521,7 +19567,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:35:50.992Z",
+  "pricesAt": "2026-11-16T00:53:27.850Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19553,6 +19599,15 @@
    {
     "at": "2026-11-15T20:35:50.992Z",
     "fair": 0.41,
+    "vendorFair": 0.5349,
+    "line": 2.5,
+    "odds": -115,
+    "best": 140,
+    "n": 4
+   },
+   {
+    "at": "2026-11-16T00:53:27.850Z",
+    "fair": 0.4081,
     "vendorFair": 0.5349,
     "line": 2.5,
     "odds": -115,
@@ -19612,14 +19667,14 @@
   "prices": {
    "DraftKings": 105,
    "theScore Bet": 110,
-   "FanDuel": 102,
+   "FanDuel": -104,
    "BetMGM": 100,
    "BetRivers": 106,
-   "ESPN BET": 105,
-   "Caesars": 106,
-   "Unibet": -128,
+   "ESPN BET": 100,
+   "Caesars": 108,
+   "Unibet": -119,
    "Bovada": 105,
-   "PointsBet": 105
+   "PointsBet": 100
   },
   "books": 5,
   "anchor": null,
@@ -19826,8 +19881,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 154,
-      "away": -185
+      "home": 160,
+      "away": -192
      },
      "total": 6.5,
      "totalOdds": {
@@ -19903,10 +19958,10 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 110
+    "odds": 109
    },
    "moved": "toward",
-   "label": "The market (8 books) opened 7.5 (-166), now 6.5 (+110)"
+   "label": "The market (8 books) opened 7.5 (-166), now 6.5 (+109)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -19925,7 +19980,7 @@
     "Where the market sits: the de-vigged consensus of 5 books makes this side 45.7% (-1.0 points against the best price). For reference only.",
     "Market: the sharp line has moved toward this side since it was logged (45.7% → 47.0%).",
     "Market: DraftKings opened 6.5 (+114), now 6.5 (+105), moving toward this side since the open.",
-    "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+110), the consensus moving toward this side since the open.",
+    "Market: The market (8 books) opened 7.5 (-166), now 6.5 (+109), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Ducks Ville Husso · Flames Devin Cooley.",
     "Records: Calgary Flames 9-10-1 · Anaheim Ducks 10-9-1 · Honda Center, Anaheim."
@@ -19936,28 +19991,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "oNFl8YlKC8KbIFnxX2ut",
-   "at": "2026-11-15T20:35:50.992Z",
+   "at": "2026-11-16T00:53:27.850Z",
    "books": {
     "DraftKings": 105,
-    "ESPN BET": 105,
-    "Caesars": 106,
-    "FanDuel": 102,
+    "ESPN BET": 100,
+    "Caesars": 108,
+    "FanDuel": -104,
     "BetMGM": 100,
-    "Unibet": -128,
+    "Unibet": -119,
     "Bovada": 105,
-    "PointsBet": 105
+    "PointsBet": 100
    },
    "n": 8,
    "best": {
     "book": "Caesars",
-    "odds": 106
+    "odds": 108
    },
-   "fair": 0.477,
+   "fair": 0.4783,
    "fairBooks": 8,
    "vendor": {
     "line": 6.5,
-    "odds": 110,
-    "fair": 0.4762,
+    "odds": 109,
+    "fair": 0.4785,
     "sameLine": true
    },
    "open": {
@@ -19966,12 +20021,12 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 110
+    "odds": 109
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-15T20:35:50.992Z",
+  "pricesAt": "2026-11-16T00:53:27.850Z",
   "sgoHistory": [
    {
     "at": "2026-11-14T20:36:57.263Z",
@@ -19998,6 +20053,15 @@
     "line": 6.5,
     "odds": 110,
     "best": 106,
+    "n": 8
+   },
+   {
+    "at": "2026-11-16T00:53:27.850Z",
+    "fair": 0.4783,
+    "vendorFair": 0.4785,
+    "line": 6.5,
+    "odds": 109,
+    "best": 108,
     "n": 8
    }
   ],
@@ -20133,8 +20197,8 @@
    "Edge 11.4 points over the price, 0.3 past its bar of 11.2",
    "Market reference 32.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.95,
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
@@ -20564,7 +20628,30 @@
      "fair": 0.331
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "24-27",
+  "finalScore": {
+   "home": 27,
+   "away": 24
+  },
+  "gradedAt": "2026-11-16T00:53:27.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873056",
+   "line": null,
+   "odds": 170,
+   "fair": 0.3553,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 180,
+    "fair": 0.3425
+   },
+   "samples": 2
+  },
+  "clv": 0.0163,
+  "lineMove": null
  },
  {
   "type": "parlay",
@@ -20645,13 +20732,14 @@
   ],
   "proj": 1.2,
   "linesAt": "2026-11-15T14:09:02.602Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
+  "status": "graded",
+  "actual": 3,
+  "result": "Loss",
+  "units": -1,
   "lockedAt": "2026-11-15T14:10:05.204Z",
   "potd": "2026-11-15",
-  "potdAt": "2026-11-15T14:10:05.204Z"
+  "potdAt": "2026-11-15T14:10:05.204Z",
+  "gradedAt": "2026-11-16T00:53:27.850Z"
  },
  {
   "type": "prop",
@@ -20705,18 +20793,19 @@
   ],
   "proj": 25.2,
   "linesAt": "2026-11-15T14:09:02.602Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-15T14:10:05.204Z"
+  "status": "graded",
+  "actual": 4,
+  "result": "Loss",
+  "units": -1,
+  "lockedAt": "2026-11-15T14:10:05.204Z",
+  "gradedAt": "2026-11-16T00:53:27.850Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-15",
   "date": "2026-11-15",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-15T14:10:05.204Z",
   "book": "DraftKings",
   "legs": [
@@ -20730,7 +20819,9 @@
   "decimal": 3.2822,
   "odds": 228,
   "fairProb": 0.4063,
-  "ev": 0.3334
+  "ev": 0.3334,
+  "gradedAt": "2026-11-16T00:53:27.850Z",
+  "result": "Loss"
  },
  {
   "type": "day",

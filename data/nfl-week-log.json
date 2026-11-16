@@ -92,7 +92,13 @@
     "marginSd": 4.11
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 12,
+    "away": 31,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873055": {
@@ -116,7 +122,13 @@
     "marginSd": 4.15
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 17,
+    "away": 20,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873056": {
@@ -140,7 +152,13 @@
     "marginSd": 4.12
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 27,
+    "away": 24,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873057": {
@@ -164,7 +182,13 @@
     "marginSd": 4.15
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 23,
+    "away": 40,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873058": {
@@ -188,7 +212,13 @@
     "marginSd": 4.13
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 13,
+    "away": 35,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873059": {
@@ -212,7 +242,13 @@
     "marginSd": 4.12
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 24,
+    "away": 22,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873060": {
@@ -236,7 +272,13 @@
     "marginSd": 4.02
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 10,
+    "away": 30,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
    "lockedAt": "2026-11-15T18:00Z"
   },
   "401873061": {
@@ -259,8 +301,15 @@
     "model": "nflverse",
     "marginSd": 3.97
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": {
+    "home": 6,
+    "away": 34,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
+   "lockedAt": "2026-11-15T21:05Z"
   },
   "401873062": {
    "id": "401873062",
@@ -282,8 +331,15 @@
     "model": "nflverse",
     "marginSd": 4.07
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": {
+    "home": 13,
+    "away": 21,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
+   "lockedAt": "2026-11-15T21:05Z"
   },
   "401873063": {
    "id": "401873063",
@@ -305,8 +361,15 @@
     "model": "nflverse",
     "marginSd": 4.12
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": {
+    "home": 40,
+    "away": 46,
+    "winner": "away",
+    "call": "Win",
+    "gradedAt": "2026-11-16T00:53:53.045Z"
+   },
+   "lockedAt": "2026-11-15T21:25Z"
   },
   "401873064": {
    "id": "401873064",

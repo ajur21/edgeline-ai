@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-15",
   "windowDays": 30,
   "record": {
-    "wins": 19,
-    "losses": 20,
+    "wins": 20,
+    "losses": 22,
     "pushes": 0
   },
-  "units": -3.1,
-  "roi": -7.9,
-  "avgEdge": 8.9,
-  "graded": 39,
+  "units": -3.15,
+  "roi": -7.5,
+  "avgEdge": 9.2,
+  "graded": 42,
   "daily": [
     {
       "date": "2026-11-05",
@@ -49,6 +49,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-14",
       "units": -3.1
+    },
+    {
+      "date": "2026-11-15",
+      "units": -3.15
     }
   ],
   "bySport": [
@@ -66,9 +70,59 @@ window.PERF_DATA = {
       "sport": "Soccer",
       "units": -1.33,
       "record": "4-5"
+    },
+    {
+      "sport": "NFL",
+      "units": -0.05,
+      "record": "1-2"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-15",
+      "sport": "NFL",
+      "event": "Los Angeles Rams @ Arizona Cardinals",
+      "pick": "Arizona Cardinals ML",
+      "odds": 400,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0133,
+      "closeOdds": 350,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-15",
+      "sport": "NFL",
+      "event": "Houston Texans @ Cleveland Browns",
+      "pick": "Cleveland Browns ML",
+      "odds": 195,
+      "result": "Win",
+      "units": 1.95,
+      "clv": 0.0163,
+      "closeOdds": 170,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-15",
+      "sport": "NFL",
+      "event": "Miami Dolphins @ Indianapolis Colts",
+      "pick": "Miami Dolphins ML",
+      "odds": 180,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0321,
+      "closeOdds": 195,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-14",
       "sport": "NHL",
@@ -203,51 +257,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-12",
-      "sport": "NHL",
-      "event": "Carolina Hurricanes @ Seattle Kraken",
-      "pick": "Seattle Kraken +1.5",
-      "odds": 100,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0261,
-      "closeOdds": 102,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-11",
-      "sport": "NHL",
-      "event": "Nashville Predators @ Anaheim Ducks",
-      "pick": "Under 6.5",
-      "odds": 121,
-      "result": "Win",
-      "units": 1.21,
-      "clv": -0.0246,
-      "closeOdds": 124,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-11",
-      "sport": "NHL",
-      "event": "Pittsburgh Penguins @ San Jose Sharks",
-      "pick": "Under 6.5",
-      "odds": 118,
-      "result": "Win",
-      "units": 1.18,
-      "clv": -0.0222,
-      "closeOdds": 120,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -313,16 +322,33 @@ window.PERF_DATA = {
       "wins": 3,
       "losses": 3,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-15",
+      "units": -0.05,
+      "wins": 1,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 2,
-    "losses": 7,
+    "losses": 8,
     "pushes": 0,
-    "units": -5.05,
-    "n": 9,
-    "props": 0,
+    "units": -6.05,
+    "n": 10,
+    "props": 1,
     "recent": [
+      {
+        "date": "2026-11-15",
+        "kind": "prop",
+        "sport": "NFL",
+        "event": "Los Angeles Rams @ Arizona Cardinals",
+        "pick": "Konata Mumpfield under 2.5 receptions",
+        "odds": -135,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-14",
         "kind": "lean",
@@ -417,31 +443,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 0,
-    "losses": 9,
+    "losses": 10,
     "pushes": 0,
-    "units": -9,
-    "n": 9
+    "units": -10,
+    "n": 10
   },
   "clv": {
-    "n": 33,
-    "avg": -1.51,
-    "beat": 7,
-    "beatPct": 21.2,
-    "graded": 39,
+    "n": 36,
+    "avg": -1.39,
+    "beat": 9,
+    "beatPct": 25,
+    "graded": 42,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 39,
+    "espnCloses": 42,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 19,
-      "losses": 20,
+      "wins": 20,
+      "losses": 22,
       "pushes": 0,
-      "units": -3.1,
-      "n": 39,
-      "roi": -7.9,
-      "pending": 6,
+      "units": -3.15,
+      "n": 42,
+      "roi": -7.5,
+      "pending": 3,
       "since": "2026-11-05"
     },
     "price": {
