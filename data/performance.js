@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-15",
+  "asOf": "2026-11-16",
   "windowDays": 30,
   "record": {
-    "wins": 20,
-    "losses": 22,
+    "wins": 21,
+    "losses": 23,
     "pushes": 0
   },
-  "units": -3.15,
-  "roi": -7.5,
-  "avgEdge": 9.2,
-  "graded": 42,
+  "units": -2.75,
+  "roi": -6.2,
+  "avgEdge": 9.1,
+  "graded": 44,
   "daily": [
     {
       "date": "2026-11-05",
@@ -52,14 +52,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-15",
-      "units": -3.15
+      "units": -2.75
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 1.03,
-      "record": "14-12"
+      "units": 1.43,
+      "record": "15-13"
     },
     {
       "sport": "NBA",
@@ -78,6 +78,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-15",
+      "sport": "NHL",
+      "event": "Vancouver Canucks @ Vegas Golden Knights",
+      "pick": "Vancouver Canucks +1.5",
+      "odds": 140,
+      "result": "Win",
+      "units": 1.4,
+      "clv": -0.0163,
+      "closeOdds": 140,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-15",
+      "sport": "NHL",
+      "event": "Calgary Flames @ Anaheim Ducks",
+      "pick": "Under 6.5",
+      "odds": 114,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0002,
+      "closeOdds": 105,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-15",
       "sport": "NFL",
@@ -227,36 +257,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-13",
-      "sport": "NBA",
-      "event": "Atlanta Hawks @ Chicago Bulls",
-      "pick": "Atlanta Hawks ML",
-      "odds": -260,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.031,
-      "closeOdds": -257,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-12",
-      "sport": "NHL",
-      "event": "New York Islanders @ Los Angeles Kings",
-      "pick": "Over 5.5",
-      "odds": -117,
-      "result": "Win",
-      "units": 0.85,
-      "clv": 0.0122,
-      "closeOdds": -135,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -325,9 +325,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-15",
-      "units": -0.05,
-      "wins": 1,
-      "losses": 2,
+      "units": 0.35,
+      "wins": 2,
+      "losses": 3,
       "pushes": 0
     }
   ],
@@ -449,25 +449,25 @@ window.PERF_DATA = {
     "n": 10
   },
   "clv": {
-    "n": 36,
-    "avg": -1.39,
-    "beat": 9,
-    "beatPct": 25,
-    "graded": 42,
+    "n": 38,
+    "avg": -1.36,
+    "beat": 10,
+    "beatPct": 26.3,
+    "graded": 44,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 42,
+    "espnCloses": 44,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 20,
-      "losses": 22,
+      "wins": 21,
+      "losses": 23,
       "pushes": 0,
-      "units": -3.15,
-      "n": 42,
-      "roi": -7.5,
-      "pending": 3,
+      "units": -2.75,
+      "n": 44,
+      "roi": -6.2,
+      "pending": 1,
       "since": "2026-11-05"
     },
     "price": {

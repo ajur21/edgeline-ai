@@ -708,29 +708,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-15@edgeline
-DTSTAMP:20261116T005327Z
-DTSTART:20261115T180000Z
-DTEND:20261116T000500Z
-SUMMARY:Parlay lean of the day: 2 legs +228 at DraftKings · Lost -1.00u
-DESCRIPTION:All legs priced at DraftKings. Fair 40.6%\, implied 30.5%\, EV 
- +33.3% per unit.\n- NFL: Konata Mumpfield under 2.5 receptions -142 · Los
-  Angeles Rams @ Arizona Cardinals\n- NFL: John Metchie III over 7.5 receiv
- ing yards -108 · Carolina Panthers @ New Orleans Saints\nResult: Lost -1.
- 00u\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261116T005327Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +228 at DraftKings · Lost -1.00
- u
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:b5700b4d93-h2h-Miami-Dolphins@edgeline
 DTSTAMP:20261116T005327Z
 DTSTART:20261115T180000Z
@@ -806,80 +783,38 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:539a387d9f-totals-Under@edgeline
-DTSTAMP:20261116T005327Z
+DTSTAMP:20261116T053825Z
 DTSTART:20261116T011000Z
 DTEND:20261116T041000Z
-SUMMARY:Under 6.5 +114 at DraftKings · Low
+SUMMARY:Under 6.5 +114 at DraftKings · Lost -1.00u
 DESCRIPTION:NHL · Calgary Flames @ Anaheim Ducks · Sun Nov 15\, 8:10 PM E
- T\nTotal: Under 6.5 at +114 (DraftKings). Our probability 51.2% from game 
- data\, the price implies 46.7%\, edge +4.5 pts\, EV +9.6% per unit. Confid
- ence: Lean.\nOur probability at 6.5 is 51.2%\, from the game data: this se
- ason's results and margins\, recent form\, rest\, the injury report and ho
- me edge (projected total 6.4). DraftKings offers +114\, which implies only
-  46.7%. Its bar is 3.0 points (the floor: the model's own margin of error 
- here is smaller). It clears it by 1.5. Not graded against other books' pri
- ces\; for reference the market makes it 45.7%.\nWhat supports it:\n- Combi
- ned scoring 7.4 a game in Anaheim Ducks's games\, 5.9 in Calgary Flames's 
- (league average 6.3).\n- Projected total 6.4 against 6.5.\n- Scorers out: 
- Ryan Poehling (C)\, knee\; Ian Moore (D)\, lower body\; A.J. Greer (LW)\, 
- upper body and 3 more. Fewer healthy scorers leans under.\n- Anaheim Ducks
-  and Calgary Flames on a back-to-back\; tired legs lean under.\nWhat could
-  go wrong:\n- At current prices our edge is 2.6 points\, under its bar of 
- 3.0 points\; the pick stays posted and is graded at the price it was poste
- d at.\nVerdict: The game data lines up behind this side at this price.\nPr
- ices: theScore Bet +110\, Caesars +108\, BetRivers +106\, DraftKings +105\
- , Bovada +105 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeli
- ne-ai/picks.html#539a387d9f-totals-Under
+ T\nTotal: Under 6.5 at +114 (DraftKings). Lost -1.00u.\nFinal: 1-6\nClosin
+ g line value: 0.0 pts (closed +105\, DraftKings close (ESPN)).\nRecord and
+  every graded lean: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Honda Center\, Anaheim
-URL:https://ajur21.github.io/edgeline-ai/picks.html#539a387d9f-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261116T005327Z
+LAST-MODIFIED:20261116T053825Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 6.5 +114 at DraftKings · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:c4ac537963-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261116T005327Z
+DTSTAMP:20261116T053825Z
 DTSTART:20261116T021000Z
 DTEND:20261116T051000Z
-SUMMARY:Vancouver Canucks +1.5 +140 at DraftKings · Medium
+SUMMARY:Vancouver Canucks +1.5 +140 at DraftKings · Won +1.40u
 DESCRIPTION:NHL · Vancouver Canucks @ Vegas Golden Knights · Sun Nov 15\,
-  9:10 PM ET\nPuck line: Vancouver Canucks +1.5 at +140 (DraftKings). Our p
- robability 51.0% from game data\, the price implies 41.7%\, edge +9.3 pts\
- , EV +22.4% per unit. Confidence: Medium.\nOur probability at +1.5 is 51.0
- %\, from the game data: this season's results and margins\, recent form\, 
- rest\, the injury report and home edge (projected margin +1.3 for the home
-  side). DraftKings offers +140\, which implies only 41.7%. Its bar is 7.0 
- points: the model's own margin of error on this side\, with 21 games behin
- d the thinner team (±0.43 goals on the margin). It clears it by 2.3. Not 
- graded against other books' prices\; for reference the market makes it 40.
- 0%.\nWhat supports it:\n- Vegas Golden Knights without Noah Hanifin (D) (-
- 0.1).\nWhat could go wrong:\n- Vegas Golden Knights rate +0.3 a game over 
- 21 (13-8)\, Vancouver Canucks -0.9 over 21 (3-18)\; last season +0.2 and -
- 1.2 a game.\n- Vancouver Canucks trending: last five -2.6 vs -1.8 on the s
- eason.\n- Home edge +0.2 for Vegas Golden Knights.\n- Vancouver Canucks wi
- thout Guillaume Brisebois (D) (+0).\n- Projected margin -1.3 for Vancouver
-  Canucks against +1.5.\nVerdict: More working against this one than for it
- \; size down.\nPrices: Bovada +140\, Caesars +140\, BetRivers +138\, Draft
- Kings +130\, FanDuel +128.\nFull breakdown: https://ajur21.github.io/edgel
- ine-ai/picks.html#c4ac537963-spreads-Vancouver-Canucks
+  9:10 PM ET\nPuck line: Vancouver Canucks +1.5 at +140 (DraftKings). Won +
+ 1.40u.\nFinal: 6-3\nClosing line value: -1.6 pts (closed +140\, DraftKings
+  close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/ed
+ geline-ai/performance.html
 LOCATION:T-Mobile Arena\, Las Vegas
-URL:https://ajur21.github.io/edgeline-ai/picks.html#c4ac537963-spreads-Vanc
- ouver-Canucks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261116T005327Z
+LAST-MODIFIED:20261116T053825Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Vancouver Canucks +1.5 +140 at DraftKings · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:f597347519-spreads-Vancouver-Canucks@edgeline

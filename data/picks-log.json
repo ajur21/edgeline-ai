@@ -19300,8 +19300,8 @@
    "Edge 9.3 points over the price, 2.3 past its bar of 7.0",
    "Market reference 40.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.4,
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
@@ -19640,7 +19640,30 @@
      "fair": 0.4141
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "6-3",
+  "finalScore": {
+   "home": 3,
+   "away": 6
+  },
+  "gradedAt": "2026-11-16T05:38:25.075Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892724",
+   "line": 1.5,
+   "odds": 140,
+   "fair": 0.4004,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": 136,
+    "fair": 0.4066
+   },
+   "samples": 3
+  },
+  "clv": -0.0163,
+  "lineMove": null
  },
  {
   "key": "539a387d9fd0da9af213bf8002fdb0d4|totals|Under|6.5",
@@ -19732,8 +19755,8 @@
    "Edge 4.5 points over the price, 1.5 past its bar of 3.0",
    "Market reference 45.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-14T20:36:57.263Z",
   "availability": null,
   "current": {
@@ -20090,7 +20113,30 @@
      "fair": 0.4697
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "1-6",
+  "finalScore": {
+   "home": 6,
+   "away": 1
+  },
+  "gradedAt": "2026-11-16T05:38:25.075Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892723",
+   "line": 6.5,
+   "odds": 105,
+   "fair": 0.4675,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 114,
+    "fair": 0.4486
+   },
+   "samples": 3
+  },
+  "clv": 0.0002,
+  "lineMove": null
  },
  {
   "key": "be0e03cc42fbc9b6962467b22c7bf9dd|h2h|Cleveland Browns|null",

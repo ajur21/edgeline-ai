@@ -391,8 +391,15 @@
     "model": "nflverse",
     "marginSd": 4.07
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": {
+    "home": 38,
+    "away": 18,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-16T05:38:27.685Z"
+   },
+   "lockedAt": "2026-11-16T01:20Z"
   },
   "401873065": {
    "id": "401873065",

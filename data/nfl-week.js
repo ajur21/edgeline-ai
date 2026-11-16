@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-15T20:36:45.700Z",
- "checkedAt": "2026-11-16T00:53:53.045Z",
+ "checkedAt": "2026-11-16T05:38:27.685Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -58,20 +58,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 10",
-   "w": 7,
+   "w": 8,
    "l": 5,
    "p": 0,
-   "pending": 2,
-   "pct": 0.5833,
-   "avgProb": 0.6195
+   "pending": 1,
+   "pct": 0.6154,
+   "avgProb": 0.6192
   },
   "season": {
-   "w": 7,
+   "w": 8,
    "l": 5,
    "p": 0,
-   "pending": 2,
-   "pct": 0.5833,
-   "avgProb": 0.6195
+   "pending": 1,
+   "pct": 0.6154,
+   "avgProb": 0.6192
   }
  },
  "games": [
@@ -2270,10 +2270,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-16T01:20Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/15 - 8:20 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 38,
+    "away": 18
+   },
    "home": {
     "id": "4",
     "abbr": "CIN",
@@ -2300,7 +2303,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-15T20:36:45.700Z",
-    "locked": false,
+    "locked": true,
     "margin": 4.23,
     "total": 46.1,
     "marginSd": 4.07,
@@ -2439,32 +2442,16 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-15T20:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.6154,
-     "bar": 0.1064,
-     "price": -103
-    },
-    "away": {
-     "prob": 0.3846,
-     "bar": 0.1064,
-     "price": 260
-    }
-   },
-   "board": {
-    "eventId": "48e497c230e6c9afcb3b600091d28e17",
-    "pricedAt": "2026-11-15T20:35:50.992Z",
-    "home": {
-     "odds": -185,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": 167,
-     "book": "Bovada"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 38,
+    "away": 18,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-16T05:38:27.685Z"
+   }
   },
   {
    "id": "401873065",
