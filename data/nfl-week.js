@@ -3,7 +3,7 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-16T14:10:47.441Z",
+ "generatedAt": "2026-11-16T20:37:40.283Z",
  "checkedAt": null,
  "season": 2026,
  "week": {
@@ -2487,7 +2487,7 @@ window.NFL_WEEK_DATA = {
    "tv": "ESPN",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-16T14:10:47.441Z",
+    "at": "2026-11-16T20:37:40.283Z",
     "locked": false,
     "margin": 4.82,
     "total": 44.3,
@@ -2602,10 +2602,10 @@ window.NFL_WEEK_DATA = {
    "weather": {
     "mph": 2,
     "dir": "NW",
-    "temp": 46,
+    "temp": 44,
     "unit": "F",
     "precip": 0,
-    "text": "Clear",
+    "text": "Mostly Clear",
     "at": "2026-11-16T20:00:00-05:00",
     "source": "National Weather Service"
    },
@@ -2623,14 +2623,14 @@ window.NFL_WEEK_DATA = {
    },
    "board": {
     "eventId": "35e3bdff558b5d1506251e814986f164",
-    "pricedAt": "2026-11-15T20:35:50.992Z",
+    "pricedAt": "2026-11-16T20:36:29.679Z",
     "home": {
-     "odds": -220,
+     "odds": -216,
      "book": "BetOnline.ag"
     },
     "away": {
-     "odds": 190,
-     "book": "FanDuel"
+     "odds": 195,
+     "book": "BetRivers"
     }
    },
    "posted": null,
