@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-16T14:10:32.254Z",
+  "trackedAt": "2026-11-16T15:16:07.918Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -61,9 +62,10 @@ window.PICKS_DATA = {
         "BetRivers": 105,
         "Bovada": 107,
         "Caesars": 116,
-        "ESPN BET": 115
+        "ESPN BET": 115,
+        "BetMGM": 110
       },
-      "pricesAt": "2026-11-16T14:10:32.254Z",
+      "pricesAt": "2026-11-16T15:16:07.918Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.6161,
@@ -138,7 +140,7 @@ window.PICKS_DATA = {
           "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (45.0% → 46.5%).",
           "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
-          "Market: The market (5 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
+          "Market: The market (6 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Karel Vejmelka · Canucks Kevin Lankinen.",
           "Records: Vancouver Canucks 4-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
@@ -379,7 +381,7 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 6,
         "open": {
           "line": 5,
           "odds": 100
@@ -389,16 +391,16 @@ window.PICKS_DATA = {
           "odds": 122
         },
         "moved": "toward",
-        "label": "The market (5 books) opened +5 (+100), now +1.5 (+122)"
+        "label": "The market (6 books) opened +5 (+100), now +1.5 (+122)"
       },
       "sgo": {
-        "at": "2026-11-16T14:10:32.254Z",
-        "n": 5,
+        "at": "2026-11-16T15:16:07.918Z",
+        "n": 6,
         "best": {
           "book": "Caesars",
           "odds": 116
         },
-        "fair": 0.4496,
+        "fair": 0.4502,
         "vendorFair": 0.4505,
         "open": {
           "line": 5,
@@ -427,6 +429,15 @@ window.PICKS_DATA = {
           "odds": 122,
           "best": 116,
           "n": 5
+        },
+        {
+          "at": "2026-11-16T15:16:07.918Z",
+          "fair": 0.4502,
+          "vendorFair": 0.4505,
+          "line": 1.5,
+          "odds": 122,
+          "best": 116,
+          "n": 6
         }
       ],
       "status": "pending",
@@ -452,614 +463,6 @@ window.PICKS_DATA = {
         "modelProb": 0.5831,
         "edge": 0.1244,
         "bar": 0.0666
-      },
-      "standing": "clears",
-      "availability": null
-    },
-    {
-      "id": "6c932a9651-h2h-Arizona-Cardinals",
-      "sport": "NFL",
-      "league": "NFL",
-      "sportKey": "americanfootball_nfl",
-      "event": "Los Angeles Rams @ Arizona Cardinals",
-      "home": "Arizona Cardinals",
-      "away": "Los Angeles Rams",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Arizona Cardinals",
-        "point": null
-      },
-      "commence": "2026-11-15T21:05:00Z",
-      "start": "Yesterday 4:05 PM ET",
-      "market": "Moneyline",
-      "pick": "Arizona Cardinals ML",
-      "odds": 400,
-      "book": "FanDuel",
-      "prices": {
-        "DraftKings": 410,
-        "FanDuel": 390,
-        "BetOnline.ag": 350,
-        "BetRivers": 340,
-        "BetMGM": 380,
-        "theScore Bet": 360,
-        "Bovada": 365,
-        "Caesars": 390,
-        "Unibet": 330,
-        "PointsBet": 400,
-        "ESPN BET": 380
-      },
-      "pricesAt": "2026-11-15T20:35:50.992Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.3341,
-      "ev": 0.6705,
-      "confidence": "Medium",
-      "basis": "game",
-      "model": {
-        "margin": -6.2,
-        "total": 45.3,
-        "sd": 13.3,
-        "sdTotal": 13.4,
-        "gp": 9,
-        "gpHome": 9,
-        "gpAway": 9,
-        "thin": false,
-        "parts": {
-          "ratingHome": -3.8,
-          "ratingAway": 3.4,
-          "lastHome": -7.8,
-          "lastAway": 10.1,
-          "homeEdge": 2.146,
-          "rest": 0,
-          "injuriesHome": -2.4,
-          "injuriesAway": 2.7,
-          "scoringOut": 0.7,
-          "pace": 46,
-          "model": "nflverse",
-          "epaHome": -0.04,
-          "epaAway": 0.082,
-          "epaPoints": -1.4,
-          "qbPoints": -0.2,
-          "qbHome": "Jacoby Brissett",
-          "qbAway": "Matthew Stafford",
-          "marginSd": 3.97
-        },
-        "reasons": {
-          "for": [
-            "Home edge +2.1 for Arizona Cardinals",
-            "Los Angeles Rams without Steve Avila (G), Puka Nacua (WR), Davante Adams (WR) and 2 more (+2.7)"
-          ],
-          "against": [
-            "Arizona Cardinals rate -3.8 and Los Angeles Rams +3.4 points a game against their schedules (this season's results, last season carried over); EPA a play -0.04 and +0.08 net of defence (nflverse)",
-            "Arizona Cardinals without Jon Gaines II (G), Hjalte Froholdt (C), Hunter Long (TE) and 1 more (-2.4)",
-            "Projected margin -6.2 for Arizona Cardinals"
-          ]
-        }
-      },
-      "marketFair": 0.2128,
-      "marketEdge": 0.0128,
-      "rationale": "Our probability is 33.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.2 for the home side). FanDuel offers +400, which implies only 20.0%. Its bar is 9.9 points: the model's own margin of error on this side, with 9 games behind the thinner team (±3.97 points on the margin). It clears it by 3.5. Not graded against other books' prices; for reference the market makes it 21.3%.",
-      "factors": [
-        "Best price +400 at FanDuel",
-        "Probability 33.4% from game data, not other books",
-        "Edge 13.4 points over the price, 3.5 past its bar of 9.9",
-        "Market reference 21.3%"
-      ],
-      "breakdown": {
-        "tier": "Medium",
-        "tierWhy": "Our probability for this side is 33.4%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 20.0%, so the edge is 13.4 points. Its bar is 9.9 points: the model's own margin of error on this side, with 9 games behind the thinner team (±3.97 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.5 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 33.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.2 for the home side). FanDuel offers +400, which implies only 20.0%. Its bar is 9.9 points: the model's own margin of error on this side, with 9 games behind the thinner team (±3.97 points on the margin). It clears it by 3.5. Not graded against other books' prices; for reference the market makes it 21.3%.",
-        "support": [
-          "Home edge +2.1 for Arizona Cardinals.",
-          "Los Angeles Rams without Steve Avila (G), Puka Nacua (WR), Davante Adams (WR) and 2 more (+2.7).",
-          "A better price is now available: +410 at DraftKings.",
-          "A better price is available now: +410 at DraftKings."
-        ],
-        "risks": [
-          "Arizona Cardinals rate -3.8 and Los Angeles Rams +3.4 points a game against their schedules (this season's results, last season carried over); EPA a play -0.04 and +0.08 net of defence (nflverse).",
-          "Arizona Cardinals without Jon Gaines II (G), Hjalte Froholdt (C), Hunter Long (TE) and 1 more (-2.4).",
-          "Projected margin -6.2 for Arizona Cardinals."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 21.3% (+1.3 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (21.3% → 20.3%).",
-          "Market: DraftKings opened +400, now +380, moving toward this side since the open.",
-          "Market: The market (8 books) opened +356, now +400, the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Records: Los Angeles Rams 5-4 · Arizona Cardinals 3-6 · State Farm Stadium, Glendale."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401873061",
-        "venue": "State Farm Stadium, Glendale",
-        "indoor": true,
-        "records": {
-          "Arizona Cardinals": {
-            "overall": "3-6",
-            "home": "0-3",
-            "away": "3-3"
-          },
-          "Los Angeles Rams": {
-            "overall": "5-4",
-            "home": "2-3",
-            "away": "3-1"
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Arizona Cardinals": [
-            {
-              "name": "Jayden Williams",
-              "pos": "OT",
-              "athleteId": "4709718",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4709718.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T20:26Z",
-              "note": "Williams (knee) has been ruled out for Sunday's game against the Rams, Darren Urban of the Cardinals' official site reports."
-            },
-            {
-              "name": "Joey Aguilar",
-              "pos": "QB",
-              "athleteId": "5151948",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/5151948.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T19:51Z",
-              "note": "Aguilar (coach's decision) is inactive but will serve as the emergency third quarterback against the Rams on Sunday, Darren Urban of the Cardinals' official sit"
-            },
-            {
-              "name": "Starling Thomas V",
-              "pos": "CB",
-              "athleteId": "4363408",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4363408.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T19:37Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Eku Leota",
-              "pos": "LB",
-              "athleteId": "4361272",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4361272.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T19:37Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Hjalte Froholdt",
-              "pos": "C",
-              "athleteId": "3886633",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3886633.png",
-              "status": "Out",
-              "type": "Concussion",
-              "detail": "Concussion",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T19:37Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Jon Gaines II",
-              "pos": "G",
-              "athleteId": "4367199",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4367199.png",
-              "status": "Out",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-15T19:37Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Gardner Minshew II",
-              "pos": "QB",
-              "athleteId": "4038524",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4038524.png",
-              "status": "Injured Reserve",
-              "type": "Elbow",
-              "detail": "Surgery",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-15T12:49Z",
-              "note": "Minshew suffered a torn UCL in his right throwing elbow last Sunday at Seattle and is slated to undergo season-ending surgery, Adam Schefter of ESPN reports."
-            },
-            {
-              "name": "Zachary Carter",
-              "pos": "DT",
-              "athleteId": "4240619",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4240619.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-14T02:22Z",
-              "note": "Carter (knee) has been ruled out ahead of Sunday's game against the Rams, Zach Gershman of the Cardinals' official site reports."
-            },
-            {
-              "name": "Michael Wilson",
-              "pos": "WR",
-              "athleteId": "4360761",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4360761.png",
-              "status": "Injured Reserve",
-              "type": "Neck",
-              "detail": "Fracture",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-10T22:53Z",
-              "note": "The Cardinals placed Wilson (neck) on injured reserve Tuesday."
-            }
-          ],
-          "Los Angeles Rams": [
-            {
-              "name": "Ty Simpson",
-              "pos": "QB",
-              "athleteId": "4685522",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4685522.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T20:04Z",
-              "note": "Simpson (coach's decision) is inactive but will serve as the Rams' emergency third quarterback in Sunday's game against the Cardinals."
-            },
-            {
-              "name": "Keagen Trost",
-              "pos": "OT",
-              "athleteId": "4575003",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4575003.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Darryl Peterson III",
-              "pos": "LB",
-              "athleteId": "4598574",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4598574.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Maximus Pulley",
-              "pos": "S",
-              "athleteId": "5082391",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/5082391.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Desjuan Johnson",
-              "pos": "DE",
-              "athleteId": "4362294",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362294.png",
-              "status": "Out",
-              "type": "Coach's Decision",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Joe Cardona",
-              "pos": "LS",
-              "athleteId": "2575907",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2575907.png",
-              "status": "Out",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Steve Avila",
-              "pos": "G",
-              "athleteId": "4362474",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362474.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T19:44Z",
-              "note": "inactive"
-            },
-            {
-              "name": "Davante Adams",
-              "pos": "WR",
-              "athleteId": "16800",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/16800.png",
-              "status": "Injured Reserve",
-              "type": "Hamstring",
-              "detail": "Surgery",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-15T16:06Z",
-              "note": "According to Ian Rapoport of NFL Network and ESPN,  Adams (hamstring) is believed to be targeting a return to action Nov. 25 against the Packers."
-            },
-            {
-              "name": "Puka Nacua",
-              "pos": "WR",
-              "athleteId": "4426515",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426515.png",
-              "status": "Injured Reserve",
-              "type": "Knee - MCL",
-              "detail": "Sprain",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-15T16:00Z",
-              "note": "Nacua (knee/toe) has an expected return date of \"mid-December,\" Ian Rapoport of NFL Network reports."
-            },
-            {
-              "name": "Jordan Whittington",
-              "pos": "WR",
-              "athleteId": "4569382",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4569382.png",
-              "status": "Injured Reserve",
-              "type": "Back",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-11T00:38Z",
-              "note": "Whittington (back) was placed on injured reserve Tuesday."
-            },
-            {
-              "name": "Terrance Ferguson",
-              "pos": "TE",
-              "athleteId": "4570037",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4570037.png",
-              "status": "Injured Reserve",
-              "type": "Hamstring",
-              "detail": "Strain",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-10T15:34Z",
-              "note": "Rams head coach Sean McVay acknowledged Monday during his appearance on the \"Coach McVay Show\" that he remains optimistic Ferguson (hamstring/ankle) will return"
-            }
-          ]
-        },
-        "rest": {
-          "Arizona Cardinals": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 1
-          },
-          "Los Angeles Rams": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 0
-          }
-        },
-        "weather": {
-          "summary": "Mostly sunny",
-          "tempF": 74,
-          "source": "ESPN"
-        },
-        "broadcast": "CBS",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 9.5,
-            "spreadOdds": {
-              "home": -105,
-              "away": -115
-            },
-            "total": 38.5,
-            "totalOdds": {
-              "over": -108,
-              "under": -112
-            },
-            "ml": {
-              "home": 380,
-              "away": -500
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": 10.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 47.5,
-            "totalOdds": {
-              "over": -110,
-              "under": -110
-            },
-            "ml": {
-              "home": 400,
-              "away": -535
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 400,
-        "loggedFair": 0.3341,
-        "currentOdds": 410,
-        "currentBook": "DraftKings",
-        "currentFair": 0.2025,
-        "currentEdge": 0.1507,
-        "checkedAt": "2026-11-15T20:35:50.992Z",
-        "history": [
-          {
-            "at": "2026-11-14T20:36:57.263Z",
-            "odds": 400,
-            "fair": 0.2128
-          },
-          {
-            "at": "2026-11-15T14:06:57.194Z",
-            "odds": 400,
-            "fair": 0.2033
-          },
-          {
-            "at": "2026-11-15T20:35:50.992Z",
-            "odds": 410,
-            "fair": 0.2025
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 400,
-          "fair": 0.19184290030211482
-        },
-        "now": {
-          "line": null,
-          "odds": 380,
-          "fair": 0.19999999999999998
-        },
-        "moved": "toward",
-        "label": "DraftKings opened +400, now +380"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "line": null,
-          "odds": 380,
-          "fair": 0.2
-        },
-        {
-          "at": "2026-11-14T23:46:57.593Z",
-          "line": null,
-          "odds": 400,
-          "fair": 0.1918
-        },
-        {
-          "at": "2026-11-15T05:38:56.895Z",
-          "line": null,
-          "odds": 390,
-          "fair": 0.1957
-        },
-        {
-          "at": "2026-11-15T13:41:50.578Z",
-          "line": null,
-          "odds": 370,
-          "fair": 0.2042
-        },
-        {
-          "at": "2026-11-15T20:15:41.972Z",
-          "line": null,
-          "odds": 380,
-          "fair": 0.2
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": null,
-          "odds": 356
-        },
-        "now": {
-          "line": null,
-          "odds": 400
-        },
-        "moved": "away",
-        "label": "The market (8 books) opened +356, now +400"
-      },
-      "sgo": {
-        "at": "2026-11-15T20:35:50.992Z",
-        "n": 8,
-        "best": {
-          "book": "DraftKings",
-          "odds": 410
-        },
-        "fair": 0.1996,
-        "vendorFair": 0.2,
-        "open": {
-          "line": null,
-          "odds": 356
-        },
-        "now": {
-          "line": null,
-          "odds": 400
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-14T20:36:57.263Z",
-          "fair": 0.2052,
-          "vendorFair": 0.207,
-          "line": null,
-          "odds": 383,
-          "best": 400,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T13:41:50.578Z",
-          "fair": 0.2026,
-          "vendorFair": 0.2016,
-          "line": null,
-          "odds": 396,
-          "best": 400,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T20:15:41.972Z",
-          "fair": 0.2021,
-          "vendorFair": 0.2004,
-          "line": null,
-          "odds": 399,
-          "best": 390,
-          "n": 8
-        },
-        {
-          "at": "2026-11-15T20:35:50.992Z",
-          "fair": 0.1996,
-          "vendorFair": 0.2,
-          "line": null,
-          "odds": 400,
-          "best": 410,
-          "n": 8
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Loss",
-      "units": -1,
-      "score": {
-        "home": 6,
-        "away": 34
-      },
-      "loggedAt": "2026-11-14T20:36:57.263Z",
-      "valueTo": 326,
-      "bar": 0.099,
-      "past": 0.0351,
-      "barParts": {
-        "error": 0.099,
-        "units": 3.97,
-        "unit": "points",
-        "gp": 9,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-15T20:35:50.992Z",
-        "odds": 410,
-        "book": "DraftKings",
-        "modelProb": 0.3468,
-        "edge": 0.1507,
-        "bar": 0.1004
       },
       "standing": "clears",
       "availability": null

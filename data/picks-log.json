@@ -20908,7 +20908,8 @@
    "BetRivers": 105,
    "Bovada": 107,
    "Caesars": 116,
-   "ESPN BET": 115
+   "ESPN BET": 115,
+   "BetMGM": 110
   },
   "books": 5,
   "anchor": null,
@@ -21212,7 +21213,7 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 5,
+   "n": 6,
    "open": {
     "line": 5,
     "odds": 100
@@ -21222,7 +21223,7 @@
     "odds": 122
    },
    "moved": "toward",
-   "label": "The market (5 books) opened +5 (+100), now +1.5 (+122)"
+   "label": "The market (6 books) opened +5 (+100), now +1.5 (+122)"
   },
   "breakdown": {
    "tier": "High",
@@ -21246,7 +21247,7 @@
     "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
     "Market: the sharp line has moved toward this side since it was logged (45.0% → 46.5%).",
     "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
-    "Market: The market (5 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
+    "Market: The market (6 books) opened +5 (+100), now +1.5 (+122), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Mammoth Karel Vejmelka · Canucks Kevin Lankinen.",
     "Records: Vancouver Canucks 4-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
@@ -21257,21 +21258,22 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "1zPBxiVhVBMEjr0JbkcI",
-   "at": "2026-11-16T14:10:32.254Z",
+   "at": "2026-11-16T15:16:07.918Z",
    "books": {
     "FanDuel": 114,
     "DraftKings": 114,
     "Caesars": 116,
     "ESPN BET": 115,
-    "Bovada": 107
+    "Bovada": 107,
+    "BetMGM": 110
    },
-   "n": 5,
+   "n": 6,
    "best": {
     "book": "Caesars",
     "odds": 116
    },
-   "fair": 0.4496,
-   "fairBooks": 5,
+   "fair": 0.4502,
+   "fairBooks": 6,
    "vendor": {
     "line": 1.5,
     "odds": 122,
@@ -21289,7 +21291,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-16T14:10:32.254Z",
+  "pricesAt": "2026-11-16T15:16:07.918Z",
   "sgoHistory": [
    {
     "at": "2026-11-15T20:35:50.992Z",
@@ -21308,6 +21310,15 @@
     "odds": 122,
     "best": 116,
     "n": 5
+   },
+   {
+    "at": "2026-11-16T15:16:07.918Z",
+    "fair": 0.4502,
+    "vendorFair": 0.4505,
+    "line": 1.5,
+    "odds": 122,
+    "best": 116,
+    "n": 6
    }
   ],
   "movement": {

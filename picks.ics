@@ -818,7 +818,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f597347519-spreads-Vancouver-Canucks@edgeline
-DTSTAMP:20261116T141032Z
+DTSTAMP:20261116T151607Z
 DTSTART:20261117T023000Z
 DTEND:20261117T053000Z
 SUMMARY:Vancouver Canucks +1.5 +116 at FanDuel · High
@@ -843,14 +843,14 @@ DESCRIPTION:NHL · Vancouver Canucks @ Utah Mammoth · Mon Nov 16\, 9:30 PM
  mmoth.\n- Vancouver Canucks without Guillaume Brisebois (D) (+0).\n- Proje
  cted margin -0.6 for Vancouver Canucks against +1.5.\nVerdict: The game da
  ta lines up behind this side at this price.\nPrices: Caesars +116\, theSco
- re Bet +115\, ESPN BET +115\, FanDuel +114\, DraftKings +114 and 2 more.\n
+ re Bet +115\, ESPN BET +115\, FanDuel +114\, DraftKings +114 and 3 more.\n
  Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#f597347519
  -spreads-Vancouver-Canucks
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#f597347519-spreads-Vanc
  ouver-Canucks
 CATEGORIES:NHL
-LAST-MODIFIED:20261116T141032Z
+LAST-MODIFIED:20261116T151607Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
