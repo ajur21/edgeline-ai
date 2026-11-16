@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-16T20:36:29.679Z",
+  "trackedAt": "2026-11-16T23:41:39.658Z",
   "playOfDay": {
     "id": "77094bf6e4-h2h-Golden-State-Warriors",
     "sport": "NBA",
@@ -25,17 +26,17 @@ window.PICKS_DATA = {
     "prices": {
       "FanDuel": -162,
       "BetOnline.ag": -160,
-      "DraftKings": -161,
-      "BetMGM": -160,
+      "DraftKings": -155,
+      "BetMGM": -165,
       "BetRivers": -175,
       "theScore Bet": -165,
-      "Bovada": -165,
+      "Bovada": -150,
       "PointsBet": -159,
-      "Unibet": -172,
+      "Unibet": -167,
       "Caesars": -162,
-      "ESPN BET": -165
+      "ESPN BET": -155
     },
-    "pricesAt": "2026-11-16T20:36:29.679Z",
+    "pricesAt": "2026-11-16T23:41:39.658Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.7531,
@@ -97,7 +98,7 @@ window.PICKS_DATA = {
         "Golden State Warriors are rested (3 days).",
         "New Orleans Pelicans without Bennedict Mathurin (G), Bryce McGowens (G), Trey Murphy III (F) and 2 more (-3.4), out per the 3:30 PM ET official report.",
         "Projected margin +8.2 for Golden State Warriors.",
-        "A better price is available now: -159 at PointsBet."
+        "A better price is available now: -150 at Bovada."
       ],
       "risks": [
         "Home edge +1.9 for New Orleans Pelicans.",
@@ -106,8 +107,8 @@ window.PICKS_DATA = {
       ],
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 59.9% (-1.7 points against the best price). For reference only.",
-        "Market: DraftKings opened -131, now -161, moving toward this side since the open.",
-        "Market: The market (8 books) opened -735, now -145, the consensus moving against this side since the open.",
+        "Market: DraftKings opened -131, now -155, moving toward this side since the open.",
+        "Market: The market (8 books) opened -735, now -144, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Records: Golden State Warriors 8-5 · New Orleans Pelicans 4-10 · Smoothie King Center, New Orleans."
       ],
@@ -289,8 +290,8 @@ window.PICKS_DATA = {
         "now": {
           "spread": 3.5,
           "spreadOdds": {
-            "home": -110,
-            "away": -110
+            "home": -115,
+            "away": -106
           },
           "total": 223.5,
           "totalOdds": {
@@ -298,8 +299,8 @@ window.PICKS_DATA = {
             "under": -110
           },
           "ml": {
-            "home": 136,
-            "away": -161
+            "home": 131,
+            "away": -155
           },
           "draw": null
         },
@@ -332,11 +333,11 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": -161,
-        "fair": 0.5927983025461807
+        "odds": -155,
+        "fair": 0.5840469782236358
       },
       "moved": "toward",
-      "label": "DraftKings opened -131, now -161"
+      "label": "DraftKings opened -131, now -155"
     },
     "dkHistory": [
       {
@@ -344,6 +345,12 @@ window.PICKS_DATA = {
         "line": null,
         "odds": -161,
         "fair": 0.5928
+      },
+      {
+        "at": "2026-11-16T23:41:39.658Z",
+        "line": null,
+        "odds": -155,
+        "fair": 0.584
       }
     ],
     "mkt": {
@@ -355,27 +362,27 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": -145
+        "odds": -144
       },
       "moved": "away",
-      "label": "The market (8 books) opened -735, now -145"
+      "label": "The market (8 books) opened -735, now -144"
     },
     "sgo": {
-      "at": "2026-11-16T20:36:29.679Z",
+      "at": "2026-11-16T23:41:39.658Z",
       "n": 8,
       "best": {
-        "book": "PointsBet",
-        "odds": -159
+        "book": "Bovada",
+        "odds": -150
       },
-      "fair": 0.5949,
-      "vendorFair": 0.5918,
+      "fair": 0.5897,
+      "vendorFair": 0.5902,
       "open": {
         "line": null,
         "odds": -735
       },
       "now": {
         "line": null,
-        "odds": -145
+        "odds": -144
       }
     },
     "sgoHistory": [
@@ -386,6 +393,15 @@ window.PICKS_DATA = {
         "line": null,
         "odds": -145,
         "best": -159,
+        "n": 8
+      },
+      {
+        "at": "2026-11-16T23:41:39.658Z",
+        "fair": 0.5897,
+        "vendorFair": 0.5902,
+        "line": null,
+        "odds": -144,
+        "best": -150,
         "n": 8
       }
     ],
@@ -412,7 +428,7 @@ window.PICKS_DATA = {
       "note": null,
       "swing": null,
       "changes": [],
-      "checkedAt": null,
+      "checkedAt": "2026-11-16T23:41:39.658Z",
       "posted": {
         "read": "2026-11-16T20:36:29.679Z",
         "report": {
@@ -594,16 +610,16 @@ window.PICKS_DATA = {
       "odds": 116,
       "book": "FanDuel",
       "prices": {
-        "FanDuel": 114,
-        "DraftKings": 114,
+        "FanDuel": 112,
+        "DraftKings": 110,
         "theScore Bet": 115,
         "BetRivers": 105,
-        "Bovada": 117,
-        "Caesars": 116,
+        "Bovada": 110,
+        "Caesars": 111,
         "ESPN BET": 115,
         "BetMGM": 110
       },
-      "pricesAt": "2026-11-16T20:36:29.679Z",
+      "pricesAt": "2026-11-16T23:41:39.658Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.6161,
@@ -665,8 +681,7 @@ window.PICKS_DATA = {
           "Vancouver Canucks are rested (3 days).",
           "Utah Mammoth without Nick Schmaltz (C), Nate Schmidt (D), Dylan Guenther (RW) and 1 more (-0.4).",
           "Utah Mammoth have Logan Cooley (C) listed day-to-day or questionable.",
-          "A better price is now available: +117 at Bovada.",
-          "A better price is available now: +117 at Bovada."
+          "A better price is now available: +117 at Bovada."
         ],
         "risks": [
           "Utah Mammoth rate -0.1 a game over 21 (10-11), Vancouver Canucks -0.9 over 21 (3-18); last season +0.3 and -1.2 a game.",
@@ -677,8 +692,8 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 45.0% (-1.3 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (+120), now +1.5 (+114), moving toward this side since the open.",
-          "Market: The market (6 books) opened +5 (+100), now +1.5 (+124), the consensus moving toward this side since the open.",
+          "Market: DraftKings opened +1.5 (+120), now +1.5 (+110), moving toward this side since the open.",
+          "Market: The market (5 books) opened +5 (+100), now +1.5 (+121), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Karel Vejmelka · Canucks Nikita Tolopilo.",
           "Records: Vancouver Canucks 4-17-1 · Utah Mammoth 10-8-3 · Delta Center, Salt Lake City."
@@ -840,8 +855,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": -135,
-              "away": 114
+              "home": -130,
+              "away": 110
             },
             "total": 6.5,
             "totalOdds": {
@@ -849,8 +864,8 @@ window.PICKS_DATA = {
               "under": -102
             },
             "ml": {
-              "home": -355,
-              "away": 280
+              "home": -340,
+              "away": 270
             },
             "draw": null
           },
@@ -908,11 +923,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 1.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 110,
+          "fair": 0.4572564612326044
         },
         "moved": "toward",
-        "label": "DraftKings opened +1.5 (+120), now +1.5 (+114)"
+        "label": "DraftKings opened +1.5 (+120), now +1.5 (+110)"
       },
       "dkHistory": [
         {
@@ -920,38 +935,44 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-16T23:41:39.658Z",
+          "line": 1.5,
+          "odds": 110,
+          "fair": 0.4573
         }
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 5,
         "open": {
           "line": 5,
           "odds": 100
         },
         "now": {
           "line": 1.5,
-          "odds": 124
+          "odds": 121
         },
         "moved": "toward",
-        "label": "The market (6 books) opened +5 (+100), now +1.5 (+124)"
+        "label": "The market (5 books) opened +5 (+100), now +1.5 (+121)"
       },
       "sgo": {
-        "at": "2026-11-16T20:36:29.679Z",
-        "n": 6,
+        "at": "2026-11-16T23:41:39.658Z",
+        "n": 5,
         "best": {
-          "book": "Bovada",
-          "odds": 117
+          "book": "ESPN BET",
+          "odds": 115
         },
-        "fair": 0.4458,
-        "vendorFair": 0.4464,
+        "fair": 0.4534,
+        "vendorFair": 0.4525,
         "open": {
           "line": 5,
           "odds": 100
         },
         "now": {
           "line": 1.5,
-          "odds": 124
+          "odds": 121
         }
       },
       "sgoHistory": [
@@ -990,6 +1011,15 @@ window.PICKS_DATA = {
           "odds": 124,
           "best": 117,
           "n": 6
+        },
+        {
+          "at": "2026-11-16T23:41:39.658Z",
+          "fair": 0.4534,
+          "vendorFair": 0.4525,
+          "line": 1.5,
+          "odds": 121,
+          "best": 115,
+          "n": 5
         }
       ],
       "status": "pending",
@@ -1041,17 +1071,17 @@ window.PICKS_DATA = {
       "prices": {
         "FanDuel": -162,
         "BetOnline.ag": -160,
-        "DraftKings": -161,
-        "BetMGM": -160,
+        "DraftKings": -155,
+        "BetMGM": -165,
         "BetRivers": -175,
         "theScore Bet": -165,
-        "Bovada": -165,
+        "Bovada": -150,
         "PointsBet": -159,
-        "Unibet": -172,
+        "Unibet": -167,
         "Caesars": -162,
-        "ESPN BET": -165
+        "ESPN BET": -155
       },
-      "pricesAt": "2026-11-16T20:36:29.679Z",
+      "pricesAt": "2026-11-16T23:41:39.658Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.7531,
@@ -1113,7 +1143,7 @@ window.PICKS_DATA = {
           "Golden State Warriors are rested (3 days).",
           "New Orleans Pelicans without Bennedict Mathurin (G), Bryce McGowens (G), Trey Murphy III (F) and 2 more (-3.4), out per the 3:30 PM ET official report.",
           "Projected margin +8.2 for Golden State Warriors.",
-          "A better price is available now: -159 at PointsBet."
+          "A better price is available now: -150 at Bovada."
         ],
         "risks": [
           "Home edge +1.9 for New Orleans Pelicans.",
@@ -1122,8 +1152,8 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 59.9% (-1.7 points against the best price). For reference only.",
-          "Market: DraftKings opened -131, now -161, moving toward this side since the open.",
-          "Market: The market (8 books) opened -735, now -145, the consensus moving against this side since the open.",
+          "Market: DraftKings opened -131, now -155, moving toward this side since the open.",
+          "Market: The market (8 books) opened -735, now -144, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Golden State Warriors 8-5 · New Orleans Pelicans 4-10 · Smoothie King Center, New Orleans."
         ],
@@ -1305,8 +1335,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": 3.5,
             "spreadOdds": {
-              "home": -110,
-              "away": -110
+              "home": -115,
+              "away": -106
             },
             "total": 223.5,
             "totalOdds": {
@@ -1314,8 +1344,8 @@ window.PICKS_DATA = {
               "under": -110
             },
             "ml": {
-              "home": 136,
-              "away": -161
+              "home": 131,
+              "away": -155
             },
             "draw": null
           },
@@ -1348,11 +1378,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -161,
-          "fair": 0.5927983025461807
+          "odds": -155,
+          "fair": 0.5840469782236358
         },
         "moved": "toward",
-        "label": "DraftKings opened -131, now -161"
+        "label": "DraftKings opened -131, now -155"
       },
       "dkHistory": [
         {
@@ -1360,6 +1390,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": -161,
           "fair": 0.5928
+        },
+        {
+          "at": "2026-11-16T23:41:39.658Z",
+          "line": null,
+          "odds": -155,
+          "fair": 0.584
         }
       ],
       "mkt": {
@@ -1371,27 +1407,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -145
+          "odds": -144
         },
         "moved": "away",
-        "label": "The market (8 books) opened -735, now -145"
+        "label": "The market (8 books) opened -735, now -144"
       },
       "sgo": {
-        "at": "2026-11-16T20:36:29.679Z",
+        "at": "2026-11-16T23:41:39.658Z",
         "n": 8,
         "best": {
-          "book": "PointsBet",
-          "odds": -159
+          "book": "Bovada",
+          "odds": -150
         },
-        "fair": 0.5949,
-        "vendorFair": 0.5918,
+        "fair": 0.5897,
+        "vendorFair": 0.5902,
         "open": {
           "line": null,
           "odds": -735
         },
         "now": {
           "line": null,
-          "odds": -145
+          "odds": -144
         }
       },
       "sgoHistory": [
@@ -1402,6 +1438,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": -145,
           "best": -159,
+          "n": 8
+        },
+        {
+          "at": "2026-11-16T23:41:39.658Z",
+          "fair": 0.5897,
+          "vendorFair": 0.5902,
+          "line": null,
+          "odds": -144,
+          "best": -150,
           "n": 8
         }
       ],
@@ -1428,7 +1473,7 @@ window.PICKS_DATA = {
         "note": null,
         "swing": null,
         "changes": [],
-        "checkedAt": null,
+        "checkedAt": "2026-11-16T23:41:39.658Z",
         "posted": {
           "read": "2026-11-16T20:36:29.679Z",
           "report": {
@@ -1616,6 +1661,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 35.9% (+0.2 points against the best price). For reference only.",
+          "Market: DraftKings opened -1.5 (+180), now -1.5 (+170), moving toward this side since the open.",
           "Market: The market (4 books) opened -1 (+100), now 0 (-136), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Bruins Jeremy Swayman · Kings Darcy Kuemper.",
@@ -1718,13 +1764,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 180,
-              "away": -218
+              "home": 170,
+              "away": -205
             },
-            "total": 6.5,
+            "total": 5.5,
             "totalOdds": {
-              "over": 114,
-              "under": -135
+              "over": -135,
+              "under": 114
             },
             "ml": {
               "home": -155,
@@ -1761,11 +1807,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": -1.5,
-          "odds": 180,
-          "fair": 0.34252477380439467
+          "odds": 170,
+          "fair": 0.35527082119976705
         },
-        "moved": null,
-        "label": "DraftKings opened -1.5 (+180), now -1.5 (+180)"
+        "moved": "toward",
+        "label": "DraftKings opened -1.5 (+180), now -1.5 (+170)"
       },
       "dkHistory": [
         {
@@ -1773,6 +1819,12 @@ window.PICKS_DATA = {
           "line": -1.5,
           "odds": 180,
           "fair": 0.3425
+        },
+        {
+          "at": "2026-11-16T23:41:39.658Z",
+          "line": -1.5,
+          "odds": 170,
+          "fair": 0.3553
         }
       ],
       "mkt": {
@@ -2040,8 +2092,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 190,
-              "away": -230
+              "home": 180,
+              "away": -218
             },
             "total": 5.5,
             "totalOdds": {
