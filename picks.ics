@@ -854,7 +854,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:5cfe0dc8ff-spreads-Boston-Bruins@edgeline
-DTSTAMP:20261117T140856Z
+DTSTAMP:20261117T203613Z
 DTSTART:20261118T001000Z
 DTEND:20261118T031000Z
 SUMMARY:Boston Bruins -1.5 +180 at DraftKings · Low
@@ -875,17 +875,17 @@ DESCRIPTION:NHL · Los Angeles Kings @ Boston Bruins · Tue Nov 17\, 7:10 P
  or questionable.\n- Projected margin +0.9 for Boston Bruins against -1.5.\
  nWhat could go wrong:\n- Boston Bruins trending: last five +0.2 vs +1 on t
  he season.\n- Los Angeles Kings are rested (3 days).\n- Boston Bruins with
- out James Hagens (C) (-0.1).\n- At current prices our edge is 5.9 points\,
-  under its bar of 6.9 points\; the pick stays posted and is graded at the 
+ out James Hagens (C) (-0.1).\n- At current prices our edge is 5.4 points\,
+  under its bar of 6.8 points\; the pick stays posted and is graded at the 
  price it was posted at.\nVerdict: The game data lines up behind this side 
- at this price.\nPrices: theScore Bet +165\, Bovada +165\, Caesars +164\, B
- etRivers +163\, DraftKings +160 and 3 more.\nFull breakdown: https://ajur2
+ at this price.\nPrices: theScore Bet +165\, FanDuel +164\, BetRivers +163\
+ , Bovada +163\, DraftKings +160 and 3 more.\nFull breakdown: https://ajur2
  1.github.io/edgeline-ai/picks.html#5cfe0dc8ff-spreads-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5cfe0dc8ff-spreads-Bost
  on-Bruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T140856Z
+LAST-MODIFIED:20261117T203613Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -896,7 +896,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:03ad7eb1b1-totals-Over@edgeline
-DTSTAMP:20261117T140856Z
+DTSTAMP:20261117T203613Z
 DTSTART:20261118T001000Z
 DTEND:20261118T031000Z
 SUMMARY:Over 5.5 -110 at BetOnline.ag · Low
@@ -911,18 +911,19 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ New York Islanders · Tue Nov 17
  ther books' prices\; for reference the market makes it 51.9%.\nWhat suppor
  ts it:\n- Combined scoring 6.1 a game in New York Islanders's games\, 5.7 
  in Columbus Blue Jackets's (league average 6.3).\n- Projected total 6.3 ag
- ainst 5.5.\nWhat could go wrong:\n- At current prices our edge is 2.9 poin
+ ainst 5.5.\nWhat could go wrong:\n- At current prices our edge is 2.7 poin
  ts\, under its bar of 3.0 points\; the pick stays posted and is graded at 
- the price it was posted at.\n- Scorers out: Calum Ritchie (C)\, lower body
- \; Alexander Romanov (D)\, knee\; Sean Monahan (C)\, upper body. Fewer hea
- lthy scorers leans under.\nVerdict: The game data lines up behind this sid
- e at this price.\nPrices: BetOnline.ag -110\, theScore Bet -115\, Bovada -
- 117\, DraftKings -118\, Caesars -118 and 6 more.\nFull breakdown: https://
- ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-Over
+ the price it was posted at.\n- Scorers out: Logan Stanley (D)\, lower body
+ \; Calum Ritchie (C)\, lower body\; Alexander Romanov (D)\, knee and 1 mor
+ e. Fewer healthy scorers leans under.\nVerdict: The game data lines up beh
+ ind this side at this price.\nPrices: BetOnline.ag -110\, theScore Bet -11
+ 5\, PointsBet -115\, DraftKings -118\, Caesars -118 and 6 more.\nFull brea
+ kdown: https://ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-O
+ ver
 LOCATION:UBS Arena\, Elmont
 URL:https://ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T140856Z
+LAST-MODIFIED:20261117T203613Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -933,7 +934,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8261a14ac1-h2h-Chicago-Blackhawks@edgeline
-DTSTAMP:20261117T140856Z
+DTSTAMP:20261117T203613Z
 DTSTART:20261118T004000Z
 DTEND:20261118T034000Z
 SUMMARY:Chicago Blackhawks ML +136 at BetOnline.ag · Low
@@ -955,21 +956,113 @@ DESCRIPTION:NHL · Toronto Maple Leafs @ Chicago Blackhawks · Tue Nov 17\,
  rgin +0 for Chicago Blackhawks.\nWhat could go wrong:\n- Chicago Blackhawk
  s rate -0.8 a game over 20 (5-15)\, Toronto Maple Leafs -0.3 over 22 (8-14
  )\; last season -0.8 and -0.6 a game.\n- Toronto Maple Leafs are rested (3
-  days).\n- Chicago Blackhawks without Bowen Byram (D) (0).\nVerdict: The g
- ame data lines up behind this side at this price.\nPrices: BetOnline.ag +1
- 36\, BetRivers +133\, DraftKings +130\, Bovada +130\, FanDuel +128 and 5 m
- ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8261
- a14ac1-h2h-Chicago-Blackhawks
+  days).\n- Chicago Blackhawks without Bowen Byram (D) (0).\n- At current p
+ rices our edge is 4.8 points\, under its bar of 7.2 points\; the pick stay
+ s posted and is graded at the price it was posted at.\nVerdict: The game d
+ ata lines up behind this side at this price.\nPrices: BetOnline.ag +136\, 
+ BetRivers +133\, theScore Bet +125\, Bovada +125\, PointsBet +125 and 5 mo
+ re.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8261a
+ 14ac1-h2h-Chicago-Blackhawks
 LOCATION:United Center\, Chicago
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8261a14ac1-h2h-Chicago-
  Blackhawks
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T140856Z
+LAST-MODIFIED:20261117T203613Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Chicago Blackhawks ML +136 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-17@edgeline
+DTSTAMP:20261117T203613Z
+DTSTART:20261118T010000Z
+DTEND:20261118T063000Z
+SUMMARY:Parlay lean of the day: 2 legs +289 at FanDuel
+DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 25.7%\, EV +11
+ .2% per unit.\n- NBA: Mo Bamba under 9.5 rebounds +102 · Utah Jazz @ LA C
+ lippers\n- NBA: Jrue Holiday under 21.5 pts + reb + ast -108 · Portland T
+ rail Blazers @ Minnesota Timberwolves\n\nEvery parlay: https://ajur21.gith
+ ub.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261117T203613Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +289 at FanDuel
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prop-NBA-401910006-4277919-reb-under-9.5@edgeline
+DTSTAMP:20261117T203731Z
+DTSTART:20261118T033000Z
+DTEND:20261118T063000Z
+SUMMARY:Lean of the day: Mo Bamba under 9.5 rebounds +102 at FanDuel · Hig
+ h
+DESCRIPTION:NBA · Utah Jazz @ LA Clippers · Tue Nov 17\, 10:30 PM ET\nPla
+ yer prop: Mo Bamba under 9.5 rebounds at +102 (FanDuel). Our chance 54.4% 
+ (the model's own 79.3%\, cut to the 15% of an edge that graded props have 
+ borne out)\, the price implies 49.5%\, EV +9.9% per unit. Grade: High.\n- 
+ Stayed under 9.5 in 9 of the last 10\n- Projects 6.1 (last 5: 5\, last 10:
+  5.8\, season: 5.8)\n- Rebounds down 14% last 5\nEvery prop\, ranked: http
+ s://ajur21.github.io/edgeline-ai/props.html
+URL:https://ajur21.github.io/edgeline-ai/index.html#plays
+CATEGORIES:NBA,Prop
+LAST-MODIFIED:20261117T203731Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lean of the day: Mo Bamba under 9.5 rebounds +102 at FanDuel ·
+  High
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:38779d99fd-spreads-Boston-Bruins@edgeline
+DTSTAMP:20261117T203613Z
+DTSTART:20261119T004000Z
+DTEND:20261119T034000Z
+SUMMARY:Boston Bruins +1.5 -225 at DraftKings · Low
+DESCRIPTION:NHL · Boston Bruins @ Detroit Red Wings · Wed Nov 18\, 7:40 P
+ M ET\nPuck line: Boston Bruins +1.5 at -225 (DraftKings). Our probability 
+ 74.9% from game data\, the price implies 69.2%\, edge +5.7 pts\, EV +8.2% 
+ per unit. Confidence: Lean.\nOur probability at +1.5 is 74.9%\, from the g
+ ame data: this season's results and margins\, recent form\, rest\, the inj
+ ury report and home edge (projected margin -0.3 for the home side). DraftK
+ ings offers -225\, which implies only 69.2%. Its bar is 5.5 points: the mo
+ del's own margin of error on this side\, with 20 games behind the thinner 
+ team (±0.44 goals on the margin). It clears it by 0.2. Not graded against
+  other books' prices\; for reference the market makes it 67.3%.\nWhat supp
+ orts it:\n- Detroit Red Wings rate -0.2 a game over 21 (8-13)\, Boston Bru
+ ins +0.4 over 20 (13-7)\; last season -0.2 and +0.3 a game.\n- Detroit Red
+  Wings trending: last five -1 vs -0.3 on the season.\n- Boston Bruins are 
+ rested (4 days).\n- Detroit Red Wings without Albert Johansson (D)\, Dylan
+  Larkin (C) (-0.2).\n- Detroit Red Wings have William Wallinder (D) listed
+  day-to-day or questionable.\n- Projected margin +0.3 for Boston Bruins ag
+ ainst +1.5.\nWhat could go wrong:\n- Boston Bruins trending: last five +0.
+ 2 vs +1 on the season.\n- Home edge +0.2 for Detroit Red Wings.\n- Detroit
+  Red Wings are rested (4 days).\n- Boston Bruins without James Hagens (C) 
+ (+0.1).\nVerdict: The game data lines up behind this side at this price.\n
+ Prices: DraftKings -225\, Caesars -230\, FanDuel -235\, BetMGM -235\, BetR
+ ivers -250 and 2 more.\nFull breakdown: https://ajur21.github.io/edgeline-
+ ai/picks.html#38779d99fd-spreads-Boston-Bruins
+LOCATION:Little Caesars Arena\, Detroit
+URL:https://ajur21.github.io/edgeline-ai/picks.html#38779d99fd-spreads-Bost
+ on-Bruins
+CATEGORIES:NHL
+LAST-MODIFIED:20261117T203613Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Boston Bruins +1.5 -225 at DraftKings · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT

@@ -3,7 +3,7 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-17T14:09:28.270Z",
+ "generatedAt": "2026-11-17T20:36:52.577Z",
  "checkedAt": null,
  "season": 2026,
  "week": {
@@ -12,8 +12,8 @@ window.NFL_WEEK_DATA = {
   "label": "Week 11",
   "start": "2026-11-18T08:00Z",
   "end": "2026-11-25T07:59Z",
-  "from": "2026-11-20T01:15:00.000Z",
-  "to": "2026-11-24T01:15:00.000Z",
+  "from": "1993-01-31T23:30:00.000Z",
+  "to": "1993-01-31T23:30:00.000Z",
   "games": 13,
   "byes": [
    "ATL",
@@ -80,11 +80,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873066",
    "week": 11,
-   "kickoff": "2026-11-20T01:15Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/19 - 8:15 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "34",
@@ -112,7 +112,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 9.99,
     "total": 48,
     "marginSd": 4.02,
@@ -242,18 +242,7 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.7554,
-     "bar": 0.0871,
-     "price": -201
-    },
-    "away": {
-     "prob": 0.2446,
-     "bar": 0.0871,
-     "price": 535
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -261,11 +250,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873067",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "12",
@@ -293,7 +282,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 11.48,
     "total": 45.1,
     "marginSd": 4.11,
@@ -432,18 +421,7 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T12:00:00-06:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.7866,
-     "bar": 0.083,
-     "price": -237
-    },
-    "away": {
-     "prob": 0.2134,
-     "bar": 0.083,
-     "price": 667
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -451,11 +429,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873068",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "29",
@@ -483,7 +461,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 4.13,
     "total": 46.8,
     "marginSd": 4.12,
@@ -616,18 +594,168 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T13:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.6126,
-     "bar": 0.1078,
-     "price": -101
+   "leanFrom": null,
+   "board": null,
+   "posted": null,
+   "result": null
+  },
+  {
+   "id": "401873069",
+   "week": 11,
+   "kickoff": "1993-01-31T23:30Z",
+   "timeValid": true,
+   "state": "pre",
+   "status": "STATUS_SCHEDULED",
+   "detail": "1/31 - 6:30 PM EST",
+   "score": null,
+   "home": {
+    "id": "19",
+    "abbr": "NYG",
+    "name": "New York Giants",
+    "short": "Giants",
+    "record": "5-3-1"
+   },
+   "away": {
+    "id": "30",
+    "abbr": "JAX",
+    "name": "Jacksonville Jaguars",
+    "short": "Jaguars",
+    "record": "7-2"
+   },
+   "venue": {
+    "name": "MetLife Stadium",
+    "city": "East Rutherford",
+    "state": "NJ",
+    "country": "USA",
+    "indoor": false
+   },
+   "neutral": false,
+   "tv": "CBS",
+   "projection": {
+    "model": "nflverse",
+    "at": "2026-11-17T14:09:28.270Z",
+    "locked": true,
+    "margin": -8.48,
+    "total": 45.5,
+    "marginSd": 4.16,
+    "home": 18.5,
+    "away": 27,
+    "winner": "away",
+    "prob": 0.7214,
+    "probHome": 0.2786,
+    "probAway": 0.7214,
+    "games": {
+     "home": 9,
+     "away": 9
     },
-    "away": {
-     "prob": 0.3874,
-     "bar": 0.1078,
-     "price": 258
+    "thin": false,
+    "parts": {
+     "home": 2.15,
+     "rating": -7.29,
+     "epa": -1.79,
+     "qb": -2.2,
+     "rest": 0.46,
+     "injuries": 0.19
+    },
+    "ratings": {
+     "home": -1.29,
+     "away": 6.11
+    },
+    "epa": {
+     "home": -0.009,
+     "away": 0.143
+    },
+    "rest": {
+     "home": 10,
+     "away": 7
     }
    },
+   "qb": {
+    "home": {
+     "id": "00-0039923",
+     "name": "J.J. McCarthy",
+     "epa": -0.108,
+     "ref": -0.034,
+     "points": -2.2,
+     "starts": 2,
+     "games": 8,
+     "kind": "starter",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": null,
+     "status": null
+    },
+    "away": {
+     "id": "00-0036971",
+     "name": "Trevor Lawrence",
+     "epa": 0.037,
+     "ref": 0.037,
+     "points": 0,
+     "starts": 8,
+     "games": 8,
+     "kind": "starter",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": null,
+     "status": null
+    },
+    "points": -2.2
+   },
+   "injuries": {
+    "home": {
+     "list": [
+      {
+       "name": "Malik Harrison",
+       "pos": "LB",
+       "status": "Questionable",
+       "played": 7
+      },
+      {
+       "name": "Jason Pinnock",
+       "pos": "S",
+       "status": "Questionable",
+       "played": 6
+      }
+     ],
+     "more": 0,
+     "points": 0.4
+    },
+    "away": {
+     "list": [
+      {
+       "name": "B.J. Green II",
+       "pos": "DE",
+       "status": "Injured Reserve",
+       "played": 1
+      },
+      {
+       "name": "Robert Hainsey",
+       "pos": "C",
+       "status": "Questionable",
+       "played": 9
+      },
+      {
+       "name": "Danny Striggow",
+       "pos": "DE",
+       "status": "Questionable",
+       "played": 9
+      }
+     ],
+     "more": 0,
+     "points": 0.6
+    }
+   },
+   "weather": {
+    "mph": 5,
+    "dir": "S",
+    "temp": 61,
+    "unit": "F",
+    "precip": 30,
+    "text": "Chance Light Rain",
+    "at": "2026-11-22T16:00:00-05:00",
+    "source": "National Weather Service"
+   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -635,11 +763,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873070",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "2",
@@ -667,7 +795,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 12.06,
     "total": 45.3,
     "marginSd": 4.16,
@@ -800,18 +928,7 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T13:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.7982,
-     "bar": 0.0815,
-     "price": -252
-    },
-    "away": {
-     "prob": 0.2018,
-     "bar": 0.0815,
-     "price": 732
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -819,11 +936,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873071",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "3",
@@ -851,7 +968,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 9.99,
     "total": 47.3,
     "marginSd": 4.11,
@@ -990,18 +1107,7 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T12:00:00-06:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.7553,
-     "bar": 0.089,
-     "price": -199
-    },
-    "away": {
-     "prob": 0.2447,
-     "bar": 0.089,
-     "price": 543
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -1009,11 +1115,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873072",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "8",
@@ -1041,7 +1147,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 2.93,
     "total": 45.7,
     "marginSd": 4.11,
@@ -1165,18 +1271,7 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.5806,
-     "bar": 0.1099,
-     "price": 113
-    },
-    "away": {
-     "prob": 0.4194,
-     "bar": 0.1098,
-     "price": 223
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -1184,11 +1279,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873073",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "6",
@@ -1216,7 +1311,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 8.67,
     "total": 49.4,
     "marginSd": 4.11,
@@ -1346,18 +1441,350 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.7259,
-     "bar": 0.094,
-     "price": -171
+   "leanFrom": null,
+   "board": null,
+   "posted": null,
+   "result": null
+  },
+  {
+   "id": "401873074",
+   "week": 11,
+   "kickoff": "1993-01-31T23:30Z",
+   "timeValid": true,
+   "state": "pre",
+   "status": "STATUS_SCHEDULED",
+   "detail": "1/31 - 6:30 PM EST",
+   "score": null,
+   "home": {
+    "id": "24",
+    "abbr": "LAC",
+    "name": "Los Angeles Chargers",
+    "short": "Chargers",
+    "record": "1-8"
+   },
+   "away": {
+    "id": "20",
+    "abbr": "NYJ",
+    "name": "New York Jets",
+    "short": "Jets",
+    "record": "2-8"
+   },
+   "venue": {
+    "name": "SoFi Stadium",
+    "city": "Inglewood",
+    "state": "CA",
+    "country": "USA",
+    "indoor": false
+   },
+   "neutral": false,
+   "tv": "Fox",
+   "projection": {
+    "model": "nflverse",
+    "at": "2026-11-17T14:09:28.270Z",
+    "locked": true,
+    "margin": 0.16,
+    "total": 43.5,
+    "marginSd": 4.12,
+    "home": 21.9,
+    "away": 21.7,
+    "winner": "home",
+    "prob": 0.5044,
+    "probHome": 0.5044,
+    "probAway": 0.4956,
+    "games": {
+     "home": 9,
+     "away": 10
     },
-    "away": {
-     "prob": 0.2741,
-     "bar": 0.094,
-     "price": 456
+    "thin": false,
+    "parts": {
+     "home": 2.15,
+     "rating": 1.18,
+     "epa": -1.27,
+     "qb": -1.21,
+     "rest": -0.15,
+     "injuries": -0.54
+    },
+    "ratings": {
+     "home": -3.38,
+     "away": -4.58
+    },
+    "epa": {
+     "home": -0.154,
+     "away": -0.047
+    },
+    "rest": {
+     "home": 6,
+     "away": 7
     }
    },
+   "qb": {
+    "home": {
+     "id": "00-0036355",
+     "name": "Justin Herbert",
+     "epa": 0.008,
+     "ref": 0,
+     "points": 0.2,
+     "starts": 8,
+     "games": 8,
+     "kind": "starter",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": null,
+     "status": null
+    },
+    "away": {
+     "id": "00-0030565",
+     "name": "Geno Smith",
+     "epa": -0.014,
+     "ref": -0.063,
+     "points": 1.4,
+     "starts": 9,
+     "games": 9,
+     "kind": "starter",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": null,
+     "status": "Questionable"
+    },
+    "points": -1.2
+   },
+   "injuries": {
+    "home": {
+     "list": [
+      {
+       "name": "Branson Taylor",
+       "pos": "G",
+       "status": "Injured Reserve",
+       "played": 4
+      },
+      {
+       "name": "Trey Pipkins III",
+       "pos": "OT",
+       "status": "Injured Reserve",
+       "played": 1
+      },
+      {
+       "name": "Justin Eboigbe",
+       "pos": "DT",
+       "status": "Questionable",
+       "played": 8
+      },
+      {
+       "name": "Kendall Williamson",
+       "pos": "S",
+       "status": "Questionable",
+       "played": 7
+      }
+     ],
+     "more": 4,
+     "points": 1.2
+    },
+    "away": {
+     "list": [
+      {
+       "name": "Jarvis Brownlee Jr.",
+       "pos": "CB",
+       "status": "Questionable",
+       "played": 8
+      },
+      {
+       "name": "Omar Cooper Jr.",
+       "pos": "WR",
+       "status": "Questionable",
+       "played": 6
+      },
+      {
+       "name": "Dylan Parham",
+       "pos": "G",
+       "status": "Questionable",
+       "played": 6
+      },
+      {
+       "name": "Trevin Wallace",
+       "pos": "LB",
+       "status": "Questionable",
+       "played": 6
+      }
+     ],
+     "more": 0,
+     "points": 0.7
+    }
+   },
+   "weather": null,
+   "leanFrom": null,
+   "board": null,
+   "posted": null,
+   "result": null
+  },
+  {
+   "id": "401873075",
+   "week": 11,
+   "kickoff": "1993-01-31T23:30Z",
+   "timeValid": true,
+   "state": "pre",
+   "status": "STATUS_SCHEDULED",
+   "detail": "1/31 - 6:30 PM EST",
+   "score": null,
+   "home": {
+    "id": "7",
+    "abbr": "DEN",
+    "name": "Denver Broncos",
+    "short": "Broncos",
+    "record": "7-2"
+   },
+   "away": {
+    "id": "13",
+    "abbr": "LV",
+    "name": "Las Vegas Raiders",
+    "short": "Raiders",
+    "record": "4-6"
+   },
+   "venue": {
+    "name": "Empower Field at Mile High",
+    "city": "Denver",
+    "state": "CO",
+    "country": "USA",
+    "indoor": false
+   },
+   "neutral": false,
+   "tv": "CBS",
+   "projection": {
+    "model": "nflverse",
+    "at": "2026-11-17T14:09:28.270Z",
+    "locked": true,
+    "margin": 12.19,
+    "total": 47.6,
+    "marginSd": 4.07,
+    "home": 29.9,
+    "away": 17.7,
+    "winner": "home",
+    "prob": 0.8007,
+    "probHome": 0.8007,
+    "probAway": 0.1993,
+    "games": {
+     "home": 9,
+     "away": 10
+    },
+    "thin": false,
+    "parts": {
+     "home": 2.15,
+     "rating": 5.89,
+     "epa": 0.65,
+     "qb": 3.31,
+     "rest": 1.06,
+     "injuries": -0.87
+    },
+    "ratings": {
+     "home": 2.29,
+     "away": -3.69
+    },
+    "epa": {
+     "home": 0.008,
+     "away": -0.047
+    },
+    "rest": {
+     "home": 14,
+     "away": 7
+    }
+   },
+   "qb": {
+    "home": {
+     "id": "00-0039732",
+     "name": "Bo Nix",
+     "epa": 0.021,
+     "ref": 0.021,
+     "points": 0,
+     "starts": 9,
+     "games": 9,
+     "kind": "starter",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": null,
+     "status": null
+    },
+    "away": {
+     "id": "00-0041562",
+     "name": "Fernando Mendoza",
+     "epa": -0.095,
+     "ref": 0.016,
+     "points": -3.3,
+     "starts": 0,
+     "games": 9,
+     "kind": "change",
+     "replaces": null,
+     "replacesStatus": null,
+     "lastStarter": "Kirk Cousins",
+     "status": null
+    },
+    "points": 3.3
+   },
+   "injuries": {
+    "home": {
+     "list": [
+      {
+       "name": "Eyioma Uwazurike",
+       "pos": "DE",
+       "status": "Injured Reserve",
+       "played": 8
+      },
+      {
+       "name": "Jaylen Waddle",
+       "pos": "WR",
+       "status": "Questionable",
+       "played": 9
+      },
+      {
+       "name": "Kris Abrams-Draine",
+       "pos": "CB",
+       "status": "Questionable",
+       "played": 8
+      },
+      {
+       "name": "Riley Moss",
+       "pos": "CB",
+       "status": "Questionable",
+       "played": 8
+      }
+     ],
+     "more": 2,
+     "points": 1.5
+    },
+    "away": {
+     "list": [
+      {
+       "name": "Kwity Paye",
+       "pos": "DE",
+       "status": "Questionable",
+       "played": 10
+      },
+      {
+       "name": "Brock Bowers",
+       "pos": "TE",
+       "status": "Questionable",
+       "played": 8
+      },
+      {
+       "name": "Thomas Booker IV",
+       "pos": "DT",
+       "status": "Questionable",
+       "played": 7
+      }
+     ],
+     "more": 0,
+     "points": 0.6
+    }
+   },
+   "weather": {
+    "mph": 5,
+    "dir": "NE",
+    "temp": 47,
+    "unit": "F",
+    "precip": 0,
+    "text": "Mostly Sunny",
+    "at": "2026-11-22T14:00:00-07:00",
+    "source": "National Weather Service"
+   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -1365,11 +1792,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873076",
    "week": 11,
-   "kickoff": "2026-11-22T18:00Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 1:00 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "21",
@@ -1397,7 +1824,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": -5.63,
     "total": 43.2,
     "marginSd": 4.13,
@@ -1536,555 +1963,7 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T13:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.3483,
-     "bar": 0.1046,
-     "price": 311
-    },
-    "away": {
-     "prob": 0.6517,
-     "bar": 0.1045,
-     "price": -120
-    }
-   },
-   "board": null,
-   "posted": null,
-   "result": null
-  },
-  {
-   "id": "401873074",
-   "week": 11,
-   "kickoff": "2026-11-22T21:05Z",
-   "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:05 PM EST",
-   "score": null,
-   "home": {
-    "id": "24",
-    "abbr": "LAC",
-    "name": "Los Angeles Chargers",
-    "short": "Chargers",
-    "record": "1-8"
-   },
-   "away": {
-    "id": "20",
-    "abbr": "NYJ",
-    "name": "New York Jets",
-    "short": "Jets",
-    "record": "2-8"
-   },
-   "venue": {
-    "name": "SoFi Stadium",
-    "city": "Inglewood",
-    "state": "CA",
-    "country": "USA",
-    "indoor": false
-   },
-   "neutral": false,
-   "tv": "Fox",
-   "projection": {
-    "model": "nflverse",
-    "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
-    "margin": 0.16,
-    "total": 43.5,
-    "marginSd": 4.12,
-    "home": 21.9,
-    "away": 21.7,
-    "winner": "home",
-    "prob": 0.5044,
-    "probHome": 0.5044,
-    "probAway": 0.4956,
-    "games": {
-     "home": 9,
-     "away": 10
-    },
-    "thin": false,
-    "parts": {
-     "home": 2.15,
-     "rating": 1.18,
-     "epa": -1.27,
-     "qb": -1.21,
-     "rest": -0.15,
-     "injuries": -0.54
-    },
-    "ratings": {
-     "home": -3.38,
-     "away": -4.58
-    },
-    "epa": {
-     "home": -0.154,
-     "away": -0.047
-    },
-    "rest": {
-     "home": 6,
-     "away": 7
-    }
-   },
-   "qb": {
-    "home": {
-     "id": "00-0036355",
-     "name": "Justin Herbert",
-     "epa": 0.008,
-     "ref": 0,
-     "points": 0.2,
-     "starts": 8,
-     "games": 8,
-     "kind": "starter",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": null,
-     "status": null
-    },
-    "away": {
-     "id": "00-0030565",
-     "name": "Geno Smith",
-     "epa": -0.014,
-     "ref": -0.063,
-     "points": 1.4,
-     "starts": 9,
-     "games": 9,
-     "kind": "starter",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": null,
-     "status": "Questionable"
-    },
-    "points": -1.2
-   },
-   "injuries": {
-    "home": {
-     "list": [
-      {
-       "name": "Branson Taylor",
-       "pos": "G",
-       "status": "Injured Reserve",
-       "played": 4
-      },
-      {
-       "name": "Trey Pipkins III",
-       "pos": "OT",
-       "status": "Injured Reserve",
-       "played": 1
-      },
-      {
-       "name": "Justin Eboigbe",
-       "pos": "DT",
-       "status": "Questionable",
-       "played": 8
-      },
-      {
-       "name": "Kendall Williamson",
-       "pos": "S",
-       "status": "Questionable",
-       "played": 7
-      }
-     ],
-     "more": 4,
-     "points": 1.2
-    },
-    "away": {
-     "list": [
-      {
-       "name": "Jarvis Brownlee Jr.",
-       "pos": "CB",
-       "status": "Questionable",
-       "played": 8
-      },
-      {
-       "name": "Omar Cooper Jr.",
-       "pos": "WR",
-       "status": "Questionable",
-       "played": 6
-      },
-      {
-       "name": "Dylan Parham",
-       "pos": "G",
-       "status": "Questionable",
-       "played": 6
-      },
-      {
-       "name": "Trevin Wallace",
-       "pos": "LB",
-       "status": "Questionable",
-       "played": 6
-      }
-     ],
-     "more": 0,
-     "points": 0.7
-    }
-   },
-   "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.5044,
-     "bar": 0.1125,
-     "price": 156
-    },
-    "away": {
-     "prob": 0.4956,
-     "bar": 0.1125,
-     "price": 162
-    }
-   },
-   "board": null,
-   "posted": null,
-   "result": null
-  },
-  {
-   "id": "401873069",
-   "week": 11,
-   "kickoff": "2026-11-22T21:25Z",
-   "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:25 PM EST",
-   "score": null,
-   "home": {
-    "id": "19",
-    "abbr": "NYG",
-    "name": "New York Giants",
-    "short": "Giants",
-    "record": "5-3-1"
-   },
-   "away": {
-    "id": "30",
-    "abbr": "JAX",
-    "name": "Jacksonville Jaguars",
-    "short": "Jaguars",
-    "record": "7-2"
-   },
-   "venue": {
-    "name": "MetLife Stadium",
-    "city": "East Rutherford",
-    "state": "NJ",
-    "country": "USA",
-    "indoor": false
-   },
-   "neutral": false,
-   "tv": "CBS",
-   "projection": {
-    "model": "nflverse",
-    "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
-    "margin": -8.48,
-    "total": 45.5,
-    "marginSd": 4.16,
-    "home": 18.5,
-    "away": 27,
-    "winner": "away",
-    "prob": 0.7214,
-    "probHome": 0.2786,
-    "probAway": 0.7214,
-    "games": {
-     "home": 9,
-     "away": 9
-    },
-    "thin": false,
-    "parts": {
-     "home": 2.15,
-     "rating": -7.29,
-     "epa": -1.79,
-     "qb": -2.2,
-     "rest": 0.46,
-     "injuries": 0.19
-    },
-    "ratings": {
-     "home": -1.29,
-     "away": 6.11
-    },
-    "epa": {
-     "home": -0.009,
-     "away": 0.143
-    },
-    "rest": {
-     "home": 10,
-     "away": 7
-    }
-   },
-   "qb": {
-    "home": {
-     "id": "00-0039923",
-     "name": "J.J. McCarthy",
-     "epa": -0.108,
-     "ref": -0.034,
-     "points": -2.2,
-     "starts": 2,
-     "games": 8,
-     "kind": "starter",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": null,
-     "status": null
-    },
-    "away": {
-     "id": "00-0036971",
-     "name": "Trevor Lawrence",
-     "epa": 0.037,
-     "ref": 0.037,
-     "points": 0,
-     "starts": 8,
-     "games": 8,
-     "kind": "starter",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": null,
-     "status": null
-    },
-    "points": -2.2
-   },
-   "injuries": {
-    "home": {
-     "list": [
-      {
-       "name": "Malik Harrison",
-       "pos": "LB",
-       "status": "Questionable",
-       "played": 7
-      },
-      {
-       "name": "Jason Pinnock",
-       "pos": "S",
-       "status": "Questionable",
-       "played": 6
-      }
-     ],
-     "more": 0,
-     "points": 0.4
-    },
-    "away": {
-     "list": [
-      {
-       "name": "B.J. Green II",
-       "pos": "DE",
-       "status": "Injured Reserve",
-       "played": 1
-      },
-      {
-       "name": "Robert Hainsey",
-       "pos": "C",
-       "status": "Questionable",
-       "played": 9
-      },
-      {
-       "name": "Danny Striggow",
-       "pos": "DE",
-       "status": "Questionable",
-       "played": 9
-      }
-     ],
-     "more": 0,
-     "points": 0.6
-    }
-   },
-   "weather": {
-    "mph": 5,
-    "dir": "S",
-    "temp": 61,
-    "unit": "F",
-    "precip": 30,
-    "text": "Chance Light Rain",
-    "at": "2026-11-22T16:00:00-05:00",
-    "source": "National Weather Service"
-   },
-   "leanFrom": {
-    "home": {
-     "prob": 0.2786,
-     "bar": 0.0959,
-     "price": 448
-    },
-    "away": {
-     "prob": 0.7214,
-     "bar": 0.0959,
-     "price": -167
-    }
-   },
-   "board": null,
-   "posted": null,
-   "result": null
-  },
-  {
-   "id": "401873075",
-   "week": 11,
-   "kickoff": "2026-11-22T21:25Z",
-   "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:25 PM EST",
-   "score": null,
-   "home": {
-    "id": "7",
-    "abbr": "DEN",
-    "name": "Denver Broncos",
-    "short": "Broncos",
-    "record": "7-2"
-   },
-   "away": {
-    "id": "13",
-    "abbr": "LV",
-    "name": "Las Vegas Raiders",
-    "short": "Raiders",
-    "record": "4-6"
-   },
-   "venue": {
-    "name": "Empower Field at Mile High",
-    "city": "Denver",
-    "state": "CO",
-    "country": "USA",
-    "indoor": false
-   },
-   "neutral": false,
-   "tv": "CBS",
-   "projection": {
-    "model": "nflverse",
-    "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
-    "margin": 12.19,
-    "total": 47.6,
-    "marginSd": 4.07,
-    "home": 29.9,
-    "away": 17.7,
-    "winner": "home",
-    "prob": 0.8007,
-    "probHome": 0.8007,
-    "probAway": 0.1993,
-    "games": {
-     "home": 9,
-     "away": 10
-    },
-    "thin": false,
-    "parts": {
-     "home": 2.15,
-     "rating": 5.89,
-     "epa": 0.65,
-     "qb": 3.31,
-     "rest": 1.06,
-     "injuries": -0.87
-    },
-    "ratings": {
-     "home": 2.29,
-     "away": -3.69
-    },
-    "epa": {
-     "home": 0.008,
-     "away": -0.047
-    },
-    "rest": {
-     "home": 14,
-     "away": 7
-    }
-   },
-   "qb": {
-    "home": {
-     "id": "00-0039732",
-     "name": "Bo Nix",
-     "epa": 0.021,
-     "ref": 0.021,
-     "points": 0,
-     "starts": 9,
-     "games": 9,
-     "kind": "starter",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": null,
-     "status": null
-    },
-    "away": {
-     "id": "00-0041562",
-     "name": "Fernando Mendoza",
-     "epa": -0.095,
-     "ref": 0.016,
-     "points": -3.3,
-     "starts": 0,
-     "games": 9,
-     "kind": "change",
-     "replaces": null,
-     "replacesStatus": null,
-     "lastStarter": "Kirk Cousins",
-     "status": null
-    },
-    "points": 3.3
-   },
-   "injuries": {
-    "home": {
-     "list": [
-      {
-       "name": "Eyioma Uwazurike",
-       "pos": "DE",
-       "status": "Injured Reserve",
-       "played": 8
-      },
-      {
-       "name": "Jaylen Waddle",
-       "pos": "WR",
-       "status": "Questionable",
-       "played": 9
-      },
-      {
-       "name": "Kris Abrams-Draine",
-       "pos": "CB",
-       "status": "Questionable",
-       "played": 8
-      },
-      {
-       "name": "Riley Moss",
-       "pos": "CB",
-       "status": "Questionable",
-       "played": 8
-      }
-     ],
-     "more": 2,
-     "points": 1.5
-    },
-    "away": {
-     "list": [
-      {
-       "name": "Kwity Paye",
-       "pos": "DE",
-       "status": "Questionable",
-       "played": 10
-      },
-      {
-       "name": "Brock Bowers",
-       "pos": "TE",
-       "status": "Questionable",
-       "played": 8
-      },
-      {
-       "name": "Thomas Booker IV",
-       "pos": "DT",
-       "status": "Questionable",
-       "played": 7
-      }
-     ],
-     "more": 0,
-     "points": 0.6
-    }
-   },
-   "weather": {
-    "mph": 5,
-    "dir": "NE",
-    "temp": 47,
-    "unit": "F",
-    "precip": 0,
-    "text": "Mostly Sunny",
-    "at": "2026-11-22T14:00:00-07:00",
-    "source": "National Weather Service"
-   },
-   "leanFrom": {
-    "home": {
-     "prob": 0.8007,
-     "bar": 0.0791,
-     "price": -259
-    },
-    "away": {
-     "prob": 0.1993,
-     "bar": 0.0791,
-     "price": 732
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -2092,11 +1971,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873077",
    "week": 11,
-   "kickoff": "2026-11-23T01:20Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 8:20 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "25",
@@ -2124,7 +2003,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": 3.71,
     "total": 43,
     "marginSd": 4.17,
@@ -2254,18 +2133,7 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.6016,
-     "bar": 0.1101,
-     "price": 104
-    },
-    "away": {
-     "prob": 0.3984,
-     "bar": 0.1101,
-     "price": 247
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null
@@ -2273,11 +2141,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873078",
    "week": 11,
-   "kickoff": "2026-11-24T01:15Z",
+   "kickoff": "1993-01-31T23:30Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "11/23 - 8:15 PM EST",
+   "detail": "1/31 - 6:30 PM EST",
    "score": null,
    "home": {
     "id": "28",
@@ -2305,7 +2173,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-17T14:09:28.270Z",
-    "locked": false,
+    "locked": true,
     "margin": -3.82,
     "total": 48.3,
     "marginSd": 4.18,
@@ -2429,18 +2297,7 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.3957,
-     "bar": 0.11,
-     "price": 251
-    },
-    "away": {
-     "prob": 0.6043,
-     "bar": 0.11,
-     "price": 103
-    }
-   },
+   "leanFrom": null,
    "board": null,
    "posted": null,
    "result": null

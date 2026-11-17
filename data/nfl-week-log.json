@@ -451,8 +451,9 @@
     "model": "nflverse",
     "marginSd": 4.02
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873067": {
    "id": "401873067",
@@ -474,8 +475,9 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873068": {
    "id": "401873068",
@@ -497,8 +499,9 @@
     "model": "nflverse",
     "marginSd": 4.12
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873069": {
    "id": "401873069",
@@ -520,8 +523,9 @@
     "model": "nflverse",
     "marginSd": 4.16
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873070": {
    "id": "401873070",
@@ -543,8 +547,9 @@
     "model": "nflverse",
     "marginSd": 4.16
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873071": {
    "id": "401873071",
@@ -566,8 +571,9 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873072": {
    "id": "401873072",
@@ -589,8 +595,9 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873073": {
    "id": "401873073",
@@ -612,8 +619,9 @@
     "model": "nflverse",
     "marginSd": 4.11
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873074": {
    "id": "401873074",
@@ -635,8 +643,9 @@
     "model": "nflverse",
     "marginSd": 4.12
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873075": {
    "id": "401873075",
@@ -658,8 +667,9 @@
     "model": "nflverse",
     "marginSd": 4.07
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873076": {
    "id": "401873076",
@@ -681,8 +691,9 @@
     "model": "nflverse",
     "marginSd": 4.13
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873077": {
    "id": "401873077",
@@ -704,8 +715,9 @@
     "model": "nflverse",
     "marginSd": 4.17
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   },
   "401873078": {
    "id": "401873078",
@@ -727,8 +739,9 @@
     "model": "nflverse",
     "marginSd": 4.18
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "1993-01-31T23:30Z"
   }
  }
 }
