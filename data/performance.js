@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-16",
+  "asOf": "2026-11-17",
   "windowDays": 30,
   "record": {
-    "wins": 21,
-    "losses": 23,
+    "wins": 22,
+    "losses": 24,
     "pushes": 0
   },
-  "units": -2.75,
-  "roi": -6.2,
-  "avgEdge": 9.1,
-  "graded": 44,
+  "units": -2.59,
+  "roi": -5.6,
+  "avgEdge": 9.3,
+  "graded": 46,
   "daily": [
     {
       "date": "2026-11-05",
@@ -53,18 +53,22 @@ window.PERF_DATA = {
     {
       "date": "2026-11-15",
       "units": -2.75
+    },
+    {
+      "date": "2026-11-16",
+      "units": -2.59
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 1.43,
-      "record": "15-13"
+      "units": 2.59,
+      "record": "16-13"
     },
     {
       "sport": "NBA",
-      "units": -2.8,
-      "record": "1-3"
+      "units": -3.8,
+      "record": "1-4"
     },
     {
       "sport": "Soccer",
@@ -78,6 +82,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-16",
+      "sport": "NHL",
+      "event": "Vancouver Canucks @ Utah Mammoth",
+      "pick": "Vancouver Canucks +1.5",
+      "odds": 116,
+      "result": "Win",
+      "units": 1.16,
+      "clv": -0.0057,
+      "closeOdds": 110,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-16",
+      "sport": "NBA",
+      "event": "Golden State Warriors @ New Orleans Pelicans",
+      "pick": "Golden State Warriors ML",
+      "odds": -160,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0116,
+      "closeOdds": -170,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-15",
       "sport": "NHL",
@@ -227,36 +261,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-14",
-      "sport": "NHL",
-      "event": "Edmonton Oilers @ Toronto Maple Leafs",
-      "pick": "Under 6.5",
-      "odds": 120,
-      "result": "Win",
-      "units": 1.2,
-      "clv": 0.013,
-      "closeOdds": 105,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-13",
-      "sport": "NHL",
-      "event": "New York Rangers @ Vancouver Canucks",
-      "pick": "Vancouver Canucks +1.5",
-      "odds": -130,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0138,
-      "closeOdds": -135,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -329,16 +333,33 @@ window.PERF_DATA = {
       "wins": 2,
       "losses": 3,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-16",
+      "units": 0.16,
+      "wins": 1,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 2,
-    "losses": 8,
+    "losses": 9,
     "pushes": 0,
-    "units": -6.05,
-    "n": 10,
+    "units": -7.05,
+    "n": 11,
     "props": 1,
     "recent": [
+      {
+        "date": "2026-11-16",
+        "kind": "lean",
+        "sport": "NBA",
+        "event": "Golden State Warriors @ New Orleans Pelicans",
+        "pick": "Golden State Warriors ML",
+        "odds": -160,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-15",
         "kind": "prop",
@@ -428,46 +449,36 @@ window.PERF_DATA = {
         "odds": 153,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-05",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Philadelphia Flyers @ New York Rangers",
-        "pick": "Philadelphia Flyers ML",
-        "odds": 133,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
     "wins": 0,
-    "losses": 10,
+    "losses": 11,
     "pushes": 0,
-    "units": -10,
-    "n": 10
+    "units": -11,
+    "n": 11
   },
   "clv": {
-    "n": 38,
-    "avg": -1.36,
+    "n": 40,
+    "avg": -1.34,
     "beat": 10,
-    "beatPct": 26.3,
-    "graded": 44,
+    "beatPct": 25,
+    "graded": 46,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 44,
+    "espnCloses": 46,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 21,
-      "losses": 23,
+      "wins": 22,
+      "losses": 24,
       "pushes": 0,
-      "units": -2.75,
-      "n": 44,
-      "roi": -6.2,
-      "pending": 4,
+      "units": -2.59,
+      "n": 46,
+      "roi": -5.6,
+      "pending": 2,
       "since": "2026-11-05"
     },
     "price": {

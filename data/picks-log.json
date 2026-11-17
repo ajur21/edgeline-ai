@@ -20975,8 +20975,8 @@
    "Edge 15.3 points over the price, 8.8 past its bar of 6.5",
    "Market reference 45.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.16,
   "loggedAt": "2026-11-15T20:35:50.992Z",
   "availability": null,
   "current": {
@@ -21373,7 +21373,30 @@
      "fair": 0.4464
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "3-2",
+  "finalScore": {
+   "home": 2,
+   "away": 3
+  },
+  "gradedAt": "2026-11-17T07:15:55.607Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892727",
+   "line": 1.5,
+   "odds": 110,
+   "fair": 0.4573,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": 120,
+    "fair": 0.4365
+   },
+   "samples": 3
+  },
+  "clv": -0.0057,
+  "lineMove": null
  },
  {
   "type": "day",
@@ -21483,8 +21506,8 @@
    "Edge 13.8 points over the price, 3.3 past its bar of 10.5",
    "Market reference 59.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-16T20:36:29.679Z",
   "availability": {
    "posted": {
@@ -22068,7 +22091,30 @@
    }
   ],
   "potd": "2026-11-16",
-  "potdAt": "2026-11-16T20:39:15.829Z"
+  "potdAt": "2026-11-16T20:39:15.829Z",
+  "result": "Loss",
+  "score": "94-115",
+  "finalScore": {
+   "home": 115,
+   "away": 94
+  },
+  "gradedAt": "2026-11-17T07:15:55.607Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401910000",
+   "line": null,
+   "odds": -170,
+   "fair": 0.6038,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -131,
+    "fair": 0.5447
+   },
+   "samples": 1
+  },
+  "clv": -0.0116,
+  "lineMove": null
  },
  {
   "key": "03ad7eb1b11b6d15943b734624469fdf|totals|Over|5.5",
@@ -22633,8 +22679,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 170,
-      "away": -205
+      "home": 164,
+      "away": -198
      },
      "total": 5.5,
      "totalOdds": {
@@ -22678,6 +22724,12 @@
     "line": -1.5,
     "odds": 170,
     "fair": 0.3553
+   },
+   {
+    "at": "2026-11-17T07:15:55.607Z",
+    "line": -1.5,
+    "odds": 164,
+    "fair": 0.3631
    }
   ],
   "dk": {
@@ -22689,11 +22741,11 @@
    },
    "now": {
     "line": -1.5,
-    "odds": 170,
-    "fair": 0.35527082119976705
+    "odds": 164,
+    "fair": 0.3630958183058778
    },
    "moved": "toward",
-   "label": "DraftKings opened -1.5 (+180), now -1.5 (+170)"
+   "label": "DraftKings opened -1.5 (+180), now -1.5 (+164)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -22727,7 +22779,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 35.9% (+0.2 points against the best price). For reference only.",
-    "Market: DraftKings opened -1.5 (+180), now -1.5 (+170), moving toward this side since the open.",
+    "Market: DraftKings opened -1.5 (+180), now -1.5 (+164), moving toward this side since the open.",
     "Market: The market (4 books) opened -1 (+100), now 0 (-136), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Bruins Jeremy Swayman · Kings Darcy Kuemper.",
@@ -22787,8 +22839,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-16",
   "date": "2026-11-16",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-16T20:39:15.829Z",
   "book": "Caesars",
   "legs": [
@@ -22802,6 +22854,8 @@
   "decimal": 3.4933,
   "odds": 249,
   "fairProb": 0.464,
-  "ev": 0.6209
+  "ev": 0.6209,
+  "gradedAt": "2026-11-17T07:15:55.607Z",
+  "result": "Loss"
  }
 ]

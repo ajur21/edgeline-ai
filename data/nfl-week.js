@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-16T20:37:40.283Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-17T07:15:59.717Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -59,19 +59,19 @@ window.NFL_WEEK_DATA = {
   "week": {
    "label": "Week 10",
    "w": 8,
-   "l": 5,
+   "l": 6,
    "p": 0,
-   "pending": 1,
-   "pct": 0.6154,
-   "avgProb": 0.6192
+   "pending": 0,
+   "pct": 0.5714,
+   "avgProb": 0.62
   },
   "season": {
    "w": 8,
-   "l": 5,
+   "l": 6,
    "p": 0,
-   "pending": 1,
-   "pct": 0.6154,
-   "avgProb": 0.6192
+   "pending": 0,
+   "pct": 0.5714,
+   "avgProb": 0.62
   }
  },
  "games": [
@@ -2458,10 +2458,13 @@ window.NFL_WEEK_DATA = {
    "week": 10,
    "kickoff": "2026-11-17T01:15Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/16 - 8:15 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 20,
+    "away": 23
+   },
    "home": {
     "id": "33",
     "abbr": "BAL",
@@ -2488,7 +2491,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-16T20:37:40.283Z",
-    "locked": false,
+    "locked": true,
     "margin": 4.82,
     "total": 44.3,
     "marginSd": 4.13,
@@ -2609,32 +2612,16 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-16T20:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.6309,
-     "bar": 0.1065,
-     "price": -110
-    },
-    "away": {
-     "prob": 0.3691,
-     "bar": 0.1065,
-     "price": 281
-    }
-   },
-   "board": {
-    "eventId": "35e3bdff558b5d1506251e814986f164",
-    "pricedAt": "2026-11-16T20:36:29.679Z",
-    "home": {
-     "odds": -216,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": 195,
-     "book": "BetRivers"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 20,
+    "away": 23,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-17T07:15:59.717Z"
+   }
   }
  ]
 };
