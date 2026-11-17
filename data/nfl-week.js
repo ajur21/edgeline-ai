@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-17T20:36:52.577Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-17T22:49:42.623Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -80,11 +80,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873066",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-20T01:15Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/19 - 8:15 PM EST",
    "score": null,
    "home": {
     "id": "34",
@@ -250,11 +250,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873067",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "12",
@@ -429,11 +429,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873068",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "29",
@@ -602,11 +602,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873069",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T21:25Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 4:25 PM EST",
    "score": null,
    "home": {
     "id": "19",
@@ -763,11 +763,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873070",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "2",
@@ -936,11 +936,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873071",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "3",
@@ -1115,11 +1115,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873072",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "8",
@@ -1279,11 +1279,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873073",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "6",
@@ -1449,11 +1449,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873074",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T21:05Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 4:05 PM EST",
    "score": null,
    "home": {
     "id": "24",
@@ -1619,11 +1619,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873075",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T21:25Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 4:25 PM EST",
    "score": null,
    "home": {
     "id": "7",
@@ -1792,11 +1792,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873076",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 1:00 PM EST",
    "score": null,
    "home": {
     "id": "21",
@@ -1971,11 +1971,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873077",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-23T01:20Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/22 - 8:20 PM EST",
    "score": null,
    "home": {
     "id": "25",
@@ -2141,11 +2141,11 @@ window.NFL_WEEK_DATA = {
   {
    "id": "401873078",
    "week": 11,
-   "kickoff": "1993-01-31T23:30Z",
+   "kickoff": "2026-11-24T01:15Z",
    "timeValid": true,
    "state": "pre",
    "status": "STATUS_SCHEDULED",
-   "detail": "1/31 - 6:30 PM EST",
+   "detail": "11/23 - 8:15 PM EST",
    "score": null,
    "home": {
     "id": "28",

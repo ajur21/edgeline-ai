@@ -854,7 +854,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:5cfe0dc8ff-spreads-Boston-Bruins@edgeline
-DTSTAMP:20261117T203613Z
+DTSTAMP:20261117T224929Z
 DTSTART:20261118T001000Z
 DTEND:20261118T031000Z
 SUMMARY:Boston Bruins -1.5 +180 at DraftKings · Low
@@ -878,14 +878,14 @@ DESCRIPTION:NHL · Los Angeles Kings @ Boston Bruins · Tue Nov 17\, 7:10 P
  out James Hagens (C) (-0.1).\n- At current prices our edge is 5.4 points\,
   under its bar of 6.8 points\; the pick stays posted and is graded at the 
  price it was posted at.\nVerdict: The game data lines up behind this side 
- at this price.\nPrices: theScore Bet +165\, FanDuel +164\, BetRivers +163\
- , Bovada +163\, DraftKings +160 and 3 more.\nFull breakdown: https://ajur2
- 1.github.io/edgeline-ai/picks.html#5cfe0dc8ff-spreads-Boston-Bruins
+ at this price.\nPrices: theScore Bet +165\, BetRivers +163\, Bovada +155\,
+  DraftKings +150\, ESPN BET +150 and 3 more.\nFull breakdown: https://ajur
+ 21.github.io/edgeline-ai/picks.html#5cfe0dc8ff-spreads-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#5cfe0dc8ff-spreads-Bost
  on-Bruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T203613Z
+LAST-MODIFIED:20261117T224929Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -896,7 +896,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:03ad7eb1b1-totals-Over@edgeline
-DTSTAMP:20261117T203613Z
+DTSTAMP:20261117T224929Z
 DTSTART:20261118T001000Z
 DTEND:20261118T031000Z
 SUMMARY:Over 5.5 -110 at BetOnline.ag · Low
@@ -917,13 +917,13 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ New York Islanders · Tue Nov 17
  \; Calum Ritchie (C)\, lower body\; Alexander Romanov (D)\, knee and 1 mor
  e. Fewer healthy scorers leans under.\nVerdict: The game data lines up beh
  ind this side at this price.\nPrices: BetOnline.ag -110\, theScore Bet -11
- 5\, PointsBet -115\, DraftKings -118\, Caesars -118 and 6 more.\nFull brea
- kdown: https://ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-O
- ver
+ 5\, ESPN BET -115\, PointsBet -115\, DraftKings -118 and 6 more.\nFull bre
+ akdown: https://ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-
+ Over
 LOCATION:UBS Arena\, Elmont
 URL:https://ajur21.github.io/edgeline-ai/picks.html#03ad7eb1b1-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T203613Z
+LAST-MODIFIED:20261117T224929Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -934,7 +934,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8261a14ac1-h2h-Chicago-Blackhawks@edgeline
-DTSTAMP:20261117T203613Z
+DTSTAMP:20261117T224929Z
 DTSTART:20261118T004000Z
 DTEND:20261118T034000Z
 SUMMARY:Chicago Blackhawks ML +136 at BetOnline.ag · Low
@@ -960,14 +960,14 @@ DESCRIPTION:NHL · Toronto Maple Leafs @ Chicago Blackhawks · Tue Nov 17\,
  rices our edge is 4.8 points\, under its bar of 7.2 points\; the pick stay
  s posted and is graded at the price it was posted at.\nVerdict: The game d
  ata lines up behind this side at this price.\nPrices: BetOnline.ag +136\, 
- BetRivers +133\, theScore Bet +125\, Bovada +125\, PointsBet +125 and 5 mo
- re.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#8261a
- 14ac1-h2h-Chicago-Blackhawks
+ BetRivers +133\, theScore Bet +125\, Caesars +122\, DraftKings +120 and 5 
+ more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#826
+ 1a14ac1-h2h-Chicago-Blackhawks
 LOCATION:United Center\, Chicago
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8261a14ac1-h2h-Chicago-
  Blackhawks
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T203613Z
+LAST-MODIFIED:20261117T224929Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -978,7 +978,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-17@edgeline
-DTSTAMP:20261117T203613Z
+DTSTAMP:20261117T224929Z
 DTSTART:20261118T010000Z
 DTEND:20261118T063000Z
 SUMMARY:Parlay lean of the day: 2 legs +289 at FanDuel
@@ -989,7 +989,7 @@ DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 25.7%\, EV +11
  ub.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261117T203613Z
+LAST-MODIFIED:20261117T224929Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

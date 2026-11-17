@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-17T20:36:13.171Z",
+  "trackedAt": "2026-11-17T22:49:29.331Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NBA-401910006-4277919-reb-under-9.5",
@@ -202,13 +203,13 @@ window.PICKS_DATA = {
         "BetRivers": 133,
         "FanDuel": 118,
         "theScore Bet": 125,
-        "BetMGM": 118,
-        "Bovada": 125,
+        "BetMGM": 120,
+        "Bovada": 120,
         "Caesars": 122,
         "ESPN BET": 120,
-        "PointsBet": 125
+        "PointsBet": 120
       },
-      "pricesAt": "2026-11-17T20:36:13.171Z",
+      "pricesAt": "2026-11-17T22:49:29.331Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5,
@@ -554,13 +555,13 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened +149, now +129"
       },
       "sgo": {
-        "at": "2026-11-17T20:36:13.171Z",
+        "at": "2026-11-17T22:49:29.331Z",
         "n": 7,
         "best": {
-          "book": "Bovada",
-          "odds": 125
+          "book": "Caesars",
+          "odds": 122
         },
-        "fair": 0.4345,
+        "fair": 0.4366,
         "vendorFair": 0.4367,
         "open": {
           "line": null,
@@ -588,6 +589,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 129,
           "best": 125,
+          "n": 7
+        },
+        {
+          "at": "2026-11-17T22:49:29.331Z",
+          "fair": 0.4366,
+          "vendorFair": 0.4367,
+          "line": null,
+          "odds": 129,
+          "best": 122,
           "n": 7
         }
       ],
@@ -638,16 +648,16 @@ window.PICKS_DATA = {
       "odds": 180,
       "book": "DraftKings",
       "prices": {
-        "DraftKings": 160,
+        "DraftKings": 150,
         "BetRivers": 163,
-        "FanDuel": 164,
+        "FanDuel": 148,
         "theScore Bet": 165,
-        "Caesars": 155,
+        "Caesars": 145,
         "ESPN BET": 150,
-        "BetMGM": 154,
-        "Bovada": 163
+        "BetMGM": 150,
+        "Bovada": 155
       },
-      "pricesAt": "2026-11-17T20:36:13.171Z",
+      "pricesAt": "2026-11-17T22:49:29.331Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.428,
@@ -718,7 +728,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 35.9% (+0.2 points against the best price). For reference only.",
-          "Market: DraftKings opened -1.5 (+180), now -1.5 (+160), moving toward this side since the open.",
+          "Market: DraftKings opened -1.5 (+180), now -1.5 (+150), moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Bruins Michael DiPietro · Kings Darcy Kuemper.",
           "Records: Los Angeles Kings 5-11-2 · Boston Bruins 13-6-1 · TD Garden, Boston."
@@ -808,13 +818,13 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 160,
-              "away": -192
+              "home": 150,
+              "away": -180
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 110,
-              "under": -130
+              "over": 114,
+              "under": -135
             },
             "ml": {
               "home": -162,
@@ -876,11 +886,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": -1.5,
-          "odds": 160,
-          "fair": 0.3690596562184025
+          "odds": 150,
+          "fair": 0.3835616438356164
         },
         "moved": "toward",
-        "label": "DraftKings opened -1.5 (+180), now -1.5 (+160)"
+        "label": "DraftKings opened -1.5 (+180), now -1.5 (+150)"
       },
       "dkHistory": [
         {
@@ -906,6 +916,12 @@ window.PICKS_DATA = {
           "line": -1.5,
           "odds": 160,
           "fair": 0.3691
+        },
+        {
+          "at": "2026-11-17T22:49:29.331Z",
+          "line": -1.5,
+          "odds": 150,
+          "fair": 0.3836
         }
       ],
       "mkt": {
@@ -923,13 +939,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened -1 (+100), now -1 (+100)"
       },
       "sgo": {
-        "at": "2026-11-17T20:36:13.171Z",
+        "at": "2026-11-17T22:49:29.331Z",
         "n": 6,
         "best": {
-          "book": "FanDuel",
-          "odds": 164
+          "book": "Bovada",
+          "odds": 155
         },
-        "fair": 0.3717,
+        "fair": 0.3836,
         "vendorFair": 0.5,
         "open": {
           "line": -1,
@@ -966,6 +982,15 @@ window.PICKS_DATA = {
           "line": -1,
           "odds": 100,
           "best": 164,
+          "n": 6
+        },
+        {
+          "at": "2026-11-17T22:49:29.331Z",
+          "fair": 0.3836,
+          "vendorFair": 0.5,
+          "line": -1,
+          "odds": 100,
+          "best": 155,
           "n": 6
         }
       ],
@@ -1215,10 +1240,10 @@ window.PICKS_DATA = {
               "home": 185,
               "away": -225
             },
-            "total": 6.5,
+            "total": 5.5,
             "totalOdds": {
-              "over": 114,
-              "under": -135
+              "over": -135,
+              "under": 114
             },
             "ml": {
               "home": -122,
@@ -1359,12 +1384,12 @@ window.PICKS_DATA = {
         "theScore Bet": -115,
         "Unibet": -127,
         "Caesars": -118,
-        "ESPN BET": -120,
+        "ESPN BET": -115,
         "BetMGM": -120,
         "Bovada": -120,
         "PointsBet": -115
       },
-      "pricesAt": "2026-11-17T20:36:13.171Z",
+      "pricesAt": "2026-11-17T22:49:29.331Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.5703,
@@ -1424,7 +1449,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 51.9% (-0.5 points against the best price). For reference only.",
           "Market: DraftKings opened 6.5 (+105), now 5.5 (-118), moving against this side since the open.",
-          "Market: The market (8 books) opened 7.5 (+152), now 6 (+115), the consensus moving against this side since the open.",
+          "Market: The market (8 books) opened 7.5 (+152), now 6 (+113), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Islanders Ilya Sorokin · Jackets Cam Talbot.",
           "Records: Columbus Blue Jackets 7-11-0 · New York Islanders 9-6-4 · UBS Arena, Elmont."
@@ -1629,27 +1654,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6,
-          "odds": 115
+          "odds": 113
         },
         "moved": "away",
-        "label": "The market (8 books) opened 7.5 (+152), now 6 (+115)"
+        "label": "The market (8 books) opened 7.5 (+152), now 6 (+113)"
       },
       "sgo": {
-        "at": "2026-11-17T20:36:13.171Z",
+        "at": "2026-11-17T22:49:29.331Z",
         "n": 8,
         "best": {
-          "book": "PointsBet",
+          "book": "ESPN BET",
           "odds": -115
         },
-        "fair": 0.5196,
-        "vendorFair": 0.4651,
+        "fair": 0.5183,
+        "vendorFair": 0.4695,
         "open": {
           "line": 7.5,
           "odds": 152
         },
         "now": {
           "line": 6,
-          "odds": 115
+          "odds": 113
         }
       },
       "sgoHistory": [
@@ -1677,6 +1702,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.4651,
           "line": 6,
           "odds": 115,
+          "best": -115,
+          "n": 8
+        },
+        {
+          "at": "2026-11-17T22:49:29.331Z",
+          "fair": 0.5183,
+          "vendorFair": 0.4695,
+          "line": 6,
+          "odds": 113,
           "best": -115,
           "n": 8
         }

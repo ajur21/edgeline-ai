@@ -22146,7 +22146,7 @@
    "theScore Bet": -115,
    "Unibet": -127,
    "Caesars": -118,
-   "ESPN BET": -120,
+   "ESPN BET": -115,
    "BetMGM": -120,
    "Bovada": -120,
    "PointsBet": -115
@@ -22409,10 +22409,10 @@
    },
    "now": {
     "line": 6,
-    "odds": 115
+    "odds": 113
    },
    "moved": "away",
-   "label": "The market (8 books) opened 7.5 (+152), now 6 (+115)"
+   "label": "The market (8 books) opened 7.5 (+152), now 6 (+113)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -22429,7 +22429,7 @@
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 51.9% (-0.5 points against the best price). For reference only.",
     "Market: DraftKings opened 6.5 (+105), now 5.5 (-118), moving against this side since the open.",
-    "Market: The market (8 books) opened 7.5 (+152), now 6 (+115), the consensus moving against this side since the open.",
+    "Market: The market (8 books) opened 7.5 (+152), now 6 (+113), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Islanders Ilya Sorokin · Jackets Cam Talbot.",
     "Records: Columbus Blue Jackets 7-11-0 · New York Islanders 9-6-4 · UBS Arena, Elmont."
@@ -22440,28 +22440,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "Qyo7oiqYcSaJxGDXg3Y1",
-   "at": "2026-11-17T20:36:13.171Z",
+   "at": "2026-11-17T22:49:29.331Z",
    "books": {
     "DraftKings": -118,
     "FanDuel": -120,
     "Unibet": -127,
     "Caesars": -118,
-    "ESPN BET": -120,
+    "ESPN BET": -115,
     "BetMGM": -120,
     "Bovada": -120,
     "PointsBet": -115
    },
    "n": 8,
    "best": {
-    "book": "PointsBet",
+    "book": "ESPN BET",
     "odds": -115
    },
-   "fair": 0.5196,
+   "fair": 0.5183,
    "fairBooks": 8,
    "vendor": {
     "line": 6,
-    "odds": 115,
-    "fair": 0.4651,
+    "odds": 113,
+    "fair": 0.4695,
     "sameLine": false
    },
    "open": {
@@ -22470,12 +22470,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 115
+    "odds": 113
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-17T20:36:13.171Z",
+  "pricesAt": "2026-11-17T22:49:29.331Z",
   "sgoHistory": [
    {
     "at": "2026-11-16T20:36:29.679Z",
@@ -22501,6 +22501,15 @@
     "vendorFair": 0.4651,
     "line": 6,
     "odds": 115,
+    "best": -115,
+    "n": 8
+   },
+   {
+    "at": "2026-11-17T22:49:29.331Z",
+    "fair": 0.5183,
+    "vendorFair": 0.4695,
+    "line": 6,
+    "odds": 113,
     "best": -115,
     "n": 8
    }
@@ -22555,14 +22564,14 @@
   "odds": 180,
   "book": "DraftKings",
   "prices": {
-   "DraftKings": 160,
+   "DraftKings": 150,
    "BetRivers": 163,
-   "FanDuel": 164,
+   "FanDuel": 148,
    "theScore Bet": 165,
-   "Caesars": 155,
+   "Caesars": 145,
    "ESPN BET": 150,
-   "BetMGM": 154,
-   "Bovada": 163
+   "BetMGM": 150,
+   "Bovada": 155
   },
   "books": 4,
   "anchor": null,
@@ -22740,13 +22749,13 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 160,
-      "away": -192
+      "home": 150,
+      "away": -180
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 110,
-      "under": -130
+      "over": 114,
+      "under": -135
      },
      "ml": {
       "home": -162,
@@ -22797,6 +22806,12 @@
     "line": -1.5,
     "odds": 160,
     "fair": 0.3691
+   },
+   {
+    "at": "2026-11-17T22:49:29.331Z",
+    "line": -1.5,
+    "odds": 150,
+    "fair": 0.3836
    }
   ],
   "dk": {
@@ -22808,11 +22823,11 @@
    },
    "now": {
     "line": -1.5,
-    "odds": 160,
-    "fair": 0.3690596562184025
+    "odds": 150,
+    "fair": 0.3835616438356164
    },
    "moved": "toward",
-   "label": "DraftKings opened -1.5 (+180), now -1.5 (+160)"
+   "label": "DraftKings opened -1.5 (+180), now -1.5 (+150)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -22847,7 +22862,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 35.9% (+0.2 points against the best price). For reference only.",
-    "Market: DraftKings opened -1.5 (+180), now -1.5 (+160), moving toward this side since the open.",
+    "Market: DraftKings opened -1.5 (+180), now -1.5 (+150), moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Bruins Michael DiPietro · Kings Darcy Kuemper.",
     "Records: Los Angeles Kings 5-11-2 · Boston Bruins 13-6-1 · TD Garden, Boston."
@@ -22858,21 +22873,21 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "VhH8OAxxmgSvgMn8pac5",
-   "at": "2026-11-17T20:36:13.171Z",
+   "at": "2026-11-17T22:49:29.331Z",
    "books": {
-    "DraftKings": 160,
-    "FanDuel": 164,
-    "Caesars": 155,
+    "DraftKings": 150,
+    "FanDuel": 148,
+    "Caesars": 145,
     "ESPN BET": 150,
-    "BetMGM": 154,
-    "Bovada": 163
+    "BetMGM": 150,
+    "Bovada": 155
    },
    "n": 6,
    "best": {
-    "book": "FanDuel",
-    "odds": 164
+    "book": "Bovada",
+    "odds": 155
    },
-   "fair": 0.3717,
+   "fair": 0.3836,
    "fairBooks": 6,
    "vendor": {
     "line": -1,
@@ -22891,7 +22906,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-17T20:36:13.171Z",
+  "pricesAt": "2026-11-17T22:49:29.331Z",
   "sgoHistory": [
    {
     "at": "2026-11-16T20:36:29.679Z",
@@ -22918,6 +22933,15 @@
     "line": -1,
     "odds": 100,
     "best": 164,
+    "n": 6
+   },
+   {
+    "at": "2026-11-17T22:49:29.331Z",
+    "fair": 0.3836,
+    "vendorFair": 0.5,
+    "line": -1,
+    "odds": 100,
+    "best": 155,
     "n": 6
    }
   ],
@@ -22999,11 +23023,11 @@
    "BetRivers": 133,
    "FanDuel": 118,
    "theScore Bet": 125,
-   "BetMGM": 118,
-   "Bovada": 125,
+   "BetMGM": 120,
+   "Bovada": 120,
    "Caesars": 122,
    "ESPN BET": 120,
-   "PointsBet": 125
+   "PointsBet": 120
   },
   "books": 8,
   "anchor": "Pinnacle",
@@ -23369,22 +23393,22 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "cK9s4zQEEgeEt2OenwUO",
-   "at": "2026-11-17T20:36:13.171Z",
+   "at": "2026-11-17T22:49:29.331Z",
    "books": {
     "FanDuel": 118,
     "DraftKings": 120,
     "Caesars": 122,
     "ESPN BET": 120,
-    "BetMGM": 118,
-    "Bovada": 125,
-    "PointsBet": 125
+    "BetMGM": 120,
+    "Bovada": 120,
+    "PointsBet": 120
    },
    "n": 7,
    "best": {
-    "book": "Bovada",
-    "odds": 125
+    "book": "Caesars",
+    "odds": 122
    },
-   "fair": 0.4345,
+   "fair": 0.4366,
    "fairBooks": 7,
    "vendor": {
     "line": null,
@@ -23403,7 +23427,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-17T20:36:13.171Z",
+  "pricesAt": "2026-11-17T22:49:29.331Z",
   "sgoHistory": [
    {
     "at": "2026-11-17T14:08:56.461Z",
@@ -23421,6 +23445,15 @@
     "line": null,
     "odds": 129,
     "best": 125,
+    "n": 7
+   },
+   {
+    "at": "2026-11-17T22:49:29.331Z",
+    "fair": 0.4366,
+    "vendorFair": 0.4367,
+    "line": null,
+    "odds": 129,
+    "best": 122,
     "n": 7
    }
   ],
@@ -23682,10 +23715,10 @@
       "home": 185,
       "away": -225
      },
-     "total": 6.5,
+     "total": 5.5,
      "totalOdds": {
-      "over": 114,
-      "under": -135
+      "over": -135,
+      "under": 114
      },
      "ml": {
       "home": -122,
