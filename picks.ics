@@ -927,7 +927,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-18@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261118T223131Z
 DTSTART:20261119T000000Z
 DTEND:20261119T040000Z
 SUMMARY:Parlay lean of the day: 2 legs +283 at FanDuel
@@ -938,7 +938,7 @@ DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 26.1%\, EV +9.
  ub.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261118T223131Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -949,7 +949,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:38779d99fd-spreads-Boston-Bruins@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261118T223131Z
 DTSTART:20261119T004000Z
 DTEND:20261119T034000Z
 SUMMARY:Boston Bruins +1.5 -225 at DraftKings · Low
@@ -975,14 +975,14 @@ DESCRIPTION:NHL · Boston Bruins @ Detroit Red Wings · Wed Nov 18\, 7:40 P
  (+0.1).\n- At current prices our edge is -1.6 points\, under its bar of 5.
  9 points\; the pick stays posted and is graded at the price it was posted 
  at.\nVerdict: The game data lines up behind this side at this price.\nPric
- es: BetRivers -250\, ESPN BET -260\, theScore Bet -265\, Bovada -270\, Bet
+ es: BetRivers -250\, ESPN BET -260\, Bovada -260\, theScore Bet -265\, Bet
  MGM -275 and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
  /picks.html#38779d99fd-spreads-Boston-Bruins
 LOCATION:Little Caesars Arena\, Detroit
 URL:https://ajur21.github.io/edgeline-ai/picks.html#38779d99fd-spreads-Bost
  on-Bruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261118T223131Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-18T20:36:26.498Z",
+  "trackedAt": "2026-11-18T22:31:31.122Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NBA-401910016-3213-pra-under-14.5",
@@ -570,10 +571,10 @@ window.PICKS_DATA = {
               "home": -108,
               "away": -112
             },
-            "total": 44.5,
+            "total": 43.5,
             "totalOdds": {
-              "over": -105,
-              "under": -115
+              "over": -118,
+              "under": -102
             },
             "ml": {
               "home": -750,
@@ -1249,8 +1250,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -115,
-              "under": -105
+              "over": -105,
+              "under": -115
             },
             "ml": {
               "home": -142,
@@ -1391,9 +1392,9 @@ window.PICKS_DATA = {
         "BetMGM": -275,
         "Caesars": -280,
         "ESPN BET": -260,
-        "Bovada": -270
+        "Bovada": -260
       },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "pricesAt": "2026-11-18T22:31:31.122Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.7492,
@@ -1470,7 +1471,7 @@ window.PICKS_DATA = {
           "Where the market sits: the de-vigged consensus of 5 books makes this side 67.3% (-1.9 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (67.3% → 70.5%).",
           "Market: DraftKings opened +1.5 (-225), now +1.5 (-285), moving toward this side since the open.",
-          "Market: The market (5 books) opened 0 (+106), now 0 (+100), the consensus moving toward this side since the open.",
+          "Market: The market (4 books) opened 0 (+106), now 0 (+100), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Wings Daniil Tarasov · Bruins Jeremy Swayman.",
           "Records: Boston Bruins 13-7-1 · Detroit Red Wings 8-10-3 · Little Caesars Arena, Detroit."
@@ -1587,10 +1588,10 @@ window.PICKS_DATA = {
               "home": 230,
               "away": -285
             },
-            "total": 6.5,
+            "total": 5.5,
             "totalOdds": {
-              "over": 120,
-              "under": -142
+              "over": -135,
+              "under": 114
             },
             "ml": {
               "home": -110,
@@ -1686,7 +1687,7 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 4,
         "open": {
           "line": 0,
           "odds": 106
@@ -1696,16 +1697,16 @@ window.PICKS_DATA = {
           "odds": 100
         },
         "moved": "toward",
-        "label": "The market (5 books) opened 0 (+106), now 0 (+100)"
+        "label": "The market (4 books) opened 0 (+106), now 0 (+100)"
       },
       "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
-        "n": 5,
+        "at": "2026-11-18T22:31:31.122Z",
+        "n": 4,
         "best": {
           "book": "ESPN BET",
           "odds": -260
         },
-        "fair": 0.6992,
+        "fair": 0.7007,
         "vendorFair": 0.5,
         "open": {
           "line": 0,
@@ -1743,6 +1744,15 @@ window.PICKS_DATA = {
           "odds": 100,
           "best": -260,
           "n": 5
+        },
+        {
+          "at": "2026-11-18T22:31:31.122Z",
+          "fair": 0.7007,
+          "vendorFair": 0.5,
+          "line": 0,
+          "odds": 100,
+          "best": -260,
+          "n": 4
         }
       ],
       "status": "pending",
