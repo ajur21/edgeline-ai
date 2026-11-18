@@ -22207,8 +22207,8 @@
    "Edge 4.6 points over the price, 1.6 past its bar of 3.0",
    "Market reference 51.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.91,
   "loggedAt": "2026-11-16T20:36:29.679Z",
   "availability": null,
   "current": {
@@ -22539,7 +22539,30 @@
      "fair": 0.5193
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "1-5",
+  "finalScore": {
+   "home": 5,
+   "away": 1
+  },
+  "gradedAt": "2026-11-18T04:05:51.717Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892731",
+   "line": 5.5,
+   "odds": -115,
+   "fair": 0.5108,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 105,
+    "fair": 0.4675
+   },
+   "samples": 3
+  },
+  "clv": -0.013,
+  "lineMove": null
  },
  {
   "key": "5cfe0dc8ffa69bdd676d878da0ae62fb|spreads|Boston Bruins|-1.5",
@@ -22636,8 +22659,8 @@
    "Edge 7.1 points over the price, 0.2 past its bar of 6.8",
    "Market reference 35.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-16T20:36:29.679Z",
   "availability": null,
   "current": {
@@ -22970,7 +22993,30 @@
      "fair": 0.3646
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "3-0",
+  "finalScore": {
+   "home": 0,
+   "away": 3
+  },
+  "gradedAt": "2026-11-18T04:05:51.717Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892728",
+   "line": -1.5,
+   "odds": 150,
+   "fair": 0.3836,
+   "moved": null,
+   "open": {
+    "line": -1.5,
+    "odds": 180,
+    "fair": 0.3425
+   },
+   "samples": 3
+  },
+  "clv": 0.0265,
+  "lineMove": null
  },
  {
   "type": "parlay",
@@ -23093,8 +23139,8 @@
    "Edge 7.6 points over the price, 0.4 past its bar of 7.2",
    "Market reference 41.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.36,
   "loggedAt": "2026-11-17T14:08:56.461Z",
   "availability": null,
   "current": {
@@ -23477,7 +23523,30 @@
      "fair": 0.435
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "3-6",
+  "finalScore": {
+   "home": 6,
+   "away": 3
+  },
+  "gradedAt": "2026-11-18T04:05:51.717Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892733",
+   "line": null,
+   "odds": 120,
+   "fair": 0.4365,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 120,
+    "fair": 0.4365
+   },
+   "samples": 2
+  },
+  "clv": 0.0128,
+  "lineMove": null
  },
  {
   "type": "day",
@@ -23712,17 +23781,17 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 185,
-      "away": -225
+      "home": 220,
+      "away": -270
      },
-     "total": 5.5,
+     "total": 6.5,
      "totalOdds": {
-      "over": -135,
-      "under": 114
+      "over": 114,
+      "under": -135
      },
      "ml": {
-      "home": -122,
-      "away": 102
+      "home": -115,
+      "away": -105
      },
      "draw": null
     },
@@ -23751,6 +23820,12 @@
     "line": 1.5,
     "odds": -225,
     "fair": 0.6636
+   },
+   {
+    "at": "2026-11-18T04:05:51.717Z",
+    "line": 1.5,
+    "odds": -270,
+    "fair": 0.7002
    }
   ],
   "dk": {
@@ -23762,11 +23837,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -225,
-    "fair": 0.6636481241914618
+    "odds": -270,
+    "fair": 0.7001620745542949
    },
-   "moved": null,
-   "label": "DraftKings opened +1.5 (-225), now +1.5 (-225)"
+   "moved": "toward",
+   "label": "DraftKings opened +1.5 (-225), now +1.5 (-270)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -23802,6 +23877,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 67.3% (-1.9 points against the best price). For reference only.",
+    "Market: DraftKings opened +1.5 (-225), now +1.5 (-270), moving toward this side since the open.",
     "Market: The market (5 books) opened 0 (+106), now 0 (+110), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Wings Daniil Tarasov · Bruins Jeremy Swayman.",
@@ -23972,11 +24048,12 @@
   ],
   "proj": 17.9,
   "linesAt": "2026-11-17T20:36:56.385Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-17T20:37:31.674Z"
+  "status": "graded",
+  "actual": 34,
+  "result": "Loss",
+  "units": -1,
+  "lockedAt": "2026-11-17T20:37:31.674Z",
+  "gradedAt": "2026-11-18T04:05:51.717Z"
  },
  {
   "type": "parlay",
