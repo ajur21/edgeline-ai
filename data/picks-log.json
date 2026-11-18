@@ -23986,13 +23986,14 @@
   ],
   "proj": 6.1,
   "linesAt": "2026-11-17T20:36:56.385Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
+  "status": "graded",
+  "actual": 10,
+  "result": "Loss",
+  "units": -1,
   "lockedAt": "2026-11-17T20:37:31.674Z",
   "potd": "2026-11-17",
-  "potdAt": "2026-11-17T20:37:31.674Z"
+  "potdAt": "2026-11-17T20:37:31.674Z",
+  "gradedAt": "2026-11-18T06:40:49.780Z"
  },
  {
   "type": "prop",
@@ -24059,8 +24060,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-17",
   "date": "2026-11-17",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-17T20:37:31.674Z",
   "book": "FanDuel",
   "legs": [
@@ -24074,6 +24075,8 @@
   "decimal": 3.8904,
   "odds": 289,
   "fairProb": 0.2858,
-  "ev": 0.1119
+  "ev": 0.1119,
+  "gradedAt": "2026-11-18T06:40:49.780Z",
+  "result": "Loss"
  }
 ]

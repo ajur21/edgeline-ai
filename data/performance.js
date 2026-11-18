@@ -2,7 +2,7 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-17",
+  "asOf": "2026-11-18",
   "windowDays": 30,
   "record": {
     "wins": 24,
@@ -355,12 +355,22 @@ window.PERF_DATA = {
   ],
   "potd": {
     "wins": 2,
-    "losses": 9,
+    "losses": 10,
     "pushes": 0,
-    "units": -7.05,
-    "n": 11,
-    "props": 1,
+    "units": -8.05,
+    "n": 12,
+    "props": 2,
     "recent": [
+      {
+        "date": "2026-11-17",
+        "kind": "prop",
+        "sport": "NBA",
+        "event": "Utah Jazz @ LA Clippers",
+        "pick": "Mo Bamba under 9.5 rebounds",
+        "odds": 102,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-16",
         "kind": "lean",
@@ -450,25 +460,15 @@ window.PERF_DATA = {
         "odds": 350,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-06",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Columbus Blue Jackets @ Buffalo Sabres",
-        "pick": "Columbus Blue Jackets ML",
-        "odds": 153,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
     "wins": 0,
-    "losses": 11,
+    "losses": 12,
     "pushes": 0,
-    "units": -11,
-    "n": 11
+    "units": -12,
+    "n": 12
   },
   "clv": {
     "n": 43,

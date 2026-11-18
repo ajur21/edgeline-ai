@@ -907,44 +907,21 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-17@edgeline
-DTSTAMP:20261118T040551Z
-DTSTART:20261118T010000Z
-DTEND:20261118T063000Z
-SUMMARY:Parlay lean of the day: 2 legs +289 at FanDuel
-DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 25.7%\, EV +11
- .2% per unit.\n- NBA: Mo Bamba under 9.5 rebounds +102 · Utah Jazz @ LA C
- lippers\n- NBA: Jrue Holiday under 21.5 pts + reb + ast -108 · Portland T
- rail Blazers @ Minnesota Timberwolves\n\nEvery parlay: https://ajur21.gith
- ub.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261118T040551Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +289 at FanDuel
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:prop-NBA-401910006-4277919-reb-under-9.5@edgeline
-DTSTAMP:20261117T203731Z
+DTSTAMP:20261118T064049Z
 DTSTART:20261118T033000Z
 DTEND:20261118T063000Z
-SUMMARY:Lean of the day: Mo Bamba under 9.5 rebounds +102 at FanDuel · in 
- play
+SUMMARY:Lean of the day: Mo Bamba under 9.5 rebounds +102 at FanDuel · Los
+ t -1.00u
 DESCRIPTION:NBA · Utah Jazz @ LA Clippers · Tue Nov 17\, 10:30 PM ET\nPla
  yer prop: Mo Bamba under 9.5 rebounds at +102 (FanDuel). Our chance 54.4% 
  (the model's own 79.3%\, cut to the 15% of an edge that graded props have 
- borne out)\, the price implies 49.5%\, EV +9.9% per unit. Grade: High.\n- 
- Stayed under 9.5 in 9 of the last 10\n- Projects 6.1 (last 5: 5\, last 10:
-  5.8\, season: 5.8)\n- Rebounds down 14% last 5\nEvery prop\, ranked: http
- s://ajur21.github.io/edgeline-ai/props.html
-URL:https://ajur21.github.io/edgeline-ai/index.html#plays
+ borne out)\, the price implies 49.5%\, EV +9.9% per unit. Grade: High.\nLo
+ st -1.00u: finished on 10 rebounds\, graded on the box score.\nRecord and 
+ every graded lean: https://ajur21.github.io/edgeline-ai/performance.html
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA,Prop
-LAST-MODIFIED:20261117T203731Z
+LAST-MODIFIED:20261118T064049Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
