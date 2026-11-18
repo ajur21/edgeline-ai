@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-17T20:36:13.171Z",
-  "trackedAt": "2026-11-18T06:40:49.780Z",
+  "generatedAt": "2026-11-18T14:08:49.467Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-18T14:10:58.450Z",
     "last": {
       "play": {
         "date": "2026-11-17",
@@ -57,14 +56,14 @@ window.PICKS_DATA = {
       "book": "DraftKings",
       "prices": {
         "DraftKings": -225,
-        "FanDuel": -235,
+        "FanDuel": -290,
         "BetRivers": -250,
         "theScore Bet": -265,
-        "BetMGM": -235,
-        "Caesars": -230,
-        "ESPN BET": -265
+        "BetMGM": -285,
+        "Caesars": -280,
+        "ESPN BET": -275
       },
-      "pricesAt": "2026-11-17T20:36:13.171Z",
+      "pricesAt": "2026-11-18T14:08:49.467Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.7492,
@@ -134,15 +133,17 @@ window.PICKS_DATA = {
           "Boston Bruins trending: last five +0.2 vs +1 on the season.",
           "Home edge +0.2 for Detroit Red Wings.",
           "Detroit Red Wings are rested (4 days).",
-          "Boston Bruins without James Hagens (C) (+0.1)."
+          "Boston Bruins without James Hagens (C) (+0.1).",
+          "At current prices our edge is -3.3 points, under its bar of 5.9 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 67.3% (-1.9 points against the best price). For reference only.",
-          "Market: DraftKings opened +1.5 (-225), now +1.5 (-270), moving toward this side since the open.",
-          "Market: The market (5 books) opened 0 (+106), now 0 (+110), the consensus moving against this side since the open.",
+          "Market: the sharp line has moved toward this side since it was logged (67.3% → 69.7%).",
+          "Market: DraftKings opened +1.5 (-225), now -1.5 (+225), moving toward this side since the open.",
+          "Market: The market (4 books) opened 0 (+106), now 0 (+100), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Wings Daniil Tarasov · Bruins Jeremy Swayman.",
-          "Records: Boston Bruins 13-6-1 · Detroit Red Wings 8-10-3 · Little Caesars Arena, Detroit."
+          "Records: Boston Bruins 13-7-1 · Detroit Red Wings 8-10-3 · Little Caesars Arena, Detroit."
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
@@ -157,8 +158,8 @@ window.PICKS_DATA = {
             "away": "4-5-2"
           },
           "Boston Bruins": {
-            "overall": "13-6-1",
-            "home": "8-3-0",
+            "overall": "13-7-1",
+            "home": "8-4-0",
             "away": "5-3-1"
           }
         },
@@ -240,10 +241,10 @@ window.PICKS_DATA = {
             "gamesLast7": 2
           },
           "Boston Bruins": {
-            "restDays": 4,
-            "b2b": false,
-            "lastGame": "2026-11-15",
-            "gamesLast7": 2
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-18",
+            "gamesLast7": 3
           }
         },
         "weather": null,
@@ -251,19 +252,19 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": -1.5,
+            "spread": 1.5,
             "spreadOdds": {
-              "home": 220,
-              "away": -270
+              "home": -278,
+              "away": 225
             },
-            "total": 6.5,
+            "total": 5.5,
             "totalOdds": {
-              "over": 114,
-              "under": -135
+              "over": -135,
+              "under": 114
             },
             "ml": {
-              "home": -115,
-              "away": -105
+              "home": -110,
+              "away": -110
             },
             "draw": null
           },
@@ -286,7 +287,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -225,
+        "loggedFair": 0.7492,
+        "currentOdds": -275,
+        "currentBook": "theScore Bet",
+        "currentFair": 0.6971,
+        "currentEdge": -0.0331,
+        "checkedAt": "2026-11-18T14:08:49.467Z",
+        "history": [
+          {
+            "at": "2026-11-17T20:36:13.171Z",
+            "odds": -225,
+            "fair": 0.673
+          },
+          {
+            "at": "2026-11-18T14:08:49.467Z",
+            "odds": -275,
+            "fair": 0.6971
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -295,12 +316,12 @@ window.PICKS_DATA = {
           "fair": 0.6636481241914618
         },
         "now": {
-          "line": 1.5,
-          "odds": -270,
-          "fair": 0.7001620745542949
+          "line": -1.5,
+          "odds": 225,
+          "fair": 0.2949668357393679
         },
         "moved": "toward",
-        "label": "DraftKings opened +1.5 (-225), now +1.5 (-270)"
+        "label": "DraftKings opened +1.5 (-225), now -1.5 (+225)"
       },
       "dkHistory": [
         {
@@ -314,38 +335,44 @@ window.PICKS_DATA = {
           "line": 1.5,
           "odds": -270,
           "fair": 0.7002
+        },
+        {
+          "at": "2026-11-18T14:08:49.467Z",
+          "line": -1.5,
+          "odds": 225,
+          "fair": 0.295
         }
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 4,
         "open": {
           "line": 0,
           "odds": 106
         },
         "now": {
           "line": 0,
-          "odds": 110
+          "odds": 100
         },
-        "moved": "away",
-        "label": "The market (5 books) opened 0 (+106), now 0 (+110)"
+        "moved": "toward",
+        "label": "The market (4 books) opened 0 (+106), now 0 (+100)"
       },
       "sgo": {
-        "at": "2026-11-17T20:36:13.171Z",
-        "n": 5,
+        "at": "2026-11-18T14:08:49.467Z",
+        "n": 4,
         "best": {
-          "book": "DraftKings",
-          "odds": -225
+          "book": "ESPN BET",
+          "odds": -275
         },
-        "fair": 0.6704,
-        "vendorFair": 0.4762,
+        "fair": 0.6992,
+        "vendorFair": 0.5,
         "open": {
           "line": 0,
           "odds": 106
         },
         "now": {
           "line": 0,
-          "odds": 110
+          "odds": 100
         }
       },
       "sgoHistory": [
@@ -357,6 +384,15 @@ window.PICKS_DATA = {
           "odds": 110,
           "best": -225,
           "n": 5
+        },
+        {
+          "at": "2026-11-18T14:08:49.467Z",
+          "fair": 0.6992,
+          "vendorFair": 0.5,
+          "line": 0,
+          "odds": 100,
+          "best": -275,
+          "n": 4
         }
       ],
       "status": "pending",
@@ -375,8 +411,15 @@ window.PICKS_DATA = {
         "gp": 20,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-18T14:08:49.467Z",
+        "odds": -275,
+        "book": "theScore Bet",
+        "modelProb": 0.7002,
+        "edge": -0.0331,
+        "bar": 0.0592
+      },
+      "standing": "gone",
       "availability": null
     },
     {

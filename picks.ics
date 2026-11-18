@@ -927,7 +927,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:38779d99fd-spreads-Boston-Bruins@edgeline
-DTSTAMP:20261117T203613Z
+DTSTAMP:20261118T140849Z
 DTSTART:20261119T004000Z
 DTEND:20261119T034000Z
 SUMMARY:Boston Bruins +1.5 -225 at DraftKings · Low
@@ -950,15 +950,17 @@ DESCRIPTION:NHL · Boston Bruins @ Detroit Red Wings · Wed Nov 18\, 7:40 P
  ainst +1.5.\nWhat could go wrong:\n- Boston Bruins trending: last five +0.
  2 vs +1 on the season.\n- Home edge +0.2 for Detroit Red Wings.\n- Detroit
   Red Wings are rested (4 days).\n- Boston Bruins without James Hagens (C) 
- (+0.1).\nVerdict: The game data lines up behind this side at this price.\n
- Prices: DraftKings -225\, Caesars -230\, FanDuel -235\, BetMGM -235\, BetR
- ivers -250 and 2 more.\nFull breakdown: https://ajur21.github.io/edgeline-
- ai/picks.html#38779d99fd-spreads-Boston-Bruins
+ (+0.1).\n- At current prices our edge is -3.3 points\, under its bar of 5.
+ 9 points\; the pick stays posted and is graded at the price it was posted 
+ at.\nVerdict: The game data lines up behind this side at this price.\nPric
+ es: DraftKings -225\, BetRivers -250\, theScore Bet -265\, ESPN BET -275\,
+  Caesars -280 and 2 more.\nFull breakdown: https://ajur21.github.io/edgeli
+ ne-ai/picks.html#38779d99fd-spreads-Boston-Bruins
 LOCATION:Little Caesars Arena\, Detroit
 URL:https://ajur21.github.io/edgeline-ai/picks.html#38779d99fd-spreads-Bost
  on-Bruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261117T203613Z
+LAST-MODIFIED:20261118T140849Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
