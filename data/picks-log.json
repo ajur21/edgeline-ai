@@ -23655,8 +23655,8 @@
    "Edge 5.7 points over the price, 0.2 past its bar of 5.5",
    "Market reference 67.3%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.44,
   "loggedAt": "2026-11-17T20:36:13.171Z",
   "availability": null,
   "current": {
@@ -24009,7 +24009,30 @@
      "fair": 0.7047
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "4-1",
+  "finalScore": {
+   "home": 1,
+   "away": 4
+  },
+  "gradedAt": "2026-11-19T04:02:09.381Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892739",
+   "line": 1.5,
+   "odds": -285,
+   "fair": 0.7095,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": -225,
+    "fair": 0.6636
+   },
+   "samples": 3
+  },
+  "clv": 0.0172,
+  "lineMove": null
  },
  {
   "type": "prop",
@@ -24575,8 +24598,8 @@
       "under": -102
      },
      "ml": {
-      "home": -750,
-      "away": 525
+      "home": -700,
+      "away": 500
      },
      "draw": null
     },
@@ -24605,6 +24628,12 @@
     "line": null,
     "odds": 525,
     "fair": 0.1535
+   },
+   {
+    "at": "2026-11-19T04:02:09.381Z",
+    "line": null,
+    "odds": 500,
+    "fair": 0.16
    }
   ],
   "dk": {
@@ -24616,11 +24645,11 @@
    },
    "now": {
     "line": null,
-    "odds": 525,
-    "fair": 0.15349887133182846
+    "odds": 500,
+    "fair": 0.15999999999999998
    },
    "moved": "away",
-   "label": "DraftKings opened +195, now +525"
+   "label": "DraftKings opened +195, now +500"
   },
   "mkt": {
    "book": "Market consensus",
@@ -24652,7 +24681,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 15.3% (+0.8 points against the best price). For reference only.",
-    "Market: DraftKings opened +195, now +525, moving against this side since the open.",
+    "Market: DraftKings opened +195, now +500, moving against this side since the open.",
     "Market: The market (8 books) opened +190, now +540, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Indianapolis Colts 3-7 · Houston Texans 3-6 · Reliant Stadium, Houston."
@@ -25367,8 +25396,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -105,
-      "under": -115
+      "over": 105,
+      "under": -125
      },
      "ml": {
       "home": -142,
@@ -25704,8 +25733,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -185,
-      "away": 154
+      "home": -198,
+      "away": 164
      },
      "total": 5.5,
      "totalOdds": {
@@ -25713,8 +25742,8 @@
       "under": 110
      },
      "ml": {
-      "home": 140,
-      "away": -166
+      "home": 136,
+      "away": -162
      },
      "draw": null
     },
@@ -25743,6 +25772,12 @@
     "line": null,
     "odds": 140,
     "fair": 0.4004
+   },
+   {
+    "at": "2026-11-19T04:02:09.381Z",
+    "line": null,
+    "odds": 136,
+    "fair": 0.4066
    }
   ],
   "dk": {
@@ -25754,11 +25789,11 @@
    },
    "now": {
     "line": null,
-    "odds": 140,
-    "fair": 0.4003612281757977
+    "odds": 136,
+    "fair": 0.4066302458405761
    },
-   "moved": "away",
-   "label": "DraftKings opened +136, now +140"
+   "moved": null,
+   "label": "DraftKings opened +136, now +136"
   },
   "mkt": {
    "book": "Market consensus",
@@ -25791,7 +25826,6 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 41.7% (+0.2 points against the best price). For reference only.",
-    "Market: DraftKings opened +136, now +140, moving against this side since the open.",
     "Market: The market (6 books) opened +117, now +145, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Blackhawks Spencer Knight · Jackets Jet Greaves.",
@@ -25902,13 +25936,15 @@
   ],
   "proj": 7.8,
   "linesAt": "2026-11-18T20:38:54.425Z",
-  "status": "pending",
+  "status": "void",
   "actual": null,
   "result": null,
   "units": 0,
   "lockedAt": "2026-11-18T20:40:05.674Z",
   "potd": "2026-11-18",
-  "potdAt": "2026-11-18T20:40:05.674Z"
+  "potdAt": "2026-11-18T20:40:05.674Z",
+  "gradedAt": "2026-11-19T04:02:09.381Z",
+  "voidReason": "did not play"
  },
  {
   "type": "prop",
@@ -25964,17 +26000,18 @@
   ],
   "proj": 17.4,
   "linesAt": "2026-11-18T20:38:54.425Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-18T20:40:05.674Z"
+  "status": "graded",
+  "actual": 24,
+  "result": "Win",
+  "units": 1.04,
+  "lockedAt": "2026-11-18T20:40:05.674Z",
+  "gradedAt": "2026-11-19T04:02:09.381Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-18",
   "date": "2026-11-18",
-  "status": "pending",
+  "status": "void",
   "units": 0,
   "loggedAt": "2026-11-18T20:40:05.674Z",
   "book": "FanDuel",

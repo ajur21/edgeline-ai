@@ -3,7 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-18T20:36:26.498Z",
-  "trackedAt": "2026-11-18T22:31:31.122Z",
+  "trackedAt": "2026-11-19T04:02:09.381Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NBA-401910016-3213-pra-under-14.5",
@@ -58,12 +58,12 @@ window.PICKS_DATA = {
       "Projects 7.8 (last 5: 8, last 10: 10, season: 9.5)",
       "Minutes down: 14.6 last 5 vs 16.9 season"
     ],
-    "status": "pending",
-    "started": false,
+    "status": "void",
+    "started": true,
     "result": null,
     "units": null,
     "actual": null,
-    "voidReason": null,
+    "voidReason": "did not play",
     "score": null,
     "loggedAt": "2026-11-18T20:40:05.674Z",
     "lockedAt": "2026-11-18T20:40:05.674Z"
@@ -76,7 +76,7 @@ window.PICKS_DATA = {
     "decimal": 3.8295,
     "fairProb": 0.286,
     "ev": 0.0954,
-    "status": "pending",
+    "status": "void",
     "result": null,
     "units": null,
     "lockedAt": "2026-11-18T20:40:05.674Z",
@@ -89,9 +89,9 @@ window.PICKS_DATA = {
         "sport": "NBA",
         "price": -114,
         "commence": "2026-11-19T01:00:00.000Z",
-        "started": false,
+        "started": true,
         "result": null,
-        "void": false,
+        "void": true,
         "league": "NBA",
         "sportKey": "basketball_nba",
         "home": "Dallas Mavericks",
@@ -122,8 +122,8 @@ window.PICKS_DATA = {
         "sport": "NBA",
         "price": 104,
         "commence": "2026-11-19T00:00:00.000Z",
-        "started": false,
-        "result": null,
+        "started": true,
+        "result": "Win",
         "void": false,
         "league": "NBA",
         "sportKey": "basketball_nba",
@@ -145,7 +145,7 @@ window.PICKS_DATA = {
         "side": "over",
         "line": 14.5,
         "modelProb": 0.531,
-        "actual": null
+        "actual": 24
       }
     ]
   },
@@ -285,7 +285,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 15.3% (+0.8 points against the best price). For reference only.",
-          "Market: DraftKings opened +195, now +525, moving against this side since the open.",
+          "Market: DraftKings opened +195, now +500, moving against this side since the open.",
           "Market: The market (8 books) opened +190, now +540, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Indianapolis Colts 3-7 · Houston Texans 3-6 · Reliant Stadium, Houston."
@@ -577,8 +577,8 @@ window.PICKS_DATA = {
               "under": -102
             },
             "ml": {
-              "home": -750,
-              "away": 525
+              "home": -700,
+              "away": 500
             },
             "draw": null
           },
@@ -611,11 +611,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 525,
-          "fair": 0.15349887133182846
+          "odds": 500,
+          "fair": 0.15999999999999998
         },
         "moved": "away",
-        "label": "DraftKings opened +195, now +525"
+        "label": "DraftKings opened +195, now +500"
       },
       "dkHistory": [
         {
@@ -623,6 +623,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 525,
           "fair": 0.1535
+        },
+        {
+          "at": "2026-11-19T04:02:09.381Z",
+          "line": null,
+          "odds": 500,
+          "fair": 0.16
         }
       ],
       "mkt": {
@@ -786,7 +792,6 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 41.7% (+0.2 points against the best price). For reference only.",
-          "Market: DraftKings opened +136, now +140, moving against this side since the open.",
           "Market: The market (6 books) opened +117, now +145, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Blackhawks Spencer Knight · Jackets Jet Greaves.",
@@ -877,8 +882,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -185,
-              "away": 154
+              "home": -198,
+              "away": 164
             },
             "total": 5.5,
             "totalOdds": {
@@ -886,8 +891,8 @@ window.PICKS_DATA = {
               "under": 110
             },
             "ml": {
-              "home": 140,
-              "away": -166
+              "home": 136,
+              "away": -162
             },
             "draw": null
           },
@@ -920,11 +925,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 140,
-          "fair": 0.4003612281757977
+          "odds": 136,
+          "fair": 0.4066302458405761
         },
-        "moved": "away",
-        "label": "DraftKings opened +136, now +140"
+        "moved": null,
+        "label": "DraftKings opened +136, now +136"
       },
       "dkHistory": [
         {
@@ -932,6 +937,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 140,
           "fair": 0.4004
+        },
+        {
+          "at": "2026-11-19T04:02:09.381Z",
+          "line": null,
+          "odds": 136,
+          "fair": 0.4066
         }
       ],
       "mkt": {
@@ -1250,8 +1261,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": -105,
-              "under": -115
+              "over": 105,
+              "under": -125
             },
             "ml": {
               "home": -142,
@@ -1357,6 +1368,364 @@ window.PICKS_DATA = {
       "barParts": {
         "error": 0.0713,
         "units": 0.43,
+        "unit": "goals",
+        "gp": 21,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null,
+      "availability": null
+    },
+    {
+      "id": "3449054d3b-totals-Under",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "Montréal Canadiens @ Carolina Hurricanes",
+      "home": "Carolina Hurricanes",
+      "away": "Montréal Canadiens",
+      "marketKey": "totals",
+      "outcome": {
+        "name": "Under",
+        "point": 6.5
+      },
+      "commence": "2026-11-20T00:10:00Z",
+      "start": "Tomorrow 7:10 PM ET",
+      "market": "Total",
+      "pick": "Under 6.5",
+      "odds": 105,
+      "book": "theScore Bet",
+      "prices": {
+        "DraftKings": 102,
+        "BetRivers": 102,
+        "theScore Bet": 105,
+        "FanDuel": -105,
+        "BetOnline.ag": -101,
+        "BetMGM": -102,
+        "Bovada": -103,
+        "Unibet": -128,
+        "Caesars": 102,
+        "ESPN BET": 105
+      },
+      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "books": 7,
+      "anchor": null,
+      "modelProb": 0.5217,
+      "ev": 0.0695,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 1.3,
+        "total": 6.4,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 21,
+        "gpHome": 21,
+        "gpAway": 21,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0.8,
+          "ratingAway": 0.1,
+          "lastHome": 0.7,
+          "lastAway": 0.3,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": 0,
+          "injuriesAway": 0.3,
+          "scoringOut": 0,
+          "pace": 6.4
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 6.4 a game in Carolina Hurricanes's games, 6.3 in Montréal Canadiens's (league average 6.4)",
+            "Projected total 6.4 against 6.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.4791,
+      "marketEdge": -0.0087,
+      "rationale": "Our probability at 6.5 is 52.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). theScore Bet offers +105, which implies only 48.8%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.9%.",
+      "factors": [
+        "Best price +105 at theScore Bet",
+        "Probability 52.2% from game data, not other books",
+        "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
+        "Market reference 47.9%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 52.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at theScore Bet implies 48.8%, so the edge is 3.4 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 6.5 is 52.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). theScore Bet offers +105, which implies only 48.8%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.9%.",
+        "support": [
+          "Combined scoring 6.4 a game in Carolina Hurricanes's games, 6.3 in Montréal Canadiens's (league average 6.4).",
+          "Projected total 6.4 against 6.5.",
+          "Scorers out: Mike Matheson (D), lower body; Josh Anderson (RW), lower body; Chris Kreider (LW), lower body and 4 more. Fewer healthy scorers leans under."
+        ],
+        "risks": [],
+        "notes": [
+          "Where the market sits: the de-vigged consensus of 7 books makes this side 47.9% (-0.9 points against the best price). For reference only.",
+          "Market: DraftKings opened 6.5 (+105), now 6.5 (+102), moving toward this side since the open.",
+          "Market: The market (7 books) opened 7.5 (-129), now 6.5 (+108), the consensus moving toward this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Hurricanes Pyotr Kochetkov · Canadiens Jakub Dobes.",
+          "Records: Montréal Canadiens 12-5-4 · Carolina Hurricanes 16-3-2 · Lenovo Center, Raleigh."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892747",
+        "venue": "Lenovo Center, Raleigh",
+        "indoor": true,
+        "records": {
+          "Carolina Hurricanes": {
+            "overall": "16-3-2",
+            "home": "7-1-1",
+            "away": "9-2-1"
+          },
+          "Montréal Canadiens": {
+            "overall": "12-5-4",
+            "home": "5-3-3",
+            "away": "7-2-1"
+          }
+        },
+        "probables": {
+          "Carolina Hurricanes": "Pyotr Kochetkov",
+          "Montréal Canadiens": "Jakub Dobes"
+        },
+        "injuries": {
+          "Carolina Hurricanes": [],
+          "Montréal Canadiens": [
+            {
+              "name": "Alexandre Texier",
+              "pos": "LW",
+              "athleteId": "4233880",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233880.png",
+              "status": "Day-To-Day",
+              "type": "Illness",
+              "detail": "",
+              "returnDate": "2026-11-18",
+              "date": "2026-11-17T18:35Z",
+              "note": "day-to-day"
+            },
+            {
+              "name": "Mike Matheson",
+              "pos": "D",
+              "athleteId": "2976851",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2976851.png",
+              "status": "Out",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-12-05",
+              "date": "2026-11-15T22:23Z",
+              "note": "Matheson (lower body) will miss approximately 2-3 weeks, the Canadiens announced Sunday."
+            },
+            {
+              "name": "Josh Anderson",
+              "pos": "RW",
+              "athleteId": "3069687",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069687.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-12-14",
+              "date": "2026-11-15T22:15Z",
+              "note": "Anderson (lower body) will be out for approximately 3-4 weeks, per Renaud Lavoie of TVA Sports on Sunday."
+            },
+            {
+              "name": "Chris Kreider",
+              "pos": "LW",
+              "athleteId": "5833",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5833.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2027-01-02",
+              "date": "2026-11-15T18:04Z",
+              "note": "ir"
+            },
+            {
+              "name": "Ivan Demidov",
+              "pos": "RW",
+              "athleteId": "5216860",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216860.png",
+              "status": "Injured Reserve",
+              "type": "Ankle",
+              "detail": "Fracture",
+              "returnDate": "2026-11-21",
+              "date": "2026-11-04T21:04Z",
+              "note": "Demidov (foot) skated Tuesday and could resume training with the team next week, Patrick Friolet of RDS reports."
+            },
+            {
+              "name": "Sam Montembeault",
+              "pos": "G",
+              "athleteId": "3942714",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3942714.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-11-21",
+              "date": "2026-10-31T15:25Z",
+              "note": "Montembeault (lower body) is considered day-to-day, according to Renaud Lavoie of TVA Sports on Saturday."
+            },
+            {
+              "name": "Bryce Pickford",
+              "pos": "D",
+              "athleteId": "5329651",
+              "headshot": null,
+              "status": "Injured Reserve",
+              "type": "Undisclosed",
+              "detail": "",
+              "returnDate": "2026-11-30",
+              "date": "2026-09-29T16:39Z",
+              "note": "ir-nr"
+            },
+            {
+              "name": "Lucas Condotta",
+              "pos": "LW",
+              "athleteId": "4997129",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4997129.png",
+              "status": "Injured Reserve",
+              "type": "Undisclosed",
+              "detail": "",
+              "returnDate": "2026-11-30",
+              "date": "2026-09-29T16:38Z",
+              "note": "ir-nr"
+            }
+          ]
+        },
+        "rest": {
+          "Carolina Hurricanes": {
+            "restDays": 5,
+            "b2b": false,
+            "lastGame": "2026-11-14",
+            "gamesLast7": 1
+          },
+          "Montréal Canadiens": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-17",
+            "gamesLast7": 2
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN+",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": -112,
+              "away": -108
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -122,
+              "under": 102
+            },
+            "ml": {
+              "home": -265,
+              "away": 215
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": -112,
+              "away": -108
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -125,
+              "under": 105
+            },
+            "ml": {
+              "home": -265,
+              "away": 215
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": 6.5,
+          "odds": 105,
+          "fair": 0.4675324675324675
+        },
+        "now": {
+          "line": 6.5,
+          "odds": 102,
+          "fair": 0.4739134147382802
+        },
+        "moved": "toward",
+        "label": "DraftKings opened 6.5 (+105), now 6.5 (+102)"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-18T20:36:26.498Z",
+          "line": 6.5,
+          "odds": 102,
+          "fair": 0.4739
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": 7.5,
+          "odds": -129
+        },
+        "now": {
+          "line": 6.5,
+          "odds": 108
+        },
+        "moved": "toward",
+        "label": "The market (7 books) opened 7.5 (-129), now 6.5 (+108)"
+      },
+      "sgo": {
+        "at": "2026-11-18T20:36:26.498Z",
+        "n": 7,
+        "best": {
+          "book": "ESPN BET",
+          "odds": 105
+        },
+        "fair": 0.4862,
+        "vendorFair": 0.4808,
+        "open": {
+          "line": 7.5,
+          "odds": -129
+        },
+        "now": {
+          "line": 6.5,
+          "odds": 108
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-18T20:36:26.498Z",
+          "fair": 0.4862,
+          "vendorFair": 0.4808,
+          "line": 6.5,
+          "odds": 108,
+          "best": 105,
+          "n": 7
+        }
+      ],
+      "status": "pending",
+      "started": false,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-18T20:36:26.498Z",
+      "valueTo": 104,
+      "bar": 0.03,
+      "past": 0.0039,
+      "barParts": {
+        "error": 0.0279,
+        "units": 0.16,
         "unit": "goals",
         "gp": 21,
         "floor": 0.03
@@ -1755,11 +2124,14 @@ window.PICKS_DATA = {
           "n": 4
         }
       ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
+      "status": "graded",
+      "started": true,
+      "result": "Win",
+      "units": 0.44,
+      "score": {
+        "home": 1,
+        "away": 4
+      },
       "loggedAt": "2026-11-17T20:36:13.171Z",
       "valueTo": -226,
       "bar": 0.0551,
@@ -1780,364 +2152,6 @@ window.PICKS_DATA = {
         "bar": 0.0587
       },
       "standing": "gone",
-      "availability": null
-    },
-    {
-      "id": "3449054d3b-totals-Under",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Montréal Canadiens @ Carolina Hurricanes",
-      "home": "Carolina Hurricanes",
-      "away": "Montréal Canadiens",
-      "marketKey": "totals",
-      "outcome": {
-        "name": "Under",
-        "point": 6.5
-      },
-      "commence": "2026-11-20T00:10:00Z",
-      "start": "Tomorrow 7:10 PM ET",
-      "market": "Total",
-      "pick": "Under 6.5",
-      "odds": 105,
-      "book": "theScore Bet",
-      "prices": {
-        "DraftKings": 102,
-        "BetRivers": 102,
-        "theScore Bet": 105,
-        "FanDuel": -105,
-        "BetOnline.ag": -101,
-        "BetMGM": -102,
-        "Bovada": -103,
-        "Unibet": -128,
-        "Caesars": 102,
-        "ESPN BET": 105
-      },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
-      "books": 7,
-      "anchor": null,
-      "modelProb": 0.5217,
-      "ev": 0.0695,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 1.3,
-        "total": 6.4,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 21,
-        "gpHome": 21,
-        "gpAway": 21,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0.8,
-          "ratingAway": 0.1,
-          "lastHome": 0.7,
-          "lastAway": 0.3,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": 0,
-          "injuriesAway": 0.3,
-          "scoringOut": 0,
-          "pace": 6.4
-        },
-        "reasons": {
-          "for": [
-            "Combined scoring 6.4 a game in Carolina Hurricanes's games, 6.3 in Montréal Canadiens's (league average 6.4)",
-            "Projected total 6.4 against 6.5"
-          ],
-          "against": []
-        }
-      },
-      "marketFair": 0.4791,
-      "marketEdge": -0.0087,
-      "rationale": "Our probability at 6.5 is 52.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). theScore Bet offers +105, which implies only 48.8%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.9%.",
-      "factors": [
-        "Best price +105 at theScore Bet",
-        "Probability 52.2% from game data, not other books",
-        "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
-        "Market reference 47.9%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 52.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at theScore Bet implies 48.8%, so the edge is 3.4 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.4 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 6.5 is 52.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). theScore Bet offers +105, which implies only 48.8%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 47.9%.",
-        "support": [
-          "Combined scoring 6.4 a game in Carolina Hurricanes's games, 6.3 in Montréal Canadiens's (league average 6.4).",
-          "Projected total 6.4 against 6.5.",
-          "Scorers out: Mike Matheson (D), lower body; Josh Anderson (RW), lower body; Chris Kreider (LW), lower body and 4 more. Fewer healthy scorers leans under."
-        ],
-        "risks": [],
-        "notes": [
-          "Where the market sits: the de-vigged consensus of 7 books makes this side 47.9% (-0.9 points against the best price). For reference only.",
-          "Market: DraftKings opened 6.5 (+105), now 6.5 (+102), moving toward this side since the open.",
-          "Market: The market (7 books) opened 7.5 (-129), now 6.5 (+108), the consensus moving toward this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Hurricanes Pyotr Kochetkov · Canadiens Jakub Dobes.",
-          "Records: Montréal Canadiens 12-5-4 · Carolina Hurricanes 16-3-2 · Lenovo Center, Raleigh."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892747",
-        "venue": "Lenovo Center, Raleigh",
-        "indoor": true,
-        "records": {
-          "Carolina Hurricanes": {
-            "overall": "16-3-2",
-            "home": "7-1-1",
-            "away": "9-2-1"
-          },
-          "Montréal Canadiens": {
-            "overall": "12-5-4",
-            "home": "5-3-3",
-            "away": "7-2-1"
-          }
-        },
-        "probables": {
-          "Carolina Hurricanes": "Pyotr Kochetkov",
-          "Montréal Canadiens": "Jakub Dobes"
-        },
-        "injuries": {
-          "Carolina Hurricanes": [],
-          "Montréal Canadiens": [
-            {
-              "name": "Alexandre Texier",
-              "pos": "LW",
-              "athleteId": "4233880",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233880.png",
-              "status": "Day-To-Day",
-              "type": "Illness",
-              "detail": "",
-              "returnDate": "2026-11-18",
-              "date": "2026-11-17T18:35Z",
-              "note": "day-to-day"
-            },
-            {
-              "name": "Mike Matheson",
-              "pos": "D",
-              "athleteId": "2976851",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2976851.png",
-              "status": "Out",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-12-05",
-              "date": "2026-11-15T22:23Z",
-              "note": "Matheson (lower body) will miss approximately 2-3 weeks, the Canadiens announced Sunday."
-            },
-            {
-              "name": "Josh Anderson",
-              "pos": "RW",
-              "athleteId": "3069687",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069687.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-12-14",
-              "date": "2026-11-15T22:15Z",
-              "note": "Anderson (lower body) will be out for approximately 3-4 weeks, per Renaud Lavoie of TVA Sports on Sunday."
-            },
-            {
-              "name": "Chris Kreider",
-              "pos": "LW",
-              "athleteId": "5833",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5833.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2027-01-02",
-              "date": "2026-11-15T18:04Z",
-              "note": "ir"
-            },
-            {
-              "name": "Ivan Demidov",
-              "pos": "RW",
-              "athleteId": "5216860",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216860.png",
-              "status": "Injured Reserve",
-              "type": "Ankle",
-              "detail": "Fracture",
-              "returnDate": "2026-11-21",
-              "date": "2026-11-04T21:04Z",
-              "note": "Demidov (foot) skated Tuesday and could resume training with the team next week, Patrick Friolet of RDS reports."
-            },
-            {
-              "name": "Sam Montembeault",
-              "pos": "G",
-              "athleteId": "3942714",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3942714.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-21",
-              "date": "2026-10-31T15:25Z",
-              "note": "Montembeault (lower body) is considered day-to-day, according to Renaud Lavoie of TVA Sports on Saturday."
-            },
-            {
-              "name": "Bryce Pickford",
-              "pos": "D",
-              "athleteId": "5329651",
-              "headshot": null,
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-30",
-              "date": "2026-09-29T16:39Z",
-              "note": "ir-nr"
-            },
-            {
-              "name": "Lucas Condotta",
-              "pos": "LW",
-              "athleteId": "4997129",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4997129.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-11-30",
-              "date": "2026-09-29T16:38Z",
-              "note": "ir-nr"
-            }
-          ]
-        },
-        "rest": {
-          "Carolina Hurricanes": {
-            "restDays": 5,
-            "b2b": false,
-            "lastGame": "2026-11-14",
-            "gamesLast7": 1
-          },
-          "Montréal Canadiens": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-17",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": -112,
-              "away": -108
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -122,
-              "under": 102
-            },
-            "ml": {
-              "home": -265,
-              "away": 215
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": -112,
-              "away": -108
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -125,
-              "under": 105
-            },
-            "ml": {
-              "home": -265,
-              "away": 215
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 6.5,
-          "odds": 105,
-          "fair": 0.4675324675324675
-        },
-        "now": {
-          "line": 6.5,
-          "odds": 102,
-          "fair": 0.4739134147382802
-        },
-        "moved": "toward",
-        "label": "DraftKings opened 6.5 (+105), now 6.5 (+102)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-18T20:36:26.498Z",
-          "line": 6.5,
-          "odds": 102,
-          "fair": 0.4739
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 7,
-        "open": {
-          "line": 7.5,
-          "odds": -129
-        },
-        "now": {
-          "line": 6.5,
-          "odds": 108
-        },
-        "moved": "toward",
-        "label": "The market (7 books) opened 7.5 (-129), now 6.5 (+108)"
-      },
-      "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
-        "n": 7,
-        "best": {
-          "book": "ESPN BET",
-          "odds": 105
-        },
-        "fair": 0.4862,
-        "vendorFair": 0.4808,
-        "open": {
-          "line": 7.5,
-          "odds": -129
-        },
-        "now": {
-          "line": 6.5,
-          "odds": 108
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-18T20:36:26.498Z",
-          "fair": 0.4862,
-          "vendorFair": 0.4808,
-          "line": 6.5,
-          "odds": 108,
-          "best": 105,
-          "n": 7
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-18T20:36:26.498Z",
-      "valueTo": 104,
-      "bar": 0.03,
-      "past": 0.0039,
-      "barParts": {
-        "error": 0.0279,
-        "units": 0.16,
-        "unit": "goals",
-        "gp": 21,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
       "availability": null
     }
   ]

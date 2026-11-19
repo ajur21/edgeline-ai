@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-18",
   "windowDays": 30,
   "record": {
-    "wins": 24,
+    "wins": 25,
     "losses": 25,
     "pushes": 0
   },
-  "units": -1.32,
-  "roi": -2.7,
+  "units": -0.88,
+  "roi": -1.8,
   "avgEdge": 9.1,
-  "graded": 49,
+  "graded": 50,
   "daily": [
     {
       "date": "2026-11-05",
@@ -61,13 +61,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-17",
       "units": -1.32
+    },
+    {
+      "date": "2026-11-18",
+      "units": -0.88
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 3.86,
-      "record": "18-14"
+      "units": 4.3,
+      "record": "19-14"
     },
     {
       "sport": "NBA",
@@ -86,6 +90,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-18",
+      "sport": "NHL",
+      "event": "Boston Bruins @ Detroit Red Wings",
+      "pick": "Boston Bruins +1.5",
+      "odds": -225,
+      "result": "Win",
+      "units": 0.44,
+      "clv": 0.0172,
+      "closeOdds": -285,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-17",
       "sport": "NHL",
@@ -250,21 +269,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-14",
-      "sport": "NHL",
-      "event": "Calgary Flames @ Los Angeles Kings",
-      "pick": "Over 5.5",
-      "odds": -118,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0305,
-      "closeOdds": -115,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -350,6 +354,13 @@ window.PERF_DATA = {
       "units": 1.27,
       "wins": 2,
       "losses": 1,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-18",
+      "units": 0.44,
+      "wins": 1,
+      "losses": 0,
       "pushes": 0
     }
   ],
@@ -471,25 +482,25 @@ window.PERF_DATA = {
     "n": 12
   },
   "clv": {
-    "n": 43,
-    "avg": -1.18,
-    "beat": 12,
-    "beatPct": 27.9,
-    "graded": 49,
+    "n": 44,
+    "avg": -1.12,
+    "beat": 13,
+    "beatPct": 29.5,
+    "graded": 50,
     "lineToward": 2,
     "lineAway": 4,
-    "espnCloses": 49,
+    "espnCloses": 50,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 24,
+      "wins": 25,
       "losses": 25,
       "pushes": 0,
-      "units": -1.32,
-      "n": 49,
-      "roi": -2.7,
-      "pending": 5,
+      "units": -0.88,
+      "n": 50,
+      "roi": -1.8,
+      "pending": 4,
       "since": "2026-11-05"
     },
     "price": {

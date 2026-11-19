@@ -927,96 +927,43 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-18@edgeline
-DTSTAMP:20261118T223131Z
+DTSTAMP:20261119T040209Z
 DTSTART:20261119T000000Z
 DTEND:20261119T040000Z
-SUMMARY:Parlay lean of the day: 2 legs +283 at FanDuel
+SUMMARY:Parlay lean of the day: 2 legs +283 at FanDuel · Void
 DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 26.1%\, EV +9.
  5% per unit.\n- NBA: Al Horford under 14.5 pts + reb + ast -114 · Golden 
  State Warriors @ Dallas Mavericks\n- NBA: Davion Mitchell over 14.5 points
-  +104 · Milwaukee Bucks @ Miami Heat\n\nEvery parlay: https://ajur21.gith
- ub.io/edgeline-ai/picks.html#parlays
+  +104 · Milwaukee Bucks @ Miami Heat\nResult: Void\nEvery parlay: https:/
+ /ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261118T223131Z
+LAST-MODIFIED:20261119T040209Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +283 at FanDuel
+DESCRIPTION:Parlay lean of the day: 2 legs +283 at FanDuel · Void
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:38779d99fd-spreads-Boston-Bruins@edgeline
-DTSTAMP:20261118T223131Z
+DTSTAMP:20261119T040209Z
 DTSTART:20261119T004000Z
 DTEND:20261119T034000Z
-SUMMARY:Boston Bruins +1.5 -225 at DraftKings · Low
+SUMMARY:Boston Bruins +1.5 -225 at DraftKings · Won +0.44u
 DESCRIPTION:NHL · Boston Bruins @ Detroit Red Wings · Wed Nov 18\, 7:40 P
- M ET\nPuck line: Boston Bruins +1.5 at -225 (DraftKings). Our probability 
- 74.9% from game data\, the price implies 69.2%\, edge +5.7 pts\, EV +8.2% 
- per unit. Confidence: Lean.\nOur probability at +1.5 is 74.9%\, from the g
- ame data: this season's results and margins\, recent form\, rest\, the inj
- ury report and home edge (projected margin -0.3 for the home side). DraftK
- ings offers -225\, which implies only 69.2%. Its bar is 5.5 points: the mo
- del's own margin of error on this side\, with 20 games behind the thinner 
- team (±0.44 goals on the margin). It clears it by 0.2. Not graded against
-  other books' prices\; for reference the market makes it 67.3%.\nWhat supp
- orts it:\n- Detroit Red Wings rate -0.2 a game over 21 (8-13)\, Boston Bru
- ins +0.4 over 20 (13-7)\; last season -0.2 and +0.3 a game.\n- Detroit Red
-  Wings trending: last five -1 vs -0.3 on the season.\n- Boston Bruins are 
- rested (4 days).\n- Detroit Red Wings without Albert Johansson (D)\, Dylan
-  Larkin (C) (-0.2).\n- Detroit Red Wings have William Wallinder (D) listed
-  day-to-day or questionable.\n- Projected margin +0.3 for Boston Bruins ag
- ainst +1.5.\nWhat could go wrong:\n- Boston Bruins trending: last five +0.
- 2 vs +1 on the season.\n- Home edge +0.2 for Detroit Red Wings.\n- Detroit
-  Red Wings are rested (4 days).\n- Boston Bruins without James Hagens (C) 
- (+0.1).\n- At current prices our edge is -1.6 points\, under its bar of 5.
- 9 points\; the pick stays posted and is graded at the price it was posted 
- at.\nVerdict: The game data lines up behind this side at this price.\nPric
- es: BetRivers -250\, ESPN BET -260\, Bovada -260\, theScore Bet -265\, Bet
- MGM -275 and 3 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
- /picks.html#38779d99fd-spreads-Boston-Bruins
+ M ET\nPuck line: Boston Bruins +1.5 at -225 (DraftKings). Won +0.44u.\nFin
+ al: 4-1\nClosing line value: +1.7 pts (closed -285\, DraftKings close (ESP
+ N)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/p
+ erformance.html
 LOCATION:Little Caesars Arena\, Detroit
-URL:https://ajur21.github.io/edgeline-ai/picks.html#38779d99fd-spreads-Bost
- on-Bruins
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261118T223131Z
+LAST-MODIFIED:20261119T040209Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Boston Bruins +1.5 -225 at DraftKings · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:prop-NBA-401910016-3213-pra-under-14.5@edgeline
-DTSTAMP:20261118T204005Z
-DTSTART:20261119T010000Z
-DTEND:20261119T040000Z
-SUMMARY:Lean of the day: Al Horford under 14.5 pts + reb + ast -114 at FanD
- uel · High
-DESCRIPTION:NBA · Golden State Warriors @ Dallas Mavericks · Wed Nov 18\,
-  8:00 PM ET\nPlayer prop: Al Horford under 14.5 pts + reb + ast at -114 (F
- anDuel). Our chance 53.9% (the model's own 76.2%\, cut to the 15% of an ed
- ge that graded props have borne out)\, the price implies 53.3%\, EV +1.1% 
- per unit. Grade: High.\n- Stayed under 14.5 in 9 of the last 10\n- Project
- s 7.8 (last 5: 8\, last 10: 10\, season: 9.5)\n- Minutes down: 14.6 last 5
-  vs 16.9 season\nEvery prop\, ranked: https://ajur21.github.io/edgeline-ai
- /props.html
-URL:https://ajur21.github.io/edgeline-ai/index.html#plays
-CATEGORIES:NBA,Prop
-LAST-MODIFIED:20261118T204005Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Al Horford under 14.5 pts + reb + ast -114 at 
- FanDuel · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:3449054d3b-totals-Under@edgeline
