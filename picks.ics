@@ -945,7 +945,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:3449054d3b-totals-Under@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261119T140859Z
 DTSTART:20261120T001000Z
 DTEND:20261120T031000Z
 SUMMARY:Under 6.5 +105 at theScore Bet · Low
@@ -962,14 +962,15 @@ DESCRIPTION:NHL · Montréal Canadiens @ Carolina Hurricanes · Thu Nov 19\
   in Montréal Canadiens's (league average 6.4).\n- Projected total 6.4 aga
  inst 6.5.\n- Scorers out: Mike Matheson (D)\, lower body\; Josh Anderson (
  RW)\, lower body\; Chris Kreider (LW)\, lower body and 4 more. Fewer healt
- hy scorers leans under.\nVerdict: The game data lines up behind this side 
- at this price.\nPrices: theScore Bet +105\, ESPN BET +105\, DraftKings +10
- 2\, BetRivers +102\, Caesars +102 and 5 more.\nFull breakdown: https://aju
- r21.github.io/edgeline-ai/picks.html#3449054d3b-totals-Under
+ hy scorers leans under.\n- Montréal Canadiens on a back-to-back\; tired l
+ egs lean under.\nVerdict: The game data lines up behind this side at this 
+ price.\nPrices: theScore Bet +105\, ESPN BET +105\, DraftKings +102\, BetR
+ ivers +102\, Caesars +102 and 6 more.\nFull breakdown: https://ajur21.gith
+ ub.io/edgeline-ai/picks.html#3449054d3b-totals-Under
 LOCATION:Lenovo Center\, Raleigh
 URL:https://ajur21.github.io/edgeline-ai/picks.html#3449054d3b-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261119T140859Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -980,7 +981,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:147b0b6f88-h2h-Edmonton-Oilers@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261119T140859Z
 DTSTART:20261120T004000Z
 DTEND:20261120T034000Z
 SUMMARY:Edmonton Oilers ML +131 at BetOnline.ag · Low
@@ -1001,16 +1002,17 @@ DESCRIPTION:NHL · Edmonton Oilers @ Tampa Bay Lightning · Thu Nov 19\, 7:
  el (LW)\, Zemgus Girgensons (C) listed day-to-day or questionable.\n- Proj
  ected margin +0.05 for Edmonton Oilers.\nWhat could go wrong:\n- Home edge
   +0.2 for Tampa Bay Lightning.\n- Edmonton Oilers have Ryan Nugent-Hopkins
-  (C) listed day-to-day or questionable.\nVerdict: The game data lines up b
- ehind this side at this price.\nPrices: BetOnline.ag +131\, Bovada +122\, 
- DraftKings +120\, BetRivers +116\, theScore Bet +115 and 4 more.\nFull bre
- akdown: https://ajur21.github.io/edgeline-ai/picks.html#147b0b6f88-h2h-Edm
- onton-Oilers
+  (C) listed day-to-day or questionable.\n- At current prices our edge is 6
+ .5 points\, under its bar of 7.1 points\; the pick stays posted and is gra
+ ded at the price it was posted at.\nVerdict: The game data lines up behind
+  this side at this price.\nPrices: BetOnline.ag +131\, Bovada +125\, Draft
+ Kings +120\, BetMGM +120\, ESPN BET +120 and 5 more.\nFull breakdown: http
+ s://ajur21.github.io/edgeline-ai/picks.html#147b0b6f88-h2h-Edmonton-Oilers
 LOCATION:Benchmark International Arena\, Tampa
 URL:https://ajur21.github.io/edgeline-ai/picks.html#147b0b6f88-h2h-Edmonton
  -Oilers
 CATEGORIES:NHL
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261119T140859Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1021,7 +1023,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7f30902099-h2h-Chicago-Blackhawks@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261119T140859Z
 DTSTART:20261120T011000Z
 DTEND:20261120T041000Z
 SUMMARY:Chicago Blackhawks ML +141 at BetOnline.ag · Low
@@ -1037,20 +1039,21 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ Chicago Blackhawks · Thu Nov 19
  d against other books' prices\; for reference the market makes it 41.7%.\n
  What supports it:\n- Columbus Blue Jackets trending: last five -2.6 vs -0.
  9 on the season.\n- Home edge +0.2 for Chicago Blackhawks.\n- Columbus Blu
- e Jackets without Sean Monahan (C) (+0.1).\nWhat could go wrong:\n- Chicag
- o Blackhawks rate -0.7 a game over 21 (6-15)\, Columbus Blue Jackets -0.3 
- over 19 (7-12)\; last season -0.8 and 0 a game.\n- Chicago Blackhawks with
- out Bowen Byram (D) (-0.1).\n- Chicago Blackhawks have Connor Bedard (C) l
- isted day-to-day or questionable.\n- Projected margin -0.1 for Chicago Bla
- ckhawks.\nVerdict: More working against this one than for it\; size down.\
- nPrices: BetOnline.ag +141\, DraftKings +140\, BetRivers +140\, FanDuel +1
- 36\, BetMGM +135 and 4 more.\nFull breakdown: https://ajur21.github.io/edg
- eline-ai/picks.html#7f30902099-h2h-Chicago-Blackhawks
+ e Jackets without Sean Monahan (C) (+0.1).\n- A better price is now availa
+ ble: +147 at BetOnline.ag.\nWhat could go wrong:\n- Chicago Blackhawks rat
+ e -0.7 a game over 21 (6-15)\, Columbus Blue Jackets -0.3 over 19 (7-12)\;
+  last season -0.8 and 0 a game.\n- Chicago Blackhawks without Bowen Byram 
+ (D) (-0.1).\n- Chicago Blackhawks have Connor Bedard (C) listed day-to-day
+  or questionable.\n- Projected margin -0.1 for Chicago Blackhawks.\nVerdic
+ t: The game data lines up behind this side at this price.\nPrices: BetOnli
+ ne.ag +141\, BetRivers +140\, BetMGM +140\, ESPN BET +140\, PointsBet +140
+  and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.h
+ tml#7f30902099-h2h-Chicago-Blackhawks
 LOCATION:United Center\, Chicago
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7f30902099-h2h-Chicago-
  Blackhawks
 CATEGORIES:NHL
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261119T140859Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1061,7 +1064,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:66f9e83cf0-h2h-Indianapolis-Colts@edgeline
-DTSTAMP:20261118T203626Z
+DTSTAMP:20261119T140859Z
 DTSTART:20261120T011500Z
 DTEND:20261120T041500Z
 SUMMARY:Indianapolis Colts ML +590 at FanDuel · Low
@@ -1084,15 +1087,15 @@ DESCRIPTION:NFL · Indianapolis Colts @ Houston Texans · Thu Nov 19\, 8:15
   +2.1 for Houston Texans.\n- Indianapolis Colts without Bernhard Raimann (
  OT)\, Jerry Tillery (DT)\, Jalen Travis (OT) and 5 more (+3.9).\n- Project
  ed margin -10.1 for Indianapolis Colts.\nVerdict: More working against thi
- s one than for it\; size down.\nPrices: FanDuel +590\, BetMGM +575\, theSc
- ore Bet +550\, ESPN BET +550\, DraftKings +525 and 6 more.\nFull breakdown
- : https://ajur21.github.io/edgeline-ai/picks.html#66f9e83cf0-h2h-Indianapo
- lis-Colts
+ s one than for it\; size down.\nPrices: BetMGM +575\, FanDuel +570\, theSc
+ ore Bet +550\, DraftKings +525\, BetOnline.ag +517 and 6 more.\nFull break
+ down: https://ajur21.github.io/edgeline-ai/picks.html#66f9e83cf0-h2h-India
+ napolis-Colts
 LOCATION:Reliant Stadium\, Houston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#66f9e83cf0-h2h-Indianap
  olis-Colts
 CATEGORIES:NFL
-LAST-MODIFIED:20261118T203626Z
+LAST-MODIFIED:20261119T140859Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

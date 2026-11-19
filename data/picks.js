@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-18T20:36:26.498Z",
-  "trackedAt": "2026-11-19T06:41:54.968Z",
+  "generatedAt": "2026-11-19T14:08:59.039Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-19T14:10:55.423Z",
     "last": {
       "play": {
         "date": "2026-11-18",
@@ -57,18 +56,18 @@ window.PICKS_DATA = {
       "book": "FanDuel",
       "prices": {
         "DraftKings": 525,
-        "FanDuel": 590,
+        "FanDuel": 570,
         "BetOnline.ag": 517,
         "BetRivers": 510,
         "theScore Bet": 550,
         "BetMGM": 575,
-        "Bovada": 525,
+        "Bovada": 500,
         "Caesars": 500,
         "PointsBet": 475,
         "Unibet": 510,
-        "ESPN BET": 550
+        "ESPN BET": 500
       },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "pricesAt": "2026-11-19T14:08:59.039Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.2418,
@@ -169,6 +168,18 @@ window.PICKS_DATA = {
         "injuries": {
           "Houston Texans": [
             {
+              "name": "Jake Hummel",
+              "pos": "LB",
+              "athleteId": "4241250",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4241250.png",
+              "status": "Questionable",
+              "type": "Groin",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-19",
+              "date": "2026-11-19T02:19Z",
+              "note": "Hummel (groin) is questionable for Houston's matchup against Indianapolis on Thursday."
+            },
+            {
               "name": "Jaylin Smith",
               "pos": "CB",
               "athleteId": "4594277",
@@ -177,68 +188,68 @@ window.PICKS_DATA = {
               "type": "Hamstring",
               "detail": "Strain",
               "returnDate": "2026-11-19",
-              "date": "2026-11-18T01:24Z",
-              "note": "Smith (hamstring) was a full participant at practice Tuesday."
-            },
-            {
-              "name": "Brevin Jordan",
-              "pos": "TE",
-              "athleteId": "4362504",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362504.png",
-              "status": "Questionable",
-              "type": "Foot",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-18T01:20Z",
-              "note": "Jordan (foot/illness) did not participate at practice Tuesday."
+              "date": "2026-11-19T02:10Z",
+              "note": "Smith (hamstring) is questionable for Houston's matchup Thursday versus the Colts."
             },
             {
               "name": "Danielle Hunter",
               "pos": "DE",
               "athleteId": "2976560",
               "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2976560.png",
-              "status": "Questionable",
+              "status": "Out",
               "type": "Hamstring",
               "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-18T01:15Z",
-              "note": "Hunter (hamstring) did not participate at practice Tuesday."
+              "returnDate": "2026-11-29",
+              "date": "2026-11-19T00:23Z",
+              "note": "Hunter (hamstring) has been ruled out ahead of Thursday night's game against the Colts."
             },
             {
-              "name": "Kamari Lassiter",
-              "pos": "CB",
-              "athleteId": "4602699",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4602699.png",
+              "name": "Brevin Jordan",
+              "pos": "TE",
+              "athleteId": "4362504",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362504.png",
+              "status": "Out",
+              "type": "Foot",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-19T00:19Z",
+              "note": "Jordan (foot/illness) has been ruled out ahead of Thursday night's game against the Colts."
+            },
+            {
+              "name": "Wyatt Teller",
+              "pos": "G",
+              "athleteId": "3045474",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3045474.png",
               "status": "Questionable",
-              "type": "Wrist",
+              "type": "Back",
               "detail": "Not Specified",
               "returnDate": "2026-11-19",
-              "date": "2026-11-18T01:10Z",
-              "note": "Lassiter (wrist) did not participate at practice Tuesday."
+              "date": "2026-11-18T21:19Z",
+              "note": "questionable"
             },
             {
               "name": "Marvin Harrison Jr.",
               "pos": "WR",
               "athleteId": "4432708",
               "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4432708.png",
-              "status": "Questionable",
+              "status": "Out",
               "type": "Hamstring",
               "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-17T22:01Z",
-              "note": "Harrison (hamstring) was a non-participant in Tuesday's practice."
+              "returnDate": "2026-11-29",
+              "date": "2026-11-18T21:03Z",
+              "note": "Harrison (hamstring) has been ruled out for Thursday night's game against the Colts."
             },
             {
               "name": "Woody Marks",
               "pos": "RB",
               "athleteId": "4429059",
               "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4429059.png",
-              "status": "Doubtful",
+              "status": "Out",
               "type": "Concussion",
               "detail": "Concussion",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-17T21:59Z",
-              "note": "Marks (concussion) didn't practice Tuesday."
+              "returnDate": "2026-11-29",
+              "date": "2026-11-18T20:51Z",
+              "note": "Marks (concussion) has been ruled out for Thursday's game against the Colts."
             },
             {
               "name": "Azeez Al-Shaair",
@@ -251,21 +262,69 @@ window.PICKS_DATA = {
               "returnDate": "2026-12-20",
               "date": "2026-11-17T01:03Z",
               "note": "Al-Shaair (groin) did not participate in Monday's walkthrough practice."
-            },
-            {
-              "name": "Jake Hummel",
-              "pos": "LB",
-              "athleteId": "4241250",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4241250.png",
-              "status": "Questionable",
-              "type": "Groin",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-17T00:53Z",
-              "note": "questionable"
             }
           ],
           "Indianapolis Colts": [
+            {
+              "name": "Jalen Travis",
+              "pos": "OT",
+              "athleteId": "4892240",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4892240.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-19T01:57Z",
+              "note": "Travis (knee) has been ruled out for Thursday's game against the Texans."
+            },
+            {
+              "name": "Jerry Tillery",
+              "pos": "DT",
+              "athleteId": "3863182",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3863182.png",
+              "status": "Out",
+              "type": "Calf",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-19T01:55Z",
+              "note": "Tillery (calf) is officially listed as out for Thursday's game at Houston."
+            },
+            {
+              "name": "Sauce Gardner",
+              "pos": "CB",
+              "athleteId": "4427250",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4427250.png",
+              "status": "Questionable",
+              "type": "Calf",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-19",
+              "date": "2026-11-19T00:03Z",
+              "note": "Gardner (calf) is listed as questionable for Thursday's game against the Texans."
+            },
+            {
+              "name": "Charvarius Ward",
+              "pos": "CB",
+              "athleteId": "4037361",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4037361.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-18T20:58Z",
+              "note": "The Colts have ruled out Ward (knee) for Thursday night's game against the Texans."
+            },
+            {
+              "name": "Will Mallory",
+              "pos": "TE",
+              "athleteId": "4362523",
+              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362523.png",
+              "status": "Out",
+              "type": "Hamstring",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-18T20:51Z",
+              "note": "The Colts ruled Mallory (hamstring) out for Thursday night's games against the Texans."
+            },
             {
               "name": "Anthony Gould",
               "pos": "WR",
@@ -291,54 +350,6 @@ window.PICKS_DATA = {
               "note": "out"
             },
             {
-              "name": "Jerry Tillery",
-              "pos": "DT",
-              "athleteId": "3863182",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3863182.png",
-              "status": "Out",
-              "type": "Calf",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-18T18:42Z",
-              "note": "out"
-            },
-            {
-              "name": "Jalen Travis",
-              "pos": "OT",
-              "athleteId": "4892240",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4892240.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-18T18:42Z",
-              "note": "out"
-            },
-            {
-              "name": "Charvarius Ward",
-              "pos": "CB",
-              "athleteId": "4037361",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4037361.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-18T18:42Z",
-              "note": "out"
-            },
-            {
-              "name": "Will Mallory",
-              "pos": "TE",
-              "athleteId": "4362523",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4362523.png",
-              "status": "Out",
-              "type": "Hamstring",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-18T01:04Z",
-              "note": "Mallory (hamstring) was estimated as a non-participant for Tuesday's practice walkthrough."
-            },
-            {
               "name": "Jaylon Carlies",
               "pos": "LB",
               "athleteId": "4601021",
@@ -361,18 +372,6 @@ window.PICKS_DATA = {
               "returnDate": "2026-11-19",
               "date": "2026-11-17T12:19Z",
               "note": "questionable"
-            },
-            {
-              "name": "Sauce Gardner",
-              "pos": "CB",
-              "athleteId": "4427250",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4427250.png",
-              "status": "Questionable",
-              "type": "Calf",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-19",
-              "date": "2026-11-17T00:28Z",
-              "note": "Gardner (calf) was listed as a DNP for Monday's walkthrough practice."
             },
             {
               "name": "Akeem Davis-Gaither",
@@ -415,8 +414,8 @@ window.PICKS_DATA = {
           }
         },
         "weather": {
-          "summary": "Partly cloudy",
-          "tempF": 69,
+          "summary": "Mostly clear",
+          "tempF": 68,
           "source": "ESPN"
         },
         "broadcast": "Prime Video",
@@ -509,13 +508,13 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened +190, now +540"
       },
       "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
+        "at": "2026-11-19T14:08:59.039Z",
         "n": 8,
         "best": {
-          "book": "FanDuel",
-          "odds": 590
+          "book": "BetMGM",
+          "odds": 575
         },
-        "fair": 0.1521,
+        "fair": 0.1548,
         "vendorFair": 0.1563,
         "open": {
           "line": null,
@@ -534,6 +533,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 540,
           "best": 590,
+          "n": 8
+        },
+        {
+          "at": "2026-11-19T14:08:59.039Z",
+          "fair": 0.1548,
+          "vendorFair": 0.1563,
+          "line": null,
+          "odds": 540,
+          "best": 575,
           "n": 8
         }
       ],
@@ -577,17 +585,18 @@ window.PICKS_DATA = {
       "odds": 141,
       "book": "BetOnline.ag",
       "prices": {
-        "DraftKings": 140,
+        "DraftKings": 136,
         "BetOnline.ag": 141,
         "BetRivers": 140,
         "theScore Bet": 130,
-        "FanDuel": 136,
-        "BetMGM": 135,
-        "Bovada": 133,
-        "Caesars": 131,
-        "ESPN BET": 130
+        "FanDuel": 138,
+        "BetMGM": 140,
+        "Bovada": 137,
+        "Caesars": 136,
+        "ESPN BET": 140,
+        "PointsBet": 140
       },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "pricesAt": "2026-11-19T14:08:59.039Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.49,
@@ -645,7 +654,8 @@ window.PICKS_DATA = {
         "support": [
           "Columbus Blue Jackets trending: last five -2.6 vs -0.9 on the season.",
           "Home edge +0.2 for Chicago Blackhawks.",
-          "Columbus Blue Jackets without Sean Monahan (C) (+0.1)."
+          "Columbus Blue Jackets without Sean Monahan (C) (+0.1).",
+          "A better price is now available: +147 at BetOnline.ag."
         ],
         "risks": [
           "Chicago Blackhawks rate -0.7 a game over 21 (6-15), Columbus Blue Jackets -0.3 over 19 (7-12); last season -0.8 and 0 a game.",
@@ -655,12 +665,13 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 41.7% (+0.2 points against the best price). For reference only.",
-          "Market: The market (6 books) opened +117, now +145, the consensus moving against this side since the open.",
+          "Market: the sharp line has moved away since it was logged (41.7% → 40.3%).",
+          "Market: The market (7 books) opened +117, now +148, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Blackhawks Spencer Knight · Jackets Jet Greaves.",
           "Records: Columbus Blue Jackets 7-12-0 · Chicago Blackhawks 6-13-2 · United Center, Chicago."
         ],
-        "verdict": "More working against this one than for it; size down."
+        "verdict": "The game data lines up behind this side at this price."
       },
       "context": {
         "espnEventId": "401892748",
@@ -778,7 +789,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 141,
+        "loggedFair": 0.49,
+        "currentOdds": 147,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.4029,
+        "currentEdge": 0.0851,
+        "checkedAt": "2026-11-19T14:08:59.039Z",
+        "history": [
+          {
+            "at": "2026-11-18T20:36:26.498Z",
+            "odds": 141,
+            "fair": 0.417
+          },
+          {
+            "at": "2026-11-19T14:08:59.039Z",
+            "odds": 147,
+            "fair": 0.4029
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -810,34 +841,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 7,
         "open": {
           "line": null,
           "odds": 117
         },
         "now": {
           "line": null,
-          "odds": 145
+          "odds": 148
         },
         "moved": "away",
-        "label": "The market (6 books) opened +117, now +145"
+        "label": "The market (7 books) opened +117, now +148"
       },
       "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
-        "n": 6,
+        "at": "2026-11-19T14:08:59.039Z",
+        "n": 7,
         "best": {
-          "book": "DraftKings",
+          "book": "ESPN BET",
           "odds": 140
         },
-        "fair": 0.4109,
-        "vendorFair": 0.4082,
+        "fair": 0.4027,
+        "vendorFair": 0.4032,
         "open": {
           "line": null,
           "odds": 117
         },
         "now": {
           "line": null,
-          "odds": 145
+          "odds": 148
         }
       },
       "sgoHistory": [
@@ -849,6 +880,15 @@ window.PICKS_DATA = {
           "odds": 145,
           "best": 140,
           "n": 6
+        },
+        {
+          "at": "2026-11-19T14:08:59.039Z",
+          "fair": 0.4027,
+          "vendorFair": 0.4032,
+          "line": null,
+          "odds": 148,
+          "best": 140,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -867,8 +907,15 @@ window.PICKS_DATA = {
         "gp": 19,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-19T14:08:59.039Z",
+        "odds": 147,
+        "book": "BetOnline.ag",
+        "modelProb": 0.49,
+        "edge": 0.0851,
+        "bar": 0.0725
+      },
+      "standing": "clears",
       "availability": null
     },
     {
@@ -895,13 +942,14 @@ window.PICKS_DATA = {
         "BetOnline.ag": 131,
         "BetRivers": 116,
         "theScore Bet": 115,
-        "FanDuel": 112,
-        "BetMGM": 115,
-        "Bovada": 122,
+        "FanDuel": 118,
+        "BetMGM": 120,
+        "Bovada": 125,
         "Caesars": 110,
-        "ESPN BET": 115
+        "ESPN BET": 120,
+        "PointsBet": 120
       },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "pricesAt": "2026-11-19T14:08:59.039Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5077,
@@ -965,11 +1013,12 @@ window.PICKS_DATA = {
         ],
         "risks": [
           "Home edge +0.2 for Tampa Bay Lightning.",
-          "Edmonton Oilers have Ryan Nugent-Hopkins (C) listed day-to-day or questionable."
+          "Edmonton Oilers have Ryan Nugent-Hopkins (C) listed day-to-day or questionable.",
+          "At current prices our edge is 6.5 points, under its bar of 7.1 points; the pick stays posted and is graded at the price it was posted at."
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 43.3% (-0.0 points against the best price). For reference only.",
-          "Market: The market (6 books) opened +122, now +126, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened +122, now +129, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Lightning Andrei Vasilevskiy · Oilers Devon Levi.",
           "Records: Edmonton Oilers 17-3-3 · Tampa Bay Lightning 14-5-2 · Benchmark International Arena, Tampa."
@@ -1056,7 +1105,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Undisclosed",
               "detail": "",
-              "returnDate": "2026-11-21",
+              "returnDate": "2026-12-01",
               "date": "2026-10-01T14:11Z",
               "note": "Regula (undisclosed) was designated for long-term injured reserve Thursday."
             },
@@ -1119,8 +1168,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 180,
-              "away": -218
+              "home": 170,
+              "away": -205
             },
             "total": 6.5,
             "totalOdds": {
@@ -1152,7 +1201,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 131,
+        "loggedFair": 0.5077,
+        "currentOdds": 126,
+        "currentBook": "BetOnline.ag",
+        "currentFair": 0.4295,
+        "currentEdge": 0.0652,
+        "checkedAt": "2026-11-19T14:08:59.039Z",
+        "history": [
+          {
+            "at": "2026-11-18T20:36:26.498Z",
+            "odds": 131,
+            "fair": 0.4328
+          },
+          {
+            "at": "2026-11-19T14:08:59.039Z",
+            "odds": 126,
+            "fair": 0.4295
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -1178,34 +1247,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 7,
         "open": {
           "line": null,
           "odds": 122
         },
         "now": {
           "line": null,
-          "odds": 126
+          "odds": 129
         },
         "moved": "away",
-        "label": "The market (6 books) opened +122, now +126"
+        "label": "The market (7 books) opened +122, now +129"
       },
       "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
-        "n": 6,
+        "at": "2026-11-19T14:08:59.039Z",
+        "n": 7,
         "best": {
           "book": "Bovada",
-          "odds": 122
+          "odds": 125
         },
-        "fair": 0.4441,
-        "vendorFair": 0.4425,
+        "fair": 0.4378,
+        "vendorFair": 0.4367,
         "open": {
           "line": null,
           "odds": 122
         },
         "now": {
           "line": null,
-          "odds": 126
+          "odds": 129
         }
       },
       "sgoHistory": [
@@ -1217,6 +1286,15 @@ window.PICKS_DATA = {
           "odds": 126,
           "best": 122,
           "n": 6
+        },
+        {
+          "at": "2026-11-19T14:08:59.039Z",
+          "fair": 0.4378,
+          "vendorFair": 0.4367,
+          "line": null,
+          "odds": 129,
+          "best": 125,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -1235,8 +1313,15 @@ window.PICKS_DATA = {
         "gp": 21,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-19T14:08:59.039Z",
+        "odds": 126,
+        "book": "BetOnline.ag",
+        "modelProb": 0.5077,
+        "edge": 0.0652,
+        "bar": 0.0713
+      },
+      "standing": "below",
       "availability": null
     },
     {
@@ -1262,15 +1347,16 @@ window.PICKS_DATA = {
         "DraftKings": 102,
         "BetRivers": 102,
         "theScore Bet": 105,
-        "FanDuel": -105,
+        "FanDuel": -102,
         "BetOnline.ag": -101,
         "BetMGM": -102,
         "Bovada": -103,
         "Unibet": -128,
         "Caesars": 102,
-        "ESPN BET": 105
+        "ESPN BET": 105,
+        "PointsBet": 100
       },
-      "pricesAt": "2026-11-18T20:36:26.498Z",
+      "pricesAt": "2026-11-19T14:08:59.039Z",
       "books": 7,
       "anchor": null,
       "modelProb": 0.5217,
@@ -1322,16 +1408,17 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 6.4 a game in Carolina Hurricanes's games, 6.3 in Montréal Canadiens's (league average 6.4).",
           "Projected total 6.4 against 6.5.",
-          "Scorers out: Mike Matheson (D), lower body; Josh Anderson (RW), lower body; Chris Kreider (LW), lower body and 4 more. Fewer healthy scorers leans under."
+          "Scorers out: Mike Matheson (D), lower body; Josh Anderson (RW), lower body; Chris Kreider (LW), lower body and 4 more. Fewer healthy scorers leans under.",
+          "Montréal Canadiens on a back-to-back; tired legs lean under."
         ],
         "risks": [],
         "notes": [
           "Where the market sits: the de-vigged consensus of 7 books makes this side 47.9% (-0.9 points against the best price). For reference only.",
           "Market: DraftKings opened 6.5 (+105), now 6.5 (+102), moving toward this side since the open.",
-          "Market: The market (7 books) opened 7.5 (-129), now 6.5 (+108), the consensus moving toward this side since the open.",
+          "Market: The market (8 books) opened 7.5 (-129), now 6.5 (+107), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Hurricanes Pyotr Kochetkov · Canadiens Jakub Dobes.",
-          "Records: Montréal Canadiens 12-5-4 · Carolina Hurricanes 16-3-2 · Lenovo Center, Raleigh."
+          "Records: Montréal Canadiens 13-5-4 · Carolina Hurricanes 16-3-2 · Lenovo Center, Raleigh."
         ],
         "verdict": "The game data lines up behind this side at this price."
       },
@@ -1346,9 +1433,9 @@ window.PICKS_DATA = {
             "away": "9-2-1"
           },
           "Montréal Canadiens": {
-            "overall": "12-5-4",
+            "overall": "13-5-4",
             "home": "5-3-3",
-            "away": "7-2-1"
+            "away": "8-2-1"
           }
         },
         "probables": {
@@ -1359,16 +1446,16 @@ window.PICKS_DATA = {
           "Carolina Hurricanes": [],
           "Montréal Canadiens": [
             {
-              "name": "Alexandre Texier",
-              "pos": "LW",
-              "athleteId": "4233880",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233880.png",
+              "name": "Zack Bolduc",
+              "pos": "RW",
+              "athleteId": "4874734",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874734.png",
               "status": "Day-To-Day",
-              "type": "Illness",
+              "type": "Upper Body",
               "detail": "",
-              "returnDate": "2026-11-18",
-              "date": "2026-11-17T18:35Z",
-              "note": "day-to-day"
+              "returnDate": "2026-11-19",
+              "date": "2026-11-19T05:26Z",
+              "note": "Bolduc sustained an upper-body injury Wednesday versus the Devils, and the severity remains unknown, Eric Engels of Sportsnet reports."
             },
             {
               "name": "Mike Matheson",
@@ -1414,7 +1501,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Ankle",
               "detail": "Fracture",
-              "returnDate": "2026-11-21",
+              "returnDate": "2026-11-25",
               "date": "2026-11-04T21:04Z",
               "note": "Demidov (foot) skated Tuesday and could resume training with the team next week, Patrick Friolet of RDS reports."
             },
@@ -1426,7 +1513,7 @@ window.PICKS_DATA = {
               "status": "Injured Reserve",
               "type": "Lower Body",
               "detail": "",
-              "returnDate": "2026-11-21",
+              "returnDate": "2026-11-23",
               "date": "2026-10-31T15:25Z",
               "note": "Montembeault (lower body) is considered day-to-day, according to Renaud Lavoie of TVA Sports on Saturday."
             },
@@ -1464,10 +1551,10 @@ window.PICKS_DATA = {
             "gamesLast7": 1
           },
           "Montréal Canadiens": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-17",
-            "gamesLast7": 2
+            "restDays": 1,
+            "b2b": true,
+            "lastGame": "2026-11-19",
+            "gamesLast7": 3
           }
         },
         "weather": null,
@@ -1486,8 +1573,8 @@ window.PICKS_DATA = {
               "under": 102
             },
             "ml": {
-              "home": -265,
-              "away": 215
+              "home": -278,
+              "away": 225
             },
             "draw": null
           },
@@ -1510,7 +1597,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 105,
+        "loggedFair": 0.5217,
+        "currentOdds": 105,
+        "currentBook": "theScore Bet",
+        "currentFair": 0.4885,
+        "currentEdge": 0.0366,
+        "checkedAt": "2026-11-19T14:08:59.039Z",
+        "history": [
+          {
+            "at": "2026-11-18T20:36:26.498Z",
+            "odds": 105,
+            "fair": 0.4791
+          },
+          {
+            "at": "2026-11-19T14:08:59.039Z",
+            "odds": 105,
+            "fair": 0.4885
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -1536,34 +1643,34 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 7,
+        "n": 8,
         "open": {
           "line": 7.5,
           "odds": -129
         },
         "now": {
           "line": 6.5,
-          "odds": 108
+          "odds": 107
         },
         "moved": "toward",
-        "label": "The market (7 books) opened 7.5 (-129), now 6.5 (+108)"
+        "label": "The market (8 books) opened 7.5 (-129), now 6.5 (+107)"
       },
       "sgo": {
-        "at": "2026-11-18T20:36:26.498Z",
-        "n": 7,
+        "at": "2026-11-19T14:08:59.039Z",
+        "n": 8,
         "best": {
           "book": "ESPN BET",
           "odds": 105
         },
-        "fair": 0.4862,
-        "vendorFair": 0.4808,
+        "fair": 0.4838,
+        "vendorFair": 0.4831,
         "open": {
           "line": 7.5,
           "odds": -129
         },
         "now": {
           "line": 6.5,
-          "odds": 108
+          "odds": 107
         }
       },
       "sgoHistory": [
@@ -1575,6 +1682,15 @@ window.PICKS_DATA = {
           "odds": 108,
           "best": 105,
           "n": 7
+        },
+        {
+          "at": "2026-11-19T14:08:59.039Z",
+          "fair": 0.4838,
+          "vendorFair": 0.4831,
+          "line": 6.5,
+          "odds": 107,
+          "best": 105,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -1593,8 +1709,15 @@ window.PICKS_DATA = {
         "gp": 21,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-19T14:08:59.039Z",
+        "odds": 105,
+        "book": "theScore Bet",
+        "modelProb": 0.5244,
+        "edge": 0.0366,
+        "bar": 0.03
+      },
+      "standing": "clears",
       "availability": null
     },
     {
