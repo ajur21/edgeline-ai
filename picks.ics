@@ -926,28 +926,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-18@edgeline
-DTSTAMP:20261119T040209Z
-DTSTART:20261119T000000Z
-DTEND:20261119T040000Z
-SUMMARY:Parlay lean of the day: 2 legs +283 at FanDuel · Void
-DESCRIPTION:All legs priced at FanDuel. Fair 28.6%\, implied 26.1%\, EV +9.
- 5% per unit.\n- NBA: Al Horford under 14.5 pts + reb + ast -114 · Golden 
- State Warriors @ Dallas Mavericks\n- NBA: Davion Mitchell over 14.5 points
-  +104 · Milwaukee Bucks @ Miami Heat\nResult: Void\nEvery parlay: https:/
- /ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261119T040209Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +283 at FanDuel · Void
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:38779d99fd-spreads-Boston-Bruins@edgeline
 DTSTAMP:20261119T040209Z
 DTSTART:20261119T004000Z

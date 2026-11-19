@@ -3,178 +3,35 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-18T20:36:26.498Z",
-  "trackedAt": "2026-11-19T04:02:09.381Z",
-  "playOfDay": {
-    "kind": "prop",
-    "id": "prop-NBA-401910016-3213-pra-under-14.5",
-    "sport": "NBA",
-    "league": "NBA",
-    "sportKey": "basketball_nba",
-    "event": "Golden State Warriors @ Dallas Mavericks",
-    "home": "Dallas Mavericks",
-    "away": "Golden State Warriors",
-    "gameId": "401910016",
-    "commence": "2026-11-19T01:00:00.000Z",
-    "start": "Today 8:00 PM ET",
-    "market": "Pts + Reb + Ast",
-    "pick": "Al Horford under 14.5 pts + reb + ast",
-    "odds": -114,
-    "book": "FanDuel",
-    "prices": {
-      "FanDuel": -114,
-      "ESPN BET": -120,
-      "Caesars": -130
-    },
-    "pricesAt": "2026-11-18T20:38:54.425Z",
-    "modelProb": 0.5387,
-    "statedProb": 0.7621,
-    "keep": 0.1478,
-    "checkedOn": 1251,
-    "ev": 0.0113,
-    "confidence": "High",
-    "basis": "game",
-    "player": {
-      "id": "3213",
-      "name": "Al Horford",
-      "pos": "C",
-      "teamId": "9",
-      "teamAbbr": "GS",
-      "oppAbbr": "DAL",
-      "home": false,
-      "headshot": null
-    },
-    "stat": "pra",
-    "statLabel": "Pts + Reb + Ast",
-    "statShort": "PRA",
-    "side": "under",
-    "line": 14.5,
-    "l10": [
-      9,
-      10
-    ],
-    "proj": 7.8,
-    "reasons": [
-      "Stayed under 14.5 in 9 of the last 10",
-      "Projects 7.8 (last 5: 8, last 10: 10, season: 9.5)",
-      "Minutes down: 14.6 last 5 vs 16.9 season"
-    ],
-    "status": "void",
-    "started": true,
-    "result": null,
-    "units": null,
-    "actual": null,
-    "voidReason": "did not play",
-    "score": null,
-    "loggedAt": "2026-11-18T20:40:05.674Z",
-    "lockedAt": "2026-11-18T20:40:05.674Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-18",
-    "date": "2026-11-18",
-    "book": "FanDuel",
-    "odds": 283,
-    "decimal": 3.8295,
-    "fairProb": 0.286,
-    "ev": 0.0954,
-    "status": "void",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-18T20:40:05.674Z",
-    "legs": [
-      {
-        "id": "prop-NBA-401910016-3213-pra-under-14.5",
-        "kind": "prop",
-        "pick": "Al Horford under 14.5 pts + reb + ast",
-        "event": "Golden State Warriors @ Dallas Mavericks",
-        "sport": "NBA",
-        "price": -114,
-        "commence": "2026-11-19T01:00:00.000Z",
-        "started": true,
-        "result": null,
-        "void": true,
-        "league": "NBA",
-        "sportKey": "basketball_nba",
-        "home": "Dallas Mavericks",
-        "away": "Golden State Warriors",
-        "gameId": "401910016",
-        "player": {
-          "id": "3213",
-          "name": "Al Horford",
-          "pos": "C",
-          "teamId": "9",
-          "teamAbbr": "GS",
-          "oppAbbr": "DAL",
-          "home": false,
-          "headshot": null
-        },
-        "stat": "pra",
-        "statShort": "PRA",
-        "side": "under",
-        "line": 14.5,
-        "modelProb": 0.5387,
-        "actual": null
-      },
-      {
-        "id": "prop-NBA-401910009-4278053-pts-over-14.5",
-        "kind": "prop",
-        "pick": "Davion Mitchell over 14.5 points",
-        "event": "Milwaukee Bucks @ Miami Heat",
-        "sport": "NBA",
-        "price": 104,
-        "commence": "2026-11-19T00:00:00.000Z",
-        "started": true,
-        "result": "Win",
-        "void": false,
-        "league": "NBA",
-        "sportKey": "basketball_nba",
-        "home": "Miami Heat",
-        "away": "Milwaukee Bucks",
-        "gameId": "401910009",
-        "player": {
-          "id": "4278053",
-          "name": "Davion Mitchell",
-          "pos": "G",
-          "teamId": "14",
-          "teamAbbr": "MIA",
-          "oppAbbr": "MIL",
-          "home": true,
-          "headshot": null
-        },
-        "stat": "pts",
-        "statShort": "PTS",
-        "side": "over",
-        "line": 14.5,
-        "modelProb": 0.531,
-        "actual": 24
-      }
-    ]
-  },
+  "trackedAt": "2026-11-19T06:41:54.968Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-18",
-    "lockAt": "2026-11-18T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-18T20:40:05.674Z",
+    "date": "2026-11-19",
+    "lockAt": "2026-11-19T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-17",
+        "date": "2026-11-18",
         "kind": "prop",
         "sport": "NBA",
-        "event": "Utah Jazz @ LA Clippers",
-        "pick": "Mo Bamba under 9.5 rebounds",
-        "odds": 102,
-        "status": "graded",
-        "result": "Loss",
-        "units": -1
+        "event": "Golden State Warriors @ Dallas Mavericks",
+        "pick": "Al Horford under 14.5 pts + reb + ast",
+        "odds": -114,
+        "status": "void",
+        "result": null,
+        "units": null
       },
       "parlay": {
-        "date": "2026-11-17",
+        "date": "2026-11-18",
         "legs": 2,
-        "odds": 289,
-        "status": "graded",
-        "result": "Loss",
-        "units": -1
+        "odds": 283,
+        "status": "void",
+        "result": null,
+        "units": null
       }
     }
   },
@@ -193,7 +50,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-20T01:15:00Z",
-      "start": "Tomorrow 8:15 PM ET",
+      "start": "Today 8:15 PM ET",
       "market": "Moneyline",
       "pick": "Indianapolis Colts ML",
       "odds": 590,
@@ -285,7 +142,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 15.3% (+0.8 points against the best price). For reference only.",
-          "Market: DraftKings opened +195, now +500, moving against this side since the open.",
+          "Market: DraftKings opened +195, now +525, moving against this side since the open.",
           "Market: The market (8 books) opened +190, now +540, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Indianapolis Colts 3-7 · Houston Texans 3-6 · Reliant Stadium, Houston."
@@ -577,8 +434,8 @@ window.PICKS_DATA = {
               "under": -102
             },
             "ml": {
-              "home": -700,
-              "away": 500
+              "home": -750,
+              "away": 525
             },
             "draw": null
           },
@@ -611,11 +468,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 500,
-          "fair": 0.15999999999999998
+          "odds": 525,
+          "fair": 0.15349887133182846
         },
         "moved": "away",
-        "label": "DraftKings opened +195, now +500"
+        "label": "DraftKings opened +195, now +525"
       },
       "dkHistory": [
         {
@@ -629,6 +486,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 500,
           "fair": 0.16
+        },
+        {
+          "at": "2026-11-19T06:41:54.968Z",
+          "line": null,
+          "odds": 525,
+          "fair": 0.1535
         }
       ],
       "mkt": {
@@ -708,7 +571,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-20T01:10:00Z",
-      "start": "Tomorrow 8:10 PM ET",
+      "start": "Today 8:10 PM ET",
       "market": "Moneyline",
       "pick": "Chicago Blackhawks ML",
       "odds": 141,
@@ -1022,7 +885,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-20T00:40:00Z",
-      "start": "Tomorrow 7:40 PM ET",
+      "start": "Today 7:40 PM ET",
       "market": "Moneyline",
       "pick": "Edmonton Oilers ML",
       "odds": 131,
@@ -1390,7 +1253,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-20T00:10:00Z",
-      "start": "Tomorrow 7:10 PM ET",
+      "start": "Today 7:10 PM ET",
       "market": "Total",
       "pick": "Under 6.5",
       "odds": 105,
@@ -1748,7 +1611,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-19T00:40:00Z",
-      "start": "Today 7:40 PM ET",
+      "start": "Yesterday 7:40 PM ET",
       "market": "Puck line",
       "pick": "Boston Bruins +1.5",
       "odds": -225,

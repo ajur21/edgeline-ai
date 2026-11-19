@@ -24598,8 +24598,8 @@
       "under": -102
      },
      "ml": {
-      "home": -700,
-      "away": 500
+      "home": -750,
+      "away": 525
      },
      "draw": null
     },
@@ -24634,6 +24634,12 @@
     "line": null,
     "odds": 500,
     "fair": 0.16
+   },
+   {
+    "at": "2026-11-19T06:41:54.968Z",
+    "line": null,
+    "odds": 525,
+    "fair": 0.1535
    }
   ],
   "dk": {
@@ -24645,11 +24651,11 @@
    },
    "now": {
     "line": null,
-    "odds": 500,
-    "fair": 0.15999999999999998
+    "odds": 525,
+    "fair": 0.15349887133182846
    },
    "moved": "away",
-   "label": "DraftKings opened +195, now +500"
+   "label": "DraftKings opened +195, now +525"
   },
   "mkt": {
    "book": "Market consensus",
@@ -24681,7 +24687,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 15.3% (+0.8 points against the best price). For reference only.",
-    "Market: DraftKings opened +195, now +500, moving against this side since the open.",
+    "Market: DraftKings opened +195, now +525, moving against this side since the open.",
     "Market: The market (8 books) opened +190, now +540, the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Records: Indianapolis Colts 3-7 · Houston Texans 3-6 · Reliant Stadium, Houston."
