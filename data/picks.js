@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-19T20:36:28.791Z",
+  "trackedAt": "2026-11-19T22:37:14.188Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NFL-401873066-4683151-rec-under-1.5",
@@ -180,19 +181,19 @@ window.PICKS_DATA = {
       "odds": 590,
       "book": "FanDuel",
       "prices": {
-        "DraftKings": 498,
+        "DraftKings": 499,
         "FanDuel": 570,
         "BetOnline.ag": 517,
         "BetRivers": 510,
         "theScore Bet": 550,
-        "BetMGM": 525,
+        "BetMGM": 550,
         "Bovada": 500,
         "Caesars": 500,
         "PointsBet": 475,
         "Unibet": 500,
         "ESPN BET": 500
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.2418,
@@ -266,8 +267,8 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 15.3% (+0.8 points against the best price). For reference only.",
-          "Market: DraftKings opened +195, now +500, moving against this side since the open.",
-          "Market: The market (8 books) opened +190, now +529, the consensus moving against this side since the open.",
+          "Market: DraftKings opened +195, now +504, moving against this side since the open.",
+          "Market: The market (8 books) opened +190, now +531, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Indianapolis Colts 3-7 · Houston Texans 3-6 · Reliant Stadium, Houston."
         ],
@@ -558,8 +559,8 @@ window.PICKS_DATA = {
               "under": -116
             },
             "ml": {
-              "home": -690,
-              "away": 500
+              "home": -700,
+              "away": 504
             },
             "draw": null
           },
@@ -612,11 +613,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 500,
-          "fair": 0.16024340770791073
+          "odds": 504,
+          "fair": 0.1591089896579157
         },
         "moved": "away",
-        "label": "DraftKings opened +195, now +500"
+        "label": "DraftKings opened +195, now +504"
       },
       "dkHistory": [
         {
@@ -642,6 +643,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 500,
           "fair": 0.1602
+        },
+        {
+          "at": "2026-11-19T22:37:14.188Z",
+          "line": null,
+          "odds": 504,
+          "fair": 0.1591
         }
       ],
       "mkt": {
@@ -653,27 +660,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 529
+          "odds": 531
         },
         "moved": "away",
-        "label": "The market (8 books) opened +190, now +529"
+        "label": "The market (8 books) opened +190, now +531"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 8,
         "best": {
           "book": "FanDuel",
           "odds": 570
         },
-        "fair": 0.1575,
-        "vendorFair": 0.159,
+        "fair": 0.1568,
+        "vendorFair": 0.1585,
         "open": {
           "line": null,
           "odds": 190
         },
         "now": {
           "line": null,
-          "odds": 529
+          "odds": 531
         }
       },
       "sgoHistory": [
@@ -701,6 +708,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.159,
           "line": null,
           "odds": 529,
+          "best": 570,
+          "n": 8
+        },
+        {
+          "at": "2026-11-19T22:37:14.188Z",
+          "fair": 0.1568,
+          "vendorFair": 0.1585,
+          "line": null,
+          "odds": 531,
           "best": 570,
           "n": 8
         }
@@ -757,13 +773,13 @@ window.PICKS_DATA = {
         "BetRivers": 140,
         "theScore Bet": 130,
         "FanDuel": 140,
-        "BetMGM": 140,
+        "BetMGM": 135,
         "Bovada": 140,
         "Caesars": 136,
         "ESPN BET": 140,
         "PointsBet": 140
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.49,
@@ -833,7 +849,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 41.7% (+0.2 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (41.7% → 39.8%).",
-          "Market: The market (7 books) opened +117, now +148, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened +117, now +147, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Blackhawks Spencer Knight · Jackets Cam Talbot.",
           "Records: Columbus Blue Jackets 7-12-0 · Chicago Blackhawks 6-13-2 · United Center, Chicago."
@@ -1020,27 +1036,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 148
+          "odds": 147
         },
         "moved": "away",
-        "label": "The market (7 books) opened +117, now +148"
+        "label": "The market (7 books) opened +117, now +147"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 7,
         "best": {
           "book": "FanDuel",
           "odds": 140
         },
-        "fair": 0.4015,
-        "vendorFair": 0.4032,
+        "fair": 0.403,
+        "vendorFair": 0.4049,
         "open": {
           "line": null,
           "odds": 117
         },
         "now": {
           "line": null,
-          "odds": 148
+          "odds": 147
         }
       },
       "sgoHistory": [
@@ -1068,6 +1084,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.4032,
           "line": null,
           "odds": 148,
+          "best": 140,
+          "n": 7
+        },
+        {
+          "at": "2026-11-19T22:37:14.188Z",
+          "fair": 0.403,
+          "vendorFair": 0.4049,
+          "line": null,
+          "odds": 147,
           "best": 140,
           "n": 7
         }
@@ -1123,14 +1148,14 @@ window.PICKS_DATA = {
         "BetOnline.ag": 131,
         "BetRivers": 116,
         "theScore Bet": 115,
-        "FanDuel": 122,
-        "BetMGM": 120,
+        "FanDuel": 118,
+        "BetMGM": 118,
         "Bovada": 122,
         "Caesars": 120,
-        "ESPN BET": 134,
-        "PointsBet": 125
+        "ESPN BET": 128,
+        "PointsBet": 120
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5077,
@@ -1191,8 +1216,7 @@ window.PICKS_DATA = {
           "Tampa Bay Lightning without Conor Geekie (C) (-0.2).",
           "Tampa Bay Lightning have Brandon Hagel (LW), Zemgus Girgensons (C) listed day-to-day or questionable.",
           "Projected margin +0.05 for Edmonton Oilers.",
-          "A better price is now available: +134 at theScore Bet.",
-          "A better price is available now: +134 at ESPN BET."
+          "A better price is now available: +134 at theScore Bet."
         ],
         "risks": [
           "Home edge +0.2 for Tampa Bay Lightning.",
@@ -1200,7 +1224,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 43.3% (-0.0 points against the best price). For reference only.",
-          "Market: The market (7 books) opened +122, now +130, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened +122, now +129, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Lightning Andrei Vasilevskiy · Oilers Devon Levi.",
           "Records: Edmonton Oilers 17-3-3 · Tampa Bay Lightning 14-5-2 · Benchmark International Arena, Tampa."
@@ -1441,27 +1465,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 130
+          "odds": 129
         },
         "moved": "away",
-        "label": "The market (7 books) opened +122, now +130"
+        "label": "The market (7 books) opened +122, now +129"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 7,
         "best": {
           "book": "ESPN BET",
-          "odds": 134
+          "odds": 128
         },
-        "fair": 0.4302,
-        "vendorFair": 0.4348,
+        "fair": 0.4348,
+        "vendorFair": 0.4367,
         "open": {
           "line": null,
           "odds": 122
         },
         "now": {
           "line": null,
-          "odds": 130
+          "odds": 129
         }
       },
       "sgoHistory": [
@@ -1490,6 +1514,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 130,
           "best": 134,
+          "n": 7
+        },
+        {
+          "at": "2026-11-19T22:37:14.188Z",
+          "fair": 0.4348,
+          "vendorFair": 0.4367,
+          "line": null,
+          "odds": 129,
+          "best": 128,
           "n": 7
         }
       ],
@@ -1726,7 +1759,7 @@ window.PICKS_DATA = {
         "label": "The market (0 books) opened 3.5 (-127), now 4 (+123)"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 0,
         "best": null,
         "fair": null,
@@ -1802,7 +1835,7 @@ window.PICKS_DATA = {
         "ESPN BET": -115,
         "PointsBet": -115
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5664,
@@ -2059,7 +2092,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened 7.5 (+146), now 6 (+121)"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 7,
         "best": {
           "book": "DraftKings",
@@ -2139,7 +2172,7 @@ window.PICKS_DATA = {
         "ESPN BET": -110,
         "PointsBet": -111
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 7,
       "anchor": null,
       "modelProb": 0.5217,
@@ -2359,8 +2392,8 @@ window.PICKS_DATA = {
               "under": -115
             },
             "ml": {
-              "home": -345,
-              "away": 275
+              "home": -355,
+              "away": 280
             },
             "draw": null
           },
@@ -2453,7 +2486,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened 7.5 (-129), now 6.5 (-104)"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 7,
         "best": {
           "book": "ESPN BET",
@@ -2553,11 +2586,11 @@ window.PICKS_DATA = {
         "FanDuel": 100,
         "BetMGM": 105,
         "Bovada": 107,
-        "Caesars": -102,
+        "Caesars": 108,
         "ESPN BET": 105,
         "PointsBet": 105
       },
-      "pricesAt": "2026-11-19T20:36:28.791Z",
+      "pricesAt": "2026-11-19T22:37:14.188Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5131,
@@ -2609,6 +2642,7 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 7.1 a game in Washington Capitals's games, 6.3 in Buffalo Sabres's (league average 6.3).",
           "Projected total 6.4 against 6.5.",
+          "A better price is available now: +108 at Caesars.",
           "Scorers out: Rasmus Sandin (D), knee; Vincent Desharnais (D), abdomen; Konsta Helenius (C), upper body and 2 more. Fewer healthy scorers leans under."
         ],
         "risks": [],
@@ -2813,13 +2847,13 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened 7.5 (-119), now 6.5 (+110)"
       },
       "sgo": {
-        "at": "2026-11-19T20:36:28.791Z",
+        "at": "2026-11-19T22:37:14.188Z",
         "n": 7,
         "best": {
-          "book": "Bovada",
-          "odds": 107
+          "book": "Caesars",
+          "odds": 108
         },
-        "fair": 0.4692,
+        "fair": 0.467,
         "vendorFair": 0.4762,
         "open": {
           "line": 7.5,
@@ -2838,6 +2872,15 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 110,
           "best": 107,
+          "n": 7
+        },
+        {
+          "at": "2026-11-19T22:37:14.188Z",
+          "fair": 0.467,
+          "vendorFair": 0.4762,
+          "line": 6.5,
+          "odds": 110,
+          "best": 108,
           "n": 7
         }
       ],
