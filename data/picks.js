@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-19T20:36:28.791Z",
-  "trackedAt": "2026-11-20T06:30:23.641Z",
+  "generatedAt": "2026-11-20T14:08:14.066Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-20T14:10:16.551Z",
     "last": {
       "play": {
         "date": "2026-11-19",

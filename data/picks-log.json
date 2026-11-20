@@ -27583,5 +27583,15 @@
   "ev": 0.3439,
   "gradedAt": "2026-11-20T06:30:23.641Z",
   "result": "Win"
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-20",
+  "date": "2026-11-20",
+  "checkedAt": "2026-11-20T14:10:16.551Z",
+  "closedAt": null,
+  "candidates": 0,
+  "leans": 0,
+  "props": 0
  }
 ]

@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 20 Nov 2026 06:30:23 GMT</lastBuildDate>
+<lastBuildDate>Fri, 20 Nov 2026 14:08:14 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Fri Nov 20 slate: No lean tonight: 110 sides priced in 19 games, none clears its bar</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#market</link>
+<guid isPermaLink="false">slate-2026-11-20T14:08:14.066Z</guid>
+<pubDate>Fri, 20 Nov 2026 14:08:14 GMT</pubDate>
+<category>Slate</category>
+<description>&lt;p&gt;Every main-line side was given our probability from the game data. None sits above what its best price implies by its own bar (3 points or more: the model's margin of error on that side), so there is no bet.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Over 6 +104 at BetOnline.ag (+3.7 pts against a bar of +3.1 pts) · Columbus Blue Jackets @ Chicago Blackhawks&lt;/li&gt;&lt;li&gt;NHL: Edmonton Oilers +1.5 -190 at theScore Bet (+6.2 pts against a bar of +5.7 pts) · Edmonton Oilers @ Tampa Bay Lightning&lt;/li&gt;&lt;li&gt;NHL: Calgary Flames ML +205 at Bovada (+6.7 pts against a bar of +6.9 pts) · Minnesota Wild @ Calgary Flames&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+</item>
 <item>
 <title>Graded: Deion Burks under 1.5 receptions +115 · Won +1.15u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
@@ -71,14 +79,6 @@
 <pubDate>Fri, 20 Nov 2026 03:54:50 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Columbus Blue Jackets @ Chicago Blackhawks · Thu Nov 19, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Chicago Blackhawks ML at +141 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-2&lt;/p&gt;&lt;p&gt;Closing line value: -0.8 pts (closed +136, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Thu Nov 19 slate: 7 leans tonight from 110 priced sides</title>
-<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
-<guid isPermaLink="false">slate-2026-11-19T20:36:28.791Z</guid>
-<pubDate>Thu, 19 Nov 2026 20:36:28 GMT</pubDate>
-<category>Slate</category>
-<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Over 6 +104 at BetOnline.ag (+3.7 pts against a bar of +3.1 pts) · Columbus Blue Jackets @ Chicago Blackhawks&lt;/li&gt;&lt;li&gt;NHL: Edmonton Oilers +1.5 -190 at theScore Bet (+6.2 pts against a bar of +5.7 pts) · Edmonton Oilers @ Tampa Bay Lightning&lt;/li&gt;&lt;li&gt;NHL: Calgary Flames ML +205 at Bovada (+6.7 pts against a bar of +6.9 pts) · Minnesota Wild @ Calgary Flames&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Boston Bruins +1.5 -225 · Won +0.44u</title>
