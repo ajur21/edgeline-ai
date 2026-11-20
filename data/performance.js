@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-19",
+  "asOf": "2026-11-20",
   "windowDays": 30,
   "record": {
-    "wins": 27,
-    "losses": 28,
+    "wins": 28,
+    "losses": 29,
     "pushes": 0
   },
-  "units": -1.88,
-  "roi": -3.4,
-  "avgEdge": 8.7,
-  "graded": 55,
+  "units": -1.97,
+  "roi": -3.5,
+  "avgEdge": 8.6,
+  "graded": 57,
   "daily": [
     {
       "date": "2026-11-05",
@@ -68,14 +68,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-19",
-      "units": -1.88
+      "units": -1.97
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 2.35,
-      "record": "20-17"
+      "units": 3.26,
+      "record": "21-17"
     },
     {
       "sport": "NBA",
@@ -89,11 +89,41 @@ window.PERF_DATA = {
     },
     {
       "sport": "NFL",
-      "units": -0.05,
-      "record": "1-2"
+      "units": -1.05,
+      "record": "1-3"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-19",
+      "sport": "NHL",
+      "event": "Dallas Stars @ Vegas Golden Knights",
+      "pick": "Over 5.5",
+      "odds": -110,
+      "result": "Win",
+      "units": 0.91,
+      "clv": -0.0281,
+      "closeOdds": -108,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-19",
+      "sport": "NFL",
+      "event": "Indianapolis Colts @ Houston Texans",
+      "pick": "Indianapolis Colts ML",
+      "odds": 590,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0074,
+      "closeOdds": 531,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-19",
       "sport": "NHL",
@@ -243,36 +273,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-16",
-      "sport": "NBA",
-      "event": "Golden State Warriors @ New Orleans Pelicans",
-      "pick": "Golden State Warriors ML",
-      "odds": -160,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0116,
-      "closeOdds": -170,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-15",
-      "sport": "NHL",
-      "event": "Vancouver Canucks @ Vegas Golden Knights",
-      "pick": "Vancouver Canucks +1.5",
-      "odds": 140,
-      "result": "Win",
-      "units": 1.4,
-      "clv": -0.0163,
-      "closeOdds": 140,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -369,20 +369,30 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-19",
-      "units": -1,
-      "wins": 2,
-      "losses": 3,
+      "units": -1.09,
+      "wins": 3,
+      "losses": 4,
       "pushes": 0
     }
   ],
   "potd": {
-    "wins": 2,
+    "wins": 3,
     "losses": 10,
     "pushes": 0,
-    "units": -8.05,
-    "n": 12,
-    "props": 2,
+    "units": -6.9,
+    "n": 13,
+    "props": 3,
     "recent": [
+      {
+        "date": "2026-11-19",
+        "kind": "prop",
+        "sport": "NFL",
+        "event": "Indianapolis Colts @ Houston Texans",
+        "pick": "Deion Burks under 1.5 receptions",
+        "odds": 115,
+        "result": "Win",
+        "units": 1.15
+      },
       {
         "date": "2026-11-17",
         "kind": "prop",
@@ -472,46 +482,36 @@ window.PERF_DATA = {
         "odds": -130,
         "result": "Win",
         "units": 0.77
-      },
-      {
-        "date": "2026-11-07",
-        "kind": "lean",
-        "sport": "Soccer",
-        "event": "Austin FC vs. Portland Timbers",
-        "pick": "Austin FC ML",
-        "odds": 350,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
-    "wins": 0,
+    "wins": 1,
     "losses": 12,
     "pushes": 0,
-    "units": -12,
-    "n": 12
+    "units": -8.98,
+    "n": 13
   },
   "clv": {
-    "n": 48,
+    "n": 50,
     "avg": -1,
-    "beat": 15,
-    "beatPct": 31.3,
-    "graded": 55,
+    "beat": 16,
+    "beatPct": 32,
+    "graded": 57,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 55,
+    "espnCloses": 57,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 27,
-      "losses": 28,
+      "wins": 28,
+      "losses": 29,
       "pushes": 0,
-      "units": -1.88,
-      "n": 55,
-      "roi": -3.4,
-      "pending": 2,
+      "units": -1.97,
+      "n": 57,
+      "roi": -3.5,
+      "pending": 0,
       "since": "2026-11-05"
     },
     "price": {

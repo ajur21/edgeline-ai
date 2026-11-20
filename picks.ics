@@ -1033,112 +1033,58 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-19@edgeline
-DTSTAMP:20261120T035450Z
-DTSTART:20261120T011500Z
-DTEND:20261120T061000Z
-SUMMARY:Parlay lean of the day: 2 legs +302 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 33.4%\, implied 24.9%\, EV +34.
- 4% per unit.\n- NFL: Deion Burks under 1.5 receptions +115 · Indianapolis
-  Colts @ Houston Texans\n- NHL: Over 5.5 -115 · Dallas Stars @ Vegas Gold
- en Knights\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.htm
- l#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261120T035450Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +302 at Bovada
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:prop-NFL-401873066-4683151-rec-under-1.5@edgeline
-DTSTAMP:20261119T203909Z
+DTSTAMP:20261120T063023Z
 DTSTART:20261120T011500Z
 DTEND:20261120T041500Z
 SUMMARY:Lean of the day: Deion Burks under 1.5 receptions +115 at DraftKing
- s · in play
+ s · Won +1.15u
 DESCRIPTION:NFL · Indianapolis Colts @ Houston Texans · Thu Nov 19\, 8:15
   PM ET\nPlayer prop: Deion Burks under 1.5 receptions at +115 (DraftKings)
  . Our chance 59.0% (the model's own 76.6%\, cut to the 34% of an edge that
   graded props have borne out)\, the price implies 46.5%\, EV +26.9% per un
- it. Grade: High.\n- Stayed under 1.5 in 7 of the last 8\n- Projects 0.7 (1
- .4 targets a game\, 57% caught\, -3% on the road\; season 0.8)\n- On the r
- oad: 3.8 vs 13.7 receiving yards\nEvery prop\, ranked: https://ajur21.gith
- ub.io/edgeline-ai/props.html
-URL:https://ajur21.github.io/edgeline-ai/index.html#plays
+ it. Grade: High.\nWon +1.15u: finished on 0 receptions\, graded on the box
+  score.\nRecord and every graded lean: https://ajur21.github.io/edgeline-a
+ i/performance.html
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NFL,Prop
-LAST-MODIFIED:20261119T203909Z
+LAST-MODIFIED:20261120T063023Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:66f9e83cf0-h2h-Indianapolis-Colts@edgeline
-DTSTAMP:20261119T223714Z
+DTSTAMP:20261120T063023Z
 DTSTART:20261120T011500Z
 DTEND:20261120T041500Z
-SUMMARY:Indianapolis Colts ML +590 at FanDuel · in play
+SUMMARY:Indianapolis Colts ML +590 at FanDuel · Lost -1.00u
 DESCRIPTION:NFL · Indianapolis Colts @ Houston Texans · Thu Nov 19\, 8:15
-  PM ET\nMoneyline: Indianapolis Colts ML at +590 (FanDuel). Our probabilit
- y 24.2% from game data\, the price implies 14.5%\, edge +9.7 pts\, EV +66.
- 8% per unit. Confidence: Lean.\nOur probability is 24.2%\, from the game d
- ata: this season's results and margins\, recent form\, rest\, the injury r
- eport and home edge (projected margin +10.1 for the home side). FanDuel of
- fers +590\, which implies only 14.5%. Its bar is 8.5 points: the model's o
- wn margin of error on this side\, with 9 games behind the thinner team (±
- 3.94 points on the margin). It clears it by 1.2. Not graded against other 
- books' prices\; for reference the market makes it 15.3%.\nWhat supports it
- :\n- Houston Texans without Jaylin Smith (CB)\, Woody Marks (RB)\, Azeez A
- l-Shaair (LB) (-1.9).\nWhat could go wrong:\n- Houston Texans rate +1.9 an
- d Indianapolis Colts -2.2 points a game against their schedules (this seas
- on's results\, last season carried over)\; EPA a play +0.03 and -0.07 net 
- of defence (nflverse).\n- C.J. Stroud starts for Houston Texans: +0.03 EPA
-  a dropback against +0.01 behind their numbers (+0.5 points).\n- Home edge
-  +2.1 for Houston Texans.\n- Indianapolis Colts without Bernhard Raimann (
- OT)\, Jerry Tillery (DT)\, Jalen Travis (OT) and 5 more (+3.9).\n- Project
- ed margin -10.1 for Indianapolis Colts.\nVerdict: More working against thi
- s one than for it\; size down.\nPrices: FanDuel +570\, theScore Bet +550\,
-  BetMGM +550\, BetOnline.ag +517\, BetRivers +510 and 6 more.\nFull breakd
- own: https://ajur21.github.io/edgeline-ai/picks.html#66f9e83cf0-h2h-Indian
- apolis-Colts
+  PM ET\nMoneyline: Indianapolis Colts ML at +590 (FanDuel). Lost -1.00u.\n
+ Final: 3-26\nClosing line value: +0.7 pts (closed +531\, DraftKings close 
+ (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-
+ ai/performance.html
 LOCATION:Reliant Stadium\, Houston
-URL:https://ajur21.github.io/edgeline-ai/picks.html#66f9e83cf0-h2h-Indianap
- olis-Colts
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NFL
-LAST-MODIFIED:20261119T223714Z
+LAST-MODIFIED:20261120T063023Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:6c4d4bc698-totals-Over@edgeline
-DTSTAMP:20261119T223714Z
+DTSTAMP:20261120T063023Z
 DTSTART:20261120T031000Z
 DTEND:20261120T061000Z
-SUMMARY:Over 5.5 -110 at BetOnline.ag · in play
+SUMMARY:Over 5.5 -110 at BetOnline.ag · Won +0.91u
 DESCRIPTION:NHL · Dallas Stars @ Vegas Golden Knights · Thu Nov 19\, 10:1
- 0 PM ET\nTotal: Over 5.5 at -110 (BetOnline.ag). Our probability 56.6% fro
- m game data\, the price implies 52.4%\, edge +4.3 pts\, EV +8.1% per unit.
-  Confidence: Lean.\nOur probability at 5.5 is 56.6%\, from the game data: 
- this season's results and margins\, recent form\, rest\, the injury report
-  and home edge (projected total 6.2). BetOnline.ag offers -110\, which imp
- lies only 52.4%. Its bar is 3.0 points (the floor: the model's own margin 
- of error here is smaller). It clears it by 1.3. Not graded against other b
- ooks' prices\; for reference the market makes it 50.5%.\nWhat supports it:
- \n- Combined scoring 6.3 a game in Vegas Golden Knights's games\, 5.4 in D
- allas Stars's (league average 6.3).\n- Projected total 6.2 against 5.5.\nW
- hat could go wrong:\n- Scorers out: Noah Hanifin (D)\, undisclosed\; Tyler
-  Myers (D)\, upper body\; Kyle Capobianco (D)\, leg and 3 more. Fewer heal
- thy scorers leans under.\nVerdict: The game data lines up behind this side
-  at this price.\nPrices: BetOnline.ag -110\, DraftKings -115\, theScore Be
- t -115\, BetMGM -115\, Bovada -115 and 5 more.\nFull breakdown: https://aj
- ur21.github.io/edgeline-ai/picks.html#6c4d4bc698-totals-Over
+ 0 PM ET\nTotal: Over 5.5 at -110 (BetOnline.ag). Won +0.91u.\nFinal: 4-3\n
+ Closing line value: -2.8 pts (closed -108\, DraftKings close (ESPN)).\nRec
+ ord and every graded lean: https://ajur21.github.io/edgeline-ai/performanc
+ e.html
 LOCATION:T-Mobile Arena\, Las Vegas
-URL:https://ajur21.github.io/edgeline-ai/picks.html#6c4d4bc698-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261119T223714Z
+LAST-MODIFIED:20261120T063023Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

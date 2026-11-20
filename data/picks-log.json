@@ -24293,8 +24293,8 @@
    "Edge 9.7 points over the price, 1.2 past its bar of 8.5",
    "Market reference 15.3%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-18T20:36:26.498Z",
   "availability": null,
   "current": {
@@ -24809,7 +24809,30 @@
      "fair": 0.1514
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "3-26",
+  "finalScore": {
+   "home": 26,
+   "away": 3
+  },
+  "gradedAt": "2026-11-20T06:30:23.641Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873066",
+   "line": null,
+   "odds": 531,
+   "fair": 0.1523,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 195,
+    "fair": 0.325
+   },
+   "samples": 2
+  },
+  "clv": 0.0074,
+  "lineMove": null
  },
  {
   "key": "3449054d3b59c2c7fc8cf914dbd45ea6|totals|Under|6.5",
@@ -26466,8 +26489,8 @@
    "Edge 4.3 points over the price, 1.3 past its bar of 3.0",
    "Market reference 50.5%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.91,
   "loggedAt": "2026-11-19T20:36:28.791Z",
   "availability": null,
   "current": {
@@ -26745,7 +26768,30 @@
     "best": -115,
     "n": 7
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "4-3",
+  "finalScore": {
+   "home": 3,
+   "away": 4
+  },
+  "gradedAt": "2026-11-20T06:30:23.641Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892753",
+   "line": 5.5,
+   "odds": -108,
+   "fair": 0.4957,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -135,
+    "fair": 0.5514
+   },
+   "samples": 1
+  },
+  "clv": -0.0281,
+  "lineMove": null
  },
  {
   "key": "ec0a3056ce896bd73059bffab79fc261|totals|Over|3.75",
@@ -27506,20 +27552,21 @@
   ],
   "proj": 0.7,
   "linesAt": "2026-11-19T20:38:36.463Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
+  "status": "graded",
+  "actual": 0,
+  "result": "Win",
+  "units": 1.15,
   "lockedAt": "2026-11-19T20:39:09.937Z",
   "potd": "2026-11-19",
-  "potdAt": "2026-11-19T20:39:09.937Z"
+  "potdAt": "2026-11-19T20:39:09.937Z",
+  "gradedAt": "2026-11-20T06:30:23.641Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-19",
   "date": "2026-11-19",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 3.02,
   "loggedAt": "2026-11-19T20:39:09.937Z",
   "book": "Bovada",
   "legs": [
@@ -27533,6 +27580,8 @@
   "decimal": 4.0196,
   "odds": 302,
   "fairProb": 0.3343,
-  "ev": 0.3439
+  "ev": 0.3439,
+  "gradedAt": "2026-11-20T06:30:23.641Z",
+  "result": "Win"
  }
 ]
