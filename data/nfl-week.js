@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-19T20:37:29.826Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-20T03:54:53.204Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -82,10 +82,13 @@ window.NFL_WEEK_DATA = {
    "week": 11,
    "kickoff": "2026-11-20T01:15Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/19 - 8:15 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "7:51 - 4th",
+   "score": {
+    "home": 26,
+    "away": 3
+   },
    "home": {
     "id": "34",
     "abbr": "HOU",
@@ -112,7 +115,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-19T20:37:29.826Z",
-    "locked": false,
+    "locked": true,
     "margin": 9.26,
     "total": 48,
     "marginSd": 3.94,
@@ -242,30 +245,8 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.7391,
-     "bar": 0.088,
-     "price": -186
-    },
-    "away": {
-     "prob": 0.2609,
-     "bar": 0.088,
-     "price": 479
-    }
-   },
-   "board": {
-    "eventId": "66f9e83cf025d58acee12bce18661fb3",
-    "pricedAt": "2026-11-19T20:36:28.791Z",
-    "home": {
-     "odds": -690,
-     "book": "DraftKings"
-    },
-    "away": {
-     "odds": 570,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": {
     "id": "66f9e83cf0-h2h-Indianapolis-Colts",
     "pick": "Indianapolis Colts ML",

@@ -24902,8 +24902,8 @@
    "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
    "Market reference 47.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.05,
   "loggedAt": "2026-11-18T20:36:26.498Z",
   "availability": null,
   "current": {
@@ -25267,7 +25267,30 @@
      "fair": 0.5161
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "2-1",
+  "finalScore": {
+   "home": 1,
+   "away": 2
+  },
+  "gradedAt": "2026-11-20T03:54:50.342Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892747",
+   "line": 6.5,
+   "odds": -115,
+   "fair": 0.5108,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 105,
+    "fair": 0.4675
+   },
+   "samples": 3
+  },
+  "clv": 0.023,
+  "lineMove": null
  },
  {
   "key": "147b0b6f883cce916d06b7aaa9b9594c|h2h|Edmonton Oilers|null",
@@ -25365,8 +25388,8 @@
    "Edge 7.5 points over the price, 0.3 past its bar of 7.1",
    "Market reference 43.3%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-18T20:36:26.498Z",
   "availability": null,
   "current": {
@@ -25735,7 +25758,30 @@
      "fair": 0.4242
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "1-3",
+  "finalScore": {
+   "home": 3,
+   "away": 1
+  },
+  "gradedAt": "2026-11-20T03:54:50.342Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892744",
+   "line": null,
+   "odds": 120,
+   "fair": 0.4365,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 120,
+    "fair": 0.4365
+   },
+   "samples": 3
+  },
+  "clv": 0.0036,
+  "lineMove": null
  },
  {
   "key": "7f30902099116c9c5824e85201be7d60|h2h|Chicago Blackhawks|null",
@@ -25833,8 +25879,8 @@
    "Edge 7.5 points over the price, 0.3 past its bar of 7.2",
    "Market reference 41.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-18T20:36:26.498Z",
   "availability": null,
   "current": {
@@ -26150,7 +26196,30 @@
      "fair": 0.3982
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "4-2",
+  "finalScore": {
+   "home": 2,
+   "away": 4
+  },
+  "gradedAt": "2026-11-20T03:54:50.342Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892748",
+   "line": null,
+   "odds": 136,
+   "fair": 0.4066,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 136,
+    "fair": 0.4066
+   },
+   "samples": 3
+  },
+  "clv": -0.0083,
+  "lineMove": null
  },
  {
   "type": "prop",
@@ -26760,8 +26829,8 @@
    "Edge 4.8 points over the price, 1.0 past its bar of 3.8",
    "Market reference 50.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.95,
   "loggedAt": "2026-11-19T20:36:28.791Z",
   "availability": null,
   "current": {
@@ -26953,7 +27022,30 @@
     "best": null,
     "n": 0
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "3-1",
+  "finalScore": {
+   "home": 1,
+   "away": 3
+  },
+  "gradedAt": "2026-11-20T03:54:50.342Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401933535",
+   "line": 3.5,
+   "odds": -145,
+   "fair": null,
+   "moved": "away",
+   "open": {
+    "line": 3.5,
+    "odds": -150,
+    "fair": 0.5516
+   },
+   "samples": 1
+  },
+  "clv": null,
+  "lineMove": "away"
  },
  {
   "key": "6e1de7988dd0c9689abb85f6b8399336|totals|Under|6.5",
@@ -27045,8 +27137,8 @@
    "Edge 3.0 points over the price, 0.0 past its bar of 3.0",
    "Market reference 47.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-19T20:36:28.791Z",
   "availability": null,
   "current": {
@@ -27333,7 +27425,30 @@
     "best": 108,
     "n": 7
    }
-  ]
+  ],
+  "result": "Loss",
+  "score": "6-3",
+  "finalScore": {
+   "home": 3,
+   "away": 6
+  },
+  "gradedAt": "2026-11-20T03:54:50.342Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892746",
+   "line": 6.5,
+   "odds": 100,
+   "fair": 0.4783,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": -102,
+    "fair": 0.4826
+   },
+   "samples": 1
+  },
+  "clv": -0.0048,
+  "lineMove": null
  },
  {
   "type": "prop",

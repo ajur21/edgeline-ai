@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-19",
   "windowDays": 30,
   "record": {
-    "wins": 25,
-    "losses": 25,
+    "wins": 27,
+    "losses": 28,
     "pushes": 0
   },
-  "units": -0.88,
-  "roi": -1.8,
-  "avgEdge": 9.1,
-  "graded": 50,
+  "units": -1.88,
+  "roi": -3.4,
+  "avgEdge": 8.7,
+  "graded": 55,
   "daily": [
     {
       "date": "2026-11-05",
@@ -65,13 +65,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-18",
       "units": -0.88
+    },
+    {
+      "date": "2026-11-19",
+      "units": -1.88
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 4.3,
-      "record": "19-14"
+      "units": 2.35,
+      "record": "20-17"
     },
     {
       "sport": "NBA",
@@ -80,8 +84,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": -1.33,
-      "record": "4-5"
+      "units": -0.38,
+      "record": "5-5"
     },
     {
       "sport": "NFL",
@@ -90,6 +94,81 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-19",
+      "sport": "NHL",
+      "event": "Columbus Blue Jackets @ Chicago Blackhawks",
+      "pick": "Chicago Blackhawks ML",
+      "odds": 141,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0083,
+      "closeOdds": 136,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-19",
+      "sport": "NHL",
+      "event": "Edmonton Oilers @ Tampa Bay Lightning",
+      "pick": "Edmonton Oilers ML",
+      "odds": 131,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0036,
+      "closeOdds": 120,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-19",
+      "sport": "Soccer",
+      "event": "Orlando City SC vs. FC Cincinnati",
+      "pick": "Over 3.75 goals",
+      "odds": -105,
+      "result": "Win",
+      "units": 0.95,
+      "clv": null,
+      "closeOdds": -145,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-19",
+      "sport": "NHL",
+      "event": "Buffalo Sabres @ Washington Capitals",
+      "pick": "Under 6.5",
+      "odds": 107,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0048,
+      "closeOdds": 100,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-19",
+      "sport": "NHL",
+      "event": "Montréal Canadiens @ Carolina Hurricanes",
+      "pick": "Under 6.5",
+      "odds": 105,
+      "result": "Win",
+      "units": 1.05,
+      "clv": 0.023,
+      "closeOdds": -115,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-18",
       "sport": "NHL",
@@ -194,81 +273,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-15",
-      "sport": "NHL",
-      "event": "Calgary Flames @ Anaheim Ducks",
-      "pick": "Under 6.5",
-      "odds": 114,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0002,
-      "closeOdds": 105,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-15",
-      "sport": "NFL",
-      "event": "Los Angeles Rams @ Arizona Cardinals",
-      "pick": "Arizona Cardinals ML",
-      "odds": 400,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0133,
-      "closeOdds": 350,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-15",
-      "sport": "NFL",
-      "event": "Houston Texans @ Cleveland Browns",
-      "pick": "Cleveland Browns ML",
-      "odds": 195,
-      "result": "Win",
-      "units": 1.95,
-      "clv": 0.0163,
-      "closeOdds": 170,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-15",
-      "sport": "NFL",
-      "event": "Miami Dolphins @ Indianapolis Colts",
-      "pick": "Miami Dolphins ML",
-      "odds": 180,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0321,
-      "closeOdds": 195,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-14",
-      "sport": "NHL",
-      "event": "New York Islanders @ Anaheim Ducks",
-      "pick": "Under 6.5",
-      "odds": 110,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0276,
-      "closeOdds": 114,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -361,6 +365,13 @@ window.PERF_DATA = {
       "units": 0.44,
       "wins": 1,
       "losses": 0,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-19",
+      "units": -1,
+      "wins": 2,
+      "losses": 3,
       "pushes": 0
     }
   ],
@@ -482,25 +493,25 @@ window.PERF_DATA = {
     "n": 12
   },
   "clv": {
-    "n": 44,
-    "avg": -1.12,
-    "beat": 13,
-    "beatPct": 29.5,
-    "graded": 50,
+    "n": 48,
+    "avg": -1,
+    "beat": 15,
+    "beatPct": 31.3,
+    "graded": 55,
     "lineToward": 2,
-    "lineAway": 4,
-    "espnCloses": 50,
+    "lineAway": 5,
+    "espnCloses": 55,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 25,
-      "losses": 25,
+      "wins": 27,
+      "losses": 28,
       "pushes": 0,
-      "units": -0.88,
-      "n": 50,
-      "roi": -1.8,
-      "pending": 7,
+      "units": -1.88,
+      "n": 55,
+      "roi": -3.4,
+      "pending": 2,
       "since": "2026-11-05"
     },
     "price": {
