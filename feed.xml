@@ -5,24 +5,16 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Sat, 21 Nov 2026 03:51:17 GMT</lastBuildDate>
+<lastBuildDate>Sat, 21 Nov 2026 06:20:46 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>Parlay lean of the day: 2 legs +310 at Bovada</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
-<guid isPermaLink="false">parlay-2026-11-20</guid>
-<pubDate>Sat, 21 Nov 2026 01:44:08 GMT</pubDate>
-<category>Parlay</category>
-<description>&lt;p&gt;All legs priced at Bovada. Fair 27.5%, implied 24.4%, EV +12.7% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NBA: Walker Kessler over 10.5 rebounds -105 · Sacramento Kings @ Los Angeles Lakers&lt;/li&gt;&lt;li&gt;NBA: Alperen Sengun over 0.5 threes +110 · Houston Rockets @ Denver Nuggets&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
-</item>
-<item>
-<title>Lean of the day: Walker Kessler over 10.5 rebounds -103 at DraftKings (Medium, 52.5% to hit) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/index.html#plays</link>
-<guid isPermaLink="false">prop-NBA-401909313-4433136-reb-over-10.5</guid>
-<pubDate>Sat, 21 Nov 2026 01:44:08 GMT</pubDate>
+<title>Graded: Walker Kessler over 10.5 rebounds -103 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">prop-NBA-401909313-4433136-reb-over-10.5#graded</guid>
+<pubDate>Sat, 21 Nov 2026 06:20:46 GMT</pubDate>
 <category>NBA</category>
-<description>&lt;p&gt;NBA · Sacramento Kings @ Los Angeles Lakers · Fri Nov 20, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Player prop: Walker Kessler over 10.5 rebounds at -103 (DraftKings). Our chance 52.5% (the model's own 67.5%, cut to the 14% of an edge that graded props have borne out), the price implies 50.7%, EV +3.5% per unit. Grade: Medium.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Cleared 10.5 in 8 of the last 10&lt;/li&gt;&lt;li&gt;Projects 11.9 (last 5: 12, last 10: 12.3, season: 10.9)&lt;/li&gt;&lt;li&gt;SAC allows 121.7 a game, 3rd most&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every prop, ranked: https://ajur21.github.io/edgeline-ai/props.html&lt;/p&gt;</description>
+<description>&lt;p&gt;NBA · Sacramento Kings @ Los Angeles Lakers · Fri Nov 20, 10:00 PM ET&lt;/p&gt;&lt;p&gt;Player prop: Walker Kessler over 10.5 rebounds at -103 (DraftKings). Our chance 52.5% (the model's own 67.5%, cut to the 14% of an edge that graded props have borne out), the price implies 50.7%, EV +3.5% per unit. Grade: Medium.&lt;/p&gt;&lt;p&gt;Lost -1.00u: finished on 7 rebounds, graded on the box score.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Fri Nov 20 slate: 6 leans tonight from 518 priced sides</title>

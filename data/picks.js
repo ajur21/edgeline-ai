@@ -3,181 +3,35 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-21T01:40:24.742Z",
-  "trackedAt": "2026-11-21T03:51:17.881Z",
-  "playOfDay": {
-    "kind": "prop",
-    "id": "prop-NBA-401909313-4433136-reb-over-10.5",
-    "sport": "NBA",
-    "league": "NBA",
-    "sportKey": "basketball_nba",
-    "event": "Sacramento Kings @ Los Angeles Lakers",
-    "home": "Los Angeles Lakers",
-    "away": "Sacramento Kings",
-    "gameId": "401909313",
-    "commence": "2026-11-21T03:00:00.000Z",
-    "start": "Today 10:00 PM ET",
-    "market": "Rebounds",
-    "pick": "Walker Kessler over 10.5 rebounds",
-    "odds": -103,
-    "book": "DraftKings",
-    "prices": {
-      "FanDuel": -113,
-      "Caesars": -117,
-      "ESPN BET": -120,
-      "DraftKings": -103,
-      "Bovada": -105,
-      "BetMGM": -111
-    },
-    "pricesAt": "2026-11-21T01:42:55.019Z",
-    "modelProb": 0.5251,
-    "statedProb": 0.6755,
-    "keep": 0.143,
-    "checkedOn": 1453,
-    "ev": 0.0349,
-    "confidence": "Medium",
-    "basis": "game",
-    "player": {
-      "id": "4433136",
-      "name": "Walker Kessler",
-      "pos": "C",
-      "teamId": "13",
-      "teamAbbr": "LAL",
-      "oppAbbr": "SAC",
-      "home": true,
-      "headshot": null
-    },
-    "stat": "reb",
-    "statLabel": "Rebounds",
-    "statShort": "REB",
-    "side": "over",
-    "line": 10.5,
-    "l10": [
-      8,
-      10
-    ],
-    "proj": 11.9,
-    "reasons": [
-      "Cleared 10.5 in 8 of the last 10",
-      "Projects 11.9 (last 5: 12, last 10: 12.3, season: 10.9)",
-      "SAC allows 121.7 a game, 3rd most"
-    ],
-    "status": "pending",
-    "started": true,
-    "result": null,
-    "units": null,
-    "actual": null,
-    "voidReason": null,
-    "score": null,
-    "loggedAt": "2026-11-21T01:44:08.721Z",
-    "lockedAt": "2026-11-21T01:44:08.721Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-20",
-    "date": "2026-11-20",
-    "book": "Bovada",
-    "odds": 310,
-    "decimal": 4.1,
-    "fairProb": 0.2748,
-    "ev": 0.1266,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-21T01:44:08.721Z",
-    "legs": [
-      {
-        "id": "prop-NBA-401909313-4433136-reb-over-10.5",
-        "kind": "prop",
-        "pick": "Walker Kessler over 10.5 rebounds",
-        "event": "Sacramento Kings @ Los Angeles Lakers",
-        "sport": "NBA",
-        "price": -105,
-        "commence": "2026-11-21T03:00:00.000Z",
-        "started": true,
-        "result": null,
-        "void": false,
-        "league": "NBA",
-        "sportKey": "basketball_nba",
-        "home": "Los Angeles Lakers",
-        "away": "Sacramento Kings",
-        "gameId": "401909313",
-        "player": {
-          "id": "4433136",
-          "name": "Walker Kessler",
-          "pos": "C",
-          "teamId": "13",
-          "teamAbbr": "LAL",
-          "oppAbbr": "SAC",
-          "home": true,
-          "headshot": null
-        },
-        "stat": "reb",
-        "statShort": "REB",
-        "side": "over",
-        "line": 10.5,
-        "modelProb": 0.5251,
-        "actual": null
-      },
-      {
-        "id": "prop-NBA-401909312-4871144-threes-over-0.5",
-        "kind": "prop",
-        "pick": "Alperen Sengun over 0.5 threes",
-        "event": "Houston Rockets @ Denver Nuggets",
-        "sport": "NBA",
-        "price": 110,
-        "commence": "2026-11-21T03:00:00.000Z",
-        "started": true,
-        "result": null,
-        "void": false,
-        "league": "NBA",
-        "sportKey": "basketball_nba",
-        "home": "Denver Nuggets",
-        "away": "Houston Rockets",
-        "gameId": "401909312",
-        "player": {
-          "id": "4871144",
-          "name": "Alperen Sengun",
-          "pos": "C",
-          "teamId": "10",
-          "teamAbbr": "HOU",
-          "oppAbbr": "DEN",
-          "home": false,
-          "headshot": null
-        },
-        "stat": "threes",
-        "statShort": "3PM",
-        "side": "over",
-        "line": 0.5,
-        "modelProb": 0.5233,
-        "actual": null
-      }
-    ]
-  },
+  "trackedAt": "2026-11-21T06:20:46.561Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-20",
-    "lockAt": "2026-11-20T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-21T01:44:08.721Z",
+    "date": "2026-11-21",
+    "lockAt": "2026-11-21T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "kind": "prop",
-        "sport": "NFL",
-        "event": "Indianapolis Colts @ Houston Texans",
-        "pick": "Deion Burks under 1.5 receptions",
-        "odds": 115,
+        "sport": "NBA",
+        "event": "Sacramento Kings @ Los Angeles Lakers",
+        "pick": "Walker Kessler over 10.5 rebounds",
+        "odds": -103,
         "status": "graded",
-        "result": "Win",
-        "units": 1.15
+        "result": "Loss",
+        "units": -1
       },
       "parlay": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "legs": 2,
-        "odds": 302,
+        "odds": 310,
         "status": "graded",
-        "result": "Win",
-        "units": 3.02
+        "result": "Loss",
+        "units": -1
       }
     }
   },
@@ -196,7 +50,7 @@ window.PICKS_DATA = {
         "point": 3.5
       },
       "commence": "2026-11-21T12:30:00Z",
-      "start": "Tomorrow 7:30 AM ET",
+      "start": "Today 7:30 AM ET",
       "market": "Total",
       "pick": "Under 3.5 goals",
       "odds": -121,
@@ -319,7 +173,7 @@ window.PICKS_DATA = {
             "spread": -1.5,
             "spreadOdds": {
               "home": -105,
-              "away": -130
+              "away": -135
             },
             "total": 3.5,
             "totalOdds": {
@@ -327,8 +181,8 @@ window.PICKS_DATA = {
               "under": -125
             },
             "ml": {
-              "home": -255,
-              "away": 600
+              "home": -265,
+              "away": 650
             },
             "draw": 425
           },
@@ -412,7 +266,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-21T15:00:00Z",
-      "start": "Tomorrow 10:00 AM ET",
+      "start": "Today 10:00 AM ET",
       "market": "Moneyline",
       "pick": "Ipswich Town ML",
       "odds": 510,
@@ -547,7 +401,7 @@ window.PICKS_DATA = {
             "spread": -1.5,
             "spreadOdds": {
               "home": 130,
-              "away": -185
+              "away": -180
             },
             "total": 2.5,
             "totalOdds": {
@@ -646,7 +500,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-21T19:00:00Z",
-      "start": "Tomorrow 2:00 PM ET",
+      "start": "Today 2:00 PM ET",
       "market": "Moneyline",
       "pick": "New England Revolution ML",
       "odds": 210,
@@ -912,7 +766,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-22T00:00:00Z",
-      "start": "Tomorrow 7:00 PM ET",
+      "start": "Today 7:00 PM ET",
       "market": "Moneyline",
       "pick": "Boston Bruins ML",
       "odds": -116,
@@ -1223,7 +1077,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-21T23:00:00Z",
-      "start": "Tomorrow 6:00 PM ET",
+      "start": "Today 6:00 PM ET",
       "market": "Moneyline",
       "pick": "Draw",
       "odds": 392,
@@ -1300,7 +1154,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 19.6% (-0.7 points against the best price). For reference only.",
-          "Market: DraftKings opened +310, now +360, moving against this side since the open.",
+          "Market: DraftKings opened +310, now +350, moving against this side since the open.",
           "Market: The market (7 books) opened +385, now +378, the consensus moving toward this side since the open.",
           "Weather at kickoff: Mainly clear, 74°F, wind 8 mph, 9% rain."
         ],
@@ -1355,19 +1209,19 @@ window.PICKS_DATA = {
           "now": {
             "spread": -0.5,
             "spreadOdds": {
-              "home": -185,
-              "away": 130
+              "home": -175,
+              "away": 125
             },
             "total": 3.5,
             "totalOdds": {
-              "over": -115,
-              "under": -110
+              "over": 100,
+              "under": -125
             },
             "ml": {
-              "home": -180,
-              "away": 360
+              "home": -170,
+              "away": 340
             },
-            "draw": 360
+            "draw": 350
           },
           "open": {
             "spread": -0.5,
@@ -1398,11 +1252,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 360,
-          "fair": 0.20172910662824206
+          "odds": 350,
+          "fair": 0.20592823712948516
         },
         "moved": "away",
-        "label": "DraftKings opened +310, now +360"
+        "label": "DraftKings opened +310, now +350"
       },
       "dkHistory": [
         {
@@ -1410,6 +1264,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 360,
           "fair": 0.2017
+        },
+        {
+          "at": "2026-11-21T06:20:46.561Z",
+          "line": null,
+          "odds": 350,
+          "fair": 0.2059
         }
       ],
       "mkt": {
@@ -1489,7 +1349,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-22T02:00:00Z",
-      "start": "Tomorrow 9:00 PM ET",
+      "start": "Today 9:00 PM ET",
       "market": "Total",
       "pick": "Under 6.5",
       "odds": 117,

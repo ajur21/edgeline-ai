@@ -27748,7 +27748,7 @@
      "spread": -1.5,
      "spreadOdds": {
       "home": -105,
-      "away": -130
+      "away": -135
      },
      "total": 3.5,
      "totalOdds": {
@@ -27756,8 +27756,8 @@
       "under": -125
      },
      "ml": {
-      "home": -255,
-      "away": 600
+      "home": -265,
+      "away": 650
      },
      "draw": 425
     },
@@ -28285,7 +28285,7 @@
      "spread": -1.5,
      "spreadOdds": {
       "home": 130,
-      "away": -185
+      "away": -180
      },
      "total": 2.5,
      "totalOdds": {
@@ -28530,19 +28530,19 @@
     "now": {
      "spread": -0.5,
      "spreadOdds": {
-      "home": -185,
-      "away": 130
+      "home": -175,
+      "away": 125
      },
      "total": 3.5,
      "totalOdds": {
-      "over": -115,
-      "under": -110
+      "over": 100,
+      "under": -125
      },
      "ml": {
-      "home": -180,
-      "away": 360
+      "home": -170,
+      "away": 340
      },
-     "draw": 360
+     "draw": 350
     },
     "open": {
      "spread": -0.5,
@@ -28569,6 +28569,12 @@
     "line": null,
     "odds": 360,
     "fair": 0.2017
+   },
+   {
+    "at": "2026-11-21T06:20:46.561Z",
+    "line": null,
+    "odds": 350,
+    "fair": 0.2059
    }
   ],
   "dk": {
@@ -28580,11 +28586,11 @@
    },
    "now": {
     "line": null,
-    "odds": 360,
-    "fair": 0.20172910662824206
+    "odds": 350,
+    "fair": 0.20592823712948516
    },
    "moved": "away",
-   "label": "DraftKings opened +310, now +360"
+   "label": "DraftKings opened +310, now +350"
   },
   "mkt": {
    "book": "Market consensus",
@@ -28613,7 +28619,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 19.6% (-0.7 points against the best price). For reference only.",
-    "Market: DraftKings opened +310, now +360, moving against this side since the open.",
+    "Market: DraftKings opened +310, now +350, moving against this side since the open.",
     "Market: The market (7 books) opened +385, now +378, the consensus moving toward this side since the open.",
     "Weather at kickoff: Mainly clear, 74°F, wind 8 mph, 9% rain."
    ],
@@ -29456,13 +29462,14 @@
   ],
   "proj": 11.9,
   "linesAt": "2026-11-21T01:42:55.019Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
+  "status": "graded",
+  "actual": 7,
+  "result": "Loss",
+  "units": -1,
   "lockedAt": "2026-11-21T01:44:08.721Z",
   "potd": "2026-11-20",
-  "potdAt": "2026-11-21T01:44:08.721Z"
+  "potdAt": "2026-11-21T01:44:08.721Z",
+  "gradedAt": "2026-11-21T06:20:46.561Z"
  },
  {
   "type": "prop",
@@ -29519,18 +29526,19 @@
   ],
   "proj": 0.9,
   "linesAt": "2026-11-21T01:42:55.019Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-21T01:44:08.721Z"
+  "status": "graded",
+  "actual": 1,
+  "result": "Win",
+  "units": 1.1,
+  "lockedAt": "2026-11-21T01:44:08.721Z",
+  "gradedAt": "2026-11-21T06:20:46.561Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-20",
   "date": "2026-11-20",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-21T01:44:08.721Z",
   "book": "Bovada",
   "legs": [
@@ -29544,6 +29552,8 @@
   "decimal": 4.1,
   "odds": 310,
   "fairProb": 0.2748,
-  "ev": 0.1266
+  "ev": 0.1266,
+  "gradedAt": "2026-11-21T06:20:46.561Z",
+  "result": "Loss"
  }
 ]

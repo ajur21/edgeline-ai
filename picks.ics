@@ -1089,45 +1089,22 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-20@edgeline
-DTSTAMP:20261121T035117Z
-DTSTART:20261121T030000Z
-DTEND:20261121T060000Z
-SUMMARY:Parlay lean of the day: 2 legs +310 at Bovada
-DESCRIPTION:All legs priced at Bovada. Fair 27.5%\, implied 24.4%\, EV +12.
- 7% per unit.\n- NBA: Walker Kessler over 10.5 rebounds -105 · Sacramento 
- Kings @ Los Angeles Lakers\n- NBA: Alperen Sengun over 0.5 threes +110 · 
- Houston Rockets @ Denver Nuggets\n\nEvery parlay: https://ajur21.github.io
- /edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261121T035117Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +310 at Bovada
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:prop-NBA-401909313-4433136-reb-over-10.5@edgeline
-DTSTAMP:20261121T014408Z
+DTSTAMP:20261121T062046Z
 DTSTART:20261121T030000Z
 DTEND:20261121T060000Z
 SUMMARY:Lean of the day: Walker Kessler over 10.5 rebounds -103 at DraftKin
- gs · in play
+ gs · Lost -1.00u
 DESCRIPTION:NBA · Sacramento Kings @ Los Angeles Lakers · Fri Nov 20\, 10
  :00 PM ET\nPlayer prop: Walker Kessler over 10.5 rebounds at -103 (DraftKi
  ngs). Our chance 52.5% (the model's own 67.5%\, cut to the 14% of an edge 
  that graded props have borne out)\, the price implies 50.7%\, EV +3.5% per
-  unit. Grade: Medium.\n- Cleared 10.5 in 8 of the last 10\n- Projects 11.9
-  (last 5: 12\, last 10: 12.3\, season: 10.9)\n- SAC allows 121.7 a game\, 
- 3rd most\nEvery prop\, ranked: https://ajur21.github.io/edgeline-ai/props.
- html
-URL:https://ajur21.github.io/edgeline-ai/index.html#plays
+  unit. Grade: Medium.\nLost -1.00u: finished on 7 rebounds\, graded on the
+  box score.\nRecord and every graded lean: https://ajur21.github.io/edgeli
+ ne-ai/performance.html
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NBA,Prop
-LAST-MODIFIED:20261121T014408Z
+LAST-MODIFIED:20261121T062046Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

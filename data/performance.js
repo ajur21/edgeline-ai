@@ -2,7 +2,7 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-20",
+  "asOf": "2026-11-21",
   "windowDays": 30,
   "record": {
     "wins": 28,
@@ -377,12 +377,22 @@ window.PERF_DATA = {
   ],
   "potd": {
     "wins": 3,
-    "losses": 10,
+    "losses": 11,
     "pushes": 0,
-    "units": -6.9,
-    "n": 13,
-    "props": 3,
+    "units": -7.9,
+    "n": 14,
+    "props": 4,
     "recent": [
+      {
+        "date": "2026-11-20",
+        "kind": "prop",
+        "sport": "NBA",
+        "event": "Sacramento Kings @ Los Angeles Lakers",
+        "pick": "Walker Kessler over 10.5 rebounds",
+        "odds": -103,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-19",
         "kind": "prop",
@@ -472,25 +482,15 @@ window.PERF_DATA = {
         "odds": 107,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-08",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Florida Panthers @ Boston Bruins",
-        "pick": "Boston Bruins ML",
-        "odds": -130,
-        "result": "Win",
-        "units": 0.77
       }
     ]
   },
   "parlays": {
     "wins": 1,
-    "losses": 12,
+    "losses": 13,
     "pushes": 0,
-    "units": -8.98,
-    "n": 13
+    "units": -9.98,
+    "n": 14
   },
   "clv": {
     "n": 50,
