@@ -1177,11 +1177,32 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-21@edgeline
+DTSTAMP:20261121T205119Z
+DTSTART:20261121T203000Z
+DTEND:20261122T030000Z
+SUMMARY:Parlay lean of the day: 2 legs +243 at BetMGM
+DESCRIPTION:All legs priced at BetMGM. Fair 33.6%\, implied 29.2%\, EV +15.
+ 2% per unit.\n- NHL: Over 5.5 -120 · Chicago Blackhawks @ Calgary Flames\
+ n- NHL: Over 5.5 -115 · Los Angeles Kings @ Ottawa Senators\n\nEvery parl
+ ay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261121T205119Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +243 at BetMGM
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:b9678f4fde-totals-Over@edgeline
 DTSTAMP:20261121T202535Z
 DTSTART:20261121T203000Z
 DTEND:20261121T233000Z
-SUMMARY:Lean of the day: Over 5.5 -120 at BetMGM · Low
+SUMMARY:Over 5.5 -120 at BetMGM · in play
 DESCRIPTION:NHL · Chicago Blackhawks @ Calgary Flames · Sat Nov 21\, 3:30
   PM ET\nTotal: Over 5.5 at -120 (BetMGM). Our probability 58.1% from game 
  data\, the price implies 54.5%\, edge +3.6 pts\, EV +6.5% per unit. Confid
@@ -1205,36 +1226,10 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Over 5.5 -120 at BetMGM · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-21@edgeline
-DTSTAMP:20261121T202535Z
-DTSTART:20261121T203000Z
-DTEND:20261122T030000Z
-SUMMARY:Parlay lean of the day: 2 legs +243 at BetMGM
-DESCRIPTION:All legs priced at BetMGM. Fair 33.6%\, implied 29.2%\, EV +15.
- 2% per unit.\n- NHL: Over 5.5 -120 · Chicago Blackhawks @ Calgary Flames\
- n- NHL: Over 5.5 -115 · Los Angeles Kings @ Ottawa Senators\n\nEvery parl
- ay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261121T202535Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +243 at BetMGM
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8db7920265-h2h-Draw@edgeline
-DTSTAMP:20261121T202535Z
+DTSTAMP:20261121T205119Z
 DTSTART:20261121T230000Z
 DTEND:20261122T020000Z
 SUMMARY:Draw +392 at BetOnline.ag · Low
@@ -1258,7 +1253,7 @@ DESCRIPTION:Soccer · Inter Miami CF vs. Columbus Crew SC · Sat Nov 21\, 6
 LOCATION:Nu Stadium\, Miami\, Florida
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8db7920265-h2h-Draw
 CATEGORIES:Soccer
-LAST-MODIFIED:20261121T202535Z
+LAST-MODIFIED:20261121T205119Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1269,7 +1264,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:eeea62e464-h2h-Boston-Bruins@edgeline
-DTSTAMP:20261121T202535Z
+DTSTAMP:20261121T205119Z
 DTSTART:20261122T000000Z
 DTEND:20261122T030000Z
 SUMMARY:Boston Bruins ML -116 at BetOnline.ag · Low
@@ -1300,7 +1295,7 @@ LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#eeea62e464-h2h-Boston-B
  ruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261121T202535Z
+LAST-MODIFIED:20261121T205119Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1311,7 +1306,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e491b0b72d-totals-Over@edgeline
-DTSTAMP:20261121T202535Z
+DTSTAMP:20261121T205119Z
 DTSTART:20261122T000000Z
 DTEND:20261122T030000Z
 SUMMARY:Over 5.5 -112 at DraftKings · Low
@@ -1335,7 +1330,7 @@ DESCRIPTION:NHL · Los Angeles Kings @ Ottawa Senators · Sat Nov 21\, 7:00
 LOCATION:Canadian Tire Centre\, Ottawa
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e491b0b72d-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261121T202535Z
+LAST-MODIFIED:20261121T205119Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1346,7 +1341,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2c807988a0-totals-Under@edgeline
-DTSTAMP:20261121T202535Z
+DTSTAMP:20261121T205119Z
 DTSTART:20261122T020000Z
 DTEND:20261122T050000Z
 SUMMARY:Under 6.5 +117 at BetOnline.ag · Low
@@ -1366,13 +1361,13 @@ DESCRIPTION:NHL · Anaheim Ducks @ Utah Mammoth · Sat Nov 21\, 9:00 PM ET\
  chmaltz (C)\, lower body and 5 more. Fewer healthy scorers leans under.\nW
  hat could go wrong:\n- Projected total 6.53 against 6.5.\nVerdict: The gam
  e data lines up behind this side at this price.\nPrices: DraftKings +124\,
-  FanDuel +120\, ESPN BET +120\, PointsBet +120\, BetOnline.ag +117 and 6 m
+  FanDuel +122\, ESPN BET +120\, PointsBet +120\, BetOnline.ag +117 and 6 m
  ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#2c80
  7988a0-totals-Under
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2c807988a0-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261121T202535Z
+LAST-MODIFIED:20261121T205119Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

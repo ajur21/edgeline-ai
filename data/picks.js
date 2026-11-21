@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-21T20:25:35.800Z",
+  "trackedAt": "2026-11-21T20:51:19.664Z",
   "playOfDay": {
     "id": "b9678f4fde-totals-Over",
     "sport": "NHL",
@@ -308,7 +309,7 @@ window.PICKS_DATA = {
       }
     ],
     "status": "pending",
-    "started": false,
+    "started": true,
     "result": null,
     "units": null,
     "score": null,
@@ -350,7 +351,7 @@ window.PICKS_DATA = {
         "sport": "NHL",
         "price": -120,
         "commence": "2026-11-21T20:30:00Z",
-        "started": false,
+        "started": true,
         "result": null,
         "void": false
       },
@@ -429,7 +430,7 @@ window.PICKS_DATA = {
         "Caesars": -138,
         "PointsBet": -130
       },
-      "pricesAt": "2026-11-21T20:25:35.800Z",
+      "pricesAt": "2026-11-21T20:51:19.664Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6194,
@@ -690,7 +691,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened -102, now -122"
       },
       "sgo": {
-        "at": "2026-11-21T20:25:35.800Z",
+        "at": "2026-11-21T20:51:19.664Z",
         "n": 7,
         "best": {
           "book": "ESPN BET",
@@ -1162,7 +1163,7 @@ window.PICKS_DATA = {
         "Unibet": -120,
         "PointsBet": -115
       },
-      "pricesAt": "2026-11-21T20:25:35.800Z",
+      "pricesAt": "2026-11-21T20:51:19.664Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.5783,
@@ -1431,7 +1432,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 7.5 (+124), now 6 (+123)"
       },
       "sgo": {
-        "at": "2026-11-21T20:25:35.800Z",
+        "at": "2026-11-21T20:51:19.664Z",
         "n": 8,
         "best": {
           "book": "DraftKings",
@@ -1510,7 +1511,7 @@ window.PICKS_DATA = {
         "ESPN BET": 350,
         "Unibet": 340
       },
-      "pricesAt": "2026-11-21T20:25:35.800Z",
+      "pricesAt": "2026-11-21T20:51:19.664Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.2471,
@@ -1571,7 +1572,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 19.6% (-0.7 points against the best price). For reference only.",
           "Market: DraftKings opened +310, now +350, moving against this side since the open.",
-          "Market: The market (7 books) opened +385, now +369, the consensus moving toward this side since the open."
+          "Market: The market (7 books) opened +385, now +368, the consensus moving toward this side since the open."
         ],
         "verdict": "More working against this one than for it; size down."
       },
@@ -1689,27 +1690,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 369
+          "odds": 368
         },
         "moved": "toward",
-        "label": "The market (7 books) opened +385, now +369"
+        "label": "The market (7 books) opened +385, now +368"
       },
       "sgo": {
-        "at": "2026-11-21T20:25:35.800Z",
+        "at": "2026-11-21T20:51:19.664Z",
         "n": 7,
         "best": {
           "book": "FanDuel",
           "odds": 350
         },
         "fair": 0.2101,
-        "vendorFair": 0.2132,
+        "vendorFair": 0.2137,
         "open": {
           "line": null,
           "odds": 385
         },
         "now": {
           "line": null,
-          "odds": 369
+          "odds": 368
         }
       },
       "sgoHistory": [
@@ -1730,6 +1731,15 @@ window.PICKS_DATA = {
           "odds": 369,
           "best": 350,
           "n": 7
+        },
+        {
+          "at": "2026-11-21T20:51:19.664Z",
+          "fair": 0.2101,
+          "vendorFair": 0.2137,
+          "line": null,
+          "odds": 368,
+          "best": 350,
+          "n": 7
         }
       ],
       "status": "pending",
@@ -1746,330 +1756,6 @@ window.PICKS_DATA = {
         "units": 0.31,
         "unit": "goals",
         "gp": 34,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
-    {
-      "id": "b9678f4fde-totals-Over",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Chicago Blackhawks @ Calgary Flames",
-      "home": "Calgary Flames",
-      "away": "Chicago Blackhawks",
-      "marketKey": "totals",
-      "outcome": {
-        "name": "Over",
-        "point": 5.5
-      },
-      "commence": "2026-11-21T20:30:00Z",
-      "start": "Today 3:30 PM ET",
-      "market": "Total",
-      "pick": "Over 5.5",
-      "odds": -120,
-      "book": "BetMGM",
-      "prices": {
-        "theScore Bet": -125,
-        "BetRivers": -137,
-        "FanDuel": -122,
-        "DraftKings": -125,
-        "Bovada": -125,
-        "BetMGM": -120,
-        "ESPN BET": -125,
-        "Caesars": -137,
-        "Unibet": -137,
-        "PointsBet": -125
-      },
-      "pricesAt": "2026-11-21T20:25:35.800Z",
-      "books": 6,
-      "anchor": null,
-      "modelProb": 0.5811,
-      "ev": 0.0654,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.5,
-        "total": 6.3,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 22,
-        "gpHome": 23,
-        "gpAway": 22,
-        "thin": false,
-        "parts": {
-          "ratingHome": -0.5,
-          "ratingAway": -0.7,
-          "lastHome": -0.6,
-          "lastAway": -0.8,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.1,
-          "injuriesAway": 0.1,
-          "scoringOut": 0,
-          "pace": 6.3
-        },
-        "reasons": {
-          "for": [
-            "Combined scoring 6 a game in Calgary Flames's games, 6.5 in Chicago Blackhawks's (league average 6.3)",
-            "Projected total 6.3 against 5.5"
-          ],
-          "against": []
-        }
-      },
-      "marketFair": 0.5318,
-      "marketEdge": -0.0136,
-      "rationale": "Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetMGM offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.6. Not graded against other books' prices; for reference the market makes it 53.2%.",
-      "factors": [
-        "Best price -120 at BetMGM",
-        "Probability 58.1% from game data, not other books",
-        "Edge 3.6 points over the price, 0.6 past its bar of 3.0",
-        "Market reference 53.2%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 58.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 54.5%, so the edge is 3.6 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.6 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetMGM offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.6. Not graded against other books' prices; for reference the market makes it 53.2%.",
-        "support": [
-          "Combined scoring 6 a game in Calgary Flames's games, 6.5 in Chicago Blackhawks's (league average 6.3).",
-          "Projected total 6.3 against 5.5."
-        ],
-        "risks": [
-          "Scorers out: Jonathan Huberdeau (LW), hip; Kevin Bahl (D), achilles; Connor Zary (C), knee and 2 more. Fewer healthy scorers leans under."
-        ],
-        "notes": [
-          "Where the market sits: the de-vigged consensus of 6 books makes this side 53.2% (-1.4 points against the best price). For reference only.",
-          "Market: DraftKings opened 5.5 (-130), now 5.5 (-125), moving against this side since the open.",
-          "Market: The market (8 books) opened 7.5 (+146), now 6 (+114), the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Flames Dustin Wolf · Blackhawks Spencer Knight.",
-          "Records: Chicago Blackhawks 6-14-2 · Calgary Flames 10-12-1 · Scotiabank Saddledome, Calgary."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892755",
-        "venue": "Scotiabank Saddledome, Calgary",
-        "indoor": true,
-        "records": {
-          "Calgary Flames": {
-            "overall": "10-12-1",
-            "home": "6-6-0",
-            "away": "4-6-1"
-          },
-          "Chicago Blackhawks": {
-            "overall": "6-14-2",
-            "home": "6-6-1",
-            "away": "0-8-1"
-          }
-        },
-        "probables": {
-          "Calgary Flames": "Dustin Wolf",
-          "Chicago Blackhawks": "Spencer Knight"
-        },
-        "injuries": {
-          "Calgary Flames": [
-            {
-              "name": "Jonathan Huberdeau",
-              "pos": "LW",
-              "athleteId": "2562606",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562606.png",
-              "status": "Injured Reserve",
-              "type": "Hip",
-              "detail": "Surgery",
-              "returnDate": "2026-11-25",
-              "date": "2026-11-19T04:00Z",
-              "note": "Huberdeau (hip) had three assists in AHL Calgary's 4-3 win over Coachella Valley on Wednesday."
-            },
-            {
-              "name": "Kevin Bahl",
-              "pos": "D",
-              "athleteId": "4378686",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
-              "status": "Injured Reserve",
-              "type": "Achilles",
-              "detail": "Surgery",
-              "returnDate": "2027-09-15",
-              "date": "2026-11-08T16:17Z",
-              "note": "Bahl will undergo surgery for a ruptured Achilles tendon and won't play again in the 2026-27 season, the Flames announced Sunday."
-            },
-            {
-              "name": "Connor Zary",
-              "pos": "C",
-              "athleteId": "4697407",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697407.png",
-              "status": "Out",
-              "type": "Knee",
-              "detail": "Surgery",
-              "returnDate": "2026-11-28",
-              "date": "2026-10-30T16:44Z",
-              "note": "out"
-            }
-          ],
-          "Chicago Blackhawks": [
-            {
-              "name": "Bowen Byram",
-              "pos": "D",
-              "athleteId": "4565225",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4565225.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-27",
-              "date": "2026-11-21T19:21Z",
-              "note": "Byram (upper body) didn't accompany his teammates on Chicago's three-game road trip, per Mark Lazerus of The Athletic on Saturday."
-            },
-            {
-              "name": "Connor Bedard",
-              "pos": "C",
-              "athleteId": "5149125",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149125.png",
-              "status": "Out",
-              "type": "Shoulder",
-              "detail": "",
-              "returnDate": "2026-11-27",
-              "date": "2026-11-19T16:45Z",
-              "note": "out"
-            }
-          ]
-        },
-        "rest": {
-          "Calgary Flames": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-20",
-            "gamesLast7": 4
-          },
-          "Chicago Blackhawks": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-20",
-            "gamesLast7": 3
-          }
-        },
-        "weather": null,
-        "broadcast": "ESPN+",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 160,
-              "away": -192
-            },
-            "total": 5.5,
-            "totalOdds": {
-              "over": -125,
-              "under": 105
-            },
-            "ml": {
-              "home": -162,
-              "away": 136
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 154,
-              "away": -185
-            },
-            "total": 5.5,
-            "totalOdds": {
-              "over": -130,
-              "under": 110
-            },
-            "ml": {
-              "home": -162,
-              "away": 136
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": 5.5,
-          "odds": -130,
-          "fair": 0.5427435387673957
-        },
-        "now": {
-          "line": 5.5,
-          "odds": -125,
-          "fair": 0.5324675324675325
-        },
-        "moved": "away",
-        "label": "DraftKings opened 5.5 (-130), now 5.5 (-125)"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-21T20:25:35.800Z",
-          "line": 5.5,
-          "odds": -125,
-          "fair": 0.5325
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": 7.5,
-          "odds": 146
-        },
-        "now": {
-          "line": 6,
-          "odds": 114
-        },
-        "moved": "away",
-        "label": "The market (8 books) opened 7.5 (+146), now 6 (+114)"
-      },
-      "sgo": {
-        "at": "2026-11-21T20:25:35.800Z",
-        "n": 8,
-        "best": {
-          "book": "BetMGM",
-          "odds": -120
-        },
-        "fair": 0.5341,
-        "vendorFair": 0.4673,
-        "open": {
-          "line": 7.5,
-          "odds": 146
-        },
-        "now": {
-          "line": 6,
-          "odds": 114
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-21T20:25:35.800Z",
-          "fair": 0.5341,
-          "vendorFair": 0.4673,
-          "line": 6,
-          "odds": 114,
-          "best": -120,
-          "n": 8
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-21T20:25:35.800Z",
-      "valueTo": -122,
-      "bar": 0.03,
-      "past": 0.0056,
-      "barParts": {
-        "error": 0.0269,
-        "units": 0.16,
-        "unit": "goals",
-        "gp": 22,
         "floor": 0.03
       },
       "now": null,
@@ -2101,14 +1787,14 @@ window.PICKS_DATA = {
         "DraftKings": 124,
         "BetOnline.ag": 117,
         "Bovada": 112,
-        "FanDuel": 120,
+        "FanDuel": 122,
         "BetMGM": 110,
         "ESPN BET": 120,
         "Caesars": 111,
         "Unibet": -111,
         "PointsBet": 120
       },
-      "pricesAt": "2026-11-21T20:25:35.800Z",
+      "pricesAt": "2026-11-21T20:51:19.664Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.4919,
@@ -2419,13 +2105,13 @@ window.PICKS_DATA = {
         "label": "The market (5 books) opened 7.5 (+111), now 7 (-118)"
       },
       "sgo": {
-        "at": "2026-11-21T20:25:35.800Z",
+        "at": "2026-11-21T20:51:19.664Z",
         "n": 5,
         "best": {
           "book": "DraftKings",
           "odds": 124
         },
-        "fair": 0.4464,
+        "fair": 0.4457,
         "vendorFair": 0.5413,
         "open": {
           "line": 7.5,
@@ -2449,6 +2135,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-21T20:25:35.800Z",
           "fair": 0.4464,
+          "vendorFair": 0.5413,
+          "line": 7,
+          "odds": -118,
+          "best": 124,
+          "n": 5
+        },
+        {
+          "at": "2026-11-21T20:51:19.664Z",
+          "fair": 0.4457,
           "vendorFair": 0.5413,
           "line": 7,
           "odds": -118,
@@ -3199,6 +2894,330 @@ window.PICKS_DATA = {
         "units": 0.31,
         "unit": "goals",
         "gp": 34,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null,
+      "availability": null
+    },
+    {
+      "id": "b9678f4fde-totals-Over",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "Chicago Blackhawks @ Calgary Flames",
+      "home": "Calgary Flames",
+      "away": "Chicago Blackhawks",
+      "marketKey": "totals",
+      "outcome": {
+        "name": "Over",
+        "point": 5.5
+      },
+      "commence": "2026-11-21T20:30:00Z",
+      "start": "Today 3:30 PM ET",
+      "market": "Total",
+      "pick": "Over 5.5",
+      "odds": -120,
+      "book": "BetMGM",
+      "prices": {
+        "theScore Bet": -125,
+        "BetRivers": -137,
+        "FanDuel": -122,
+        "DraftKings": -125,
+        "Bovada": -125,
+        "BetMGM": -120,
+        "ESPN BET": -125,
+        "Caesars": -137,
+        "Unibet": -137,
+        "PointsBet": -125
+      },
+      "pricesAt": "2026-11-21T20:25:35.800Z",
+      "books": 6,
+      "anchor": null,
+      "modelProb": 0.5811,
+      "ev": 0.0654,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.5,
+        "total": 6.3,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 22,
+        "gpHome": 23,
+        "gpAway": 22,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.5,
+          "ratingAway": -0.7,
+          "lastHome": -0.6,
+          "lastAway": -0.8,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": -0.1,
+          "injuriesAway": 0.1,
+          "scoringOut": 0,
+          "pace": 6.3
+        },
+        "reasons": {
+          "for": [
+            "Combined scoring 6 a game in Calgary Flames's games, 6.5 in Chicago Blackhawks's (league average 6.3)",
+            "Projected total 6.3 against 5.5"
+          ],
+          "against": []
+        }
+      },
+      "marketFair": 0.5318,
+      "marketEdge": -0.0136,
+      "rationale": "Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetMGM offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.6. Not graded against other books' prices; for reference the market makes it 53.2%.",
+      "factors": [
+        "Best price -120 at BetMGM",
+        "Probability 58.1% from game data, not other books",
+        "Edge 3.6 points over the price, 0.6 past its bar of 3.0",
+        "Market reference 53.2%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 58.1%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetMGM implies 54.5%, so the edge is 3.6 points. Its bar is 3.0 points: the floor, because the model's own margin of error on this side is smaller. It clears it by 0.6 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetMGM offers -120, which implies only 54.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.6. Not graded against other books' prices; for reference the market makes it 53.2%.",
+        "support": [
+          "Combined scoring 6 a game in Calgary Flames's games, 6.5 in Chicago Blackhawks's (league average 6.3).",
+          "Projected total 6.3 against 5.5."
+        ],
+        "risks": [
+          "Scorers out: Jonathan Huberdeau (LW), hip; Kevin Bahl (D), achilles; Connor Zary (C), knee and 2 more. Fewer healthy scorers leans under."
+        ],
+        "notes": [
+          "Where the market sits: the de-vigged consensus of 6 books makes this side 53.2% (-1.4 points against the best price). For reference only.",
+          "Market: DraftKings opened 5.5 (-130), now 5.5 (-125), moving against this side since the open.",
+          "Market: The market (8 books) opened 7.5 (+146), now 6 (+114), the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Flames Dustin Wolf · Blackhawks Spencer Knight.",
+          "Records: Chicago Blackhawks 6-14-2 · Calgary Flames 10-12-1 · Scotiabank Saddledome, Calgary."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892755",
+        "venue": "Scotiabank Saddledome, Calgary",
+        "indoor": true,
+        "records": {
+          "Calgary Flames": {
+            "overall": "10-12-1",
+            "home": "6-6-0",
+            "away": "4-6-1"
+          },
+          "Chicago Blackhawks": {
+            "overall": "6-14-2",
+            "home": "6-6-1",
+            "away": "0-8-1"
+          }
+        },
+        "probables": {
+          "Calgary Flames": "Dustin Wolf",
+          "Chicago Blackhawks": "Spencer Knight"
+        },
+        "injuries": {
+          "Calgary Flames": [
+            {
+              "name": "Jonathan Huberdeau",
+              "pos": "LW",
+              "athleteId": "2562606",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2562606.png",
+              "status": "Injured Reserve",
+              "type": "Hip",
+              "detail": "Surgery",
+              "returnDate": "2026-11-25",
+              "date": "2026-11-19T04:00Z",
+              "note": "Huberdeau (hip) had three assists in AHL Calgary's 4-3 win over Coachella Valley on Wednesday."
+            },
+            {
+              "name": "Kevin Bahl",
+              "pos": "D",
+              "athleteId": "4378686",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4378686.png",
+              "status": "Injured Reserve",
+              "type": "Achilles",
+              "detail": "Surgery",
+              "returnDate": "2027-09-15",
+              "date": "2026-11-08T16:17Z",
+              "note": "Bahl will undergo surgery for a ruptured Achilles tendon and won't play again in the 2026-27 season, the Flames announced Sunday."
+            },
+            {
+              "name": "Connor Zary",
+              "pos": "C",
+              "athleteId": "4697407",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697407.png",
+              "status": "Out",
+              "type": "Knee",
+              "detail": "Surgery",
+              "returnDate": "2026-11-28",
+              "date": "2026-10-30T16:44Z",
+              "note": "out"
+            }
+          ],
+          "Chicago Blackhawks": [
+            {
+              "name": "Bowen Byram",
+              "pos": "D",
+              "athleteId": "4565225",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4565225.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-27",
+              "date": "2026-11-21T19:21Z",
+              "note": "Byram (upper body) didn't accompany his teammates on Chicago's three-game road trip, per Mark Lazerus of The Athletic on Saturday."
+            },
+            {
+              "name": "Connor Bedard",
+              "pos": "C",
+              "athleteId": "5149125",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149125.png",
+              "status": "Out",
+              "type": "Shoulder",
+              "detail": "",
+              "returnDate": "2026-11-27",
+              "date": "2026-11-19T16:45Z",
+              "note": "out"
+            }
+          ]
+        },
+        "rest": {
+          "Calgary Flames": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-20",
+            "gamesLast7": 4
+          },
+          "Chicago Blackhawks": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-20",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "ESPN+",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 160,
+              "away": -192
+            },
+            "total": 5.5,
+            "totalOdds": {
+              "over": -125,
+              "under": 105
+            },
+            "ml": {
+              "home": -162,
+              "away": 136
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 154,
+              "away": -185
+            },
+            "total": 5.5,
+            "totalOdds": {
+              "over": -130,
+              "under": 110
+            },
+            "ml": {
+              "home": -162,
+              "away": 136
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": 5.5,
+          "odds": -130,
+          "fair": 0.5427435387673957
+        },
+        "now": {
+          "line": 5.5,
+          "odds": -125,
+          "fair": 0.5324675324675325
+        },
+        "moved": "away",
+        "label": "DraftKings opened 5.5 (-130), now 5.5 (-125)"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-21T20:25:35.800Z",
+          "line": 5.5,
+          "odds": -125,
+          "fair": 0.5325
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 8,
+        "open": {
+          "line": 7.5,
+          "odds": 146
+        },
+        "now": {
+          "line": 6,
+          "odds": 114
+        },
+        "moved": "away",
+        "label": "The market (8 books) opened 7.5 (+146), now 6 (+114)"
+      },
+      "sgo": {
+        "at": "2026-11-21T20:25:35.800Z",
+        "n": 8,
+        "best": {
+          "book": "BetMGM",
+          "odds": -120
+        },
+        "fair": 0.5341,
+        "vendorFair": 0.4673,
+        "open": {
+          "line": 7.5,
+          "odds": 146
+        },
+        "now": {
+          "line": 6,
+          "odds": 114
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-21T20:25:35.800Z",
+          "fair": 0.5341,
+          "vendorFair": 0.4673,
+          "line": 6,
+          "odds": 114,
+          "best": -120,
+          "n": 8
+        }
+      ],
+      "status": "pending",
+      "started": true,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-21T20:25:35.800Z",
+      "valueTo": -122,
+      "bar": 0.03,
+      "past": 0.0056,
+      "barParts": {
+        "error": 0.0269,
+        "units": 0.16,
+        "unit": "goals",
+        "gp": 22,
         "floor": 0.03
       },
       "now": null,
