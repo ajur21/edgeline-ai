@@ -28284,8 +28284,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 140,
-      "away": -195
+      "home": 130,
+      "away": -185
      },
      "total": 2.5,
      "totalOdds": {
@@ -28293,10 +28293,10 @@
       "under": 135
      },
      "ml": {
-      "home": -175,
-      "away": 450
+      "home": -185,
+      "away": 475
      },
-     "draw": 340
+     "draw": 350
     },
     "open": {
      "spread": -1.5,
@@ -28323,6 +28323,12 @@
     "line": null,
     "odds": 450,
     "fair": 0.1739
+   },
+   {
+    "at": "2026-11-21T03:51:17.881Z",
+    "line": null,
+    "odds": 475,
+    "fair": 0.1664
    }
   ],
   "dk": {
@@ -28334,11 +28340,11 @@
    },
    "now": {
     "line": null,
-    "odds": 450,
-    "fair": 0.1739130434782609
+    "odds": 475,
+    "fair": 0.1663828752128436
    },
-   "moved": "toward",
-   "label": "DraftKings opened +475, now +450"
+   "moved": null,
+   "label": "DraftKings opened +475, now +475"
   },
   "mkt": null,
   "breakdown": {
@@ -28357,7 +28363,6 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 16.7% (+0.3 points against the best price). For reference only.",
-    "Market: DraftKings opened +475, now +450, moving toward this side since the open.",
     "Weather at kickoff: Mainly clear, 50°F, wind 5 mph, 0% rain.",
     "Records: Ipswich Town 3-2-5 · Tottenham Hotspur 3-3-4 · Tottenham Hotspur Stadium, London."
    ],

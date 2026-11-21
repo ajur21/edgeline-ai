@@ -1090,7 +1090,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-20@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T035117Z
 DTSTART:20261121T030000Z
 DTEND:20261121T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +310 at Bovada
@@ -1101,7 +1101,7 @@ DESCRIPTION:All legs priced at Bovada. Fair 27.5%\, implied 24.4%\, EV +12.
  /edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T035117Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1116,7 +1116,7 @@ DTSTAMP:20261121T014408Z
 DTSTART:20261121T030000Z
 DTEND:20261121T060000Z
 SUMMARY:Lean of the day: Walker Kessler over 10.5 rebounds -103 at DraftKin
- gs · Medium
+ gs · in play
 DESCRIPTION:NBA · Sacramento Kings @ Los Angeles Lakers · Fri Nov 20\, 10
  :00 PM ET\nPlayer prop: Walker Kessler over 10.5 rebounds at -103 (DraftKi
  ngs). Our chance 52.5% (the model's own 67.5%\, cut to the 14% of an edge 
@@ -1130,12 +1130,6 @@ CATEGORIES:NBA,Prop
 LAST-MODIFIED:20261121T014408Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Walker Kessler over 10.5 rebounds -103 at Draf
- tKings · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6ef39b0fd8-totals-Under@edgeline

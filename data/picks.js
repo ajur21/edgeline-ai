@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-21T01:40:24.742Z",
+  "trackedAt": "2026-11-21T03:51:17.881Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NBA-401909313-4433136-reb-over-10.5",
@@ -61,7 +62,7 @@ window.PICKS_DATA = {
       "SAC allows 121.7 a game, 3rd most"
     ],
     "status": "pending",
-    "started": false,
+    "started": true,
     "result": null,
     "units": null,
     "actual": null,
@@ -91,7 +92,7 @@ window.PICKS_DATA = {
         "sport": "NBA",
         "price": -105,
         "commence": "2026-11-21T03:00:00.000Z",
-        "started": false,
+        "started": true,
         "result": null,
         "void": false,
         "league": "NBA",
@@ -124,7 +125,7 @@ window.PICKS_DATA = {
         "sport": "NBA",
         "price": 110,
         "commence": "2026-11-21T03:00:00.000Z",
-        "started": false,
+        "started": true,
         "result": null,
         "void": false,
         "league": "NBA",
@@ -491,7 +492,6 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 16.7% (+0.3 points against the best price). For reference only.",
-          "Market: DraftKings opened +475, now +450, moving toward this side since the open.",
           "Weather at kickoff: Mainly clear, 50°F, wind 5 mph, 0% rain.",
           "Records: Ipswich Town 3-2-5 · Tottenham Hotspur 3-3-4 · Tottenham Hotspur Stadium, London."
         ],
@@ -546,8 +546,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 140,
-              "away": -195
+              "home": 130,
+              "away": -185
             },
             "total": 2.5,
             "totalOdds": {
@@ -555,10 +555,10 @@ window.PICKS_DATA = {
               "under": 135
             },
             "ml": {
-              "home": -175,
-              "away": 450
+              "home": -185,
+              "away": 475
             },
-            "draw": 340
+            "draw": 350
           },
           "open": {
             "spread": -1.5,
@@ -589,11 +589,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 450,
-          "fair": 0.1739130434782609
+          "odds": 475,
+          "fair": 0.1663828752128436
         },
-        "moved": "toward",
-        "label": "DraftKings opened +475, now +450"
+        "moved": null,
+        "label": "DraftKings opened +475, now +475"
       },
       "dkHistory": [
         {
@@ -601,6 +601,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 450,
           "fair": 0.1739
+        },
+        {
+          "at": "2026-11-21T03:51:17.881Z",
+          "line": null,
+          "odds": 475,
+          "fair": 0.1664
         }
       ],
       "mkt": null,
