@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-21",
   "windowDays": 30,
   "record": {
-    "wins": 28,
-    "losses": 29,
+    "wins": 29,
+    "losses": 30,
     "pushes": 0
   },
-  "units": -1.97,
-  "roi": -3.5,
-  "avgEdge": 8.6,
-  "graded": 57,
+  "units": -2.14,
+  "roi": -3.6,
+  "avgEdge": 8.8,
+  "graded": 59,
   "daily": [
     {
       "date": "2026-11-05",
@@ -69,6 +69,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-19",
       "units": -1.97
+    },
+    {
+      "date": "2026-11-21",
+      "units": -2.14
     }
   ],
   "bySport": [
@@ -84,8 +88,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": -0.38,
-      "record": "5-5"
+      "units": -0.55,
+      "record": "6-6"
     },
     {
       "sport": "NFL",
@@ -94,6 +98,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-21",
+      "sport": "Soccer",
+      "event": "Tottenham Hotspur vs. Ipswich Town",
+      "pick": "Ipswich Town ML",
+      "odds": 510,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0054,
+      "closeOdds": 500,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-21",
+      "sport": "Soccer",
+      "event": "Manchester City vs. Fulham",
+      "pick": "Under 3.5 goals",
+      "odds": -121,
+      "result": "Win",
+      "units": 0.83,
+      "clv": 0.0124,
+      "closeOdds": -145,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-19",
       "sport": "NHL",
@@ -243,36 +277,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-17",
-      "sport": "NHL",
-      "event": "Columbus Blue Jackets @ New York Islanders",
-      "pick": "Over 5.5",
-      "odds": -110,
-      "result": "Win",
-      "units": 0.91,
-      "clv": -0.013,
-      "closeOdds": -115,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-16",
-      "sport": "NHL",
-      "event": "Vancouver Canucks @ Utah Mammoth",
-      "pick": "Vancouver Canucks +1.5",
-      "odds": 116,
-      "result": "Win",
-      "units": 1.16,
-      "clv": -0.0057,
-      "closeOdds": 110,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -372,6 +376,13 @@ window.PERF_DATA = {
       "units": -1.09,
       "wins": 3,
       "losses": 4,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-21",
+      "units": -0.17,
+      "wins": 1,
+      "losses": 1,
       "pushes": 0
     }
   ],
@@ -493,25 +504,25 @@ window.PERF_DATA = {
     "n": 14
   },
   "clv": {
-    "n": 50,
-    "avg": -1,
-    "beat": 16,
-    "beatPct": 32,
-    "graded": 57,
+    "n": 52,
+    "avg": -0.95,
+    "beat": 17,
+    "beatPct": 32.7,
+    "graded": 59,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 57,
+    "espnCloses": 59,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 28,
-      "losses": 29,
+      "wins": 29,
+      "losses": 30,
       "pushes": 0,
-      "units": -1.97,
-      "n": 57,
-      "roi": -3.5,
-      "pending": 6,
+      "units": -2.14,
+      "n": 59,
+      "roi": -3.6,
+      "pending": 7,
       "since": "2026-11-05"
     },
     "price": {

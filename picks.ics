@@ -1110,81 +1110,46 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:6ef39b0fd8-totals-Under@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T202535Z
 DTSTART:20261121T123000Z
 DTEND:20261121T153000Z
-SUMMARY:Under 3.5 goals -121 at BetOnline.ag · High
+SUMMARY:Under 3.5 goals -121 at BetOnline.ag · Won +0.83u
 DESCRIPTION:Soccer · Manchester City vs. Fulham · Sat Nov 21\, 7:30 AM ET
- \nTotal: Under 3.5 goals at -121 (BetOnline.ag). Our probability 69.7% fro
- m game data\, the price implies 54.8%\, edge +14.9 pts\, EV +27.2% per uni
- t. Confidence: High.\nOur probability at 3.5 is 69.7%\, from the game data
- : this season's results and margins\, recent form\, rest\, the injury repo
- rt and home edge (projected total 2.7). BetOnline.ag offers -121\, which i
- mplies only 54.8%. Its bar is 4.2 points: the model's own margin of error 
- on this side\, with 10 games behind the thinner team (±0.18 goals on the 
- total). It clears it by 10.7. Not graded against other books' prices\; for
-  reference the market makes it 54.3%.\nWhat supports it:\n- Combined scori
- ng 3.4 a game in Manchester City's games\, 2.2 in Fulham's (league average
-  2.7).\n- Projected total 2.7 against 3.5.\nVerdict: The game data lines u
- p behind this side at this price.\nPrices: BetOnline.ag -121\, Bovada -125
- \, BetMGM -145\, BetRivers -148.\nFull breakdown: https://ajur21.github.io
- /edgeline-ai/picks.html#6ef39b0fd8-totals-Under
+ \nTotal: Under 3.5 goals at -121 (BetOnline.ag). Won +0.83u.\nFinal: 1-1\n
+ Closing line value: +1.2 pts (closed -145\, DraftKings close (ESPN)).\nRec
+ ord and every graded lean: https://ajur21.github.io/edgeline-ai/performanc
+ e.html
 LOCATION:Etihad Stadium\, Manchester
-URL:https://ajur21.github.io/edgeline-ai/picks.html#6ef39b0fd8-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 3.5 goals -121 at BetOnline.ag · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e67ee3a6f9-h2h-Ipswich-Town@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T202535Z
 DTSTART:20261121T150000Z
 DTEND:20261121T180000Z
-SUMMARY:Ipswich Town ML +510 at BetRivers · Medium
+SUMMARY:Ipswich Town ML +510 at BetRivers · Lost -1.00u
 DESCRIPTION:Soccer · Tottenham Hotspur vs. Ipswich Town · Sat Nov 21\, 10
- :00 AM ET\nMoneyline: Ipswich Town ML at +510 (BetRivers). Our probability
-  30.0% from game data\, the price implies 16.4%\, edge +13.6 pts\, EV +82.
- 8% per unit. Confidence: Medium.\nOur probability is 30.0%\, from the game
-  data: this season's results and margins\, recent form\, rest\, the injury
-  report and home edge (projected margin +0.4 for the home side). BetRivers
-  offers +510\, which implies only 16.4%. Its bar is 10.0 points: the model
- 's own margin of error on this side\, with 10 games behind the thinner tea
- m (±0.53 goals on the margin). It clears it by 3.5. Not graded against ot
- her books' prices\; for reference the market makes it 16.7%.\nWhat support
- s it:\n- Ipswich Town are rested (13 days).\nWhat could go wrong:\n- Totte
- nham Hotspur rate -0.1 a game over 10 (3-4)\, Ipswich Town -0.3 over 10 (3
- -5)\; last season -0.2 and none a game.\n- Tottenham Hotspur trending: las
- t five +1 vs -0.1 on the season.\n- Home edge +0.2 for Tottenham Hotspur.\
- n- Tottenham Hotspur are rested (14 days).\n- Projected margin -0.4 for Ip
- swich Town.\nVerdict: More working against this one than for it\; size dow
- n.\nPrices: BetRivers +510\, BetOnline.ag +487\, FanDuel +470\, Bovada +46
- 0\, DraftKings +450 and 2 more.\nFull breakdown: https://ajur21.github.io/
- edgeline-ai/picks.html#e67ee3a6f9-h2h-Ipswich-Town
+ :00 AM ET\nMoneyline: Ipswich Town ML at +510 (BetRivers). Lost -1.00u.\nF
+ inal: 0-2\nClosing line value: -0.5 pts (closed +500\, DraftKings close (E
+ SPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai
+ /performance.html
 LOCATION:Tottenham Hotspur Stadium\, London
-URL:https://ajur21.github.io/edgeline-ai/picks.html#e67ee3a6f9-h2h-Ipswich-
- Town
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Ipswich Town ML +510 at BetRivers · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b7ca8ba1c5-h2h-New-England-Revolution@edgeline
 DTSTAMP:20261121T014024Z
 DTSTART:20261121T190000Z
 DTEND:20261121T220000Z
-SUMMARY:New England Revolution ML +210 at BetRivers · Medium
+SUMMARY:New England Revolution ML +210 at BetRivers · in play
 DESCRIPTION:Soccer · New England Revolution vs. Philadelphia Union · Sat 
  Nov 21\, 2:00 PM ET\nMoneyline: New England Revolution ML at +210 (BetRive
  rs). Our probability 43.3% from game data\, the price implies 32.3%\, edge
@@ -1210,15 +1175,66 @@ CATEGORIES:Soccer
 LAST-MODIFIED:20261121T014024Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b9678f4fde-totals-Over@edgeline
+DTSTAMP:20261121T202535Z
+DTSTART:20261121T203000Z
+DTEND:20261121T233000Z
+SUMMARY:Lean of the day: Over 5.5 -120 at BetMGM · Low
+DESCRIPTION:NHL · Chicago Blackhawks @ Calgary Flames · Sat Nov 21\, 3:30
+  PM ET\nTotal: Over 5.5 at -120 (BetMGM). Our probability 58.1% from game 
+ data\, the price implies 54.5%\, edge +3.6 pts\, EV +6.5% per unit. Confid
+ ence: Lean.\nOur probability at 5.5 is 58.1%\, from the game data: this se
+ ason's results and margins\, recent form\, rest\, the injury report and ho
+ me edge (projected total 6.3). BetMGM offers -120\, which implies only 54.
+ 5%. Its bar is 3.0 points (the floor: the model's own margin of error here
+  is smaller). It clears it by 0.6. Not graded against other books' prices\
+ ; for reference the market makes it 53.2%.\nWhat supports it:\n- Combined 
+ scoring 6 a game in Calgary Flames's games\, 6.5 in Chicago Blackhawks's (
+ league average 6.3).\n- Projected total 6.3 against 5.5.\nWhat could go wr
+ ong:\n- Scorers out: Jonathan Huberdeau (LW)\, hip\; Kevin Bahl (D)\, achi
+ lles\; Connor Zary (C)\, knee and 2 more. Fewer healthy scorers leans unde
+ r.\nVerdict: The game data lines up behind this side at this price.\nPrice
+ s: BetMGM -120\, FanDuel -122\, theScore Bet -125\, DraftKings -125\, Bova
+ da -125 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
+ picks.html#b9678f4fde-totals-Over
+LOCATION:Scotiabank Saddledome\, Calgary
+URL:https://ajur21.github.io/edgeline-ai/picks.html#b9678f4fde-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261121T202535Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:New England Revolution ML +210 at BetRivers · Medium
+DESCRIPTION:Lean of the day: Over 5.5 -120 at BetMGM · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-21@edgeline
+DTSTAMP:20261121T202535Z
+DTSTART:20261121T203000Z
+DTEND:20261122T030000Z
+SUMMARY:Parlay lean of the day: 2 legs +243 at BetMGM
+DESCRIPTION:All legs priced at BetMGM. Fair 33.6%\, implied 29.2%\, EV +15.
+ 2% per unit.\n- NHL: Over 5.5 -120 · Chicago Blackhawks @ Calgary Flames\
+ n- NHL: Over 5.5 -115 · Los Angeles Kings @ Ottawa Senators\n\nEvery parl
+ ay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261121T202535Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +243 at BetMGM
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8db7920265-h2h-Draw@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T202535Z
 DTSTART:20261121T230000Z
 DTEND:20261122T020000Z
 SUMMARY:Draw +392 at BetOnline.ag · Low
@@ -1236,13 +1252,13 @@ DESCRIPTION:Soccer · Inter Miami CF vs. Columbus Crew SC · Sat Nov 21\, 6
  nter Miami CF trending: last five +0.2 vs +0.6 on the season.\n- Columbus 
  Crew SC trending: last five +2 vs +0.2 on the season.\n- Home edge +0.5 fo
  r Inter Miami CF.\nVerdict: More working against this one than for it\; si
- ze down.\nPrices: BetOnline.ag +392\, Bovada +375\, FanDuel +360\, theScor
- e Bet +360\, DraftKings +360 and 5 more.\nFull breakdown: https://ajur21.g
+ ze down.\nPrices: BetOnline.ag +392\, theScore Bet +360\, FanDuel +350\, B
+ ovada +350\, DraftKings +350 and 5 more.\nFull breakdown: https://ajur21.g
  ithub.io/edgeline-ai/picks.html#8db7920265-h2h-Draw
 LOCATION:Nu Stadium\, Miami\, Florida
 URL:https://ajur21.github.io/edgeline-ai/picks.html#8db7920265-h2h-Draw
 CATEGORIES:Soccer
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1253,7 +1269,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:eeea62e464-h2h-Boston-Bruins@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T202535Z
 DTSTART:20261122T000000Z
 DTEND:20261122T030000Z
 SUMMARY:Boston Bruins ML -116 at BetOnline.ag · Low
@@ -1274,15 +1290,17 @@ DESCRIPTION:NHL · Washington Capitals @ Boston Bruins · Sat Nov 21\, 7:00
  pitals without Vincent Desharnais (D) (+0.1).\n- Projected margin +0.7 for
   Boston Bruins.\nWhat could go wrong:\n- Boston Bruins trending: last five
   -0.8 vs +0.9 on the season.\n- Boston Bruins without James Hagens (C) (-0
- .1).\nVerdict: The game data lines up behind this side at this price.\nPri
- ces: BetOnline.ag -116\, BetRivers -120\, DraftKings -120\, FanDuel -120\,
-  BetMGM -120 and 5 more.\nFull breakdown: https://ajur21.github.io/edgelin
- e-ai/picks.html#eeea62e464-h2h-Boston-Bruins
+ .1).\n- At current prices our edge is 5.6 points\, under its bar of 7.0 po
+ ints\; the pick stays posted and is graded at the price it was posted at.\
+ nVerdict: The game data lines up behind this side at this price.\nPrices: 
+ BetOnline.ag -116\, BetRivers -120\, theScore Bet -125\, FanDuel -130\, ES
+ PN BET -130 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline
+ -ai/picks.html#eeea62e464-h2h-Boston-Bruins
 LOCATION:TD Garden\, Boston
 URL:https://ajur21.github.io/edgeline-ai/picks.html#eeea62e464-h2h-Boston-B
  ruins
 CATEGORIES:NHL
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1292,8 +1310,43 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:e491b0b72d-totals-Over@edgeline
+DTSTAMP:20261121T202535Z
+DTSTART:20261122T000000Z
+DTEND:20261122T030000Z
+SUMMARY:Over 5.5 -112 at DraftKings · Low
+DESCRIPTION:NHL · Los Angeles Kings @ Ottawa Senators · Sat Nov 21\, 7:00
+  PM ET\nTotal: Over 5.5 at -112 (DraftKings). Our probability 57.8% from g
+ ame data\, the price implies 52.8%\, edge +5.0 pts\, EV +9.5% per unit. Co
+ nfidence: Lean.\nOur probability at 5.5 is 57.8%\, from the game data: thi
+ s season's results and margins\, recent form\, rest\, the injury report an
+ d home edge (projected total 6.3). DraftKings offers -112\, which implies 
+ only 52.8%. Its bar is 3.0 points (the floor: the model's own margin of er
+ ror here is smaller). It clears it by 2.0. Not graded against other books'
+  prices\; for reference the market makes it 49.8%.\nWhat supports it:\n- C
+ ombined scoring 6.2 a game in Ottawa Senators's games\, 6.1 in Los Angeles
+  Kings's (league average 6.3).\n- Projected total 6.3 against 5.5.\nWhat c
+ ould go wrong:\n- Scorers out: Andre Burakovsky (LW)\, lower body\; Warren
+  Foegele (LW)\, knee\; William Eklund (LW)\, ankle and 3 more. Fewer healt
+ hy scorers leans under.\nVerdict: The game data lines up behind this side 
+ at this price.\nPrices: DraftKings -112\, BetOnline.ag -113\, theScore Bet
+  -115\, FanDuel -115\, BetMGM -115 and 6 more.\nFull breakdown: https://aj
+ ur21.github.io/edgeline-ai/picks.html#e491b0b72d-totals-Over
+LOCATION:Canadian Tire Centre\, Ottawa
+URL:https://ajur21.github.io/edgeline-ai/picks.html#e491b0b72d-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261121T202535Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -112 at DraftKings · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:2c807988a0-totals-Under@edgeline
-DTSTAMP:20261121T014024Z
+DTSTAMP:20261121T202535Z
 DTSTART:20261122T020000Z
 DTEND:20261122T050000Z
 SUMMARY:Under 6.5 +117 at BetOnline.ag · Low
@@ -1307,22 +1360,64 @@ DESCRIPTION:NHL · Anaheim Ducks @ Utah Mammoth · Sat Nov 21\, 9:00 PM ET\
  r here is smaller). It clears it by 0.1. Not graded against other books' p
  rices\; for reference the market makes it 46.1%.\nWhat supports it:\n- Com
  bined scoring 6.8 a game in Utah Mammoth's games\, 7.6 in Anaheim Ducks's 
- (league average 6.3).\n- Scorers out: John Marino (D)\, upper body\; Dylan
-  Guenther (RW)\, upper body\; Nick Schmaltz (C)\, lower body and 4 more. F
- ewer healthy scorers leans under.\nWhat could go wrong:\n- Projected total
-  6.53 against 6.5.\nVerdict: The game data lines up behind this side at th
- is price.\nPrices: BetOnline.ag +117\, theScore Bet +115\, ESPN BET +115\,
-  Bovada +112\, FanDuel +112 and 5 more.\nFull breakdown: https://ajur21.gi
- thub.io/edgeline-ai/picks.html#2c807988a0-totals-Under
+ (league average 6.3).\n- A better price is now available: +124 at DraftKin
+ gs.\n- A better price is available now: +124 at DraftKings.\n- Scorers out
+ : John Marino (D)\, upper body\; Dylan Guenther (RW)\, upper body\; Nick S
+ chmaltz (C)\, lower body and 5 more. Fewer healthy scorers leans under.\nW
+ hat could go wrong:\n- Projected total 6.53 against 6.5.\nVerdict: The gam
+ e data lines up behind this side at this price.\nPrices: DraftKings +124\,
+  FanDuel +120\, ESPN BET +120\, PointsBet +120\, BetOnline.ag +117 and 6 m
+ ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#2c80
+ 7988a0-totals-Under
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2c807988a0-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261121T014024Z
+LAST-MODIFIED:20261121T202535Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Under 6.5 +117 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d58a81d96d-spreads-Pittsburgh-Penguins@edgeline
+DTSTAMP:20261121T202535Z
+DTSTART:20261123T001000Z
+DTEND:20261123T031000Z
+SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · Low
+DESCRIPTION:NHL · Pittsburgh Penguins @ Dallas Stars · Sun Nov 22\, 7:10 
+ PM ET\nPuck line: Pittsburgh Penguins +1.5 at -120 (DraftKings). Our proba
+ bility 61.1% from game data\, the price implies 54.5%\, edge +6.5 pts\, EV
+  +12.0% per unit. Confidence: Lean.\nOur probability at +1.5 is 61.1%\, fr
+ om the game data: this season's results and margins\, recent form\, rest\,
+  the injury report and home edge (projected margin +0.6 for the home side)
+ . DraftKings offers -120\, which implies only 54.5%. Its bar is 6.5 points
+ : the model's own margin of error on this side\, with 21 games behind the 
+ thinner team (±0.43 goals on the margin). It clears it by 0.0. Not graded
+  against other books' prices\; for reference the market makes it 53.2%.\nW
+ hat supports it:\n- Pittsburgh Penguins are rested (3 days).\n- Dallas Sta
+ rs without Tyler Myers (D)\, Oskar Back (C)\, Kyle Capobianco (D) and 1 mo
+ re (-0.3).\nWhat could go wrong:\n- Dallas Stars rate +0.2 a game over 22 
+ (14-8)\, Pittsburgh Penguins -0.2 over 21 (7-14)\; last season +0.6 and +0
+ .3 a game.\n- Home edge +0.2 for Dallas Stars.\n- Dallas Stars are rested 
+ (3 days).\n- Pittsburgh Penguins without Bryan Rust (RW)\, Evgeni Malkin (
+ C)\, Nick Robertson (LW) and 1 more (+0.3).\n- Projected margin -0.6 for P
+ ittsburgh Penguins against +1.5.\nVerdict: More working against this one t
+ han for it\; size down.\nPrices: DraftKings -120\, Caesars -122\, BetMGM -
+ 125\, FanDuel -132.\nFull breakdown: https://ajur21.github.io/edgeline-ai/
+ picks.html#d58a81d96d-spreads-Pittsburgh-Penguins
+LOCATION:American Airlines Center\, Dallas
+URL:https://ajur21.github.io/edgeline-ai/picks.html#d58a81d96d-spreads-Pitt
+ sburgh-Penguins
+CATEGORIES:NHL
+LAST-MODIFIED:20261121T202535Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Pittsburgh Penguins +1.5 -120 at DraftKings · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
