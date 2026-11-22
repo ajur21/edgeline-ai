@@ -1270,44 +1270,25 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:403a887013-h2h-Arizona-Cardinals@edgeline
-DTSTAMP:20261122T142005Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261122T180000Z
 DTEND:20261122T210000Z
-SUMMARY:Arizona Cardinals ML +1000 at theScore Bet · in play
+SUMMARY:Arizona Cardinals ML +1000 at theScore Bet · Lost -1.00u
 DESCRIPTION:NFL · Arizona Cardinals @ Kansas City Chiefs · Sun Nov 22\, 1
- :00 PM ET\nMoneyline: Arizona Cardinals ML at +1000 (theScore Bet). Our pr
- obability 19.6% from game data\, the price implies 9.1%\, edge +10.5 pts\,
-  EV +115.9% per unit. Confidence: Medium.\nOur probability is 19.6%\, from
-  the game data: this season's results and margins\, recent form\, rest\, t
- he injury report and home edge (projected margin +12.3 for the home side).
-  theScore Bet offers +1000\, which implies only 9.1%. Its bar is 7.8 point
- s: the model's own margin of error on this side\, with 9 games behind the 
- thinner team (±4.03 points on the margin). It clears it by 2.8. Not grade
- d against other books' prices\; for reference the market makes it 10.5%.\n
- What supports it:\n- Kansas City Chiefs without Jaylon Moore (OT)\, Trey S
- mith (G)\, Kenneth Walker III (RB) and 1 more (-1.7).\nWhat could go wrong
- :\n- Kansas City Chiefs rate +3.8 and Arizona Cardinals -4.6 points a game
-  against their schedules (this season's results\, last season carried over
- )\; EPA a play +0.1 and -0.06 net of defence (nflverse).\n- Patrick Mahome
- s starts for Kansas City Chiefs: +0.14 EPA a dropback against +0.12 behind
-  their numbers (+0.6 points).\n- Home edge +2.1 for Kansas City Chiefs.\n-
-  Arizona Cardinals without Jon Gaines II (G)\, Jordan Burch (LB)\, Andrew 
- Wingard (S) (+1.2).\n- Projected margin -12.3 for Arizona Cardinals.\nVerd
- ict: More working against this one than for it\; size down.\nPrices: theSc
- ore Bet +1000\, FanDuel +900\, BetRivers +900\, BetMGM +900\, Unibet +900 
- and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.ht
- ml#403a887013-h2h-Arizona-Cardinals
+ :00 PM ET\nMoneyline: Arizona Cardinals ML at +1000 (theScore Bet). Lost -
+ 1.00u.\nFinal: 7-34\nClosing line value: +1.2 pts (closed +830\, DraftKing
+ s close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/e
+ dgeline-ai/performance.html
 LOCATION:Arrowhead Stadium\, Kansas City
-URL:https://ajur21.github.io/edgeline-ai/picks.html#403a887013-h2h-Arizona-
- Cardinals
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NFL
-LAST-MODIFIED:20261122T142005Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-22@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261122T212500Z
 DTEND:20261123T042000Z
 SUMMARY:Parlay lean of the day: 2 legs +232 at ESPN BET
@@ -1318,7 +1299,7 @@ DESCRIPTION:All legs priced at ESPN BET. Fair 38.6%\, implied 30.1%\, EV +2
  ttps://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1357,7 +1338,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:a16abf7d5a-h2h-Charlotte-FC@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261122T233000Z
 DTEND:20261123T023000Z
 SUMMARY:Charlotte FC ML +390 at BetOnline.ag · Medium
@@ -1384,7 +1365,7 @@ LOCATION:SeatGeek Stadium\, Bridgeview\, Illinois
 URL:https://ajur21.github.io/edgeline-ai/picks.html#a16abf7d5a-h2h-Charlott
  e-FC
 CATEGORIES:Soccer
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1395,7 +1376,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d58a81d96d-spreads-Pittsburgh-Penguins@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
 SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · Low
@@ -1419,14 +1400,14 @@ DESCRIPTION:NHL · Pittsburgh Penguins @ Dallas Stars · Sun Nov 22\, 7:10
  ittsburgh Penguins against +1.5.\n- At current prices our edge is 0.5 poin
  ts\, under its bar of 6.7 points\; the pick stays posted and is graded at 
  the price it was posted at.\nVerdict: More working against this one than f
- or it\; size down.\nPrices: BetMGM -125\, Caesars -128\, DraftKings -130\,
-  ESPN BET -130\, Bovada -130 and 1 more.\nFull breakdown: https://ajur21.g
+ or it\; size down.\nPrices: BetMGM -125\, Caesars -128\, Bovada -128\, Dra
+ ftKings -130\, ESPN BET -130 and 1 more.\nFull breakdown: https://ajur21.g
  ithub.io/edgeline-ai/picks.html#d58a81d96d-spreads-Pittsburgh-Penguins
 LOCATION:American Airlines Center\, Dallas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#d58a81d96d-spreads-Pitt
  sburgh-Penguins
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1437,7 +1418,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7472170e7d-totals-Over@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
 SUMMARY:Over 6 -110 at BetMGM · Low
@@ -1452,18 +1433,17 @@ DESCRIPTION:NHL · Edmonton Oilers @ St Louis Blues · Sun Nov 22\, 7:10 PM
  eference the market makes it 50.2%.\nWhat supports it:\n- Combined scoring
   6.5 a game in St Louis Blues's games\, 6.8 in Edmonton Oilers's (league a
  verage 6.4).\n- Projected total 6.5 against 6.\n- A better price is now av
- ailable: -108 at BetOnline.ag.\n- A better price is available now: -108 at
-  Caesars.\nWhat could go wrong:\n- Scorers out: Torey Krug (D)\, ankle\; D
- illon Dube (C)\, neck\; Tyler Tucker (D)\, knee and 5 more. Fewer healthy 
- scorers leans under.\n- St Louis Blues and Edmonton Oilers on a back-to-ba
- ck\; tired legs lean under.\nVerdict: The game data lines up behind this s
- ide at this price.\nPrices: Caesars -108\, BetMGM -110\, BetOnline.ag -110
- \, Bovada -115.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pick
- s.html#7472170e7d-totals-Over
+ ailable: -108 at BetOnline.ag.\nWhat could go wrong:\n- Scorers out: Torey
+  Krug (D)\, ankle\; Dillon Dube (C)\, neck\; Tyler Tucker (D)\, knee and 5
+  more. Fewer healthy scorers leans under.\n- St Louis Blues and Edmonton O
+ ilers on a back-to-back\; tired legs lean under.\nVerdict: The game data l
+ ines up behind this side at this price.\nPrices: BetMGM -110\, BetOnline.a
+ g -110\, Caesars -110\, Bovada -115.\nFull breakdown: https://ajur21.githu
+ b.io/edgeline-ai/picks.html#7472170e7d-totals-Over
 LOCATION:Enterprise Center\, St. Louis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#7472170e7d-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1474,7 +1454,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:78c0145b05-totals-Under@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261122T205801Z
 DTSTART:20261123T013000Z
 DTEND:20261123T043000Z
 SUMMARY:Under 3.5 goals -128 at BetOnline.ag · Low
@@ -1498,7 +1478,7 @@ DESCRIPTION:Soccer · Vancouver Whitecaps FC vs. Real Salt Lake · Sun Nov
 LOCATION:BC Place\, Vancouver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#78c0145b05-totals-Under
 CATEGORIES:Soccer
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-22T20:37:46.337Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-22T20:58:27.474Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -60,20 +60,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 11",
-   "w": 1,
+   "w": 2,
    "l": 0,
    "p": 0,
-   "pending": 12,
+   "pending": 11,
    "pct": 1,
-   "avgProb": 0.7391
+   "avgProb": 0.7714
   },
   "season": {
-   "w": 9,
+   "w": 10,
    "l": 6,
    "p": 0,
-   "pending": 12,
-   "pct": 0.6,
-   "avgProb": 0.6279
+   "pending": 11,
+   "pct": 0.625,
+   "avgProb": 0.6389
   }
  },
  "games": [
@@ -270,9 +270,9 @@ window.NFL_WEEK_DATA = {
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "4:00 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 34,
     "away": 7
@@ -445,10 +445,16 @@ window.NFL_WEEK_DATA = {
     "marketKey": "h2h",
     "odds": 1000,
     "book": "theScore Bet",
-    "status": "pending",
-    "result": null
+    "status": "graded",
+    "result": "Loss"
    },
-   "result": null
+   "result": {
+    "home": 34,
+    "away": 7,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-22T20:58:27.474Z"
+   }
   },
   {
    "id": "401873068",
@@ -457,10 +463,10 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "15:00 - 4th",
+   "detail": "6:32 - 4th",
    "score": {
     "home": 32,
-    "away": 26
+    "away": 33
    },
    "home": {
     "id": "29",
@@ -633,9 +639,9 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "8:59 - 4th",
+   "detail": "1:33 - 4th",
    "score": {
-    "home": 23,
+    "home": 26,
     "away": 9
    },
    "home": {
@@ -815,7 +821,7 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "12:06 - 4th",
+   "detail": "2:00 - 4th",
    "score": {
     "home": 21,
     "away": 10
@@ -991,9 +997,9 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "6:43 - 4th",
+   "detail": "1:55 - 4th",
    "score": {
-    "home": 17,
+    "home": 31,
     "away": 14
    },
    "home": {
@@ -1158,9 +1164,9 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "9:31 - 4th",
+   "detail": "2:00 - 4th",
    "score": {
-    "home": 44,
+    "home": 51,
     "away": 23
    },
    "home": {
@@ -1331,9 +1337,9 @@ window.NFL_WEEK_DATA = {
    "timeValid": true,
    "state": "in",
    "status": "STATUS_IN_PROGRESS",
-   "detail": "9:48 - 4th",
+   "detail": "1:56 - 4th",
    "score": {
-    "home": 16,
+    "home": 19,
     "away": 9
    },
    "home": {

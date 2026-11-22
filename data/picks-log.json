@@ -30661,7 +30661,7 @@
    "BetMGM": -125,
    "Caesars": -128,
    "ESPN BET": -130,
-   "Bovada": -130
+   "Bovada": -128
   },
   "books": 3,
   "anchor": null,
@@ -31034,21 +31034,21 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "2QbwfrE3MSr4FKXUkGAB",
-   "at": "2026-11-22T20:36:38.543Z",
+   "at": "2026-11-22T20:58:01.467Z",
    "books": {
     "DraftKings": -130,
     "FanDuel": -134,
     "Caesars": -128,
     "BetMGM": -125,
     "ESPN BET": -130,
-    "Bovada": -130
+    "Bovada": -128
    },
    "n": 6,
    "best": {
     "book": "BetMGM",
     "odds": -125
    },
-   "fair": 0.5415,
+   "fair": 0.5406,
    "fairBooks": 6,
    "vendor": {
     "line": 1.5,
@@ -31067,7 +31067,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-22T20:36:38.543Z",
+  "pricesAt": "2026-11-22T20:58:01.467Z",
   "sgoHistory": [
    {
     "at": "2026-11-21T20:25:35.800Z",
@@ -31099,6 +31099,15 @@
    {
     "at": "2026-11-22T20:36:38.543Z",
     "fair": 0.5415,
+    "vendorFair": 0.5434,
+    "line": 1.5,
+    "odds": -119,
+    "best": -125,
+    "n": 6
+   },
+   {
+    "at": "2026-11-22T20:58:01.467Z",
+    "fair": 0.5406,
     "vendorFair": 0.5434,
     "line": 1.5,
     "odds": -119,
@@ -31445,7 +31454,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "IGx29G22n9QW3FXQrDKN",
-   "at": "2026-11-22T20:36:38.543Z",
+   "at": "2026-11-22T20:58:01.467Z",
    "books": {
     "Caesars": 360,
     "FanDuel": 380,
@@ -31479,7 +31488,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-22T20:36:38.543Z",
+  "pricesAt": "2026-11-22T20:58:01.467Z",
   "sgoHistory": [
    {
     "at": "2026-11-22T00:35:54.581Z",
@@ -31635,8 +31644,8 @@
    "Edge 10.5 points over the price, 2.8 past its bar of 7.8",
    "Market reference 10.5%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-22T00:35:54.581Z",
   "availability": null,
   "current": {
@@ -32052,7 +32061,30 @@
      "fair": 0.1013
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "7-34",
+  "finalScore": {
+   "home": 34,
+   "away": 7
+  },
+  "gradedAt": "2026-11-22T20:58:01.467Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873067",
+   "line": null,
+   "odds": 830,
+   "fair": 0.1033,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 440,
+    "fair": 0.1777
+   },
+   "samples": 2
+  },
+  "clv": 0.0124,
+  "lineMove": null
  },
  {
   "key": "230a356290e1a358e9dd2f7fa23de3b9|h2h|Hull City|null",
@@ -32580,7 +32612,7 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "lfPNS5AJ8N6Ew7vvxHTb",
-   "at": "2026-11-22T20:36:38.543Z",
+   "at": "2026-11-22T20:58:01.467Z",
    "books": {
     "DraftKings": -125,
     "BetMGM": -125
@@ -32609,7 +32641,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-22T20:36:38.543Z",
+  "pricesAt": "2026-11-22T20:58:01.467Z",
   "sgoHistory": [
    {
     "at": "2026-11-22T00:35:54.581Z",
@@ -32687,7 +32719,7 @@
    "BetMGM": -110,
    "Bovada": -115,
    "BetOnline.ag": -110,
-   "Caesars": -108
+   "Caesars": -110
   },
   "books": 4,
   "anchor": "Pinnacle",
@@ -33020,8 +33052,7 @@
    "support": [
     "Combined scoring 6.5 a game in St Louis Blues's games, 6.8 in Edmonton Oilers's (league average 6.4).",
     "Projected total 6.5 against 6.",
-    "A better price is now available: -108 at BetOnline.ag.",
-    "A better price is available now: -108 at Caesars."
+    "A better price is now available: -108 at BetOnline.ag."
    ],
    "risks": [
     "Scorers out: Torey Krug (D), ankle; Dillon Dube (C), neck; Tyler Tucker (D), knee and 5 more. Fewer healthy scorers leans under.",
@@ -33041,18 +33072,18 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "JiRLppv5An9tLm16fCFU",
-   "at": "2026-11-22T20:36:38.543Z",
+   "at": "2026-11-22T20:58:01.467Z",
    "books": {
     "BetMGM": -110,
-    "Caesars": -108,
+    "Caesars": -110,
     "Bovada": -115
    },
    "n": 3,
    "best": {
-    "book": "Caesars",
-    "odds": -108
+    "book": "BetMGM",
+    "odds": -110
    },
-   "fair": 0.5018,
+   "fair": 0.5029,
    "fairBooks": 3,
    "vendor": {
     "line": 6,
@@ -33071,7 +33102,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-22T20:36:38.543Z",
+  "pricesAt": "2026-11-22T20:58:01.467Z",
   "sgoHistory": [
    {
     "at": "2026-11-22T14:06:59.604Z",
@@ -33089,6 +33120,15 @@
     "line": 6,
     "odds": 101,
     "best": -108,
+    "n": 3
+   },
+   {
+    "at": "2026-11-22T20:58:01.467Z",
+    "fair": 0.5029,
+    "vendorFair": 0.4975,
+    "line": 6,
+    "odds": 101,
+    "best": -110,
     "n": 3
    }
   ],

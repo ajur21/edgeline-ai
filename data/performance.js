@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 35,
-    "losses": 31,
+    "losses": 32,
     "pushes": 0
   },
-  "units": 8.31,
-  "roi": 12.6,
+  "units": 7.31,
+  "roi": 10.9,
   "avgEdge": 8.6,
-  "graded": 66,
+  "graded": 67,
   "daily": [
     {
       "date": "2026-11-05",
@@ -76,7 +76,7 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-22",
-      "units": 8.31
+      "units": 7.31
     }
   ],
   "bySport": [
@@ -97,11 +97,26 @@ window.PERF_DATA = {
     },
     {
       "sport": "NFL",
-      "units": -1.05,
-      "record": "1-3"
+      "units": -2.05,
+      "record": "1-4"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-22",
+      "sport": "NFL",
+      "event": "Arizona Cardinals @ Kansas City Chiefs",
+      "pick": "Arizona Cardinals ML",
+      "odds": 1000,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0124,
+      "closeOdds": 830,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-22",
       "sport": "Soccer",
@@ -266,21 +281,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NHL",
-      "event": "Columbus Blue Jackets @ Chicago Blackhawks",
-      "pick": "Chicago Blackhawks ML",
-      "odds": 141,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0083,
-      "closeOdds": 136,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -391,9 +391,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-22",
-      "units": 5.6,
+      "units": 4.6,
       "wins": 1,
-      "losses": 0,
+      "losses": 1,
       "pushes": 0
     }
   ],
@@ -515,25 +515,25 @@ window.PERF_DATA = {
     "n": 15
   },
   "clv": {
-    "n": 59,
-    "avg": -0.92,
-    "beat": 19,
-    "beatPct": 32.2,
-    "graded": 66,
+    "n": 60,
+    "avg": -0.89,
+    "beat": 20,
+    "beatPct": 33.3,
+    "graded": 67,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 66,
+    "espnCloses": 67,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 35,
-      "losses": 31,
+      "losses": 32,
       "pushes": 0,
-      "units": 8.31,
-      "n": 66,
-      "roi": 12.6,
-      "pending": 7,
+      "units": 7.31,
+      "n": 67,
+      "roi": 10.9,
+      "pending": 6,
       "since": "2026-11-05"
     },
     "price": {

@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-22T20:36:38.543Z",
+  "trackedAt": "2026-11-22T20:58:01.467Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NFL-401873075-4686658-recYds-under-9.5",
@@ -212,7 +213,7 @@ window.PICKS_DATA = {
         "ESPN BET": 360,
         "Unibet": 380
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-22T20:58:01.467Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.2972,
@@ -434,7 +435,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened +381, now +390"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
+        "at": "2026-11-22T20:58:01.467Z",
         "n": 7,
         "best": {
           "book": "Bovada",
@@ -532,9 +533,9 @@ window.PICKS_DATA = {
         "BetMGM": -125,
         "Caesars": -128,
         "ESPN BET": -130,
-        "Bovada": -130
+        "Bovada": -128
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-22T20:58:01.467Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.6109,
@@ -887,13 +888,13 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-131), now +1.5 (-119)"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
+        "at": "2026-11-22T20:58:01.467Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
           "odds": -125
         },
-        "fair": 0.5415,
+        "fair": 0.5406,
         "vendorFair": 0.5434,
         "open": {
           "line": 1.5,
@@ -935,6 +936,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-22T20:36:38.543Z",
           "fair": 0.5415,
+          "vendorFair": 0.5434,
+          "line": 1.5,
+          "odds": -119,
+          "best": -125,
+          "n": 6
+        },
+        {
+          "at": "2026-11-22T20:58:01.467Z",
+          "fair": 0.5406,
           "vendorFair": 0.5434,
           "line": 1.5,
           "odds": -119,
@@ -994,7 +1004,7 @@ window.PICKS_DATA = {
         "BetRivers": -129,
         "DraftKings": -125
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-22T20:58:01.467Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.6043,
@@ -1206,7 +1216,7 @@ window.PICKS_DATA = {
         "label": "The market (2 books) opened 3.5 (-113), now 3.5 (-108)"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
+        "at": "2026-11-22T20:58:01.467Z",
         "n": 2,
         "best": {
           "book": "DraftKings",
@@ -1954,9 +1964,9 @@ window.PICKS_DATA = {
         "BetMGM": -110,
         "Bovada": -115,
         "BetOnline.ag": -110,
-        "Caesars": -108
+        "Caesars": -110
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-22T20:58:01.467Z",
       "books": 4,
       "anchor": "Pinnacle",
       "modelProb": 0.5563,
@@ -2008,8 +2018,7 @@ window.PICKS_DATA = {
         "support": [
           "Combined scoring 6.5 a game in St Louis Blues's games, 6.8 in Edmonton Oilers's (league average 6.4).",
           "Projected total 6.5 against 6.",
-          "A better price is now available: -108 at BetOnline.ag.",
-          "A better price is available now: -108 at Caesars."
+          "A better price is now available: -108 at BetOnline.ag."
         ],
         "risks": [
           "Scorers out: Torey Krug (D), ankle; Dillon Dube (C), neck; Tyler Tucker (D), knee and 5 more. Fewer healthy scorers leans under.",
@@ -2290,13 +2299,13 @@ window.PICKS_DATA = {
         "label": "The market (3 books) opened 7.5 (+124), now 6 (+101)"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
+        "at": "2026-11-22T20:58:01.467Z",
         "n": 3,
         "best": {
-          "book": "Caesars",
-          "odds": -108
+          "book": "BetMGM",
+          "odds": -110
         },
-        "fair": 0.5018,
+        "fair": 0.5029,
         "vendorFair": 0.4975,
         "open": {
           "line": 7.5,
@@ -2324,6 +2333,15 @@ window.PICKS_DATA = {
           "line": 6,
           "odds": 101,
           "best": -108,
+          "n": 3
+        },
+        {
+          "at": "2026-11-22T20:58:01.467Z",
+          "fair": 0.5029,
+          "vendorFair": 0.4975,
+          "line": 6,
+          "odds": 101,
+          "best": -110,
           "n": 3
         }
       ],
@@ -3051,11 +3069,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 34,
+        "away": 7
+      },
       "loggedAt": "2026-11-22T00:35:54.581Z",
       "valueTo": 744,
       "bar": 0.0777,
