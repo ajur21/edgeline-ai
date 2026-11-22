@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-21",
   "windowDays": 30,
   "record": {
-    "wins": 29,
+    "wins": 31,
     "losses": 30,
     "pushes": 0
   },
-  "units": -2.14,
-  "roi": -3.6,
+  "units": 0.79,
+  "roi": 1.3,
   "avgEdge": 8.8,
-  "graded": 59,
+  "graded": 61,
   "daily": [
     {
       "date": "2026-11-05",
@@ -72,14 +72,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-21",
-      "units": -2.14
+      "units": 0.79
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 3.26,
-      "record": "21-17"
+      "units": 4.09,
+      "record": "22-17"
     },
     {
       "sport": "NBA",
@@ -88,8 +88,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": -0.55,
-      "record": "6-6"
+      "units": 1.55,
+      "record": "7-6"
     },
     {
       "sport": "NFL",
@@ -98,6 +98,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-21",
+      "sport": "NHL",
+      "event": "Chicago Blackhawks @ Calgary Flames",
+      "pick": "Over 5.5",
+      "odds": -120,
+      "result": "Win",
+      "units": 0.83,
+      "clv": -0.013,
+      "closeOdds": -125,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-21",
+      "sport": "Soccer",
+      "event": "New England Revolution vs. Philadelphia Union",
+      "pick": "New England Revolution ML",
+      "odds": 210,
+      "result": "Win",
+      "units": 2.1,
+      "clv": -0.0139,
+      "closeOdds": 200,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-21",
       "sport": "Soccer",
@@ -247,36 +277,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-17",
-      "sport": "NHL",
-      "event": "Toronto Maple Leafs @ Chicago Blackhawks",
-      "pick": "Chicago Blackhawks ML",
-      "odds": 136,
-      "result": "Win",
-      "units": 1.36,
-      "clv": 0.0128,
-      "closeOdds": 120,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-17",
-      "sport": "NHL",
-      "event": "Los Angeles Kings @ Boston Bruins",
-      "pick": "Boston Bruins -1.5",
-      "odds": 180,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0265,
-      "closeOdds": 150,
-      "closeLine": -1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -380,20 +380,30 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-21",
-      "units": -0.17,
-      "wins": 1,
+      "units": 2.76,
+      "wins": 3,
       "losses": 1,
       "pushes": 0
     }
   ],
   "potd": {
-    "wins": 3,
+    "wins": 4,
     "losses": 11,
     "pushes": 0,
-    "units": -7.9,
-    "n": 14,
+    "units": -7.07,
+    "n": 15,
     "props": 4,
     "recent": [
+      {
+        "date": "2026-11-21",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Chicago Blackhawks @ Calgary Flames",
+        "pick": "Over 5.5",
+        "odds": -120,
+        "result": "Win",
+        "units": 0.83
+      },
       {
         "date": "2026-11-20",
         "kind": "prop",
@@ -483,16 +493,6 @@ window.PERF_DATA = {
         "odds": 118,
         "result": "Win",
         "units": 1.18
-      },
-      {
-        "date": "2026-11-10",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Florida Panthers @ Columbus Blue Jackets",
-        "pick": "Columbus Blue Jackets ML",
-        "odds": 107,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
@@ -504,25 +504,25 @@ window.PERF_DATA = {
     "n": 14
   },
   "clv": {
-    "n": 52,
-    "avg": -0.95,
+    "n": 54,
+    "avg": -0.96,
     "beat": 17,
-    "beatPct": 32.7,
-    "graded": 59,
+    "beatPct": 31.5,
+    "graded": 61,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 59,
+    "espnCloses": 61,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 29,
+      "wins": 31,
       "losses": 30,
       "pushes": 0,
-      "units": -2.14,
-      "n": 59,
-      "roi": -3.6,
-      "pending": 7,
+      "units": 0.79,
+      "n": 61,
+      "roi": 1.3,
+      "pending": 9,
       "since": "2026-11-05"
     },
     "price": {
