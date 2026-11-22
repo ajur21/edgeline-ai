@@ -29178,7 +29178,7 @@
    "ESPN BET": 125,
    "Caesars": 111,
    "Unibet": -111,
-   "PointsBet": 120
+   "PointsBet": 125
   },
   "books": 8,
   "anchor": "Pinnacle",
@@ -29481,10 +29481,10 @@
    },
    "now": {
     "line": 7,
-    "odds": -116
+    "odds": -117
    },
    "moved": "toward",
-   "label": "The market (5 books) opened 7.5 (+111), now 7 (-116)"
+   "label": "The market (5 books) opened 7.5 (+111), now 7 (-117)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -29503,7 +29503,7 @@
     "Where the market sits: Pinnacle's de-vigged price makes this side 46.1% (-0.0 points against the best price). For reference only.",
     "Market: the sharp line has moved away since it was logged (46.1% → 42.9%).",
     "Market: DraftKings opened 6.5 (+102), now 6.5 (+124), moving against this side since the open.",
-    "Market: The market (5 books) opened 7.5 (+111), now 7 (-116), the consensus moving toward this side since the open.",
+    "Market: The market (5 books) opened 7.5 (+111), now 7 (-117), the consensus moving toward this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Mammoth Sebastian Cossa · Ducks Ville Husso.",
     "Records: Anaheim Ducks 11-11-1 · Utah Mammoth 11-9-3 · Delta Center, Salt Lake City."
@@ -29514,25 +29514,25 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "SozY5zxS4ftfukIx0JuM",
-   "at": "2026-11-22T00:35:54.581Z",
+   "at": "2026-11-22T01:05:19.994Z",
    "books": {
     "ESPN BET": 125,
     "FanDuel": 122,
     "DraftKings": 124,
     "Unibet": -111,
-    "PointsBet": 120
+    "PointsBet": 125
    },
    "n": 5,
    "best": {
     "book": "ESPN BET",
     "odds": 125
    },
-   "fair": 0.4433,
+   "fair": 0.4416,
    "fairBooks": 5,
    "vendor": {
     "line": 7,
-    "odds": -116,
-    "fair": 0.537,
+    "odds": -117,
+    "fair": 0.5392,
     "sameLine": false
    },
    "open": {
@@ -29541,12 +29541,12 @@
    },
    "now": {
     "line": 7,
-    "odds": -116
+    "odds": -117
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-22T00:35:54.581Z",
+  "pricesAt": "2026-11-22T01:05:19.994Z",
   "sgoHistory": [
    {
     "at": "2026-11-21T01:40:24.742Z",
@@ -29581,6 +29581,15 @@
     "vendorFair": 0.537,
     "line": 7,
     "odds": -116,
+    "best": 125,
+    "n": 5
+   },
+   {
+    "at": "2026-11-22T01:05:19.994Z",
+    "fair": 0.4416,
+    "vendorFair": 0.5392,
+    "line": 7,
+    "odds": -117,
     "best": 125,
     "n": 5
    }
@@ -30821,8 +30830,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 100,
-      "under": -120
+      "over": 105,
+      "under": -125
      },
      "ml": {
       "home": -225,
@@ -31665,7 +31674,7 @@
       "under": -105
      },
      "ml": {
-      "home": -1620,
+      "home": -1600,
       "away": 910
      },
      "draw": null
@@ -31707,7 +31716,7 @@
    "now": {
     "line": null,
     "odds": 910,
-    "fair": 0.09512222099325296
+    "fair": 0.09518477043673013
    },
    "moved": "away",
    "label": "DraftKings opened +440, now +910"

@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-22T00:35:54.581Z",
+  "trackedAt": "2026-11-22T01:05:19.994Z",
   "playOfDay": {
     "id": "b9678f4fde-totals-Over",
     "sport": "NHL",
@@ -957,7 +958,7 @@ window.PICKS_DATA = {
               "under": -105
             },
             "ml": {
-              "home": -1620,
+              "home": -1600,
               "away": 910
             },
             "draw": null
@@ -992,7 +993,7 @@ window.PICKS_DATA = {
         "now": {
           "line": null,
           "odds": 910,
-          "fair": 0.09512222099325296
+          "fair": 0.09518477043673013
         },
         "moved": "away",
         "label": "DraftKings opened +440, now +910"
@@ -1611,8 +1612,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 100,
-              "under": -120
+              "over": 105,
+              "under": -125
             },
             "ml": {
               "home": -225,
@@ -2046,9 +2047,9 @@ window.PICKS_DATA = {
         "ESPN BET": 125,
         "Caesars": 111,
         "Unibet": -111,
-        "PointsBet": 120
+        "PointsBet": 125
       },
-      "pricesAt": "2026-11-22T00:35:54.581Z",
+      "pricesAt": "2026-11-22T01:05:19.994Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.4919,
@@ -2111,7 +2112,7 @@ window.PICKS_DATA = {
           "Where the market sits: Pinnacle's de-vigged price makes this side 46.1% (-0.0 points against the best price). For reference only.",
           "Market: the sharp line has moved away since it was logged (46.1% → 42.9%).",
           "Market: DraftKings opened 6.5 (+102), now 6.5 (+124), moving against this side since the open.",
-          "Market: The market (5 books) opened 7.5 (+111), now 7 (-116), the consensus moving toward this side since the open.",
+          "Market: The market (5 books) opened 7.5 (+111), now 7 (-117), the consensus moving toward this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Mammoth Sebastian Cossa · Ducks Ville Husso.",
           "Records: Anaheim Ducks 11-11-1 · Utah Mammoth 11-9-3 · Delta Center, Salt Lake City."
@@ -2358,27 +2359,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 7,
-          "odds": -116
+          "odds": -117
         },
         "moved": "toward",
-        "label": "The market (5 books) opened 7.5 (+111), now 7 (-116)"
+        "label": "The market (5 books) opened 7.5 (+111), now 7 (-117)"
       },
       "sgo": {
-        "at": "2026-11-22T00:35:54.581Z",
+        "at": "2026-11-22T01:05:19.994Z",
         "n": 5,
         "best": {
           "book": "ESPN BET",
           "odds": 125
         },
-        "fair": 0.4433,
-        "vendorFair": 0.537,
+        "fair": 0.4416,
+        "vendorFair": 0.5392,
         "open": {
           "line": 7.5,
           "odds": 111
         },
         "now": {
           "line": 7,
-          "odds": -116
+          "odds": -117
         }
       },
       "sgoHistory": [
@@ -2415,6 +2416,15 @@ window.PICKS_DATA = {
           "vendorFair": 0.537,
           "line": 7,
           "odds": -116,
+          "best": 125,
+          "n": 5
+        },
+        {
+          "at": "2026-11-22T01:05:19.994Z",
+          "fair": 0.4416,
+          "vendorFair": 0.5392,
+          "line": 7,
+          "odds": -117,
           "best": 125,
           "n": 5
         }

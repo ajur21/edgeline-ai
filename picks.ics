@@ -1164,7 +1164,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-21@edgeline
-DTSTAMP:20261122T003554Z
+DTSTAMP:20261122T010519Z
 DTSTART:20261121T203000Z
 DTEND:20261122T030000Z
 SUMMARY:Parlay lean of the day: 2 legs +243 at BetMGM
@@ -1174,7 +1174,7 @@ DESCRIPTION:All legs priced at BetMGM. Fair 33.6%\, implied 29.2%\, EV +15.
  ay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261122T003554Z
+LAST-MODIFIED:20261122T010519Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1299,7 +1299,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2c807988a0-totals-Under@edgeline
-DTSTAMP:20261122T003554Z
+DTSTAMP:20261122T010519Z
 DTSTART:20261122T020000Z
 DTEND:20261122T050000Z
 SUMMARY:Under 6.5 +117 at BetOnline.ag · Low
@@ -1318,14 +1318,14 @@ DESCRIPTION:NHL · Anaheim Ducks @ Utah Mammoth · Sat Nov 21\, 9:00 PM ET\
  : John Marino (D)\, upper body\; Dylan Guenther (RW)\, upper body\; Nick S
  chmaltz (C)\, lower body and 5 more. Fewer healthy scorers leans under.\nW
  hat could go wrong:\n- Projected total 6.53 against 6.5.\nVerdict: The gam
- e data lines up behind this side at this price.\nPrices: ESPN BET +125\, D
- raftKings +124\, FanDuel +122\, PointsBet +120\, BetOnline.ag +117 and 6 m
+ e data lines up behind this side at this price.\nPrices: ESPN BET +125\, P
+ ointsBet +125\, DraftKings +124\, FanDuel +122\, BetOnline.ag +117 and 6 m
  ore.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#2c80
  7988a0-totals-Under
 LOCATION:Delta Center\, Salt Lake City
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2c807988a0-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T003554Z
+LAST-MODIFIED:20261122T010519Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
