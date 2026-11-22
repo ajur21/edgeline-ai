@@ -28530,8 +28530,8 @@
    "Edge 4.4 points over the price, 1.4 past its bar of 3.0",
    "Market reference 19.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-21T01:40:24.742Z",
   "availability": null,
   "current": {
@@ -28753,7 +28753,30 @@
     "best": 350,
     "n": 7
    }
-  ]
+  ],
+  "result": "Loss",
+  "score": "3-0",
+  "finalScore": {
+   "home": 0,
+   "away": 3
+  },
+  "gradedAt": "2026-11-22T05:52:48.574Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401933739",
+   "line": null,
+   "odds": 350,
+   "fair": 0.2056,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 310,
+    "fair": 0.2212
+   },
+   "samples": 1
+  },
+  "clv": 0.0023,
+  "lineMove": null
  },
  {
   "key": "eeea62e46492df32a80a6b28f87d5f9e|h2h|Boston Bruins|null",
@@ -28852,8 +28875,8 @@
    "Edge 8.2 points over the price, 1.3 past its bar of 7.0",
    "Market reference 53.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.86,
   "loggedAt": "2026-11-21T01:40:24.742Z",
   "availability": null,
   "current": {
@@ -29143,7 +29166,30 @@
      "fair": 0.5528
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "5-7",
+  "finalScore": {
+   "home": 7,
+   "away": 5
+  },
+  "gradedAt": "2026-11-22T05:52:48.574Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892758",
+   "line": null,
+   "odds": -142,
+   "fair": 0.5635,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -120,
+    "fair": 0.5217
+   },
+   "samples": 2
+  },
+  "clv": 0.0265,
+  "lineMove": null
  },
  {
   "key": "2c807988a077495f0a1349ddd3ab6936|totals|Under|6.5",
@@ -29237,8 +29283,8 @@
    "Edge 3.1 points over the price, 0.1 past its bar of 3.0",
    "Market reference 46.1%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 1.17,
   "loggedAt": "2026-11-21T01:40:24.742Z",
   "availability": null,
   "current": {
@@ -29619,7 +29665,30 @@
      "fair": 0.4287
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "2-3",
+  "finalScore": {
+   "home": 3,
+   "away": 2
+  },
+  "gradedAt": "2026-11-22T05:52:48.574Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892765",
+   "line": 6.5,
+   "odds": 120,
+   "fair": 0.4365,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 102,
+    "fair": 0.4739
+   },
+   "samples": 3
+  },
+  "clv": -0.0243,
+  "lineMove": null
  },
  {
   "type": "prop",
@@ -29862,8 +29931,8 @@
    "Edge 5.0 points over the price, 2.0 past its bar of 3.0",
    "Market reference 49.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.89,
   "loggedAt": "2026-11-21T20:25:35.800Z",
   "availability": null,
   "current": {
@@ -30154,7 +30223,30 @@
     "best": -112,
     "n": 8
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "2-4",
+  "finalScore": {
+   "home": 4,
+   "away": 2
+  },
+  "gradedAt": "2026-11-22T05:52:48.574Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892761",
+   "line": 5.5,
+   "odds": -112,
+   "fair": 0.5043,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
+   },
+   "samples": 1
+  },
+  "clv": -0.024,
+  "lineMove": null
  },
  {
   "key": "b9678f4fdeb3125258b4679e9785fffb|totals|Over|5.5",
@@ -30825,8 +30917,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 100,
-      "away": -120
+      "home": 120,
+      "away": -142
      },
      "total": 6.5,
      "totalOdds": {
@@ -30864,6 +30956,12 @@
     "line": 1.5,
     "odds": -120,
     "fair": 0.5217
+   },
+   {
+    "at": "2026-11-22T05:52:48.574Z",
+    "line": 1.5,
+    "odds": -142,
+    "fair": 0.5635
    }
   ],
   "dk": {
@@ -30875,11 +30973,11 @@
    },
    "now": {
     "line": 1.5,
-    "odds": -120,
-    "fair": 0.5217391304347826
+    "odds": -142,
+    "fair": 0.5634920634920635
    },
-   "moved": "away",
-   "label": "DraftKings opened +1.5 (-135), now +1.5 (-120)"
+   "moved": "toward",
+   "label": "DraftKings opened +1.5 (-135), now +1.5 (-142)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -30912,7 +31010,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 3 books makes this side 53.2% (-1.3 points against the best price). For reference only.",
-    "Market: DraftKings opened +1.5 (-135), now +1.5 (-120), moving against this side since the open.",
+    "Market: DraftKings opened +1.5 (-135), now +1.5 (-142), moving toward this side since the open.",
     "Market: The market (6 books) opened +1.5 (-131), now +1.5 (-113), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Stars Jake Oettinger · Penguins Arturs Silovs.",
@@ -31004,8 +31102,8 @@
   "type": "parlay",
   "id": "parlay-2026-11-21",
   "date": "2026-11-21",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 2.43,
   "loggedAt": "2026-11-21T20:28:10.478Z",
   "book": "BetMGM",
   "legs": [
@@ -31019,7 +31117,9 @@
   "decimal": 3.4275,
   "odds": 243,
   "fairProb": 0.3361,
-  "ev": 0.1518
+  "ev": 0.1518,
+  "gradedAt": "2026-11-22T05:52:48.574Z",
+  "result": "Win"
  },
  {
   "type": "day",
@@ -31198,12 +31298,12 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": -130,
-      "under": 100
+      "over": -115,
+      "under": -110
      },
      "ml": {
-      "home": -165,
-      "away": 350
+      "home": -170,
+      "away": 360
      },
      "draw": 330
     },
@@ -31232,6 +31332,12 @@
     "line": null,
     "odds": 350,
     "fair": 0.2063
+   },
+   {
+    "at": "2026-11-22T05:52:48.574Z",
+    "line": null,
+    "odds": 360,
+    "fair": 0.2014
    }
   ],
   "dk": {
@@ -31243,11 +31349,11 @@
    },
    "now": {
     "line": null,
-    "odds": 350,
-    "fair": 0.2062536766369519
+    "odds": 360,
+    "fair": 0.20136672679339532
    },
    "moved": "away",
-   "label": "DraftKings opened +340, now +350"
+   "label": "DraftKings opened +340, now +360"
   },
   "mkt": {
    "book": "Market consensus",
@@ -31277,7 +31383,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 19.9% (-0.5 points against the best price). For reference only.",
-    "Market: DraftKings opened +340, now +350, moving against this side since the open.",
+    "Market: DraftKings opened +340, now +360, moving against this side since the open.",
     "Market: The market (7 books) opened +381, now +378, the consensus moving toward this side since the open.",
     "Weather at kickoff: Overcast, 46°F, wind 11 mph, 2% rain."
    ],
@@ -31665,8 +31771,8 @@
     "now": {
      "spread": -15.5,
      "spreadOdds": {
-      "home": -111,
-      "away": -108
+      "home": -106,
+      "away": -113
      },
      "total": 40.5,
      "totalOdds": {
@@ -31674,8 +31780,8 @@
       "under": -105
      },
      "ml": {
-      "home": -1600,
-      "away": 910
+      "home": -1480,
+      "away": 860
      },
      "draw": null
     },
@@ -31704,6 +31810,12 @@
     "line": null,
     "odds": 910,
     "fair": 0.0951
+   },
+   {
+    "at": "2026-11-22T05:52:48.574Z",
+    "line": null,
+    "odds": 860,
+    "fair": 0.1001
    }
   ],
   "dk": {
@@ -31715,11 +31827,11 @@
    },
    "now": {
     "line": null,
-    "odds": 910,
-    "fair": 0.09518477043673013
+    "odds": 860,
+    "fair": 0.10007600709399544
    },
    "moved": "away",
-   "label": "DraftKings opened +440, now +910"
+   "label": "DraftKings opened +440, now +860"
   },
   "mkt": {
    "book": "Market consensus",
@@ -31751,7 +31863,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 10.5% (+1.4 points against the best price). For reference only.",
-    "Market: DraftKings opened +440, now +910, moving against this side since the open.",
+    "Market: DraftKings opened +440, now +860, moving against this side since the open.",
     "Market: The market (8 books) opened +477, now +908, the consensus moving against this side since the open.",
     "Weather at kickoff: Clear, 45°F, wind 13 mph, 0% rain.",
     "Records: Arizona Cardinals 3-7 · Kansas City Chiefs 7-2 · Arrowhead Stadium, Kansas City."
@@ -31970,8 +32082,8 @@
     "now": {
      "spread": 1.5,
      "spreadOdds": {
-      "home": -185,
-      "away": 135
+      "home": -160,
+      "away": 115
      },
      "total": 2.5,
      "totalOdds": {
@@ -31979,10 +32091,10 @@
       "under": 115
      },
      "ml": {
-      "home": 550,
-      "away": -200
+      "home": 600,
+      "away": -220
      },
-     "draw": 350
+     "draw": 370
     },
     "open": {
      "spread": 1.5,
@@ -32009,6 +32121,12 @@
     "line": null,
     "odds": 550,
     "fair": 0.1475
+   },
+   {
+    "at": "2026-11-22T05:52:48.574Z",
+    "line": null,
+    "odds": 600,
+    "fair": 0.137
    }
   ],
   "dk": {
@@ -32020,11 +32138,11 @@
    },
    "now": {
     "line": null,
-    "odds": 550,
-    "fair": 0.1475409836065574
+    "odds": 600,
+    "fair": 0.13695137497723547
    },
    "moved": "away",
-   "label": "DraftKings opened +450, now +550"
+   "label": "DraftKings opened +450, now +600"
   },
   "mkt": null,
   "breakdown": {
@@ -32042,7 +32160,7 @@
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 14.7% (-0.4 points against the best price). For reference only.",
-    "Market: DraftKings opened +450, now +550, moving against this side since the open.",
+    "Market: DraftKings opened +450, now +600, moving against this side since the open.",
     "Weather at kickoff: Clear, 47°F, wind 6 mph, 0% rain.",
     "Records: Brighton and Hove Albion 7-1-2 · Hull City 2-5-3 · The MKM Stadium, Hull."
    ],
@@ -32207,8 +32325,8 @@
      },
      "total": 3.5,
      "totalOdds": {
-      "over": 100,
-      "under": -130
+      "over": -105,
+      "under": -120
      },
      "ml": {
       "home": -210,
@@ -32241,6 +32359,12 @@
     "line": 3.5,
     "odds": -130,
     "fair": 0.5306
+   },
+   {
+    "at": "2026-11-22T05:52:48.574Z",
+    "line": 3.5,
+    "odds": -120,
+    "fair": 0.5157
    }
   ],
   "dk": {
@@ -32252,11 +32376,11 @@
    },
    "now": {
     "line": 3.5,
-    "odds": -130,
-    "fair": 0.5306122448979592
+    "odds": -120,
+    "fair": 0.5157232704402516
    },
-   "moved": null,
-   "label": "DraftKings opened 3.5 (-130), now 3.5 (-130)"
+   "moved": "away",
+   "label": "DraftKings opened 3.5 (-130), now 3.5 (-120)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -32283,6 +32407,7 @@
    "risks": [],
    "notes": [
     "Where the market sits: the de-vigged consensus of 3 books makes this side 53.1% (-3.0 points against the best price). For reference only.",
+    "Market: DraftKings opened 3.5 (-130), now 3.5 (-120), moving against this side since the open.",
     "Weather at kickoff: Overcast, 41°F, wind 7 mph, 5% rain."
    ],
    "verdict": "The game data lines up behind this side at this price."

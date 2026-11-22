@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "windowDays": 30,
   "record": {
-    "wins": 31,
-    "losses": 30,
+    "wins": 34,
+    "losses": 31,
     "pushes": 0
   },
-  "units": 0.79,
-  "roi": 1.3,
-  "avgEdge": 8.8,
-  "graded": 61,
+  "units": 2.71,
+  "roi": 4.2,
+  "avgEdge": 8.6,
+  "graded": 65,
   "daily": [
     {
       "date": "2026-11-05",
@@ -72,14 +72,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-21",
-      "units": 0.79
+      "units": 2.71
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 4.09,
-      "record": "22-17"
+      "units": 7.01,
+      "record": "25-17"
     },
     {
       "sport": "NBA",
@@ -88,8 +88,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 1.55,
-      "record": "7-6"
+      "units": 0.55,
+      "record": "7-7"
     },
     {
       "sport": "NFL",
@@ -98,6 +98,66 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-21",
+      "sport": "NHL",
+      "event": "Anaheim Ducks @ Utah Mammoth",
+      "pick": "Under 6.5",
+      "odds": 117,
+      "result": "Win",
+      "units": 1.17,
+      "clv": -0.0243,
+      "closeOdds": 120,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-21",
+      "sport": "NHL",
+      "event": "Los Angeles Kings @ Ottawa Senators",
+      "pick": "Over 5.5",
+      "odds": -112,
+      "result": "Win",
+      "units": 0.89,
+      "clv": -0.024,
+      "closeOdds": -112,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-21",
+      "sport": "NHL",
+      "event": "Washington Capitals @ Boston Bruins",
+      "pick": "Boston Bruins ML",
+      "odds": -116,
+      "result": "Win",
+      "units": 0.86,
+      "clv": 0.0265,
+      "closeOdds": -142,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-21",
+      "sport": "Soccer",
+      "event": "Inter Miami CF vs. Columbus Crew SC",
+      "pick": "Draw",
+      "odds": 392,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0023,
+      "closeOdds": 350,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-21",
       "sport": "NHL",
@@ -217,66 +277,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "Soccer",
-      "event": "Orlando City SC vs. FC Cincinnati",
-      "pick": "Over 3.75 goals",
-      "odds": -105,
-      "result": "Win",
-      "units": 0.95,
-      "clv": null,
-      "closeOdds": -145,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "away",
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NHL",
-      "event": "Buffalo Sabres @ Washington Capitals",
-      "pick": "Under 6.5",
-      "odds": 107,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0048,
-      "closeOdds": 100,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NHL",
-      "event": "Montréal Canadiens @ Carolina Hurricanes",
-      "pick": "Under 6.5",
-      "odds": 105,
-      "result": "Win",
-      "units": 1.05,
-      "clv": 0.023,
-      "closeOdds": -115,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-18",
-      "sport": "NHL",
-      "event": "Boston Bruins @ Detroit Red Wings",
-      "pick": "Boston Bruins +1.5",
-      "odds": -225,
-      "result": "Win",
-      "units": 0.44,
-      "clv": 0.0172,
-      "closeOdds": -285,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -380,9 +380,9 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-21",
-      "units": 2.76,
-      "wins": 3,
-      "losses": 1,
+      "units": 4.68,
+      "wins": 6,
+      "losses": 2,
       "pushes": 0
     }
   ],
@@ -497,32 +497,32 @@ window.PERF_DATA = {
     ]
   },
   "parlays": {
-    "wins": 1,
+    "wins": 2,
     "losses": 13,
     "pushes": 0,
-    "units": -9.98,
-    "n": 14
+    "units": -7.55,
+    "n": 15
   },
   "clv": {
-    "n": 54,
-    "avg": -0.96,
-    "beat": 17,
-    "beatPct": 31.5,
-    "graded": 61,
+    "n": 58,
+    "avg": -0.93,
+    "beat": 19,
+    "beatPct": 32.8,
+    "graded": 65,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 61,
+    "espnCloses": 65,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 31,
-      "losses": 30,
+      "wins": 34,
+      "losses": 31,
       "pushes": 0,
-      "units": 0.79,
-      "n": 61,
-      "roi": 1.3,
-      "pending": 9,
+      "units": 2.71,
+      "n": 65,
+      "roi": 4.2,
+      "pending": 5,
       "since": "2026-11-05"
     },
     "price": {
