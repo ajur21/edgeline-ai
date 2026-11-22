@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-22",
   "windowDays": 30,
   "record": {
-    "wins": 34,
+    "wins": 35,
     "losses": 31,
     "pushes": 0
   },
-  "units": 2.71,
-  "roi": 4.2,
+  "units": 8.31,
+  "roi": 12.6,
   "avgEdge": 8.6,
-  "graded": 65,
+  "graded": 66,
   "daily": [
     {
       "date": "2026-11-05",
@@ -73,6 +73,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-21",
       "units": 2.71
+    },
+    {
+      "date": "2026-11-22",
+      "units": 8.31
     }
   ],
   "bySport": [
@@ -88,8 +92,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 0.55,
-      "record": "7-7"
+      "units": 6.15,
+      "record": "8-7"
     },
     {
       "sport": "NFL",
@@ -98,6 +102,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-22",
+      "sport": "Soccer",
+      "event": "Hull City vs. Brighton and Hove Albion",
+      "pick": "Hull City ML",
+      "odds": 560,
+      "result": "Win",
+      "units": 5.6,
+      "clv": -0.0054,
+      "closeOdds": 550,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-21",
       "sport": "NHL",
@@ -262,21 +281,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NHL",
-      "event": "Edmonton Oilers @ Tampa Bay Lightning",
-      "pick": "Edmonton Oilers ML",
-      "odds": 131,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0036,
-      "closeOdds": 120,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -383,6 +387,13 @@ window.PERF_DATA = {
       "units": 4.68,
       "wins": 6,
       "losses": 2,
+      "pushes": 0
+    },
+    {
+      "date": "2026-11-22",
+      "units": 5.6,
+      "wins": 1,
+      "losses": 0,
       "pushes": 0
     }
   ],
@@ -504,25 +515,25 @@ window.PERF_DATA = {
     "n": 15
   },
   "clv": {
-    "n": 58,
-    "avg": -0.93,
+    "n": 59,
+    "avg": -0.92,
     "beat": 19,
-    "beatPct": 32.8,
-    "graded": 65,
+    "beatPct": 32.2,
+    "graded": 66,
     "lineToward": 2,
     "lineAway": 5,
-    "espnCloses": 65,
+    "espnCloses": 66,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 34,
+      "wins": 35,
       "losses": 31,
       "pushes": 0,
-      "units": 2.71,
-      "n": 65,
-      "roi": 4.2,
-      "pending": 6,
+      "units": 8.31,
+      "n": 66,
+      "roi": 12.6,
+      "pending": 7,
       "since": "2026-11-05"
     },
     "price": {
