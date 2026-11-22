@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-22T14:06:59.604Z",
+  "trackedAt": "2026-11-22T14:20:05.613Z",
   "playOfDay": {
     "kind": "prop",
     "id": "prop-NFL-401873075-4686658-recYds-under-9.5",
@@ -213,7 +214,7 @@ window.PICKS_DATA = {
         "PointsBet": 850,
         "ESPN BET": 900
       },
-      "pricesAt": "2026-11-22T14:06:59.604Z",
+      "pricesAt": "2026-11-22T14:20:05.613Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.1963,
@@ -605,7 +606,7 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened +477, now +896"
       },
       "sgo": {
-        "at": "2026-11-22T14:06:59.604Z",
+        "at": "2026-11-22T14:20:05.613Z",
         "n": 8,
         "best": {
           "book": "FanDuel",
@@ -700,7 +701,7 @@ window.PICKS_DATA = {
         "ESPN BET": 340,
         "Unibet": 380
       },
-      "pricesAt": "2026-11-22T14:06:59.604Z",
+      "pricesAt": "2026-11-22T14:20:05.613Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.2972,
@@ -895,7 +896,7 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened +381, now +389"
       },
       "sgo": {
-        "at": "2026-11-22T14:06:59.604Z",
+        "at": "2026-11-22T14:20:05.613Z",
         "n": 7,
         "best": {
           "book": "Bovada",
@@ -979,7 +980,7 @@ window.PICKS_DATA = {
         "ESPN BET": -130,
         "Bovada": -130
       },
-      "pricesAt": "2026-11-22T14:06:59.604Z",
+      "pricesAt": "2026-11-22T14:20:05.613Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.6109,
@@ -1332,7 +1333,7 @@ window.PICKS_DATA = {
         "label": "The market (6 books) opened +1.5 (-131), now +1.5 (-119)"
       },
       "sgo": {
-        "at": "2026-11-22T14:06:59.604Z",
+        "at": "2026-11-22T14:20:05.613Z",
         "n": 6,
         "best": {
           "book": "BetMGM",
@@ -1430,7 +1431,7 @@ window.PICKS_DATA = {
         "BetRivers": -129,
         "DraftKings": -125
       },
-      "pricesAt": "2026-11-22T14:06:59.604Z",
+      "pricesAt": "2026-11-22T14:20:05.613Z",
       "books": 3,
       "anchor": null,
       "modelProb": 0.6043,
@@ -1620,7 +1621,7 @@ window.PICKS_DATA = {
         "label": "The market (2 books) opened 3.5 (-113), now 3.5 (-110)"
       },
       "sgo": {
-        "at": "2026-11-22T14:06:59.604Z",
+        "at": "2026-11-22T14:20:05.613Z",
         "n": 2,
         "best": {
           "book": "DraftKings",
@@ -1702,7 +1703,7 @@ window.PICKS_DATA = {
         "BetOnline.ag": -110,
         "Caesars": -110
       },
-      "pricesAt": "2026-11-22T14:06:59.604Z",
+      "pricesAt": "2026-11-22T14:20:05.613Z",
       "books": 4,
       "anchor": "Pinnacle",
       "modelProb": 0.5563,
@@ -2008,7 +2009,7 @@ window.PICKS_DATA = {
         "label": "The market (3 books) opened 7.5 (+124), now 6 (+100)"
       },
       "sgo": {
-        "at": "2026-11-22T14:06:59.604Z",
+        "at": "2026-11-22T14:20:05.613Z",
         "n": 3,
         "best": {
           "book": "BetMGM",
