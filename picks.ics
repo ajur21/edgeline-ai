@@ -1379,7 +1379,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e9429c68a4-totals-Over@edgeline
-DTSTAMP:20261123T141011Z
+DTSTAMP:20261123T203656Z
 DTSTART:20261124T001000Z
 DTEND:20261124T031000Z
 SUMMARY:Over 6.5 +120 at theScore Bet · Low
@@ -1394,18 +1394,18 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ New Jersey Devils · Mon Nov 23\
  her books' prices\; for reference the market makes it 44.7%.\nWhat support
  s it:\n- Combined scoring 7 a game in New Jersey Devils's games\, 5.8 in C
  olumbus Blue Jackets's (league average 6.4).\nWhat could go wrong:\n- Proj
- ected total 6.4 against 6.5.\n- At current prices our edge is 2.3 points\,
+ ected total 6.4 against 6.5.\n- At current prices our edge is 2.1 points\,
   under its bar of 3.0 points\; the pick stays posted and is graded at the 
  price it was posted at.\n- Scorers out: Anthony Mantha (RW)\, neck\; Johna
  than Kovacevic (D)\, ankle\; Seamus Casey (D)\, knee and 1 more. Fewer hea
  lthy scorers leans under.\nVerdict: More working against this one than for
-  it\; size down.\nPrices: theScore Bet +120\, ESPN BET +115\, DraftKings +
- 110\, FanDuel +108\, BetRivers +108.\nFull breakdown: https://ajur21.githu
- b.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
+  it\; size down.\nPrices: theScore Bet +120\, ESPN BET +115\, PointsBet +1
+ 15\, DraftKings +114\, FanDuel +112 and 1 more.\nFull breakdown: https://a
+ jur21.github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
 LOCATION:Prudential Center\, Newark
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261123T141011Z
+LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1416,7 +1416,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d127e1e72a-totals-Over@edgeline
-DTSTAMP:20261123T141011Z
+DTSTAMP:20261123T203656Z
 DTSTART:20261124T004000Z
 DTEND:20261124T034000Z
 SUMMARY:Over 5.5 -122 at DraftKings · Low
@@ -1431,22 +1431,128 @@ DESCRIPTION:NHL · Calgary Flames @ Ottawa Senators · Mon Nov 23\, 7:40 PM
  ices\; for reference the market makes it 53.0%.\nWhat supports it:\n- Comb
  ined scoring 6.2 a game in Ottawa Senators's games\, 6 in Calgary Flames's
   (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A better pri
- ce is now available: -120 at BetMGM.\n- A better price is available now: -
- 120 at BetMGM.\nWhat could go wrong:\n- Scorers out: Andre Burakovsky (LW)
- \, lower body\; Warren Foegele (LW)\, knee\; William Eklund (LW)\, ankle a
- nd 2 more. Fewer healthy scorers leans under.\nVerdict: The game data line
- s up behind this side at this price.\nPrices: BetMGM -120\, DraftKings -12
- 2\, FanDuel -122\, BetRivers -122\, Bovada -122 and 5 more.\nFull breakdow
- n: https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over
+ ce is now available: -115 at BetOnline.ag.\n- A better price is available 
+ now: -115 at BetMGM.\nWhat could go wrong:\n- Scorers out: Hayden Hodgson 
+ (RW)\, groin\; Andre Burakovsky (LW)\, lower body\; Warren Foegele (LW)\, 
+ knee and 4 more. Fewer healthy scorers leans under.\nVerdict: The game dat
+ a lines up behind this side at this price.\nPrices: BetMGM -115\, FanDuel 
+ -115\, PointsBet -115\, Bovada -117\, DraftKings -120 and 5 more.\nFull br
+ eakdown: https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals
+ -Over
 LOCATION:Canadian Tire Centre\, Ottawa
 URL:https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261123T141011Z
+LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Over 5.5 -122 at DraftKings · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-23@edgeline
+DTSTAMP:20261123T203656Z
+DTSTART:20261124T004000Z
+DTEND:20261124T041000Z
+SUMMARY:Parlay lean of the day: 2 legs +215 at FanDuel
+DESCRIPTION:All legs priced at FanDuel. Fair 41.5%\, implied 31.7%\, EV +30
+ .9% per unit.\n- NBA: Phoenix Suns ML -146 · Phoenix Suns @ New Orleans P
+ elicans\n- NHL: Over 5.5 -115 · Calgary Flames @ Ottawa Senators\n\nEvery
+  parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261123T203656Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +215 at FanDuel
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6caeb7cce7-h2h-Phoenix-Suns@edgeline
+DTSTAMP:20261123T203656Z
+DTSTART:20261124T011000Z
+DTEND:20261124T041000Z
+SUMMARY:Lean of the day: Phoenix Suns ML -146 at FanDuel · Low
+DESCRIPTION:NBA · Phoenix Suns @ New Orleans Pelicans · Mon Nov 23\, 8:10
+  PM ET\nMoneyline: Phoenix Suns ML at -146 (FanDuel). Our probability 71.2
+ % from game data\, the price implies 59.3%\, edge +11.8 pts\, EV +20.0% pe
+ r unit. Confidence: Lean.\nOur probability is 71.2%\, from the game data: 
+ this season's results and margins\, recent form\, rest\, the injury report
+  and home edge (projected margin -6.6 for the home side). FanDuel offers -
+ 146\, which implies only 59.3%. Its bar is 10.7 points: the model's own ma
+ rgin of error on this side\, with 15 games behind the thinner team (±3.93
+  points on the margin). It clears it by 1.1. Not graded against other book
+ s' prices\; for reference the market makes it 57.6%.\nWhat supports it:\n-
+  New Orleans Pelicans rate -6.1 a game over 18 (5-13)\, Phoenix Suns +0.4 
+ over 15 (8-7)\; last season -4.5 and +1.5 a game.\n- Phoenix Suns trending
+ : last five +8 vs -0.9 on the season.\n- Phoenix Suns are rested (3 days).
+ \n- New Orleans Pelicans without Bennedict Mathurin (G)\, Dejounte Murray 
+ (G)\, Julian Reese (F) and 1 more (-1.6)\, out per the 3:30 PM ET official
+  report.\n- Projected margin +6.6 for Phoenix Suns.\nWhat could go wrong:\
+ n- Home edge +1.9 for New Orleans Pelicans.\n- New Orleans Pelicans have Z
+ ion Williamson (F) probable per the 3:30 PM ET official report (ESPN still
+  lists him day-to-day).\nVerdict: The game data lines up behind this side 
+ at this price.\nPrices: FanDuel -146\, PointsBet -149\, BetOnline.ag -150\
+ , Bovada -150\, Caesars -150 and 6 more.\nFull breakdown: https://ajur21.g
+ ithub.io/edgeline-ai/picks.html#6caeb7cce7-h2h-Phoenix-Suns
+LOCATION:Smoothie King Center\, New Orleans
+URL:https://ajur21.github.io/edgeline-ai/picks.html#6caeb7cce7-h2h-Phoenix-
+ Suns
+CATEGORIES:NBA
+LAST-MODIFIED:20261123T203656Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lean of the day: Phoenix Suns ML -146 at FanDuel · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3a60ed1d20-h2h-Washington-Commanders@edgeline
+DTSTAMP:20261123T203656Z
+DTSTART:20261124T011500Z
+DTEND:20261124T041500Z
+SUMMARY:Washington Commanders ML +250 at BetOnline.ag · Low
+DESCRIPTION:NFL · Cincinnati Bengals @ Washington Commanders · Mon Nov 23
+ \, 8:15 PM ET\nMoneyline: Washington Commanders ML at +250 (BetOnline.ag).
+  Our probability 40.3% from game data\, the price implies 28.6%\, edge +11
+ .7 pts\, EV +41.0% per unit. Confidence: Lean.\nOur probability is 40.3%\,
+  from the game data: this season's results and margins\, recent form\, res
+ t\, the injury report and home edge (projected margin -3.5 for the home si
+ de). BetOnline.ag offers +250\, which implies only 28.6%. Its bar is 10.8 
+ points: the model's own margin of error on this side\, with 9 games behind
+  the thinner team (±4.09 points on the margin). It clears it by 0.9. Not 
+ graded against other books' prices\; for reference the market makes it 28.
+ 0%.\nWhat supports it:\n- Home edge +2.1 for Washington Commanders.\n- Was
+ hington Commanders rested longer (11 days against 8\, +0.5).\n- Cincinnati
+  Bengals without Jalen Davis (CB)\, Dalton Risner (G)\, Andrei Iosivas (WR
+ ) and 2 more (+2.1).\nWhat could go wrong:\n- Washington Commanders rate -
+ 2.1 and Cincinnati Bengals +2.8 points a game against their schedules (thi
+ s season's results\, last season carried over)\; EPA a play -0.02 and +0.1
+  net of defence (nflverse).\n- Joe Burrow starts for Cincinnati Bengals: +
+ 0.11 EPA a dropback against +0.06 behind their numbers (+1.6 points).\n- W
+ ashington Commanders without Jacory Croskey-Merritt (RB) (-0.9).\n- Projec
+ ted margin -3.5 for Washington Commanders.\nVerdict: More working against 
+ this one than for it\; size down.\nPrices: BetOnline.ag +250\, DraftKings 
+ +245\, Bovada +245\, theScore Bet +240\, BetMGM +240 and 6 more.\nFull bre
+ akdown: https://ajur21.github.io/edgeline-ai/picks.html#3a60ed1d20-h2h-Was
+ hington-Commanders
+LOCATION:Northwest Stadium\, Landover
+URL:https://ajur21.github.io/edgeline-ai/picks.html#3a60ed1d20-h2h-Washingt
+ on-Commanders
+CATEGORIES:NFL
+LAST-MODIFIED:20261123T203656Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Washington Commanders ML +250 at BetOnline.ag · Low
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT

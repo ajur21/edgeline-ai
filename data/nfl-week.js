@@ -3,7 +3,7 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-23T14:10:33.529Z",
+ "generatedAt": "2026-11-23T20:38:02.019Z",
  "checkedAt": null,
  "season": 2026,
  "week": {
@@ -2310,17 +2310,17 @@ window.NFL_WEEK_DATA = {
    "tv": "ESPN",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-23T14:10:33.529Z",
+    "at": "2026-11-23T20:38:02.019Z",
     "locked": false,
-    "margin": -3.72,
+    "margin": -3.55,
     "total": 48.3,
     "marginSd": 4.09,
-    "home": 22.3,
-    "away": 26,
+    "home": 22.4,
+    "away": 25.9,
     "winner": "away",
-    "prob": 0.6017,
-    "probHome": 0.3983,
-    "probAway": 0.6017,
+    "prob": 0.5972,
+    "probHome": 0.4028,
+    "probAway": 0.5972,
     "games": {
      "home": 9,
      "away": 9
@@ -2332,7 +2332,7 @@ window.NFL_WEEK_DATA = {
      "epa": -1.39,
      "qb": -1.12,
      "rest": 0.46,
-     "injuries": 1
+     "injuries": 1.17
     },
     "ratings": {
      "home": -2.08,
@@ -2430,51 +2430,60 @@ window.NFL_WEEK_DATA = {
        "played": 4
       },
       {
-       "name": "Andrei Iosivas",
-       "pos": "WR",
+       "name": "Jalen Davis",
+       "pos": "CB",
        "status": "Injured Reserve",
-       "played": 2
+       "played": 3
       }
      ],
-     "more": 3,
-     "points": 1.9
+     "more": 4,
+     "points": 2.1
     }
    },
    "weather": {
     "mph": 9,
     "dir": "NW",
-    "temp": 56,
+    "temp": 57,
     "unit": "F",
-    "precip": 15,
-    "text": "Slight Chance Light Rain",
+    "precip": 6,
+    "text": "Mostly Cloudy",
     "at": "2026-11-23T20:00:00-05:00",
     "source": "National Weather Service"
    },
    "leanFrom": {
     "home": {
-     "prob": 0.3983,
-     "bar": 0.108,
-     "price": 245
+     "prob": 0.4028,
+     "bar": 0.1083,
+     "price": 240
     },
     "away": {
-     "prob": 0.6017,
-     "bar": 0.108,
-     "price": 103
+     "prob": 0.5972,
+     "bar": 0.1083,
+     "price": 105
     }
    },
    "board": {
     "eventId": "3a60ed1d20004aa4d4772b2c1a2272e7",
-    "pricedAt": "2026-11-22T20:36:38.543Z",
+    "pricedAt": "2026-11-23T20:36:56.852Z",
     "home": {
-     "odds": 241,
-     "book": "DraftKings"
+     "odds": 250,
+     "book": "BetOnline.ag"
     },
     "away": {
-     "odds": -285,
-     "book": "Bovada"
+     "odds": -290,
+     "book": "FanDuel"
     }
    },
-   "posted": null,
+   "posted": {
+    "id": "3a60ed1d20-h2h-Washington-Commanders",
+    "pick": "Washington Commanders ML",
+    "market": "Moneyline",
+    "marketKey": "h2h",
+    "odds": 250,
+    "book": "BetOnline.ag",
+    "status": "pending",
+    "result": null
+   },
    "result": null
   }
  ]

@@ -33430,16 +33430,16 @@
   "odds": -122,
   "book": "DraftKings",
   "prices": {
-   "DraftKings": -122,
-   "BetMGM": -120,
-   "FanDuel": -122,
+   "DraftKings": -120,
+   "BetMGM": -115,
+   "FanDuel": -115,
    "BetRivers": -122,
    "theScore Bet": -125,
-   "Caesars": -125,
-   "Unibet": -125,
-   "ESPN BET": -125,
-   "Bovada": -122,
-   "PointsBet": -125
+   "Caesars": -121,
+   "Unibet": -123,
+   "ESPN BET": -120,
+   "Bovada": -117,
+   "PointsBet": -115
   },
   "books": 5,
   "anchor": null,
@@ -33502,11 +33502,11 @@
   "loggedAt": "2026-11-22T20:36:38.543Z",
   "availability": null,
   "current": {
-   "at": "2026-11-23T14:10:11.068Z",
-   "odds": -120,
-   "book": "BetMGM",
-   "fair": 0.5282,
-   "edge": 0.0387,
+   "at": "2026-11-23T20:36:56.852Z",
+   "odds": -115,
+   "book": "BetOnline.ag",
+   "fair": 0.5171,
+   "edge": 0.0493,
    "modelProb": 0.5842,
    "bar": 0.03
   },
@@ -33520,6 +33520,11 @@
     "at": "2026-11-23T14:10:11.068Z",
     "odds": -120,
     "fair": 0.5282
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "odds": -115,
+    "fair": 0.5171
    }
   ],
   "context": {
@@ -33540,7 +33545,7 @@
    },
    "probables": {
     "Ottawa Senators": "Linus Ullmark",
-    "Calgary Flames": "Dustin Wolf"
+    "Calgary Flames": "Devin Cooley"
    },
    "injuries": {
     "Ottawa Senators": [
@@ -33549,12 +33554,12 @@
       "pos": "RW",
       "athleteId": "3150479",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3150479.png",
-      "status": "Day-To-Day",
+      "status": "Out",
       "type": "Groin",
       "detail": "",
-      "returnDate": "2026-11-23",
-      "date": "2026-11-22T13:40Z",
-      "note": "day-to-day"
+      "returnDate": "2026-11-28",
+      "date": "2026-11-23T15:48Z",
+      "note": "Hodgson (groin) has no timeline in place for his return to the lineup, per Bruce Garrioch of Postmedia on Nov. 14."
      },
      {
       "name": "Andre Burakovsky",
@@ -33599,12 +33604,12 @@
       "pos": "C",
       "athleteId": "4392883",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4392883.png",
-      "status": "Day-To-Day",
+      "status": "Out",
       "type": "Upper Body",
       "detail": "",
-      "returnDate": "2026-11-23",
-      "date": "2026-11-21T22:54Z",
-      "note": "Pospisil (upper body) left Saturday's game against Chicago and won't return, per Pat Steinberg of QR Calgary 770 AM."
+      "returnDate": "2026-11-28",
+      "date": "2026-11-23T16:46Z",
+      "note": "Pospisil (upper body) didn't travel with his teammates for the start of Calgary's five-game road trip, per Eric Francis of Sportsnet on Monday."
      },
      {
       "name": "Jonathan Huberdeau",
@@ -33614,7 +33619,7 @@
       "status": "Injured Reserve",
       "type": "Hip",
       "detail": "Surgery",
-      "returnDate": "2026-11-25",
+      "returnDate": "2026-12-01",
       "date": "2026-11-19T04:00Z",
       "note": "Huberdeau (hip) had three assists in AHL Calgary's 4-3 win over Coachella Valley on Wednesday."
      },
@@ -33653,17 +33658,17 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 114,
-      "away": -135
+      "home": 105,
+      "away": -125
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -120,
+      "under": 100
      },
      "ml": {
-      "home": -230,
-      "away": 190
+      "home": -258,
+      "away": 210
      },
      "draw": null
     },
@@ -33704,6 +33709,12 @@
     "line": 5.5,
     "odds": -122,
     "fair": 0.5261
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "line": 5.5,
+    "odds": -120,
+    "fair": 0.5217
    }
   ],
   "dk": {
@@ -33715,11 +33726,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -122,
-    "fair": 0.5260865852617197
+    "odds": -120,
+    "fair": 0.5217391304347826
    },
-   "moved": null,
-   "label": "DraftKings opened 5.5 (-122), now 5.5 (-122)"
+   "moved": "away",
+   "label": "DraftKings opened 5.5 (-122), now 5.5 (-120)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -33730,10 +33741,10 @@
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 120
    },
    "moved": "away",
-   "label": "The market (8 books) opened 7.5 (+129), now 6 (+114)"
+   "label": "The market (8 books) opened 7.5 (+129), now 6 (+120)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -33742,17 +33753,19 @@
    "support": [
     "Combined scoring 6.2 a game in Ottawa Senators's games, 6 in Calgary Flames's (league average 6.4).",
     "Projected total 6.3 against 5.5.",
-    "A better price is now available: -120 at BetMGM.",
-    "A better price is available now: -120 at BetMGM."
+    "A better price is now available: -115 at BetOnline.ag.",
+    "A better price is available now: -115 at BetMGM."
    ],
    "risks": [
-    "Scorers out: Andre Burakovsky (LW), lower body; Warren Foegele (LW), knee; William Eklund (LW), ankle and 2 more. Fewer healthy scorers leans under."
+    "Scorers out: Hayden Hodgson (RW), groin; Andre Burakovsky (LW), lower body; Warren Foegele (LW), knee and 4 more. Fewer healthy scorers leans under."
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 53.0% (-2.0 points against the best price). For reference only.",
-    "Market: The market (8 books) opened 7.5 (+129), now 6 (+114), the consensus moving against this side since the open.",
+    "Market: the sharp line has moved away since it was logged (53.0% → 51.7%).",
+    "Market: DraftKings opened 5.5 (-122), now 5.5 (-120), moving against this side since the open.",
+    "Market: The market (8 books) opened 7.5 (+129), now 6 (+120), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
-    "Probable pitchers: Senators Linus Ullmark · Flames Dustin Wolf.",
+    "Probable pitchers: Senators Linus Ullmark · Flames Devin Cooley.",
     "Records: Calgary Flames 10-12-2 · Ottawa Senators 15-6-3 · Canadian Tire Centre, Ottawa."
    ],
    "verdict": "The game data lines up behind this side at this price."
@@ -33761,28 +33774,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "leE2qXML64Ay2kMoSCVV",
-   "at": "2026-11-23T14:10:11.068Z",
+   "at": "2026-11-23T20:36:56.852Z",
    "books": {
-    "BetMGM": -120,
-    "DraftKings": -122,
-    "Caesars": -125,
-    "FanDuel": -122,
-    "Unibet": -125,
-    "ESPN BET": -125,
-    "Bovada": -122,
-    "PointsBet": -125
+    "BetMGM": -115,
+    "DraftKings": -120,
+    "Caesars": -121,
+    "FanDuel": -115,
+    "Unibet": -123,
+    "ESPN BET": -120,
+    "Bovada": -117,
+    "PointsBet": -115
    },
    "n": 8,
    "best": {
     "book": "BetMGM",
-    "odds": -120
+    "odds": -115
    },
-   "fair": 0.5277,
+   "fair": 0.5168,
    "fairBooks": 8,
    "vendor": {
     "line": 6,
-    "odds": 114,
-    "fair": 0.4673,
+    "odds": 120,
+    "fair": 0.4545,
     "sameLine": false
    },
    "open": {
@@ -33791,12 +33804,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 120
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-23T14:10:11.068Z",
+  "pricesAt": "2026-11-23T20:36:56.852Z",
   "sgoHistory": [
    {
     "at": "2026-11-22T20:36:38.543Z",
@@ -33815,16 +33828,25 @@
     "odds": 114,
     "best": -120,
     "n": 8
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "fair": 0.5168,
+    "vendorFair": 0.4545,
+    "line": 6,
+    "odds": 120,
+    "best": -115,
+    "n": 8
    }
   ],
   "movement": {
    "loggedOdds": -122,
    "loggedFair": 0.5837,
-   "currentOdds": -120,
-   "currentBook": "BetMGM",
-   "currentFair": 0.5282,
-   "currentEdge": 0.0387,
-   "checkedAt": "2026-11-23T14:10:11.068Z",
+   "currentOdds": -115,
+   "currentBook": "BetOnline.ag",
+   "currentFair": 0.5171,
+   "currentEdge": 0.0493,
+   "checkedAt": "2026-11-23T20:36:56.852Z",
    "history": [
     {
      "at": "2026-11-22T20:36:38.543Z",
@@ -33835,6 +33857,11 @@
      "at": "2026-11-23T14:10:11.068Z",
      "odds": -120,
      "fair": 0.5282
+    },
+    {
+     "at": "2026-11-23T20:36:56.852Z",
+     "odds": -115,
+     "fair": 0.5171
     }
    ]
   }
@@ -33862,11 +33889,12 @@
   "odds": 120,
   "book": "theScore Bet",
   "prices": {
-   "DraftKings": 110,
-   "FanDuel": 108,
+   "DraftKings": 114,
+   "FanDuel": 112,
    "BetRivers": 108,
    "theScore Bet": 120,
-   "ESPN BET": 115
+   "ESPN BET": 115,
+   "PointsBet": 115
   },
   "books": 4,
   "anchor": null,
@@ -33930,11 +33958,11 @@
   "loggedAt": "2026-11-22T20:36:38.543Z",
   "availability": null,
   "current": {
-   "at": "2026-11-23T14:10:11.068Z",
-   "odds": 115,
-   "book": "theScore Bet",
-   "fair": 0.4548,
-   "edge": 0.0233,
+   "at": "2026-11-23T20:36:56.852Z",
+   "odds": 114,
+   "book": "DraftKings",
+   "fair": 0.4491,
+   "edge": 0.0211,
    "modelProb": 0.4884,
    "bar": 0.03
   },
@@ -33948,6 +33976,11 @@
     "at": "2026-11-23T14:10:11.068Z",
     "odds": 115,
     "fair": 0.4548
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "odds": 114,
+    "fair": 0.4491
    }
   ],
   "context": {
@@ -33968,7 +34001,7 @@
    },
    "probables": {
     "New Jersey Devils": "Connor Hellebuyck",
-    "Columbus Blue Jackets": "Jet Greaves"
+    "Columbus Blue Jackets": "Cam Talbot"
    },
    "injuries": {
     "New Jersey Devils": [
@@ -34050,8 +34083,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 110,
-      "under": -130
+      "over": 114,
+      "under": -135
      },
      "ml": {
       "home": -205,
@@ -34090,6 +34123,12 @@
     "line": 6.5,
     "odds": 110,
     "fair": 0.4573
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "line": 6.5,
+    "odds": 114,
+    "fair": 0.4486
    }
   ],
   "dk": {
@@ -34101,11 +34140,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 110,
-    "fair": 0.4572564612326044
+    "odds": 114,
+    "fair": 0.448558885283451
    },
-   "moved": "toward",
-   "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
+   "moved": null,
+   "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -34130,15 +34169,14 @@
    ],
    "risks": [
     "Projected total 6.4 against 6.5.",
-    "At current prices our edge is 2.3 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.",
+    "At current prices our edge is 2.1 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.",
     "Scorers out: Anthony Mantha (RW), neck; Johnathan Kovacevic (D), ankle; Seamus Casey (D), knee and 1 more. Fewer healthy scorers leans under."
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 44.7% (-0.8 points against the best price). For reference only.",
-    "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
     "Market: The market (3 books) opened 7.5 (+134), now 6 (-104), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
-    "Probable pitchers: Devils Connor Hellebuyck · Jackets Jet Greaves.",
+    "Probable pitchers: Devils Connor Hellebuyck · Jackets Cam Talbot.",
     "Records: Columbus Blue Jackets 9-12-0 · New Jersey Devils 15-8-0 · Prudential Center, Newark."
    ],
    "verdict": "More working against this one than for it; size down."
@@ -34147,18 +34185,18 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "1VywD7W1TMU7LQWd9SOX",
-   "at": "2026-11-23T14:10:11.068Z",
+   "at": "2026-11-23T20:36:56.852Z",
    "books": {
-    "DraftKings": 110,
-    "FanDuel": 108,
-    "ESPN BET": 115
+    "DraftKings": 114,
+    "FanDuel": 112,
+    "PointsBet": 115
    },
    "n": 3,
    "best": {
-    "book": "ESPN BET",
+    "book": "PointsBet",
     "odds": 115
    },
-   "fair": 0.4542,
+   "fair": 0.4477,
    "fairBooks": 3,
    "vendor": {
     "line": 6,
@@ -34177,7 +34215,7 @@
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-23T14:10:11.068Z",
+  "pricesAt": "2026-11-23T20:36:56.852Z",
   "sgoHistory": [
    {
     "at": "2026-11-22T20:36:38.543Z",
@@ -34196,16 +34234,25 @@
     "odds": -104,
     "best": 115,
     "n": 3
+   },
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "fair": 0.4477,
+    "vendorFair": 0.5098,
+    "line": 6,
+    "odds": -104,
+    "best": 115,
+    "n": 3
    }
   ],
   "movement": {
    "loggedOdds": 120,
    "loggedFair": 0.488,
-   "currentOdds": 115,
-   "currentBook": "theScore Bet",
-   "currentFair": 0.4548,
-   "currentEdge": 0.0233,
-   "checkedAt": "2026-11-23T14:10:11.068Z",
+   "currentOdds": 114,
+   "currentBook": "DraftKings",
+   "currentFair": 0.4491,
+   "currentEdge": 0.0211,
+   "checkedAt": "2026-11-23T20:36:56.852Z",
    "history": [
     {
      "at": "2026-11-22T20:36:38.543Z",
@@ -34216,6 +34263,11 @@
      "at": "2026-11-23T14:10:11.068Z",
      "odds": 115,
      "fair": 0.4548
+    },
+    {
+     "at": "2026-11-23T20:36:56.852Z",
+     "odds": 114,
+     "fair": 0.4491
     }
    ]
   }
@@ -34224,10 +34276,1055 @@
   "type": "day",
   "id": "day-2026-11-23",
   "date": "2026-11-23",
-  "checkedAt": "2026-11-23T14:12:38.003Z",
-  "closedAt": null,
-  "candidates": 7,
-  "leans": 1,
-  "props": 6
+  "checkedAt": "2026-11-23T20:40:00.044Z",
+  "closedAt": "2026-11-23T20:40:00.044Z",
+  "candidates": 99,
+  "leans": 3,
+  "props": 96
+ },
+ {
+  "key": "6caeb7cce7c8340fed588f3badd83fe0|h2h|Phoenix Suns|null",
+  "id": "6caeb7cce7-h2h-Phoenix-Suns",
+  "date": "2026-11-23",
+  "commence": "2026-11-24T01:10:00Z",
+  "sport": "NBA",
+  "league": "NBA",
+  "sportKey": "basketball_nba",
+  "eventId": "6caeb7cce7c8340fed588f3badd83fe0",
+  "home": "New Orleans Pelicans",
+  "away": "Phoenix Suns",
+  "event": "Phoenix Suns @ New Orleans Pelicans",
+  "market": "Moneyline",
+  "marketKey": "h2h",
+  "outcome": {
+   "name": "Phoenix Suns",
+   "point": null
+  },
+  "threeWay": false,
+  "pick": "Phoenix Suns ML",
+  "odds": -146,
+  "book": "FanDuel",
+  "prices": {
+   "FanDuel": -146,
+   "DraftKings": -155,
+   "BetOnline.ag": -150,
+   "BetMGM": -155,
+   "BetRivers": -167,
+   "theScore Bet": -155,
+   "Bovada": -150,
+   "Unibet": -167,
+   "Caesars": -150,
+   "PointsBet": -149,
+   "ESPN BET": -155
+  },
+  "books": 8,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.7119,
+  "edge": 0.1184,
+  "ev": 0.1995,
+  "confidence": "Lean",
+  "bar": 0.1073,
+  "past": 0.0111,
+  "barParts": {
+   "error": 0.1073,
+   "units": 3.93,
+   "unit": "points",
+   "gp": 15,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": -6.6,
+   "total": 232.7,
+   "sd": 14.3,
+   "sdTotal": 19,
+   "gp": 15,
+   "gpHome": 18,
+   "gpAway": 15,
+   "thin": false,
+   "parts": {
+    "ratingHome": -6.1,
+    "ratingAway": 0.4,
+    "lastHome": -4.5,
+    "lastAway": 1.5,
+    "homeEdge": 1.9,
+    "rest": -0.5,
+    "injuriesHome": -1.6,
+    "injuriesAway": 0,
+    "scoringOut": 0,
+    "pace": 232.7
+   },
+   "reasons": {
+    "for": [
+     "New Orleans Pelicans rate -6.1 a game over 18 (5-13), Phoenix Suns +0.4 over 15 (8-7); last season -4.5 and +1.5 a game",
+     "Phoenix Suns trending: last five +8 vs -0.9 on the season",
+     "Phoenix Suns are rested (3 days)",
+     "New Orleans Pelicans without Bennedict Mathurin (G), Dejounte Murray (G), Julian Reese (F) and 1 more (-1.6), out per the 3:30 PM ET official report",
+     "Projected margin +6.6 for Phoenix Suns"
+    ],
+    "against": [
+     "Home edge +1.9 for New Orleans Pelicans",
+     "New Orleans Pelicans have Zion Williamson (F) probable per the 3:30 PM ET official report (ESPN still lists him day-to-day)"
+    ]
+   }
+  },
+  "marketFair": 0.5758,
+  "marketEdge": -0.0177,
+  "rationale": "Our probability is 71.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.6 for the home side). FanDuel offers -146, which implies only 59.3%. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 57.6%.",
+  "factors": [
+   "Best price -146 at FanDuel",
+   "Probability 71.2% from game data, not other books",
+   "Edge 11.8 points over the price, 1.1 past its bar of 10.7",
+   "Market reference 57.6%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-23T20:36:56.852Z",
+  "availability": {
+   "posted": {
+    "read": "2026-11-23T20:36:56.852Z",
+    "report": {
+     "source": "NBA official injury report",
+     "label": "3:30 PM ET",
+     "at": "2026-11-23T20:30:00.000Z",
+     "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-23_03_30PM.pdf"
+    },
+    "onReport": {
+     "home": true,
+     "away": true
+    },
+    "home": [
+     {
+      "name": "Malik Dia",
+      "pos": "F",
+      "athleteId": "4712862",
+      "status": "Available",
+      "miss": 0,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "G League - Two-Way",
+      "played": null,
+      "cost": 0,
+      "full": 1.2
+     },
+     {
+      "name": "Bennedict Mathurin",
+      "pos": "G",
+      "athleteId": "4683634",
+      "status": "Out",
+      "miss": 1,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Left Plantar Fasciitis",
+      "played": 12,
+      "cost": 0.44,
+      "full": 0.44
+     },
+     {
+      "name": "Bryce McGowens",
+      "pos": "G",
+      "athleteId": "4576086",
+      "status": "Available",
+      "miss": 0,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Left Elbow Infection",
+      "played": null,
+      "cost": 0,
+      "full": 1.2
+     },
+     {
+      "name": "Trey Murphy III",
+      "pos": "F",
+      "athleteId": "4397688",
+      "status": "Available",
+      "miss": 0,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Bilateral Patellar Tendinopathy",
+      "played": null,
+      "cost": 0,
+      "full": 1.88
+     },
+     {
+      "name": "Dejounte Murray",
+      "pos": "G",
+      "athleteId": "3907497",
+      "status": "Out",
+      "miss": 1,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Left Ankle Sprain",
+      "played": 9,
+      "cost": 0.81,
+      "full": 0.81
+     },
+     {
+      "name": "Jaron Pierre Jr.",
+      "pos": "G",
+      "athleteId": "4703115",
+      "status": "Available",
+      "miss": 0,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "G League - Two-Way",
+      "played": null,
+      "cost": 0,
+      "full": 1.2
+     },
+     {
+      "name": "Julian Reese",
+      "pos": "F",
+      "athleteId": "4683742",
+      "status": "Out",
+      "miss": 1,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "G League - Two-Way",
+      "played": 6,
+      "cost": 0.04,
+      "full": 0.04
+     },
+     {
+      "name": "Trendon Watford",
+      "pos": "F",
+      "athleteId": "4431675",
+      "status": "Out",
+      "miss": 1,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Right Ankle Sprain",
+      "played": 6,
+      "cost": 0.29,
+      "full": 0.29
+     },
+     {
+      "name": "Zion Williamson",
+      "pos": "F",
+      "athleteId": "4395628",
+      "status": "Probable",
+      "miss": 0.04,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Left Thigh Contusion",
+      "played": 16,
+      "cost": 0,
+      "full": 2.31
+     }
+    ],
+    "away": [
+     {
+      "name": "Ryan Dunn",
+      "pos": null,
+      "athleteId": null,
+      "status": "Available",
+      "miss": 0,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Right Quad Soreness",
+      "played": 0,
+      "cost": 0,
+      "full": 0
+     },
+     {
+      "name": "Mark Williams",
+      "pos": "C",
+      "athleteId": "4701232",
+      "status": "Out",
+      "miss": 1,
+      "source": "official",
+      "at": "2026-11-23T20:30:00.000Z",
+      "report": "3:30 PM ET",
+      "reason": "Injury/Illness - Left Shoulder Surgery",
+      "played": 0,
+      "cost": 0,
+      "full": 0
+     }
+    ]
+   },
+   "changed": false,
+   "note": null,
+   "swing": null,
+   "changes": [],
+   "checkedAt": null
+  },
+  "current": {
+   "at": "2026-11-23T20:36:56.852Z",
+   "odds": -146,
+   "book": "FanDuel",
+   "fair": 0.5758,
+   "edge": 0.1184,
+   "modelProb": 0.7119,
+   "bar": 0.1073
+  },
+  "history": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "odds": -146,
+    "fair": 0.5758
+   }
+  ],
+  "context": {
+   "espnEventId": "401910042",
+   "venue": "Smoothie King Center, New Orleans",
+   "indoor": true,
+   "records": {
+    "New Orleans Pelicans": {
+     "overall": "5-13",
+     "home": "4-7",
+     "away": "1-6"
+    },
+    "Phoenix Suns": {
+     "overall": "8-7",
+     "home": "5-4",
+     "away": "3-3"
+    }
+   },
+   "probables": {},
+   "injuries": {
+    "New Orleans Pelicans": [
+     {
+      "name": "Zion Williamson",
+      "pos": "F",
+      "athleteId": "4395628",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395628.png",
+      "status": "Day-To-Day",
+      "type": "Thigh",
+      "detail": "Bruise",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-22T20:50Z",
+      "note": "Williamson (thigh) is probable for Monday's game against Phoenix."
+     },
+     {
+      "name": "Trendon Watford",
+      "pos": "F",
+      "athleteId": "4431675",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431675.png",
+      "status": "Out",
+      "type": "Ankle",
+      "detail": "Sprain",
+      "returnDate": "2026-11-27",
+      "date": "2026-11-21T18:21Z",
+      "note": "Watford (ankle) is out for Saturday's game against the Spurs."
+     },
+     {
+      "name": "Bennedict Mathurin",
+      "pos": "G",
+      "athleteId": "4683634",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4683634.png",
+      "status": "Out",
+      "type": "Foot",
+      "detail": "Plantar Fasciitis",
+      "returnDate": "2026-11-27",
+      "date": "2026-11-19T21:07Z",
+      "note": "Mathurin (foot) has been ruled out for Friday's game against the Thunder."
+     },
+     {
+      "name": "Dejounte Murray",
+      "pos": "G",
+      "athleteId": "3907497",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3907497.png",
+      "status": "Out",
+      "type": "Ankle",
+      "detail": "",
+      "returnDate": "2026-11-27",
+      "date": "2026-11-13T20:19Z",
+      "note": "Murray (ankle) is out for Friday's game against Memphis."
+     }
+    ],
+    "Phoenix Suns": [
+     {
+      "name": "Mark Williams",
+      "pos": "C",
+      "athleteId": "4701232",
+      "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701232.png",
+      "status": "Out",
+      "type": "Shoulder",
+      "detail": "Surgery",
+      "returnDate": "2027-02-03",
+      "date": "2026-09-11T16:03Z",
+      "note": "Williams underwent surgery Thursday to repair a torn labrum in his left shoulder and will miss an extended period of time, Shams Charania of ESPN reports."
+     }
+    ]
+   },
+   "rest": {
+    "New Orleans Pelicans": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-22",
+     "gamesLast7": 3
+    },
+    "Phoenix Suns": {
+     "restDays": 3,
+     "b2b": false,
+     "lastGame": "2026-11-21",
+     "gamesLast7": 3
+    }
+   },
+   "weather": null,
+   "broadcast": "Suns Live, Arizona's Family 3TV",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": 3.5,
+     "spreadOdds": {
+      "home": -115,
+      "away": -105
+     },
+     "total": 232.5,
+     "totalOdds": {
+      "over": -113,
+      "under": -107
+     },
+     "ml": {
+      "home": 131,
+      "away": -155
+     },
+     "draw": null
+    },
+    "open": {
+     "spread": 3.5,
+     "spreadOdds": {
+      "home": -110,
+      "away": -110
+     },
+     "total": 232.5,
+     "totalOdds": {
+      "over": -110,
+      "under": -110
+     },
+     "ml": {
+      "home": 125,
+      "away": -149
+     },
+     "draw": null
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "line": null,
+    "odds": -155,
+    "fair": 0.584
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": null,
+    "odds": -149,
+    "fair": 0.5738125802310654
+   },
+   "now": {
+    "line": null,
+    "odds": -155,
+    "fair": 0.5840469782236358
+   },
+   "moved": "toward",
+   "label": "DraftKings opened -149, now -155"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 8,
+   "open": {
+    "line": null,
+    "odds": -133
+   },
+   "now": {
+    "line": null,
+    "odds": -139
+   },
+   "moved": "toward",
+   "label": "The market (8 books) opened -133, now -139"
+  },
+  "breakdown": {
+   "tier": "Lean",
+   "tierWhy": "Our probability for this side is 71.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 59.3%, so the edge is 11.8 points. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability is 71.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.6 for the home side). FanDuel offers -146, which implies only 59.3%. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 57.6%.",
+   "support": [
+    "New Orleans Pelicans rate -6.1 a game over 18 (5-13), Phoenix Suns +0.4 over 15 (8-7); last season -4.5 and +1.5 a game.",
+    "Phoenix Suns trending: last five +8 vs -0.9 on the season.",
+    "Phoenix Suns are rested (3 days).",
+    "New Orleans Pelicans without Bennedict Mathurin (G), Dejounte Murray (G), Julian Reese (F) and 1 more (-1.6), out per the 3:30 PM ET official report.",
+    "Projected margin +6.6 for Phoenix Suns."
+   ],
+   "risks": [
+    "Home edge +1.9 for New Orleans Pelicans.",
+    "New Orleans Pelicans have Zion Williamson (F) probable per the 3:30 PM ET official report (ESPN still lists him day-to-day)."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 57.6% (-1.8 points against the best price). For reference only.",
+    "Market: DraftKings opened -149, now -155, moving toward this side since the open.",
+    "Market: The market (8 books) opened -133, now -139, the consensus moving toward this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Records: Phoenix Suns 8-7 · New Orleans Pelicans 5-13 · Smoothie King Center, New Orleans."
+   ],
+   "verdict": "The game data lines up behind this side at this price."
+  },
+  "sgoEventId": "BGOE4sI3LmHglWz4njIh",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "BGOE4sI3LmHglWz4njIh",
+   "at": "2026-11-23T20:36:56.852Z",
+   "books": {
+    "FanDuel": -146,
+    "Unibet": -167,
+    "Caesars": -150,
+    "DraftKings": -155,
+    "BetMGM": -155,
+    "PointsBet": -149,
+    "ESPN BET": -155,
+    "Bovada": -150
+   },
+   "n": 8,
+   "best": {
+    "book": "FanDuel",
+    "odds": -146
+   },
+   "fair": 0.5808,
+   "fairBooks": 8,
+   "vendor": {
+    "line": null,
+    "odds": -139,
+    "fair": 0.5816,
+    "sameLine": true
+   },
+   "open": {
+    "line": null,
+    "odds": -133
+   },
+   "now": {
+    "line": null,
+    "odds": -139
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-23T20:36:56.852Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "fair": 0.5808,
+    "vendorFair": 0.5816,
+    "line": null,
+    "odds": -139,
+    "best": -146,
+    "n": 8
+   }
+  ],
+  "potd": "2026-11-23",
+  "potdAt": "2026-11-23T20:40:00.044Z"
+ },
+ {
+  "key": "3a60ed1d20004aa4d4772b2c1a2272e7|h2h|Washington Commanders|null",
+  "id": "3a60ed1d20-h2h-Washington-Commanders",
+  "date": "2026-11-23",
+  "commence": "2026-11-24T01:15:00Z",
+  "sport": "NFL",
+  "league": "NFL",
+  "sportKey": "americanfootball_nfl",
+  "eventId": "3a60ed1d20004aa4d4772b2c1a2272e7",
+  "home": "Washington Commanders",
+  "away": "Cincinnati Bengals",
+  "event": "Cincinnati Bengals @ Washington Commanders",
+  "market": "Moneyline",
+  "marketKey": "h2h",
+  "outcome": {
+   "name": "Washington Commanders",
+   "point": null
+  },
+  "threeWay": false,
+  "pick": "Washington Commanders ML",
+  "odds": 250,
+  "book": "BetOnline.ag",
+  "prices": {
+   "DraftKings": 245,
+   "FanDuel": 235,
+   "BetOnline.ag": 250,
+   "BetRivers": 235,
+   "theScore Bet": 240,
+   "BetMGM": 240,
+   "Bovada": 245,
+   "Caesars": 240,
+   "Unibet": 235,
+   "PointsBet": 240,
+   "ESPN BET": 240
+  },
+  "books": 8,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.4028,
+  "edge": 0.1171,
+  "ev": 0.4098,
+  "confidence": "Lean",
+  "bar": 0.1083,
+  "past": 0.0088,
+  "barParts": {
+   "error": 0.1083,
+   "units": 4.09,
+   "unit": "points",
+   "gp": 9,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": -3.5,
+   "total": 48.3,
+   "sd": 13.3,
+   "sdTotal": 13.4,
+   "gp": 9,
+   "gpHome": 9,
+   "gpAway": 9,
+   "thin": false,
+   "parts": {
+    "ratingHome": -2.1,
+    "ratingAway": 2.8,
+    "lastHome": -5.6,
+    "lastAway": -4.6,
+    "homeEdge": 2.146,
+    "rest": 0.5,
+    "injuriesHome": -0.9,
+    "injuriesAway": 2.1,
+    "scoringOut": 0,
+    "pace": 49.4,
+    "model": "nflverse",
+    "epaHome": -0.021,
+    "epaAway": 0.097,
+    "epaPoints": -1.4,
+    "qbPoints": -1.1,
+    "qbHome": "Jayden Daniels",
+    "qbAway": "Joe Burrow",
+    "marginSd": 4.09
+   },
+   "reasons": {
+    "for": [
+     "Home edge +2.1 for Washington Commanders",
+     "Washington Commanders rested longer (11 days against 8, +0.5)",
+     "Cincinnati Bengals without Jalen Davis (CB), Dalton Risner (G), Andrei Iosivas (WR) and 2 more (+2.1)"
+    ],
+    "against": [
+     "Washington Commanders rate -2.1 and Cincinnati Bengals +2.8 points a game against their schedules (this season's results, last season carried over); EPA a play -0.02 and +0.1 net of defence (nflverse)",
+     "Joe Burrow starts for Cincinnati Bengals: +0.11 EPA a dropback against +0.06 behind their numbers (+1.6 points)",
+     "Washington Commanders without Jacory Croskey-Merritt (RB) (-0.9)",
+     "Projected margin -3.5 for Washington Commanders"
+    ]
+   }
+  },
+  "marketFair": 0.28,
+  "marketEdge": -0.0057,
+  "rationale": "Our probability is 40.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -3.5 for the home side). BetOnline.ag offers +250, which implies only 28.6%. Its bar is 10.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.09 points on the margin). It clears it by 0.9. Not graded against other books' prices; for reference the market makes it 28.0%.",
+  "factors": [
+   "Best price +250 at BetOnline.ag",
+   "Probability 40.3% from game data, not other books",
+   "Edge 11.7 points over the price, 0.9 past its bar of 10.8",
+   "Market reference 28.0%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-23T20:36:56.852Z",
+  "availability": null,
+  "current": {
+   "at": "2026-11-23T20:36:56.852Z",
+   "odds": 250,
+   "book": "BetOnline.ag",
+   "fair": 0.28,
+   "edge": 0.1171,
+   "modelProb": 0.4028,
+   "bar": 0.1083
+  },
+  "history": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "odds": 250,
+    "fair": 0.28
+   }
+  ],
+  "context": {
+   "espnEventId": "401873078",
+   "venue": "Northwest Stadium, Landover",
+   "indoor": false,
+   "records": {
+    "Washington Commanders": {
+     "overall": "3-5-1",
+     "home": "2-2-1",
+     "away": "1-3"
+    },
+    "Cincinnati Bengals": {
+     "overall": "7-2",
+     "home": "3-1",
+     "away": "4-1"
+    }
+   },
+   "probables": {},
+   "injuries": {
+    "Washington Commanders": [
+     {
+      "name": "Jacory Croskey-Merritt",
+      "pos": "RB",
+      "athleteId": "4575131",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4575131.png",
+      "status": "Injured Reserve",
+      "type": "Groin",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-23T20:24Z",
+      "note": "Croskey-Merritt (groin) remains listed as questionable for Monday's game against the Bengals but \"is looking good\" to return from injured reserve and play, John"
+     },
+     {
+      "name": "Lucas Patrick",
+      "pos": "G",
+      "athleteId": "2576736",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/2576736.png",
+      "status": "Questionable",
+      "type": "Concussion",
+      "detail": "Concussion",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-22T00:59Z",
+      "note": "Patrick (concussion) is questionable for Monday's game against the Bengals."
+     },
+     {
+      "name": "Amik Robertson",
+      "pos": "CB",
+      "athleteId": "4239694",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4239694.png",
+      "status": "Questionable",
+      "type": "Ankle",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-22T00:26Z",
+      "note": "Robertson (ankle) is listed as questionable for Monday's game against the Bengals."
+     },
+     {
+      "name": "Rachaad White",
+      "pos": "RB",
+      "athleteId": "4697815",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4697815.png",
+      "status": "Questionable",
+      "type": "Heel",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-21T21:21Z",
+      "note": "White (heel) is listed as questionable for Monday's game versus the Bengals."
+     },
+     {
+      "name": "Laremy Tunsil",
+      "pos": "OT",
+      "athleteId": "3051890",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3051890.png",
+      "status": "Injured Reserve",
+      "type": "Triceps",
+      "detail": "Surgery",
+      "returnDate": "2026-12-20",
+      "date": "2026-11-21T00:56Z",
+      "note": "Tunsil (triceps) is progressing well in his recovery but is not expected to return by the end of the 2026 regular season, Tashan Reed of The Washington Post rep"
+     }
+    ],
+    "Cincinnati Bengals": [
+     {
+      "name": "Jalen Davis",
+      "pos": "CB",
+      "athleteId": "3125356",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3125356.png",
+      "status": "Injured Reserve",
+      "type": "Hamstring",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-29",
+      "date": "2026-11-23T16:23Z",
+      "note": "The Bengals list Davis (hamstring) as doubtful for Monday's game against the Commanders."
+     },
+     {
+      "name": "Kyle Dugger",
+      "pos": "S",
+      "athleteId": "4401811",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4401811.png",
+      "status": "Questionable",
+      "type": "Quadriceps",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-22T00:54Z",
+      "note": "Dugger (quadriceps) is questionable for Monday night's game against the Commanders."
+     },
+     {
+      "name": "Dalton Risner",
+      "pos": "G",
+      "athleteId": "3125082",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3125082.png",
+      "status": "Out",
+      "type": "Knee",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-29",
+      "date": "2026-11-22T00:42Z",
+      "note": "Risner (knees) has been ruled out for Monday's game against the Commanders, Mike Petraglia of CLNSCincy.com reports."
+     },
+     {
+      "name": "Dax Hill",
+      "pos": "CB",
+      "athleteId": "4426422",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4426422.png",
+      "status": "Questionable",
+      "type": "Illness",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-22T00:17Z",
+      "note": "Hill (illness) is listed as questionable for Monday's game against the Commanders."
+     },
+     {
+      "name": "Andrei Iosivas",
+      "pos": "WR",
+      "athleteId": "4368003",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4368003.png",
+      "status": "Injured Reserve",
+      "type": "Thumb",
+      "detail": "Surgery",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-21T21:54Z",
+      "note": "Iosivas (thumb) is listed as doubtful for Monday's game against the Commanders."
+     },
+     {
+      "name": "Oren Burks",
+      "pos": "LB",
+      "athleteId": "3051746",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3051746.png",
+      "status": "Injured Reserve",
+      "type": "Groin",
+      "detail": "Not Specified",
+      "returnDate": "2026-12-20",
+      "date": "2026-11-21T19:53Z",
+      "note": "The Bengals placed Burks (groin) on injured reserve Saturday."
+     },
+     {
+      "name": "Swayze Bozeman",
+      "pos": "LB",
+      "athleteId": "4570546",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4570546.png",
+      "status": "Injured Reserve",
+      "type": "Forearm",
+      "detail": "Fracture",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-20T01:56Z",
+      "note": "The Bengals designated Bozeman (forearm) for return from injured reserve Thursday."
+     },
+     {
+      "name": "Dylan Fairchild",
+      "pos": "G",
+      "athleteId": "4646773",
+      "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4646773.png",
+      "status": "Questionable",
+      "type": "Oblique",
+      "detail": "Not Specified",
+      "returnDate": "2026-11-23",
+      "date": "2026-11-19T21:30Z",
+      "note": "questionable"
+     }
+    ]
+   },
+   "rest": {
+    "Washington Commanders": {
+     "restDays": 11,
+     "b2b": false,
+     "lastGame": "2026-11-13",
+     "gamesLast7": 0
+    },
+    "Cincinnati Bengals": {
+     "restDays": 8,
+     "b2b": false,
+     "lastGame": "2026-11-16",
+     "gamesLast7": 0
+    }
+   },
+   "weather": {
+    "summary": "Overcast",
+    "tempF": 55,
+    "source": "Open-Meteo",
+    "city": "Landover, MD, USA",
+    "windMph": 9,
+    "precipPct": 6
+   },
+   "broadcast": "ESPN",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": 6,
+     "spreadOdds": {
+      "home": 100,
+      "away": -120
+     },
+     "total": 54.5,
+     "totalOdds": {
+      "over": -113,
+      "under": -106
+     },
+     "ml": {
+      "home": 245,
+      "away": -300
+     },
+     "draw": null
+    },
+    "open": {
+     "spread": 1.5,
+     "spreadOdds": {
+      "home": -110,
+      "away": -110
+     },
+     "total": 52.5,
+     "totalOdds": {
+      "over": -110,
+      "under": -110
+     },
+     "ml": {
+      "home": 105,
+      "away": -125
+     },
+     "draw": null
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "line": null,
+    "odds": 245,
+    "fair": 0.2787
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": null,
+    "odds": 105,
+    "fair": 0.4675324675324675
+   },
+   "now": {
+    "line": null,
+    "odds": 245,
+    "fair": 0.2787456445993032
+   },
+   "moved": "away",
+   "label": "DraftKings opened +105, now +245"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 8,
+   "open": {
+    "line": null,
+    "odds": 108
+   },
+   "now": {
+    "line": null,
+    "odds": 255
+   },
+   "moved": "away",
+   "label": "The market (8 books) opened +108, now +255"
+  },
+  "breakdown": {
+   "tier": "Lean",
+   "tierWhy": "Our probability for this side is 40.3%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 28.6%, so the edge is 11.7 points. Its bar is 10.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.09 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.9 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability is 40.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -3.5 for the home side). BetOnline.ag offers +250, which implies only 28.6%. Its bar is 10.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.09 points on the margin). It clears it by 0.9. Not graded against other books' prices; for reference the market makes it 28.0%.",
+   "support": [
+    "Home edge +2.1 for Washington Commanders.",
+    "Washington Commanders rested longer (11 days against 8, +0.5).",
+    "Cincinnati Bengals without Jalen Davis (CB), Dalton Risner (G), Andrei Iosivas (WR) and 2 more (+2.1)."
+   ],
+   "risks": [
+    "Washington Commanders rate -2.1 and Cincinnati Bengals +2.8 points a game against their schedules (this season's results, last season carried over); EPA a play -0.02 and +0.1 net of defence (nflverse).",
+    "Joe Burrow starts for Cincinnati Bengals: +0.11 EPA a dropback against +0.06 behind their numbers (+1.6 points).",
+    "Washington Commanders without Jacory Croskey-Merritt (RB) (-0.9).",
+    "Projected margin -3.5 for Washington Commanders."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 28.0% (-0.6 points against the best price). For reference only.",
+    "Market: DraftKings opened +105, now +245, moving against this side since the open.",
+    "Market: The market (8 books) opened +108, now +255, the consensus moving against this side since the open.",
+    "Weather at kickoff: Overcast, 55°F, wind 9 mph, 6% rain.",
+    "Records: Cincinnati Bengals 7-2 · Washington Commanders 3-5-1 · Northwest Stadium, Landover."
+   ],
+   "verdict": "More working against this one than for it; size down."
+  },
+  "sgoEventId": "avhtHb36ro0H50HWjaoq",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "avhtHb36ro0H50HWjaoq",
+   "at": "2026-11-23T20:36:56.852Z",
+   "books": {
+    "DraftKings": 245,
+    "Caesars": 240,
+    "FanDuel": 235,
+    "Unibet": 235,
+    "PointsBet": 240,
+    "ESPN BET": 240,
+    "BetMGM": 240,
+    "Bovada": 245
+   },
+   "n": 8,
+   "best": {
+    "book": "DraftKings",
+    "odds": 245
+   },
+   "fair": 0.2824,
+   "fairBooks": 8,
+   "vendor": {
+    "line": null,
+    "odds": 255,
+    "fair": 0.2817,
+    "sameLine": true
+   },
+   "open": {
+    "line": null,
+    "odds": 108
+   },
+   "now": {
+    "line": null,
+    "odds": 255
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-23T20:36:56.852Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-23T20:36:56.852Z",
+    "fair": 0.2824,
+    "vendorFair": 0.2817,
+    "line": null,
+    "odds": 255,
+    "best": 245,
+    "n": 8
+   }
+  ]
+ },
+ {
+  "type": "parlay",
+  "id": "parlay-2026-11-23",
+  "date": "2026-11-23",
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-23T20:40:00.044Z",
+  "book": "FanDuel",
+  "legs": [
+   "6caeb7cce7-h2h-Phoenix-Suns",
+   "d127e1e72a-totals-Over"
+  ],
+  "legPrices": [
+   -146,
+   -115
+  ],
+  "decimal": 3.1501,
+  "odds": 215,
+  "fairProb": 0.4155,
+  "ev": 0.309
  }
 ]

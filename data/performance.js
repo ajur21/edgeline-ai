@@ -533,7 +533,7 @@ window.PERF_DATA = {
       "units": 13.73,
       "n": 71,
       "roi": 19.3,
-      "pending": 2,
+      "pending": 4,
       "since": "2026-11-05"
     },
     "price": {
