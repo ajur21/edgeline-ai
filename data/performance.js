@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-22",
+  "asOf": "2026-11-23",
   "windowDays": 30,
   "record": {
-    "wins": 35,
+    "wins": 39,
     "losses": 32,
     "pushes": 0
   },
-  "units": 7.31,
-  "roi": 10.9,
-  "avgEdge": 8.6,
-  "graded": 67,
+  "units": 13.73,
+  "roi": 19.3,
+  "avgEdge": 8.5,
+  "graded": 71,
   "daily": [
     {
       "date": "2026-11-05",
@@ -76,14 +76,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-22",
-      "units": 7.31
+      "units": 13.73
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 7.01,
-      "record": "25-17"
+      "units": 8.75,
+      "record": "27-17"
     },
     {
       "sport": "NBA",
@@ -92,8 +92,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 6.15,
-      "record": "8-7"
+      "units": 10.83,
+      "record": "10-7"
     },
     {
       "sport": "NFL",
@@ -102,6 +102,66 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-22",
+      "sport": "Soccer",
+      "event": "Vancouver Whitecaps FC vs. Real Salt Lake",
+      "pick": "Under 3.5 goals",
+      "odds": -128,
+      "result": "Win",
+      "units": 0.78,
+      "clv": -0.0351,
+      "closeOdds": -125,
+      "closeLine": 3.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-22",
+      "sport": "NHL",
+      "event": "Edmonton Oilers @ St Louis Blues",
+      "pick": "Over 6",
+      "odds": -110,
+      "result": "Win",
+      "units": 0.91,
+      "clv": null,
+      "closeOdds": -122,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": "away",
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-22",
+      "sport": "NHL",
+      "event": "Pittsburgh Penguins @ Dallas Stars",
+      "pick": "Pittsburgh Penguins +1.5",
+      "odds": -120,
+      "result": "Win",
+      "units": 0.83,
+      "clv": -0.0028,
+      "closeOdds": -130,
+      "closeLine": 1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-22",
+      "sport": "Soccer",
+      "event": "Chicago Fire vs. Charlotte FC",
+      "pick": "Charlotte FC ML",
+      "odds": 390,
+      "result": "Win",
+      "units": 3.9,
+      "clv": -0.0193,
+      "closeOdds": 400,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-22",
       "sport": "NFL",
@@ -221,66 +281,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "Soccer",
-      "event": "Tottenham Hotspur vs. Ipswich Town",
-      "pick": "Ipswich Town ML",
-      "odds": 510,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0054,
-      "closeOdds": 500,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "Soccer",
-      "event": "Manchester City vs. Fulham",
-      "pick": "Under 3.5 goals",
-      "odds": -121,
-      "result": "Win",
-      "units": 0.83,
-      "clv": 0.0124,
-      "closeOdds": -145,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NHL",
-      "event": "Dallas Stars @ Vegas Golden Knights",
-      "pick": "Over 5.5",
-      "odds": -110,
-      "result": "Win",
-      "units": 0.91,
-      "clv": -0.0281,
-      "closeOdds": -108,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-19",
-      "sport": "NFL",
-      "event": "Indianapolis Colts @ Houston Texans",
-      "pick": "Indianapolis Colts ML",
-      "odds": 590,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0074,
-      "closeOdds": 531,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -391,8 +391,8 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-22",
-      "units": 4.6,
-      "wins": 1,
+      "units": 11.02,
+      "wins": 5,
       "losses": 1,
       "pushes": 0
     }
@@ -509,31 +509,31 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 2,
-    "losses": 13,
+    "losses": 14,
     "pushes": 0,
-    "units": -7.55,
-    "n": 15
+    "units": -8.55,
+    "n": 16
   },
   "clv": {
-    "n": 60,
-    "avg": -0.89,
+    "n": 63,
+    "avg": -0.93,
     "beat": 20,
-    "beatPct": 33.3,
-    "graded": 67,
+    "beatPct": 31.7,
+    "graded": 71,
     "lineToward": 2,
-    "lineAway": 5,
-    "espnCloses": 67,
+    "lineAway": 6,
+    "espnCloses": 71,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 35,
+      "wins": 39,
       "losses": 32,
       "pushes": 0,
-      "units": 7.31,
-      "n": 67,
-      "roi": 10.9,
-      "pending": 6,
+      "units": 13.73,
+      "n": 71,
+      "roi": 19.3,
+      "pending": 2,
       "since": "2026-11-05"
     },
     "price": {

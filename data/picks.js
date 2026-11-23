@@ -3,181 +3,35 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-22T20:36:38.543Z",
-  "trackedAt": "2026-11-23T01:33:36.687Z",
-  "playOfDay": {
-    "kind": "prop",
-    "id": "prop-NFL-401873075-4686658-recYds-under-9.5",
-    "sport": "NFL",
-    "league": "NFL",
-    "sportKey": "americanfootball_nfl",
-    "event": "Las Vegas Raiders @ Denver Broncos",
-    "home": "Denver Broncos",
-    "away": "Las Vegas Raiders",
-    "gameId": "401873075",
-    "commence": "2026-11-22T21:25:00.000Z",
-    "start": "Today 4:25 PM ET",
-    "market": "Receiving yards",
-    "pick": "Mike Washington Jr. under 9.5 receiving yards",
-    "odds": -107,
-    "book": "DraftKings",
-    "prices": {
-      "DraftKings": -107,
-      "Caesars": -114,
-      "FanDuel": -113,
-      "Bovada": -111,
-      "ESPN BET": -110,
-      "BetMGM": -110
-    },
-    "pricesAt": "2026-11-22T14:08:54.621Z",
-    "modelProb": 0.6249,
-    "statedProb": 0.8579,
-    "keep": 0.3489,
-    "checkedOn": 293,
-    "ev": 0.2088,
-    "confidence": "High",
-    "basis": "game",
-    "player": {
-      "id": "4686658",
-      "name": "Mike Washington Jr.",
-      "pos": "RB",
-      "teamId": "13",
-      "teamAbbr": "LV",
-      "oppAbbr": "DEN",
-      "home": false,
-      "headshot": null
-    },
-    "stat": "recYds",
-    "statLabel": "Receiving yards",
-    "statShort": "REC YDS",
-    "side": "under",
-    "line": 9.5,
-    "l10": [
-      10,
-      10
-    ],
-    "proj": 3,
-    "reasons": [
-      "Stayed under 9.5 in 10 of the last 10",
-      "Projects 3 (0.7 targets a game at 4.6 yards a target, -3% on the road; season 1.5)",
-      "Backup quarterback expected (Kirk Cousins, not on the roster): receivers' yards ran 4% lower in 2025's backup starts"
-    ],
-    "status": "graded",
-    "started": true,
-    "result": "Win",
-    "units": 0.93,
-    "actual": 0,
-    "voidReason": null,
-    "score": null,
-    "loggedAt": "2026-11-22T14:09:45.827Z",
-    "lockedAt": "2026-11-22T14:09:45.827Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-22",
-    "date": "2026-11-22",
-    "book": "ESPN BET",
-    "odds": 232,
-    "decimal": 3.3232,
-    "fairProb": 0.3864,
-    "ev": 0.2842,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-22T14:09:45.827Z",
-    "legs": [
-      {
-        "id": "prop-NFL-401873075-4686658-recYds-under-9.5",
-        "kind": "prop",
-        "pick": "Mike Washington Jr. under 9.5 receiving yards",
-        "event": "Las Vegas Raiders @ Denver Broncos",
-        "sport": "NFL",
-        "price": -110,
-        "commence": "2026-11-22T21:25:00.000Z",
-        "started": true,
-        "result": "Win",
-        "void": false,
-        "league": "NFL",
-        "sportKey": "americanfootball_nfl",
-        "home": "Denver Broncos",
-        "away": "Las Vegas Raiders",
-        "gameId": "401873075",
-        "player": {
-          "id": "4686658",
-          "name": "Mike Washington Jr.",
-          "pos": "RB",
-          "teamId": "13",
-          "teamAbbr": "LV",
-          "oppAbbr": "DEN",
-          "home": false,
-          "headshot": null
-        },
-        "stat": "recYds",
-        "statShort": "REC YDS",
-        "side": "under",
-        "line": 9.5,
-        "modelProb": 0.6249,
-        "actual": 0
-      },
-      {
-        "id": "prop-NFL-401873077-3886598-rec-under-2.5",
-        "kind": "prop",
-        "pick": "Jauan Jennings under 2.5 receptions",
-        "event": "Minnesota Vikings @ San Francisco 49ers",
-        "sport": "NFL",
-        "price": -135,
-        "commence": "2026-11-23T01:20:00.000Z",
-        "started": true,
-        "result": null,
-        "void": false,
-        "league": "NFL",
-        "sportKey": "americanfootball_nfl",
-        "home": "San Francisco 49ers",
-        "away": "Minnesota Vikings",
-        "gameId": "401873077",
-        "player": {
-          "id": "3886598",
-          "name": "Jauan Jennings",
-          "pos": "WR",
-          "teamId": "16",
-          "teamAbbr": "MIN",
-          "oppAbbr": "SF",
-          "home": false,
-          "headshot": null
-        },
-        "stat": "rec",
-        "statShort": "REC",
-        "side": "under",
-        "line": 2.5,
-        "modelProb": 0.6184,
-        "actual": null
-      }
-    ]
-  },
+  "trackedAt": "2026-11-23T06:40:58.271Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-22",
-    "lockAt": "2026-11-22T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-22T20:39:38.640Z",
+    "date": "2026-11-23",
+    "lockAt": "2026-11-23T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-21",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Chicago Blackhawks @ Calgary Flames",
-        "pick": "Over 5.5",
-        "odds": -120,
+        "date": "2026-11-22",
+        "kind": "prop",
+        "sport": "NFL",
+        "event": "Las Vegas Raiders @ Denver Broncos",
+        "pick": "Mike Washington Jr. under 9.5 receiving yards",
+        "odds": -107,
         "status": "graded",
         "result": "Win",
-        "units": 0.83
+        "units": 0.93
       },
       "parlay": {
-        "date": "2026-11-21",
+        "date": "2026-11-22",
         "legs": 2,
-        "odds": 243,
+        "odds": 232,
         "status": "graded",
-        "result": "Win",
-        "units": 2.43
+        "result": "Loss",
+        "units": -1
       }
     }
   },
@@ -196,7 +50,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-24T00:40:00Z",
-      "start": "Tomorrow 7:40 PM ET",
+      "start": "Today 7:40 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -122,
@@ -548,7 +402,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-24T00:10:00Z",
-      "start": "Tomorrow 7:10 PM ET",
+      "start": "Today 7:10 PM ET",
       "market": "Total",
       "pick": "Over 6.5",
       "odds": 120,
@@ -619,6 +473,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 44.7% (-0.8 points against the best price). For reference only.",
+          "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
           "Market: The market (3 books) opened 7.5 (+134), now 6 (-103), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Devils Connor Hellebuyck · Jackets Jet Greaves.",
@@ -726,8 +581,8 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 114,
-              "under": -135
+              "over": 110,
+              "under": -130
             },
             "ml": {
               "home": -205,
@@ -764,11 +619,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6.5,
-          "odds": 114,
-          "fair": 0.448558885283451
+          "odds": 110,
+          "fair": 0.4572564612326044
         },
-        "moved": null,
-        "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
+        "moved": "toward",
+        "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
       },
       "dkHistory": [
         {
@@ -776,6 +631,12 @@ window.PICKS_DATA = {
           "line": 6.5,
           "odds": 114,
           "fair": 0.4486
+        },
+        {
+          "at": "2026-11-23T06:40:58.271Z",
+          "line": 6.5,
+          "odds": 110,
+          "fair": 0.4573
         }
       ],
       "mkt": {
@@ -855,7 +716,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-22T14:00:00Z",
-      "start": "Today 9:00 AM ET",
+      "start": "Yesterday 9:00 AM ET",
       "market": "Moneyline",
       "pick": "Hull City ML",
       "odds": 560,
@@ -1091,7 +952,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-22T18:00:00Z",
-      "start": "Today 1:00 PM ET",
+      "start": "Yesterday 1:00 PM ET",
       "market": "Moneyline",
       "pick": "Arizona Cardinals ML",
       "odds": 1000,
@@ -1582,7 +1443,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-22T23:30:00Z",
-      "start": "Today 6:30 PM ET",
+      "start": "Yesterday 6:30 PM ET",
       "market": "Moneyline",
       "pick": "Charlotte FC ML",
       "odds": 390,
@@ -1867,11 +1728,14 @@ window.PICKS_DATA = {
           "n": 7
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 3.9,
+      "score": {
+        "home": 1,
+        "away": 2
+      },
       "loggedAt": "2026-11-22T00:35:54.581Z",
       "valueTo": 330,
       "bar": 0.0643,
@@ -1908,7 +1772,7 @@ window.PICKS_DATA = {
         "point": 1.5
       },
       "commence": "2026-11-23T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Puck line",
       "pick": "Pittsburgh Penguins +1.5",
       "odds": -120,
@@ -2338,11 +2202,14 @@ window.PICKS_DATA = {
           "n": 6
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.83,
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "loggedAt": "2026-11-21T20:25:35.800Z",
       "valueTo": -120,
       "bar": 0.0651,
@@ -2379,7 +2246,7 @@ window.PICKS_DATA = {
         "point": 6
       },
       "commence": "2026-11-23T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Total",
       "pick": "Over 6",
       "odds": -110,
@@ -2769,11 +2636,14 @@ window.PICKS_DATA = {
           "n": 3
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.91,
+      "score": {
+        "home": 5,
+        "away": 4
+      },
       "loggedAt": "2026-11-22T14:06:59.604Z",
       "valueTo": -111,
       "bar": 0.03,
@@ -2810,7 +2680,7 @@ window.PICKS_DATA = {
         "point": 3.5
       },
       "commence": "2026-11-23T01:30:00Z",
-      "start": "Today 8:30 PM ET",
+      "start": "Yesterday 8:30 PM ET",
       "market": "Total",
       "pick": "Under 3.5 goals",
       "odds": -128,
@@ -3079,11 +2949,14 @@ window.PICKS_DATA = {
           "n": 2
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.78,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
       "loggedAt": "2026-11-22T00:35:54.581Z",
       "valueTo": -129,
       "bar": 0.0395,

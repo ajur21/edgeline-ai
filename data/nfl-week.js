@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-22T20:37:46.337Z",
- "checkedAt": "2026-11-23T01:33:42.463Z",
+ "checkedAt": "2026-11-23T06:41:01.841Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -60,20 +60,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 11",
-   "w": 8,
+   "w": 9,
    "l": 3,
    "p": 0,
-   "pending": 2,
-   "pct": 0.7273,
-   "avgProb": 0.7137
+   "pending": 1,
+   "pct": 0.75,
+   "avgProb": 0.7007
   },
   "season": {
-   "w": 16,
+   "w": 17,
    "l": 9,
    "p": 0,
-   "pending": 2,
-   "pct": 0.64,
-   "avgProb": 0.6612
+   "pending": 1,
+   "pct": 0.6538,
+   "avgProb": 0.6572
   }
  },
  "games": [
@@ -2102,12 +2102,12 @@ window.NFL_WEEK_DATA = {
    "week": 11,
    "kickoff": "2026-11-23T01:20Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "11:16 - 1st",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
-    "home": 7,
-    "away": 0
+    "home": 35,
+    "away": 10
    },
    "home": {
     "id": "25",
@@ -2268,7 +2268,13 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 35,
+    "away": 10,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T06:41:01.841Z"
+   }
   },
   {
    "id": "401873078",

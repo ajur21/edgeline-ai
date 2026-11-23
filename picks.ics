@@ -1287,28 +1287,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-22@edgeline
-DTSTAMP:20261123T013336Z
-DTSTART:20261122T212500Z
-DTEND:20261123T042000Z
-SUMMARY:Parlay lean of the day: 2 legs +232 at ESPN BET
-DESCRIPTION:All legs priced at ESPN BET. Fair 38.6%\, implied 30.1%\, EV +2
- 8.4% per unit.\n- NFL: Mike Washington Jr. under 9.5 receiving yards -110 
- · Las Vegas Raiders @ Denver Broncos\n- NFL: Jauan Jennings under 2.5 rec
- eptions -135 · Minnesota Vikings @ San Francisco 49ers\n\nEvery parlay: h
- ttps://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261123T013336Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +232 at ESPN BET
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:prop-NFL-401873075-4686658-recYds-under-9.5@edgeline
 DTSTAMP:20261123T013336Z
 DTSTART:20261122T212500Z
@@ -1330,132 +1308,72 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:a16abf7d5a-h2h-Charlotte-FC@edgeline
-DTSTAMP:20261122T205801Z
+DTSTAMP:20261123T064058Z
 DTSTART:20261122T233000Z
 DTEND:20261123T023000Z
-SUMMARY:Charlotte FC ML +390 at BetOnline.ag · in play
+SUMMARY:Charlotte FC ML +390 at BetOnline.ag · Won +3.90u
 DESCRIPTION:Soccer · Chicago Fire vs. Charlotte FC · Sun Nov 22\, 6:30 PM
-  ET\nMoneyline: Charlotte FC ML at +390 (BetOnline.ag). Our probability 29
- .7% from game data\, the price implies 20.4%\, edge +9.3 pts\, EV +45.6% p
- er unit. Confidence: Medium.\nOur probability is 29.7%\, from the game dat
- a: this season's results and margins\, recent form\, rest\, the injury rep
- ort and home edge (projected margin +0.3 for the home side). BetOnline.ag 
- offers +390\, which implies only 20.4%. Its bar is 6.4 points: the model's
-  own margin of error on this side\, with 34 games behind the thinner team 
- (±0.31 goals on the margin). It clears it by 2.9. Not graded against othe
- r books' prices\; for reference the market makes it 19.9%.\nWhat supports 
- it:\n- Chicago Fire rate +0.2 a game over 34 (16-11)\, Charlotte FC +0.4 o
- ver 34 (15-10)\; last season +0.2 and +0.2 a game.\n- Charlotte FC trendin
- g: last five +1.4 vs +0.4 on the season.\n- A better price is now availabl
- e: +415 at BetOnline.ag.\nWhat could go wrong:\n- Home edge +0.5 for Chica
- go Fire.\n- Projected margin -0.3 for Charlotte FC.\nVerdict: The game dat
- a lines up behind this side at this price.\nPrices: Bovada +390\, BetOnlin
- e.ag +390\, FanDuel +380\, BetRivers +380\, Unibet +380 and 5 more.\nFull 
- breakdown: https://ajur21.github.io/edgeline-ai/picks.html#a16abf7d5a-h2h-
- Charlotte-FC
+  ET\nMoneyline: Charlotte FC ML at +390 (BetOnline.ag). Won +3.90u.\nFinal
+ : 2-1\nClosing line value: -1.9 pts (closed +400\, DraftKings close (ESPN)
+ ).\nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/per
+ formance.html
 LOCATION:SeatGeek Stadium\, Bridgeview\, Illinois
-URL:https://ajur21.github.io/edgeline-ai/picks.html#a16abf7d5a-h2h-Charlott
- e-FC
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261122T205801Z
+LAST-MODIFIED:20261123T064058Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:d58a81d96d-spreads-Pittsburgh-Penguins@edgeline
-DTSTAMP:20261122T205801Z
+DTSTAMP:20261123T064058Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
-SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · in play
+SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · Won +0.83u
 DESCRIPTION:NHL · Pittsburgh Penguins @ Dallas Stars · Sun Nov 22\, 7:10 
- PM ET\nPuck line: Pittsburgh Penguins +1.5 at -120 (DraftKings). Our proba
- bility 61.1% from game data\, the price implies 54.5%\, edge +6.5 pts\, EV
-  +12.0% per unit. Confidence: Lean.\nOur probability at +1.5 is 61.1%\, fr
- om the game data: this season's results and margins\, recent form\, rest\,
-  the injury report and home edge (projected margin +0.6 for the home side)
- . DraftKings offers -120\, which implies only 54.5%. Its bar is 6.5 points
- : the model's own margin of error on this side\, with 21 games behind the 
- thinner team (±0.43 goals on the margin). It clears it by 0.0. Not graded
-  against other books' prices\; for reference the market makes it 53.2%.\nW
- hat supports it:\n- Pittsburgh Penguins are rested (3 days).\n- Dallas Sta
- rs without Tyler Myers (D)\, Oskar Back (C)\, Kyle Capobianco (D) and 1 mo
- re (-0.3).\nWhat could go wrong:\n- Dallas Stars rate +0.2 a game over 22 
- (14-8)\, Pittsburgh Penguins -0.2 over 21 (7-14)\; last season +0.6 and +0
- .3 a game.\n- Home edge +0.2 for Dallas Stars.\n- Dallas Stars are rested 
- (3 days).\n- Pittsburgh Penguins without Bryan Rust (RW)\, Evgeni Malkin (
- C)\, Nick Robertson (LW) and 1 more (+0.3).\n- Projected margin -0.6 for P
- ittsburgh Penguins against +1.5.\n- At current prices our edge is 0.5 poin
- ts\, under its bar of 6.7 points\; the pick stays posted and is graded at 
- the price it was posted at.\nVerdict: More working against this one than f
- or it\; size down.\nPrices: BetMGM -125\, Caesars -128\, Bovada -128\, Dra
- ftKings -130\, ESPN BET -130 and 1 more.\nFull breakdown: https://ajur21.g
- ithub.io/edgeline-ai/picks.html#d58a81d96d-spreads-Pittsburgh-Penguins
+ PM ET\nPuck line: Pittsburgh Penguins +1.5 at -120 (DraftKings). Won +0.83
+ u.\nFinal: 0-1\nClosing line value: -0.3 pts (closed -130\, DraftKings clo
+ se (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeli
+ ne-ai/performance.html
 LOCATION:American Airlines Center\, Dallas
-URL:https://ajur21.github.io/edgeline-ai/picks.html#d58a81d96d-spreads-Pitt
- sburgh-Penguins
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T205801Z
+LAST-MODIFIED:20261123T064058Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7472170e7d-totals-Over@edgeline
-DTSTAMP:20261122T205801Z
+DTSTAMP:20261123T064058Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
-SUMMARY:Over 6 -110 at BetMGM · in play
+SUMMARY:Over 6 -110 at BetMGM · Won +0.91u
 DESCRIPTION:NHL · Edmonton Oilers @ St Louis Blues · Sun Nov 22\, 7:10 PM
-  ET\nTotal: Over 6 at -110 (BetMGM). Our probability 55.6% from game data\
- , the price implies 52.4%\, edge +3.2 pts\, EV +6.2% per unit. Confidence:
-  Lean.\nOur probability at 6 is 55.6%\, from the game data: this season's 
- results and margins\, recent form\, rest\, the injury report and home edge
-  (projected total 6.5). BetMGM offers -110\, which implies only 52.4%. Its
-  bar is 3.0 points (the floor: the model's own margin of error here is sma
- ller). It clears it by 0.2. Not graded against other books' prices\; for r
- eference the market makes it 50.2%.\nWhat supports it:\n- Combined scoring
-  6.5 a game in St Louis Blues's games\, 6.8 in Edmonton Oilers's (league a
- verage 6.4).\n- Projected total 6.5 against 6.\n- A better price is now av
- ailable: -108 at BetOnline.ag.\nWhat could go wrong:\n- Scorers out: Torey
-  Krug (D)\, ankle\; Dillon Dube (C)\, neck\; Tyler Tucker (D)\, knee and 5
-  more. Fewer healthy scorers leans under.\n- St Louis Blues and Edmonton O
- ilers on a back-to-back\; tired legs lean under.\nVerdict: The game data l
- ines up behind this side at this price.\nPrices: BetMGM -110\, BetOnline.a
- g -110\, Caesars -110\, Bovada -115.\nFull breakdown: https://ajur21.githu
- b.io/edgeline-ai/picks.html#7472170e7d-totals-Over
+  ET\nTotal: Over 6 at -110 (BetMGM). Won +0.91u.\nFinal: 4-5\nThe line mov
+ ed away the lean before close.\nRecord and every graded lean: https://ajur
+ 21.github.io/edgeline-ai/performance.html
 LOCATION:Enterprise Center\, St. Louis
-URL:https://ajur21.github.io/edgeline-ai/picks.html#7472170e7d-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T205801Z
+LAST-MODIFIED:20261123T064058Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:78c0145b05-totals-Under@edgeline
-DTSTAMP:20261122T205801Z
+DTSTAMP:20261123T064058Z
 DTSTART:20261123T013000Z
 DTEND:20261123T043000Z
-SUMMARY:Under 3.5 goals -128 at BetOnline.ag · in play
+SUMMARY:Under 3.5 goals -128 at BetOnline.ag · Won +0.78u
 DESCRIPTION:Soccer · Vancouver Whitecaps FC vs. Real Salt Lake · Sun Nov 
- 22\, 8:30 PM ET\nTotal: Under 3.5 goals at -128 (BetOnline.ag). Our probab
- ility 60.4% from game data\, the price implies 56.1%\, edge +4.3 pts\, EV 
- +7.6% per unit. Confidence: Lean.\nOur probability at 3.5 is 60.4%\, from 
- the game data: this season's results and margins\, recent form\, rest\, th
- e injury report and home edge (projected total 3.2). BetOnline.ag offers -
- 128\, which implies only 56.1%. Its bar is 4.0 points: the model's own mar
- gin of error on this side\, with 34 games behind the thinner team (±0.17 
- goals on the total). It clears it by 0.3. Not graded against other books' 
- prices\; for reference the market makes it 53.1%.\nWhat supports it:\n- Co
- mbined scoring 3.2 a game in Vancouver Whitecaps FC's games\, 3.1 in Real 
- Salt Lake's (league average 3.2).\n- Projected total 3.2 against 3.5.\n- A
-  better price is now available: -115 at Bovada.\n- A better price is avail
- able now: -125 at DraftKings.\nVerdict: The game data lines up behind this
-  side at this price.\nPrices: BetMGM -125\, DraftKings -125\, BetOnline.ag
-  -128\, BetRivers -129.\nFull breakdown: https://ajur21.github.io/edgeline
- -ai/picks.html#78c0145b05-totals-Under
+ 22\, 8:30 PM ET\nTotal: Under 3.5 goals at -128 (BetOnline.ag). Won +0.78u
+ .\nFinal: 0-2\nClosing line value: -3.5 pts (closed -125\, DraftKings clos
+ e (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgelin
+ e-ai/performance.html
 LOCATION:BC Place\, Vancouver
-URL:https://ajur21.github.io/edgeline-ai/picks.html#78c0145b05-totals-Under
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261122T205801Z
+LAST-MODIFIED:20261123T064058Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

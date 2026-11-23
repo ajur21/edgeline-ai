@@ -782,7 +782,13 @@
     "marginSd": 4.08
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 35,
+    "away": 10,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T06:41:01.841Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873078": {

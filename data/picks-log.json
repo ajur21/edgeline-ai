@@ -30725,8 +30725,8 @@
    "Edge 6.5 points over the price, 0.0 past its bar of 6.5",
    "Market reference 53.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.83,
   "loggedAt": "2026-11-21T20:25:35.800Z",
   "availability": null,
   "current": {
@@ -31145,7 +31145,30 @@
      "fair": 0.5457
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "0-1",
+  "finalScore": {
+   "home": 1,
+   "away": 0
+  },
+  "gradedAt": "2026-11-23T06:40:58.271Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892771",
+   "line": 1.5,
+   "odds": -130,
+   "fair": 0.5427,
+   "moved": null,
+   "open": {
+    "line": 1.5,
+    "odds": -135,
+    "fair": 0.5514
+   },
+   "samples": 4
+  },
+  "clv": -0.0028,
+  "lineMove": null
  },
  {
   "type": "parlay",
@@ -31273,8 +31296,8 @@
    "Edge 9.3 points over the price, 2.9 past its bar of 6.4",
    "Market reference 19.9%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 3.9,
   "loggedAt": "2026-11-22T00:35:54.581Z",
   "availability": null,
   "current": {
@@ -31538,7 +31561,30 @@
      "fair": 0.1904
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "2-1",
+  "finalScore": {
+   "home": 1,
+   "away": 2
+  },
+  "gradedAt": "2026-11-23T06:40:58.271Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401933730",
+   "line": null,
+   "odds": 400,
+   "fair": 0.1848,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 340,
+    "fair": 0.2061
+   },
+   "samples": 2
+  },
+  "clv": -0.0193,
+  "lineMove": null
  },
  {
   "key": "403a88701352da05b0710a9e883b803e|h2h|Arizona Cardinals|null",
@@ -32438,8 +32484,8 @@
    "Edge 4.3 points over the price, 0.3 past its bar of 4.0",
    "Market reference 53.1%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.78,
   "loggedAt": "2026-11-22T00:35:54.581Z",
   "availability": null,
   "current": {
@@ -32691,7 +32737,30 @@
      "fair": 0.508
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "0-2",
+  "finalScore": {
+   "home": 2,
+   "away": 0
+  },
+  "gradedAt": "2026-11-23T06:40:58.271Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401933729",
+   "line": 3.5,
+   "odds": -125,
+   "fair": 0.5263,
+   "moved": null,
+   "open": {
+    "line": 3.5,
+    "odds": -130,
+    "fair": 0.5306
+   },
+   "samples": 2
+  },
+  "clv": -0.0351,
+  "lineMove": null
  },
  {
   "key": "7472170e7ddebcf27cc4e03a8b32edcc|totals|Over|6",
@@ -32777,8 +32846,8 @@
    "Edge 3.2 points over the price, 0.2 past its bar of 3.0",
    "Market reference 50.2%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.91,
   "loggedAt": "2026-11-22T14:06:59.604Z",
   "availability": null,
   "current": {
@@ -33152,7 +33221,30 @@
      "fair": 0.5046
     }
    ]
-  }
+  },
+  "result": "Win",
+  "score": "4-5",
+  "finalScore": {
+   "home": 5,
+   "away": 4
+  },
+  "gradedAt": "2026-11-23T06:40:58.271Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892770",
+   "line": 5.5,
+   "odds": -122,
+   "fair": null,
+   "moved": "away",
+   "open": {
+    "line": 6.5,
+    "odds": 100,
+    "fair": 0.4783
+   },
+   "samples": 2
+  },
+  "clv": null,
+  "lineMove": "away"
  },
  {
   "type": "prop",
@@ -33275,18 +33367,19 @@
   ],
   "proj": 0.9,
   "linesAt": "2026-11-22T14:08:54.621Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-22T14:09:45.827Z"
+  "status": "graded",
+  "actual": 3,
+  "result": "Loss",
+  "units": -1,
+  "lockedAt": "2026-11-22T14:09:45.827Z",
+  "gradedAt": "2026-11-23T06:40:58.271Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-22",
   "date": "2026-11-22",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-22T14:09:45.827Z",
   "book": "ESPN BET",
   "legs": [
@@ -33300,7 +33393,9 @@
   "decimal": 3.3232,
   "odds": 232,
   "fairProb": 0.3864,
-  "ev": 0.2842
+  "ev": 0.2842,
+  "gradedAt": "2026-11-23T06:40:58.271Z",
+  "result": "Loss"
  },
  {
   "type": "day",
@@ -33904,8 +33999,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 114,
-      "under": -135
+      "over": 110,
+      "under": -130
      },
      "ml": {
       "home": -205,
@@ -33938,6 +34033,12 @@
     "line": 6.5,
     "odds": 114,
     "fair": 0.4486
+   },
+   {
+    "at": "2026-11-23T06:40:58.271Z",
+    "line": 6.5,
+    "odds": 110,
+    "fair": 0.4573
    }
   ],
   "dk": {
@@ -33949,11 +34050,11 @@
    },
    "now": {
     "line": 6.5,
-    "odds": 114,
-    "fair": 0.448558885283451
+    "odds": 110,
+    "fair": 0.4572564612326044
    },
-   "moved": null,
-   "label": "DraftKings opened 6.5 (+114), now 6.5 (+114)"
+   "moved": "toward",
+   "label": "DraftKings opened 6.5 (+114), now 6.5 (+110)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -33982,6 +34083,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 4 books makes this side 44.7% (-0.8 points against the best price). For reference only.",
+    "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
     "Market: The market (3 books) opened 7.5 (+134), now 6 (-103), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Devils Connor Hellebuyck · Jackets Jet Greaves.",
