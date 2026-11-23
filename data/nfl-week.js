@@ -3,8 +3,8 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-22T20:37:46.337Z",
- "checkedAt": "2026-11-23T06:41:01.841Z",
+ "generatedAt": "2026-11-23T14:10:33.529Z",
+ "checkedAt": null,
  "season": 2026,
  "week": {
   "type": 2,
@@ -282,14 +282,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "KC",
     "name": "Kansas City Chiefs",
     "short": "Chiefs",
-    "record": "7-2"
+    "record": "8-2"
    },
    "away": {
     "id": "22",
     "abbr": "ARI",
     "name": "Arizona Cardinals",
     "short": "Cardinals",
-    "record": "3-7"
+    "record": "3-8"
    },
    "venue": {
     "name": "Arrowhead Stadium",
@@ -473,14 +473,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "CAR",
     "name": "Carolina Panthers",
     "short": "Panthers",
-    "record": "4-5"
+    "record": "5-5"
    },
    "away": {
     "id": "33",
     "abbr": "BAL",
     "name": "Baltimore Ravens",
     "short": "Ravens",
-    "record": "4-6"
+    "record": "4-7"
    },
    "venue": {
     "name": "Bank of America Stadium",
@@ -655,14 +655,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "BUF",
     "name": "Buffalo Bills",
     "short": "Bills",
-    "record": "8-1"
+    "record": "9-1"
    },
    "away": {
     "id": "15",
     "abbr": "MIA",
     "name": "Miami Dolphins",
     "short": "Dolphins",
-    "record": "1-8"
+    "record": "1-9"
    },
    "venue": {
     "name": "Highmark Stadium",
@@ -843,14 +843,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "CHI",
     "name": "Chicago Bears",
     "short": "Bears",
-    "record": "7-2"
+    "record": "8-2"
    },
    "away": {
     "id": "18",
     "abbr": "NO",
     "name": "New Orleans Saints",
     "short": "Saints",
-    "record": "3-6"
+    "record": "3-7"
    },
    "venue": {
     "name": "Soldier Field",
@@ -1025,14 +1025,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "DET",
     "name": "Detroit Lions",
     "short": "Lions",
-    "record": "7-2"
+    "record": "8-2"
    },
    "away": {
     "id": "27",
     "abbr": "TB",
     "name": "Tampa Bay Buccaneers",
     "short": "Buccaneers",
-    "record": "3-6"
+    "record": "3-7"
    },
    "venue": {
     "name": "Ford Field",
@@ -1198,14 +1198,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "DAL",
     "name": "Dallas Cowboys",
     "short": "Cowboys",
-    "record": "4-6"
+    "record": "5-6"
    },
    "away": {
     "id": "10",
     "abbr": "TEN",
     "name": "Tennessee Titans",
     "short": "Titans",
-    "record": "1-8"
+    "record": "1-9"
    },
    "venue": {
     "name": "AT&T Stadium",
@@ -1377,14 +1377,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "PHI",
     "name": "Philadelphia Eagles",
     "short": "Eagles",
-    "record": "2-7"
+    "record": "3-7"
    },
    "away": {
     "id": "23",
     "abbr": "PIT",
     "name": "Pittsburgh Steelers",
     "short": "Steelers",
-    "record": "6-3"
+    "record": "6-4"
    },
    "venue": {
     "name": "Lincoln Financial Field",
@@ -1565,14 +1565,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "LAC",
     "name": "Los Angeles Chargers",
     "short": "Chargers",
-    "record": "1-8"
+    "record": "1-9"
    },
    "away": {
     "id": "20",
     "abbr": "NYJ",
     "name": "New York Jets",
     "short": "Jets",
-    "record": "2-8"
+    "record": "3-8"
    },
    "venue": {
     "name": "SoFi Stadium",
@@ -1744,14 +1744,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "NYG",
     "name": "New York Giants",
     "short": "Giants",
-    "record": "5-3-1"
+    "record": "6-3-1"
    },
    "away": {
     "id": "30",
     "abbr": "JAX",
     "name": "Jacksonville Jaguars",
     "short": "Jaguars",
-    "record": "7-2"
+    "record": "7-3"
    },
    "venue": {
     "name": "MetLife Stadium",
@@ -1932,14 +1932,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "DEN",
     "name": "Denver Broncos",
     "short": "Broncos",
-    "record": "7-2"
+    "record": "8-2"
    },
    "away": {
     "id": "13",
     "abbr": "LV",
     "name": "Las Vegas Raiders",
     "short": "Raiders",
-    "record": "4-6"
+    "record": "4-7"
    },
    "venue": {
     "name": "Empower Field at Mile High",
@@ -2114,14 +2114,14 @@ window.NFL_WEEK_DATA = {
     "abbr": "SF",
     "name": "San Francisco 49ers",
     "short": "49ers",
-    "record": "8-1"
+    "record": "9-1"
    },
    "away": {
     "id": "16",
     "abbr": "MIN",
     "name": "Minnesota Vikings",
     "short": "Vikings",
-    "record": "7-2"
+    "record": "7-3"
    },
    "venue": {
     "name": "Estadio Banorte",
@@ -2310,10 +2310,10 @@ window.NFL_WEEK_DATA = {
    "tv": "ESPN",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-22T20:37:46.337Z",
+    "at": "2026-11-23T14:10:33.529Z",
     "locked": false,
     "margin": -3.72,
-    "total": 48.2,
+    "total": 48.3,
     "marginSd": 4.09,
     "home": 22.3,
     "away": 26,
@@ -2441,12 +2441,12 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": {
-    "mph": 10,
+    "mph": 9,
     "dir": "NW",
-    "temp": 54,
+    "temp": 56,
     "unit": "F",
-    "precip": 8,
-    "text": "Partly Cloudy",
+    "precip": 15,
+    "text": "Slight Chance Light Rain",
     "at": "2026-11-23T20:00:00-05:00",
     "source": "National Weather Service"
    },

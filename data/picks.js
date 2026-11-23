@@ -2,8 +2,7 @@
 window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "generatedAt": "2026-11-22T20:36:38.543Z",
-  "trackedAt": "2026-11-23T06:40:58.271Z",
+  "generatedAt": "2026-11-23T14:10:11.068Z",
   "playOfDay": null,
   "parlayOfDay": null,
   "ofDay": {
@@ -12,7 +11,7 @@ window.PICKS_DATA = {
     "playLocked": false,
     "parlayLocked": false,
     "closed": false,
-    "checkedAt": null,
+    "checkedAt": "2026-11-23T14:12:38.003Z",
     "last": {
       "play": {
         "date": "2026-11-22",
@@ -57,15 +56,17 @@ window.PICKS_DATA = {
       "book": "DraftKings",
       "prices": {
         "DraftKings": -122,
-        "BetMGM": -125,
-        "FanDuel": -128,
+        "BetMGM": -120,
+        "FanDuel": -122,
         "BetRivers": -122,
         "theScore Bet": -125,
-        "Caesars": -122,
-        "Unibet": -122,
-        "ESPN BET": -125
+        "Caesars": -125,
+        "Unibet": -125,
+        "ESPN BET": -125,
+        "Bovada": -122,
+        "PointsBet": -125
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-23T14:10:11.068Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.5837,
@@ -116,15 +117,16 @@ window.PICKS_DATA = {
         "price": "Our probability at 5.5 is 58.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -122, which implies only 55.0%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 53.0%.",
         "support": [
           "Combined scoring 6.2 a game in Ottawa Senators's games, 6 in Calgary Flames's (league average 6.4).",
-          "Projected total 6.3 against 5.5."
+          "Projected total 6.3 against 5.5.",
+          "A better price is now available: -120 at BetMGM.",
+          "A better price is available now: -120 at BetMGM."
         ],
         "risks": [
           "Scorers out: Andre Burakovsky (LW), lower body; Warren Foegele (LW), knee; William Eklund (LW), ankle and 2 more. Fewer healthy scorers leans under."
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 53.0% (-2.0 points against the best price). For reference only.",
-          "Market: DraftKings opened 5.5 (-122), now 5.5 (-125), moving toward this side since the open.",
-          "Market: The market (6 books) opened 7.5 (+129), now 6 (+114), the consensus moving against this side since the open.",
+          "Market: The market (8 books) opened 7.5 (+129), now 6 (+114), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Senators Linus Ullmark · Flames Dustin Wolf.",
           "Records: Calgary Flames 10-12-2 · Ottawa Senators 15-6-3 · Canadian Tire Centre, Ottawa."
@@ -262,17 +264,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 120,
-              "away": -142
+              "home": 114,
+              "away": -135
             },
             "total": 5.5,
             "totalOdds": {
-              "over": -125,
-              "under": 105
+              "over": -122,
+              "under": 102
             },
             "ml": {
-              "home": -218,
-              "away": 180
+              "home": -230,
+              "away": 190
             },
             "draw": null
           },
@@ -295,7 +297,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": -122,
+        "loggedFair": 0.5837,
+        "currentOdds": -120,
+        "currentBook": "BetMGM",
+        "currentFair": 0.5282,
+        "currentEdge": 0.0387,
+        "checkedAt": "2026-11-23T14:10:11.068Z",
+        "history": [
+          {
+            "at": "2026-11-22T20:36:38.543Z",
+            "odds": -122,
+            "fair": 0.5297
+          },
+          {
+            "at": "2026-11-23T14:10:11.068Z",
+            "odds": -120,
+            "fair": 0.5282
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -305,11 +327,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 5.5,
-          "odds": -125,
-          "fair": 0.5324675324675325
+          "odds": -122,
+          "fair": 0.5260865852617197
         },
-        "moved": "toward",
-        "label": "DraftKings opened 5.5 (-122), now 5.5 (-125)"
+        "moved": null,
+        "label": "DraftKings opened 5.5 (-122), now 5.5 (-122)"
       },
       "dkHistory": [
         {
@@ -323,11 +345,17 @@ window.PICKS_DATA = {
           "line": 5.5,
           "odds": -125,
           "fair": 0.5325
+        },
+        {
+          "at": "2026-11-23T14:10:11.068Z",
+          "line": 5.5,
+          "odds": -122,
+          "fair": 0.5261
         }
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 6,
+        "n": 8,
         "open": {
           "line": 7.5,
           "odds": 129
@@ -337,16 +365,16 @@ window.PICKS_DATA = {
           "odds": 114
         },
         "moved": "away",
-        "label": "The market (6 books) opened 7.5 (+129), now 6 (+114)"
+        "label": "The market (8 books) opened 7.5 (+129), now 6 (+114)"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
-        "n": 6,
+        "at": "2026-11-23T14:10:11.068Z",
+        "n": 8,
         "best": {
-          "book": "DraftKings",
-          "odds": -122
+          "book": "BetMGM",
+          "odds": -120
         },
-        "fair": 0.5287,
+        "fair": 0.5277,
         "vendorFair": 0.4673,
         "open": {
           "line": 7.5,
@@ -366,6 +394,15 @@ window.PICKS_DATA = {
           "odds": 114,
           "best": -122,
           "n": 6
+        },
+        {
+          "at": "2026-11-23T14:10:11.068Z",
+          "fair": 0.5277,
+          "vendorFair": 0.4673,
+          "line": 6,
+          "odds": 114,
+          "best": -120,
+          "n": 8
         }
       ],
       "status": "pending",
@@ -384,8 +421,15 @@ window.PICKS_DATA = {
         "gp": 24,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
+      "now": {
+        "at": "2026-11-23T14:10:11.068Z",
+        "odds": -120,
+        "book": "BetMGM",
+        "modelProb": 0.5842,
+        "edge": 0.0387,
+        "bar": 0.03
+      },
+      "standing": "clears",
       "availability": null
     },
     {
@@ -408,13 +452,13 @@ window.PICKS_DATA = {
       "odds": 120,
       "book": "theScore Bet",
       "prices": {
-        "DraftKings": 114,
-        "FanDuel": 112,
+        "DraftKings": 110,
+        "FanDuel": 108,
         "BetRivers": 108,
         "theScore Bet": 120,
-        "ESPN BET": 120
+        "ESPN BET": 115
       },
-      "pricesAt": "2026-11-22T20:36:38.543Z",
+      "pricesAt": "2026-11-23T14:10:11.068Z",
       "books": 4,
       "anchor": null,
       "modelProb": 0.488,
@@ -469,12 +513,13 @@ window.PICKS_DATA = {
         ],
         "risks": [
           "Projected total 6.4 against 6.5.",
+          "At current prices our edge is 2.3 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.",
           "Scorers out: Anthony Mantha (RW), neck; Johnathan Kovacevic (D), ankle; Seamus Casey (D), knee and 1 more. Fewer healthy scorers leans under."
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 4 books makes this side 44.7% (-0.8 points against the best price). For reference only.",
           "Market: DraftKings opened 6.5 (+114), now 6.5 (+110), moving toward this side since the open.",
-          "Market: The market (3 books) opened 7.5 (+134), now 6 (-103), the consensus moving against this side since the open.",
+          "Market: The market (3 books) opened 7.5 (+134), now 6 (-104), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Devils Connor Hellebuyck · Jackets Jet Greaves.",
           "Records: Columbus Blue Jackets 9-12-0 · New Jersey Devils 15-8-0 · Prudential Center, Newark."
@@ -609,7 +654,27 @@ window.PICKS_DATA = {
           }
         }
       },
-      "movement": null,
+      "movement": {
+        "loggedOdds": 120,
+        "loggedFair": 0.488,
+        "currentOdds": 115,
+        "currentBook": "theScore Bet",
+        "currentFair": 0.4548,
+        "currentEdge": 0.0233,
+        "checkedAt": "2026-11-23T14:10:11.068Z",
+        "history": [
+          {
+            "at": "2026-11-22T20:36:38.543Z",
+            "odds": 120,
+            "fair": 0.4466
+          },
+          {
+            "at": "2026-11-23T14:10:11.068Z",
+            "odds": 115,
+            "fair": 0.4548
+          }
+        ]
+      },
       "dk": {
         "book": "DraftKings",
         "open": {
@@ -648,27 +713,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 6,
-          "odds": -103
+          "odds": -104
         },
         "moved": "away",
-        "label": "The market (3 books) opened 7.5 (+134), now 6 (-103)"
+        "label": "The market (3 books) opened 7.5 (+134), now 6 (-104)"
       },
       "sgo": {
-        "at": "2026-11-22T20:36:38.543Z",
+        "at": "2026-11-23T14:10:11.068Z",
         "n": 3,
         "best": {
           "book": "ESPN BET",
-          "odds": 120
+          "odds": 115
         },
-        "fair": 0.4438,
-        "vendorFair": 0.5074,
+        "fair": 0.4542,
+        "vendorFair": 0.5098,
         "open": {
           "line": 7.5,
           "odds": 134
         },
         "now": {
           "line": 6,
-          "odds": -103
+          "odds": -104
         }
       },
       "sgoHistory": [
@@ -679,6 +744,15 @@ window.PICKS_DATA = {
           "line": 6,
           "odds": -103,
           "best": 120,
+          "n": 3
+        },
+        {
+          "at": "2026-11-23T14:10:11.068Z",
+          "fair": 0.4542,
+          "vendorFair": 0.5098,
+          "line": 6,
+          "odds": -104,
+          "best": 115,
           "n": 3
         }
       ],
@@ -698,735 +772,15 @@ window.PICKS_DATA = {
         "gp": 21,
         "floor": 0.03
       },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
-    {
-      "id": "230a356290-h2h-Hull-City",
-      "sport": "Soccer",
-      "league": "Premier League",
-      "sportKey": "soccer_epl",
-      "event": "Hull City vs. Brighton and Hove Albion",
-      "home": "Hull City",
-      "away": "Brighton and Hove Albion",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Hull City",
-        "point": null
-      },
-      "commence": "2026-11-22T14:00:00Z",
-      "start": "Yesterday 9:00 AM ET",
-      "market": "Moneyline",
-      "pick": "Hull City ML",
-      "odds": 560,
-      "book": "BetOnline.ag",
-      "prices": {
-        "BetRivers": 550,
-        "DraftKings": 550,
-        "theScore Bet": 500,
-        "FanDuel": 550,
-        "BetMGM": 450,
-        "Bovada": 500,
-        "BetOnline.ag": 560
-      },
-      "pricesAt": "2026-11-22T00:35:54.581Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.2618,
-      "ev": 0.7279,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": -0.6,
-        "total": 2.7,
-        "sd": 1.7,
-        "sdTotal": 1.6,
-        "gp": 10,
-        "gpHome": 10,
-        "gpAway": 10,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0,
-          "ratingAway": 0.8,
-          "lastHome": null,
-          "lastAway": 0.2,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": 0,
-          "injuriesAway": 0,
-          "scoringOut": 0,
-          "pace": 2.8
-        },
-        "reasons": {
-          "for": [
-            "Home edge +0.2 for Hull City",
-            "Hull City are rested (15 days)"
-          ],
-          "against": [
-            "Hull City rate 0 a game over 10 (2-3), Brighton and Hove Albion +0.8 over 10 (7-2); last season none and +0.2 a game",
-            "Brighton and Hove Albion are rested (14 days)",
-            "Projected margin -0.6 for Hull City"
-          ]
-        }
-      },
-      "marketFair": 0.1474,
-      "marketEdge": -0.0041,
-      "rationale": "Our probability is 26.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.6 for the home side). BetOnline.ag offers +560, which implies only 15.2%. Its bar is 9.4 points: the model's own margin of error on this side, with 10 games behind the thinner team (±0.53 goals on the margin). It clears it by 1.6. Not graded against other books' prices; for reference the market makes it 14.7%.",
-      "factors": [
-        "Best price +560 at BetOnline.ag",
-        "Probability 26.2% from game data, not other books",
-        "Edge 11.0 points over the price, 1.6 past its bar of 9.4",
-        "Market reference 14.7%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 26.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 15.2%, so the edge is 11.0 points. Its bar is 9.4 points: the model's own margin of error on this side, with 10 games behind the thinner team (±0.53 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.6 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 26.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -0.6 for the home side). BetOnline.ag offers +560, which implies only 15.2%. Its bar is 9.4 points: the model's own margin of error on this side, with 10 games behind the thinner team (±0.53 goals on the margin). It clears it by 1.6. Not graded against other books' prices; for reference the market makes it 14.7%.",
-        "support": [
-          "Home edge +0.2 for Hull City.",
-          "Hull City are rested (15 days)."
-        ],
-        "risks": [
-          "Hull City rate 0 a game over 10 (2-3), Brighton and Hove Albion +0.8 over 10 (7-2); last season none and +0.2 a game.",
-          "Brighton and Hove Albion are rested (14 days).",
-          "Projected margin -0.6 for Hull City."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 14.7% (-0.4 points against the best price). For reference only.",
-          "Market: DraftKings opened +450, now +600, moving against this side since the open.",
-          "Weather at kickoff: Clear, 47°F, wind 6 mph, 0% rain.",
-          "Records: Brighton and Hove Albion 7-1-2 · Hull City 2-5-3 · The MKM Stadium, Hull."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401879234",
-        "venue": "The MKM Stadium, Hull",
-        "indoor": false,
-        "records": {
-          "Hull City": {
-            "overall": "2-5-3",
-            "home": null,
-            "away": null
-          },
-          "Brighton and Hove Albion": {
-            "overall": "7-1-2",
-            "home": null,
-            "away": null
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Hull City": [],
-          "Brighton and Hove Albion": []
-        },
-        "rest": {
-          "Hull City": {
-            "restDays": 15,
-            "b2b": false,
-            "lastGame": "2026-11-07",
-            "gamesLast7": 0
-          },
-          "Brighton and Hove Albion": {
-            "restDays": 14,
-            "b2b": false,
-            "lastGame": "2026-11-08",
-            "gamesLast7": 0
-          }
-        },
-        "weather": {
-          "city": "Hull, England",
-          "tempF": 47,
-          "windMph": 6,
-          "precipPct": 0,
-          "summary": "Clear",
-          "source": "Open-Meteo"
-        },
-        "broadcast": "USA Net, Tele",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -160,
-              "away": 115
-            },
-            "total": 2.5,
-            "totalOdds": {
-              "over": -140,
-              "under": 115
-            },
-            "ml": {
-              "home": 600,
-              "away": -220
-            },
-            "draw": 370
-          },
-          "open": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -205,
-              "away": 135
-            },
-            "total": 2.5,
-            "totalOdds": {
-              "over": -160,
-              "under": 115
-            },
-            "ml": {
-              "home": 450,
-              "away": -190
-            },
-            "draw": 330
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 450,
-          "fair": 0.16999522868243475
-        },
-        "now": {
-          "line": null,
-          "odds": 600,
-          "fair": 0.13695137497723547
-        },
-        "moved": "away",
-        "label": "DraftKings opened +450, now +600"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-22T00:35:54.581Z",
-          "line": null,
-          "odds": 550,
-          "fair": 0.1475
-        },
-        {
-          "at": "2026-11-22T05:52:48.574Z",
-          "line": null,
-          "odds": 600,
-          "fair": 0.137
-        }
-      ],
-      "mkt": null,
-      "sgo": null,
-      "sgoHistory": [],
-      "status": "graded",
-      "started": true,
-      "result": "Win",
-      "units": 5.6,
-      "score": {
-        "home": 2,
-        "away": 0
-      },
-      "loggedAt": "2026-11-22T00:35:54.581Z",
-      "valueTo": 496,
-      "bar": 0.0939,
-      "past": 0.0164,
-      "barParts": {
-        "error": 0.0939,
-        "units": 0.53,
-        "unit": "goals",
-        "gp": 10,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
-    {
-      "id": "403a887013-h2h-Arizona-Cardinals",
-      "sport": "NFL",
-      "league": "NFL",
-      "sportKey": "americanfootball_nfl",
-      "event": "Arizona Cardinals @ Kansas City Chiefs",
-      "home": "Kansas City Chiefs",
-      "away": "Arizona Cardinals",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Arizona Cardinals",
-        "point": null
-      },
-      "commence": "2026-11-22T18:00:00Z",
-      "start": "Yesterday 1:00 PM ET",
-      "market": "Moneyline",
-      "pick": "Arizona Cardinals ML",
-      "odds": 1000,
-      "book": "theScore Bet",
-      "prices": {
-        "DraftKings": 850,
-        "FanDuel": 900,
-        "BetOnline.ag": 892,
-        "BetRivers": 900,
-        "BetMGM": 900,
-        "theScore Bet": 1000,
-        "Bovada": 775,
-        "Caesars": 850,
-        "Unibet": 900,
-        "PointsBet": 850,
-        "ESPN BET": 900
-      },
-      "pricesAt": "2026-11-22T14:20:05.613Z",
-      "books": 8,
-      "anchor": "Pinnacle",
-      "modelProb": 0.1963,
-      "ev": 1.1593,
-      "confidence": "Medium",
-      "basis": "game",
-      "model": {
-        "margin": 12.3,
-        "total": 45.1,
-        "sd": 13.3,
-        "sdTotal": 13.4,
-        "gp": 9,
-        "gpHome": 9,
-        "gpAway": 10,
-        "thin": false,
-        "parts": {
-          "ratingHome": 3.8,
-          "ratingAway": -4.6,
-          "lastHome": 2,
-          "lastAway": -7.8,
-          "homeEdge": 2.146,
-          "rest": 0,
-          "injuriesHome": -1.7,
-          "injuriesAway": 1.2,
-          "scoringOut": 0.6,
-          "pace": 45.5,
-          "model": "nflverse",
-          "epaHome": 0.096,
-          "epaAway": -0.058,
-          "epaPoints": 1.8,
-          "qbPoints": 0.7,
-          "qbHome": "Patrick Mahomes",
-          "qbAway": "Jacoby Brissett",
-          "marginSd": 4.03
-        },
-        "reasons": {
-          "for": [
-            "Kansas City Chiefs without Jaylon Moore (OT), Trey Smith (G), Kenneth Walker III (RB) and 1 more (-1.7)"
-          ],
-          "against": [
-            "Kansas City Chiefs rate +3.8 and Arizona Cardinals -4.6 points a game against their schedules (this season's results, last season carried over); EPA a play +0.1 and -0.06 net of defence (nflverse)",
-            "Patrick Mahomes starts for Kansas City Chiefs: +0.14 EPA a dropback against +0.12 behind their numbers (+0.6 points)",
-            "Home edge +2.1 for Kansas City Chiefs",
-            "Arizona Cardinals without Jon Gaines II (G), Jordan Burch (LB), Andrew Wingard (S) (+1.2)",
-            "Projected margin -12.3 for Arizona Cardinals"
-          ]
-        }
-      },
-      "marketFair": 0.1052,
-      "marketEdge": 0.0143,
-      "rationale": "Our probability is 19.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +12.3 for the home side). theScore Bet offers +1000, which implies only 9.1%. Its bar is 7.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.03 points on the margin). It clears it by 2.8. Not graded against other books' prices; for reference the market makes it 10.5%.",
-      "factors": [
-        "Best price +1000 at theScore Bet",
-        "Probability 19.6% from game data, not other books",
-        "Edge 10.5 points over the price, 2.8 past its bar of 7.8",
-        "Market reference 10.5%"
-      ],
-      "breakdown": {
-        "tier": "Medium",
-        "tierWhy": "Our probability for this side is 19.6%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at theScore Bet implies 9.1%, so the edge is 10.5 points. Its bar is 7.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.03 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 2.8 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 19.6%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +12.3 for the home side). theScore Bet offers +1000, which implies only 9.1%. Its bar is 7.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.03 points on the margin). It clears it by 2.8. Not graded against other books' prices; for reference the market makes it 10.5%.",
-        "support": [
-          "Kansas City Chiefs without Jaylon Moore (OT), Trey Smith (G), Kenneth Walker III (RB) and 1 more (-1.7)."
-        ],
-        "risks": [
-          "Kansas City Chiefs rate +3.8 and Arizona Cardinals -4.6 points a game against their schedules (this season's results, last season carried over); EPA a play +0.1 and -0.06 net of defence (nflverse).",
-          "Patrick Mahomes starts for Kansas City Chiefs: +0.14 EPA a dropback against +0.12 behind their numbers (+0.6 points).",
-          "Home edge +2.1 for Kansas City Chiefs.",
-          "Arizona Cardinals without Jon Gaines II (G), Jordan Burch (LB), Andrew Wingard (S) (+1.2).",
-          "Projected margin -12.3 for Arizona Cardinals."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 10.5% (+1.4 points against the best price). For reference only.",
-          "Market: DraftKings opened +440, now +850, moving against this side since the open.",
-          "Market: The market (8 books) opened +477, now +896, the consensus moving against this side since the open.",
-          "Weather at kickoff: Clear, 45°F, wind 14 mph, 0% rain.",
-          "Records: Arizona Cardinals 3-7 · Kansas City Chiefs 7-2 · Arrowhead Stadium, Kansas City."
-        ],
-        "verdict": "More working against this one than for it; size down."
-      },
-      "context": {
-        "espnEventId": "401873067",
-        "venue": "Arrowhead Stadium, Kansas City",
-        "indoor": false,
-        "records": {
-          "Kansas City Chiefs": {
-            "overall": "7-2",
-            "home": "4-0",
-            "away": "3-2"
-          },
-          "Arizona Cardinals": {
-            "overall": "3-7",
-            "home": "0-4",
-            "away": "3-3"
-          }
-        },
-        "probables": {},
-        "injuries": {
-          "Kansas City Chiefs": [
-            {
-              "name": "Omarr Norman-Lott",
-              "pos": "DT",
-              "athleteId": "4591008",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4591008.png",
-              "status": "Questionable",
-              "type": "Knee - ACL",
-              "detail": "Surgery",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-21T01:05Z",
-              "note": "Norman-Lott (knee) is questionable for Sunday's game against Arizona."
-            },
-            {
-              "name": "Jaylon Moore",
-              "pos": "OT",
-              "athleteId": "4043041",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4043041.png",
-              "status": "Out",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-26",
-              "date": "2026-11-21T01:03Z",
-              "note": "Moore (ankle) has been ruled out for Sunday's game against the Cardinals."
-            },
-            {
-              "name": "Trey Smith",
-              "pos": "G",
-              "athleteId": "4242459",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4242459.png",
-              "status": "Out",
-              "type": "Concussion",
-              "detail": "Concussion",
-              "returnDate": "2026-11-26",
-              "date": "2026-11-21T01:02Z",
-              "note": "Smith (concussion) has been ruled out for Sunday's game against the Cardinals."
-            },
-            {
-              "name": "Peter Woods",
-              "pos": "DT",
-              "athleteId": "4871063",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4871063.png",
-              "status": "Questionable",
-              "type": "Neck",
-              "detail": "",
-              "returnDate": "2026-11-22",
-              "date": "2026-11-20T20:27Z",
-              "note": "questionable"
-            },
-            {
-              "name": "Kenneth Walker III",
-              "pos": "RB",
-              "athleteId": "4567048",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4567048.png",
-              "status": "Out",
-              "type": "Groin",
-              "detail": "Soreness",
-              "returnDate": "2026-11-26",
-              "date": "2026-11-20T20:13Z",
-              "note": "Walker (groin) has been ruled out for Sunday's game against the Cardinals."
-            },
-            {
-              "name": "Jared Wiley",
-              "pos": "TE",
-              "athleteId": "4430723",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4430723.png",
-              "status": "Injured Reserve",
-              "type": "Ankle",
-              "detail": "Fracture",
-              "returnDate": "2026-12-21",
-              "date": "2026-11-19T01:06Z",
-              "note": "The Chiefs placed Wiley (ankle) on injured reserve Wednesday, Matt Derrick of ChiefsDigest.com reports."
-            }
-          ],
-          "Arizona Cardinals": [
-            {
-              "name": "Carson Beck",
-              "pos": "QB",
-              "athleteId": "4430841",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4430841.png",
-              "status": "Out",
-              "type": "Back",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-21T19:25Z",
-              "note": "Beck (back) has been ruled out for Sunday's game at Kansas City, Darren Urban of the Cardinals' official site reports."
-            },
-            {
-              "name": "Jon Gaines II",
-              "pos": "G",
-              "athleteId": "4367199",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4367199.png",
-              "status": "Out",
-              "type": "Ankle",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-21T01:38Z",
-              "note": "Gaines (ankle) has been ruled out for Sunday's game against the Chiefs."
-            },
-            {
-              "name": "Zachary Carter",
-              "pos": "DT",
-              "athleteId": "4240619",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4240619.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-21T01:35Z",
-              "note": "Carter (knee) has been ruled out for Sunday's game against the Chiefs, Zach Gershman of the Cardinals' official site reports."
-            },
-            {
-              "name": "James Conner",
-              "pos": "RB",
-              "athleteId": "3045147",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3045147.png",
-              "status": "Injured Reserve",
-              "type": "Foot",
-              "detail": "Surgery",
-              "returnDate": "2026-12-20",
-              "date": "2026-11-18T21:40Z",
-              "note": "Cardinals head coach Mike LaFleur said Wednesday that he has no new updates on the status of Conner (foot), who is still \"working to return to perform,\" Tyler D"
-            },
-            {
-              "name": "Gardner Minshew II",
-              "pos": "QB",
-              "athleteId": "4038524",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4038524.png",
-              "status": "Injured Reserve",
-              "type": "Elbow",
-              "detail": "Surgery",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-18T04:40Z",
-              "note": "Minshew (elbow) underwent UCL reconstructive surgery Monday, Jeremy Fowler of ESPN.com reports."
-            },
-            {
-              "name": "Jordan Burch",
-              "pos": "LB",
-              "athleteId": "4428996",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/4428996.png",
-              "status": "Injured Reserve",
-              "type": "Knee - MCL",
-              "detail": "Not Specified",
-              "returnDate": "2027-02-15",
-              "date": "2026-11-18T01:52Z",
-              "note": "The Cardinals placed Burch (knee) on injured reserve Tuesday."
-            },
-            {
-              "name": "Andrew Wingard",
-              "pos": "S",
-              "athleteId": "3918331",
-              "headshot": "https://a.espncdn.com/i/headshots/nfl/players/full/3918331.png",
-              "status": "Injured Reserve",
-              "type": "Wrist",
-              "detail": "Not Specified",
-              "returnDate": "2026-12-27",
-              "date": "2026-11-18T01:19Z",
-              "note": "Wingard (wrist) was placed on injured reserve by the Cardinals on Tuesday."
-            }
-          ]
-        },
-        "rest": {
-          "Kansas City Chiefs": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-15",
-            "gamesLast7": 1
-          },
-          "Arizona Cardinals": {
-            "restDays": 7,
-            "b2b": false,
-            "lastGame": "2026-11-15",
-            "gamesLast7": 1
-          }
-        },
-        "weather": {
-          "summary": "Clear",
-          "tempF": 45,
-          "source": "Open-Meteo",
-          "city": "Kansas City, MO, USA",
-          "windMph": 14,
-          "precipPct": 0
-        },
-        "broadcast": "CBS",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": -15.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 40.5,
-            "totalOdds": {
-              "over": -107,
-              "under": -112
-            },
-            "ml": {
-              "home": -1440,
-              "away": 850
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -11.5,
-            "spreadOdds": {
-              "home": -110,
-              "away": -110
-            },
-            "total": 44.5,
-            "totalOdds": {
-              "over": -110,
-              "under": -110
-            },
-            "ml": {
-              "home": -600,
-              "away": 440
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 1000,
-        "loggedFair": 0.1963,
-        "currentOdds": 910,
-        "currentBook": "BetOnline.ag",
-        "currentFair": 0.1013,
-        "currentEdge": 0.0973,
-        "checkedAt": "2026-11-22T14:06:59.604Z",
-        "history": [
-          {
-            "at": "2026-11-22T00:35:54.581Z",
-            "odds": 1000,
-            "fair": 0.1052
-          },
-          {
-            "at": "2026-11-22T14:06:59.604Z",
-            "odds": 910,
-            "fair": 0.1013
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 440,
-          "fair": 0.17766497461928932
-        },
-        "now": {
-          "line": null,
-          "odds": 850,
-          "fair": 0.10118265440210249
-        },
-        "moved": "away",
-        "label": "DraftKings opened +440, now +850"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-22T00:35:54.581Z",
-          "line": null,
-          "odds": 910,
-          "fair": 0.0951
-        },
-        {
-          "at": "2026-11-22T05:52:48.574Z",
-          "line": null,
-          "odds": 860,
-          "fair": 0.1001
-        },
-        {
-          "at": "2026-11-22T14:06:59.604Z",
-          "line": null,
-          "odds": 850,
-          "fair": 0.1012
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 8,
-        "open": {
-          "line": null,
-          "odds": 477
-        },
-        "now": {
-          "line": null,
-          "odds": 896
-        },
-        "moved": "away",
-        "label": "The market (8 books) opened +477, now +896"
-      },
-      "sgo": {
-        "at": "2026-11-22T14:20:05.613Z",
-        "n": 8,
-        "best": {
-          "book": "FanDuel",
-          "odds": 900
-        },
-        "fair": 0.0997,
-        "vendorFair": 0.1004,
-        "open": {
-          "line": null,
-          "odds": 477
-        },
-        "now": {
-          "line": null,
-          "odds": 896
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-22T00:35:54.581Z",
-          "fair": 0.097,
-          "vendorFair": 0.0992,
-          "line": null,
-          "odds": 908,
-          "best": 1000,
-          "n": 8
-        },
-        {
-          "at": "2026-11-22T14:06:59.604Z",
-          "fair": 0.0997,
-          "vendorFair": 0.1004,
-          "line": null,
-          "odds": 896,
-          "best": 900,
-          "n": 8
-        }
-      ],
-      "status": "graded",
-      "started": true,
-      "result": "Loss",
-      "units": -1,
-      "score": {
-        "home": 34,
-        "away": 7
-      },
-      "loggedAt": "2026-11-22T00:35:54.581Z",
-      "valueTo": 744,
-      "bar": 0.0777,
-      "past": 0.0277,
-      "barParts": {
-        "error": 0.0777,
-        "units": 4.03,
-        "unit": "points",
-        "gp": 9,
-        "floor": 0.03
-      },
       "now": {
-        "at": "2026-11-22T14:06:59.604Z",
-        "odds": 910,
-        "book": "BetOnline.ag",
-        "modelProb": 0.1963,
-        "edge": 0.0973,
-        "bar": 0.0777
+        "at": "2026-11-23T14:10:11.068Z",
+        "odds": 115,
+        "book": "theScore Bet",
+        "modelProb": 0.4884,
+        "edge": 0.0233,
+        "bar": 0.03
       },
-      "standing": "clears",
+      "standing": "below",
       "availability": null
     },
     {

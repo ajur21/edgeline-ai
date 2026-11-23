@@ -1379,7 +1379,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e9429c68a4-totals-Over@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261123T141011Z
 DTSTART:20261124T001000Z
 DTEND:20261124T031000Z
 SUMMARY:Over 6.5 +120 at theScore Bet · Low
@@ -1394,16 +1394,18 @@ DESCRIPTION:NHL · Columbus Blue Jackets @ New Jersey Devils · Mon Nov 23\
  her books' prices\; for reference the market makes it 44.7%.\nWhat support
  s it:\n- Combined scoring 7 a game in New Jersey Devils's games\, 5.8 in C
  olumbus Blue Jackets's (league average 6.4).\nWhat could go wrong:\n- Proj
- ected total 6.4 against 6.5.\n- Scorers out: Anthony Mantha (RW)\, neck\; 
- Johnathan Kovacevic (D)\, ankle\; Seamus Casey (D)\, knee and 1 more. Fewe
- r healthy scorers leans under.\nVerdict: More working against this one tha
- n for it\; size down.\nPrices: theScore Bet +120\, ESPN BET +120\, DraftKi
- ngs +114\, FanDuel +112\, BetRivers +108.\nFull breakdown: https://ajur21.
- github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
+ ected total 6.4 against 6.5.\n- At current prices our edge is 2.3 points\,
+  under its bar of 3.0 points\; the pick stays posted and is graded at the 
+ price it was posted at.\n- Scorers out: Anthony Mantha (RW)\, neck\; Johna
+ than Kovacevic (D)\, ankle\; Seamus Casey (D)\, knee and 1 more. Fewer hea
+ lthy scorers leans under.\nVerdict: More working against this one than for
+  it\; size down.\nPrices: theScore Bet +120\, ESPN BET +115\, DraftKings +
+ 110\, FanDuel +108\, BetRivers +108.\nFull breakdown: https://ajur21.githu
+ b.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
 LOCATION:Prudential Center\, Newark
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261123T141011Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1414,7 +1416,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d127e1e72a-totals-Over@edgeline
-DTSTAMP:20261122T203638Z
+DTSTAMP:20261123T141011Z
 DTSTART:20261124T004000Z
 DTEND:20261124T034000Z
 SUMMARY:Over 5.5 -122 at DraftKings · Low
@@ -1428,17 +1430,18 @@ DESCRIPTION:NHL · Calgary Flames @ Ottawa Senators · Mon Nov 23\, 7:40 PM
   here is smaller). It clears it by 0.4. Not graded against other books' pr
  ices\; for reference the market makes it 53.0%.\nWhat supports it:\n- Comb
  ined scoring 6.2 a game in Ottawa Senators's games\, 6 in Calgary Flames's
-  (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat could go 
- wrong:\n- Scorers out: Andre Burakovsky (LW)\, lower body\; Warren Foegele
-  (LW)\, knee\; William Eklund (LW)\, ankle and 2 more. Fewer healthy score
- rs leans under.\nVerdict: The game data lines up behind this side at this 
- price.\nPrices: DraftKings -122\, BetRivers -122\, Caesars -122\, Unibet -
- 122\, BetMGM -125 and 3 more.\nFull breakdown: https://ajur21.github.io/ed
- geline-ai/picks.html#d127e1e72a-totals-Over
+  (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A better pri
+ ce is now available: -120 at BetMGM.\n- A better price is available now: -
+ 120 at BetMGM.\nWhat could go wrong:\n- Scorers out: Andre Burakovsky (LW)
+ \, lower body\; Warren Foegele (LW)\, knee\; William Eklund (LW)\, ankle a
+ nd 2 more. Fewer healthy scorers leans under.\nVerdict: The game data line
+ s up behind this side at this price.\nPrices: BetMGM -120\, DraftKings -12
+ 2\, FanDuel -122\, BetRivers -122\, Bovada -122 and 5 more.\nFull breakdow
+ n: https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over
 LOCATION:Canadian Tire Centre\, Ottawa
 URL:https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261122T203638Z
+LAST-MODIFIED:20261123T141011Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
