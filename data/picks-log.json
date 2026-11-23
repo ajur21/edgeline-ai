@@ -33210,13 +33210,14 @@
   ],
   "proj": 3,
   "linesAt": "2026-11-22T14:08:54.621Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
+  "status": "graded",
+  "actual": 0,
+  "result": "Win",
+  "units": 0.93,
   "lockedAt": "2026-11-22T14:09:45.827Z",
   "potd": "2026-11-22",
-  "potdAt": "2026-11-22T14:09:45.827Z"
+  "potdAt": "2026-11-22T14:09:45.827Z",
+  "gradedAt": "2026-11-23T01:33:36.687Z"
  },
  {
   "type": "prop",
@@ -33550,13 +33551,13 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 114,
-      "away": -135
+      "home": 120,
+      "away": -142
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -122,
-      "under": 102
+      "over": -125,
+      "under": 105
      },
      "ml": {
       "home": -218,
@@ -33589,6 +33590,12 @@
     "line": 5.5,
     "odds": -122,
     "fair": 0.5261
+   },
+   {
+    "at": "2026-11-23T01:33:36.687Z",
+    "line": 5.5,
+    "odds": -125,
+    "fair": 0.5325
    }
   ],
   "dk": {
@@ -33600,11 +33607,11 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -122,
-    "fair": 0.5260865852617197
+    "odds": -125,
+    "fair": 0.5324675324675325
    },
-   "moved": null,
-   "label": "DraftKings opened 5.5 (-122), now 5.5 (-122)"
+   "moved": "toward",
+   "label": "DraftKings opened 5.5 (-122), now 5.5 (-125)"
   },
   "mkt": {
    "book": "Market consensus",
@@ -33633,6 +33640,7 @@
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 53.0% (-2.0 points against the best price). For reference only.",
+    "Market: DraftKings opened 5.5 (-122), now 5.5 (-125), moving toward this side since the open.",
     "Market: The market (6 books) opened 7.5 (+129), now 6 (+114), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Senators Linus Ullmark · Flames Dustin Wolf.",
@@ -33891,8 +33899,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 114,
-      "away": -135
+      "home": 124,
+      "away": -148
      },
      "total": 6.5,
      "totalOdds": {

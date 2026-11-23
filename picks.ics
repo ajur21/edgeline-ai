@@ -1288,7 +1288,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-22@edgeline
-DTSTAMP:20261122T205801Z
+DTSTAMP:20261123T013336Z
 DTSTART:20261122T212500Z
 DTEND:20261123T042000Z
 SUMMARY:Parlay lean of the day: 2 legs +232 at ESPN BET
@@ -1299,7 +1299,7 @@ DESCRIPTION:All legs priced at ESPN BET. Fair 38.6%\, implied 30.1%\, EV +2
  ttps://ajur21.github.io/edgeline-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261122T205801Z
+LAST-MODIFIED:20261123T013336Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1310,38 +1310,30 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:prop-NFL-401873075-4686658-recYds-under-9.5@edgeline
-DTSTAMP:20261122T140945Z
+DTSTAMP:20261123T013336Z
 DTSTART:20261122T212500Z
 DTEND:20261123T002500Z
 SUMMARY:Lean of the day: Mike Washington Jr. under 9.5 receiving yards -107
-  at DraftKings · High
+  at DraftKings · Won +0.93u
 DESCRIPTION:NFL · Las Vegas Raiders @ Denver Broncos · Sun Nov 22\, 4:25 
  PM ET\nPlayer prop: Mike Washington Jr. under 9.5 receiving yards at -107 
  (DraftKings). Our chance 62.5% (the model's own 85.8%\, cut to the 35% of 
  an edge that graded props have borne out)\, the price implies 51.7%\, EV +
- 20.9% per unit. Grade: High.\n- Stayed under 9.5 in 10 of the last 10\n- P
- rojects 3 (0.7 targets a game at 4.6 yards a target\, -3% on the road\; se
- ason 1.5)\n- Backup quarterback expected (Kirk Cousins\, not on the roster
- ): receivers' yards ran 4% lower in 2025's backup starts\nEvery prop\, ran
- ked: https://ajur21.github.io/edgeline-ai/props.html
-URL:https://ajur21.github.io/edgeline-ai/index.html#plays
+ 20.9% per unit. Grade: High.\nWon +0.93u: finished on 0 receiving yards\, 
+ graded on the box score.\nRecord and every graded lean: https://ajur21.git
+ hub.io/edgeline-ai/performance.html
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NFL,Prop
-LAST-MODIFIED:20261122T140945Z
+LAST-MODIFIED:20261123T013336Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Mike Washington Jr. under 9.5 receiving yards 
- -107 at DraftKings · High
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:a16abf7d5a-h2h-Charlotte-FC@edgeline
 DTSTAMP:20261122T205801Z
 DTSTART:20261122T233000Z
 DTEND:20261123T023000Z
-SUMMARY:Charlotte FC ML +390 at BetOnline.ag · Medium
+SUMMARY:Charlotte FC ML +390 at BetOnline.ag · in play
 DESCRIPTION:Soccer · Chicago Fire vs. Charlotte FC · Sun Nov 22\, 6:30 PM
   ET\nMoneyline: Charlotte FC ML at +390 (BetOnline.ag). Our probability 29
  .7% from game data\, the price implies 20.4%\, edge +9.3 pts\, EV +45.6% p
@@ -1368,18 +1360,13 @@ CATEGORIES:Soccer
 LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Charlotte FC ML +390 at BetOnline.ag · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d58a81d96d-spreads-Pittsburgh-Penguins@edgeline
 DTSTAMP:20261122T205801Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
-SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · Low
+SUMMARY:Pittsburgh Penguins +1.5 -120 at DraftKings · in play
 DESCRIPTION:NHL · Pittsburgh Penguins @ Dallas Stars · Sun Nov 22\, 7:10 
  PM ET\nPuck line: Pittsburgh Penguins +1.5 at -120 (DraftKings). Our proba
  bility 61.1% from game data\, the price implies 54.5%\, edge +6.5 pts\, EV
@@ -1410,18 +1397,13 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Pittsburgh Penguins +1.5 -120 at DraftKings · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7472170e7d-totals-Over@edgeline
 DTSTAMP:20261122T205801Z
 DTSTART:20261123T001000Z
 DTEND:20261123T031000Z
-SUMMARY:Over 6 -110 at BetMGM · Low
+SUMMARY:Over 6 -110 at BetMGM · in play
 DESCRIPTION:NHL · Edmonton Oilers @ St Louis Blues · Sun Nov 22\, 7:10 PM
   ET\nTotal: Over 6 at -110 (BetMGM). Our probability 55.6% from game data\
  , the price implies 52.4%\, edge +3.2 pts\, EV +6.2% per unit. Confidence:
@@ -1446,18 +1428,13 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 6 -110 at BetMGM · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:78c0145b05-totals-Under@edgeline
 DTSTAMP:20261122T205801Z
 DTSTART:20261123T013000Z
 DTEND:20261123T043000Z
-SUMMARY:Under 3.5 goals -128 at BetOnline.ag · Low
+SUMMARY:Under 3.5 goals -128 at BetOnline.ag · in play
 DESCRIPTION:Soccer · Vancouver Whitecaps FC vs. Real Salt Lake · Sun Nov 
  22\, 8:30 PM ET\nTotal: Under 3.5 goals at -128 (BetOnline.ag). Our probab
  ility 60.4% from game data\, the price implies 56.1%\, edge +4.3 pts\, EV 
@@ -1481,11 +1458,6 @@ CATEGORIES:Soccer
 LAST-MODIFIED:20261122T205801Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Under 3.5 goals -128 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e9429c68a4-totals-Over@edgeline

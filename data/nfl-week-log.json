@@ -512,7 +512,13 @@
     "marginSd": 4.02
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 35,
+    "away": 33,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873069": {
@@ -536,7 +542,13 @@
     "marginSd": 4.07
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 23,
+    "away": 18,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873070": {
@@ -560,7 +572,13 @@
     "marginSd": 4.06
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 26,
+    "away": 9,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873071": {
@@ -584,7 +602,13 @@
     "marginSd": 4.06
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 21,
+    "away": 13,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873072": {
@@ -608,7 +632,13 @@
     "marginSd": 4.07
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 31,
+    "away": 21,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873073": {
@@ -632,7 +662,13 @@
     "marginSd": 4.02
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 51,
+    "away": 30,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873074": {
@@ -656,7 +692,13 @@
     "marginSd": 4.03
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 24,
+    "away": 27,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873075": {
@@ -680,7 +722,13 @@
     "marginSd": 4.02
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 38,
+    "away": 24,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873076": {
@@ -704,7 +752,13 @@
     "marginSd": 4.09
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 19,
+    "away": 16,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   },
    "lockedAt": "1993-01-31T23:30Z"
   },
   "401873077": {

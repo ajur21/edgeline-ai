@@ -398,13 +398,23 @@ window.PERF_DATA = {
     }
   ],
   "potd": {
-    "wins": 4,
+    "wins": 5,
     "losses": 11,
     "pushes": 0,
-    "units": -7.07,
-    "n": 15,
-    "props": 4,
+    "units": -6.14,
+    "n": 16,
+    "props": 5,
     "recent": [
+      {
+        "date": "2026-11-22",
+        "kind": "prop",
+        "sport": "NFL",
+        "event": "Las Vegas Raiders @ Denver Broncos",
+        "pick": "Mike Washington Jr. under 9.5 receiving yards",
+        "odds": -107,
+        "result": "Win",
+        "units": 0.93
+      },
       {
         "date": "2026-11-21",
         "kind": "lean",
@@ -494,16 +504,6 @@ window.PERF_DATA = {
         "odds": 100,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-11",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Pittsburgh Penguins @ San Jose Sharks",
-        "pick": "Under 6.5",
-        "odds": 118,
-        "result": "Win",
-        "units": 1.18
       }
     ]
   },

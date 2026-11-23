@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-22T20:37:46.337Z",
- "checkedAt": "2026-11-22T20:58:27.474Z",
+ "checkedAt": "2026-11-23T01:33:42.463Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -60,20 +60,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 11",
-   "w": 2,
-   "l": 0,
+   "w": 8,
+   "l": 3,
    "p": 0,
-   "pending": 11,
-   "pct": 1,
-   "avgProb": 0.7714
+   "pending": 2,
+   "pct": 0.7273,
+   "avgProb": 0.7137
   },
   "season": {
-   "w": 10,
-   "l": 6,
+   "w": 16,
+   "l": 9,
    "p": 0,
-   "pending": 11,
-   "pct": 0.625,
-   "avgProb": 0.6389
+   "pending": 2,
+   "pct": 0.64,
+   "avgProb": 0.6612
   }
  },
  "games": [
@@ -461,11 +461,11 @@ window.NFL_WEEK_DATA = {
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "6:32 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
-    "home": 32,
+    "home": 35,
     "away": 33
    },
    "home": {
@@ -630,16 +630,22 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 35,
+    "away": 33,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873070",
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "1:33 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 26,
     "away": 9
@@ -812,19 +818,25 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 26,
+    "away": 9,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873071",
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "2:00 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 21,
-    "away": 10
+    "away": 13
    },
    "home": {
     "id": "3",
@@ -988,19 +1000,25 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 21,
+    "away": 13,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873072",
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "1:55 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 31,
-    "away": 14
+    "away": 21
    },
    "home": {
     "id": "8",
@@ -1155,19 +1173,25 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 31,
+    "away": 21,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873073",
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "2:00 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 51,
-    "away": 23
+    "away": 30
    },
    "home": {
     "id": "6",
@@ -1328,19 +1352,25 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 51,
+    "away": 30,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873076",
    "week": 11,
    "kickoff": "2026-11-22T18:00Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_IN_PROGRESS",
-   "detail": "1:56 - 4th",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
     "home": 19,
-    "away": 9
+    "away": 16
    },
    "home": {
     "id": "21",
@@ -1510,17 +1540,26 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 19,
+    "away": 16,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873074",
    "week": 11,
    "kickoff": "2026-11-22T21:05Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:05 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 24,
+    "away": 27
+   },
    "home": {
     "id": "24",
     "abbr": "LAC",
@@ -1547,7 +1586,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-22T20:37:46.337Z",
-    "locked": false,
+    "locked": true,
     "margin": 2.18,
     "total": 44.5,
     "marginSd": 4.03,
@@ -1677,42 +1716,29 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.56,
-     "bar": 0.1087,
-     "price": 122
-    },
-    "away": {
-     "prob": 0.44,
-     "bar": 0.1087,
-     "price": 202
-    }
-   },
-   "board": {
-    "eventId": "4b20b742b6168aaca4f25d87f11b1526",
-    "pricedAt": "2026-11-22T20:36:38.543Z",
-    "home": {
-     "odds": -170,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": 152,
-     "book": "DraftKings"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 24,
+    "away": 27,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873069",
    "week": 11,
    "kickoff": "2026-11-22T21:25Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:25 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 23,
+    "away": 18
+   },
    "home": {
     "id": "19",
     "abbr": "NYG",
@@ -1739,7 +1765,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-22T20:37:46.337Z",
-    "locked": false,
+    "locked": true,
     "margin": -8.63,
     "total": 45.4,
     "marginSd": 4.07,
@@ -1878,42 +1904,29 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T16:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.2751,
-     "bar": 0.0933,
-     "price": 451
-    },
-    "away": {
-     "prob": 0.7249,
-     "bar": 0.0933,
-     "price": -171
-    }
-   },
-   "board": {
-    "eventId": "8ba112fabf4e87639338a5f437c5abfe",
-    "pricedAt": "2026-11-22T20:36:38.543Z",
-    "home": {
-     "odds": 237,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": -260,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 23,
+    "away": 18,
+    "winner": "home",
+    "call": "Loss",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873075",
    "week": 11,
    "kickoff": "2026-11-22T21:25Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 4:25 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 38,
+    "away": 24
+   },
    "home": {
     "id": "7",
     "abbr": "DEN",
@@ -1940,7 +1953,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-22T20:37:46.337Z",
-    "locked": false,
+    "locked": true,
     "margin": 13.98,
     "total": 47.6,
     "marginSd": 4.02,
@@ -2073,42 +2086,29 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-22T14:00:00-07:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.8339,
-     "bar": 0.0707,
-     "price": -322
-    },
-    "away": {
-     "prob": 0.1661,
-     "bar": 0.0707,
-     "price": 949
-    }
-   },
-   "board": {
-    "eventId": "1940706a79cbcbafacdcbf231069716b",
-    "pricedAt": "2026-11-22T20:36:38.543Z",
-    "home": {
-     "odds": -587,
-     "book": "DraftKings"
-    },
-    "away": {
-     "odds": 500,
-     "book": "BetMGM"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 38,
+    "away": 24,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-23T01:33:42.463Z"
+   }
   },
   {
    "id": "401873077",
    "week": 11,
    "kickoff": "2026-11-23T01:20Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/22 - 8:20 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "11:16 - 1st",
+   "score": {
+    "home": 7,
+    "away": 0
+   },
    "home": {
     "id": "25",
     "abbr": "SF",
@@ -2135,7 +2135,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-22T20:37:46.337Z",
-    "locked": false,
+    "locked": true,
     "margin": 2.09,
     "total": 42.5,
     "marginSd": 4.08,
@@ -2265,30 +2265,8 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.5575,
-     "bar": 0.1102,
-     "price": 124
-    },
-    "away": {
-     "prob": 0.4425,
-     "bar": 0.1103,
-     "price": 202
-    }
-   },
-   "board": {
-    "eventId": "60e1d27b083a335b722c2c852ea85612",
-    "pricedAt": "2026-11-22T20:36:38.543Z",
-    "home": {
-     "odds": -177,
-     "book": "BetRivers"
-    },
-    "away": {
-     "odds": 170,
-     "book": "theScore Bet"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
    "result": null
   },
