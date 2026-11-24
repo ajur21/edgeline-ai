@@ -35420,5 +35420,15 @@
   "ev": 0.309,
   "gradedAt": "2026-11-24T09:08:46.850Z",
   "result": "Loss"
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-24",
+  "date": "2026-11-24",
+  "checkedAt": "2026-11-24T14:10:43.803Z",
+  "closedAt": null,
+  "candidates": 0,
+  "leans": 0,
+  "props": 0
  }
 ]

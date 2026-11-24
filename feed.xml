@@ -5,9 +5,17 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Tue, 24 Nov 2026 09:08:46 GMT</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 14:08:58 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Tue Nov 24 slate: No lean tonight: 9 sides priced in 2 games, none clears its bar</title>
+<link>https://ajur21.github.io/edgeline-ai/picks.html#market</link>
+<guid isPermaLink="false">slate-2026-11-24T14:08:58.228Z</guid>
+<pubDate>Tue, 24 Nov 2026 14:08:58 GMT</pubDate>
+<category>Slate</category>
+<description>&lt;p&gt;Every main-line side was given our probability from the game data. None sits above what its best price implies by its own bar (3 points or more: the model's margin of error on that side), so there is no bet.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Edmonton Oilers ML +100 at theScore Bet (+5.9 pts against a bar of +6.9 pts) · Vegas Golden Knights @ Edmonton Oilers&lt;/li&gt;&lt;li&gt;NHL: Edmonton Oilers +1.5 -258 at DraftKings (+2.9 pts against a bar of +5.3 pts) · Vegas Golden Knights @ Edmonton Oilers&lt;/li&gt;&lt;li&gt;NHL: Over 6.5 +105 at BetRivers (+0.6 pts against a bar of +3.0 pts) · Vegas Golden Knights @ Edmonton Oilers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
+</item>
 <item>
 <title>Graded: Over 6.5 +120 · Lost -1.00u</title>
 <link>https://ajur21.github.io/edgeline-ai/performance.html</link>
@@ -39,14 +47,6 @@
 <pubDate>Tue, 24 Nov 2026 09:08:46 GMT</pubDate>
 <category>NFL</category>
 <description>&lt;p&gt;NFL · Cincinnati Bengals @ Washington Commanders · Mon Nov 23, 8:15 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Washington Commanders ML at +250 (BetOnline.ag). Won +2.50u.&lt;/p&gt;&lt;p&gt;Final: 20-22&lt;/p&gt;&lt;p&gt;Closing line value: -0.1 pts (closed +237, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>Mon Nov 23 slate: 4 leans tonight from 120 priced sides</title>
-<link>https://ajur21.github.io/edgeline-ai/digest.html</link>
-<guid isPermaLink="false">slate-2026-11-23T20:36:56.852Z</guid>
-<pubDate>Mon, 23 Nov 2026 20:36:56 GMT</pubDate>
-<category>Slate</category>
-<description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Over 6 -105 at BetOnline.ag (+3.5 pts against a bar of +3.0 pts) · Columbus Blue Jackets @ New Jersey Devils&lt;/li&gt;&lt;li&gt;NBA: Minnesota Timberwolves ML -500 at BetRivers (+5.6 pts against a bar of +6.0 pts) · Brooklyn Nets @ Minnesota Timberwolves&lt;/li&gt;&lt;li&gt;NHL: Under 6.5 +117 at BetOnline.ag (+2.2 pts against a bar of +3.0 pts) · Anaheim Ducks @ Seattle Kraken&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Pittsburgh Penguins +1.5 -120 · Won +0.83u</title>

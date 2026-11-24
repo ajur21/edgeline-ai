@@ -1378,6 +1378,30 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+UID:slate-2026-11-24@edgeline
+DTSTAMP:20261124T140858Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:No lean tonight: 9 sides priced in 2 games\, none clears its bar
+DESCRIPTION:Every main-line side was given our probability from the game da
+ ta. None sits above what its best price implies by its own bar (3 points o
+ r more: the model's margin of error on that side)\, so there is no bet.\nI
+ n a replay of past seasons these leans did not beat the closing price (NHL
+  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
+ when the live record beats the close.\nClosest to the bar:\n- NHL: Edmonto
+ n Oilers ML +100 at theScore Bet (+5.9 pts against a bar of +6.9 pts) · V
+ egas Golden Knights @ Edmonton Oilers\n- NHL: Edmonton Oilers +1.5 -258 at
+  DraftKings (+2.9 pts against a bar of +5.3 pts) · Vegas Golden Knights @
+  Edmonton Oilers\n- NHL: Over 6.5 +105 at BetRivers (+0.6 pts against a ba
+ r of +3.0 pts) · Vegas Golden Knights @ Edmonton Oilers\nThe market board
+ : https://ajur21.github.io/edgeline-ai/picks.html#market
+URL:https://ajur21.github.io/edgeline-ai/picks.html#market
+CATEGORIES:Slate
+LAST-MODIFIED:20261124T140858Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 UID:e9429c68a4-totals-Over@edgeline
 DTSTAMP:20261124T090846Z
 DTSTART:20261124T001000Z
