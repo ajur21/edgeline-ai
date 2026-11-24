@@ -5,16 +5,40 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Tue, 24 Nov 2026 02:04:05 GMT</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 09:08:46 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>Parlay lean of the day: 2 legs +215 at FanDuel</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
-<guid isPermaLink="false">parlay-2026-11-23</guid>
-<pubDate>Mon, 23 Nov 2026 20:40:00 GMT</pubDate>
-<category>Parlay</category>
-<description>&lt;p&gt;All legs priced at FanDuel. Fair 41.5%, implied 31.7%, EV +30.9% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NBA: Phoenix Suns ML -146 · Phoenix Suns @ New Orleans Pelicans&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -115 · Calgary Flames @ Ottawa Senators&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
+<title>Graded: Over 6.5 +120 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">e9429c68a4-totals-Over#graded</guid>
+<pubDate>Tue, 24 Nov 2026 09:08:46 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Columbus Blue Jackets @ New Jersey Devils · Mon Nov 23, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 6.5 at +120 (theScore Bet). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: +2.4 pts (closed +100, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Over 5.5 -122 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">d127e1e72a-totals-Over#graded</guid>
+<pubDate>Tue, 24 Nov 2026 09:08:46 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Calgary Flames @ Ottawa Senators · Mon Nov 23, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -122 (DraftKings). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 1-2&lt;/p&gt;&lt;p&gt;Closing line value: -3.9 pts (closed -115, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Phoenix Suns ML -146 · Won +0.68u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">6caeb7cce7-h2h-Phoenix-Suns#graded</guid>
+<pubDate>Tue, 24 Nov 2026 09:08:46 GMT</pubDate>
+<category>NBA</category>
+<description>&lt;p&gt;NBA · Phoenix Suns @ New Orleans Pelicans · Mon Nov 23, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Phoenix Suns ML at -146 (FanDuel). Won +0.68u.&lt;/p&gt;&lt;p&gt;Final: 123-119&lt;/p&gt;&lt;p&gt;Closing line value: -0.9 pts (closed -155, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Washington Commanders ML +250 · Won +2.50u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">3a60ed1d20-h2h-Washington-Commanders#graded</guid>
+<pubDate>Tue, 24 Nov 2026 09:08:46 GMT</pubDate>
+<category>NFL</category>
+<description>&lt;p&gt;NFL · Cincinnati Bengals @ Washington Commanders · Mon Nov 23, 8:15 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Washington Commanders ML at +250 (BetOnline.ag). Won +2.50u.&lt;/p&gt;&lt;p&gt;Final: 20-22&lt;/p&gt;&lt;p&gt;Closing line value: -0.1 pts (closed +237, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Mon Nov 23 slate: 4 leans tonight from 120 priced sides</title>
@@ -23,22 +47,6 @@
 <pubDate>Mon, 23 Nov 2026 20:36:56 GMT</pubDate>
 <category>Slate</category>
 <description>&lt;p&gt;Leans are the sides where our probability from the game data sits above what the best price implies by its own bar (3 points or more: the model's margin of error on that side), one lean a game at most; the price is only the number to clear. Each one is above, with its price, book and breakdown.&lt;/p&gt;&lt;p&gt;In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close.&lt;/p&gt;&lt;p&gt;Closest to the bar:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Over 6 -105 at BetOnline.ag (+3.5 pts against a bar of +3.0 pts) · Columbus Blue Jackets @ New Jersey Devils&lt;/li&gt;&lt;li&gt;NBA: Minnesota Timberwolves ML -500 at BetRivers (+5.6 pts against a bar of +6.0 pts) · Brooklyn Nets @ Minnesota Timberwolves&lt;/li&gt;&lt;li&gt;NHL: Under 6.5 +117 at BetOnline.ag (+2.2 pts against a bar of +3.0 pts) · Anaheim Ducks @ Seattle Kraken&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The market board: https://ajur21.github.io/edgeline-ai/picks.html#market&lt;/p&gt;</description>
-</item>
-<item>
-<title>Lean of the day: Phoenix Suns ML -146 at FanDuel (Low, +11.8 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#6caeb7cce7-h2h-Phoenix-Suns</link>
-<guid isPermaLink="false">6caeb7cce7-h2h-Phoenix-Suns</guid>
-<pubDate>Mon, 23 Nov 2026 20:36:56 GMT</pubDate>
-<category>NBA</category>
-<description>&lt;p&gt;NBA · Phoenix Suns @ New Orleans Pelicans · Mon Nov 23, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Phoenix Suns ML at -146 (FanDuel). Our probability 71.2% from game data, the price implies 59.3%, edge +11.8 pts, EV +20.0% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 71.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.6 for the home side). FanDuel offers -146, which implies only 59.3%. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 57.6%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;New Orleans Pelicans rate -6.1 a game over 18 (5-13), Phoenix Suns +0.4 over 15 (8-7); last season -4.5 and +1.5 a game.&lt;/li&gt;&lt;li&gt;Phoenix Suns trending: last five +8 vs -0.9 on the season.&lt;/li&gt;&lt;li&gt;Phoenix Suns are rested (3 days).&lt;/li&gt;&lt;li&gt;New Orleans Pelicans without Bennedict Mathurin (G), Dejounte Murray (G), Julian Reese (F) and 1 more (-1.6), out per the 3:30 PM ET official report.&lt;/li&gt;&lt;li&gt;Projected margin +6.6 for Phoenix Suns.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +1.9 for New Orleans Pelicans.&lt;/li&gt;&lt;li&gt;New Orleans Pelicans have Zion Williamson (F) probable per the 3:30 PM ET official report (ESPN still lists him day-to-day).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: FanDuel -146, PointsBet -149, BetOnline.ag -150, Bovada -150, Caesars -150 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#6caeb7cce7-h2h-Phoenix-Suns&lt;/p&gt;</description>
-</item>
-<item>
-<title>NFL: Washington Commanders ML +250 at BetOnline.ag (Low, +11.7 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#3a60ed1d20-h2h-Washington-Commanders</link>
-<guid isPermaLink="false">3a60ed1d20-h2h-Washington-Commanders</guid>
-<pubDate>Mon, 23 Nov 2026 20:36:56 GMT</pubDate>
-<category>NFL</category>
-<description>&lt;p&gt;NFL · Cincinnati Bengals @ Washington Commanders · Mon Nov 23, 8:15 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Washington Commanders ML at +250 (BetOnline.ag). Our probability 40.3% from game data, the price implies 28.6%, edge +11.7 pts, EV +41.0% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 40.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -3.5 for the home side). BetOnline.ag offers +250, which implies only 28.6%. Its bar is 10.8 points: the model's own margin of error on this side, with 9 games behind the thinner team (±4.09 points on the margin). It clears it by 0.9. Not graded against other books' prices; for reference the market makes it 28.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Home edge +2.1 for Washington Commanders.&lt;/li&gt;&lt;li&gt;Washington Commanders rested longer (11 days against 8, +0.5).&lt;/li&gt;&lt;li&gt;Cincinnati Bengals without Jalen Davis (CB), Dalton Risner (G), Andrei Iosivas (WR) and 2 more (+2.1).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Washington Commanders rate -2.1 and Cincinnati Bengals +2.8 points a game against their schedules (this season's results, last season carried over); EPA a play -0.02 and +0.1 net of defence (nflverse).&lt;/li&gt;&lt;li&gt;Joe Burrow starts for Cincinnati Bengals: +0.11 EPA a dropback against +0.06 behind their numbers (+1.6 points).&lt;/li&gt;&lt;li&gt;Washington Commanders without Jacory Croskey-Merritt (RB) (-0.9).&lt;/li&gt;&lt;li&gt;Projected margin -3.5 for Washington Commanders.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag +250, DraftKings +245, Bovada +245, theScore Bet +240, BetMGM +240 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#3a60ed1d20-h2h-Washington-Commanders&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Pittsburgh Penguins +1.5 -120 · Won +0.83u</title>
@@ -87,22 +95,6 @@
 <pubDate>Sun, 22 Nov 2026 20:58:01 GMT</pubDate>
 <category>NFL</category>
 <description>&lt;p&gt;NFL · Arizona Cardinals @ Kansas City Chiefs · Sun Nov 22, 1:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Arizona Cardinals ML at +1000 (theScore Bet). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 7-34&lt;/p&gt;&lt;p&gt;Closing line value: +1.2 pts (closed +830, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 6.5 +120 at theScore Bet (Low, +3.3 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over</link>
-<guid isPermaLink="false">e9429c68a4-totals-Over</guid>
-<pubDate>Sun, 22 Nov 2026 20:36:38 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Columbus Blue Jackets @ New Jersey Devils · Mon Nov 23, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 6.5 at +120 (theScore Bet). Our probability 48.8% from game data, the price implies 45.5%, edge +3.3 pts, EV +7.4% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 6.5 is 48.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). theScore Bet offers +120, which implies only 45.5%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 44.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 7 a game in New Jersey Devils's games, 5.8 in Columbus Blue Jackets's (league average 6.4).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Projected total 6.4 against 6.5.&lt;/li&gt;&lt;li&gt;At current prices our edge is 2.1 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.&lt;/li&gt;&lt;li&gt;Scorers out: Anthony Mantha (RW), neck; Johnathan Kovacevic (D), ankle; Seamus Casey (D), knee and 1 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: More working against this one than for it; size down.&lt;/p&gt;&lt;p&gt;Prices: theScore Bet +120, ESPN BET +115, PointsBet +115, DraftKings +114, FanDuel +112 and 1 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#e9429c68a4-totals-Over&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 5.5 -122 at DraftKings (Low, +3.4 pts) · in play</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over</link>
-<guid isPermaLink="false">d127e1e72a-totals-Over</guid>
-<pubDate>Sun, 22 Nov 2026 20:36:38 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Calgary Flames @ Ottawa Senators · Mon Nov 23, 7:40 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -122 (DraftKings). Our probability 58.4% from game data, the price implies 55.0%, edge +3.4 pts, EV +6.2% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 58.4%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). DraftKings offers -122, which implies only 55.0%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 0.4. Not graded against other books' prices; for reference the market makes it 53.0%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.2 a game in Ottawa Senators's games, 6 in Calgary Flames's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;li&gt;A better price is now available: -115 at BetOnline.ag.&lt;/li&gt;&lt;li&gt;A better price is available now: -115 at BetMGM.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Scorers out: Hayden Hodgson (RW), groin; Andre Burakovsky (LW), lower body; Warren Foegele (LW), knee and 4 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetMGM -115, FanDuel -115, PointsBet -115, Bovada -117, DraftKings -120 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#d127e1e72a-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Hull City ML +560 · Won +5.60u</title>
@@ -647,6 +639,14 @@
 <pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Nashville Predators @ Colorado Avalanche · Thu Nov 5, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Nashville Predators +1.5 at -130 (BetMGM). Won +0.77u.&lt;/p&gt;&lt;p&gt;Final: 3-2&lt;/p&gt;&lt;p&gt;Closing line value: -1.4 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Vancouver Canucks +1.5 -130 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">5d5b6a0f37-spreads-Vancouver-Canucks#graded</guid>
+<pubDate>Fri, 06 Nov 2026 05:49:42 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Vancouver Canucks @ Winnipeg Jets · Thu Nov 5, 7:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Vancouver Canucks +1.5 at -130 (BetMGM). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-6&lt;/p&gt;&lt;p&gt;Closing line value: -1.4 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>

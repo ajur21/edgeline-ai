@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-23",
+  "asOf": "2026-11-24",
   "windowDays": 30,
   "record": {
-    "wins": 39,
-    "losses": 32,
+    "wins": 41,
+    "losses": 34,
     "pushes": 0
   },
-  "units": 13.73,
-  "roi": 19.3,
-  "avgEdge": 8.5,
-  "graded": 71,
+  "units": 14.91,
+  "roi": 19.9,
+  "avgEdge": 8.4,
+  "graded": 75,
   "daily": [
     {
       "date": "2026-11-05",
@@ -77,18 +77,22 @@ window.PERF_DATA = {
     {
       "date": "2026-11-22",
       "units": 13.73
+    },
+    {
+      "date": "2026-11-23",
+      "units": 14.91
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 8.75,
-      "record": "27-17"
+      "units": 6.75,
+      "record": "27-19"
     },
     {
       "sport": "NBA",
-      "units": -3.8,
-      "record": "1-4"
+      "units": -3.12,
+      "record": "2-4"
     },
     {
       "sport": "Soccer",
@@ -97,11 +101,71 @@ window.PERF_DATA = {
     },
     {
       "sport": "NFL",
-      "units": -2.05,
-      "record": "1-4"
+      "units": 0.45,
+      "record": "2-4"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-23",
+      "sport": "NFL",
+      "event": "Cincinnati Bengals @ Washington Commanders",
+      "pick": "Washington Commanders ML",
+      "odds": 250,
+      "result": "Win",
+      "units": 2.5,
+      "clv": -0.0005,
+      "closeOdds": 237,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-23",
+      "sport": "NBA",
+      "event": "Phoenix Suns @ New Orleans Pelicans",
+      "pick": "Phoenix Suns ML",
+      "odds": -146,
+      "result": "Win",
+      "units": 0.68,
+      "clv": -0.0095,
+      "closeOdds": -155,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-23",
+      "sport": "NHL",
+      "event": "Calgary Flames @ Ottawa Senators",
+      "pick": "Over 5.5",
+      "odds": -122,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0387,
+      "closeOdds": -115,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-23",
+      "sport": "NHL",
+      "event": "Columbus Blue Jackets @ New Jersey Devils",
+      "pick": "Over 6.5",
+      "odds": 120,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0238,
+      "closeOdds": 100,
+      "closeLine": 6.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-22",
       "sport": "Soccer",
@@ -221,66 +285,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "NHL",
-      "event": "Washington Capitals @ Boston Bruins",
-      "pick": "Boston Bruins ML",
-      "odds": -116,
-      "result": "Win",
-      "units": 0.86,
-      "clv": 0.0265,
-      "closeOdds": -142,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "Soccer",
-      "event": "Inter Miami CF vs. Columbus Crew SC",
-      "pick": "Draw",
-      "odds": 392,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0023,
-      "closeOdds": 350,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "NHL",
-      "event": "Chicago Blackhawks @ Calgary Flames",
-      "pick": "Over 5.5",
-      "odds": -120,
-      "result": "Win",
-      "units": 0.83,
-      "clv": -0.013,
-      "closeOdds": -125,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "Soccer",
-      "event": "New England Revolution vs. Philadelphia Union",
-      "pick": "New England Revolution ML",
-      "odds": 210,
-      "result": "Win",
-      "units": 2.1,
-      "clv": -0.0139,
-      "closeOdds": 200,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -395,16 +399,33 @@ window.PERF_DATA = {
       "wins": 5,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-23",
+      "units": 1.18,
+      "wins": 2,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
-    "wins": 5,
+    "wins": 6,
     "losses": 11,
     "pushes": 0,
-    "units": -6.14,
-    "n": 16,
+    "units": -5.46,
+    "n": 17,
     "props": 5,
     "recent": [
+      {
+        "date": "2026-11-23",
+        "kind": "lean",
+        "sport": "NBA",
+        "event": "Phoenix Suns @ New Orleans Pelicans",
+        "pick": "Phoenix Suns ML",
+        "odds": -146,
+        "result": "Win",
+        "units": 0.68
+      },
       {
         "date": "2026-11-22",
         "kind": "prop",
@@ -494,46 +515,36 @@ window.PERF_DATA = {
         "odds": -260,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-12",
-        "kind": "lean",
-        "sport": "NHL",
-        "event": "Carolina Hurricanes @ Seattle Kraken",
-        "pick": "Seattle Kraken +1.5",
-        "odds": 100,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
     "wins": 2,
-    "losses": 14,
+    "losses": 15,
     "pushes": 0,
-    "units": -8.55,
-    "n": 16
+    "units": -9.55,
+    "n": 17
   },
   "clv": {
-    "n": 63,
-    "avg": -0.93,
-    "beat": 20,
-    "beatPct": 31.7,
-    "graded": 71,
+    "n": 67,
+    "avg": -0.92,
+    "beat": 21,
+    "beatPct": 31.3,
+    "graded": 75,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 71,
+    "espnCloses": 75,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 39,
-      "losses": 32,
+      "wins": 41,
+      "losses": 34,
       "pushes": 0,
-      "units": 13.73,
-      "n": 71,
-      "roi": 19.3,
-      "pending": 4,
+      "units": 14.91,
+      "n": 75,
+      "roi": 19.9,
+      "pending": 0,
       "since": "2026-11-05"
     },
     "price": {

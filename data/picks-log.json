@@ -33497,8 +33497,8 @@
    "Edge 3.4 points over the price, 0.4 past its bar of 3.0",
    "Market reference 53.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-22T20:36:38.543Z",
   "availability": null,
   "current": {
@@ -33864,7 +33864,30 @@
      "fair": 0.5171
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "1-2",
+  "finalScore": {
+   "home": 2,
+   "away": 1
+  },
+  "gradedAt": "2026-11-24T09:08:46.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892775",
+   "line": 5.5,
+   "odds": -115,
+   "fair": 0.5108,
+   "moved": null,
+   "open": {
+    "line": 5.5,
+    "odds": -122,
+    "fair": 0.5261
+   },
+   "samples": 3
+  },
+  "clv": -0.0387,
+  "lineMove": null
  },
  {
   "key": "e9429c68a48753de9779d88e6cf393ad|totals|Over|6.5",
@@ -33953,8 +33976,8 @@
    "Edge 3.3 points over the price, 0.3 past its bar of 3.0",
    "Market reference 44.7%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-22T20:36:38.543Z",
   "availability": null,
   "current": {
@@ -34270,7 +34293,30 @@
      "fair": 0.4491
     }
    ]
-  }
+  },
+  "result": "Loss",
+  "score": "2-3",
+  "finalScore": {
+   "home": 3,
+   "away": 2
+  },
+  "gradedAt": "2026-11-24T09:08:46.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892773",
+   "line": 6.5,
+   "odds": 100,
+   "fair": 0.4783,
+   "moved": null,
+   "open": {
+    "line": 6.5,
+    "odds": 114,
+    "fair": 0.4486
+   },
+   "samples": 3
+  },
+  "clv": 0.0238,
+  "lineMove": null
  },
  {
   "type": "day",
@@ -34379,8 +34425,8 @@
    "Edge 11.8 points over the price, 1.1 past its bar of 10.7",
    "Market reference 57.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 0.68,
   "loggedAt": "2026-11-23T20:36:56.852Z",
   "availability": {
    "posted": {
@@ -34826,7 +34872,30 @@
    }
   ],
   "potd": "2026-11-23",
-  "potdAt": "2026-11-23T20:40:00.044Z"
+  "potdAt": "2026-11-23T20:40:00.044Z",
+  "result": "Win",
+  "score": "123-119",
+  "finalScore": {
+   "home": 119,
+   "away": 123
+  },
+  "gradedAt": "2026-11-24T09:08:46.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401910042",
+   "line": null,
+   "odds": -155,
+   "fair": 0.584,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -149,
+    "fair": 0.5738
+   },
+   "samples": 1
+  },
+  "clv": -0.0095,
+  "lineMove": null
  },
  {
   "key": "3a60ed1d20004aa4d4772b2c1a2272e7|h2h|Washington Commanders|null",
@@ -34933,8 +35002,8 @@
    "Edge 11.7 points over the price, 0.9 past its bar of 10.8",
    "Market reference 28.0%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": 2.5,
   "loggedAt": "2026-11-23T20:36:56.852Z",
   "availability": null,
   "current": {
@@ -35304,14 +35373,37 @@
     "best": 245,
     "n": 8
    }
-  ]
+  ],
+  "result": "Win",
+  "score": "20-22",
+  "finalScore": {
+   "home": 22,
+   "away": 20
+  },
+  "gradedAt": "2026-11-24T09:08:46.850Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873078",
+   "line": null,
+   "odds": 237,
+   "fair": 0.2852,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": 105,
+    "fair": 0.4675
+   },
+   "samples": 1
+  },
+  "clv": -0.0005,
+  "lineMove": null
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-23",
   "date": "2026-11-23",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-23T20:40:00.044Z",
   "book": "FanDuel",
   "legs": [
@@ -35325,6 +35417,8 @@
   "decimal": 3.1501,
   "odds": 215,
   "fairProb": 0.4155,
-  "ev": 0.309
+  "ev": 0.309,
+  "gradedAt": "2026-11-24T09:08:46.850Z",
+  "result": "Loss"
  }
 ]

@@ -3,454 +3,32 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-23T20:36:56.852Z",
-  "trackedAt": "2026-11-24T02:04:05.513Z",
-  "playOfDay": {
-    "id": "6caeb7cce7-h2h-Phoenix-Suns",
-    "sport": "NBA",
-    "league": "NBA",
-    "sportKey": "basketball_nba",
-    "event": "Phoenix Suns @ New Orleans Pelicans",
-    "home": "New Orleans Pelicans",
-    "away": "Phoenix Suns",
-    "marketKey": "h2h",
-    "outcome": {
-      "name": "Phoenix Suns",
-      "point": null
-    },
-    "commence": "2026-11-24T01:10:00Z",
-    "start": "Today 8:10 PM ET",
-    "market": "Moneyline",
-    "pick": "Phoenix Suns ML",
-    "odds": -146,
-    "book": "FanDuel",
-    "prices": {
-      "FanDuel": -146,
-      "DraftKings": -155,
-      "BetOnline.ag": -150,
-      "BetMGM": -155,
-      "BetRivers": -167,
-      "theScore Bet": -155,
-      "Bovada": -150,
-      "Unibet": -167,
-      "Caesars": -150,
-      "PointsBet": -149,
-      "ESPN BET": -155
-    },
-    "pricesAt": "2026-11-23T20:36:56.852Z",
-    "books": 8,
-    "anchor": "Pinnacle",
-    "modelProb": 0.7119,
-    "ev": 0.1995,
-    "confidence": "Lean",
-    "basis": "game",
-    "model": {
-      "margin": -6.6,
-      "total": 232.7,
-      "sd": 14.3,
-      "sdTotal": 19,
-      "gp": 15,
-      "gpHome": 18,
-      "gpAway": 15,
-      "thin": false,
-      "parts": {
-        "ratingHome": -6.1,
-        "ratingAway": 0.4,
-        "lastHome": -4.5,
-        "lastAway": 1.5,
-        "homeEdge": 1.9,
-        "rest": -0.5,
-        "injuriesHome": -1.6,
-        "injuriesAway": 0,
-        "scoringOut": 0,
-        "pace": 232.7
-      },
-      "reasons": {
-        "for": [
-          "New Orleans Pelicans rate -6.1 a game over 18 (5-13), Phoenix Suns +0.4 over 15 (8-7); last season -4.5 and +1.5 a game",
-          "Phoenix Suns trending: last five +8 vs -0.9 on the season",
-          "Phoenix Suns are rested (3 days)",
-          "New Orleans Pelicans without Bennedict Mathurin (G), Dejounte Murray (G), Julian Reese (F) and 1 more (-1.6), out per the 3:30 PM ET official report",
-          "Projected margin +6.6 for Phoenix Suns"
-        ],
-        "against": [
-          "Home edge +1.9 for New Orleans Pelicans",
-          "New Orleans Pelicans have Zion Williamson (F) probable per the 3:30 PM ET official report (ESPN still lists him day-to-day)"
-        ]
-      }
-    },
-    "marketFair": 0.5758,
-    "marketEdge": -0.0177,
-    "rationale": "Our probability is 71.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.6 for the home side). FanDuel offers -146, which implies only 59.3%. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 57.6%.",
-    "factors": [
-      "Best price -146 at FanDuel",
-      "Probability 71.2% from game data, not other books",
-      "Edge 11.8 points over the price, 1.1 past its bar of 10.7",
-      "Market reference 57.6%"
-    ],
-    "breakdown": {
-      "tier": "Lean",
-      "tierWhy": "Our probability for this side is 71.2%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at FanDuel implies 59.3%, so the edge is 11.8 points. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-      "price": "Our probability is 71.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin -6.6 for the home side). FanDuel offers -146, which implies only 59.3%. Its bar is 10.7 points: the model's own margin of error on this side, with 15 games behind the thinner team (±3.93 points on the margin). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 57.6%.",
-      "support": [
-        "New Orleans Pelicans rate -6.1 a game over 18 (5-13), Phoenix Suns +0.4 over 15 (8-7); last season -4.5 and +1.5 a game.",
-        "Phoenix Suns trending: last five +8 vs -0.9 on the season.",
-        "Phoenix Suns are rested (3 days).",
-        "New Orleans Pelicans without Bennedict Mathurin (G), Dejounte Murray (G), Julian Reese (F) and 1 more (-1.6), out per the 3:30 PM ET official report.",
-        "Projected margin +6.6 for Phoenix Suns."
-      ],
-      "risks": [
-        "Home edge +1.9 for New Orleans Pelicans.",
-        "New Orleans Pelicans have Zion Williamson (F) probable per the 3:30 PM ET official report (ESPN still lists him day-to-day)."
-      ],
-      "notes": [
-        "Where the market sits: Pinnacle's de-vigged price makes this side 57.6% (-1.8 points against the best price). For reference only.",
-        "Market: DraftKings opened -149, now -155, moving toward this side since the open.",
-        "Market: The market (8 books) opened -133, now -139, the consensus moving toward this side since the open.",
-        "Indoor venue; weather is not a factor.",
-        "Records: Phoenix Suns 8-7 · New Orleans Pelicans 5-13 · Smoothie King Center, New Orleans."
-      ],
-      "verdict": "The game data lines up behind this side at this price."
-    },
-    "context": {
-      "espnEventId": "401910042",
-      "venue": "Smoothie King Center, New Orleans",
-      "indoor": true,
-      "records": {
-        "New Orleans Pelicans": {
-          "overall": "5-13",
-          "home": "4-7",
-          "away": "1-6"
-        },
-        "Phoenix Suns": {
-          "overall": "8-7",
-          "home": "5-4",
-          "away": "3-3"
-        }
-      },
-      "probables": {},
-      "injuries": {
-        "New Orleans Pelicans": [
-          {
-            "name": "Zion Williamson",
-            "pos": "F",
-            "athleteId": "4395628",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395628.png",
-            "status": "Day-To-Day",
-            "type": "Thigh",
-            "detail": "Bruise",
-            "returnDate": "2026-11-23",
-            "date": "2026-11-22T20:50Z",
-            "note": "Williamson (thigh) is probable for Monday's game against Phoenix."
-          },
-          {
-            "name": "Trendon Watford",
-            "pos": "F",
-            "athleteId": "4431675",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431675.png",
-            "status": "Out",
-            "type": "Ankle",
-            "detail": "Sprain",
-            "returnDate": "2026-11-27",
-            "date": "2026-11-21T18:21Z",
-            "note": "Watford (ankle) is out for Saturday's game against the Spurs."
-          },
-          {
-            "name": "Bennedict Mathurin",
-            "pos": "G",
-            "athleteId": "4683634",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4683634.png",
-            "status": "Out",
-            "type": "Foot",
-            "detail": "Plantar Fasciitis",
-            "returnDate": "2026-11-27",
-            "date": "2026-11-19T21:07Z",
-            "note": "Mathurin (foot) has been ruled out for Friday's game against the Thunder."
-          },
-          {
-            "name": "Dejounte Murray",
-            "pos": "G",
-            "athleteId": "3907497",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3907497.png",
-            "status": "Out",
-            "type": "Ankle",
-            "detail": "",
-            "returnDate": "2026-11-27",
-            "date": "2026-11-13T20:19Z",
-            "note": "Murray (ankle) is out for Friday's game against Memphis."
-          }
-        ],
-        "Phoenix Suns": [
-          {
-            "name": "Mark Williams",
-            "pos": "C",
-            "athleteId": "4701232",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701232.png",
-            "status": "Out",
-            "type": "Shoulder",
-            "detail": "Surgery",
-            "returnDate": "2027-02-03",
-            "date": "2026-09-11T16:03Z",
-            "note": "Williams underwent surgery Thursday to repair a torn labrum in his left shoulder and will miss an extended period of time, Shams Charania of ESPN reports."
-          }
-        ]
-      },
-      "rest": {
-        "New Orleans Pelicans": {
-          "restDays": 2,
-          "b2b": false,
-          "lastGame": "2026-11-22",
-          "gamesLast7": 3
-        },
-        "Phoenix Suns": {
-          "restDays": 3,
-          "b2b": false,
-          "lastGame": "2026-11-21",
-          "gamesLast7": 3
-        }
-      },
-      "weather": null,
-      "broadcast": "Suns Live, Arizona's Family 3TV",
-      "odds": {
-        "provider": "DraftKings",
-        "now": {
-          "spread": 3.5,
-          "spreadOdds": {
-            "home": -115,
-            "away": -105
-          },
-          "total": 232.5,
-          "totalOdds": {
-            "over": -113,
-            "under": -107
-          },
-          "ml": {
-            "home": 131,
-            "away": -155
-          },
-          "draw": null
-        },
-        "open": {
-          "spread": 3.5,
-          "spreadOdds": {
-            "home": -110,
-            "away": -110
-          },
-          "total": 232.5,
-          "totalOdds": {
-            "over": -110,
-            "under": -110
-          },
-          "ml": {
-            "home": 125,
-            "away": -149
-          },
-          "draw": null
-        }
-      }
-    },
-    "movement": null,
-    "dk": {
-      "book": "DraftKings",
-      "open": {
-        "line": null,
-        "odds": -149,
-        "fair": 0.5738125802310654
-      },
-      "now": {
-        "line": null,
-        "odds": -155,
-        "fair": 0.5840469782236358
-      },
-      "moved": "toward",
-      "label": "DraftKings opened -149, now -155"
-    },
-    "dkHistory": [
-      {
-        "at": "2026-11-23T20:36:56.852Z",
-        "line": null,
-        "odds": -155,
-        "fair": 0.584
-      }
-    ],
-    "mkt": {
-      "book": "Market consensus",
-      "n": 8,
-      "open": {
-        "line": null,
-        "odds": -133
-      },
-      "now": {
-        "line": null,
-        "odds": -139
-      },
-      "moved": "toward",
-      "label": "The market (8 books) opened -133, now -139"
-    },
-    "sgo": {
-      "at": "2026-11-23T20:36:56.852Z",
-      "n": 8,
-      "best": {
-        "book": "FanDuel",
-        "odds": -146
-      },
-      "fair": 0.5808,
-      "vendorFair": 0.5816,
-      "open": {
-        "line": null,
-        "odds": -133
-      },
-      "now": {
-        "line": null,
-        "odds": -139
-      }
-    },
-    "sgoHistory": [
-      {
-        "at": "2026-11-23T20:36:56.852Z",
-        "fair": 0.5808,
-        "vendorFair": 0.5816,
-        "line": null,
-        "odds": -139,
-        "best": -146,
-        "n": 8
-      }
-    ],
-    "status": "pending",
-    "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
-    "loggedAt": "2026-11-23T20:36:56.852Z",
-    "valueTo": -152,
-    "bar": 0.1073,
-    "past": 0.0111,
-    "barParts": {
-      "error": 0.1073,
-      "units": 3.93,
-      "unit": "points",
-      "gp": 15,
-      "floor": 0.03
-    },
-    "now": null,
-    "standing": null,
-    "availability": {
-      "changed": false,
-      "note": null,
-      "swing": null,
-      "changes": [],
-      "checkedAt": null,
-      "posted": {
-        "read": "2026-11-23T20:36:56.852Z",
-        "report": {
-          "source": "NBA official injury report",
-          "label": "3:30 PM ET",
-          "at": "2026-11-23T20:30:00.000Z",
-          "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-23_03_30PM.pdf"
-        },
-        "players": [
-          {
-            "side": "home",
-            "name": "Bennedict Mathurin",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-23T20:30:00.000Z"
-          },
-          {
-            "side": "home",
-            "name": "Dejounte Murray",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-23T20:30:00.000Z"
-          },
-          {
-            "side": "home",
-            "name": "Julian Reese",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-23T20:30:00.000Z"
-          },
-          {
-            "side": "home",
-            "name": "Trendon Watford",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-23T20:30:00.000Z"
-          },
-          {
-            "side": "away",
-            "name": "Mark Williams",
-            "status": "Out",
-            "source": "official",
-            "at": "2026-11-23T20:30:00.000Z"
-          }
-        ]
-      }
-    },
-    "kind": "lean",
-    "lockedAt": "2026-11-23T20:40:00.044Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-23",
-    "date": "2026-11-23",
-    "book": "FanDuel",
-    "odds": 215,
-    "decimal": 3.1501,
-    "fairProb": 0.4155,
-    "ev": 0.309,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-23T20:40:00.044Z",
-    "legs": [
-      {
-        "id": "6caeb7cce7-h2h-Phoenix-Suns",
-        "kind": "lean",
-        "pick": "Phoenix Suns ML",
-        "event": "Phoenix Suns @ New Orleans Pelicans",
-        "sport": "NBA",
-        "price": -146,
-        "commence": "2026-11-24T01:10:00Z",
-        "started": true,
-        "result": null,
-        "void": false
-      },
-      {
-        "id": "d127e1e72a-totals-Over",
-        "kind": "lean",
-        "pick": "Over 5.5",
-        "event": "Calgary Flames @ Ottawa Senators",
-        "sport": "NHL",
-        "price": -115,
-        "commence": "2026-11-24T00:40:00Z",
-        "started": true,
-        "result": null,
-        "void": false
-      }
-    ]
-  },
+  "trackedAt": "2026-11-24T09:08:46.850Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-23",
-    "lockAt": "2026-11-23T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-23T20:40:00.044Z",
+    "date": "2026-11-24",
+    "lockAt": "2026-11-24T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-22",
-        "kind": "prop",
-        "sport": "NFL",
-        "event": "Las Vegas Raiders @ Denver Broncos",
-        "pick": "Mike Washington Jr. under 9.5 receiving yards",
-        "odds": -107,
+        "date": "2026-11-23",
+        "kind": "lean",
+        "sport": "NBA",
+        "event": "Phoenix Suns @ New Orleans Pelicans",
+        "pick": "Phoenix Suns ML",
+        "odds": -146,
         "status": "graded",
         "result": "Win",
-        "units": 0.93
+        "units": 0.68
       },
       "parlay": {
-        "date": "2026-11-22",
+        "date": "2026-11-23",
         "legs": 2,
-        "odds": 232,
+        "odds": 215,
         "status": "graded",
         "result": "Loss",
         "units": -1
@@ -472,7 +50,7 @@ window.PICKS_DATA = {
         "point": 6.5
       },
       "commence": "2026-11-24T00:10:00Z",
-      "start": "Today 7:10 PM ET",
+      "start": "Yesterday 7:10 PM ET",
       "market": "Total",
       "pick": "Over 6.5",
       "odds": 120,
@@ -802,11 +380,14 @@ window.PICKS_DATA = {
           "n": 3
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 3,
+        "away": 2
+      },
       "loggedAt": "2026-11-22T20:36:38.543Z",
       "valueTo": 119,
       "bar": 0.03,
@@ -843,7 +424,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-24T00:40:00Z",
-      "start": "Today 7:40 PM ET",
+      "start": "Yesterday 7:40 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -122,
@@ -1221,11 +802,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 2,
+        "away": 1
+      },
       "loggedAt": "2026-11-22T20:36:38.543Z",
       "valueTo": -124,
       "bar": 0.03,
@@ -1262,7 +846,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-24T01:10:00Z",
-      "start": "Today 8:10 PM ET",
+      "start": "Yesterday 8:10 PM ET",
       "market": "Moneyline",
       "pick": "Phoenix Suns ML",
       "odds": -146,
@@ -1559,11 +1143,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.68,
+      "score": {
+        "home": 119,
+        "away": 123
+      },
       "loggedAt": "2026-11-23T20:36:56.852Z",
       "valueTo": -152,
       "bar": 0.1073,
@@ -1645,7 +1232,7 @@ window.PICKS_DATA = {
         "point": null
       },
       "commence": "2026-11-24T01:15:00Z",
-      "start": "Today 8:15 PM ET",
+      "start": "Yesterday 8:15 PM ET",
       "market": "Moneyline",
       "pick": "Washington Commanders ML",
       "odds": 250,
@@ -2053,11 +1640,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 2.5,
+      "score": {
+        "home": 22,
+        "away": 20
+      },
       "loggedAt": "2026-11-23T20:36:56.852Z",
       "valueTo": 240,
       "bar": 0.1083,
