@@ -1382,7 +1382,7 @@ UID:e9429c68a4-totals-Over@edgeline
 DTSTAMP:20261123T203656Z
 DTSTART:20261124T001000Z
 DTEND:20261124T031000Z
-SUMMARY:Over 6.5 +120 at theScore Bet · Low
+SUMMARY:Over 6.5 +120 at theScore Bet · in play
 DESCRIPTION:NHL · Columbus Blue Jackets @ New Jersey Devils · Mon Nov 23\
  , 7:10 PM ET\nTotal: Over 6.5 at +120 (theScore Bet). Our probability 48.8
  % from game data\, the price implies 45.5%\, edge +3.3 pts\, EV +7.4% per 
@@ -1408,9 +1408,25 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-23@edgeline
+DTSTAMP:20261124T020405Z
+DTSTART:20261124T004000Z
+DTEND:20261124T041000Z
+SUMMARY:Parlay lean of the day: 2 legs +215 at FanDuel
+DESCRIPTION:All legs priced at FanDuel. Fair 41.5%\, implied 31.7%\, EV +30
+ .9% per unit.\n- NBA: Phoenix Suns ML -146 · Phoenix Suns @ New Orleans P
+ elicans\n- NHL: Over 5.5 -115 · Calgary Flames @ Ottawa Senators\n\nEvery
+  parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261124T020405Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Over 6.5 +120 at theScore Bet · Low
+DESCRIPTION:Parlay lean of the day: 2 legs +215 at FanDuel
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
@@ -1419,7 +1435,7 @@ UID:d127e1e72a-totals-Over@edgeline
 DTSTAMP:20261123T203656Z
 DTSTART:20261124T004000Z
 DTEND:20261124T034000Z
-SUMMARY:Over 5.5 -122 at DraftKings · Low
+SUMMARY:Over 5.5 -122 at DraftKings · in play
 DESCRIPTION:NHL · Calgary Flames @ Ottawa Senators · Mon Nov 23\, 7:40 PM
   ET\nTotal: Over 5.5 at -122 (DraftKings). Our probability 58.4% from game
   data\, the price implies 55.0%\, edge +3.4 pts\, EV +6.2% per unit. Confi
@@ -1445,39 +1461,13 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -122 at DraftKings · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-23@edgeline
-DTSTAMP:20261123T203656Z
-DTSTART:20261124T004000Z
-DTEND:20261124T041000Z
-SUMMARY:Parlay lean of the day: 2 legs +215 at FanDuel
-DESCRIPTION:All legs priced at FanDuel. Fair 41.5%\, implied 31.7%\, EV +30
- .9% per unit.\n- NBA: Phoenix Suns ML -146 · Phoenix Suns @ New Orleans P
- elicans\n- NHL: Over 5.5 -115 · Calgary Flames @ Ottawa Senators\n\nEvery
-  parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261123T203656Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +215 at FanDuel
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6caeb7cce7-h2h-Phoenix-Suns@edgeline
 DTSTAMP:20261123T203656Z
 DTSTART:20261124T011000Z
 DTEND:20261124T041000Z
-SUMMARY:Lean of the day: Phoenix Suns ML -146 at FanDuel · Low
+SUMMARY:Phoenix Suns ML -146 at FanDuel · in play
 DESCRIPTION:NBA · Phoenix Suns @ New Orleans Pelicans · Mon Nov 23\, 8:10
   PM ET\nMoneyline: Phoenix Suns ML at -146 (FanDuel). Our probability 71.2
  % from game data\, the price implies 59.3%\, edge +11.8 pts\, EV +20.0% pe
@@ -1507,18 +1497,13 @@ CATEGORIES:NBA
 LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Phoenix Suns ML -146 at FanDuel · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:3a60ed1d20-h2h-Washington-Commanders@edgeline
 DTSTAMP:20261123T203656Z
 DTSTART:20261124T011500Z
 DTEND:20261124T041500Z
-SUMMARY:Washington Commanders ML +250 at BetOnline.ag · Low
+SUMMARY:Washington Commanders ML +250 at BetOnline.ag · in play
 DESCRIPTION:NFL · Cincinnati Bengals @ Washington Commanders · Mon Nov 23
  \, 8:15 PM ET\nMoneyline: Washington Commanders ML at +250 (BetOnline.ag).
   Our probability 40.3% from game data\, the price implies 28.6%\, edge +11
@@ -1550,10 +1535,5 @@ CATEGORIES:NFL
 LAST-MODIFIED:20261123T203656Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Washington Commanders ML +250 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 END:VCALENDAR

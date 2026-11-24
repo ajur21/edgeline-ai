@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-23T20:38:02.019Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-24T02:04:13.006Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -2281,10 +2281,13 @@ window.NFL_WEEK_DATA = {
    "week": 11,
    "kickoff": "2026-11-24T01:15Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/23 - 8:15 PM EST",
-   "score": null,
+   "state": "in",
+   "status": "STATUS_IN_PROGRESS",
+   "detail": "8:34 - 2nd",
+   "score": {
+    "home": 0,
+    "away": 0
+   },
    "home": {
     "id": "28",
     "abbr": "WSH",
@@ -2311,7 +2314,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-23T20:38:02.019Z",
-    "locked": false,
+    "locked": true,
     "margin": -3.55,
     "total": 48.3,
     "marginSd": 4.09,
@@ -2450,30 +2453,8 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-23T20:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.4028,
-     "bar": 0.1083,
-     "price": 240
-    },
-    "away": {
-     "prob": 0.5972,
-     "bar": 0.1083,
-     "price": 105
-    }
-   },
-   "board": {
-    "eventId": "3a60ed1d20004aa4d4772b2c1a2272e7",
-    "pricedAt": "2026-11-23T20:36:56.852Z",
-    "home": {
-     "odds": 250,
-     "book": "BetOnline.ag"
-    },
-    "away": {
-     "odds": -290,
-     "book": "FanDuel"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": {
     "id": "3a60ed1d20-h2h-Washington-Commanders",
     "pick": "Washington Commanders ML",
