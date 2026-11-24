@@ -1378,30 +1378,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:slate-2026-11-24@edgeline
-DTSTAMP:20261124T140858Z
-DTSTART;VALUE=DATE:20261124
-DTEND;VALUE=DATE:20261125
-SUMMARY:No lean tonight: 9 sides priced in 2 games\, none clears its bar
-DESCRIPTION:Every main-line side was given our probability from the game da
- ta. None sits above what its best price implies by its own bar (3 points o
- r more: the model's margin of error on that side)\, so there is no bet.\nI
- n a replay of past seasons these leans did not beat the closing price (NHL
-  −4.8%\, NBA −7.9%\, NFL −9.5% ROI at the close). They become picks 
- when the live record beats the close.\nClosest to the bar:\n- NHL: Edmonto
- n Oilers ML +100 at theScore Bet (+5.9 pts against a bar of +6.9 pts) · V
- egas Golden Knights @ Edmonton Oilers\n- NHL: Edmonton Oilers +1.5 -258 at
-  DraftKings (+2.9 pts against a bar of +5.3 pts) · Vegas Golden Knights @
-  Edmonton Oilers\n- NHL: Over 6.5 +105 at BetRivers (+0.6 pts against a ba
- r of +3.0 pts) · Vegas Golden Knights @ Edmonton Oilers\nThe market board
- : https://ajur21.github.io/edgeline-ai/picks.html#market
-URL:https://ajur21.github.io/edgeline-ai/picks.html#market
-CATEGORIES:Slate
-LAST-MODIFIED:20261124T140858Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
 UID:e9429c68a4-totals-Over@edgeline
 DTSTAMP:20261124T090846Z
 DTSTART:20261124T001000Z
@@ -1472,5 +1448,176 @@ CATEGORIES:NFL
 LAST-MODIFIED:20261124T090846Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:155fbdda10-h2h-Edmonton-Oilers@edgeline
+DTSTAMP:20261124T203618Z
+DTSTART:20261125T011000Z
+DTEND:20261125T041000Z
+SUMMARY:Lean of the day: Edmonton Oilers ML +109 at BetOnline.ag · Low
+DESCRIPTION:NHL · Vegas Golden Knights @ Edmonton Oilers · Tue Nov 24\, 8
+ :10 PM ET\nMoneyline: Edmonton Oilers ML at +109 (BetOnline.ag). Our proba
+ bility 55.8% from game data\, the price implies 47.8%\, edge +7.9 pts\, EV
+  +16.6% per unit. Confidence: Lean.\nOur probability is 55.8%\, from the g
+ ame data: this season's results and margins\, recent form\, rest\, the inj
+ ury report and home edge (projected margin +0.3 for the home side). BetOnl
+ ine.ag offers +109\, which implies only 47.8%. Its bar is 6.9 points: the 
+ model's own margin of error on this side\, with 25 games behind the thinne
+ r team (±0.42 goals on the margin). It clears it by 1.0. Not graded again
+ st other books' prices\; for reference the market makes it 47.6%.\nWhat su
+ pports it:\n- Edmonton Oilers rate +0.4 a game over 26 (17-9)\, Vegas Gold
+ en Knights +0.1 over 25 (14-11)\; last season +0.2 and +0.2 a game.\n- Veg
+ as Golden Knights trending: last five -1 vs +0.4 on the season.\n- Home ed
+ ge +0.2 for Edmonton Oilers.\n- Projected margin +0.3 for Edmonton Oilers.
+ \nWhat could go wrong:\n- Edmonton Oilers trending: last five 0 vs +0.9 on
+  the season.\n- Vegas Golden Knights are rested (3 days).\n- Edmonton Oile
+ rs without Zach Hyman (LW) (-0.1).\nVerdict: The game data lines up behind
+  this side at this price.\nPrices: BetOnline.ag +109\, DraftKings +105\, P
+ ointsBet +105\, FanDuel +102\, Bovada +100 and 4 more.\nFull breakdown: ht
+ tps://ajur21.github.io/edgeline-ai/picks.html#155fbdda10-h2h-Edmonton-Oile
+ rs
+LOCATION:Rogers Place\, Edmonton
+URL:https://ajur21.github.io/edgeline-ai/picks.html#155fbdda10-h2h-Edmonton
+ -Oilers
+CATEGORIES:NHL
+LAST-MODIFIED:20261124T203618Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Lean of the day: Edmonton Oilers ML +109 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-24@edgeline
+DTSTAMP:20261124T203618Z
+DTSTART:20261125T011000Z
+DTEND:20261125T060000Z
+SUMMARY:Parlay lean of the day: 2 legs +314 at DraftKings
+DESCRIPTION:All legs priced at DraftKings. Fair 29.7%\, implied 24.2%\, EV 
+ +23.1% per unit.\n- NHL: Edmonton Oilers ML +105 · Vegas Golden Knights @
+  Edmonton Oilers\n- NBA: Daniel Gafford under 6.5 rebounds +102 · Dallas 
+ Mavericks @ Denver Nuggets\n\nEvery parlay: https://ajur21.github.io/edgel
+ ine-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261124T203618Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +314 at DraftKings
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:70e9e98dcc-totals-Over@edgeline
+DTSTAMP:20261124T203618Z
+DTSTART:20261126T000000Z
+DTEND:20261126T030000Z
+SUMMARY:Over 5.5 -114 at FanDuel · Medium
+DESCRIPTION:NHL · St Louis Blues @ New York Islanders · Wed Nov 25\, 7:00
+  PM ET\nTotal: Over 5.5 at -114 (FanDuel). Our probability 59.1% from game
+  data\, the price implies 53.3%\, edge +5.8 pts\, EV +10.9% per unit. Conf
+ idence: Medium.\nOur probability at 5.5 is 59.1%\, from the game data: thi
+ s season's results and margins\, recent form\, rest\, the injury report an
+ d home edge (projected total 6.4). FanDuel offers -114\, which implies onl
+ y 53.3%. Its bar is 3.0 points (the floor: the model's own margin of error
+  here is smaller). It clears it by 2.8. Not graded against other books' pr
+ ices\; for reference the market makes it 52.7%.\nWhat supports it:\n- Comb
+ ined scoring 6.1 a game in New York Islanders's games\, 6.6 in St Louis Bl
+ ues's (league average 6.4).\n- Projected total 6.4 against 5.5.\nWhat coul
+ d go wrong:\n- Scorers out: Kyle Palmieri (C)\, lower body\; Ryan Pulock (
+ D)\, shoulder\; Alexander Romanov (D)\, knee and 4 more. Fewer healthy sco
+ rers leans under.\nVerdict: The game data lines up behind this side at thi
+ s price.\nPrices: FanDuel -114\, BetMGM -120\, DraftKings -122\, Caesars -
+ 125\, Unibet -128 and 2 more.\nFull breakdown: https://ajur21.github.io/ed
+ geline-ai/picks.html#70e9e98dcc-totals-Over
+LOCATION:UBS Arena\, Elmont
+URL:https://ajur21.github.io/edgeline-ai/picks.html#70e9e98dcc-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261124T203618Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -114 at FanDuel · Medium
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:03b0506602-totals-Over@edgeline
+DTSTAMP:20261124T203618Z
+DTSTART:20261126T000000Z
+DTEND:20261126T030000Z
+SUMMARY:Over 5.5 -117 at BetOnline.ag · Low
+DESCRIPTION:NHL · Ottawa Senators @ Florida Panthers · Wed Nov 25\, 7:00 
+ PM ET\nTotal: Over 5.5 at -117 (BetOnline.ag). Our probability 58.1% from 
+ game data\, the price implies 53.9%\, edge +4.1 pts\, EV +7.7% per unit. C
+ onfidence: Lean.\nOur probability at 5.5 is 58.1%\, from the game data: th
+ is season's results and margins\, recent form\, rest\, the injury report a
+ nd home edge (projected total 6.3). BetOnline.ag offers -117\, which impli
+ es only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of
+  error here is smaller). It clears it by 1.1. Not graded against other boo
+ ks' prices\; for reference the market makes it 52.2%.\nWhat supports it:\n
+ - Combined scoring 6.1 a game in Florida Panthers's games\, 6.1 in Ottawa 
+ Senators's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat
+  could go wrong:\n- Scorers out: Brad Marchand (LW)\, knee\; Aleksander Ba
+ rkov (C)\, knee\; Jonah Gadjovich (LW)\, neck and 4 more. Fewer healthy sc
+ orers leans under.\nVerdict: The game data lines up behind this side at th
+ is price.\nPrices: BetOnline.ag -117\, DraftKings -120\, BetMGM -120\, Bov
+ ada -120\, FanDuel -124 and 3 more.\nFull breakdown: https://ajur21.github
+ .io/edgeline-ai/picks.html#03b0506602-totals-Over
+LOCATION:Amerant Bank Arena\, Sunrise
+URL:https://ajur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261124T203618Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -117 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:696cf3d878-spreads-Minnesota-Wild@edgeline
+DTSTAMP:20261124T203618Z
+DTSTART:20261126T011000Z
+DTEND:20261126T041000Z
+SUMMARY:Minnesota Wild -1.5 +176 at FanDuel · Low
+DESCRIPTION:NHL · Utah Mammoth @ Minnesota Wild · Wed Nov 25\, 8:10 PM ET
+ \nPuck line: Minnesota Wild -1.5 at +176 (FanDuel). Our probability 44.2% 
+ from game data\, the price implies 36.2%\, edge +7.9 pts\, EV +21.9% per u
+ nit. Confidence: Lean.\nOur probability at -1.5 is 44.2%\, from the game d
+ ata: this season's results and margins\, recent form\, rest\, the injury r
+ eport and home edge (projected margin +1 for the home side). FanDuel offer
+ s +176\, which implies only 36.2%. Its bar is 6.6 points: the model's own 
+ margin of error on this side\, with 25 games behind the thinner team (±0.
+ 42 goals on the margin). It clears it by 1.4. Not graded against other boo
+ ks' prices\; for reference the market makes it 35.3%.\nWhat supports it:\n
+ - Minnesota Wild rate +0.7 a game over 26 (18-8)\, Utah Mammoth +0 over 25
+  (12-13)\; last season +0.4 and +0.3 a game.\n- Minnesota Wild trending: l
+ ast five +2.6 vs +1.4 on the season.\n- Home edge +0.2 for Minnesota Wild.
+ \n- Utah Mammoth without John Marino (D)\, Michael Carcone (LW)\, Nick Sch
+ maltz (C) and 1 more (+0.3).\n- Projected margin +1 for Minnesota Wild aga
+ inst -1.5.\nWhat could go wrong:\n- Minnesota Wild without Quinn Hughes (D
+ )\, Olli Maatta (D) (-0.2).\nVerdict: The game data lines up behind this s
+ ide at this price.\nPrices: FanDuel +176\, Bovada +173\, DraftKings +170\,
+  Caesars +170\, BetRivers +160 and 1 more.\nFull breakdown: https://ajur21
+ .github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild
+LOCATION:Grand Casino Arena\, Saint Paul
+URL:https://ajur21.github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minn
+ esota-Wild
+CATEGORIES:NHL
+LAST-MODIFIED:20261124T203618Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Minnesota Wild -1.5 +176 at FanDuel · Low
+TRIGGER:-PT30M
+END:VALARM
 END:VEVENT
 END:VCALENDAR
