@@ -1451,7 +1451,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:155fbdda10-h2h-Edmonton-Oilers@edgeline
-DTSTAMP:20261124T203618Z
+DTSTAMP:20261124T234851Z
 DTSTART:20261125T011000Z
 DTEND:20261125T041000Z
 SUMMARY:Lean of the day: Edmonton Oilers ML +109 at BetOnline.ag · Low
@@ -1472,15 +1472,14 @@ DESCRIPTION:NHL · Vegas Golden Knights @ Edmonton Oilers · Tue Nov 24\, 8
  \nWhat could go wrong:\n- Edmonton Oilers trending: last five 0 vs +0.9 on
   the season.\n- Vegas Golden Knights are rested (3 days).\n- Edmonton Oile
  rs without Zach Hyman (LW) (-0.1).\nVerdict: The game data lines up behind
-  this side at this price.\nPrices: BetOnline.ag +109\, DraftKings +105\, P
- ointsBet +105\, FanDuel +102\, Bovada +100 and 4 more.\nFull breakdown: ht
- tps://ajur21.github.io/edgeline-ai/picks.html#155fbdda10-h2h-Edmonton-Oile
- rs
+  this side at this price.\nPrices: BetOnline.ag +109\, FanDuel +102\, Draf
+ tKings +100\, BetMGM +100\, Bovada +100 and 4 more.\nFull breakdown: https
+ ://ajur21.github.io/edgeline-ai/picks.html#155fbdda10-h2h-Edmonton-Oilers
 LOCATION:Rogers Place\, Edmonton
 URL:https://ajur21.github.io/edgeline-ai/picks.html#155fbdda10-h2h-Edmonton
  -Oilers
 CATEGORIES:NHL
-LAST-MODIFIED:20261124T203618Z
+LAST-MODIFIED:20261124T234851Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1491,7 +1490,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-24@edgeline
-DTSTAMP:20261124T203618Z
+DTSTAMP:20261124T234851Z
 DTSTART:20261125T011000Z
 DTEND:20261125T060000Z
 SUMMARY:Parlay lean of the day: 2 legs +314 at DraftKings
@@ -1502,7 +1501,7 @@ DESCRIPTION:All legs priced at DraftKings. Fair 29.7%\, implied 24.2%\, EV
  ine-ai/picks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261124T203618Z
+LAST-MODIFIED:20261124T234851Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

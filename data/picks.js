@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-24T20:36:18.127Z",
+  "trackedAt": "2026-11-24T23:48:51.852Z",
   "playOfDay": {
     "id": "155fbdda10-h2h-Edmonton-Oilers",
     "sport": "NHL",
@@ -26,14 +27,14 @@ window.PICKS_DATA = {
       "BetRivers": -105,
       "BetOnline.ag": 109,
       "FanDuel": 102,
-      "DraftKings": 105,
-      "BetMGM": -102,
+      "DraftKings": 100,
+      "BetMGM": 100,
       "Bovada": 100,
       "Caesars": 100,
       "ESPN BET": 100,
-      "PointsBet": 105
+      "PointsBet": 100
     },
-    "pricesAt": "2026-11-24T20:36:18.127Z",
+    "pricesAt": "2026-11-24T23:48:51.852Z",
     "books": 7,
     "anchor": "Pinnacle",
     "modelProb": 0.5577,
@@ -101,7 +102,7 @@ window.PICKS_DATA = {
       ],
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 47.6% (-0.3 points against the best price). For reference only.",
-        "Market: DraftKings opened -112, now +105, moving against this side since the open.",
+        "Market: DraftKings opened -112, now +100, moving against this side since the open.",
         "Market: The market (7 books) opened -120, now +109, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Oilers Devon Levi · Knights Carter Hart.",
@@ -220,12 +221,12 @@ window.PICKS_DATA = {
           },
           "total": 6.5,
           "totalOdds": {
-            "over": 105,
-            "under": -125
+            "over": -122,
+            "under": 102
           },
           "ml": {
-            "home": 105,
-            "away": -125
+            "home": 100,
+            "away": -120
           },
           "draw": null
         },
@@ -258,11 +259,11 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": 105,
-        "fair": 0.4675324675324675
+        "odds": 100,
+        "fair": 0.4782608695652174
       },
       "moved": "away",
-      "label": "DraftKings opened -112, now +105"
+      "label": "DraftKings opened -112, now +100"
     },
     "dkHistory": [
       {
@@ -270,6 +271,12 @@ window.PICKS_DATA = {
         "line": null,
         "odds": 105,
         "fair": 0.4675
+      },
+      {
+        "at": "2026-11-24T23:48:51.852Z",
+        "line": null,
+        "odds": 100,
+        "fair": 0.4783
       }
     ],
     "mkt": {
@@ -287,13 +294,13 @@ window.PICKS_DATA = {
       "label": "The market (7 books) opened -120, now +109"
     },
     "sgo": {
-      "at": "2026-11-24T20:36:18.127Z",
+      "at": "2026-11-24T23:48:51.852Z",
       "n": 7,
       "best": {
-        "book": "DraftKings",
-        "odds": 105
+        "book": "FanDuel",
+        "odds": 102
       },
-      "fair": 0.4745,
+      "fair": 0.477,
       "vendorFair": 0.4785,
       "open": {
         "line": null,
@@ -312,6 +319,15 @@ window.PICKS_DATA = {
         "line": null,
         "odds": 109,
         "best": 105,
+        "n": 7
+      },
+      {
+        "at": "2026-11-24T23:48:51.852Z",
+        "fair": 0.477,
+        "vendorFair": 0.4785,
+        "line": null,
+        "odds": 109,
+        "best": 102,
         "n": 7
       }
     ],
@@ -802,14 +818,14 @@ window.PICKS_DATA = {
         "BetRivers": -105,
         "BetOnline.ag": 109,
         "FanDuel": 102,
-        "DraftKings": 105,
-        "BetMGM": -102,
+        "DraftKings": 100,
+        "BetMGM": 100,
         "Bovada": 100,
         "Caesars": 100,
         "ESPN BET": 100,
-        "PointsBet": 105
+        "PointsBet": 100
       },
-      "pricesAt": "2026-11-24T20:36:18.127Z",
+      "pricesAt": "2026-11-24T23:48:51.852Z",
       "books": 7,
       "anchor": "Pinnacle",
       "modelProb": 0.5577,
@@ -877,7 +893,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 47.6% (-0.3 points against the best price). For reference only.",
-          "Market: DraftKings opened -112, now +105, moving against this side since the open.",
+          "Market: DraftKings opened -112, now +100, moving against this side since the open.",
           "Market: The market (7 books) opened -120, now +109, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Oilers Devon Levi · Knights Carter Hart.",
@@ -996,12 +1012,12 @@ window.PICKS_DATA = {
             },
             "total": 6.5,
             "totalOdds": {
-              "over": 105,
-              "under": -125
+              "over": -122,
+              "under": 102
             },
             "ml": {
-              "home": 105,
-              "away": -125
+              "home": 100,
+              "away": -120
             },
             "draw": null
           },
@@ -1034,11 +1050,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 105,
-          "fair": 0.4675324675324675
+          "odds": 100,
+          "fair": 0.4782608695652174
         },
         "moved": "away",
-        "label": "DraftKings opened -112, now +105"
+        "label": "DraftKings opened -112, now +100"
       },
       "dkHistory": [
         {
@@ -1046,6 +1062,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 105,
           "fair": 0.4675
+        },
+        {
+          "at": "2026-11-24T23:48:51.852Z",
+          "line": null,
+          "odds": 100,
+          "fair": 0.4783
         }
       ],
       "mkt": {
@@ -1063,13 +1085,13 @@ window.PICKS_DATA = {
         "label": "The market (7 books) opened -120, now +109"
       },
       "sgo": {
-        "at": "2026-11-24T20:36:18.127Z",
+        "at": "2026-11-24T23:48:51.852Z",
         "n": 7,
         "best": {
-          "book": "DraftKings",
-          "odds": 105
+          "book": "FanDuel",
+          "odds": 102
         },
-        "fair": 0.4745,
+        "fair": 0.477,
         "vendorFair": 0.4785,
         "open": {
           "line": null,
@@ -1088,6 +1110,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 109,
           "best": 105,
+          "n": 7
+        },
+        {
+          "at": "2026-11-24T23:48:51.852Z",
+          "fair": 0.477,
+          "vendorFair": 0.4785,
+          "line": null,
+          "odds": 109,
+          "best": 102,
           "n": 7
         }
       ],
@@ -1197,6 +1228,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: the de-vigged consensus of 5 books makes this side 52.8% (-0.5 points against the best price). For reference only.",
+          "Market: DraftKings opened 5.5 (-122), now 5.5 (-130), moving toward this side since the open.",
           "Market: The market (5 books) opened 7.5 (+140), now 6 (+110), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Islanders Ilya Sorokin · Blues Joel Hofer.",
@@ -1371,17 +1403,17 @@ window.PICKS_DATA = {
           "now": {
             "spread": -1.5,
             "spreadOdds": {
-              "home": 225,
-              "away": -278
+              "home": 215,
+              "away": -265
             },
             "total": 5.5,
             "totalOdds": {
-              "over": -122,
-              "under": 102
+              "over": -130,
+              "under": 110
             },
             "ml": {
-              "home": -115,
-              "away": -105
+              "home": -120,
+              "away": 100
             },
             "draw": null
           },
@@ -1414,11 +1446,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 5.5,
-          "odds": -122,
-          "fair": 0.5260865852617197
+          "odds": -130,
+          "fair": 0.5427435387673957
         },
-        "moved": null,
-        "label": "DraftKings opened 5.5 (-122), now 5.5 (-122)"
+        "moved": "toward",
+        "label": "DraftKings opened 5.5 (-122), now 5.5 (-130)"
       },
       "dkHistory": [
         {
@@ -1426,6 +1458,12 @@ window.PICKS_DATA = {
           "line": 5.5,
           "odds": -122,
           "fair": 0.5261
+        },
+        {
+          "at": "2026-11-24T23:48:51.852Z",
+          "line": 5.5,
+          "odds": -130,
+          "fair": 0.5427
         }
       ],
       "mkt": {
