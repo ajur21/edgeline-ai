@@ -3,439 +3,32 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-24T20:36:18.127Z",
-  "trackedAt": "2026-11-24T23:48:51.852Z",
-  "playOfDay": {
-    "id": "155fbdda10-h2h-Edmonton-Oilers",
-    "sport": "NHL",
-    "league": "NHL",
-    "sportKey": "icehockey_nhl",
-    "event": "Vegas Golden Knights @ Edmonton Oilers",
-    "home": "Edmonton Oilers",
-    "away": "Vegas Golden Knights",
-    "marketKey": "h2h",
-    "outcome": {
-      "name": "Edmonton Oilers",
-      "point": null
-    },
-    "commence": "2026-11-25T01:10:00Z",
-    "start": "Today 8:10 PM ET",
-    "market": "Moneyline",
-    "pick": "Edmonton Oilers ML",
-    "odds": 109,
-    "book": "BetOnline.ag",
-    "prices": {
-      "BetRivers": -105,
-      "BetOnline.ag": 109,
-      "FanDuel": 102,
-      "DraftKings": 100,
-      "BetMGM": 100,
-      "Bovada": 100,
-      "Caesars": 100,
-      "ESPN BET": 100,
-      "PointsBet": 100
-    },
-    "pricesAt": "2026-11-24T23:48:51.852Z",
-    "books": 7,
-    "anchor": "Pinnacle",
-    "modelProb": 0.5577,
-    "ev": 0.1656,
-    "confidence": "Lean",
-    "basis": "game",
-    "model": {
-      "margin": 0.3,
-      "total": 6.4,
-      "sd": 2.4,
-      "sdTotal": 2.3,
-      "gp": 25,
-      "gpHome": 26,
-      "gpAway": 25,
-      "thin": false,
-      "parts": {
-        "ratingHome": 0.4,
-        "ratingAway": 0.1,
-        "lastHome": 0.2,
-        "lastAway": 0.2,
-        "homeEdge": 0.24,
-        "rest": 0,
-        "injuriesHome": -0.1,
-        "injuriesAway": 0,
-        "scoringOut": 0,
-        "pace": 6.6
-      },
-      "reasons": {
-        "for": [
-          "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game",
-          "Vegas Golden Knights trending: last five -1 vs +0.4 on the season",
-          "Home edge +0.2 for Edmonton Oilers",
-          "Projected margin +0.3 for Edmonton Oilers"
-        ],
-        "against": [
-          "Edmonton Oilers trending: last five 0 vs +0.9 on the season",
-          "Vegas Golden Knights are rested (3 days)",
-          "Edmonton Oilers without Zach Hyman (LW) (-0.1)"
-        ]
-      }
-    },
-    "marketFair": 0.476,
-    "marketEdge": -0.0025,
-    "rationale": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
-    "factors": [
-      "Best price +109 at BetOnline.ag",
-      "Probability 55.8% from game data, not other books",
-      "Edge 7.9 points over the price, 1.0 past its bar of 6.9",
-      "Market reference 47.6%"
-    ],
-    "breakdown": {
-      "tier": "Lean",
-      "tierWhy": "Our probability for this side is 55.8%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 47.8%, so the edge is 7.9 points. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-      "price": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
-      "support": [
-        "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game.",
-        "Vegas Golden Knights trending: last five -1 vs +0.4 on the season.",
-        "Home edge +0.2 for Edmonton Oilers.",
-        "Projected margin +0.3 for Edmonton Oilers."
-      ],
-      "risks": [
-        "Edmonton Oilers trending: last five 0 vs +0.9 on the season.",
-        "Vegas Golden Knights are rested (3 days).",
-        "Edmonton Oilers without Zach Hyman (LW) (-0.1)."
-      ],
-      "notes": [
-        "Where the market sits: Pinnacle's de-vigged price makes this side 47.6% (-0.3 points against the best price). For reference only.",
-        "Market: DraftKings opened -112, now +100, moving against this side since the open.",
-        "Market: The market (7 books) opened -120, now +109, the consensus moving against this side since the open.",
-        "Indoor venue; weather is not a factor.",
-        "Probable pitchers: Oilers Devon Levi · Knights Carter Hart.",
-        "Records: Vegas Golden Knights 14-6-5 · Edmonton Oilers 17-5-4 · Rogers Place, Edmonton."
-      ],
-      "verdict": "The game data lines up behind this side at this price."
-    },
-    "context": {
-      "espnEventId": "401892780",
-      "venue": "Rogers Place, Edmonton",
-      "indoor": true,
-      "records": {
-        "Edmonton Oilers": {
-          "overall": "17-5-4",
-          "home": "7-3-2",
-          "away": "10-2-2"
-        },
-        "Vegas Golden Knights": {
-          "overall": "14-6-5",
-          "home": "7-4-3",
-          "away": "7-2-2"
-        }
-      },
-      "probables": {
-        "Edmonton Oilers": "Devon Levi",
-        "Vegas Golden Knights": "Carter Hart"
-      },
-      "injuries": {
-        "Edmonton Oilers": [
-          {
-            "name": "Zach Hyman",
-            "pos": "LW",
-            "athleteId": "5509",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5509.png",
-            "status": "Out",
-            "type": "Impaired Vision",
-            "detail": "",
-            "returnDate": "2026-11-27",
-            "date": "2026-11-24T17:12Z",
-            "note": "Hyman (migraine) won't play against Vegas on Tuesday, per Oilers play-by-play announcer Jack Michaels."
-          },
-          {
-            "name": "Alec Regula",
-            "pos": "D",
-            "athleteId": "4331611",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4331611.png",
-            "status": "Injured Reserve",
-            "type": "Undisclosed",
-            "detail": "",
-            "returnDate": "2026-12-01",
-            "date": "2026-10-01T14:11Z",
-            "note": "Regula (undisclosed) was designated for long-term injured reserve Thursday."
-          },
-          {
-            "name": "Matt Savoie",
-            "pos": "C",
-            "athleteId": "5080153",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080153.png",
-            "status": "Injured Reserve",
-            "type": "Lower Body",
-            "detail": "Not Specified",
-            "returnDate": "2026-11-28",
-            "date": "2026-10-01T14:05Z",
-            "note": "Savoie (lower body) was shifted to long-term injured reserve Thursday."
-          },
-          {
-            "name": "Frederik Andersen",
-            "pos": "G",
-            "athleteId": "2517899",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2517899.png",
-            "status": "Injured Reserve",
-            "type": "Knee",
-            "detail": "",
-            "returnDate": "2027-01-09",
-            "date": "2026-09-29T17:53Z",
-            "note": "Andersen (knee) isn't expected back until \"maybe\" December, head coach Mike Babcock told NHL.com on Tuesday."
-          },
-          {
-            "name": "Mattias Janmark",
-            "pos": "C",
-            "athleteId": "3042085",
-            "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042085.png",
-            "status": "Injured Reserve",
-            "type": "Undisclosed",
-            "detail": "Surgery",
-            "returnDate": "2026-11-28",
-            "date": "2026-09-29T17:52Z",
-            "note": "Janmark (undisclosed) does not have a timetable for his return from injury."
-          }
-        ],
-        "Vegas Golden Knights": []
-      },
-      "rest": {
-        "Edmonton Oilers": {
-          "restDays": 2,
-          "b2b": false,
-          "lastGame": "2026-11-23",
-          "gamesLast7": 3
-        },
-        "Vegas Golden Knights": {
-          "restDays": 3,
-          "b2b": false,
-          "lastGame": "2026-11-22",
-          "gamesLast7": 3
-        }
-      },
-      "weather": null,
-      "broadcast": "TNT",
-      "odds": {
-        "provider": "DraftKings",
-        "now": {
-          "spread": 1.5,
-          "spreadOdds": {
-            "home": -258,
-            "away": 210
-          },
-          "total": 6.5,
-          "totalOdds": {
-            "over": -122,
-            "under": 102
-          },
-          "ml": {
-            "home": 100,
-            "away": -120
-          },
-          "draw": null
-        },
-        "open": {
-          "spread": -1.5,
-          "spreadOdds": {
-            "home": 210,
-            "away": -258
-          },
-          "total": 6.5,
-          "totalOdds": {
-            "over": -105,
-            "under": -115
-          },
-          "ml": {
-            "home": -112,
-            "away": -108
-          },
-          "draw": null
-        }
-      }
-    },
-    "movement": null,
-    "dk": {
-      "book": "DraftKings",
-      "open": {
-        "line": null,
-        "odds": -112,
-        "fair": 0.5043297540699688
-      },
-      "now": {
-        "line": null,
-        "odds": 100,
-        "fair": 0.4782608695652174
-      },
-      "moved": "away",
-      "label": "DraftKings opened -112, now +100"
-    },
-    "dkHistory": [
-      {
-        "at": "2026-11-24T20:36:18.127Z",
-        "line": null,
-        "odds": 105,
-        "fair": 0.4675
-      },
-      {
-        "at": "2026-11-24T23:48:51.852Z",
-        "line": null,
-        "odds": 100,
-        "fair": 0.4783
-      }
-    ],
-    "mkt": {
-      "book": "Market consensus",
-      "n": 7,
-      "open": {
-        "line": null,
-        "odds": -120
-      },
-      "now": {
-        "line": null,
-        "odds": 109
-      },
-      "moved": "away",
-      "label": "The market (7 books) opened -120, now +109"
-    },
-    "sgo": {
-      "at": "2026-11-24T23:48:51.852Z",
-      "n": 7,
-      "best": {
-        "book": "FanDuel",
-        "odds": 102
-      },
-      "fair": 0.477,
-      "vendorFair": 0.4785,
-      "open": {
-        "line": null,
-        "odds": -120
-      },
-      "now": {
-        "line": null,
-        "odds": 109
-      }
-    },
-    "sgoHistory": [
-      {
-        "at": "2026-11-24T20:36:18.127Z",
-        "fair": 0.4745,
-        "vendorFair": 0.4785,
-        "line": null,
-        "odds": 109,
-        "best": 105,
-        "n": 7
-      },
-      {
-        "at": "2026-11-24T23:48:51.852Z",
-        "fair": 0.477,
-        "vendorFair": 0.4785,
-        "line": null,
-        "odds": 109,
-        "best": 102,
-        "n": 7
-      }
-    ],
-    "status": "pending",
-    "started": false,
-    "result": null,
-    "units": null,
-    "score": null,
-    "loggedAt": "2026-11-24T20:36:18.127Z",
-    "valueTo": 105,
-    "bar": 0.069,
-    "past": 0.0102,
-    "barParts": {
-      "error": 0.069,
-      "units": 0.42,
-      "unit": "goals",
-      "gp": 25,
-      "floor": 0.03
-    },
-    "now": null,
-    "standing": null,
-    "availability": null,
-    "kind": "lean",
-    "lockedAt": "2026-11-24T20:38:45.518Z"
-  },
-  "parlayOfDay": {
-    "id": "parlay-2026-11-24",
-    "date": "2026-11-24",
-    "book": "DraftKings",
-    "odds": 314,
-    "decimal": 4.141,
-    "fairProb": 0.2973,
-    "ev": 0.2312,
-    "status": "pending",
-    "result": null,
-    "units": null,
-    "lockedAt": "2026-11-24T20:38:45.518Z",
-    "legs": [
-      {
-        "id": "155fbdda10-h2h-Edmonton-Oilers",
-        "kind": "lean",
-        "pick": "Edmonton Oilers ML",
-        "event": "Vegas Golden Knights @ Edmonton Oilers",
-        "sport": "NHL",
-        "price": 105,
-        "commence": "2026-11-25T01:10:00Z",
-        "started": false,
-        "result": null,
-        "void": false
-      },
-      {
-        "id": "prop-NBA-401909316-4278049-reb-under-6.5",
-        "kind": "prop",
-        "pick": "Daniel Gafford under 6.5 rebounds",
-        "event": "Dallas Mavericks @ Denver Nuggets",
-        "sport": "NBA",
-        "price": 102,
-        "commence": "2026-11-25T03:00:00.000Z",
-        "started": false,
-        "result": null,
-        "void": false,
-        "league": "NBA",
-        "sportKey": "basketball_nba",
-        "home": "Denver Nuggets",
-        "away": "Dallas Mavericks",
-        "gameId": "401909316",
-        "player": {
-          "id": "4278049",
-          "name": "Daniel Gafford",
-          "pos": "F",
-          "teamId": "6",
-          "teamAbbr": "DAL",
-          "oppAbbr": "DEN",
-          "home": false,
-          "headshot": null
-        },
-        "stat": "reb",
-        "statShort": "REB",
-        "side": "under",
-        "line": 6.5,
-        "modelProb": 0.5331,
-        "actual": null
-      }
-    ]
-  },
+  "trackedAt": "2026-11-25T07:44:51.371Z",
+  "playOfDay": null,
+  "parlayOfDay": null,
   "ofDay": {
-    "date": "2026-11-24",
-    "lockAt": "2026-11-24T20:30:00.000Z",
-    "playLocked": true,
-    "parlayLocked": true,
-    "closed": true,
-    "checkedAt": "2026-11-24T20:38:45.518Z",
+    "date": "2026-11-25",
+    "lockAt": "2026-11-25T20:30:00.000Z",
+    "playLocked": false,
+    "parlayLocked": false,
+    "closed": false,
+    "checkedAt": null,
     "last": {
       "play": {
-        "date": "2026-11-23",
+        "date": "2026-11-24",
         "kind": "lean",
-        "sport": "NBA",
-        "event": "Phoenix Suns @ New Orleans Pelicans",
-        "pick": "Phoenix Suns ML",
-        "odds": -146,
+        "sport": "NHL",
+        "event": "Vegas Golden Knights @ Edmonton Oilers",
+        "pick": "Edmonton Oilers ML",
+        "odds": 109,
         "status": "graded",
-        "result": "Win",
-        "units": 0.68
+        "result": "Loss",
+        "units": -1
       },
       "parlay": {
-        "date": "2026-11-23",
+        "date": "2026-11-24",
         "legs": 2,
-        "odds": 215,
+        "odds": 314,
         "status": "graded",
         "result": "Loss",
         "units": -1
@@ -457,7 +50,7 @@ window.PICKS_DATA = {
         "point": -1.5
       },
       "commence": "2026-11-26T01:10:00Z",
-      "start": "Tomorrow 8:10 PM ET",
+      "start": "Today 8:10 PM ET",
       "market": "Puck line",
       "pick": "Minnesota Wild -1.5",
       "odds": 176,
@@ -684,8 +277,8 @@ window.PICKS_DATA = {
               "under": -120
             },
             "ml": {
-              "home": -155,
-              "away": 130
+              "home": -148,
+              "away": 124
             },
             "draw": null
           },
@@ -796,353 +389,6 @@ window.PICKS_DATA = {
       "availability": null
     },
     {
-      "id": "155fbdda10-h2h-Edmonton-Oilers",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "Vegas Golden Knights @ Edmonton Oilers",
-      "home": "Edmonton Oilers",
-      "away": "Vegas Golden Knights",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Edmonton Oilers",
-        "point": null
-      },
-      "commence": "2026-11-25T01:10:00Z",
-      "start": "Today 8:10 PM ET",
-      "market": "Moneyline",
-      "pick": "Edmonton Oilers ML",
-      "odds": 109,
-      "book": "BetOnline.ag",
-      "prices": {
-        "BetRivers": -105,
-        "BetOnline.ag": 109,
-        "FanDuel": 102,
-        "DraftKings": 100,
-        "BetMGM": 100,
-        "Bovada": 100,
-        "Caesars": 100,
-        "ESPN BET": 100,
-        "PointsBet": 100
-      },
-      "pricesAt": "2026-11-24T23:48:51.852Z",
-      "books": 7,
-      "anchor": "Pinnacle",
-      "modelProb": 0.5577,
-      "ev": 0.1656,
-      "confidence": "Lean",
-      "basis": "game",
-      "model": {
-        "margin": 0.3,
-        "total": 6.4,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 25,
-        "gpHome": 26,
-        "gpAway": 25,
-        "thin": false,
-        "parts": {
-          "ratingHome": 0.4,
-          "ratingAway": 0.1,
-          "lastHome": 0.2,
-          "lastAway": 0.2,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.1,
-          "injuriesAway": 0,
-          "scoringOut": 0,
-          "pace": 6.6
-        },
-        "reasons": {
-          "for": [
-            "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game",
-            "Vegas Golden Knights trending: last five -1 vs +0.4 on the season",
-            "Home edge +0.2 for Edmonton Oilers",
-            "Projected margin +0.3 for Edmonton Oilers"
-          ],
-          "against": [
-            "Edmonton Oilers trending: last five 0 vs +0.9 on the season",
-            "Vegas Golden Knights are rested (3 days)",
-            "Edmonton Oilers without Zach Hyman (LW) (-0.1)"
-          ]
-        }
-      },
-      "marketFair": 0.476,
-      "marketEdge": -0.0025,
-      "rationale": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
-      "factors": [
-        "Best price +109 at BetOnline.ag",
-        "Probability 55.8% from game data, not other books",
-        "Edge 7.9 points over the price, 1.0 past its bar of 6.9",
-        "Market reference 47.6%"
-      ],
-      "breakdown": {
-        "tier": "Lean",
-        "tierWhy": "Our probability for this side is 55.8%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 47.8%, so the edge is 7.9 points. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
-        "support": [
-          "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game.",
-          "Vegas Golden Knights trending: last five -1 vs +0.4 on the season.",
-          "Home edge +0.2 for Edmonton Oilers.",
-          "Projected margin +0.3 for Edmonton Oilers."
-        ],
-        "risks": [
-          "Edmonton Oilers trending: last five 0 vs +0.9 on the season.",
-          "Vegas Golden Knights are rested (3 days).",
-          "Edmonton Oilers without Zach Hyman (LW) (-0.1)."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 47.6% (-0.3 points against the best price). For reference only.",
-          "Market: DraftKings opened -112, now +100, moving against this side since the open.",
-          "Market: The market (7 books) opened -120, now +109, the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Oilers Devon Levi · Knights Carter Hart.",
-          "Records: Vegas Golden Knights 14-6-5 · Edmonton Oilers 17-5-4 · Rogers Place, Edmonton."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892780",
-        "venue": "Rogers Place, Edmonton",
-        "indoor": true,
-        "records": {
-          "Edmonton Oilers": {
-            "overall": "17-5-4",
-            "home": "7-3-2",
-            "away": "10-2-2"
-          },
-          "Vegas Golden Knights": {
-            "overall": "14-6-5",
-            "home": "7-4-3",
-            "away": "7-2-2"
-          }
-        },
-        "probables": {
-          "Edmonton Oilers": "Devon Levi",
-          "Vegas Golden Knights": "Carter Hart"
-        },
-        "injuries": {
-          "Edmonton Oilers": [
-            {
-              "name": "Zach Hyman",
-              "pos": "LW",
-              "athleteId": "5509",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5509.png",
-              "status": "Out",
-              "type": "Impaired Vision",
-              "detail": "",
-              "returnDate": "2026-11-27",
-              "date": "2026-11-24T17:12Z",
-              "note": "Hyman (migraine) won't play against Vegas on Tuesday, per Oilers play-by-play announcer Jack Michaels."
-            },
-            {
-              "name": "Alec Regula",
-              "pos": "D",
-              "athleteId": "4331611",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4331611.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "",
-              "returnDate": "2026-12-01",
-              "date": "2026-10-01T14:11Z",
-              "note": "Regula (undisclosed) was designated for long-term injured reserve Thursday."
-            },
-            {
-              "name": "Matt Savoie",
-              "pos": "C",
-              "athleteId": "5080153",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080153.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-28",
-              "date": "2026-10-01T14:05Z",
-              "note": "Savoie (lower body) was shifted to long-term injured reserve Thursday."
-            },
-            {
-              "name": "Frederik Andersen",
-              "pos": "G",
-              "athleteId": "2517899",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2517899.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "",
-              "returnDate": "2027-01-09",
-              "date": "2026-09-29T17:53Z",
-              "note": "Andersen (knee) isn't expected back until \"maybe\" December, head coach Mike Babcock told NHL.com on Tuesday."
-            },
-            {
-              "name": "Mattias Janmark",
-              "pos": "C",
-              "athleteId": "3042085",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042085.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "Surgery",
-              "returnDate": "2026-11-28",
-              "date": "2026-09-29T17:52Z",
-              "note": "Janmark (undisclosed) does not have a timetable for his return from injury."
-            }
-          ],
-          "Vegas Golden Knights": []
-        },
-        "rest": {
-          "Edmonton Oilers": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-23",
-            "gamesLast7": 3
-          },
-          "Vegas Golden Knights": {
-            "restDays": 3,
-            "b2b": false,
-            "lastGame": "2026-11-22",
-            "gamesLast7": 3
-          }
-        },
-        "weather": null,
-        "broadcast": "TNT",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -258,
-              "away": 210
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -122,
-              "under": 102
-            },
-            "ml": {
-              "home": 100,
-              "away": -120
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": -1.5,
-            "spreadOdds": {
-              "home": 210,
-              "away": -258
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": -105,
-              "under": -115
-            },
-            "ml": {
-              "home": -112,
-              "away": -108
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": null,
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": -112,
-          "fair": 0.5043297540699688
-        },
-        "now": {
-          "line": null,
-          "odds": 100,
-          "fair": 0.4782608695652174
-        },
-        "moved": "away",
-        "label": "DraftKings opened -112, now +100"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-24T20:36:18.127Z",
-          "line": null,
-          "odds": 105,
-          "fair": 0.4675
-        },
-        {
-          "at": "2026-11-24T23:48:51.852Z",
-          "line": null,
-          "odds": 100,
-          "fair": 0.4783
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 7,
-        "open": {
-          "line": null,
-          "odds": -120
-        },
-        "now": {
-          "line": null,
-          "odds": 109
-        },
-        "moved": "away",
-        "label": "The market (7 books) opened -120, now +109"
-      },
-      "sgo": {
-        "at": "2026-11-24T23:48:51.852Z",
-        "n": 7,
-        "best": {
-          "book": "FanDuel",
-          "odds": 102
-        },
-        "fair": 0.477,
-        "vendorFair": 0.4785,
-        "open": {
-          "line": null,
-          "odds": -120
-        },
-        "now": {
-          "line": null,
-          "odds": 109
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-24T20:36:18.127Z",
-          "fair": 0.4745,
-          "vendorFair": 0.4785,
-          "line": null,
-          "odds": 109,
-          "best": 105,
-          "n": 7
-        },
-        {
-          "at": "2026-11-24T23:48:51.852Z",
-          "fair": 0.477,
-          "vendorFair": 0.4785,
-          "line": null,
-          "odds": 109,
-          "best": 102,
-          "n": 7
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-24T20:36:18.127Z",
-      "valueTo": 105,
-      "bar": 0.069,
-      "past": 0.0102,
-      "barParts": {
-        "error": 0.069,
-        "units": 0.42,
-        "unit": "goals",
-        "gp": 25,
-        "floor": 0.03
-      },
-      "now": null,
-      "standing": null,
-      "availability": null
-    },
-    {
       "id": "70e9e98dcc-totals-Over",
       "sport": "NHL",
       "league": "NHL",
@@ -1156,7 +402,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-26T00:00:00Z",
-      "start": "Tomorrow 7:00 PM ET",
+      "start": "Today 7:00 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -114,
@@ -1543,7 +789,7 @@ window.PICKS_DATA = {
         "point": 5.5
       },
       "commence": "2026-11-26T00:00:00Z",
-      "start": "Tomorrow 7:00 PM ET",
+      "start": "Today 7:00 PM ET",
       "market": "Total",
       "pick": "Over 5.5",
       "odds": -117,
@@ -1869,6 +1115,356 @@ window.PICKS_DATA = {
         "units": 0.16,
         "unit": "goals",
         "gp": 24,
+        "floor": 0.03
+      },
+      "now": null,
+      "standing": null,
+      "availability": null
+    },
+    {
+      "id": "155fbdda10-h2h-Edmonton-Oilers",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "Vegas Golden Knights @ Edmonton Oilers",
+      "home": "Edmonton Oilers",
+      "away": "Vegas Golden Knights",
+      "marketKey": "h2h",
+      "outcome": {
+        "name": "Edmonton Oilers",
+        "point": null
+      },
+      "commence": "2026-11-25T01:10:00Z",
+      "start": "Yesterday 8:10 PM ET",
+      "market": "Moneyline",
+      "pick": "Edmonton Oilers ML",
+      "odds": 109,
+      "book": "BetOnline.ag",
+      "prices": {
+        "BetRivers": -105,
+        "BetOnline.ag": 109,
+        "FanDuel": 102,
+        "DraftKings": 100,
+        "BetMGM": 100,
+        "Bovada": 100,
+        "Caesars": 100,
+        "ESPN BET": 100,
+        "PointsBet": 100
+      },
+      "pricesAt": "2026-11-24T23:48:51.852Z",
+      "books": 7,
+      "anchor": "Pinnacle",
+      "modelProb": 0.5577,
+      "ev": 0.1656,
+      "confidence": "Lean",
+      "basis": "game",
+      "model": {
+        "margin": 0.3,
+        "total": 6.4,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 25,
+        "gpHome": 26,
+        "gpAway": 25,
+        "thin": false,
+        "parts": {
+          "ratingHome": 0.4,
+          "ratingAway": 0.1,
+          "lastHome": 0.2,
+          "lastAway": 0.2,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": -0.1,
+          "injuriesAway": 0,
+          "scoringOut": 0,
+          "pace": 6.6
+        },
+        "reasons": {
+          "for": [
+            "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game",
+            "Vegas Golden Knights trending: last five -1 vs +0.4 on the season",
+            "Home edge +0.2 for Edmonton Oilers",
+            "Projected margin +0.3 for Edmonton Oilers"
+          ],
+          "against": [
+            "Edmonton Oilers trending: last five 0 vs +0.9 on the season",
+            "Vegas Golden Knights are rested (3 days)",
+            "Edmonton Oilers without Zach Hyman (LW) (-0.1)"
+          ]
+        }
+      },
+      "marketFair": 0.476,
+      "marketEdge": -0.0025,
+      "rationale": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
+      "factors": [
+        "Best price +109 at BetOnline.ag",
+        "Probability 55.8% from game data, not other books",
+        "Edge 7.9 points over the price, 1.0 past its bar of 6.9",
+        "Market reference 47.6%"
+      ],
+      "breakdown": {
+        "tier": "Lean",
+        "tierWhy": "Our probability for this side is 55.8%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetOnline.ag implies 47.8%, so the edge is 7.9 points. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 1.0 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 55.8%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.3 for the home side). BetOnline.ag offers +109, which implies only 47.8%. Its bar is 6.9 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.0. Not graded against other books' prices; for reference the market makes it 47.6%.",
+        "support": [
+          "Edmonton Oilers rate +0.4 a game over 26 (17-9), Vegas Golden Knights +0.1 over 25 (14-11); last season +0.2 and +0.2 a game.",
+          "Vegas Golden Knights trending: last five -1 vs +0.4 on the season.",
+          "Home edge +0.2 for Edmonton Oilers.",
+          "Projected margin +0.3 for Edmonton Oilers."
+        ],
+        "risks": [
+          "Edmonton Oilers trending: last five 0 vs +0.9 on the season.",
+          "Vegas Golden Knights are rested (3 days).",
+          "Edmonton Oilers without Zach Hyman (LW) (-0.1)."
+        ],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 47.6% (-0.3 points against the best price). For reference only.",
+          "Market: DraftKings opened -112, now +100, moving against this side since the open.",
+          "Market: The market (7 books) opened -120, now +109, the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Oilers Devon Levi · Knights Carter Hart.",
+          "Records: Vegas Golden Knights 14-6-5 · Edmonton Oilers 17-5-4 · Rogers Place, Edmonton."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892780",
+        "venue": "Rogers Place, Edmonton",
+        "indoor": true,
+        "records": {
+          "Edmonton Oilers": {
+            "overall": "17-5-4",
+            "home": "7-3-2",
+            "away": "10-2-2"
+          },
+          "Vegas Golden Knights": {
+            "overall": "14-6-5",
+            "home": "7-4-3",
+            "away": "7-2-2"
+          }
+        },
+        "probables": {
+          "Edmonton Oilers": "Devon Levi",
+          "Vegas Golden Knights": "Carter Hart"
+        },
+        "injuries": {
+          "Edmonton Oilers": [
+            {
+              "name": "Zach Hyman",
+              "pos": "LW",
+              "athleteId": "5509",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5509.png",
+              "status": "Out",
+              "type": "Impaired Vision",
+              "detail": "",
+              "returnDate": "2026-11-27",
+              "date": "2026-11-24T17:12Z",
+              "note": "Hyman (migraine) won't play against Vegas on Tuesday, per Oilers play-by-play announcer Jack Michaels."
+            },
+            {
+              "name": "Alec Regula",
+              "pos": "D",
+              "athleteId": "4331611",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4331611.png",
+              "status": "Injured Reserve",
+              "type": "Undisclosed",
+              "detail": "",
+              "returnDate": "2026-12-01",
+              "date": "2026-10-01T14:11Z",
+              "note": "Regula (undisclosed) was designated for long-term injured reserve Thursday."
+            },
+            {
+              "name": "Matt Savoie",
+              "pos": "C",
+              "athleteId": "5080153",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080153.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-28",
+              "date": "2026-10-01T14:05Z",
+              "note": "Savoie (lower body) was shifted to long-term injured reserve Thursday."
+            },
+            {
+              "name": "Frederik Andersen",
+              "pos": "G",
+              "athleteId": "2517899",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2517899.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "",
+              "returnDate": "2027-01-09",
+              "date": "2026-09-29T17:53Z",
+              "note": "Andersen (knee) isn't expected back until \"maybe\" December, head coach Mike Babcock told NHL.com on Tuesday."
+            },
+            {
+              "name": "Mattias Janmark",
+              "pos": "C",
+              "athleteId": "3042085",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042085.png",
+              "status": "Injured Reserve",
+              "type": "Undisclosed",
+              "detail": "Surgery",
+              "returnDate": "2026-11-28",
+              "date": "2026-09-29T17:52Z",
+              "note": "Janmark (undisclosed) does not have a timetable for his return from injury."
+            }
+          ],
+          "Vegas Golden Knights": []
+        },
+        "rest": {
+          "Edmonton Oilers": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-23",
+            "gamesLast7": 3
+          },
+          "Vegas Golden Knights": {
+            "restDays": 3,
+            "b2b": false,
+            "lastGame": "2026-11-22",
+            "gamesLast7": 3
+          }
+        },
+        "weather": null,
+        "broadcast": "TNT",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": 1.5,
+            "spreadOdds": {
+              "home": -258,
+              "away": 210
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -122,
+              "under": 102
+            },
+            "ml": {
+              "home": 100,
+              "away": -120
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": -1.5,
+            "spreadOdds": {
+              "home": 210,
+              "away": -258
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": -105,
+              "under": -115
+            },
+            "ml": {
+              "home": -112,
+              "away": -108
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": null,
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": null,
+          "odds": -112,
+          "fair": 0.5043297540699688
+        },
+        "now": {
+          "line": null,
+          "odds": 100,
+          "fair": 0.4782608695652174
+        },
+        "moved": "away",
+        "label": "DraftKings opened -112, now +100"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-24T20:36:18.127Z",
+          "line": null,
+          "odds": 105,
+          "fair": 0.4675
+        },
+        {
+          "at": "2026-11-24T23:48:51.852Z",
+          "line": null,
+          "odds": 100,
+          "fair": 0.4783
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": null,
+          "odds": -120
+        },
+        "now": {
+          "line": null,
+          "odds": 109
+        },
+        "moved": "away",
+        "label": "The market (7 books) opened -120, now +109"
+      },
+      "sgo": {
+        "at": "2026-11-24T23:48:51.852Z",
+        "n": 7,
+        "best": {
+          "book": "FanDuel",
+          "odds": 102
+        },
+        "fair": 0.477,
+        "vendorFair": 0.4785,
+        "open": {
+          "line": null,
+          "odds": -120
+        },
+        "now": {
+          "line": null,
+          "odds": 109
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-24T20:36:18.127Z",
+          "fair": 0.4745,
+          "vendorFair": 0.4785,
+          "line": null,
+          "odds": 109,
+          "best": 105,
+          "n": 7
+        },
+        {
+          "at": "2026-11-24T23:48:51.852Z",
+          "fair": 0.477,
+          "vendorFair": 0.4785,
+          "line": null,
+          "odds": 109,
+          "best": 102,
+          "n": 7
+        }
+      ],
+      "status": "graded",
+      "started": true,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 3,
+        "away": 5
+      },
+      "loggedAt": "2026-11-24T20:36:18.127Z",
+      "valueTo": 105,
+      "bar": 0.069,
+      "past": 0.0102,
+      "barParts": {
+        "error": 0.069,
+        "units": 0.42,
+        "unit": "goals",
+        "gp": 25,
         "floor": 0.03
       },
       "now": null,

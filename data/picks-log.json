@@ -36102,8 +36102,8 @@
       "under": -120
      },
      "ml": {
-      "home": -155,
-      "away": 130
+      "home": -148,
+      "away": 124
      },
      "draw": null
     },
@@ -36711,8 +36711,8 @@
    "Edge 7.9 points over the price, 1.0 past its bar of 6.9",
    "Market reference 47.6%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-24T20:36:18.127Z",
   "availability": null,
   "current": {
@@ -36998,7 +36998,30 @@
    }
   ],
   "potd": "2026-11-24",
-  "potdAt": "2026-11-24T20:38:45.518Z"
+  "potdAt": "2026-11-24T20:38:45.518Z",
+  "result": "Loss",
+  "score": "5-3",
+  "finalScore": {
+   "home": 3,
+   "away": 5
+  },
+  "gradedAt": "2026-11-25T07:44:51.371Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401892780",
+   "line": null,
+   "odds": 100,
+   "fair": 0.4783,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -112,
+    "fair": 0.5043
+   },
+   "samples": 1
+  },
+  "clv": -0.0002,
+  "lineMove": null
  },
  {
   "type": "prop",
@@ -37056,18 +37079,19 @@
   ],
   "proj": 4.9,
   "linesAt": "2026-11-24T20:38:15.985Z",
-  "status": "pending",
-  "actual": null,
-  "result": null,
-  "units": 0,
-  "lockedAt": "2026-11-24T20:38:45.518Z"
+  "status": "graded",
+  "actual": 6,
+  "result": "Win",
+  "units": 1.02,
+  "lockedAt": "2026-11-24T20:38:45.518Z",
+  "gradedAt": "2026-11-25T07:44:51.371Z"
  },
  {
   "type": "parlay",
   "id": "parlay-2026-11-24",
   "date": "2026-11-24",
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-24T20:38:45.518Z",
   "book": "DraftKings",
   "legs": [
@@ -37081,6 +37105,8 @@
   "decimal": 4.141,
   "odds": 314,
   "fairProb": 0.2973,
-  "ev": 0.2312
+  "ev": 0.2312,
+  "gradedAt": "2026-11-25T07:44:51.371Z",
+  "result": "Loss"
  }
 ]

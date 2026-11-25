@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-24",
+  "asOf": "2026-11-25",
   "windowDays": 30,
   "record": {
     "wins": 41,
-    "losses": 34,
+    "losses": 35,
     "pushes": 0
   },
-  "units": 14.91,
-  "roi": 19.9,
+  "units": 13.91,
+  "roi": 18.3,
   "avgEdge": 8.4,
-  "graded": 75,
+  "graded": 76,
   "daily": [
     {
       "date": "2026-11-05",
@@ -81,13 +81,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-23",
       "units": 14.91
+    },
+    {
+      "date": "2026-11-24",
+      "units": 13.91
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 6.75,
-      "record": "27-19"
+      "units": 5.75,
+      "record": "27-20"
     },
     {
       "sport": "NBA",
@@ -106,6 +110,21 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-24",
+      "sport": "NHL",
+      "event": "Vegas Golden Knights @ Edmonton Oilers",
+      "pick": "Edmonton Oilers ML",
+      "odds": 109,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0002,
+      "closeOdds": 100,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-23",
       "sport": "NFL",
@@ -270,21 +289,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "NHL",
-      "event": "Los Angeles Kings @ Ottawa Senators",
-      "pick": "Over 5.5",
-      "odds": -112,
-      "result": "Win",
-      "units": 0.89,
-      "clv": -0.024,
-      "closeOdds": -112,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -406,16 +410,33 @@ window.PERF_DATA = {
       "wins": 2,
       "losses": 2,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-24",
+      "units": -1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 6,
-    "losses": 11,
+    "losses": 12,
     "pushes": 0,
-    "units": -5.46,
-    "n": 17,
+    "units": -6.46,
+    "n": 18,
     "props": 5,
     "recent": [
+      {
+        "date": "2026-11-24",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Vegas Golden Knights @ Edmonton Oilers",
+        "pick": "Edmonton Oilers ML",
+        "odds": 109,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-23",
         "kind": "lean",
@@ -505,46 +526,36 @@ window.PERF_DATA = {
         "odds": -950,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-13",
-        "kind": "lean",
-        "sport": "NBA",
-        "event": "Atlanta Hawks @ Chicago Bulls",
-        "pick": "Atlanta Hawks ML",
-        "odds": -260,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
     "wins": 2,
-    "losses": 15,
+    "losses": 16,
     "pushes": 0,
-    "units": -9.55,
-    "n": 17
+    "units": -10.55,
+    "n": 18
   },
   "clv": {
-    "n": 67,
-    "avg": -0.92,
+    "n": 68,
+    "avg": -0.9,
     "beat": 21,
-    "beatPct": 31.3,
-    "graded": 75,
+    "beatPct": 30.9,
+    "graded": 76,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 75,
+    "espnCloses": 76,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 41,
-      "losses": 34,
+      "losses": 35,
       "pushes": 0,
-      "units": 14.91,
-      "n": 75,
-      "roi": 19.9,
-      "pending": 4,
+      "units": 13.91,
+      "n": 76,
+      "roi": 18.3,
+      "pending": 3,
       "since": "2026-11-05"
     },
     "price": {
