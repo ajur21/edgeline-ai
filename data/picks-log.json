@@ -35456,11 +35456,13 @@
   "prices": {
    "BetOnline.ag": -130,
    "BetRivers": -129,
-   "DraftKings": -122,
-   "FanDuel": -114,
+   "DraftKings": -130,
+   "FanDuel": -132,
    "BetMGM": -120,
-   "Unibet": -128,
-   "Caesars": -125
+   "Unibet": -123,
+   "Caesars": -125,
+   "ESPN BET": -135,
+   "PointsBet": -130
   },
   "books": 5,
   "anchor": null,
@@ -35523,12 +35525,12 @@
   "loggedAt": "2026-11-24T20:36:18.127Z",
   "availability": null,
   "current": {
-   "at": "2026-11-24T20:36:18.127Z",
-   "odds": -114,
-   "book": "FanDuel",
-   "fair": 0.5275,
-   "edge": 0.058,
-   "modelProb": 0.5907,
+   "at": "2026-11-25T14:08:03.434Z",
+   "odds": -124,
+   "book": "BetRivers",
+   "fair": 0.5418,
+   "edge": 0.0377,
+   "modelProb": 0.5913,
    "bar": 0.03
   },
   "history": [
@@ -35536,6 +35538,11 @@
     "at": "2026-11-24T20:36:18.127Z",
     "odds": -114,
     "fair": 0.5275
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "odds": -124,
+    "fair": 0.5418
    }
   ],
   "context": {
@@ -35603,24 +35610,24 @@
       "pos": "LW",
       "athleteId": "4565246",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4565246.png",
-      "status": "Out",
+      "status": "Injured Reserve",
       "type": "Lower Body",
       "detail": "",
       "returnDate": "2026-11-27",
-      "date": "2026-11-24T18:41Z",
-      "note": "McMichael (lower body) isn't expected to play against the Islanders on Wednesday, according to Lou Korac of NHL.com."
+      "date": "2026-11-24T22:30Z",
+      "note": "ir"
      },
      {
       "name": "Brandon Carlo",
       "pos": "D",
       "athleteId": "3904175",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3904175.png",
-      "status": "Day-To-Day",
-      "type": "Undisclosed",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
       "detail": "",
-      "returnDate": "2026-11-25",
-      "date": "2026-11-24T18:41Z",
-      "note": "day-to-day"
+      "returnDate": "2026-12-02",
+      "date": "2026-11-24T22:25Z",
+      "note": "ir"
      },
      {
       "name": "Pavel Buchnevich",
@@ -35628,7 +35635,7 @@
       "athleteId": "3042081",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042081.png",
       "status": "Day-To-Day",
-      "type": "Undisclosed",
+      "type": "Upper Body",
       "detail": "",
       "returnDate": "2026-11-25",
       "date": "2026-11-24T18:33Z",
@@ -35640,7 +35647,7 @@
       "athleteId": "5080171",
       "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080171.png",
       "status": "Day-To-Day",
-      "type": "Undisclosed",
+      "type": "Upper Body",
       "detail": "",
       "returnDate": "2026-11-25",
       "date": "2026-11-24T18:31Z",
@@ -35705,8 +35712,8 @@
     "now": {
      "spread": -1.5,
      "spreadOdds": {
-      "home": 215,
-      "away": -265
+      "home": 205,
+      "away": -250
      },
      "total": 5.5,
      "totalOdds": {
@@ -35776,10 +35783,10 @@
    },
    "now": {
     "line": 6,
-    "odds": 110
+    "odds": 105
    },
    "moved": "away",
-   "label": "The market (5 books) opened 7.5 (+140), now 6 (+110)"
+   "label": "The market (5 books) opened 7.5 (+140), now 6 (+105)"
   },
   "breakdown": {
    "tier": "Medium",
@@ -35790,12 +35797,13 @@
     "Projected total 6.4 against 5.5."
    ],
    "risks": [
-    "Scorers out: Kyle Palmieri (C), lower body; Ryan Pulock (D), shoulder; Alexander Romanov (D), knee and 4 more. Fewer healthy scorers leans under."
+    "Scorers out: Kyle Palmieri (C), lower body; Ryan Pulock (D), shoulder; Alexander Romanov (D), knee and 5 more. Fewer healthy scorers leans under."
    ],
    "notes": [
     "Where the market sits: the de-vigged consensus of 5 books makes this side 52.8% (-0.5 points against the best price). For reference only.",
+    "Market: the sharp line has moved toward this side since it was logged (52.8% → 54.2%).",
     "Market: DraftKings opened 5.5 (-122), now 5.5 (-130), moving toward this side since the open.",
-    "Market: The market (5 books) opened 7.5 (+140), now 6 (+110), the consensus moving against this side since the open.",
+    "Market: The market (5 books) opened 7.5 (+140), now 6 (+105), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Islanders Ilya Sorokin · Blues Joel Hofer.",
     "Records: St Louis Blues 13-9-2 · New York Islanders 11-7-5 · UBS Arena, Elmont."
@@ -35806,25 +35814,25 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "8nyDykfZB5wlzMoXJ2Ie",
-   "at": "2026-11-24T20:36:18.127Z",
+   "at": "2026-11-25T14:08:03.434Z",
    "books": {
-    "Unibet": -128,
-    "FanDuel": -114,
-    "DraftKings": -122,
-    "Caesars": -125,
-    "BetMGM": -120
+    "Unibet": -123,
+    "FanDuel": -132,
+    "DraftKings": -130,
+    "ESPN BET": -135,
+    "PointsBet": -130
    },
    "n": 5,
    "best": {
-    "book": "FanDuel",
-    "odds": -114
+    "book": "Unibet",
+    "odds": -123
    },
-   "fair": 0.5238,
+   "fair": 0.5409,
    "fairBooks": 5,
    "vendor": {
     "line": 6,
-    "odds": 110,
-    "fair": 0.4762,
+    "odds": 105,
+    "fair": 0.4878,
     "sameLine": false
    },
    "open": {
@@ -35833,12 +35841,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 110
+    "odds": 105
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-24T20:36:18.127Z",
+  "pricesAt": "2026-11-25T14:08:03.434Z",
   "sgoHistory": [
    {
     "at": "2026-11-24T20:36:18.127Z",
@@ -35848,8 +35856,38 @@
     "odds": 110,
     "best": -114,
     "n": 5
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "fair": 0.5409,
+    "vendorFair": 0.4878,
+    "line": 6,
+    "odds": 105,
+    "best": -123,
+    "n": 5
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": -114,
+   "loggedFair": 0.5907,
+   "currentOdds": -124,
+   "currentBook": "BetRivers",
+   "currentFair": 0.5418,
+   "currentEdge": 0.0377,
+   "checkedAt": "2026-11-25T14:08:03.434Z",
+   "history": [
+    {
+     "at": "2026-11-24T20:36:18.127Z",
+     "odds": -114,
+     "fair": 0.5275
+    },
+    {
+     "at": "2026-11-25T14:08:03.434Z",
+     "odds": -124,
+     "fair": 0.5418
+    }
+   ]
+  }
  },
  {
   "key": "696cf3d8787917f769a8d9a18560e2f0|spreads|Minnesota Wild|-1.5",
@@ -35876,10 +35914,11 @@
   "prices": {
    "DraftKings": 170,
    "BetRivers": 160,
-   "FanDuel": 176,
-   "BetMGM": 154,
+   "FanDuel": 164,
+   "BetMGM": 155,
    "Bovada": 173,
-   "Caesars": 170
+   "Caesars": 165,
+   "ESPN BET": 165
   },
   "books": 6,
   "anchor": "Pinnacle",
@@ -35947,11 +35986,11 @@
   "loggedAt": "2026-11-24T20:36:18.127Z",
   "availability": null,
   "current": {
-   "at": "2026-11-24T20:36:18.127Z",
-   "odds": 176,
-   "book": "FanDuel",
-   "fair": 0.3535,
-   "edge": 0.0795,
+   "at": "2026-11-25T14:08:03.434Z",
+   "odds": 173,
+   "book": "Bovada",
+   "fair": 0.3538,
+   "edge": 0.0755,
    "modelProb": 0.4418,
    "bar": 0.0656
   },
@@ -35960,6 +35999,11 @@
     "at": "2026-11-24T20:36:18.127Z",
     "odds": 176,
     "fair": 0.3535
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "odds": 173,
+    "fair": 0.3538
    }
   ],
   "context": {
@@ -36004,7 +36048,7 @@
       "status": "Injured Reserve",
       "type": "Upper Body",
       "detail": "",
-      "returnDate": "2026-11-25",
+      "returnDate": "2026-11-27",
       "date": "2026-11-16T21:33Z",
       "note": "ir"
      }
@@ -36098,8 +36142,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": 100,
-      "under": -120
+      "over": 105,
+      "under": -125
      },
      "ml": {
       "home": -148,
@@ -36151,17 +36195,17 @@
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 5,
+   "n": 6,
    "open": {
     "line": 0,
     "odds": -144
    },
    "now": {
     "line": 0,
-    "odds": -137
+    "odds": -135
    },
    "moved": "away",
-   "label": "The market (5 books) opened 0 (-144), now 0 (-137)"
+   "label": "The market (6 books) opened 0 (-144), now 0 (-135)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -36180,7 +36224,7 @@
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 35.4% (-0.9 points against the best price). For reference only.",
     "Market: DraftKings opened -1.5 (+154), now -1.5 (+170), moving against this side since the open.",
-    "Market: The market (5 books) opened 0 (-144), now 0 (-137), the consensus moving against this side since the open.",
+    "Market: The market (6 books) opened 0 (-144), now 0 (-135), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Wild Jesper Wallstedt · Mammoth Karel Vejmelka.",
     "Records: Utah Mammoth 12-10-3 · Minnesota Wild 18-3-5 · Grand Casino Arena, Saint Paul."
@@ -36191,25 +36235,26 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "d0WfTdIVtD9BDtq0rMl2",
-   "at": "2026-11-24T20:36:18.127Z",
+   "at": "2026-11-25T14:08:03.434Z",
    "books": {
-    "FanDuel": 176,
+    "FanDuel": 164,
     "DraftKings": 170,
-    "Caesars": 170,
-    "BetMGM": 154,
-    "Bovada": 173
+    "Caesars": 165,
+    "BetMGM": 155,
+    "Bovada": 173,
+    "ESPN BET": 165
    },
-   "n": 5,
+   "n": 6,
    "best": {
-    "book": "FanDuel",
-    "odds": 176
+    "book": "Bovada",
+    "odds": 173
    },
-   "fair": 0.3568,
-   "fairBooks": 5,
+   "fair": 0.3607,
+   "fairBooks": 6,
    "vendor": {
     "line": 0,
-    "odds": -137,
-    "fair": 0.5781,
+    "odds": -135,
+    "fair": 0.5745,
     "sameLine": false
    },
    "open": {
@@ -36218,12 +36263,12 @@
    },
    "now": {
     "line": 0,
-    "odds": -137
+    "odds": -135
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-24T20:36:18.127Z",
+  "pricesAt": "2026-11-25T14:08:03.434Z",
   "sgoHistory": [
    {
     "at": "2026-11-24T20:36:18.127Z",
@@ -36233,8 +36278,38 @@
     "odds": -137,
     "best": 176,
     "n": 5
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "fair": 0.3607,
+    "vendorFair": 0.5745,
+    "line": 0,
+    "odds": -135,
+    "best": 173,
+    "n": 6
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": 176,
+   "loggedFair": 0.4418,
+   "currentOdds": 173,
+   "currentBook": "Bovada",
+   "currentFair": 0.3538,
+   "currentEdge": 0.0755,
+   "checkedAt": "2026-11-25T14:08:03.434Z",
+   "history": [
+    {
+     "at": "2026-11-24T20:36:18.127Z",
+     "odds": 176,
+     "fair": 0.3535
+    },
+    {
+     "at": "2026-11-25T14:08:03.434Z",
+     "odds": 173,
+     "fair": 0.3538
+    }
+   ]
+  }
  },
  {
   "key": "03b050660209b2ef14e1e40ef22a585e|totals|Over|5.5",
@@ -36261,12 +36336,14 @@
   "prices": {
    "BetOnline.ag": -117,
    "BetRivers": -134,
-   "DraftKings": -120,
-   "FanDuel": -124,
-   "BetMGM": -120,
-   "Bovada": -120,
-   "Unibet": -133,
-   "Caesars": -124
+   "DraftKings": -115,
+   "FanDuel": -120,
+   "BetMGM": -118,
+   "Bovada": -117,
+   "Unibet": -122,
+   "Caesars": -124,
+   "ESPN BET": -120,
+   "PointsBet": -120
   },
   "books": 7,
   "anchor": "Pinnacle",
@@ -36329,12 +36406,12 @@
   "loggedAt": "2026-11-24T20:36:18.127Z",
   "availability": null,
   "current": {
-   "at": "2026-11-24T20:36:18.127Z",
-   "odds": -117,
-   "book": "BetOnline.ag",
-   "fair": 0.5216,
-   "edge": 0.0414,
-   "modelProb": 0.5806,
+   "at": "2026-11-25T14:08:03.434Z",
+   "odds": -115,
+   "book": "DraftKings",
+   "fair": 0.5138,
+   "edge": 0.0463,
+   "modelProb": 0.5812,
    "bar": 0.03
   },
   "history": [
@@ -36342,6 +36419,11 @@
     "at": "2026-11-24T20:36:18.127Z",
     "odds": -117,
     "fair": 0.5216
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "odds": -115,
+    "fair": 0.5138
    }
   ],
   "context": {
@@ -36405,6 +36487,18 @@
     ],
     "Ottawa Senators": [
      {
+      "name": "Andre Burakovsky",
+      "pos": "LW",
+      "athleteId": "3042044",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042044.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-30",
+      "date": "2026-11-25T13:03Z",
+      "note": "Burakovsky (lower body) will be with the Senators for their four-game road trip and is expected to play at some point, Bruce Garrioch of Postmedia reports Wedne"
+     },
+     {
       "name": "Hayden Hodgson",
       "pos": "RW",
       "athleteId": "3150479",
@@ -36417,18 +36511,6 @@
       "note": "ir"
      },
      {
-      "name": "Andre Burakovsky",
-      "pos": "LW",
-      "athleteId": "3042044",
-      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042044.png",
-      "status": "Injured Reserve",
-      "type": "Lower Body",
-      "detail": "",
-      "returnDate": "2026-11-27",
-      "date": "2026-11-20T17:06Z",
-      "note": "Burakovsky (lower body) was on the ice Friday doing some individual drills, Bruce Garrioch of Postmedia reports."
-     },
-     {
       "name": "Warren Foegele",
       "pos": "LW",
       "athleteId": "3151036",
@@ -36436,7 +36518,7 @@
       "status": "Injured Reserve",
       "type": "Knee",
       "detail": "",
-      "returnDate": "2026-12-03",
+      "returnDate": "2026-12-27",
       "date": "2026-11-16T16:53Z",
       "note": "Head coach Travis Green said Monday that Foegele (knee) hasn't yet resumed skating, Bruce Garrioch of Postmedia reports."
      },
@@ -36480,8 +36562,8 @@
      },
      "total": 5.5,
      "totalOdds": {
-      "over": -120,
-      "under": 100
+      "over": -115,
+      "under": -105
      },
      "ml": {
       "home": -130,
@@ -36514,6 +36596,12 @@
     "line": 5.5,
     "odds": -120,
     "fair": 0.5217
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "line": 5.5,
+    "odds": -115,
+    "fair": 0.5108
    }
   ],
   "dk": {
@@ -36525,25 +36613,25 @@
    },
    "now": {
     "line": 5.5,
-    "odds": -120,
-    "fair": 0.5217391304347826
+    "odds": -115,
+    "fair": 0.5108342361863488
    },
    "moved": "away",
-   "label": "DraftKings opened 6.5 (-115), now 5.5 (-120)"
+   "label": "DraftKings opened 6.5 (-115), now 5.5 (-115)"
   },
   "mkt": {
    "book": "Market consensus",
-   "n": 6,
+   "n": 8,
    "open": {
     "line": 7.5,
     "odds": 119
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 119
    },
    "moved": "away",
-   "label": "The market (6 books) opened 7.5 (+119), now 6 (+114)"
+   "label": "The market (8 books) opened 7.5 (+119), now 6 (+119)"
   },
   "breakdown": {
    "tier": "Lean",
@@ -36551,15 +36639,17 @@
    "price": "Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -117, which implies only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 52.2%.",
    "support": [
     "Combined scoring 6.1 a game in Florida Panthers's games, 6.1 in Ottawa Senators's (league average 6.4).",
-    "Projected total 6.3 against 5.5."
+    "Projected total 6.3 against 5.5.",
+    "A better price is now available: -115 at DraftKings.",
+    "A better price is available now: -115 at DraftKings."
    ],
    "risks": [
     "Scorers out: Brad Marchand (LW), knee; Aleksander Barkov (C), knee; Jonah Gadjovich (LW), neck and 4 more. Fewer healthy scorers leans under."
    ],
    "notes": [
     "Where the market sits: Pinnacle's de-vigged price makes this side 52.2% (-1.8 points against the best price). For reference only.",
-    "Market: DraftKings opened 6.5 (-115), now 5.5 (-120), moving against this side since the open.",
-    "Market: The market (6 books) opened 7.5 (+119), now 6 (+114), the consensus moving against this side since the open.",
+    "Market: DraftKings opened 6.5 (-115), now 5.5 (-115), moving against this side since the open.",
+    "Market: The market (8 books) opened 7.5 (+119), now 6 (+119), the consensus moving against this side since the open.",
     "Indoor venue; weather is not a factor.",
     "Probable pitchers: Panthers Jacob Markstrom · Senators Linus Ullmark.",
     "Records: Ottawa Senators 16-6-3 · Florida Panthers 13-8-3 · Amerant Bank Arena, Sunrise."
@@ -36570,26 +36660,28 @@
   "sgo": {
    "source": "SportsGameOdds",
    "eventId": "Aw9hvRwohIlKJr2LIKGZ",
-   "at": "2026-11-24T20:36:18.127Z",
+   "at": "2026-11-25T14:08:03.434Z",
    "books": {
-    "Unibet": -133,
-    "FanDuel": -124,
-    "DraftKings": -120,
+    "Unibet": -122,
+    "FanDuel": -120,
+    "DraftKings": -115,
     "Caesars": -124,
-    "BetMGM": -120,
-    "Bovada": -120
+    "BetMGM": -118,
+    "Bovada": -117,
+    "ESPN BET": -120,
+    "PointsBet": -120
    },
-   "n": 6,
+   "n": 8,
    "best": {
     "book": "DraftKings",
-    "odds": -120
+    "odds": -115
    },
-   "fair": 0.5271,
-   "fairBooks": 6,
+   "fair": 0.5196,
+   "fairBooks": 8,
    "vendor": {
     "line": 6,
-    "odds": 114,
-    "fair": 0.4673,
+    "odds": 119,
+    "fair": 0.4566,
     "sameLine": false
    },
    "open": {
@@ -36598,12 +36690,12 @@
    },
    "now": {
     "line": 6,
-    "odds": 114
+    "odds": 119
    },
    "finished": false,
    "score": null
   },
-  "pricesAt": "2026-11-24T20:36:18.127Z",
+  "pricesAt": "2026-11-25T14:08:03.434Z",
   "sgoHistory": [
    {
     "at": "2026-11-24T20:36:18.127Z",
@@ -36613,8 +36705,38 @@
     "odds": 114,
     "best": -120,
     "n": 6
+   },
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "fair": 0.5196,
+    "vendorFair": 0.4566,
+    "line": 6,
+    "odds": 119,
+    "best": -115,
+    "n": 8
    }
-  ]
+  ],
+  "movement": {
+   "loggedOdds": -117,
+   "loggedFair": 0.5806,
+   "currentOdds": -115,
+   "currentBook": "DraftKings",
+   "currentFair": 0.5138,
+   "currentEdge": 0.0463,
+   "checkedAt": "2026-11-25T14:08:03.434Z",
+   "history": [
+    {
+     "at": "2026-11-24T20:36:18.127Z",
+     "odds": -117,
+     "fair": 0.5216
+    },
+    {
+     "at": "2026-11-25T14:08:03.434Z",
+     "odds": -115,
+     "fair": 0.5138
+    }
+   ]
+  }
  },
  {
   "key": "155fbdda10b6474a41649023baadfdf3|h2h|Edmonton Oilers|null",
@@ -37108,5 +37230,456 @@
   "ev": 0.2312,
   "gradedAt": "2026-11-25T07:44:51.371Z",
   "result": "Loss"
+ },
+ {
+  "key": "b99129d0236ae270cae2b42a0befc503|h2h|Colorado Avalanche|null",
+  "id": "b99129d023-h2h-Colorado-Avalanche",
+  "date": "2026-11-25",
+  "commence": "2026-11-26T02:40:00Z",
+  "sport": "NHL",
+  "league": "NHL",
+  "sportKey": "icehockey_nhl",
+  "eventId": "b99129d0236ae270cae2b42a0befc503",
+  "home": "Colorado Avalanche",
+  "away": "Montréal Canadiens",
+  "event": "Montréal Canadiens @ Colorado Avalanche",
+  "market": "Moneyline",
+  "marketKey": "h2h",
+  "outcome": {
+   "name": "Colorado Avalanche",
+   "point": null
+  },
+  "threeWay": false,
+  "pick": "Colorado Avalanche ML",
+  "odds": -115,
+  "book": "theScore Bet",
+  "prices": {
+   "DraftKings": -120,
+   "BetRivers": -127,
+   "BetOnline.ag": -116,
+   "FanDuel": -125,
+   "BetMGM": -120,
+   "Bovada": -117,
+   "theScore Bet": -115,
+   "Caesars": -125,
+   "ESPN BET": -115,
+   "PointsBet": -125
+  },
+  "books": 8,
+  "anchor": "Pinnacle",
+  "anchorNote": null,
+  "anchorShift": 0,
+  "modelProb": 0.6066,
+  "edge": 0.0717,
+  "ev": 0.1341,
+  "confidence": "Lean",
+  "bar": 0.0686,
+  "past": 0.0031,
+  "barParts": {
+   "error": 0.0686,
+   "units": 0.42,
+   "unit": "goals",
+   "gp": 23,
+   "floor": 0.03
+  },
+  "basis": "game",
+  "model": {
+   "margin": 0.6,
+   "total": 6.4,
+   "sd": 2.4,
+   "sdTotal": 2.3,
+   "gp": 23,
+   "gpHome": 23,
+   "gpAway": 25,
+   "thin": false,
+   "parts": {
+    "ratingHome": 0.5,
+    "ratingAway": 0.1,
+    "lastHome": 1.2,
+    "lastAway": 0.3,
+    "homeEdge": 0.24,
+    "rest": 0.1,
+    "injuriesHome": -0.3,
+    "injuriesAway": 0.2,
+    "scoringOut": 0,
+    "pace": 6.5
+   },
+   "reasons": {
+    "for": [
+     "Colorado Avalanche rate +0.5 a game over 23 (13-10), Montréal Canadiens +0.1 over 25 (14-11); last season +1.2 and +0.3 a game",
+     "Montréal Canadiens trending: last five -0.4 vs +0.2 on the season",
+     "Home edge +0.2 for Colorado Avalanche",
+     "Colorado Avalanche are rested (6 days)",
+     "Montréal Canadiens without Mike Matheson (D), Josh Anderson (RW), Chris Kreider (LW) (+0.2)",
+     "Projected margin +0.6 for Colorado Avalanche"
+    ],
+    "against": [
+     "Colorado Avalanche without Cale Makar (D), Gavin Brindley (C), Nathan MacKinnon (C) and 1 more (-0.3)"
+    ]
+   }
+  },
+  "marketFair": 0.5173,
+  "marketEdge": -0.0176,
+  "rationale": "Our probability is 60.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). theScore Bet offers -115, which implies only 53.5%. Its bar is 6.9 points: the model's own margin of error on this side, with 23 games behind the thinner team (±0.42 goals on the margin). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 51.7%.",
+  "factors": [
+   "Best price -115 at theScore Bet",
+   "Probability 60.7% from game data, not other books",
+   "Edge 7.2 points over the price, 0.3 past its bar of 6.9",
+   "Market reference 51.7%"
+  ],
+  "status": "pending",
+  "units": 0,
+  "loggedAt": "2026-11-25T14:08:03.434Z",
+  "availability": null,
+  "current": {
+   "at": "2026-11-25T14:08:03.434Z",
+   "odds": -115,
+   "book": "theScore Bet",
+   "fair": 0.5173,
+   "edge": 0.0717,
+   "modelProb": 0.6066,
+   "bar": 0.0686
+  },
+  "history": [
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "odds": -115,
+    "fair": 0.5173
+   }
+  ],
+  "context": {
+   "espnEventId": "401892792",
+   "venue": "Ball Arena, Denver",
+   "indoor": true,
+   "records": {
+    "Colorado Avalanche": {
+     "overall": "13-7-3",
+     "home": "8-1-2",
+     "away": "5-6-1"
+    },
+    "Montréal Canadiens": {
+     "overall": "14-7-4",
+     "home": "5-5-3",
+     "away": "9-2-1"
+    }
+   },
+   "probables": {
+    "Colorado Avalanche": "Mackenzie Blackwood",
+    "Montréal Canadiens": "Jacob Fowler"
+   },
+   "injuries": {
+    "Colorado Avalanche": [
+     {
+      "name": "Cale Makar",
+      "pos": "D",
+      "athleteId": "4233563",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4233563.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-11-25",
+      "date": "2026-11-24T18:19Z",
+      "note": "Makar (lower body) was on the ice in a regular sweater ahead of Wednesday's clash with Montreal, Evan Rawal of the Denver Gazette reports."
+     },
+     {
+      "name": "Gavin Brindley",
+      "pos": "C",
+      "athleteId": "5136614",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136614.png",
+      "status": "Out",
+      "type": "Concussion",
+      "detail": "",
+      "returnDate": "2026-12-01",
+      "date": "2026-11-21T20:47Z",
+      "note": "out"
+     },
+     {
+      "name": "Nathan MacKinnon",
+      "pos": "C",
+      "athleteId": "3041969",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3041969.png",
+      "status": "Out",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2027-02-13",
+      "date": "2026-11-21T20:30Z",
+      "note": "MacKinnon (lower body) has been evaluated by a specialist and is expected to miss the next 12 weeks, Aarif Deen of Colorado Hockey Now reports Saturday."
+     },
+     {
+      "name": "Josh Manson",
+      "pos": "D",
+      "athleteId": "2590829",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2590829.png",
+      "status": "Injured Reserve",
+      "type": "Ankle",
+      "detail": "",
+      "returnDate": "2026-12-27",
+      "date": "2026-11-09T22:18Z",
+      "note": "ir"
+     },
+     {
+      "name": "Zachary L'Heureux",
+      "pos": "LW",
+      "athleteId": "4874744",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4874744.png",
+      "status": "Injured Reserve",
+      "type": "Upper Body",
+      "detail": "",
+      "returnDate": "2026-11-27",
+      "date": "2026-10-23T21:39Z",
+      "note": "ir-lt"
+     }
+    ],
+    "Montréal Canadiens": [
+     {
+      "name": "Mike Matheson",
+      "pos": "D",
+      "athleteId": "2976851",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/2976851.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-12-05",
+      "date": "2026-11-24T14:59Z",
+      "note": "Matheson (lower body) was placed on long-term injured reserve Tuesday, Renaud Lavoie of TVA Sports reports."
+     },
+     {
+      "name": "Ivan Demidov",
+      "pos": "RW",
+      "athleteId": "5216860",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5216860.png",
+      "status": "Injured Reserve",
+      "type": "Ankle",
+      "detail": "Fracture",
+      "returnDate": "2026-11-30",
+      "date": "2026-11-24T00:06Z",
+      "note": "General manager Kent Hughes said Monday that Demidov (ankle) will not travel with the team for Wednesday's game in Colorado, Renaud Lavoie of TVA Sports reports"
+     },
+     {
+      "name": "Josh Anderson",
+      "pos": "RW",
+      "athleteId": "3069687",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3069687.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2026-12-14",
+      "date": "2026-11-15T22:15Z",
+      "note": "Anderson (lower body) will be out for approximately 3-4 weeks, per Renaud Lavoie of TVA Sports on Sunday."
+     },
+     {
+      "name": "Chris Kreider",
+      "pos": "LW",
+      "athleteId": "5833",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5833.png",
+      "status": "Injured Reserve",
+      "type": "Lower Body",
+      "detail": "",
+      "returnDate": "2027-01-02",
+      "date": "2026-11-15T18:04Z",
+      "note": "ir"
+     },
+     {
+      "name": "Bryce Pickford",
+      "pos": "D",
+      "athleteId": "5329651",
+      "headshot": null,
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-30",
+      "date": "2026-09-29T16:39Z",
+      "note": "ir-nr"
+     },
+     {
+      "name": "Lucas Condotta",
+      "pos": "LW",
+      "athleteId": "4997129",
+      "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4997129.png",
+      "status": "Injured Reserve",
+      "type": "Undisclosed",
+      "detail": "",
+      "returnDate": "2026-11-30",
+      "date": "2026-09-29T16:38Z",
+      "note": "ir-nr"
+     }
+    ]
+   },
+   "rest": {
+    "Colorado Avalanche": {
+     "restDays": 6,
+     "b2b": false,
+     "lastGame": "2026-11-20",
+     "gamesLast7": 2
+    },
+    "Montréal Canadiens": {
+     "restDays": 2,
+     "b2b": false,
+     "lastGame": "2026-11-24",
+     "gamesLast7": 3
+    }
+   },
+   "weather": null,
+   "broadcast": "ESPN+",
+   "odds": {
+    "provider": "DraftKings",
+    "now": {
+     "spread": -1.5,
+     "spreadOdds": {
+      "home": 190,
+      "away": -230
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": -102,
+      "under": -118
+     },
+     "ml": {
+      "home": -120,
+      "away": 100
+     },
+     "draw": null
+    },
+    "open": {
+     "spread": -1.5,
+     "spreadOdds": {
+      "home": 180,
+      "away": -218
+     },
+     "total": 6.5,
+     "totalOdds": {
+      "over": -118,
+      "under": -102
+     },
+     "ml": {
+      "home": -135,
+      "away": 114
+     },
+     "draw": null
+    }
+   }
+  },
+  "dkHistory": [
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "line": null,
+    "odds": -120,
+    "fair": 0.5217
+   }
+  ],
+  "dk": {
+   "book": "DraftKings",
+   "open": {
+    "line": null,
+    "odds": -135,
+    "fair": 0.551441114716549
+   },
+   "now": {
+    "line": null,
+    "odds": -120,
+    "fair": 0.5217391304347826
+   },
+   "moved": "away",
+   "label": "DraftKings opened -135, now -120"
+  },
+  "mkt": {
+   "book": "Market consensus",
+   "n": 7,
+   "open": {
+    "line": null,
+    "odds": -127
+   },
+   "now": {
+    "line": null,
+    "odds": -109
+   },
+   "moved": "away",
+   "label": "The market (7 books) opened -127, now -109"
+  },
+  "breakdown": {
+   "tier": "Lean",
+   "tierWhy": "Our probability for this side is 60.7%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at theScore Bet implies 53.5%, so the edge is 7.2 points. Its bar is 6.9 points: the model's own margin of error on this side, with 23 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 0.3 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+   "price": "Our probability is 60.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). theScore Bet offers -115, which implies only 53.5%. Its bar is 6.9 points: the model's own margin of error on this side, with 23 games behind the thinner team (±0.42 goals on the margin). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 51.7%.",
+   "support": [
+    "Colorado Avalanche rate +0.5 a game over 23 (13-10), Montréal Canadiens +0.1 over 25 (14-11); last season +1.2 and +0.3 a game.",
+    "Montréal Canadiens trending: last five -0.4 vs +0.2 on the season.",
+    "Home edge +0.2 for Colorado Avalanche.",
+    "Colorado Avalanche are rested (6 days).",
+    "Montréal Canadiens without Mike Matheson (D), Josh Anderson (RW), Chris Kreider (LW) (+0.2).",
+    "Projected margin +0.6 for Colorado Avalanche."
+   ],
+   "risks": [
+    "Colorado Avalanche without Cale Makar (D), Gavin Brindley (C), Nathan MacKinnon (C) and 1 more (-0.3)."
+   ],
+   "notes": [
+    "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-1.8 points against the best price). For reference only.",
+    "Market: DraftKings opened -135, now -120, moving against this side since the open.",
+    "Market: The market (7 books) opened -127, now -109, the consensus moving against this side since the open.",
+    "Indoor venue; weather is not a factor.",
+    "Probable pitchers: Avalanche Mackenzie Blackwood · Canadiens Jacob Fowler.",
+    "Records: Montréal Canadiens 14-7-4 · Colorado Avalanche 13-7-3 · Ball Arena, Denver."
+   ],
+   "verdict": "The game data lines up behind this side at this price."
+  },
+  "sgoEventId": "3VUQnKb7FeBiiomaEUsh",
+  "sgo": {
+   "source": "SportsGameOdds",
+   "eventId": "3VUQnKb7FeBiiomaEUsh",
+   "at": "2026-11-25T14:08:03.434Z",
+   "books": {
+    "FanDuel": -125,
+    "DraftKings": -120,
+    "Caesars": -125,
+    "BetMGM": -120,
+    "Bovada": -117,
+    "ESPN BET": -115,
+    "PointsBet": -125
+   },
+   "n": 7,
+   "best": {
+    "book": "ESPN BET",
+    "odds": -115
+   },
+   "fair": 0.5228,
+   "fairBooks": 7,
+   "vendor": {
+    "line": null,
+    "odds": -109,
+    "fair": 0.5215,
+    "sameLine": true
+   },
+   "open": {
+    "line": null,
+    "odds": -127
+   },
+   "now": {
+    "line": null,
+    "odds": -109
+   },
+   "finished": false,
+   "score": null
+  },
+  "pricesAt": "2026-11-25T14:08:03.434Z",
+  "sgoHistory": [
+   {
+    "at": "2026-11-25T14:08:03.434Z",
+    "fair": 0.5228,
+    "vendorFair": 0.5215,
+    "line": null,
+    "odds": -109,
+    "best": -115,
+    "n": 7
+   }
+  ]
+ },
+ {
+  "type": "day",
+  "id": "day-2026-11-25",
+  "date": "2026-11-25",
+  "checkedAt": "2026-11-25T14:10:30.031Z",
+  "closedAt": null,
+  "candidates": 14,
+  "leans": 4,
+  "props": 10
  }
 ]
