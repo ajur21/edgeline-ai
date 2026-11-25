@@ -3,7 +3,7 @@ window.NFL_WEEK_DATA = {
  "sample": false,
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
- "generatedAt": "2026-11-25T14:08:34.553Z",
+ "generatedAt": "2026-11-25T20:37:10.298Z",
  "checkedAt": null,
  "season": 2026,
  "week": {
@@ -104,7 +104,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Netflix",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 4.65,
     "total": 44.8,
@@ -249,14 +249,14 @@ window.NFL_WEEK_DATA = {
    },
    "board": {
     "eventId": "5b612899d6dcdf998107f2c6c6e49a58",
-    "pricedAt": "2026-11-24T20:36:18.127Z",
+    "pricedAt": "2026-11-25T20:36:14.534Z",
     "home": {
      "odds": -135,
-     "book": "BetMGM"
+     "book": "theScore Bet"
     },
     "away": {
      "odds": 120,
-     "book": "FanDuel"
+     "book": "DraftKings"
     }
    },
    "posted": null,
@@ -296,17 +296,17 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 3.78,
+    "margin": 4.03,
     "total": 47.7,
     "marginSd": 3.96,
-    "home": 25.7,
-    "away": 21.9,
+    "home": 25.8,
+    "away": 21.8,
     "winner": "home",
-    "prob": 0.6035,
-    "probHome": 0.6035,
-    "probAway": 0.3965,
+    "prob": 0.6101,
+    "probHome": 0.6101,
+    "probAway": 0.3899,
     "games": {
      "home": 10,
      "away": 10
@@ -318,7 +318,7 @@ window.NFL_WEEK_DATA = {
      "epa": 0.84,
      "qb": -0.41,
      "rest": 0,
-     "injuries": -0.4
+     "injuries": -0.15
     },
     "ratings": {
      "home": 4.02,
@@ -398,15 +398,15 @@ window.NFL_WEEK_DATA = {
     "away": {
      "list": [
       {
-       "name": "Elijah Hicks",
-       "pos": "S",
+       "name": "Roschon Johnson",
+       "pos": "RB",
        "status": "Out",
        "played": 10
       },
       {
-       "name": "Roschon Johnson",
-       "pos": "RB",
-       "status": "Questionable",
+       "name": "Elijah Hicks",
+       "pos": "S",
+       "status": "Out",
        "played": 10
       },
       {
@@ -417,24 +417,44 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 0,
-     "points": 0.9
+     "points": 1.1
     }
    },
    "weather": null,
    "leanFrom": {
     "home": {
-     "prob": 0.6035,
-     "bar": 0.1045,
-     "price": 101
+     "prob": 0.6101,
+     "bar": 0.104,
+     "price": -102
     },
     "away": {
-     "prob": 0.3965,
-     "bar": 0.1045,
-     "price": 243
+     "prob": 0.3899,
+     "bar": 0.104,
+     "price": 250
     }
    },
-   "board": null,
-   "posted": null,
+   "board": {
+    "eventId": "9b825e6518156008da499be041975fdd",
+    "pricedAt": "2026-11-25T20:36:14.534Z",
+    "home": {
+     "odds": 105,
+     "book": "theScore Bet"
+    },
+    "away": {
+     "odds": -117,
+     "book": "BetOnline.ag"
+    }
+   },
+   "posted": {
+    "id": "9b825e6518-h2h-Detroit-Lions",
+    "pick": "Detroit Lions ML",
+    "market": "Moneyline",
+    "marketKey": "h2h",
+    "odds": 105,
+    "book": "theScore Bet",
+    "status": "pending",
+    "result": null
+   },
    "result": null
   },
   {
@@ -471,17 +491,17 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 8.84,
+    "margin": 8.73,
     "total": 48.7,
     "marginSd": 3.86,
-    "home": 28.8,
-    "away": 19.9,
+    "home": 28.7,
+    "away": 20,
     "winner": "home",
-    "prob": 0.7296,
-    "probHome": 0.7296,
-    "probAway": 0.2704,
+    "prob": 0.7272,
+    "probHome": 0.7272,
+    "probAway": 0.2728,
     "games": {
      "home": 11,
      "away": 10
@@ -493,7 +513,7 @@ window.NFL_WEEK_DATA = {
      "epa": 1.93,
      "qb": 3.33,
      "rest": 0,
-     "injuries": -0.41
+     "injuries": -0.51
     },
     "ratings": {
      "home": -0.17,
@@ -557,21 +577,27 @@ window.NFL_WEEK_DATA = {
       {
        "name": "Jake Ferguson",
        "pos": "TE",
-       "status": "Doubtful",
+       "status": "Out",
        "played": 9
       },
       {
-       "name": "Jalen Thompson",
-       "pos": "S",
-       "status": "Injured Reserve",
-       "played": 3
+       "name": "Jaishawn Barham",
+       "pos": "LB",
+       "status": "Questionable",
+       "played": 10
       }
      ],
      "more": 4,
-     "points": 2.2
+     "points": 2.1
     },
     "away": {
      "list": [
+      {
+       "name": "Arnold Ebiketie",
+       "pos": "LB",
+       "status": "Out",
+       "played": 10
+      },
       {
        "name": "Zack Baun",
        "pos": "LB",
@@ -579,42 +605,47 @@ window.NFL_WEEK_DATA = {
        "played": 8
       },
       {
+       "name": "Jonathan Jones",
+       "pos": "CB",
+       "status": "Out",
+       "played": 8
+      },
+      {
        "name": "Dontayvion Wicks",
        "pos": "WR",
        "status": "Injured Reserve",
        "played": 6
-      },
-      {
-       "name": "Arnold Ebiketie",
-       "pos": "LB",
-       "status": "Questionable",
-       "played": 10
-      },
-      {
-       "name": "Quinyon Mitchell",
-       "pos": "CB",
-       "status": "Questionable",
-       "played": 10
       }
      ],
-     "more": 3,
-     "points": 1.8
+     "more": 0,
+     "points": 1.6
     }
    },
    "weather": null,
    "leanFrom": {
     "home": {
-     "prob": 0.7296,
-     "bar": 0.0878,
-     "price": -179
+     "prob": 0.7272,
+     "bar": 0.0881,
+     "price": -177
     },
     "away": {
-     "prob": 0.2704,
-     "bar": 0.0878,
-     "price": 448
+     "prob": 0.2728,
+     "bar": 0.0881,
+     "price": 442
     }
    },
-   "board": null,
+   "board": {
+    "eventId": "ffaa06af56a7137d4b078c5c46c0b730",
+    "pricedAt": "2026-11-25T20:36:14.534Z",
+    "home": {
+     "odds": -440,
+     "book": "Bovada"
+    },
+    "away": {
+     "odds": 375,
+     "book": "BetMGM"
+    }
+   },
    "posted": null,
    "result": null
   },
@@ -652,17 +683,17 @@ window.NFL_WEEK_DATA = {
    "tv": "NBC",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 3.39,
+    "margin": 3.96,
     "total": 47.3,
     "marginSd": 3.98,
-    "home": 25.3,
-    "away": 21.9,
+    "home": 25.6,
+    "away": 21.6,
     "winner": "home",
-    "prob": 0.5929,
-    "probHome": 0.5929,
-    "probAway": 0.4071,
+    "prob": 0.6082,
+    "probHome": 0.6082,
+    "probAway": 0.3918,
     "games": {
      "home": 10,
      "away": 10
@@ -674,7 +705,7 @@ window.NFL_WEEK_DATA = {
      "epa": 0.16,
      "qb": -0.42,
      "rest": 0,
-     "injuries": 0.08
+     "injuries": 0.65
     },
     "ratings": {
      "home": 5.88,
@@ -754,6 +785,18 @@ window.NFL_WEEK_DATA = {
     "away": {
      "list": [
       {
+       "name": "Kenneth Walker III",
+       "pos": "RB",
+       "status": "Out",
+       "played": 8
+      },
+      {
+       "name": "Jaylon Moore",
+       "pos": "OT",
+       "status": "Out",
+       "played": 7
+      },
+      {
        "name": "Ben VanSumeren",
        "pos": "FB",
        "status": "Injured Reserve",
@@ -764,47 +807,46 @@ window.NFL_WEEK_DATA = {
        "pos": "TE",
        "status": "Injured Reserve",
        "played": 4
-      },
-      {
-       "name": "Trey Smith",
-       "pos": "G",
-       "status": "Questionable",
-       "played": 9
-      },
-      {
-       "name": "Kenneth Walker III",
-       "pos": "RB",
-       "status": "Questionable",
-       "played": 8
       }
      ],
-     "more": 1,
-     "points": 1.1
+     "more": 2,
+     "points": 1.7
     }
    },
    "weather": {
-    "mph": 13,
+    "mph": 15,
     "dir": "NE",
-    "temp": 37,
+    "temp": 38,
     "unit": "F",
-    "precip": 100,
-    "text": "Light Rain",
+    "precip": 98,
+    "text": "Rain Showers",
     "at": "2026-11-26T20:00:00-05:00",
     "source": "National Weather Service"
    },
    "leanFrom": {
     "home": {
-     "prob": 0.5929,
-     "bar": 0.1056,
-     "price": 106
+     "prob": 0.6082,
+     "bar": 0.1046,
+     "price": -101
     },
     "away": {
-     "prob": 0.4071,
-     "bar": 0.1057,
-     "price": 232
+     "prob": 0.3918,
+     "bar": 0.1045,
+     "price": 249
     }
    },
-   "board": null,
+   "board": {
+    "eventId": "f36f518585aec40e8cb40e071c0844aa",
+    "pricedAt": "2026-11-25T20:36:14.534Z",
+    "home": {
+     "odds": -147,
+     "book": "Bovada"
+    },
+    "away": {
+     "odds": 134,
+     "book": "BetOnline.ag"
+    }
+   },
    "posted": null,
    "result": null
   },
@@ -842,7 +884,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Prime Video",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": -2.38,
     "total": 44.1,
@@ -973,11 +1015,11 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": {
-    "mph": 17,
+    "mph": 18,
     "dir": "SW",
-    "temp": 44,
+    "temp": 43,
     "unit": "F",
-    "precip": 95,
+    "precip": 97,
     "text": "Light Rain",
     "at": "2026-11-27T15:00:00-05:00",
     "source": "National Weather Service"
@@ -1032,7 +1074,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 8.4,
     "total": 41.7,
@@ -1201,17 +1243,17 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 8.45,
+    "margin": 8.7,
     "total": 47.7,
     "marginSd": 3.92,
-    "home": 28.1,
-    "away": 19.6,
+    "home": 28.2,
+    "away": 19.5,
     "winner": "home",
-    "prob": 0.7208,
-    "probHome": 0.7208,
-    "probAway": 0.2792,
+    "prob": 0.7265,
+    "probHome": 0.7265,
+    "probAway": 0.2735,
     "games": {
      "home": 10,
      "away": 11
@@ -1223,7 +1265,7 @@ window.NFL_WEEK_DATA = {
      "epa": 0.37,
      "qb": 2.51,
      "rest": 0.46,
-     "injuries": -1
+     "injuries": -0.75
     },
     "ratings": {
      "home": 2.55,
@@ -1298,10 +1340,16 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 4,
-     "points": 1.6
+     "points": 1.5
     },
     "away": {
      "list": [
+      {
+       "name": "Derrick Henry",
+       "pos": "RB",
+       "status": "Questionable",
+       "played": 11
+      },
       {
        "name": "Marlon Humphrey",
        "pos": "CB",
@@ -1322,20 +1370,20 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 0,
-     "points": 0.5
+     "points": 0.8
     }
    },
    "weather": null,
    "leanFrom": {
     "home": {
-     "prob": 0.7208,
-     "bar": 0.0906,
-     "price": -170
+     "prob": 0.7265,
+     "bar": 0.0897,
+     "price": -175
     },
     "away": {
-     "prob": 0.2792,
-     "bar": 0.0906,
-     "price": 431
+     "prob": 0.2735,
+     "bar": 0.0897,
+     "price": 445
     }
    },
    "board": null,
@@ -1376,7 +1424,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 10.72,
     "total": 48.3,
@@ -1507,12 +1555,12 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": {
-    "mph": 12,
+    "mph": 13,
     "dir": "S",
-    "temp": 54,
+    "temp": 53,
     "unit": "F",
-    "precip": 64,
-    "text": "Light Rain Likely",
+    "precip": 87,
+    "text": "Light Rain",
     "at": "2026-11-29T13:00:00-05:00",
     "source": "National Weather Service"
    },
@@ -1566,7 +1614,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": -1.21,
     "total": 45.5,
@@ -1735,17 +1783,17 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": -2.87,
+    "margin": -2.96,
     "total": 42.5,
     "marginSd": 3.86,
     "home": 19.8,
     "away": 22.7,
     "winner": "away",
-    "prob": 0.5789,
-    "probHome": 0.4211,
-    "probAway": 0.5789,
+    "prob": 0.5813,
+    "probHome": 0.4187,
+    "probAway": 0.5813,
     "games": {
      "home": 10,
      "away": 11
@@ -1757,7 +1805,7 @@ window.NFL_WEEK_DATA = {
      "epa": -0.49,
      "qb": -4.71,
      "rest": 0,
-     "injuries": -0.38
+     "injuries": -0.48
     },
     "ratings": {
      "home": -4.2,
@@ -1837,12 +1885,6 @@ window.NFL_WEEK_DATA = {
     "away": {
      "list": [
       {
-       "name": "David Onyemata",
-       "pos": "DT",
-       "status": "Injured Reserve",
-       "played": 2
-      },
-      {
        "name": "Isaiah Williams",
        "pos": "WR",
        "status": "Questionable",
@@ -1862,29 +1904,29 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 0,
-     "points": 0.6
+     "points": 0.5
     }
    },
    "weather": {
     "mph": 8,
     "dir": "E",
-    "temp": 75,
+    "temp": 77,
     "unit": "F",
-    "precip": 29,
-    "text": "Chance Rain Showers",
+    "precip": 20,
+    "text": "Slight Chance Rain Showers",
     "at": "2026-11-29T13:00:00-05:00",
     "source": "National Weather Service"
    },
    "leanFrom": {
     "home": {
-     "prob": 0.4211,
-     "bar": 0.1033,
-     "price": 215
+     "prob": 0.4187,
+     "bar": 0.1032,
+     "price": 217
     },
     "away": {
-     "prob": 0.5789,
-     "bar": 0.1033,
-     "price": 111
+     "prob": 0.5813,
+     "bar": 0.1032,
+     "price": 110
     }
    },
    "board": null,
@@ -1925,7 +1967,7 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 16.19,
     "total": 46.8,
@@ -2056,11 +2098,11 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": {
-    "mph": 6,
+    "mph": 7,
     "dir": "S",
-    "temp": 67,
+    "temp": 64,
     "unit": "F",
-    "precip": 5,
+    "precip": 7,
     "text": "Partly Sunny",
     "at": "2026-11-29T13:00:00-05:00",
     "source": "National Weather Service"
@@ -2115,7 +2157,7 @@ window.NFL_WEEK_DATA = {
    "tv": "CBS",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 1.57,
     "total": 42.3,
@@ -2296,17 +2338,17 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 5.12,
-    "total": 45.4,
+    "margin": 4.95,
+    "total": 44.4,
     "marginSd": 3.89,
-    "home": 25.3,
-    "away": 20.1,
+    "home": 24.7,
+    "away": 19.7,
     "winner": "home",
-    "prob": 0.6387,
-    "probHome": 0.6387,
-    "probAway": 0.3613,
+    "prob": 0.6342,
+    "probHome": 0.6342,
+    "probAway": 0.3658,
     "games": {
      "home": 10,
      "away": 10
@@ -2318,7 +2360,7 @@ window.NFL_WEEK_DATA = {
      "epa": 1.92,
      "qb": 0.65,
      "rest": -1.06,
-     "injuries": 0.28
+     "injuries": 0.1
     },
     "ratings": {
      "home": 5.07,
@@ -2346,7 +2388,7 @@ window.NFL_WEEK_DATA = {
      "replaces": null,
      "replacesStatus": null,
      "lastStarter": null,
-     "status": null
+     "status": "Questionable"
     },
     "away": {
      "id": "00-0034869",
@@ -2370,7 +2412,7 @@ window.NFL_WEEK_DATA = {
       {
        "name": "Colton McKivitz",
        "pos": "OT",
-       "status": "Out",
+       "status": "Injured Reserve",
        "played": 10
       },
       {
@@ -2392,8 +2434,8 @@ window.NFL_WEEK_DATA = {
        "played": 8
       }
      ],
-     "more": 0,
-     "points": 1.1
+     "more": 1,
+     "points": 1.3
     },
     "away": {
      "list": [
@@ -2431,21 +2473,21 @@ window.NFL_WEEK_DATA = {
     "dir": "S",
     "temp": 63,
     "unit": "F",
-    "precip": 68,
+    "precip": 67,
     "text": "Light Rain Likely",
     "at": "2026-11-29T13:00:00-08:00",
     "source": "National Weather Service"
    },
    "leanFrom": {
     "home": {
-     "prob": 0.6387,
-     "bar": 0.0999,
-     "price": -116
+     "prob": 0.6342,
+     "bar": 0.1003,
+     "price": -114
     },
     "away": {
-     "prob": 0.3613,
-     "bar": 0.0999,
-     "price": 283
+     "prob": 0.3658,
+     "bar": 0.1003,
+     "price": 277
     }
    },
    "board": null,
@@ -2486,17 +2528,17 @@ window.NFL_WEEK_DATA = {
    "tv": "Fox",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": -2.66,
+    "margin": -2.43,
     "total": 46.3,
     "marginSd": 3.94,
-    "home": 21.8,
-    "away": 24.5,
+    "home": 21.9,
+    "away": 24.4,
     "winner": "away",
-    "prob": 0.5731,
-    "probHome": 0.4269,
-    "probAway": 0.5731,
+    "prob": 0.567,
+    "probHome": 0.433,
+    "probAway": 0.567,
     "games": {
      "home": 11,
      "away": 10
@@ -2508,7 +2550,7 @@ window.NFL_WEEK_DATA = {
      "epa": -0.52,
      "qb": -0.68,
      "rest": 0.15,
-     "injuries": -0.43
+     "injuries": -0.21
     },
     "ratings": {
      "home": -5.16,
@@ -2582,6 +2624,12 @@ window.NFL_WEEK_DATA = {
     "away": {
      "list": [
       {
+       "name": "Stefon Diggs",
+       "pos": "WR",
+       "status": "Questionable",
+       "played": 9
+      },
+      {
        "name": "Amik Robertson",
        "pos": "CB",
        "status": "Questionable",
@@ -2589,20 +2637,20 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 0,
-     "points": 0.2
+     "points": 0.5
     }
    },
    "weather": null,
    "leanFrom": {
     "home": {
-     "prob": 0.4269,
-     "bar": 0.1057,
-     "price": 212
+     "prob": 0.433,
+     "bar": 0.106,
+     "price": 206
     },
     "away": {
-     "prob": 0.5731,
-     "bar": 0.1057,
-     "price": 114
+     "prob": 0.567,
+     "bar": 0.106,
+     "price": 117
     }
    },
    "board": null,
@@ -2643,7 +2691,7 @@ window.NFL_WEEK_DATA = {
    "tv": "NBC",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
     "margin": 8.01,
     "total": 47.3,
@@ -2774,12 +2822,12 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": {
-    "mph": 15,
+    "mph": 14,
     "dir": "S",
-    "temp": 47,
+    "temp": 48,
     "unit": "F",
-    "precip": 71,
-    "text": "Light Rain Likely",
+    "precip": 92,
+    "text": "Light Rain",
     "at": "2026-11-29T20:00:00-05:00",
     "source": "National Weather Service"
    },
@@ -2833,17 +2881,17 @@ window.NFL_WEEK_DATA = {
    "tv": "ESPN",
    "projection": {
     "model": "nflverse",
-    "at": "2026-11-25T14:08:34.553Z",
+    "at": "2026-11-25T20:37:10.298Z",
     "locked": false,
-    "margin": 5.39,
+    "margin": 5.54,
     "total": 47.3,
     "marginSd": 3.89,
-    "home": 26.3,
+    "home": 26.4,
     "away": 20.9,
     "winner": "home",
-    "prob": 0.6456,
-    "probHome": 0.6456,
-    "probAway": 0.3544,
+    "prob": 0.6495,
+    "probHome": 0.6495,
+    "probAway": 0.3505,
     "games": {
      "home": 10,
      "away": 10
@@ -2855,7 +2903,7 @@ window.NFL_WEEK_DATA = {
      "epa": -0.44,
      "qb": 0.73,
      "rest": 0,
-     "injuries": 0.03
+     "injuries": 0.18
     },
     "ratings": {
      "home": 0.78,
@@ -2905,6 +2953,12 @@ window.NFL_WEEK_DATA = {
     "home": {
      "list": [
       {
+       "name": "Jalen McMillan",
+       "pos": "WR",
+       "status": "Injured Reserve",
+       "played": 2
+      },
+      {
        "name": "Jacob Parrish",
        "pos": "CB",
        "status": "Questionable",
@@ -2921,16 +2975,10 @@ window.NFL_WEEK_DATA = {
        "pos": "CB",
        "status": "Questionable",
        "played": 7
-      },
-      {
-       "name": "Antoine Winfield Jr.",
-       "pos": "S",
-       "status": "Questionable",
-       "played": 6
       }
      ],
-     "more": 0,
-     "points": 0.7
+     "more": 1,
+     "points": 0.8
     },
     "away": {
      "list": [
@@ -2947,6 +2995,12 @@ window.NFL_WEEK_DATA = {
        "played": 3
       },
       {
+       "name": "Tetairoa McMillan",
+       "pos": "WR",
+       "status": "Questionable",
+       "played": 10
+      },
+      {
        "name": "Bobby Okereke",
        "pos": "LB",
        "status": "Questionable",
@@ -2954,29 +3008,29 @@ window.NFL_WEEK_DATA = {
       }
      ],
      "more": 0,
-     "points": 0.8
+     "points": 1
     }
    },
    "weather": {
     "mph": 3,
-    "dir": "ENE",
+    "dir": "SE",
     "temp": 67,
     "unit": "F",
-    "precip": 22,
-    "text": "Isolated Rain Showers",
+    "precip": 37,
+    "text": "Scattered Showers And Thunderstorms",
     "at": "2026-11-30T20:00:00-05:00",
     "source": "National Weather Service"
    },
    "leanFrom": {
     "home": {
-     "prob": 0.6456,
-     "bar": 0.0991,
-     "price": -120
+     "prob": 0.6495,
+     "bar": 0.0987,
+     "price": -122
     },
     "away": {
-     "prob": 0.3544,
-     "bar": 0.0991,
-     "price": 292
+     "prob": 0.3505,
+     "bar": 0.0986,
+     "price": 297
     }
    },
    "board": null,
