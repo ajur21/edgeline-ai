@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-25T20:36:14.534Z",
+  "trackedAt": "2026-11-25T23:31:34.452Z",
   "playOfDay": {
     "id": "b99129d023-h2h-Colorado-Avalanche",
     "sport": "NHL",
@@ -26,15 +27,15 @@ window.PICKS_DATA = {
       "DraftKings": -120,
       "BetRivers": -127,
       "BetOnline.ag": -116,
-      "FanDuel": -118,
+      "FanDuel": -122,
       "BetMGM": -120,
       "Bovada": -122,
       "theScore Bet": -115,
       "Caesars": -125,
-      "ESPN BET": -115,
-      "PointsBet": -120
+      "ESPN BET": -125,
+      "PointsBet": -125
     },
-    "pricesAt": "2026-11-25T20:36:14.534Z",
+    "pricesAt": "2026-11-25T23:31:34.452Z",
     "books": 8,
     "anchor": "Pinnacle",
     "modelProb": 0.6066,
@@ -103,7 +104,7 @@ window.PICKS_DATA = {
       "notes": [
         "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-1.8 points against the best price). For reference only.",
         "Market: DraftKings opened -135, now -120, moving against this side since the open.",
-        "Market: The market (7 books) opened -127, now -109, the consensus moving against this side since the open.",
+        "Market: The market (7 books) opened -127, now -110, the consensus moving against this side since the open.",
         "Indoor venue; weather is not a factor.",
         "Probable pitchers: Avalanche Mackenzie Blackwood · Canadiens Jacob Fowler.",
         "Records: Montréal Canadiens 14-7-4 · Colorado Avalanche 13-7-3 · Ball Arena, Denver."
@@ -363,27 +364,27 @@ window.PICKS_DATA = {
       },
       "now": {
         "line": null,
-        "odds": -109
+        "odds": -110
       },
       "moved": "away",
-      "label": "The market (7 books) opened -127, now -109"
+      "label": "The market (7 books) opened -127, now -110"
     },
     "sgo": {
-      "at": "2026-11-25T20:36:14.534Z",
+      "at": "2026-11-25T23:31:34.452Z",
       "n": 7,
       "best": {
-        "book": "ESPN BET",
-        "odds": -115
+        "book": "DraftKings",
+        "odds": -120
       },
-      "fair": 0.5208,
-      "vendorFair": 0.5215,
+      "fair": 0.5267,
+      "vendorFair": 0.5238,
       "open": {
         "line": null,
         "odds": -127
       },
       "now": {
         "line": null,
-        "odds": -109
+        "odds": -110
       }
     },
     "sgoHistory": [
@@ -403,6 +404,15 @@ window.PICKS_DATA = {
         "line": null,
         "odds": -109,
         "best": -115,
+        "n": 7
+      },
+      {
+        "at": "2026-11-25T23:31:34.452Z",
+        "fair": 0.5267,
+        "vendorFair": 0.5238,
+        "line": null,
+        "odds": -110,
+        "best": -120,
         "n": 7
       }
     ],
@@ -609,7 +619,7 @@ window.PICKS_DATA = {
         ],
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 47.8% (-0.9 points against the best price). For reference only.",
-          "Market: DraftKings opened -135, now +103, moving against this side since the open.",
+          "Market: DraftKings opened -135, now +101, moving against this side since the open.",
           "Market: The market (8 books) opened -119, now +110, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Records: Chicago Bears 8-2 · Detroit Lions 8-2 · Ford Field, Detroit."
@@ -760,8 +770,8 @@ window.PICKS_DATA = {
           "now": {
             "spread": 1.5,
             "spreadOdds": {
-              "home": -109,
-              "away": -110
+              "home": -113,
+              "away": -106
             },
             "total": 55.5,
             "totalOdds": {
@@ -769,8 +779,8 @@ window.PICKS_DATA = {
               "under": -115
             },
             "ml": {
-              "home": 103,
-              "away": -122
+              "home": 101,
+              "away": -120
             },
             "draw": null
           },
@@ -803,11 +813,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 103,
-          "fair": 0.47268236596686963
+          "odds": 101,
+          "fair": 0.47701647875108416
         },
         "moved": "away",
-        "label": "DraftKings opened -135, now +103"
+        "label": "DraftKings opened -135, now +101"
       },
       "dkHistory": [
         {
@@ -815,6 +825,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 103,
           "fair": 0.4727
+        },
+        {
+          "at": "2026-11-25T23:31:34.452Z",
+          "line": null,
+          "odds": 101,
+          "fair": 0.477
         }
       ],
       "mkt": {
@@ -904,11 +920,11 @@ window.PICKS_DATA = {
         "BetRivers": 160,
         "FanDuel": 164,
         "BetMGM": 165,
-        "Bovada": 173,
+        "Bovada": 170,
         "Caesars": 165,
-        "ESPN BET": 165
+        "ESPN BET": 160
       },
-      "pricesAt": "2026-11-25T20:36:14.534Z",
+      "pricesAt": "2026-11-25T23:31:34.452Z",
       "books": 6,
       "anchor": "Pinnacle",
       "modelProb": 0.4418,
@@ -975,7 +991,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 35.4% (-0.9 points against the best price). For reference only.",
           "Market: DraftKings opened -1.5 (+154), now -1.5 (+170), moving against this side since the open.",
-          "Market: The market (6 books) opened 0 (-144), now 0 (-134), the consensus moving against this side since the open.",
+          "Market: The market (6 books) opened 0 (-144), now 0 (-135), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Wild Jesper Wallstedt · Mammoth Karel Vejmelka.",
           "Records: Utah Mammoth 12-10-3 · Minnesota Wild 18-3-5 · Grand Casino Arena, Saint Paul."
@@ -1204,27 +1220,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": 0,
-          "odds": -134
+          "odds": -135
         },
         "moved": "away",
-        "label": "The market (6 books) opened 0 (-144), now 0 (-134)"
+        "label": "The market (6 books) opened 0 (-144), now 0 (-135)"
       },
       "sgo": {
-        "at": "2026-11-25T20:36:14.534Z",
+        "at": "2026-11-25T23:31:34.452Z",
         "n": 6,
         "best": {
-          "book": "Bovada",
-          "odds": 173
+          "book": "DraftKings",
+          "odds": 170
         },
-        "fair": 0.3585,
-        "vendorFair": 0.5726,
+        "fair": 0.3609,
+        "vendorFair": 0.5745,
         "open": {
           "line": 0,
           "odds": -144
         },
         "now": {
           "line": 0,
-          "odds": -134
+          "odds": -135
         }
       },
       "sgoHistory": [
@@ -1253,6 +1269,15 @@ window.PICKS_DATA = {
           "line": 0,
           "odds": -134,
           "best": 173,
+          "n": 6
+        },
+        {
+          "at": "2026-11-25T23:31:34.452Z",
+          "fair": 0.3609,
+          "vendorFair": 0.5745,
+          "line": 0,
+          "odds": -135,
+          "best": 170,
           "n": 6
         }
       ],
@@ -1306,15 +1331,15 @@ window.PICKS_DATA = {
         "DraftKings": -120,
         "BetRivers": -127,
         "BetOnline.ag": -116,
-        "FanDuel": -118,
+        "FanDuel": -122,
         "BetMGM": -120,
         "Bovada": -122,
         "theScore Bet": -115,
         "Caesars": -125,
-        "ESPN BET": -115,
-        "PointsBet": -120
+        "ESPN BET": -125,
+        "PointsBet": -125
       },
-      "pricesAt": "2026-11-25T20:36:14.534Z",
+      "pricesAt": "2026-11-25T23:31:34.452Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.6066,
@@ -1383,7 +1408,7 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 51.7% (-1.8 points against the best price). For reference only.",
           "Market: DraftKings opened -135, now -120, moving against this side since the open.",
-          "Market: The market (7 books) opened -127, now -109, the consensus moving against this side since the open.",
+          "Market: The market (7 books) opened -127, now -110, the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Avalanche Mackenzie Blackwood · Canadiens Jacob Fowler.",
           "Records: Montréal Canadiens 14-7-4 · Colorado Avalanche 13-7-3 · Ball Arena, Denver."
@@ -1643,27 +1668,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": -109
+          "odds": -110
         },
         "moved": "away",
-        "label": "The market (7 books) opened -127, now -109"
+        "label": "The market (7 books) opened -127, now -110"
       },
       "sgo": {
-        "at": "2026-11-25T20:36:14.534Z",
+        "at": "2026-11-25T23:31:34.452Z",
         "n": 7,
         "best": {
-          "book": "ESPN BET",
-          "odds": -115
+          "book": "DraftKings",
+          "odds": -120
         },
-        "fair": 0.5208,
-        "vendorFair": 0.5215,
+        "fair": 0.5267,
+        "vendorFair": 0.5238,
         "open": {
           "line": null,
           "odds": -127
         },
         "now": {
           "line": null,
-          "odds": -109
+          "odds": -110
         }
       },
       "sgoHistory": [
@@ -1683,6 +1708,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": -109,
           "best": -115,
+          "n": 7
+        },
+        {
+          "at": "2026-11-25T23:31:34.452Z",
+          "fair": 0.5267,
+          "vendorFair": 0.5238,
+          "line": null,
+          "odds": -110,
+          "best": -120,
           "n": 7
         }
       ],
@@ -1743,7 +1777,7 @@ window.PICKS_DATA = {
         "ESPN BET": -145,
         "PointsBet": -130
       },
-      "pricesAt": "2026-11-25T20:36:14.534Z",
+      "pricesAt": "2026-11-25T23:31:34.452Z",
       "books": 5,
       "anchor": null,
       "modelProb": 0.5907,
@@ -1804,7 +1838,7 @@ window.PICKS_DATA = {
           "Where the market sits: the de-vigged consensus of 5 books makes this side 52.8% (-0.5 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (52.8% → 55.4%).",
           "Market: DraftKings opened 5.5 (-122), now 5.5 (-135), moving toward this side since the open.",
-          "Market: The market (5 books) opened 7.5 (+140), now 6 (+103), the consensus moving against this side since the open.",
+          "Market: The market (4 books) opened 7.5 (+140), now 6 (+103), the consensus moving against this side since the open.",
           "Indoor venue; weather is not a factor.",
           "Probable pitchers: Islanders Ilya Sorokin · Blues Joel Hofer.",
           "Records: St Louis Blues 13-9-2 · New York Islanders 11-7-5 · UBS Arena, Elmont."
@@ -1987,8 +2021,8 @@ window.PICKS_DATA = {
               "under": 114
             },
             "ml": {
-              "home": -130,
-              "away": 110
+              "home": -135,
+              "away": 114
             },
             "draw": null
           },
@@ -2074,7 +2108,7 @@ window.PICKS_DATA = {
       ],
       "mkt": {
         "book": "Market consensus",
-        "n": 5,
+        "n": 4,
         "open": {
           "line": 7.5,
           "odds": 140
@@ -2084,16 +2118,16 @@ window.PICKS_DATA = {
           "odds": 103
         },
         "moved": "away",
-        "label": "The market (5 books) opened 7.5 (+140), now 6 (+103)"
+        "label": "The market (4 books) opened 7.5 (+140), now 6 (+103)"
       },
       "sgo": {
-        "at": "2026-11-25T20:36:14.534Z",
-        "n": 5,
+        "at": "2026-11-25T23:31:34.452Z",
+        "n": 4,
         "best": {
           "book": "PointsBet",
           "odds": -130
         },
-        "fair": 0.5529,
+        "fair": 0.55,
         "vendorFair": 0.4926,
         "open": {
           "line": 7.5,
@@ -2131,6 +2165,15 @@ window.PICKS_DATA = {
           "odds": 103,
           "best": -130,
           "n": 5
+        },
+        {
+          "at": "2026-11-25T23:31:34.452Z",
+          "fair": 0.55,
+          "vendorFair": 0.4926,
+          "line": 6,
+          "odds": 103,
+          "best": -130,
+          "n": 4
         }
       ],
       "status": "pending",
@@ -2183,7 +2226,7 @@ window.PICKS_DATA = {
         "BetOnline.ag": -117,
         "BetRivers": -134,
         "DraftKings": -120,
-        "FanDuel": -120,
+        "FanDuel": -122,
         "BetMGM": -120,
         "Bovada": -122,
         "Unibet": -125,
@@ -2191,7 +2234,7 @@ window.PICKS_DATA = {
         "ESPN BET": -120,
         "PointsBet": -120
       },
-      "pricesAt": "2026-11-25T20:36:14.534Z",
+      "pricesAt": "2026-11-25T23:31:34.452Z",
       "books": 7,
       "anchor": "Pinnacle",
       "modelProb": 0.5806,
@@ -2473,13 +2516,13 @@ window.PICKS_DATA = {
         "label": "The market (8 books) opened 7.5 (+119), now 6 (+115)"
       },
       "sgo": {
-        "at": "2026-11-25T20:36:14.534Z",
+        "at": "2026-11-25T23:31:34.452Z",
         "n": 8,
         "best": {
-          "book": "FanDuel",
+          "book": "DraftKings",
           "odds": -120
         },
-        "fair": 0.5235,
+        "fair": 0.524,
         "vendorFair": 0.4651,
         "open": {
           "line": 7.5,
@@ -2512,6 +2555,15 @@ window.PICKS_DATA = {
         {
           "at": "2026-11-25T20:36:14.534Z",
           "fair": 0.5235,
+          "vendorFair": 0.4651,
+          "line": 6,
+          "odds": 115,
+          "best": -120,
+          "n": 8
+        },
+        {
+          "at": "2026-11-25T23:31:34.452Z",
+          "fair": 0.524,
           "vendorFair": 0.4651,
           "line": 6,
           "odds": 115,

@@ -1469,7 +1469,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:70e9e98dcc-totals-Over@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261125T233134Z
 DTSTART:20261126T000000Z
 DTEND:20261126T030000Z
 SUMMARY:Over 5.5 -114 at FanDuel · Medium
@@ -1495,7 +1495,7 @@ DESCRIPTION:NHL · St Louis Blues @ New York Islanders · Wed Nov 25\, 7:00
 LOCATION:UBS Arena\, Elmont
 URL:https://ajur21.github.io/edgeline-ai/picks.html#70e9e98dcc-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261125T233134Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1506,7 +1506,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:03b0506602-totals-Over@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261125T233134Z
 DTSTART:20261126T000000Z
 DTEND:20261126T030000Z
 SUMMARY:Over 5.5 -117 at BetOnline.ag · Low
@@ -1524,13 +1524,13 @@ DESCRIPTION:NHL · Ottawa Senators @ Florida Panthers · Wed Nov 25\, 7:00
   could go wrong:\n- Scorers out: Jonah Gadjovich (LW)\, neck\; Andre Burak
  ovsky (LW)\, lower body\; Hayden Hodgson (RW)\, groin and 2 more. Fewer he
  althy scorers leans under.\nVerdict: The game data lines up behind this si
- de at this price.\nPrices: BetOnline.ag -117\, DraftKings -120\, FanDuel -
- 120\, BetMGM -120\, ESPN BET -120 and 5 more.\nFull breakdown: https://aju
- r21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
+ de at this price.\nPrices: BetOnline.ag -117\, DraftKings -120\, BetMGM -1
+ 20\, ESPN BET -120\, PointsBet -120 and 5 more.\nFull breakdown: https://a
+ jur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
 LOCATION:Amerant Bank Arena\, Sunrise
 URL:https://ajur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261125T233134Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1541,7 +1541,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-25@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261125T233134Z
 DTSTART:20261126T000000Z
 DTEND:20261126T054000Z
 SUMMARY:Parlay lean of the day: 2 legs +245 at BetOnline.ag
@@ -1552,7 +1552,7 @@ DESCRIPTION:All legs priced at BetOnline.ag. Fair 35.2%\, implied 29.0%\, E
  #parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261125T233134Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1563,7 +1563,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:696cf3d878-spreads-Minnesota-Wild@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261125T233134Z
 DTSTART:20261126T011000Z
 DTEND:20261126T041000Z
 SUMMARY:Minnesota Wild -1.5 +176 at FanDuel · Low
@@ -1584,14 +1584,14 @@ DESCRIPTION:NHL · Utah Mammoth @ Minnesota Wild · Wed Nov 25\, 8:10 PM ET
  maltz (C) and 1 more (+0.3).\n- Projected margin +1 for Minnesota Wild aga
  inst -1.5.\nWhat could go wrong:\n- Minnesota Wild without Quinn Hughes (D
  )\, Olli Maatta (D) (-0.2).\nVerdict: The game data lines up behind this s
- ide at this price.\nPrices: Bovada +173\, DraftKings +170\, BetMGM +165\, 
- Caesars +165\, ESPN BET +165 and 2 more.\nFull breakdown: https://ajur21.g
- ithub.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild
+ ide at this price.\nPrices: DraftKings +170\, Bovada +170\, BetMGM +165\, 
+ Caesars +165\, FanDuel +164 and 2 more.\nFull breakdown: https://ajur21.gi
+ thub.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild
 LOCATION:Grand Casino Arena\, Saint Paul
 URL:https://ajur21.github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minn
  esota-Wild
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261125T233134Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1602,7 +1602,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b99129d023-h2h-Colorado-Avalanche@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261125T233134Z
 DTSTART:20261126T024000Z
 DTEND:20261126T054000Z
 SUMMARY:Lean of the day: Colorado Avalanche ML -115 at theScore Bet · Low
@@ -1625,14 +1625,14 @@ DESCRIPTION:NHL · Montréal Canadiens @ Colorado Avalanche · Wed Nov 25\,
  valanche.\nWhat could go wrong:\n- Colorado Avalanche without Cale Makar (
  D)\, Gavin Brindley (C)\, Nathan MacKinnon (C) and 1 more (-0.3).\nVerdict
  : The game data lines up behind this side at this price.\nPrices: theScore
-  Bet -115\, ESPN BET -115\, BetOnline.ag -116\, FanDuel -118\, DraftKings 
- -120 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pic
- ks.html#b99129d023-h2h-Colorado-Avalanche
+  Bet -115\, BetOnline.ag -116\, DraftKings -120\, BetMGM -120\, FanDuel -1
+ 22 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
+ .html#b99129d023-h2h-Colorado-Avalanche
 LOCATION:Ball Arena\, Denver
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b99129d023-h2h-Colorado
  -Avalanche
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261125T233134Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
