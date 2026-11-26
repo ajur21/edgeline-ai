@@ -1541,10 +1541,10 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:9b825e6518-h2h-Detroit-Lions@edgeline
-DTSTAMP:20261126T073614Z
+DTSTAMP:20261126T140726Z
 DTSTART:20261126T180000Z
 DTEND:20261126T210000Z
-SUMMARY:Detroit Lions ML +105 at theScore Bet · Low
+SUMMARY:Lean of the day: Detroit Lions ML +105 at theScore Bet · Low
 DESCRIPTION:NFL · Chicago Bears @ Detroit Lions · Thu Nov 26\, 1:00 PM ET
  \nMoneyline: Detroit Lions ML at +105 (theScore Bet). Our probability 61.0
  % from game data\, the price implies 48.8%\, edge +12.2 pts\, EV +25.1% pe
@@ -1562,19 +1562,116 @@ DESCRIPTION:NFL · Chicago Bears @ Detroit Lions · Thu Nov 26\, 1:00 PM ET
  (+1.1).\n- Projected margin +4 for Detroit Lions.\nWhat could go wrong:\n-
   Detroit Lions without Skyler Gill-Howard (DT)\, Cade Mays (C) (-1.3).\nVe
  rdict: The game data lines up behind this side at this price.\nPrices: the
- Score Bet +105\, BetRivers +105\, ESPN BET +105\, Unibet +105\, FanDuel +1
- 04 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
- .html#9b825e6518-h2h-Detroit-Lions
+ Score Bet +105\, BetRivers +105\, FanDuel +104\, ESPN BET +100\, DraftKing
+ s -101 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/p
+ icks.html#9b825e6518-h2h-Detroit-Lions
 LOCATION:Ford Field\, Detroit
 URL:https://ajur21.github.io/edgeline-ai/picks.html#9b825e6518-h2h-Detroit-
  Lions
 CATEGORIES:NFL
-LAST-MODIFIED:20261126T073614Z
+LAST-MODIFIED:20261126T140726Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Detroit Lions ML +105 at theScore Bet · Low
+DESCRIPTION:Lean of the day: Detroit Lions ML +105 at theScore Bet · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:parlay-2026-11-26@edgeline
+DTSTAMP:20261126T140726Z
+DTSTART:20261126T180000Z
+DTEND:20261127T042000Z
+SUMMARY:Parlay lean of the day: 2 legs +278 at BetMGM
+DESCRIPTION:All legs priced at BetMGM. Fair 36.1%\, implied 26.5%\, EV +36.
+ 7% per unit.\n- NFL: Detroit Lions ML -102 · Chicago Bears @ Detroit Lion
+ s\n- NFL: Emmett Johnson under 19.5 carries -110 · Kansas City Chiefs @ B
+ uffalo Bills\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.h
+ tml#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261126T140726Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +278 at BetMGM
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f23fc3f7fb-totals-Over@edgeline
+DTSTAMP:20261126T140726Z
+DTSTART:20261127T190000Z
+DTEND:20261127T220000Z
+SUMMARY:Over 5.5 -117 at BetOnline.ag · Low
+DESCRIPTION:NHL · Dallas Stars @ St Louis Blues · Fri Nov 27\, 2:00 PM ET
+ \nTotal: Over 5.5 at -117 (BetOnline.ag). Our probability 57.2% from game 
+ data\, the price implies 53.9%\, edge +3.3 pts\, EV +6.1% per unit. Confid
+ ence: Lean.\nOur probability at 5.5 is 57.2%\, from the game data: this se
+ ason's results and margins\, recent form\, rest\, the injury report and ho
+ me edge (projected total 6.3). BetOnline.ag offers -117\, which implies on
+ ly 53.9%. Its bar is 3.0 points (the floor: the model's own margin of erro
+ r here is smaller). It clears it by 0.3. Not graded against other books' p
+ rices\; for reference the market makes it 52.8%.\nWhat supports it:\n- Com
+ bined scoring 6.6 a game in St Louis Blues's games\, 5.2 in Dallas Stars's
+  (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat could go 
+ wrong:\n- Scorers out: Pavel Buchnevich (LW)\, upper body\; Jimmy Snuggeru
+ d (RW)\, upper body\; Connor McMichael (LW)\, lower body and 7 more. Fewer
+  healthy scorers leans under.\nVerdict: The game data lines up behind this
+  side at this price.\nPrices: BetOnline.ag -117\, Unibet -123\, BetRivers 
+ -124\, theScore Bet -125\, ESPN BET -125.\nFull breakdown: https://ajur21.
+ github.io/edgeline-ai/picks.html#f23fc3f7fb-totals-Over
+LOCATION:Enterprise Center\, St. Louis
+URL:https://ajur21.github.io/edgeline-ai/picks.html#f23fc3f7fb-totals-Over
+CATEGORIES:NHL
+LAST-MODIFIED:20261126T140726Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Over 5.5 -117 at BetOnline.ag · Low
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:05bd16c51c-h2h-Chicago-Blackhawks@edgeline
+DTSTAMP:20261126T140726Z
+DTSTART:20261127T223000Z
+DTEND:20261128T013000Z
+SUMMARY:Chicago Blackhawks ML +155 at BetRivers · Medium
+DESCRIPTION:NHL · New York Rangers @ Chicago Blackhawks · Fri Nov 27\, 5:
+ 30 PM ET\nMoneyline: Chicago Blackhawks ML at +155 (BetRivers). Our probab
+ ility 49.3% from game data\, the price implies 39.2%\, edge +10.1 pts\, EV
+  +25.7% per unit. Confidence: Medium.\nOur probability is 49.3%\, from the
+  game data: this season's results and margins\, recent form\, rest\, the i
+ njury report and home edge (projected margin 0 for the home side). BetRive
+ rs offers +155\, which implies only 39.2%. Its bar is 7.0 points: the mode
+ l's own margin of error on this side\, with 24 games behind the thinner te
+ am (±0.42 goals on the margin). It clears it by 3.1. Not graded against o
+ ther books' prices\; for reference the market makes it 38.7%.\nWhat suppor
+ ts it:\n- Chicago Blackhawks trending: last five +1.4 vs -1.2 on the seaso
+ n.\n- Home edge +0.2 for Chicago Blackhawks.\n- New York Rangers without P
+ avel Dorofeyev (RW)\, Oliver Bjorkstrand (RW)\, Alberts Smits (D) and 1 mo
+ re (+0.4).\nWhat could go wrong:\n- Chicago Blackhawks rate -0.5 a game ov
+ er 25 (9-16)\, New York Rangers +0 over 24 (13-11)\; last season -0.8 and 
+ -0.1 a game.\n- Chicago Blackhawks without Tyler Bertuzzi (LW)\, Connor Be
+ dard (C)\, Bowen Byram (D) (-0.2).\n- Projected margin -0.04 for Chicago B
+ lackhawks.\nVerdict: The game data lines up behind this side at this price
+ .\nPrices: BetRivers +155\, Caesars +150\, BetOnline.ag +148\, ESPN BET +1
+ 45.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#05bd1
+ 6c51c-h2h-Chicago-Blackhawks
+LOCATION:United Center\, Chicago
+URL:https://ajur21.github.io/edgeline-ai/picks.html#05bd16c51c-h2h-Chicago-
+ Blackhawks
+CATEGORIES:NHL
+LAST-MODIFIED:20261126T140726Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Chicago Blackhawks ML +155 at BetRivers · Medium
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
