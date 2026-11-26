@@ -6,13 +6,13 @@ window.PERF_DATA = {
   "windowDays": 30,
   "record": {
     "wins": 43,
-    "losses": 37,
+    "losses": 38,
     "pushes": 0
   },
-  "units": 13.63,
-  "roi": 17,
-  "avgEdge": 8.3,
-  "graded": 80,
+  "units": 12.63,
+  "roi": 15.6,
+  "avgEdge": 8.4,
+  "graded": 81,
   "daily": [
     {
       "date": "2026-11-05",
@@ -89,6 +89,10 @@ window.PERF_DATA = {
     {
       "date": "2026-11-25",
       "units": 13.63
+    },
+    {
+      "date": "2026-11-26",
+      "units": 12.63
     }
   ],
   "bySport": [
@@ -109,11 +113,26 @@ window.PERF_DATA = {
     },
     {
       "sport": "NFL",
-      "units": 0.45,
-      "record": "2-4"
+      "units": -0.55,
+      "record": "2-5"
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-26",
+      "sport": "NFL",
+      "event": "Chicago Bears @ Detroit Lions",
+      "pick": "Detroit Lions ML",
+      "odds": 105,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0265,
+      "closeOdds": 108,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-25",
       "sport": "NHL",
@@ -278,21 +297,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": "away",
       "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "NHL",
-      "event": "Pittsburgh Penguins @ Dallas Stars",
-      "pick": "Pittsburgh Penguins +1.5",
-      "odds": -120,
-      "result": "Win",
-      "units": 0.83,
-      "clv": -0.0028,
-      "closeOdds": -130,
-      "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -428,16 +432,33 @@ window.PERF_DATA = {
       "wins": 2,
       "losses": 2,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-26",
+      "units": -1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 7,
-    "losses": 12,
+    "losses": 13,
     "pushes": 0,
-    "units": -5.59,
-    "n": 19,
+    "units": -6.59,
+    "n": 20,
     "props": 5,
     "recent": [
+      {
+        "date": "2026-11-26",
+        "kind": "lean",
+        "sport": "NFL",
+        "event": "Chicago Bears @ Detroit Lions",
+        "pick": "Detroit Lions ML",
+        "odds": 105,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-25",
         "kind": "lean",
@@ -527,16 +548,6 @@ window.PERF_DATA = {
         "odds": -160,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-15",
-        "kind": "prop",
-        "sport": "NFL",
-        "event": "Los Angeles Rams @ Arizona Cardinals",
-        "pick": "Konata Mumpfield under 2.5 receptions",
-        "odds": -135,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
@@ -548,25 +559,25 @@ window.PERF_DATA = {
     "n": 19
   },
   "clv": {
-    "n": 72,
-    "avg": -0.9,
+    "n": 73,
+    "avg": -0.93,
     "beat": 23,
-    "beatPct": 31.9,
-    "graded": 80,
+    "beatPct": 31.5,
+    "graded": 81,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 80,
+    "espnCloses": 81,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
       "wins": 43,
-      "losses": 37,
+      "losses": 38,
       "pushes": 0,
-      "units": 13.63,
-      "n": 80,
-      "roi": 17,
-      "pending": 5,
+      "units": 12.63,
+      "n": 81,
+      "roi": 15.6,
+      "pending": 4,
       "since": "2026-11-05"
     },
     "price": {

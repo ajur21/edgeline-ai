@@ -871,8 +871,9 @@
     "model": "nflverse",
     "marginSd": 3.86
    },
-   "locked": false,
-   "result": null
+   "locked": true,
+   "result": null,
+   "lockedAt": "2026-11-26T21:30Z"
   },
   "401873081": {
    "id": "401873081",
@@ -895,7 +896,13 @@
     "marginSd": 3.96
    },
    "locked": true,
-   "result": null,
+   "result": {
+    "home": 35,
+    "away": 39,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-26T23:37:27.026Z"
+   },
    "lockedAt": "2026-11-26T18:00Z"
   },
   "401873082": {

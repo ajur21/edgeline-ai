@@ -37981,8 +37981,8 @@
    "Edge 12.2 points over the price, 1.8 past its bar of 10.4",
    "Market reference 47.8%"
   ],
-  "status": "pending",
-  "units": 0,
+  "status": "graded",
+  "units": -1,
   "loggedAt": "2026-11-25T20:36:14.534Z",
   "availability": null,
   "current": {
@@ -38376,7 +38376,30 @@
    ]
   },
   "potd": "2026-11-26",
-  "potdAt": "2026-11-26T14:10:38.420Z"
+  "potdAt": "2026-11-26T14:10:38.420Z",
+  "result": "Loss",
+  "score": "39-35",
+  "finalScore": {
+   "home": 35,
+   "away": 39
+  },
+  "gradedAt": "2026-11-26T23:37:19.632Z",
+  "close": {
+   "source": "DraftKings close (ESPN)",
+   "espnEventId": "401873081",
+   "line": null,
+   "odds": 108,
+   "fair": 0.4613,
+   "moved": null,
+   "open": {
+    "line": null,
+    "odds": -135,
+    "fair": 0.5514
+   },
+   "samples": 2
+  },
+  "clv": -0.0265,
+  "lineMove": null
  },
  {
   "type": "parlay",
@@ -39962,8 +39985,8 @@
      },
      "total": 6.5,
      "totalOdds": {
-      "over": -112,
-      "under": -108
+      "over": -108,
+      "under": -112
      },
      "ml": {
       "home": -108,
