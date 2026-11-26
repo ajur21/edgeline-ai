@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-25T20:37:10.298Z",
- "checkedAt": null,
+ "checkedAt": "2026-11-26T07:36:24.373Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -53,20 +53,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 12",
-   "w": 0,
+   "w": 1,
    "l": 0,
    "p": 0,
-   "pending": 16,
-   "pct": null,
-   "avgProb": null
+   "pending": 15,
+   "pct": 1,
+   "avgProb": 0.6265
   },
   "season": {
-   "w": 17,
+   "w": 18,
    "l": 10,
    "p": 0,
-   "pending": 16,
-   "pct": 0.6296,
-   "avgProb": 0.655
+   "pending": 15,
+   "pct": 0.6429,
+   "avgProb": 0.654
   }
  },
  "games": [
@@ -75,10 +75,13 @@ window.NFL_WEEK_DATA = {
    "week": 12,
    "kickoff": "2026-11-26T01:00Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/25 - 8:00 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 26,
+    "away": 13
+   },
    "home": {
     "id": "14",
     "abbr": "LAR",
@@ -105,7 +108,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-25T20:37:10.298Z",
-    "locked": false,
+    "locked": true,
     "margin": 4.65,
     "total": 44.8,
     "marginSd": 4,
@@ -235,32 +238,16 @@ window.NFL_WEEK_DATA = {
     }
    },
    "weather": null,
-   "leanFrom": {
-    "home": {
-     "prob": 0.6265,
-     "bar": 0.1036,
-     "price": -109
-    },
-    "away": {
-     "prob": 0.3735,
-     "bar": 0.1036,
-     "price": 271
-    }
-   },
-   "board": {
-    "eventId": "5b612899d6dcdf998107f2c6c6e49a58",
-    "pricedAt": "2026-11-25T20:36:14.534Z",
-    "home": {
-     "odds": -135,
-     "book": "theScore Bet"
-    },
-    "away": {
-     "odds": 120,
-     "book": "DraftKings"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 26,
+    "away": 13,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-26T07:36:24.373Z"
+   }
   },
   {
    "id": "401873081",

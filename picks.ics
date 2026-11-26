@@ -1469,182 +1469,79 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:70e9e98dcc-totals-Over@edgeline
-DTSTAMP:20261125T233134Z
+DTSTAMP:20261126T073614Z
 DTSTART:20261126T000000Z
 DTEND:20261126T030000Z
-SUMMARY:Over 5.5 -114 at FanDuel · Medium
+SUMMARY:Over 5.5 -114 at FanDuel · Lost -1.00u
 DESCRIPTION:NHL · St Louis Blues @ New York Islanders · Wed Nov 25\, 7:00
-  PM ET\nTotal: Over 5.5 at -114 (FanDuel). Our probability 59.1% from game
-  data\, the price implies 53.3%\, edge +5.8 pts\, EV +10.9% per unit. Conf
- idence: Medium.\nOur probability at 5.5 is 59.1%\, from the game data: thi
- s season's results and margins\, recent form\, rest\, the injury report an
- d home edge (projected total 6.4). FanDuel offers -114\, which implies onl
- y 53.3%. Its bar is 3.0 points (the floor: the model's own margin of error
-  here is smaller). It clears it by 2.8. Not graded against other books' pr
- ices\; for reference the market makes it 52.7%.\nWhat supports it:\n- Comb
- ined scoring 6.1 a game in New York Islanders's games\, 6.6 in St Louis Bl
- ues's (league average 6.4).\n- Projected total 6.4 against 5.5.\nWhat coul
- d go wrong:\n- At current prices our edge is 1.9 points\, under its bar of
-  3.0 points\; the pick stays posted and is graded at the price it was post
- ed at.\n- Scorers out: Kyle Palmieri (C)\, lower body\; Ryan Pulock (D)\, 
- shoulder\; Alexander Romanov (D)\, knee and 7 more. Fewer healthy scorers 
- leans under.\nVerdict: The game data lines up behind this side at this pri
- ce.\nPrices: BetMGM -120\, Caesars -125\, BetRivers -129\, BetOnline.ag -1
- 30\, PointsBet -130 and 4 more.\nFull breakdown: https://ajur21.github.io/
- edgeline-ai/picks.html#70e9e98dcc-totals-Over
+  PM ET\nTotal: Over 5.5 at -114 (FanDuel). Lost -1.00u.\nFinal: 2-3\nClosi
+ ng line value: +1.9 pts (closed -135\, DraftKings close (ESPN)).\nRecord a
+ nd every graded lean: https://ajur21.github.io/edgeline-ai/performance.htm
+ l
 LOCATION:UBS Arena\, Elmont
-URL:https://ajur21.github.io/edgeline-ai/picks.html#70e9e98dcc-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T233134Z
+LAST-MODIFIED:20261126T073614Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -114 at FanDuel · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:03b0506602-totals-Over@edgeline
-DTSTAMP:20261125T233134Z
+DTSTAMP:20261126T073614Z
 DTSTART:20261126T000000Z
 DTEND:20261126T030000Z
-SUMMARY:Over 5.5 -117 at BetOnline.ag · Low
+SUMMARY:Over 5.5 -117 at BetOnline.ag · Won +0.85u
 DESCRIPTION:NHL · Ottawa Senators @ Florida Panthers · Wed Nov 25\, 7:00 
- PM ET\nTotal: Over 5.5 at -117 (BetOnline.ag). Our probability 58.1% from 
- game data\, the price implies 53.9%\, edge +4.1 pts\, EV +7.7% per unit. C
- onfidence: Lean.\nOur probability at 5.5 is 58.1%\, from the game data: th
- is season's results and margins\, recent form\, rest\, the injury report a
- nd home edge (projected total 6.3). BetOnline.ag offers -117\, which impli
- es only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of
-  error here is smaller). It clears it by 1.1. Not graded against other boo
- ks' prices\; for reference the market makes it 52.2%.\nWhat supports it:\n
- - Combined scoring 6.1 a game in Florida Panthers's games\, 6.1 in Ottawa 
- Senators's (league average 6.4).\n- Projected total 6.3 against 5.5.\nWhat
-  could go wrong:\n- Scorers out: Jonah Gadjovich (LW)\, neck\; Andre Burak
- ovsky (LW)\, lower body\; Hayden Hodgson (RW)\, groin and 2 more. Fewer he
- althy scorers leans under.\nVerdict: The game data lines up behind this si
- de at this price.\nPrices: BetOnline.ag -117\, DraftKings -120\, BetMGM -1
- 20\, ESPN BET -120\, PointsBet -120 and 5 more.\nFull breakdown: https://a
- jur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
+ PM ET\nTotal: Over 5.5 at -117 (BetOnline.ag). Won +0.85u.\nFinal: 3-5\nCl
+ osing line value: -4.3 pts (closed -108\, DraftKings close (ESPN)).\nRecor
+ d and every graded lean: https://ajur21.github.io/edgeline-ai/performance.
+ html
 LOCATION:Amerant Bank Arena\, Sunrise
-URL:https://ajur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T233134Z
+LAST-MODIFIED:20261126T073614Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Over 5.5 -117 at BetOnline.ag · Low
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:parlay-2026-11-25@edgeline
-DTSTAMP:20261125T233134Z
-DTSTART:20261126T000000Z
-DTEND:20261126T054000Z
-SUMMARY:Parlay lean of the day: 2 legs +245 at BetOnline.ag
-DESCRIPTION:All legs priced at BetOnline.ag. Fair 35.2%\, implied 29.0%\, E
- V +21.6% per unit.\n- NHL: Colorado Avalanche ML -116 · Montréal Canadie
- ns @ Colorado Avalanche\n- NHL: Over 5.5 -117 · Ottawa Senators @ Florida
-  Panthers\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html
- #parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261125T233134Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +245 at BetOnline.ag
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:696cf3d878-spreads-Minnesota-Wild@edgeline
-DTSTAMP:20261125T233134Z
+DTSTAMP:20261126T073614Z
 DTSTART:20261126T011000Z
 DTEND:20261126T041000Z
-SUMMARY:Minnesota Wild -1.5 +176 at FanDuel · Low
+SUMMARY:Minnesota Wild -1.5 +176 at FanDuel · Lost -1.00u
 DESCRIPTION:NHL · Utah Mammoth @ Minnesota Wild · Wed Nov 25\, 8:10 PM ET
- \nPuck line: Minnesota Wild -1.5 at +176 (FanDuel). Our probability 44.2% 
- from game data\, the price implies 36.2%\, edge +7.9 pts\, EV +21.9% per u
- nit. Confidence: Lean.\nOur probability at -1.5 is 44.2%\, from the game d
- ata: this season's results and margins\, recent form\, rest\, the injury r
- eport and home edge (projected margin +1 for the home side). FanDuel offer
- s +176\, which implies only 36.2%. Its bar is 6.6 points: the model's own 
- margin of error on this side\, with 25 games behind the thinner team (±0.
- 42 goals on the margin). It clears it by 1.4. Not graded against other boo
- ks' prices\; for reference the market makes it 35.3%.\nWhat supports it:\n
- - Minnesota Wild rate +0.7 a game over 26 (18-8)\, Utah Mammoth +0 over 25
-  (12-13)\; last season +0.4 and +0.3 a game.\n- Minnesota Wild trending: l
- ast five +2.6 vs +1.4 on the season.\n- Home edge +0.2 for Minnesota Wild.
- \n- Utah Mammoth without John Marino (D)\, Michael Carcone (LW)\, Nick Sch
- maltz (C) and 1 more (+0.3).\n- Projected margin +1 for Minnesota Wild aga
- inst -1.5.\nWhat could go wrong:\n- Minnesota Wild without Quinn Hughes (D
- )\, Olli Maatta (D) (-0.2).\nVerdict: The game data lines up behind this s
- ide at this price.\nPrices: DraftKings +170\, Bovada +170\, BetMGM +165\, 
- Caesars +165\, FanDuel +164 and 2 more.\nFull breakdown: https://ajur21.gi
- thub.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild
+ \nPuck line: Minnesota Wild -1.5 at +176 (FanDuel). Lost -1.00u.\nFinal: 4
+ -3\nClosing line value: +0.1 pts (closed +164\, DraftKings close (ESPN)).\
+ nRecord and every graded lean: https://ajur21.github.io/edgeline-ai/perfor
+ mance.html
 LOCATION:Grand Casino Arena\, Saint Paul
-URL:https://ajur21.github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minn
- esota-Wild
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T233134Z
+LAST-MODIFIED:20261126T073614Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Minnesota Wild -1.5 +176 at FanDuel · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b99129d023-h2h-Colorado-Avalanche@edgeline
-DTSTAMP:20261125T233134Z
+DTSTAMP:20261126T073614Z
 DTSTART:20261126T024000Z
 DTEND:20261126T054000Z
-SUMMARY:Lean of the day: Colorado Avalanche ML -115 at theScore Bet · Low
+SUMMARY:Colorado Avalanche ML -115 at theScore Bet · Won +0.87u
 DESCRIPTION:NHL · Montréal Canadiens @ Colorado Avalanche · Wed Nov 25\,
-  9:40 PM ET\nMoneyline: Colorado Avalanche ML at -115 (theScore Bet). Our 
- probability 60.7% from game data\, the price implies 53.5%\, edge +7.2 pts
- \, EV +13.4% per unit. Confidence: Lean.\nOur probability is 60.7%\, from 
- the game data: this season's results and margins\, recent form\, rest\, th
- e injury report and home edge (projected margin +0.6 for the home side). t
- heScore Bet offers -115\, which implies only 53.5%. Its bar is 6.9 points:
-  the model's own margin of error on this side\, with 23 games behind the t
- hinner team (±0.42 goals on the margin). It clears it by 0.3. Not graded 
- against other books' prices\; for reference the market makes it 51.7%.\nWh
- at supports it:\n- Colorado Avalanche rate +0.5 a game over 23 (13-10)\, M
- ontréal Canadiens +0.1 over 25 (14-11)\; last season +1.2 and +0.3 a game
- .\n- Montréal Canadiens trending: last five -0.4 vs +0.2 on the season.\n
- - Home edge +0.2 for Colorado Avalanche.\n- Colorado Avalanche are rested 
- (6 days).\n- Montréal Canadiens without Mike Matheson (D)\, Josh Anderson
-  (RW)\, Chris Kreider (LW) (+0.2).\n- Projected margin +0.6 for Colorado A
- valanche.\nWhat could go wrong:\n- Colorado Avalanche without Cale Makar (
- D)\, Gavin Brindley (C)\, Nathan MacKinnon (C) and 1 more (-0.3).\nVerdict
- : The game data lines up behind this side at this price.\nPrices: theScore
-  Bet -115\, BetOnline.ag -116\, DraftKings -120\, BetMGM -120\, FanDuel -1
- 22 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
- .html#b99129d023-h2h-Colorado-Avalanche
+  9:40 PM ET\nMoneyline: Colorado Avalanche ML at -115 (theScore Bet). Won 
+ +0.87u.\nFinal: 0-6\nClosing line value: -1.3 pts (closed -120\, DraftKing
+ s close (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/e
+ dgeline-ai/performance.html
 LOCATION:Ball Arena\, Denver
-URL:https://ajur21.github.io/edgeline-ai/picks.html#b99129d023-h2h-Colorado
- -Avalanche
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261125T233134Z
+LAST-MODIFIED:20261126T073614Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Lean of the day: Colorado Avalanche ML -115 at theScore Bet · 
- Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:9b825e6518-h2h-Detroit-Lions@edgeline
-DTSTAMP:20261125T203614Z
+DTSTAMP:20261126T073614Z
 DTSTART:20261126T180000Z
 DTEND:20261126T210000Z
 SUMMARY:Detroit Lions ML +105 at theScore Bet · Low
@@ -1662,18 +1559,17 @@ DESCRIPTION:NFL · Chicago Bears @ Detroit Lions · Thu Nov 26\, 1:00 PM ET
  ir schedules (this season's results\, last season carried over)\; EPA a pl
  ay +0.09 and +0.02 net of defence (nflverse).\n- Home edge +2.1 for Detroi
  t Lions.\n- Chicago Bears without Roschon Johnson (RB)\, Elijah Hicks (S) 
- (+1.1).\n- Projected margin +4 for Detroit Lions.\n- A better price is ava
- ilable now: +107 at Caesars.\nWhat could go wrong:\n- Detroit Lions withou
- t Skyler Gill-Howard (DT)\, Cade Mays (C) (-1.3).\nVerdict: The game data 
- lines up behind this side at this price.\nPrices: Caesars +107\, theScore 
- Bet +105\, BetRivers +105\, ESPN BET +105\, Unibet +105 and 6 more.\nFull 
- breakdown: https://ajur21.github.io/edgeline-ai/picks.html#9b825e6518-h2h-
- Detroit-Lions
+ (+1.1).\n- Projected margin +4 for Detroit Lions.\nWhat could go wrong:\n-
+  Detroit Lions without Skyler Gill-Howard (DT)\, Cade Mays (C) (-1.3).\nVe
+ rdict: The game data lines up behind this side at this price.\nPrices: the
+ Score Bet +105\, BetRivers +105\, ESPN BET +105\, Unibet +105\, FanDuel +1
+ 04 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
+ .html#9b825e6518-h2h-Detroit-Lions
 LOCATION:Ford Field\, Detroit
 URL:https://ajur21.github.io/edgeline-ai/picks.html#9b825e6518-h2h-Detroit-
  Lions
 CATEGORIES:NFL
-LAST-MODIFIED:20261125T203614Z
+LAST-MODIFIED:20261126T073614Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

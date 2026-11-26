@@ -5,16 +5,40 @@
 <link>https://ajur21.github.io/edgeline-ai/</link>
 <description>Sports betting leans from a game-data model: every lean with our probability and its edge over the price, every grade, every slate. In a replay of past seasons these leans did not beat the closing price (NHL −4.8%, NBA −7.9%, NFL −9.5% ROI at the close). They become picks when the live record beats the close. Informational only; 21+.</description>
 <language>en-us</language>
-<lastBuildDate>Wed, 25 Nov 2026 23:31:34 GMT</lastBuildDate>
+<lastBuildDate>Thu, 26 Nov 2026 07:36:14 GMT</lastBuildDate>
 <ttl>60</ttl>
 <atom:link href="https://ajur21.github.io/edgeline-ai/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>Parlay lean of the day: 2 legs +245 at BetOnline.ag</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#parlays</link>
-<guid isPermaLink="false">parlay-2026-11-25</guid>
-<pubDate>Wed, 25 Nov 2026 20:39:22 GMT</pubDate>
-<category>Parlay</category>
-<description>&lt;p&gt;All legs priced at BetOnline.ag. Fair 35.2%, implied 29.0%, EV +21.6% per unit.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;NHL: Colorado Avalanche ML -116 · Montréal Canadiens @ Colorado Avalanche&lt;/li&gt;&lt;li&gt;NHL: Over 5.5 -117 · Ottawa Senators @ Florida Panthers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Every parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays&lt;/p&gt;</description>
+<title>Graded: Over 5.5 -114 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">70e9e98dcc-totals-Over#graded</guid>
+<pubDate>Thu, 26 Nov 2026 07:36:14 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · St Louis Blues @ New York Islanders · Wed Nov 25, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -114 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 2-3&lt;/p&gt;&lt;p&gt;Closing line value: +1.9 pts (closed -135, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Over 5.5 -117 · Won +0.85u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">03b0506602-totals-Over#graded</guid>
+<pubDate>Thu, 26 Nov 2026 07:36:14 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Ottawa Senators @ Florida Panthers · Wed Nov 25, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetOnline.ag). Won +0.85u.&lt;/p&gt;&lt;p&gt;Final: 3-5&lt;/p&gt;&lt;p&gt;Closing line value: -4.3 pts (closed -108, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Minnesota Wild -1.5 +176 · Lost -1.00u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">696cf3d878-spreads-Minnesota-Wild#graded</guid>
+<pubDate>Thu, 26 Nov 2026 07:36:14 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Utah Mammoth @ Minnesota Wild · Wed Nov 25, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Minnesota Wild -1.5 at +176 (FanDuel). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 4-3&lt;/p&gt;&lt;p&gt;Closing line value: +0.1 pts (closed +164, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Colorado Avalanche ML -115 · Won +0.87u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">b99129d023-h2h-Colorado-Avalanche#graded</guid>
+<pubDate>Thu, 26 Nov 2026 07:36:14 GMT</pubDate>
+<category>NHL</category>
+<description>&lt;p&gt;NHL · Montréal Canadiens @ Colorado Avalanche · Wed Nov 25, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Colorado Avalanche ML at -115 (theScore Bet). Won +0.87u.&lt;/p&gt;&lt;p&gt;Final: 0-6&lt;/p&gt;&lt;p&gt;Closing line value: -1.3 pts (closed -120, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 <item>
 <title>Wed Nov 25 slate: 5 leans tonight from 162 priced sides</title>
@@ -30,15 +54,7 @@
 <guid isPermaLink="false">9b825e6518-h2h-Detroit-Lions</guid>
 <pubDate>Wed, 25 Nov 2026 20:36:14 GMT</pubDate>
 <category>NFL</category>
-<description>&lt;p&gt;NFL · Chicago Bears @ Detroit Lions · Thu Nov 26, 1:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Detroit Lions ML at +105 (theScore Bet). Our probability 61.0% from game data, the price implies 48.8%, edge +12.2 pts, EV +25.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 61.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +4 for the home side). theScore Bet offers +105, which implies only 48.8%. Its bar is 10.4 points: the model's own margin of error on this side, with 10 games behind the thinner team (±3.96 points on the margin). It clears it by 1.8. Not graded against other books' prices; for reference the market makes it 47.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Detroit Lions rate +4 and Chicago Bears +2.4 points a game against their schedules (this season's results, last season carried over); EPA a play +0.09 and +0.02 net of defence (nflverse).&lt;/li&gt;&lt;li&gt;Home edge +2.1 for Detroit Lions.&lt;/li&gt;&lt;li&gt;Chicago Bears without Roschon Johnson (RB), Elijah Hicks (S) (+1.1).&lt;/li&gt;&lt;li&gt;Projected margin +4 for Detroit Lions.&lt;/li&gt;&lt;li&gt;A better price is available now: +107 at Caesars.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Detroit Lions without Skyler Gill-Howard (DT), Cade Mays (C) (-1.3).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: Caesars +107, theScore Bet +105, BetRivers +105, ESPN BET +105, Unibet +105 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#9b825e6518-h2h-Detroit-Lions&lt;/p&gt;</description>
-</item>
-<item>
-<title>Lean of the day: Colorado Avalanche ML -115 at theScore Bet (Low, +7.2 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#b99129d023-h2h-Colorado-Avalanche</link>
-<guid isPermaLink="false">b99129d023-h2h-Colorado-Avalanche</guid>
-<pubDate>Wed, 25 Nov 2026 14:08:03 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Montréal Canadiens @ Colorado Avalanche · Wed Nov 25, 9:40 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Colorado Avalanche ML at -115 (theScore Bet). Our probability 60.7% from game data, the price implies 53.5%, edge +7.2 pts, EV +13.4% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 60.7%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +0.6 for the home side). theScore Bet offers -115, which implies only 53.5%. Its bar is 6.9 points: the model's own margin of error on this side, with 23 games behind the thinner team (±0.42 goals on the margin). It clears it by 0.3. Not graded against other books' prices; for reference the market makes it 51.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Colorado Avalanche rate +0.5 a game over 23 (13-10), Montréal Canadiens +0.1 over 25 (14-11); last season +1.2 and +0.3 a game.&lt;/li&gt;&lt;li&gt;Montréal Canadiens trending: last five -0.4 vs +0.2 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Colorado Avalanche.&lt;/li&gt;&lt;li&gt;Colorado Avalanche are rested (6 days).&lt;/li&gt;&lt;li&gt;Montréal Canadiens without Mike Matheson (D), Josh Anderson (RW), Chris Kreider (LW) (+0.2).&lt;/li&gt;&lt;li&gt;Projected margin +0.6 for Colorado Avalanche.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Colorado Avalanche without Cale Makar (D), Gavin Brindley (C), Nathan MacKinnon (C) and 1 more (-0.3).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: theScore Bet -115, BetOnline.ag -116, DraftKings -120, BetMGM -120, FanDuel -122 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#b99129d023-h2h-Colorado-Avalanche&lt;/p&gt;</description>
+<description>&lt;p&gt;NFL · Chicago Bears @ Detroit Lions · Thu Nov 26, 1:00 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Detroit Lions ML at +105 (theScore Bet). Our probability 61.0% from game data, the price implies 48.8%, edge +12.2 pts, EV +25.1% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability is 61.0%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +4 for the home side). theScore Bet offers +105, which implies only 48.8%. Its bar is 10.4 points: the model's own margin of error on this side, with 10 games behind the thinner team (±3.96 points on the margin). It clears it by 1.8. Not graded against other books' prices; for reference the market makes it 47.8%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Detroit Lions rate +4 and Chicago Bears +2.4 points a game against their schedules (this season's results, last season carried over); EPA a play +0.09 and +0.02 net of defence (nflverse).&lt;/li&gt;&lt;li&gt;Home edge +2.1 for Detroit Lions.&lt;/li&gt;&lt;li&gt;Chicago Bears without Roschon Johnson (RB), Elijah Hicks (S) (+1.1).&lt;/li&gt;&lt;li&gt;Projected margin +4 for Detroit Lions.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Detroit Lions without Skyler Gill-Howard (DT), Cade Mays (C) (-1.3).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: theScore Bet +105, BetRivers +105, ESPN BET +105, Unibet +105, FanDuel +104 and 6 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#9b825e6518-h2h-Detroit-Lions&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Edmonton Oilers ML +109 · Lost -1.00u</title>
@@ -47,30 +63,6 @@
 <pubDate>Wed, 25 Nov 2026 07:44:51 GMT</pubDate>
 <category>NHL</category>
 <description>&lt;p&gt;NHL · Vegas Golden Knights @ Edmonton Oilers · Tue Nov 24, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Moneyline: Edmonton Oilers ML at +109 (BetOnline.ag). Lost -1.00u.&lt;/p&gt;&lt;p&gt;Final: 5-3&lt;/p&gt;&lt;p&gt;Closing line value: -0.0 pts (closed +100, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Minnesota Wild -1.5 +176 at FanDuel (Low, +7.9 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild</link>
-<guid isPermaLink="false">696cf3d878-spreads-Minnesota-Wild</guid>
-<pubDate>Tue, 24 Nov 2026 20:36:18 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Utah Mammoth @ Minnesota Wild · Wed Nov 25, 8:10 PM ET&lt;/p&gt;&lt;p&gt;Puck line: Minnesota Wild -1.5 at +176 (FanDuel). Our probability 44.2% from game data, the price implies 36.2%, edge +7.9 pts, EV +21.9% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at -1.5 is 44.2%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin +1 for the home side). FanDuel offers +176, which implies only 36.2%. Its bar is 6.6 points: the model's own margin of error on this side, with 25 games behind the thinner team (±0.42 goals on the margin). It clears it by 1.4. Not graded against other books' prices; for reference the market makes it 35.3%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Wild rate +0.7 a game over 26 (18-8), Utah Mammoth +0 over 25 (12-13); last season +0.4 and +0.3 a game.&lt;/li&gt;&lt;li&gt;Minnesota Wild trending: last five +2.6 vs +1.4 on the season.&lt;/li&gt;&lt;li&gt;Home edge +0.2 for Minnesota Wild.&lt;/li&gt;&lt;li&gt;Utah Mammoth without John Marino (D), Michael Carcone (LW), Nick Schmaltz (C) and 1 more (+0.3).&lt;/li&gt;&lt;li&gt;Projected margin +1 for Minnesota Wild against -1.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Minnesota Wild without Quinn Hughes (D), Olli Maatta (D) (-0.2).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: DraftKings +170, Bovada +170, BetMGM +165, Caesars +165, FanDuel +164 and 2 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#696cf3d878-spreads-Minnesota-Wild&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 5.5 -114 at FanDuel (Medium, +5.8 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#70e9e98dcc-totals-Over</link>
-<guid isPermaLink="false">70e9e98dcc-totals-Over</guid>
-<pubDate>Tue, 24 Nov 2026 20:36:18 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · St Louis Blues @ New York Islanders · Wed Nov 25, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -114 (FanDuel). Our probability 59.1% from game data, the price implies 53.3%, edge +5.8 pts, EV +10.9% per unit. Confidence: Medium.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 59.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.4). FanDuel offers -114, which implies only 53.3%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 2.8. Not graded against other books' prices; for reference the market makes it 52.7%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.1 a game in New York Islanders's games, 6.6 in St Louis Blues's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.4 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;At current prices our edge is 1.9 points, under its bar of 3.0 points; the pick stays posted and is graded at the price it was posted at.&lt;/li&gt;&lt;li&gt;Scorers out: Kyle Palmieri (C), lower body; Ryan Pulock (D), shoulder; Alexander Romanov (D), knee and 7 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetMGM -120, Caesars -125, BetRivers -129, BetOnline.ag -130, PointsBet -130 and 4 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#70e9e98dcc-totals-Over&lt;/p&gt;</description>
-</item>
-<item>
-<title>NHL: Over 5.5 -117 at BetOnline.ag (Low, +4.1 pts)</title>
-<link>https://ajur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over</link>
-<guid isPermaLink="false">03b0506602-totals-Over</guid>
-<pubDate>Tue, 24 Nov 2026 20:36:18 GMT</pubDate>
-<category>NHL</category>
-<description>&lt;p&gt;NHL · Ottawa Senators @ Florida Panthers · Wed Nov 25, 7:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Over 5.5 at -117 (BetOnline.ag). Our probability 58.1% from game data, the price implies 53.9%, edge +4.1 pts, EV +7.7% per unit. Confidence: Lean.&lt;/p&gt;&lt;p&gt;Our probability at 5.5 is 58.1%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected total 6.3). BetOnline.ag offers -117, which implies only 53.9%. Its bar is 3.0 points (the floor: the model's own margin of error here is smaller). It clears it by 1.1. Not graded against other books' prices; for reference the market makes it 52.2%.&lt;/p&gt;&lt;p&gt;What supports it:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Combined scoring 6.1 a game in Florida Panthers's games, 6.1 in Ottawa Senators's (league average 6.4).&lt;/li&gt;&lt;li&gt;Projected total 6.3 against 5.5.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;What could go wrong:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Scorers out: Jonah Gadjovich (LW), neck; Andre Burakovsky (LW), lower body; Hayden Hodgson (RW), groin and 2 more. Fewer healthy scorers leans under.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Verdict: The game data lines up behind this side at this price.&lt;/p&gt;&lt;p&gt;Prices: BetOnline.ag -117, DraftKings -120, BetMGM -120, ESPN BET -120, PointsBet -120 and 5 more.&lt;/p&gt;&lt;p&gt;Full breakdown: https://ajur21.github.io/edgeline-ai/picks.html#03b0506602-totals-Over&lt;/p&gt;</description>
 </item>
 <item>
 <title>Graded: Over 5.5 -122 · Lost -1.00u</title>
@@ -647,6 +639,14 @@
 <pubDate>Sat, 07 Nov 2026 23:32:48 GMT</pubDate>
 <category>Soccer</category>
 <description>&lt;p&gt;Soccer · New York Red Bulls vs. Atlanta United FC · Sat Nov 7, 4:00 PM ET&lt;/p&gt;&lt;p&gt;Total: Under 3.5 goals at -110 (BetRivers). Won +0.91u.&lt;/p&gt;&lt;p&gt;Final: 0-3&lt;/p&gt;&lt;p&gt;Closing line value: -7.4 pts (closed +110, DraftKings close (ESPN)).&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
+</item>
+<item>
+<title>Graded: Under 3 goals +102 · Won +1.02u</title>
+<link>https://ajur21.github.io/edgeline-ai/performance.html</link>
+<guid isPermaLink="false">842fcc5b9f-totals-Under#graded</guid>
+<pubDate>Sat, 07 Nov 2026 18:31:30 GMT</pubDate>
+<category>Soccer</category>
+<description>&lt;p&gt;Soccer · Arsenal vs. Hull City · Sat Nov 7, 10:00 AM ET&lt;/p&gt;&lt;p&gt;Total: Under 3 goals at +102 (Bovada). Won +1.02u.&lt;/p&gt;&lt;p&gt;Final: 0-1&lt;/p&gt;&lt;p&gt;The line moved away the lean before close.&lt;/p&gt;&lt;p&gt;Record and every graded lean: https://ajur21.github.io/edgeline-ai/performance.html&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>

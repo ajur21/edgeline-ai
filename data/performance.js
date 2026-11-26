@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-25",
+  "asOf": "2026-11-26",
   "windowDays": 30,
   "record": {
-    "wins": 41,
-    "losses": 35,
+    "wins": 43,
+    "losses": 37,
     "pushes": 0
   },
-  "units": 13.91,
-  "roi": 18.3,
-  "avgEdge": 8.4,
-  "graded": 76,
+  "units": 13.63,
+  "roi": 17,
+  "avgEdge": 8.3,
+  "graded": 80,
   "daily": [
     {
       "date": "2026-11-05",
@@ -85,13 +85,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-24",
       "units": 13.91
+    },
+    {
+      "date": "2026-11-25",
+      "units": 13.63
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 5.75,
-      "record": "27-20"
+      "units": 5.47,
+      "record": "29-22"
     },
     {
       "sport": "NBA",
@@ -110,6 +114,66 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-25",
+      "sport": "NHL",
+      "event": "Montréal Canadiens @ Colorado Avalanche",
+      "pick": "Colorado Avalanche ML",
+      "odds": -115,
+      "result": "Win",
+      "units": 0.87,
+      "clv": -0.0132,
+      "closeOdds": -120,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-25",
+      "sport": "NHL",
+      "event": "Utah Mammoth @ Minnesota Wild",
+      "pick": "Minnesota Wild -1.5",
+      "odds": 176,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0008,
+      "closeOdds": 164,
+      "closeLine": -1.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-25",
+      "sport": "NHL",
+      "event": "Ottawa Senators @ Florida Panthers",
+      "pick": "Over 5.5",
+      "odds": -117,
+      "result": "Win",
+      "units": 0.85,
+      "clv": -0.0435,
+      "closeOdds": -108,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-25",
+      "sport": "NHL",
+      "event": "St Louis Blues @ New York Islanders",
+      "pick": "Over 5.5",
+      "odds": -114,
+      "result": "Loss",
+      "units": -1,
+      "clv": 0.0187,
+      "closeOdds": -135,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-24",
       "sport": "NHL",
@@ -226,66 +290,6 @@ window.PERF_DATA = {
       "clv": -0.0028,
       "closeOdds": -130,
       "closeLine": 1.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "Soccer",
-      "event": "Chicago Fire vs. Charlotte FC",
-      "pick": "Charlotte FC ML",
-      "odds": 390,
-      "result": "Win",
-      "units": 3.9,
-      "clv": -0.0193,
-      "closeOdds": 400,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "NFL",
-      "event": "Arizona Cardinals @ Kansas City Chiefs",
-      "pick": "Arizona Cardinals ML",
-      "odds": 1000,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0124,
-      "closeOdds": 830,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "Soccer",
-      "event": "Hull City vs. Brighton and Hove Albion",
-      "pick": "Hull City ML",
-      "odds": 560,
-      "result": "Win",
-      "units": 5.6,
-      "clv": -0.0054,
-      "closeOdds": 550,
-      "closeLine": null,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-21",
-      "sport": "NHL",
-      "event": "Anaheim Ducks @ Utah Mammoth",
-      "pick": "Under 6.5",
-      "odds": 117,
-      "result": "Win",
-      "units": 1.17,
-      "clv": -0.0243,
-      "closeOdds": 120,
-      "closeLine": 6.5,
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
@@ -417,16 +421,33 @@ window.PERF_DATA = {
       "wins": 0,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-25",
+      "units": -0.28,
+      "wins": 2,
+      "losses": 2,
+      "pushes": 0
     }
   ],
   "potd": {
-    "wins": 6,
+    "wins": 7,
     "losses": 12,
     "pushes": 0,
-    "units": -6.46,
-    "n": 18,
+    "units": -5.59,
+    "n": 19,
     "props": 5,
     "recent": [
+      {
+        "date": "2026-11-25",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Montréal Canadiens @ Colorado Avalanche",
+        "pick": "Colorado Avalanche ML",
+        "odds": -115,
+        "result": "Win",
+        "units": 0.87
+      },
       {
         "date": "2026-11-24",
         "kind": "lean",
@@ -516,46 +537,36 @@ window.PERF_DATA = {
         "odds": -135,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-14",
-        "kind": "lean",
-        "sport": "NBA",
-        "event": "Chicago Bulls @ Minnesota Timberwolves",
-        "pick": "Minnesota Timberwolves ML",
-        "odds": -950,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
-    "wins": 2,
+    "wins": 3,
     "losses": 16,
     "pushes": 0,
-    "units": -10.55,
-    "n": 18
+    "units": -8.1,
+    "n": 19
   },
   "clv": {
-    "n": 68,
+    "n": 72,
     "avg": -0.9,
-    "beat": 21,
-    "beatPct": 30.9,
-    "graded": 76,
+    "beat": 23,
+    "beatPct": 31.9,
+    "graded": 80,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 76,
+    "espnCloses": 80,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 41,
-      "losses": 35,
+      "wins": 43,
+      "losses": 37,
       "pushes": 0,
-      "units": 13.91,
-      "n": 76,
-      "roi": 18.3,
-      "pending": 5,
+      "units": 13.63,
+      "n": 80,
+      "roi": 17,
+      "pending": 1,
       "since": "2026-11-05"
     },
     "price": {
