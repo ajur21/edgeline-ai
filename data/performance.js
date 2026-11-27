@@ -2,7 +2,7 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-26",
+  "asOf": "2026-11-27",
   "windowDays": 30,
   "record": {
     "wins": 43,
@@ -553,10 +553,10 @@ window.PERF_DATA = {
   },
   "parlays": {
     "wins": 3,
-    "losses": 16,
+    "losses": 17,
     "pushes": 0,
-    "units": -8.1,
-    "n": 19
+    "units": -9.1,
+    "n": 20
   },
   "clv": {
     "n": 73,

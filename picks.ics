@@ -1540,28 +1540,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-26@edgeline
-DTSTAMP:20261126T233719Z
-DTSTART:20261126T180000Z
-DTEND:20261127T042000Z
-SUMMARY:Parlay lean of the day: 2 legs +278 at BetMGM
-DESCRIPTION:All legs priced at BetMGM. Fair 36.1%\, implied 26.5%\, EV +36.
- 7% per unit.\n- NFL: Detroit Lions ML -102 · Chicago Bears @ Detroit Lion
- s\n- NFL: Emmett Johnson under 19.5 carries -110 · Kansas City Chiefs @ B
- uffalo Bills\n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.h
- tml#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261126T233719Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +278 at BetMGM
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:9b825e6518-h2h-Detroit-Lions@edgeline
 DTSTAMP:20261126T233719Z
 DTSTART:20261126T180000Z
@@ -1581,7 +1559,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:b5234ea578-h2h-Nashville-Predators@edgeline
-DTSTAMP:20261126T203623Z
+DTSTAMP:20261127T073349Z
 DTSTART:20261127T180000Z
 DTEND:20261127T210000Z
 SUMMARY:Nashville Predators ML +100 at FanDuel · Low
@@ -1600,15 +1578,15 @@ DESCRIPTION:NHL · Utah Mammoth @ Nashville Predators · Fri Nov 27\, 1:00
   Projected margin +0.5 for Nashville Predators.\nWhat could go wrong:\n- N
  ashville Predators rate 0 a game over 24 (13-11)\, Utah Mammoth +0 over 26
   (13-13)\; last season -0.3 and +0.3 a game.\nVerdict: The game data lines
-  up behind this side at this price.\nPrices: FanDuel +100\, BetOnline.ag -
- 101\, theScore Bet -105\, BetMGM -105\, Bovada -105 and 5 more.\nFull brea
- kdown: https://ajur21.github.io/edgeline-ai/picks.html#b5234ea578-h2h-Nash
- ville-Predators
+  up behind this side at this price.\nPrices: FanDuel +100\, Bovada +100\, 
+ Caesars +100\, ESPN BET +100\, BetOnline.ag -101 and 5 more.\nFull breakdo
+ wn: https://ajur21.github.io/edgeline-ai/picks.html#b5234ea578-h2h-Nashvil
+ le-Predators
 LOCATION:Bridgestone Arena\, Nashville
 URL:https://ajur21.github.io/edgeline-ai/picks.html#b5234ea578-h2h-Nashvill
  e-Predators
 CATEGORIES:NHL
-LAST-MODIFIED:20261126T203623Z
+LAST-MODIFIED:20261127T073349Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1619,7 +1597,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:f23fc3f7fb-totals-Over@edgeline
-DTSTAMP:20261126T203623Z
+DTSTAMP:20261127T073349Z
 DTSTART:20261127T190000Z
 DTEND:20261127T220000Z
 SUMMARY:Over 5.5 -117 at BetOnline.ag · Low
@@ -1634,18 +1612,17 @@ DESCRIPTION:NHL · Dallas Stars @ St Louis Blues · Fri Nov 27\, 2:00 PM ET
  rices\; for reference the market makes it 52.8%.\nWhat supports it:\n- Com
  bined scoring 6.6 a game in St Louis Blues's games\, 5.2 in Dallas Stars's
   (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A better pri
- ce is now available: -115 at FanDuel.\n- A better price is available now: 
- -115 at FanDuel.\nWhat could go wrong:\n- Scorers out: Connor McMichael (L
- W)\, lower body\; Brandon Carlo (D)\, lower body\; Torey Krug (D)\, ankle 
- and 5 more. Fewer healthy scorers leans under.\nVerdict: The game data lin
- es up behind this side at this price.\nPrices: FanDuel -115\, BetOnline.ag
-  -117\, BetMGM -118\, ESPN BET -120\, Bovada -120 and 6 more.\nFull breakd
- own: https://ajur21.github.io/edgeline-ai/picks.html#f23fc3f7fb-totals-Ove
- r
+ ce is now available: -115 at FanDuel.\nWhat could go wrong:\n- Scorers out
+ : Connor McMichael (LW)\, lower body\; Brandon Carlo (D)\, lower body\; To
+ rey Krug (D)\, ankle and 5 more. Fewer healthy scorers leans under.\nVerdi
+ ct: The game data lines up behind this side at this price.\nPrices: BetOnl
+ ine.ag -117\, FanDuel -118\, ESPN BET -120\, BetMGM -120\, Bovada -120 and
+  6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.html#
+ f23fc3f7fb-totals-Over
 LOCATION:Enterprise Center\, St. Louis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#f23fc3f7fb-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261126T203623Z
+LAST-MODIFIED:20261127T073349Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

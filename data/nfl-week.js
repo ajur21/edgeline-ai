@@ -4,7 +4,7 @@ window.NFL_WEEK_DATA = {
  "source": "ESPN public scoreboard, schedules and injury report; nflverse; National Weather Service",
  "attribution": "NFL schedules, results, EPA and starting quarterbacks from nflverse (github.com/nflverse/nflverse-data), CC BY 4.0. Weather: National Weather Service. Scores, schedules and injuries: ESPN.",
  "generatedAt": "2026-11-26T20:37:30.837Z",
- "checkedAt": "2026-11-26T23:37:27.026Z",
+ "checkedAt": "2026-11-27T07:33:57.143Z",
  "season": 2026,
  "week": {
   "type": 2,
@@ -53,20 +53,20 @@ window.NFL_WEEK_DATA = {
   },
   "week": {
    "label": "Week 12",
-   "w": 1,
-   "l": 1,
+   "w": 2,
+   "l": 2,
    "p": 0,
-   "pending": 14,
+   "pending": 12,
    "pct": 0.5,
-   "avgProb": 0.6236
+   "avgProb": 0.6466
   },
   "season": {
-   "w": 18,
-   "l": 11,
+   "w": 19,
+   "l": 12,
    "p": 0,
-   "pending": 14,
-   "pct": 0.6207,
-   "avgProb": 0.6528
+   "pending": 12,
+   "pct": 0.6129,
+   "avgProb": 0.6539
   }
  },
  "games": [
@@ -442,12 +442,12 @@ window.NFL_WEEK_DATA = {
    "week": 12,
    "kickoff": "2026-11-26T21:30Z",
    "timeValid": true,
-   "state": "in",
-   "status": "STATUS_HALFTIME",
-   "detail": "Halftime",
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
    "score": {
-    "home": 28,
-    "away": 10
+    "home": 38,
+    "away": 39
    },
    "home": {
     "id": "6",
@@ -608,17 +608,26 @@ window.NFL_WEEK_DATA = {
    "leanFrom": null,
    "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 38,
+    "away": 39,
+    "winner": "away",
+    "call": "Loss",
+    "gradedAt": "2026-11-27T07:33:57.143Z"
+   }
   },
   {
    "id": "401873082",
    "week": 12,
    "kickoff": "2026-11-27T01:20Z",
    "timeValid": true,
-   "state": "pre",
-   "status": "STATUS_SCHEDULED",
-   "detail": "11/26 - 8:20 PM EST",
-   "score": null,
+   "state": "post",
+   "status": "STATUS_FINAL",
+   "detail": "Final",
+   "score": {
+    "home": 13,
+    "away": 10
+   },
    "home": {
     "id": "2",
     "abbr": "BUF",
@@ -645,7 +654,7 @@ window.NFL_WEEK_DATA = {
    "projection": {
     "model": "nflverse",
     "at": "2026-11-26T20:37:30.837Z",
-    "locked": false,
+    "locked": true,
     "margin": 3.96,
     "total": 47.2,
     "marginSd": 3.98,
@@ -784,32 +793,16 @@ window.NFL_WEEK_DATA = {
     "at": "2026-11-26T20:00:00-05:00",
     "source": "National Weather Service"
    },
-   "leanFrom": {
-    "home": {
-     "prob": 0.6082,
-     "bar": 0.1046,
-     "price": -101
-    },
-    "away": {
-     "prob": 0.3918,
-     "bar": 0.1045,
-     "price": 249
-    }
-   },
-   "board": {
-    "eventId": "f36f518585aec40e8cb40e071c0844aa",
-    "pricedAt": "2026-11-26T20:36:23.098Z",
-    "home": {
-     "odds": -154,
-     "book": "DraftKings"
-    },
-    "away": {
-     "odds": 141,
-     "book": "BetOnline.ag"
-    }
-   },
+   "leanFrom": null,
+   "board": null,
    "posted": null,
-   "result": null
+   "result": {
+    "home": 13,
+    "away": 10,
+    "winner": "home",
+    "call": "Win",
+    "gradedAt": "2026-11-27T07:33:57.143Z"
+   }
   },
   {
    "id": "401873083",
