@@ -5,14 +5,14 @@ window.PERF_DATA = {
   "asOf": "2026-11-27",
   "windowDays": 30,
   "record": {
-    "wins": 43,
-    "losses": 38,
+    "wins": 44,
+    "losses": 39,
     "pushes": 0
   },
-  "units": 12.63,
-  "roi": 15.6,
-  "avgEdge": 8.4,
-  "graded": 81,
+  "units": 12.48,
+  "roi": 15,
+  "avgEdge": 8.3,
+  "graded": 83,
   "daily": [
     {
       "date": "2026-11-05",
@@ -93,13 +93,17 @@ window.PERF_DATA = {
     {
       "date": "2026-11-26",
       "units": 12.63
+    },
+    {
+      "date": "2026-11-27",
+      "units": 12.48
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 5.47,
-      "record": "29-22"
+      "units": 5.32,
+      "record": "30-23"
     },
     {
       "sport": "NBA",
@@ -118,6 +122,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-27",
+      "sport": "NHL",
+      "event": "Dallas Stars @ St Louis Blues",
+      "pick": "Over 5.5",
+      "odds": -117,
+      "result": "Win",
+      "units": 0.85,
+      "clv": -0.0284,
+      "closeOdds": -115,
+      "closeLine": 5.5,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-27",
+      "sport": "NHL",
+      "event": "Utah Mammoth @ Nashville Predators",
+      "pick": "Nashville Predators ML",
+      "odds": 100,
+      "result": "Loss",
+      "units": -1,
+      "clv": -0.0174,
+      "closeOdds": -102,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-26",
       "sport": "NFL",
@@ -267,36 +301,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "Soccer",
-      "event": "Vancouver Whitecaps FC vs. Real Salt Lake",
-      "pick": "Under 3.5 goals",
-      "odds": -128,
-      "result": "Win",
-      "units": 0.78,
-      "clv": -0.0351,
-      "closeOdds": -125,
-      "closeLine": 3.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-22",
-      "sport": "NHL",
-      "event": "Edmonton Oilers @ St Louis Blues",
-      "pick": "Over 6",
-      "odds": -110,
-      "result": "Win",
-      "units": 0.91,
-      "clv": null,
-      "closeOdds": -122,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": "away",
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -439,16 +443,33 @@ window.PERF_DATA = {
       "wins": 0,
       "losses": 1,
       "pushes": 0
+    },
+    {
+      "date": "2026-11-27",
+      "units": -0.15,
+      "wins": 1,
+      "losses": 1,
+      "pushes": 0
     }
   ],
   "potd": {
     "wins": 7,
-    "losses": 13,
+    "losses": 14,
     "pushes": 0,
-    "units": -6.59,
-    "n": 20,
+    "units": -7.59,
+    "n": 21,
     "props": 5,
     "recent": [
+      {
+        "date": "2026-11-27",
+        "kind": "lean",
+        "sport": "NHL",
+        "event": "Utah Mammoth @ Nashville Predators",
+        "pick": "Nashville Predators ML",
+        "odds": 100,
+        "result": "Loss",
+        "units": -1
+      },
       {
         "date": "2026-11-26",
         "kind": "lean",
@@ -538,46 +559,36 @@ window.PERF_DATA = {
         "odds": 102,
         "result": "Loss",
         "units": -1
-      },
-      {
-        "date": "2026-11-16",
-        "kind": "lean",
-        "sport": "NBA",
-        "event": "Golden State Warriors @ New Orleans Pelicans",
-        "pick": "Golden State Warriors ML",
-        "odds": -160,
-        "result": "Loss",
-        "units": -1
       }
     ]
   },
   "parlays": {
     "wins": 3,
-    "losses": 17,
+    "losses": 18,
     "pushes": 0,
-    "units": -9.1,
-    "n": 20
+    "units": -10.1,
+    "n": 21
   },
   "clv": {
-    "n": 73,
-    "avg": -0.93,
+    "n": 75,
+    "avg": -0.96,
     "beat": 23,
-    "beatPct": 31.5,
-    "graded": 81,
+    "beatPct": 30.7,
+    "graded": 83,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 81,
+    "espnCloses": 83,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 43,
-      "losses": 38,
+      "wins": 44,
+      "losses": 39,
       "pushes": 0,
-      "units": 12.63,
-      "n": 81,
-      "roi": 15.6,
-      "pending": 14,
+      "units": 12.48,
+      "n": 83,
+      "roi": 15,
+      "pending": 12,
       "since": "2026-11-05"
     },
     "price": {

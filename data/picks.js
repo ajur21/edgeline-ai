@@ -3,6 +3,7 @@ window.PICKS_DATA = {
   "sample": false,
   "source": "The Odds API",
   "generatedAt": "2026-11-27T20:36:15.313Z",
+  "trackedAt": "2026-11-27T23:18:48.658Z",
   "playOfDay": {
     "id": "b5234ea578-h2h-Nashville-Predators",
     "sport": "NHL",
@@ -361,11 +362,14 @@ window.PICKS_DATA = {
         "n": 7
       }
     ],
-    "status": "pending",
+    "status": "graded",
     "started": true,
-    "result": null,
-    "units": null,
-    "score": null,
+    "result": "Loss",
+    "units": -1,
+    "score": {
+      "home": 5,
+      "away": 6
+    },
     "loggedAt": "2026-11-26T20:36:23.098Z",
     "valueTo": -103,
     "bar": 0.0689,
@@ -398,9 +402,9 @@ window.PICKS_DATA = {
     "decimal": 3.691,
     "fairProb": 0.3311,
     "ev": 0.2222,
-    "status": "pending",
-    "result": null,
-    "units": null,
+    "status": "graded",
+    "result": "Loss",
+    "units": -1,
     "lockedAt": "2026-11-27T14:10:29.543Z",
     "legs": [
       {
@@ -412,7 +416,7 @@ window.PICKS_DATA = {
         "price": -101,
         "commence": "2026-11-27T18:00:00Z",
         "started": true,
-        "result": null,
+        "result": "Loss",
         "void": false
       },
       {
@@ -424,7 +428,7 @@ window.PICKS_DATA = {
         "price": -117,
         "commence": "2026-11-27T19:00:00Z",
         "started": true,
-        "result": null,
+        "result": "Win",
         "void": false
       }
     ]
@@ -875,7 +879,7 @@ window.PICKS_DATA = {
             "spread": -0.5,
             "spreadOdds": {
               "home": 110,
-              "away": -150
+              "away": -155
             },
             "total": 2.5,
             "totalOdds": {
@@ -1225,8 +1229,8 @@ window.PICKS_DATA = {
               "under": -112
             },
             "ml": {
-              "home": -192,
-              "away": 160
+              "home": -205,
+              "away": 170
             },
             "draw": null
           },
@@ -1337,506 +1341,6 @@ window.PICKS_DATA = {
       "availability": null
     },
     {
-      "id": "05bd16c51c-h2h-Chicago-Blackhawks",
-      "sport": "NHL",
-      "league": "NHL",
-      "sportKey": "icehockey_nhl",
-      "event": "New York Rangers @ Chicago Blackhawks",
-      "home": "Chicago Blackhawks",
-      "away": "New York Rangers",
-      "marketKey": "h2h",
-      "outcome": {
-        "name": "Chicago Blackhawks",
-        "point": null
-      },
-      "commence": "2026-11-27T22:30:00Z",
-      "start": "Today 5:30 PM ET",
-      "market": "Moneyline",
-      "pick": "Chicago Blackhawks ML",
-      "odds": 155,
-      "book": "BetRivers",
-      "prices": {
-        "BetRivers": 155,
-        "BetOnline.ag": 148,
-        "Caesars": 150,
-        "ESPN BET": 150,
-        "BetMGM": 150,
-        "DraftKings": 150,
-        "FanDuel": 146,
-        "Bovada": 158,
-        "PointsBet": 150
-      },
-      "pricesAt": "2026-11-27T20:36:15.313Z",
-      "books": 3,
-      "anchor": "Pinnacle",
-      "modelProb": 0.493,
-      "ev": 0.2572,
-      "confidence": "Medium",
-      "basis": "game",
-      "model": {
-        "margin": 0,
-        "total": 6.3,
-        "sd": 2.4,
-        "sdTotal": 2.3,
-        "gp": 24,
-        "gpHome": 25,
-        "gpAway": 24,
-        "thin": false,
-        "parts": {
-          "ratingHome": -0.5,
-          "ratingAway": 0,
-          "lastHome": -0.8,
-          "lastAway": -0.1,
-          "homeEdge": 0.24,
-          "rest": 0,
-          "injuriesHome": -0.2,
-          "injuriesAway": 0.4,
-          "scoringOut": 0,
-          "pace": 6.2
-        },
-        "reasons": {
-          "for": [
-            "Chicago Blackhawks trending: last five +1.4 vs -1.2 on the season",
-            "Home edge +0.2 for Chicago Blackhawks",
-            "New York Rangers without Pavel Dorofeyev (RW), Oliver Bjorkstrand (RW), Alberts Smits (D) and 1 more (+0.4)"
-          ],
-          "against": [
-            "Chicago Blackhawks rate -0.5 a game over 25 (9-16), New York Rangers +0 over 24 (13-11); last season -0.8 and -0.1 a game",
-            "Chicago Blackhawks without Tyler Bertuzzi (LW), Connor Bedard (C), Bowen Byram (D) (-0.2)",
-            "Projected margin -0.04 for Chicago Blackhawks"
-          ]
-        }
-      },
-      "marketFair": 0.3866,
-      "marketEdge": -0.0056,
-      "rationale": "Our probability is 49.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin 0 for the home side). BetRivers offers +155, which implies only 39.2%. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 38.7%.",
-      "factors": [
-        "Best price +155 at BetRivers",
-        "Probability 49.3% from game data, not other books",
-        "Edge 10.1 points over the price, 3.1 past its bar of 7.0",
-        "Market reference 38.7%"
-      ],
-      "breakdown": {
-        "tier": "Medium",
-        "tierWhy": "Our probability for this side is 49.3%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 39.2%, so the edge is 10.1 points. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
-        "price": "Our probability is 49.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin 0 for the home side). BetRivers offers +155, which implies only 39.2%. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 38.7%.",
-        "support": [
-          "Chicago Blackhawks trending: last five +1.4 vs -1.2 on the season.",
-          "Home edge +0.2 for Chicago Blackhawks.",
-          "New York Rangers without Pavel Dorofeyev (RW), Oliver Bjorkstrand (RW), Alberts Smits (D) and 1 more (+0.4).",
-          "A better price is now available: +158 at Bovada.",
-          "A better price is available now: +158 at Bovada."
-        ],
-        "risks": [
-          "Chicago Blackhawks rate -0.5 a game over 25 (9-16), New York Rangers +0 over 24 (13-11); last season -0.8 and -0.1 a game.",
-          "Chicago Blackhawks without Tyler Bertuzzi (LW), Connor Bedard (C), Bowen Byram (D) (-0.2).",
-          "Projected margin -0.04 for Chicago Blackhawks."
-        ],
-        "notes": [
-          "Where the market sits: Pinnacle's de-vigged price makes this side 38.7% (-0.6 points against the best price). For reference only.",
-          "Market: the sharp line has moved away since it was logged (38.7% → 37.5%).",
-          "Market: DraftKings opened +145, now +150, moving against this side since the open.",
-          "Market: The market (7 books) opened +128, now +160, the consensus moving against this side since the open.",
-          "Indoor venue; weather is not a factor.",
-          "Probable pitchers: Blackhawks Spencer Knight · Rangers Dylan Garand.",
-          "Records: New York Rangers 13-10-1 · Chicago Blackhawks 9-14-2 · United Center, Chicago."
-        ],
-        "verdict": "The game data lines up behind this side at this price."
-      },
-      "context": {
-        "espnEventId": "401892806",
-        "venue": "United Center, Chicago",
-        "indoor": true,
-        "records": {
-          "Chicago Blackhawks": {
-            "overall": "9-14-2",
-            "home": "6-6-1",
-            "away": "3-8-1"
-          },
-          "New York Rangers": {
-            "overall": "13-10-1",
-            "home": "9-3-0",
-            "away": "4-7-1"
-          }
-        },
-        "probables": {
-          "Chicago Blackhawks": "Spencer Knight",
-          "New York Rangers": "Dylan Garand"
-        },
-        "injuries": {
-          "Chicago Blackhawks": [
-            {
-              "name": "Patrick Kane",
-              "pos": "RW",
-              "athleteId": "3735",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3735.png",
-              "status": "Injured Reserve",
-              "type": "Foot",
-              "detail": "",
-              "returnDate": "2026-12-03",
-              "date": "2026-11-27T18:55Z",
-              "note": "Kane (foot) was placed on injured reserve Friday, per the NHL media site."
-            },
-            {
-              "name": "Tyler Bertuzzi",
-              "pos": "LW",
-              "athleteId": "3042056",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042056.png",
-              "status": "Day-To-Day",
-              "type": "Illness",
-              "detail": "",
-              "returnDate": "2026-11-27",
-              "date": "2026-11-26T14:08Z",
-              "note": "day-to-day"
-            },
-            {
-              "name": "Connor Bedard",
-              "pos": "C",
-              "athleteId": "5149125",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149125.png",
-              "status": "Injured Reserve",
-              "type": "Shoulder",
-              "detail": "",
-              "returnDate": "2027-03-23",
-              "date": "2026-11-24T02:56Z",
-              "note": "Bedard underwent successful shoulder surgery Monday and is expected to make a full recovery in approximately four months, the Blackhawks announced."
-            },
-            {
-              "name": "Wyatt Kaiser",
-              "pos": "D",
-              "athleteId": "4697717",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697717.png",
-              "status": "Suspension",
-              "type": "Suspension",
-              "detail": "",
-              "returnDate": "2026-11-29",
-              "date": "2026-11-22T18:51Z",
-              "note": "Kaiser was suspended for three games by the NHL Department of Player Safety on Sunday for an illegal check to the head against Calgary's Martin Pospisil (upper "
-            },
-            {
-              "name": "Bowen Byram",
-              "pos": "D",
-              "athleteId": "4565225",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4565225.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2026-11-30",
-              "date": "2026-11-21T19:21Z",
-              "note": "Byram (upper body) didn't accompany his teammates on Chicago's three-game road trip, per Mark Lazerus of The Athletic on Saturday."
-            }
-          ],
-          "New York Rangers": [
-            {
-              "name": "Gabe Perreault",
-              "pos": "RW",
-              "athleteId": "5149204",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149204.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-12-31",
-              "date": "2026-11-26T19:38Z",
-              "note": "Perreault (lower body) was put on injured reserve Thursday, per Mollie Walker of the New York Post."
-            },
-            {
-              "name": "Pavel Dorofeyev",
-              "pos": "RW",
-              "athleteId": "4587588",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4587588.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-11-28",
-              "date": "2026-11-24T18:03Z",
-              "note": "Dorofeyev (lower body) will join the Rangers for their two-game road trip, Mollie Walker of the New York Post reports Tuesday."
-            },
-            {
-              "name": "Oliver Bjorkstrand",
-              "pos": "RW",
-              "athleteId": "3042095",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042095.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "Not Specified",
-              "returnDate": "2027-01-30",
-              "date": "2026-11-21T16:33Z",
-              "note": "Bjorkstrand (upper body) is expected to be sidelined for 2-3 months, Peter Baugh of The Athletic reports Saturday."
-            },
-            {
-              "name": "Alberts Smits",
-              "pos": "D",
-              "athleteId": "5334662",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5334662.png",
-              "status": "Injured Reserve",
-              "type": "Upper Body",
-              "detail": "",
-              "returnDate": "2027-01-30",
-              "date": "2026-11-21T16:18Z",
-              "note": "Smits (upper body) is expected to miss 2-3 months, Peter Baugh of The Athletic reported Saturday."
-            },
-            {
-              "name": "Joe Veleno",
-              "pos": "C",
-              "athleteId": "4352804",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2026-12-27",
-              "date": "2026-11-20T16:23Z",
-              "note": "Veleno (lower body) skated on his own before Friday's practice session, Colin Stephenson of Newsday reports."
-            },
-            {
-              "name": "Igor Shesterkin",
-              "pos": "G",
-              "athleteId": "3151297",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
-              "status": "Injured Reserve",
-              "type": "Knee",
-              "detail": "Surgery",
-              "returnDate": "2027-09-15",
-              "date": "2026-10-11T21:06Z",
-              "note": "Shesterkin will require surgery and a lengthy rehab process to address his season-ending right knee injury, Vince Z. Mercogliano of The Athletic reports Sunday."
-            },
-            {
-              "name": "Aidan Thompson",
-              "pos": "C",
-              "athleteId": "5136624",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
-              "status": "Injured Reserve",
-              "type": "Undisclosed",
-              "detail": "Not Specified",
-              "returnDate": "2026-11-30",
-              "date": "2026-09-29T16:39Z",
-              "note": "ir-nr"
-            },
-            {
-              "name": "Adam Sykora",
-              "pos": "LW",
-              "athleteId": "5080232",
-              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
-              "status": "Injured Reserve",
-              "type": "Lower Body",
-              "detail": "",
-              "returnDate": "2027-01-25",
-              "date": "2026-09-29T01:35Z",
-              "note": "ir"
-            }
-          ]
-        },
-        "rest": {
-          "Chicago Blackhawks": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-26",
-            "gamesLast7": 3
-          },
-          "New York Rangers": {
-            "restDays": 2,
-            "b2b": false,
-            "lastGame": "2026-11-26",
-            "gamesLast7": 2
-          }
-        },
-        "weather": null,
-        "broadcast": "TNT, truTV",
-        "odds": {
-          "provider": "DraftKings",
-          "now": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -175,
-              "away": 145
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": 114,
-              "under": -135
-            },
-            "ml": {
-              "home": 150,
-              "away": -180
-            },
-            "draw": null
-          },
-          "open": {
-            "spread": 1.5,
-            "spreadOdds": {
-              "home": -175,
-              "away": 145
-            },
-            "total": 6.5,
-            "totalOdds": {
-              "over": 105,
-              "under": -125
-            },
-            "ml": {
-              "home": 145,
-              "away": -175
-            },
-            "draw": null
-          }
-        }
-      },
-      "movement": {
-        "loggedOdds": 155,
-        "loggedFair": 0.493,
-        "currentOdds": 158,
-        "currentBook": "Bovada",
-        "currentFair": 0.3753,
-        "currentEdge": 0.1173,
-        "checkedAt": "2026-11-27T20:36:15.313Z",
-        "history": [
-          {
-            "at": "2026-11-26T14:07:26.613Z",
-            "odds": 155,
-            "fair": 0.3866
-          },
-          {
-            "at": "2026-11-26T20:36:23.098Z",
-            "odds": 155,
-            "fair": 0.3866
-          },
-          {
-            "at": "2026-11-27T14:07:28.184Z",
-            "odds": 155,
-            "fair": 0.3837
-          },
-          {
-            "at": "2026-11-27T20:36:15.313Z",
-            "odds": 158,
-            "fair": 0.3753
-          }
-        ]
-      },
-      "dk": {
-        "book": "DraftKings",
-        "open": {
-          "line": null,
-          "odds": 145,
-          "fair": 0.39076376554174075
-        },
-        "now": {
-          "line": null,
-          "odds": 150,
-          "fair": 0.3835616438356164
-        },
-        "moved": "away",
-        "label": "DraftKings opened +145, now +150"
-      },
-      "dkHistory": [
-        {
-          "at": "2026-11-26T20:36:23.098Z",
-          "line": null,
-          "odds": 145,
-          "fair": 0.3908
-        },
-        {
-          "at": "2026-11-27T20:36:15.313Z",
-          "line": null,
-          "odds": 150,
-          "fair": 0.3836
-        }
-      ],
-      "mkt": {
-        "book": "Market consensus",
-        "n": 7,
-        "open": {
-          "line": null,
-          "odds": 128
-        },
-        "now": {
-          "line": null,
-          "odds": 160
-        },
-        "moved": "away",
-        "label": "The market (7 books) opened +128, now +160"
-      },
-      "sgo": {
-        "at": "2026-11-27T20:36:15.313Z",
-        "n": 7,
-        "best": {
-          "book": "Bovada",
-          "odds": 158
-        },
-        "fair": 0.3827,
-        "vendorFair": 0.3846,
-        "open": {
-          "line": null,
-          "odds": 128
-        },
-        "now": {
-          "line": null,
-          "odds": 160
-        }
-      },
-      "sgoHistory": [
-        {
-          "at": "2026-11-26T14:07:26.613Z",
-          "fair": 0.3866,
-          "vendorFair": 0.3861,
-          "line": null,
-          "odds": 159,
-          "best": 150,
-          "n": 2
-        },
-        {
-          "at": "2026-11-26T20:36:23.098Z",
-          "fair": 0.3911,
-          "vendorFair": 0.3906,
-          "line": null,
-          "odds": 156,
-          "best": 150,
-          "n": 6
-        },
-        {
-          "at": "2026-11-27T14:07:28.184Z",
-          "fair": 0.3938,
-          "vendorFair": 0.3906,
-          "line": null,
-          "odds": 156,
-          "best": 147,
-          "n": 7
-        },
-        {
-          "at": "2026-11-27T20:36:15.313Z",
-          "fair": 0.3827,
-          "vendorFair": 0.3846,
-          "line": null,
-          "odds": 160,
-          "best": 158,
-          "n": 7
-        }
-      ],
-      "status": "pending",
-      "started": false,
-      "result": null,
-      "units": null,
-      "score": null,
-      "loggedAt": "2026-11-26T14:07:26.613Z",
-      "valueTo": 137,
-      "bar": 0.0699,
-      "past": 0.0309,
-      "barParts": {
-        "error": 0.0699,
-        "units": 0.42,
-        "unit": "goals",
-        "gp": 24,
-        "floor": 0.03
-      },
-      "now": {
-        "at": "2026-11-27T20:36:15.313Z",
-        "odds": 158,
-        "book": "Bovada",
-        "modelProb": 0.5049,
-        "edge": 0.1173,
-        "bar": 0.0699
-      },
-      "standing": "clears",
-      "availability": null
-    },
-    {
       "id": "d4043fc330-h2h-Columbus-Crew-SC",
       "sport": "Soccer",
       "league": "MLS",
@@ -1857,17 +1361,17 @@ window.PICKS_DATA = {
       "book": "BetRivers",
       "prices": {
         "BetRivers": 163,
-        "FanDuel": 130,
-        "Bovada": 132,
-        "DraftKings": 130,
-        "BetMGM": 135,
+        "FanDuel": 150,
+        "Bovada": 156,
+        "DraftKings": 150,
+        "BetMGM": 155,
         "BetOnline.ag": 160,
         "theScore Bet": 155,
-        "Unibet": 130,
-        "Caesars": 130,
-        "ESPN BET": 135
+        "Unibet": 155,
+        "Caesars": 150,
+        "ESPN BET": 155
       },
-      "pricesAt": "2026-11-27T20:36:15.313Z",
+      "pricesAt": "2026-11-27T23:18:48.658Z",
       "books": 8,
       "anchor": "Pinnacle",
       "modelProb": 0.4718,
@@ -1933,8 +1437,8 @@ window.PICKS_DATA = {
         "notes": [
           "Where the market sits: Pinnacle's de-vigged price makes this side 38.0% (+0.0 points against the best price). For reference only.",
           "Market: the sharp line has moved toward this side since it was logged (38.0% → 40.7%).",
-          "Market: DraftKings opened +135, now +130, moving toward this side since the open.",
-          "Market: The market (7 books) opened +181, now +142, the consensus moving toward this side since the open.",
+          "Market: DraftKings opened +135, now +150, moving against this side since the open.",
+          "Market: The market (7 books) opened +181, now +164, the consensus moving toward this side since the open.",
           "Weather at kickoff: Overcast, 37°F, wind 8 mph, 28% rain."
         ],
         "verdict": "The game data lines up behind this side at this price."
@@ -1986,19 +1490,19 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": -0.5,
+            "spread": 0.5,
             "spreadOdds": {
-              "home": 125,
-              "away": -170
+              "home": -175,
+              "away": 125
             },
             "total": 3.5,
             "totalOdds": {
-              "over": 100,
+              "over": -105,
               "under": -125
             },
             "ml": {
-              "home": 130,
-              "away": 160
+              "home": 150,
+              "away": 135
             },
             "draw": 285
           },
@@ -2051,11 +1555,11 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 130,
-          "fair": 0.40289796739786676
+          "odds": 150,
+          "fair": 0.36857113759038596
         },
-        "moved": "toward",
-        "label": "DraftKings opened +135, now +130"
+        "moved": "away",
+        "label": "DraftKings opened +135, now +150"
       },
       "dkHistory": [
         {
@@ -2075,6 +1579,12 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 130,
           "fair": 0.4016
+        },
+        {
+          "at": "2026-11-27T23:18:48.658Z",
+          "line": null,
+          "odds": 150,
+          "fair": 0.3686
         }
       ],
       "mkt": {
@@ -2086,27 +1596,27 @@ window.PICKS_DATA = {
         },
         "now": {
           "line": null,
-          "odds": 142
+          "odds": 164
         },
         "moved": "toward",
-        "label": "The market (7 books) opened +181, now +142"
+        "label": "The market (7 books) opened +181, now +164"
       },
       "sgo": {
-        "at": "2026-11-27T20:36:15.313Z",
+        "at": "2026-11-27T23:18:48.658Z",
         "n": 7,
         "best": {
-          "book": "BetMGM",
-          "odds": 135
+          "book": "Bovada",
+          "odds": 156
         },
-        "fair": 0.4017,
-        "vendorFair": 0.4132,
+        "fair": 0.3669,
+        "vendorFair": 0.3788,
         "open": {
           "line": null,
           "odds": 181
         },
         "now": {
           "line": null,
-          "odds": 142
+          "odds": 164
         }
       },
       "sgoHistory": [
@@ -2135,6 +1645,15 @@ window.PICKS_DATA = {
           "line": null,
           "odds": 142,
           "best": 135,
+          "n": 7
+        },
+        {
+          "at": "2026-11-27T23:18:48.658Z",
+          "fair": 0.3669,
+          "vendorFair": 0.3788,
+          "line": null,
+          "odds": 164,
+          "best": 156,
           "n": 7
         }
       ],
@@ -3654,10 +3173,10 @@ window.PICKS_DATA = {
         "odds": {
           "provider": "DraftKings",
           "now": {
-            "spread": 1.5,
+            "spread": -1.5,
             "spreadOdds": {
-              "home": -230,
-              "away": 190
+              "home": 235,
+              "away": -290
             },
             "total": 5.5,
             "totalOdds": {
@@ -4275,7 +3794,7 @@ window.PICKS_DATA = {
             "total": 3.5,
             "totalOdds": {
               "over": 125,
-              "under": -155
+              "under": -160
             },
             "ml": {
               "home": -175,
@@ -4747,11 +4266,14 @@ window.PICKS_DATA = {
           "n": 7
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Loss",
+      "units": -1,
+      "score": {
+        "home": 5,
+        "away": 6
+      },
       "loggedAt": "2026-11-26T20:36:23.098Z",
       "valueTo": -103,
       "bar": 0.0689,
@@ -5191,11 +4713,14 @@ window.PICKS_DATA = {
           "n": 8
         }
       ],
-      "status": "pending",
+      "status": "graded",
       "started": true,
-      "result": null,
-      "units": null,
-      "score": null,
+      "result": "Win",
+      "units": 0.85,
+      "score": {
+        "home": 5,
+        "away": 3
+      },
       "loggedAt": "2026-11-26T14:07:26.613Z",
       "valueTo": -118,
       "bar": 0.03,
@@ -5214,6 +4739,506 @@ window.PICKS_DATA = {
         "modelProb": 0.5722,
         "edge": 0.0352,
         "bar": 0.03
+      },
+      "standing": "clears",
+      "availability": null
+    },
+    {
+      "id": "05bd16c51c-h2h-Chicago-Blackhawks",
+      "sport": "NHL",
+      "league": "NHL",
+      "sportKey": "icehockey_nhl",
+      "event": "New York Rangers @ Chicago Blackhawks",
+      "home": "Chicago Blackhawks",
+      "away": "New York Rangers",
+      "marketKey": "h2h",
+      "outcome": {
+        "name": "Chicago Blackhawks",
+        "point": null
+      },
+      "commence": "2026-11-27T22:30:00Z",
+      "start": "Today 5:30 PM ET",
+      "market": "Moneyline",
+      "pick": "Chicago Blackhawks ML",
+      "odds": 155,
+      "book": "BetRivers",
+      "prices": {
+        "BetRivers": 155,
+        "BetOnline.ag": 148,
+        "Caesars": 150,
+        "ESPN BET": 150,
+        "BetMGM": 150,
+        "DraftKings": 150,
+        "FanDuel": 146,
+        "Bovada": 158,
+        "PointsBet": 150
+      },
+      "pricesAt": "2026-11-27T20:36:15.313Z",
+      "books": 3,
+      "anchor": "Pinnacle",
+      "modelProb": 0.493,
+      "ev": 0.2572,
+      "confidence": "Medium",
+      "basis": "game",
+      "model": {
+        "margin": 0,
+        "total": 6.3,
+        "sd": 2.4,
+        "sdTotal": 2.3,
+        "gp": 24,
+        "gpHome": 25,
+        "gpAway": 24,
+        "thin": false,
+        "parts": {
+          "ratingHome": -0.5,
+          "ratingAway": 0,
+          "lastHome": -0.8,
+          "lastAway": -0.1,
+          "homeEdge": 0.24,
+          "rest": 0,
+          "injuriesHome": -0.2,
+          "injuriesAway": 0.4,
+          "scoringOut": 0,
+          "pace": 6.2
+        },
+        "reasons": {
+          "for": [
+            "Chicago Blackhawks trending: last five +1.4 vs -1.2 on the season",
+            "Home edge +0.2 for Chicago Blackhawks",
+            "New York Rangers without Pavel Dorofeyev (RW), Oliver Bjorkstrand (RW), Alberts Smits (D) and 1 more (+0.4)"
+          ],
+          "against": [
+            "Chicago Blackhawks rate -0.5 a game over 25 (9-16), New York Rangers +0 over 24 (13-11); last season -0.8 and -0.1 a game",
+            "Chicago Blackhawks without Tyler Bertuzzi (LW), Connor Bedard (C), Bowen Byram (D) (-0.2)",
+            "Projected margin -0.04 for Chicago Blackhawks"
+          ]
+        }
+      },
+      "marketFair": 0.3866,
+      "marketEdge": -0.0056,
+      "rationale": "Our probability is 49.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin 0 for the home side). BetRivers offers +155, which implies only 39.2%. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 38.7%.",
+      "factors": [
+        "Best price +155 at BetRivers",
+        "Probability 49.3% from game data, not other books",
+        "Edge 10.1 points over the price, 3.1 past its bar of 7.0",
+        "Market reference 38.7%"
+      ],
+      "breakdown": {
+        "tier": "Medium",
+        "tierWhy": "Our probability for this side is 49.3%, from the game data: results and margins this season, recent form, rest, the injury report and home edge. The price at BetRivers implies 39.2%, so the edge is 10.1 points. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin); it falls as the season fills in and never drops under 3.0 points. It clears it by 3.1 points; Medium needs 2.0 points past the bar, High 5.0 points. Nothing here is graded against other books' prices; the market lines below are shown only for reference.",
+        "price": "Our probability is 49.3%, from the game data: this season's results and margins, recent form, rest, the injury report and home edge (projected margin 0 for the home side). BetRivers offers +155, which implies only 39.2%. Its bar is 7.0 points: the model's own margin of error on this side, with 24 games behind the thinner team (±0.42 goals on the margin). It clears it by 3.1. Not graded against other books' prices; for reference the market makes it 38.7%.",
+        "support": [
+          "Chicago Blackhawks trending: last five +1.4 vs -1.2 on the season.",
+          "Home edge +0.2 for Chicago Blackhawks.",
+          "New York Rangers without Pavel Dorofeyev (RW), Oliver Bjorkstrand (RW), Alberts Smits (D) and 1 more (+0.4).",
+          "A better price is now available: +158 at Bovada.",
+          "A better price is available now: +158 at Bovada."
+        ],
+        "risks": [
+          "Chicago Blackhawks rate -0.5 a game over 25 (9-16), New York Rangers +0 over 24 (13-11); last season -0.8 and -0.1 a game.",
+          "Chicago Blackhawks without Tyler Bertuzzi (LW), Connor Bedard (C), Bowen Byram (D) (-0.2).",
+          "Projected margin -0.04 for Chicago Blackhawks."
+        ],
+        "notes": [
+          "Where the market sits: Pinnacle's de-vigged price makes this side 38.7% (-0.6 points against the best price). For reference only.",
+          "Market: the sharp line has moved away since it was logged (38.7% → 37.5%).",
+          "Market: DraftKings opened +145, now +150, moving against this side since the open.",
+          "Market: The market (7 books) opened +128, now +160, the consensus moving against this side since the open.",
+          "Indoor venue; weather is not a factor.",
+          "Probable pitchers: Blackhawks Spencer Knight · Rangers Dylan Garand.",
+          "Records: New York Rangers 13-10-1 · Chicago Blackhawks 9-14-2 · United Center, Chicago."
+        ],
+        "verdict": "The game data lines up behind this side at this price."
+      },
+      "context": {
+        "espnEventId": "401892806",
+        "venue": "United Center, Chicago",
+        "indoor": true,
+        "records": {
+          "Chicago Blackhawks": {
+            "overall": "9-14-2",
+            "home": "6-6-1",
+            "away": "3-8-1"
+          },
+          "New York Rangers": {
+            "overall": "13-10-1",
+            "home": "9-3-0",
+            "away": "4-7-1"
+          }
+        },
+        "probables": {
+          "Chicago Blackhawks": "Spencer Knight",
+          "New York Rangers": "Dylan Garand"
+        },
+        "injuries": {
+          "Chicago Blackhawks": [
+            {
+              "name": "Patrick Kane",
+              "pos": "RW",
+              "athleteId": "3735",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3735.png",
+              "status": "Injured Reserve",
+              "type": "Foot",
+              "detail": "",
+              "returnDate": "2026-12-03",
+              "date": "2026-11-27T18:55Z",
+              "note": "Kane (foot) was placed on injured reserve Friday, per the NHL media site."
+            },
+            {
+              "name": "Tyler Bertuzzi",
+              "pos": "LW",
+              "athleteId": "3042056",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042056.png",
+              "status": "Day-To-Day",
+              "type": "Illness",
+              "detail": "",
+              "returnDate": "2026-11-27",
+              "date": "2026-11-26T14:08Z",
+              "note": "day-to-day"
+            },
+            {
+              "name": "Connor Bedard",
+              "pos": "C",
+              "athleteId": "5149125",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149125.png",
+              "status": "Injured Reserve",
+              "type": "Shoulder",
+              "detail": "",
+              "returnDate": "2027-03-23",
+              "date": "2026-11-24T02:56Z",
+              "note": "Bedard underwent successful shoulder surgery Monday and is expected to make a full recovery in approximately four months, the Blackhawks announced."
+            },
+            {
+              "name": "Wyatt Kaiser",
+              "pos": "D",
+              "athleteId": "4697717",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4697717.png",
+              "status": "Suspension",
+              "type": "Suspension",
+              "detail": "",
+              "returnDate": "2026-11-29",
+              "date": "2026-11-22T18:51Z",
+              "note": "Kaiser was suspended for three games by the NHL Department of Player Safety on Sunday for an illegal check to the head against Calgary's Martin Pospisil (upper "
+            },
+            {
+              "name": "Bowen Byram",
+              "pos": "D",
+              "athleteId": "4565225",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4565225.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2026-11-30",
+              "date": "2026-11-21T19:21Z",
+              "note": "Byram (upper body) didn't accompany his teammates on Chicago's three-game road trip, per Mark Lazerus of The Athletic on Saturday."
+            }
+          ],
+          "New York Rangers": [
+            {
+              "name": "Gabe Perreault",
+              "pos": "RW",
+              "athleteId": "5149204",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5149204.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-12-31",
+              "date": "2026-11-26T19:38Z",
+              "note": "Perreault (lower body) was put on injured reserve Thursday, per Mollie Walker of the New York Post."
+            },
+            {
+              "name": "Pavel Dorofeyev",
+              "pos": "RW",
+              "athleteId": "4587588",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4587588.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-11-28",
+              "date": "2026-11-24T18:03Z",
+              "note": "Dorofeyev (lower body) will join the Rangers for their two-game road trip, Mollie Walker of the New York Post reports Tuesday."
+            },
+            {
+              "name": "Oliver Bjorkstrand",
+              "pos": "RW",
+              "athleteId": "3042095",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3042095.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "Not Specified",
+              "returnDate": "2027-01-30",
+              "date": "2026-11-21T16:33Z",
+              "note": "Bjorkstrand (upper body) is expected to be sidelined for 2-3 months, Peter Baugh of The Athletic reports Saturday."
+            },
+            {
+              "name": "Alberts Smits",
+              "pos": "D",
+              "athleteId": "5334662",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5334662.png",
+              "status": "Injured Reserve",
+              "type": "Upper Body",
+              "detail": "",
+              "returnDate": "2027-01-30",
+              "date": "2026-11-21T16:18Z",
+              "note": "Smits (upper body) is expected to miss 2-3 months, Peter Baugh of The Athletic reported Saturday."
+            },
+            {
+              "name": "Joe Veleno",
+              "pos": "C",
+              "athleteId": "4352804",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/4352804.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2026-12-27",
+              "date": "2026-11-20T16:23Z",
+              "note": "Veleno (lower body) skated on his own before Friday's practice session, Colin Stephenson of Newsday reports."
+            },
+            {
+              "name": "Igor Shesterkin",
+              "pos": "G",
+              "athleteId": "3151297",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/3151297.png",
+              "status": "Injured Reserve",
+              "type": "Knee",
+              "detail": "Surgery",
+              "returnDate": "2027-09-15",
+              "date": "2026-10-11T21:06Z",
+              "note": "Shesterkin will require surgery and a lengthy rehab process to address his season-ending right knee injury, Vince Z. Mercogliano of The Athletic reports Sunday."
+            },
+            {
+              "name": "Aidan Thompson",
+              "pos": "C",
+              "athleteId": "5136624",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5136624.png",
+              "status": "Injured Reserve",
+              "type": "Undisclosed",
+              "detail": "Not Specified",
+              "returnDate": "2026-11-30",
+              "date": "2026-09-29T16:39Z",
+              "note": "ir-nr"
+            },
+            {
+              "name": "Adam Sykora",
+              "pos": "LW",
+              "athleteId": "5080232",
+              "headshot": "https://a.espncdn.com/i/headshots/nhl/players/full/5080232.png",
+              "status": "Injured Reserve",
+              "type": "Lower Body",
+              "detail": "",
+              "returnDate": "2027-01-25",
+              "date": "2026-09-29T01:35Z",
+              "note": "ir"
+            }
+          ]
+        },
+        "rest": {
+          "Chicago Blackhawks": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-26",
+            "gamesLast7": 3
+          },
+          "New York Rangers": {
+            "restDays": 2,
+            "b2b": false,
+            "lastGame": "2026-11-26",
+            "gamesLast7": 2
+          }
+        },
+        "weather": null,
+        "broadcast": "TNT, truTV",
+        "odds": {
+          "provider": "DraftKings",
+          "now": {
+            "spread": 1.5,
+            "spreadOdds": {
+              "home": -175,
+              "away": 145
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": 114,
+              "under": -135
+            },
+            "ml": {
+              "home": 150,
+              "away": -180
+            },
+            "draw": null
+          },
+          "open": {
+            "spread": 1.5,
+            "spreadOdds": {
+              "home": -175,
+              "away": 145
+            },
+            "total": 6.5,
+            "totalOdds": {
+              "over": 105,
+              "under": -125
+            },
+            "ml": {
+              "home": 145,
+              "away": -175
+            },
+            "draw": null
+          }
+        }
+      },
+      "movement": {
+        "loggedOdds": 155,
+        "loggedFair": 0.493,
+        "currentOdds": 158,
+        "currentBook": "Bovada",
+        "currentFair": 0.3753,
+        "currentEdge": 0.1173,
+        "checkedAt": "2026-11-27T20:36:15.313Z",
+        "history": [
+          {
+            "at": "2026-11-26T14:07:26.613Z",
+            "odds": 155,
+            "fair": 0.3866
+          },
+          {
+            "at": "2026-11-26T20:36:23.098Z",
+            "odds": 155,
+            "fair": 0.3866
+          },
+          {
+            "at": "2026-11-27T14:07:28.184Z",
+            "odds": 155,
+            "fair": 0.3837
+          },
+          {
+            "at": "2026-11-27T20:36:15.313Z",
+            "odds": 158,
+            "fair": 0.3753
+          }
+        ]
+      },
+      "dk": {
+        "book": "DraftKings",
+        "open": {
+          "line": null,
+          "odds": 145,
+          "fair": 0.39076376554174075
+        },
+        "now": {
+          "line": null,
+          "odds": 150,
+          "fair": 0.3835616438356164
+        },
+        "moved": "away",
+        "label": "DraftKings opened +145, now +150"
+      },
+      "dkHistory": [
+        {
+          "at": "2026-11-26T20:36:23.098Z",
+          "line": null,
+          "odds": 145,
+          "fair": 0.3908
+        },
+        {
+          "at": "2026-11-27T20:36:15.313Z",
+          "line": null,
+          "odds": 150,
+          "fair": 0.3836
+        }
+      ],
+      "mkt": {
+        "book": "Market consensus",
+        "n": 7,
+        "open": {
+          "line": null,
+          "odds": 128
+        },
+        "now": {
+          "line": null,
+          "odds": 160
+        },
+        "moved": "away",
+        "label": "The market (7 books) opened +128, now +160"
+      },
+      "sgo": {
+        "at": "2026-11-27T20:36:15.313Z",
+        "n": 7,
+        "best": {
+          "book": "Bovada",
+          "odds": 158
+        },
+        "fair": 0.3827,
+        "vendorFair": 0.3846,
+        "open": {
+          "line": null,
+          "odds": 128
+        },
+        "now": {
+          "line": null,
+          "odds": 160
+        }
+      },
+      "sgoHistory": [
+        {
+          "at": "2026-11-26T14:07:26.613Z",
+          "fair": 0.3866,
+          "vendorFair": 0.3861,
+          "line": null,
+          "odds": 159,
+          "best": 150,
+          "n": 2
+        },
+        {
+          "at": "2026-11-26T20:36:23.098Z",
+          "fair": 0.3911,
+          "vendorFair": 0.3906,
+          "line": null,
+          "odds": 156,
+          "best": 150,
+          "n": 6
+        },
+        {
+          "at": "2026-11-27T14:07:28.184Z",
+          "fair": 0.3938,
+          "vendorFair": 0.3906,
+          "line": null,
+          "odds": 156,
+          "best": 147,
+          "n": 7
+        },
+        {
+          "at": "2026-11-27T20:36:15.313Z",
+          "fair": 0.3827,
+          "vendorFair": 0.3846,
+          "line": null,
+          "odds": 160,
+          "best": 158,
+          "n": 7
+        }
+      ],
+      "status": "pending",
+      "started": true,
+      "result": null,
+      "units": null,
+      "score": null,
+      "loggedAt": "2026-11-26T14:07:26.613Z",
+      "valueTo": 137,
+      "bar": 0.0699,
+      "past": 0.0309,
+      "barParts": {
+        "error": 0.0699,
+        "units": 0.42,
+        "unit": "goals",
+        "gp": 24,
+        "floor": 0.03
+      },
+      "now": {
+        "at": "2026-11-27T20:36:15.313Z",
+        "odds": 158,
+        "book": "Bovada",
+        "modelProb": 0.5049,
+        "edge": 0.1173,
+        "bar": 0.0699
       },
       "standing": "clears",
       "availability": null

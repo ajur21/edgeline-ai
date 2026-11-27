@@ -1559,87 +1559,59 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:parlay-2026-11-27@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261127T231848Z
 DTSTART:20261127T180000Z
 DTEND:20261127T220000Z
-SUMMARY:Parlay lean of the day: 2 legs +269 at BetOnline.ag
+SUMMARY:Parlay lean of the day: 2 legs +269 at BetOnline.ag · Lost -1.00u
 DESCRIPTION:All legs priced at BetOnline.ag. Fair 33.1%\, implied 27.1%\, E
  V +22.2% per unit.\n- NHL: Nashville Predators ML -101 · Utah Mammoth @ N
  ashville Predators\n- NHL: Over 5.5 -117 · Dallas Stars @ St Louis Blues\
- n\nEvery parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+ nResult: Lost -1.00u\nEvery parlay: https://ajur21.github.io/edgeline-ai/p
+ icks.html#parlays
 URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
 CATEGORIES:Parlay
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261127T231848Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +269 at BetOnline.ag
+DESCRIPTION:Parlay lean of the day: 2 legs +269 at BetOnline.ag · Lost -1.
+ 00u
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b5234ea578-h2h-Nashville-Predators@edgeline
-DTSTAMP:20261127T140728Z
+DTSTAMP:20261127T231848Z
 DTSTART:20261127T180000Z
 DTEND:20261127T210000Z
-SUMMARY:Nashville Predators ML +100 at FanDuel · in play
+SUMMARY:Nashville Predators ML +100 at FanDuel · Lost -1.00u
 DESCRIPTION:NHL · Utah Mammoth @ Nashville Predators · Fri Nov 27\, 1:00 
- PM ET\nMoneyline: Nashville Predators ML at +100 (FanDuel). Our probabilit
- y 57.9% from game data\, the price implies 50.0%\, edge +7.9 pts\, EV +15.
- 7% per unit. Confidence: Lean.\nOur probability is 57.9%\, from the game d
- ata: this season's results and margins\, recent form\, rest\, the injury r
- eport and home edge (projected margin +0.5 for the home side). FanDuel off
- ers +100\, which implies only 50.0%. Its bar is 6.9 points: the model's ow
- n margin of error on this side\, with 24 games behind the thinner team (±
- 0.42 goals on the margin). It clears it by 1.0. Not graded against other b
- ooks' prices\; for reference the market makes it 48.8%.\nWhat supports it:
- \n- Home edge +0.2 for Nashville Predators.\n- Utah Mammoth without Michae
- l Carcone (LW)\, John Marino (D)\, Nick Schmaltz (C) and 1 more (+0.3).\n-
-  Projected margin +0.5 for Nashville Predators.\n- A better price is now a
- vailable: +102 at BetOnline.ag.\nWhat could go wrong:\n- Nashville Predato
- rs rate 0 a game over 24 (13-11)\, Utah Mammoth +0 over 26 (13-13)\; last 
- season -0.3 and +0.3 a game.\nVerdict: The game data lines up behind this 
- side at this price.\nPrices: BetOnline.ag -101\, FanDuel -102\, theScore B
- et -105\, BetMGM -105\, DraftKings -105 and 5 more.\nFull breakdown: https
- ://ajur21.github.io/edgeline-ai/picks.html#b5234ea578-h2h-Nashville-Predat
- ors
+ PM ET\nMoneyline: Nashville Predators ML at +100 (FanDuel). Lost -1.00u.\n
+ Final: 6-5\nClosing line value: -1.7 pts (closed -102\, DraftKings close (
+ ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline-a
+ i/performance.html
 LOCATION:Bridgestone Arena\, Nashville
-URL:https://ajur21.github.io/edgeline-ai/picks.html#b5234ea578-h2h-Nashvill
- e-Predators
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T140728Z
+LAST-MODIFIED:20261127T231848Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f23fc3f7fb-totals-Over@edgeline
-DTSTAMP:20261127T140728Z
+DTSTAMP:20261127T231848Z
 DTSTART:20261127T190000Z
 DTEND:20261127T220000Z
-SUMMARY:Over 5.5 -117 at BetOnline.ag · in play
+SUMMARY:Over 5.5 -117 at BetOnline.ag · Won +0.85u
 DESCRIPTION:NHL · Dallas Stars @ St Louis Blues · Fri Nov 27\, 2:00 PM ET
- \nTotal: Over 5.5 at -117 (BetOnline.ag). Our probability 57.2% from game 
- data\, the price implies 53.9%\, edge +3.3 pts\, EV +6.1% per unit. Confid
- ence: Lean.\nOur probability at 5.5 is 57.2%\, from the game data: this se
- ason's results and margins\, recent form\, rest\, the injury report and ho
- me edge (projected total 6.3). BetOnline.ag offers -117\, which implies on
- ly 53.9%. Its bar is 3.0 points (the floor: the model's own margin of erro
- r here is smaller). It clears it by 0.3. Not graded against other books' p
- rices\; for reference the market makes it 52.8%.\nWhat supports it:\n- Com
- bined scoring 6.6 a game in St Louis Blues's games\, 5.2 in Dallas Stars's
-  (league average 6.4).\n- Projected total 6.3 against 5.5.\n- A better pri
- ce is now available: -116 at BetOnline.ag.\nWhat could go wrong:\n- Scorer
- s out: Connor McMichael (LW)\, lower body\; Brandon Carlo (D)\, lower body
- \; Torey Krug (D)\, ankle and 5 more. Fewer healthy scorers leans under.\n
- Verdict: The game data lines up behind this side at this price.\nPrices: B
- etOnline.ag -117\, FanDuel -118\, ESPN BET -120\, BetMGM -120\, Bovada -12
- 0 and 6 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks.
- html#f23fc3f7fb-totals-Over
+ \nTotal: Over 5.5 at -117 (BetOnline.ag). Won +0.85u.\nFinal: 3-5\nClosing
+  line value: -2.8 pts (closed -115\, DraftKings close (ESPN)).\nRecord and
+  every graded lean: https://ajur21.github.io/edgeline-ai/performance.html
 LOCATION:Enterprise Center\, St. Louis
-URL:https://ajur21.github.io/edgeline-ai/picks.html#f23fc3f7fb-totals-Over
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T140728Z
+LAST-MODIFIED:20261127T231848Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -1648,7 +1620,7 @@ UID:05bd16c51c-h2h-Chicago-Blackhawks@edgeline
 DTSTAMP:20261127T203615Z
 DTSTART:20261127T223000Z
 DTEND:20261128T013000Z
-SUMMARY:Chicago Blackhawks ML +155 at BetRivers · Medium
+SUMMARY:Chicago Blackhawks ML +155 at BetRivers · in play
 DESCRIPTION:NHL · New York Rangers @ Chicago Blackhawks · Fri Nov 27\, 5:
  30 PM ET\nMoneyline: Chicago Blackhawks ML at +155 (BetRivers). Our probab
  ility 49.3% from game data\, the price implies 39.2%\, edge +10.1 pts\, EV
@@ -1679,15 +1651,10 @@ CATEGORIES:NHL
 LAST-MODIFIED:20261127T203615Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Chicago Blackhawks ML +155 at BetRivers · Medium
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d4043fc330-h2h-Columbus-Crew-SC@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261127T231848Z
 DTSTART:20261128T010000Z
 DTEND:20261128T040000Z
 SUMMARY:Columbus Crew SC ML +163 at BetRivers · Low
@@ -1709,14 +1676,14 @@ DESCRIPTION:Soccer · Columbus Crew SC vs. Inter Miami CF · Fri Nov 27\, 8
  e.\n- At current prices our edge is 5.7 points\, under its bar of 7.4 poin
  ts\; the pick stays posted and is graded at the price it was posted at.\nV
  erdict: The game data lines up behind this side at this price.\nPrices: Be
- tRivers +163\, BetOnline.ag +160\, theScore Bet +155\, BetMGM +135\, ESPN 
- BET +135 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai
- /picks.html#d4043fc330-h2h-Columbus-Crew-SC
+ tRivers +163\, BetOnline.ag +160\, Bovada +156\, BetMGM +155\, theScore Be
+ t +155 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/p
+ icks.html#d4043fc330-h2h-Columbus-Crew-SC
 LOCATION:ScottsMiracle-Gro Field\, Columbus\, Ohio
 URL:https://ajur21.github.io/edgeline-ai/picks.html#d4043fc330-h2h-Columbus
  -Crew-SC
 CATEGORIES:Soccer
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261127T231848Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
