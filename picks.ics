@@ -1558,29 +1558,6 @@ STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-UID:parlay-2026-11-27@edgeline
-DTSTAMP:20261127T231848Z
-DTSTART:20261127T180000Z
-DTEND:20261127T220000Z
-SUMMARY:Parlay lean of the day: 2 legs +269 at BetOnline.ag · Lost -1.00u
-DESCRIPTION:All legs priced at BetOnline.ag. Fair 33.1%\, implied 27.1%\, E
- V +22.2% per unit.\n- NHL: Nashville Predators ML -101 · Utah Mammoth @ N
- ashville Predators\n- NHL: Over 5.5 -117 · Dallas Stars @ St Louis Blues\
- nResult: Lost -1.00u\nEvery parlay: https://ajur21.github.io/edgeline-ai/p
- icks.html#parlays
-URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
-CATEGORIES:Parlay
-LAST-MODIFIED:20261127T231848Z
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Parlay lean of the day: 2 legs +269 at BetOnline.ag · Lost -1.
- 00u
-TRIGGER:-PT30M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:b5234ea578-h2h-Nashville-Predators@edgeline
 DTSTAMP:20261127T231848Z
 DTSTART:20261127T180000Z
@@ -1617,80 +1594,39 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:05bd16c51c-h2h-Chicago-Blackhawks@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T070120Z
 DTSTART:20261127T223000Z
 DTEND:20261128T013000Z
-SUMMARY:Chicago Blackhawks ML +155 at BetRivers · in play
+SUMMARY:Chicago Blackhawks ML +155 at BetRivers · Won +1.55u
 DESCRIPTION:NHL · New York Rangers @ Chicago Blackhawks · Fri Nov 27\, 5:
- 30 PM ET\nMoneyline: Chicago Blackhawks ML at +155 (BetRivers). Our probab
- ility 49.3% from game data\, the price implies 39.2%\, edge +10.1 pts\, EV
-  +25.7% per unit. Confidence: Medium.\nOur probability is 49.3%\, from the
-  game data: this season's results and margins\, recent form\, rest\, the i
- njury report and home edge (projected margin 0 for the home side). BetRive
- rs offers +155\, which implies only 39.2%. Its bar is 7.0 points: the mode
- l's own margin of error on this side\, with 24 games behind the thinner te
- am (±0.42 goals on the margin). It clears it by 3.1. Not graded against o
- ther books' prices\; for reference the market makes it 38.7%.\nWhat suppor
- ts it:\n- Chicago Blackhawks trending: last five +1.4 vs -1.2 on the seaso
- n.\n- Home edge +0.2 for Chicago Blackhawks.\n- New York Rangers without P
- avel Dorofeyev (RW)\, Oliver Bjorkstrand (RW)\, Alberts Smits (D) and 1 mo
- re (+0.4).\n- A better price is now available: +158 at Bovada.\n- A better
-  price is available now: +158 at Bovada.\nWhat could go wrong:\n- Chicago 
- Blackhawks rate -0.5 a game over 25 (9-16)\, New York Rangers +0 over 24 (
- 13-11)\; last season -0.8 and -0.1 a game.\n- Chicago Blackhawks without T
- yler Bertuzzi (LW)\, Connor Bedard (C)\, Bowen Byram (D) (-0.2).\n- Projec
- ted margin -0.04 for Chicago Blackhawks.\nVerdict: The game data lines up 
- behind this side at this price.\nPrices: Bovada +158\, BetRivers +155\, Ca
- esars +150\, ESPN BET +150\, BetMGM +150 and 4 more.\nFull breakdown: http
- s://ajur21.github.io/edgeline-ai/picks.html#05bd16c51c-h2h-Chicago-Blackha
- wks
+ 30 PM ET\nMoneyline: Chicago Blackhawks ML at +155 (BetRivers). Won +1.55u
+ .\nFinal: 1-2\nClosing line value: -0.9 pts (closed +150\, DraftKings clos
+ e (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgelin
+ e-ai/performance.html
 LOCATION:United Center\, Chicago
-URL:https://ajur21.github.io/edgeline-ai/picks.html#05bd16c51c-h2h-Chicago-
- Blackhawks
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T070120Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:d4043fc330-h2h-Columbus-Crew-SC@edgeline
-DTSTAMP:20261127T231848Z
+DTSTAMP:20261128T070120Z
 DTSTART:20261128T010000Z
 DTEND:20261128T040000Z
-SUMMARY:Columbus Crew SC ML +163 at BetRivers · Low
+SUMMARY:Columbus Crew SC ML +163 at BetRivers · Won +1.63u
 DESCRIPTION:Soccer · Columbus Crew SC vs. Inter Miami CF · Fri Nov 27\, 8
- :00 PM ET\nMoneyline: Columbus Crew SC ML at +163 (BetRivers). Our probabi
- lity 47.2% from game data\, the price implies 38.0%\, edge +9.2 pts\, EV +
- 24.1% per unit. Confidence: Lean.\nOur probability is 47.2%\, from the gam
- e data: this season's results and margins\, recent form\, rest\, the injur
- y report and home edge (projected margin +0.5 for the home side). BetRiver
- s offers +163\, which implies only 38.0%. Its bar is 7.4 points: the model
- 's own margin of error on this side\, with 35 games behind the thinner tea
- m (±0.31 goals on the margin). It clears it by 1.7. Not graded against ot
- her books' prices\; for reference the market makes it 38.0%.\nWhat support
- s it:\n- Columbus Crew SC trending: last five +2.2 vs +0.3 on the season.\
- n- Inter Miami CF trending: last five -0.8 vs +0.5 on the season.\n- Home 
- edge +0.5 for Columbus Crew SC.\n- Projected margin +0.5 for Columbus Crew
-  SC.\nWhat could go wrong:\n- Columbus Crew SC rate +0.3 a game over 35 (1
- 5-15)\, Inter Miami CF +0.3 over 35 (16-7)\; last season +0.2 and +1 a gam
- e.\n- At current prices our edge is 5.7 points\, under its bar of 7.4 poin
- ts\; the pick stays posted and is graded at the price it was posted at.\nV
- erdict: The game data lines up behind this side at this price.\nPrices: Be
- tRivers +163\, BetOnline.ag +160\, Bovada +156\, BetMGM +155\, theScore Be
- t +155 and 5 more.\nFull breakdown: https://ajur21.github.io/edgeline-ai/p
- icks.html#d4043fc330-h2h-Columbus-Crew-SC
+ :00 PM ET\nMoneyline: Columbus Crew SC ML at +163 (BetRivers). Won +1.63u.
+ \nFinal: 0-1\nClosing line value: +2.9 pts (closed +125\, DraftKings close
+  (ESPN)).\nRecord and every graded lean: https://ajur21.github.io/edgeline
+ -ai/performance.html
 LOCATION:ScottsMiracle-Gro Field\, Columbus\, Ohio
-URL:https://ajur21.github.io/edgeline-ai/picks.html#d4043fc330-h2h-Columbus
- -Crew-SC
+URL:https://ajur21.github.io/edgeline-ai/performance.html
 CATEGORIES:Soccer
-LAST-MODIFIED:20261127T231848Z
+LAST-MODIFIED:20261128T070120Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Columbus Crew SC ML +163 at BetRivers · Low
-TRIGGER:-PT30M
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ab87184803-h2h-Brentford@edgeline
@@ -1733,7 +1669,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e98180af14-h2h-Charlotte-FC@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T070120Z
 DTSTART:20261128T173000Z
 DTEND:20261128T203000Z
 SUMMARY:Charlotte FC ML +168 at BetOnline.ag · High
@@ -1750,16 +1686,16 @@ DESCRIPTION:Soccer · Charlotte FC vs. Chicago Fire · Sat Nov 28\, 12:30 P
  it:\n- Charlotte FC rate +0.4 a game over 35 (16-10)\, Chicago Fire +0.2 o
  ver 35 (16-12)\; last season +0.2 and +0.2 a game.\n- Charlotte FC trendin
  g: last five +1.6 vs +0.5 on the season.\n- Home edge +0.5 for Charlotte F
- C.\n- Projected margin +0.7 for Charlotte FC.\nVerdict: The game data line
- s up behind this side at this price.\nPrices: BetOnline.ag +168\, Bovada +
- 164\, FanDuel +160\, DraftKings +160\, theScore Bet +160 and 5 more.\nFull
-  breakdown: https://ajur21.github.io/edgeline-ai/picks.html#e98180af14-h2h
- -Charlotte-FC
+ C.\n- Projected margin +0.7 for Charlotte FC.\n- A better price is availab
+ le now: +169 at Bovada.\nVerdict: The game data lines up behind this side 
+ at this price.\nPrices: Bovada +169\, BetOnline.ag +168\, FanDuel +165\, C
+ aesars +162\, BetMGM +160 and 5 more.\nFull breakdown: https://ajur21.gith
+ ub.io/edgeline-ai/picks.html#e98180af14-h2h-Charlotte-FC
 LOCATION:Bank of America Stadium\, Charlotte\, North Carolina
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e98180af14-h2h-Charlott
  e-FC
 CATEGORIES:Soccer
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T070120Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM

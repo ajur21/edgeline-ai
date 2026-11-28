@@ -2,17 +2,17 @@
 window.PERF_DATA = {
   "sample": false,
   "source": "The Odds API",
-  "asOf": "2026-11-27",
+  "asOf": "2026-11-28",
   "windowDays": 30,
   "record": {
-    "wins": 44,
+    "wins": 46,
     "losses": 39,
     "pushes": 0
   },
-  "units": 12.48,
-  "roi": 15,
+  "units": 15.66,
+  "roi": 18.4,
   "avgEdge": 8.3,
-  "graded": 83,
+  "graded": 85,
   "daily": [
     {
       "date": "2026-11-05",
@@ -96,14 +96,14 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-27",
-      "units": 12.48
+      "units": 15.66
     }
   ],
   "bySport": [
     {
       "sport": "NHL",
-      "units": 5.32,
-      "record": "30-23"
+      "units": 6.87,
+      "record": "31-23"
     },
     {
       "sport": "NBA",
@@ -112,8 +112,8 @@ window.PERF_DATA = {
     },
     {
       "sport": "Soccer",
-      "units": 10.83,
-      "record": "10-7"
+      "units": 12.46,
+      "record": "11-7"
     },
     {
       "sport": "NFL",
@@ -122,6 +122,36 @@ window.PERF_DATA = {
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-27",
+      "sport": "Soccer",
+      "event": "Columbus Crew SC vs. Inter Miami CF",
+      "pick": "Columbus Crew SC ML",
+      "odds": 163,
+      "result": "Win",
+      "units": 1.63,
+      "clv": 0.0288,
+      "closeOdds": 125,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
+    {
+      "date": "2026-11-27",
+      "sport": "NHL",
+      "event": "New York Rangers @ Chicago Blackhawks",
+      "pick": "Chicago Blackhawks ML",
+      "odds": 155,
+      "result": "Win",
+      "units": 1.55,
+      "clv": -0.0086,
+      "closeOdds": 150,
+      "closeLine": null,
+      "closeSource": "DraftKings close (ESPN)",
+      "lineMove": null,
+      "basis": "game"
+    },
     {
       "date": "2026-11-27",
       "sport": "NHL",
@@ -271,36 +301,6 @@ window.PERF_DATA = {
       "closeSource": "DraftKings close (ESPN)",
       "lineMove": null,
       "basis": "game"
-    },
-    {
-      "date": "2026-11-23",
-      "sport": "NHL",
-      "event": "Calgary Flames @ Ottawa Senators",
-      "pick": "Over 5.5",
-      "odds": -122,
-      "result": "Loss",
-      "units": -1,
-      "clv": -0.0387,
-      "closeOdds": -115,
-      "closeLine": 5.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
-    },
-    {
-      "date": "2026-11-23",
-      "sport": "NHL",
-      "event": "Columbus Blue Jackets @ New Jersey Devils",
-      "pick": "Over 6.5",
-      "odds": 120,
-      "result": "Loss",
-      "units": -1,
-      "clv": 0.0238,
-      "closeOdds": 100,
-      "closeLine": 6.5,
-      "closeSource": "DraftKings close (ESPN)",
-      "lineMove": null,
-      "basis": "game"
     }
   ],
   "byDate": [
@@ -446,8 +446,8 @@ window.PERF_DATA = {
     },
     {
       "date": "2026-11-27",
-      "units": -0.15,
-      "wins": 1,
+      "units": 3.03,
+      "wins": 3,
       "losses": 1,
       "pushes": 0
     }
@@ -570,25 +570,25 @@ window.PERF_DATA = {
     "n": 21
   },
   "clv": {
-    "n": 75,
-    "avg": -0.96,
-    "beat": 23,
-    "beatPct": 30.7,
-    "graded": 83,
+    "n": 77,
+    "avg": -0.91,
+    "beat": 24,
+    "beatPct": 31.2,
+    "graded": 85,
     "lineToward": 2,
     "lineAway": 6,
-    "espnCloses": 83,
+    "espnCloses": 85,
     "sgoCloses": 0
   },
   "byBasis": {
     "game": {
-      "wins": 44,
+      "wins": 46,
       "losses": 39,
       "pushes": 0,
-      "units": 12.48,
-      "n": 83,
-      "roi": 15,
-      "pending": 12,
+      "units": 15.66,
+      "n": 85,
+      "roi": 18.4,
+      "pending": 10,
       "since": "2026-11-05"
     },
     "price": {
