@@ -1649,11 +1649,11 @@ DESCRIPTION:Soccer · Manchester United vs. Brentford · Sat Nov 28\, 10:00
   five -1.8 vs -0.8 on the season.\n- Brentford are rested (5 days).\n- Pro
  jected margin +0.3 for Brentford.\nWhat could go wrong:\n- Home edge +0.2 
  for Manchester United.\n- Manchester United are rested (6 days).\n- Weathe
- r at kickoff: Light rain\, 47°F\, wind 13 mph\, 100% rain. Rough conditio
- ns add variance.\nVerdict: The game data lines up behind this side at this
-  price.\nPrices: BetMGM +220\, BetRivers +215\, Bovada +210\, DraftKings +
- 205\, BetOnline.ag +204 and 2 more.\nFull breakdown: https://ajur21.github
- .io/edgeline-ai/picks.html#ab87184803-h2h-Brentford
+ r at kickoff: Drizzle\, 47°F\, wind 15 mph\, 100% rain. Rough conditions 
+ add variance.\nVerdict: The game data lines up behind this side at this pr
+ ice.\nPrices: BetMGM +220\, BetRivers +215\, Bovada +210\, DraftKings +205
+ \, BetOnline.ag +204 and 2 more.\nFull breakdown: https://ajur21.github.io
+ /edgeline-ai/picks.html#ab87184803-h2h-Brentford
 LOCATION:Old Trafford\, Manchester
 URL:https://ajur21.github.io/edgeline-ai/picks.html#ab87184803-h2h-Brentfor
  d
@@ -1669,7 +1669,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e98180af14-h2h-Charlotte-FC@edgeline
-DTSTAMP:20261128T070120Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261128T173000Z
 DTEND:20261128T203000Z
 SUMMARY:Charlotte FC ML +168 at BetOnline.ag · High
@@ -1687,15 +1687,15 @@ DESCRIPTION:Soccer · Charlotte FC vs. Chicago Fire · Sat Nov 28\, 12:30 P
  ver 35 (16-12)\; last season +0.2 and +0.2 a game.\n- Charlotte FC trendin
  g: last five +1.6 vs +0.5 on the season.\n- Home edge +0.5 for Charlotte F
  C.\n- Projected margin +0.7 for Charlotte FC.\n- A better price is availab
- le now: +169 at Bovada.\nVerdict: The game data lines up behind this side 
- at this price.\nPrices: Bovada +169\, BetOnline.ag +168\, FanDuel +165\, C
+ le now: +170 at Bovada.\nVerdict: The game data lines up behind this side 
+ at this price.\nPrices: Bovada +170\, BetOnline.ag +168\, FanDuel +165\, C
  aesars +162\, BetMGM +160 and 5 more.\nFull breakdown: https://ajur21.gith
  ub.io/edgeline-ai/picks.html#e98180af14-h2h-Charlotte-FC
 LOCATION:Bank of America Stadium\, Charlotte\, North Carolina
 URL:https://ajur21.github.io/edgeline-ai/picks.html#e98180af14-h2h-Charlott
  e-FC
 CATEGORIES:Soccer
-LAST-MODIFIED:20261128T070120Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1721,11 +1721,11 @@ DESCRIPTION:Soccer · Ipswich Town vs. Aston Villa · Sat Nov 28\, 12:30 PM
  ars it by 0.4. Not graded against other books' prices\; for reference the 
  market makes it 50.5%.\nWhat supports it:\n- Combined scoring 3.4 a game i
  n Ipswich Town's games\, 2.8 in Aston Villa's (league average 2.8).\n- Pro
- jected total 2.8 against 3.\n- Weather at kickoff: Overcast\, 42°F\, wind
-  13 mph\, 94% rain. Wind\, rain or cold suppresses scoring.\nVerdict: The 
- game data lines up behind this side at this price.\nPrices: Bovada -105\, 
- BetOnline.ag -105.\nFull breakdown: https://ajur21.github.io/edgeline-ai/p
- icks.html#9d23f6ad21-totals-Under
+ jected total 2.8 against 3.\n- Weather at kickoff: Drizzle\, 42°F\, wind 
+ 12 mph\, 79% rain. Wind\, rain or cold suppresses scoring.\nVerdict: The g
+ ame data lines up behind this side at this price.\nPrices: Bovada -105\, B
+ etOnline.ag -105.\nFull breakdown: https://ajur21.github.io/edgeline-ai/pi
+ cks.html#9d23f6ad21-totals-Under
 LOCATION:Portman Road\, Ipswich
 URL:https://ajur21.github.io/edgeline-ai/picks.html#9d23f6ad21-totals-Under
 CATEGORIES:Soccer
@@ -1739,8 +1739,29 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:parlay-2026-11-28@edgeline
+DTSTAMP:20261128T140715Z
+DTSTART:20261128T173000Z
+DTEND:20261129T031000Z
+SUMMARY:Parlay lean of the day: 2 legs +230 at Bovada
+DESCRIPTION:All legs priced at Bovada. Fair 38.8%\, implied 30.3%\, EV +27.
+ 9% per unit.\n- NHL: Winnipeg Jets +1.5 -145 · Winnipeg Jets @ New Jersey
+  Devils\n- Soccer: Under 3 goals -105 · Ipswich Town vs. Aston Villa\n\nE
+ very parlay: https://ajur21.github.io/edgeline-ai/picks.html#parlays
+URL:https://ajur21.github.io/edgeline-ai/picks.html#parlays
+CATEGORIES:Parlay
+LAST-MODIFIED:20261128T140715Z
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parlay lean of the day: 2 legs +230 at Bovada
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:6a172659dc-spreads-Vegas-Golden-Knights@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261128T211000Z
 DTEND:20261129T001000Z
 SUMMARY:Vegas Golden Knights -1.5 +210 at BetRivers · Low
@@ -1760,19 +1781,21 @@ DESCRIPTION:NHL · Montréal Canadiens @ Vegas Golden Knights · Sat Nov 28
  n.\n- Home edge +0.2 for Vegas Golden Knights.\n- Vegas Golden Knights are
   rested (4 days).\n- Montréal Canadiens without Kaiden Guhle (D)\, Mike M
  atheson (D)\, Josh Anderson (RW) and 1 more (+0.3).\n- Projected margin +0
- .7 for Vegas Golden Knights against -1.5.\nWhat could go wrong:\n- Vegas G
- olden Knights trending: last five -0.4 vs +0.5 on the season.\n- Montréal
-  Canadiens are rested (3 days).\n- Vegas Golden Knights have Marc Gatcomb 
- (C) listed day-to-day or questionable.\nVerdict: The game data lines up be
- hind this side at this price.\nPrices: BetRivers +210\, FanDuel +198\, Dra
- ftKings +190\, Caesars +190\, theScore Bet +180 and 1 more.\nFull breakdow
- n: https://ajur21.github.io/edgeline-ai/picks.html#6a172659dc-spreads-Vega
- s-Golden-Knights
+ .7 for Vegas Golden Knights against -1.5.\n- A better price is available n
+ ow: +215 at Bovada.\nWhat could go wrong:\n- Vegas Golden Knights trending
+ : last five -0.4 vs +0.5 on the season.\n- Montréal Canadiens are rested 
+ (3 days).\n- Vegas Golden Knights have Marc Gatcomb (C) listed day-to-day 
+ or questionable.\n- At current prices our edge is 4.2 points\, under its b
+ ar of 6.0 points\; the pick stays posted and is graded at the price it was
+  posted at.\nVerdict: The game data lines up behind this side at this pric
+ e.\nPrices: Bovada +215\, BetRivers +210\, FanDuel +210\, DraftKings +205\
+ , ESPN BET +200 and 3 more.\nFull breakdown: https://ajur21.github.io/edge
+ line-ai/picks.html#6a172659dc-spreads-Vegas-Golden-Knights
 LOCATION:T-Mobile Arena\, Las Vegas
 URL:https://ajur21.github.io/edgeline-ai/picks.html#6a172659dc-spreads-Vega
  s-Golden-Knights
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1783,7 +1806,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:43752672d2-h2h-New-England-Revolution@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261128T213000Z
 DTEND:20261129T003000Z
 SUMMARY:New England Revolution ML +460 at BetRivers · Low
@@ -1803,14 +1826,14 @@ DESCRIPTION:Soccer · Philadelphia Union vs. New England Revolution · Sat
  season +0.6 and -0.2 a game.\n- Home edge +0.5 for Philadelphia Union.\n- 
  Projected margin -0.6 for New England Revolution.\nVerdict: More working a
  gainst this one than for it\; size down.\nPrices: BetRivers +460\, Unibet 
- +460\, BetOnline.ag +435\, FanDuel +420\, Bovada +410 and 5 more.\nFull br
+ +460\, BetOnline.ag +435\, Bovada +420\, FanDuel +410 and 5 more.\nFull br
  eakdown: https://ajur21.github.io/edgeline-ai/picks.html#43752672d2-h2h-Ne
  w-England-Revolution
 LOCATION:Subaru Park\, Chester\, Pennsylvania
 URL:https://ajur21.github.io/edgeline-ai/picks.html#43752672d2-h2h-New-Engl
  and-Revolution
 CATEGORIES:Soccer
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1821,7 +1844,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:274d3542bf-spreads-Winnipeg-Jets@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261129T001000Z
 DTEND:20261129T031000Z
 SUMMARY:Winnipeg Jets +1.5 -135 at DraftKings · Medium
@@ -1845,14 +1868,14 @@ DESCRIPTION:NHL · Winnipeg Jets @ New Jersey Devils · Sat Nov 28\, 7:10 P
  or New Jersey Devils.\n- Winnipeg Jets without Dylan DeMelo (D)\, Isak Ros
  en (RW)\, Vladislav Namestnikov (C) (+0.2).\n- Projected margin -0.2 for W
  innipeg Jets against +1.5.\nVerdict: The game data lines up behind this si
- de at this price.\nPrices: DraftKings -135\, theScore Bet -135\, ESPN BET 
- -135\, Caesars -136\, FanDuel -142 and 1 more.\nFull breakdown: https://aj
- ur21.github.io/edgeline-ai/picks.html#274d3542bf-spreads-Winnipeg-Jets
+ de at this price.\nPrices: theScore Bet -135\, ESPN BET -135\, Caesars -13
+ 9\, BetMGM -140\, FanDuel -144 and 3 more.\nFull breakdown: https://ajur21
+ .github.io/edgeline-ai/picks.html#274d3542bf-spreads-Winnipeg-Jets
 LOCATION:Prudential Center\, Newark
 URL:https://ajur21.github.io/edgeline-ai/picks.html#274d3542bf-spreads-Winn
  ipeg-Jets
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1863,7 +1886,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2eb8dba3fd-totals-Under@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261129T001000Z
 DTEND:20261129T031000Z
 SUMMARY:Under 6.5 +117 at BetOnline.ag · Low
@@ -1879,15 +1902,17 @@ DESCRIPTION:NHL · Toronto Maple Leafs @ Pittsburgh Penguins · Sat Nov 28\
  rts it:\n- Combined scoring 6.5 a game in Pittsburgh Penguins's games\, 6.
  7 in Toronto Maple Leafs's (league average 6.4).\n- Projected total 6.4 ag
  ainst 6.5.\n- Scorers out: Egor Chinakhov (RW)\, undisclosed\; Bryan Rust 
- (RW)\, lower body\; Nick Robertson (LW)\, lower body and 12 more. Fewer he
- althy scorers leans under.\nVerdict: The game data lines up behind this si
- de at this price.\nPrices: BetOnline.ag +117\, FanDuel +112\, DraftKings +
- 110\, theScore Bet +110\, ESPN BET +110 and 3 more.\nFull breakdown: https
- ://ajur21.github.io/edgeline-ai/picks.html#2eb8dba3fd-totals-Under
+ (RW)\, lower body\; Nick Robertson (LW)\, lower body and 13 more. Fewer he
+ althy scorers leans under.\n- Pittsburgh Penguins and Toronto Maple Leafs 
+ on a back-to-back\; tired legs lean under.\nVerdict: The game data lines u
+ p behind this side at this price.\nPrices: BetOnline.ag +117\, PointsBet +
+ 115\, DraftKings +114\, FanDuel +112\, Bovada +112 and 6 more.\nFull break
+ down: https://ajur21.github.io/edgeline-ai/picks.html#2eb8dba3fd-totals-Un
+ der
 LOCATION:PPG Paints Arena\, Pittsburgh
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2eb8dba3fd-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1898,7 +1923,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:13c3edd2c9-totals-Under@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261129T001000Z
 DTEND:20261129T031000Z
 SUMMARY:Under 6.5 +117 at BetOnline.ag · Low
@@ -1912,17 +1937,20 @@ DESCRIPTION:NHL · Washington Capitals @ St Louis Blues · Sat Nov 28\, 7:1
   of error here is smaller). It clears it by 0.2. Not graded against other 
  books' prices\; for reference the market makes it 44.9%.\nWhat supports it
  :\n- Combined scoring 6.6 a game in St Louis Blues's games\, 7.5 in Washin
- gton Capitals's (league average 6.4).\n- Scorers out: Jimmy Snuggerud (RW)
- \, upper body\; Brandon Carlo (D)\, lower body\; Torey Krug (D)\, ankle an
- d 4 more. Fewer healthy scorers leans under.\nWhat could go wrong:\n- Proj
- ected total 6.52 against 6.5.\nVerdict: The game data lines up behind this
-  side at this price.\nPrices: BetOnline.ag +117\, theScore Bet +115\, ESPN
-  BET +115\, DraftKings +114\, BetRivers +114 and 3 more.\nFull breakdown: 
- https://ajur21.github.io/edgeline-ai/picks.html#13c3edd2c9-totals-Under
+ gton Capitals's (league average 6.4).\n- A better price is now available: 
+ +124 at DraftKings.\n- A better price is available now: +125 at PointsBet.
+ \n- Scorers out: Jimmy Snuggerud (RW)\, upper body\; Brandon Carlo (D)\, l
+ ower body\; Torey Krug (D)\, ankle and 4 more. Fewer healthy scorers leans
+  under.\n- St Louis Blues and Washington Capitals on a back-to-back\; tire
+ d legs lean under.\nWhat could go wrong:\n- Projected total 6.52 against 6
+ .5.\nVerdict: The game data lines up behind this side at this price.\nPric
+ es: PointsBet +125\, DraftKings +124\, ESPN BET +120\, FanDuel +118\, BetO
+ nline.ag +117 and 4 more.\nFull breakdown: https://ajur21.github.io/edgeli
+ ne-ai/picks.html#13c3edd2c9-totals-Under
 LOCATION:Enterprise Center\, St. Louis
 URL:https://ajur21.github.io/edgeline-ai/picks.html#13c3edd2c9-totals-Under
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1933,7 +1961,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2b6e5d5ff4-totals-Over@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261129T004000Z
 DTEND:20261129T034000Z
 SUMMARY:Over 5.5 -117 at BetRivers · Low
@@ -1948,17 +1976,19 @@ DESCRIPTION:NHL · New York Islanders @ Philadelphia Flyers · Sat Nov 28\,
  ks' prices\; for reference the market makes it 53.6%.\nWhat supports it:\n
  - Combined scoring 6.1 a game in Philadelphia Flyers's games\, 6 in New Yo
  rk Islanders's (league average 6.4).\n- Projected total 6.3 against 5.5.\n
- - A better price is available now: -116 at Unibet.\nWhat could go wrong:\n
- - Scorers out: Matvei Michkov (RW)\, coach's decision\; Nikita Grebenkin (
- RW)\, back\; Kyle Palmieri (C)\, knee and 2 more. Fewer healthy scorers le
- ans under.\nVerdict: The game data lines up behind this side at this price
- .\nPrices: Unibet -116\, BetRivers -117\, FanDuel -134\, DraftKings -135\,
-  Caesars -137.\nFull breakdown: https://ajur21.github.io/edgeline-ai/picks
- .html#2b6e5d5ff4-totals-Over
+ What could go wrong:\n- At current prices our edge is 1.4 points\, under i
+ ts bar of 3.0 points\; the pick stays posted and is graded at the price it
+  was posted at.\n- Scorers out: Owen Tippett (RW)\, lower body\; Nikita Gr
+ ebenkin (RW)\, back\; Kyle Palmieri (C)\, knee and 2 more. Fewer healthy s
+ corers leans under.\n- Philadelphia Flyers and New York Islanders on a bac
+ k-to-back\; tired legs lean under.\nVerdict: More working against this one
+  than for it\; size down.\nPrices: BetRivers -117\, Unibet -128\, DraftKin
+ gs -130\, FanDuel -130\, PointsBet -130 and 2 more.\nFull breakdown: https
+ ://ajur21.github.io/edgeline-ai/picks.html#2b6e5d5ff4-totals-Over
 LOCATION:Xfinity Mobile Arena\, Philadelphia
 URL:https://ajur21.github.io/edgeline-ai/picks.html#2b6e5d5ff4-totals-Over
 CATEGORIES:NHL
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
@@ -1969,7 +1999,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0ee85d9195-h2h-Draw@edgeline
-DTSTAMP:20261127T203615Z
+DTSTAMP:20261128T140715Z
 DTSTART:20261129T013000Z
 DTEND:20261129T043000Z
 SUMMARY:Draw +350 at FanDuel · Low
@@ -1987,13 +2017,13 @@ DESCRIPTION:Soccer · Los Angeles FC vs. St. Louis City SC · Sat Nov 28\,
  geles FC trending: last five -0.8 vs +0.3 on the season.\n- St. Louis City
   SC trending: last five -0.6 vs +0.3 on the season.\n- Home edge +0.5 for 
  Los Angeles FC.\nVerdict: More working against this one than for it\; size
-  down.\nPrices: FanDuel +350\, BetOnline.ag +350\, Bovada +345\, theScore 
- Bet +340\, ESPN BET +340 and 5 more.\nFull breakdown: https://ajur21.githu
+  down.\nPrices: BetOnline.ag +350\, theScore Bet +340\, ESPN BET +340\, Bo
+ vada +335\, FanDuel +330 and 5 more.\nFull breakdown: https://ajur21.githu
  b.io/edgeline-ai/picks.html#0ee85d9195-h2h-Draw
 LOCATION:BMO Stadium\, Los Angeles\, California
 URL:https://ajur21.github.io/edgeline-ai/picks.html#0ee85d9195-h2h-Draw
 CATEGORIES:Soccer
-LAST-MODIFIED:20261127T203615Z
+LAST-MODIFIED:20261128T140715Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
